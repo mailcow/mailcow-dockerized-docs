@@ -3,9 +3,6 @@ repo_url: https://github.com/mailcow/mailcow-dockerized-docs
 remote_branch: gh-pages
 theme: material
 extra:
-  social:
-    - type: 'github'
-      link: 'https://github.com/mailcow/mailcow-dockerized'
   palette:
     primary: 'indigo'
     accent: 'yellow'
