@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+      
+      <meta name="generator" content="mkdocs-0.16.1, mkdocs-material-1.2.0">
+    
+    
+      
+        <title>First Steps - mailcow: dockerized</title>
+      
+    
+    
+      <script src="../assets/javascripts/modernizr-56ade86843.js"></script>
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application-e17eeafcbc.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-892b79c5c5.palette.css">
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+  
+  
+  
+    <body data-md-color-primary="indigo" data-md-color-accent="yellow">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <a href=".." title="mailcow: dockerized" class="md-logo md-header-nav__button">
+            <img src="../images/logo.svg" width="24" height="24">
+          </a>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <span class="md-flex__ellipsis md-header-nav__title">
+          
+            
+              
+            
+            First Steps
+          
+        </span>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+          
+<div class="md-search" data-md-component="search">
+  <div class="md-search__overlay"></div>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" accesskey="s" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <div class="md-header-nav__source">
+          
+            
+
+
+  
+
+
+  <a href="https://github.com/mailcow/mailcow-dockerized-docs" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    
+      <i class="md-logo md-nav__button">
+        <img src="../images/logo.svg">
+      </i>
+    
+    mailcow: dockerized
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/mailcow/mailcow-dockerized-docs" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="This is mailcow" class="md-nav__link">
+      This is mailcow
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        First Steps
+      </label>
+    
+    <a href="./" title="First Steps" class="md-nav__link md-nav__link--active">
+      First Steps
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-and-how-to-use-lets-encrypt" title="SSL (and: How to use Let's Encrypt)" class="md-nav__link">
+    SSL (and: How to use Let's Encrypt)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtain-multi-san-certificate-by-lets-encrypt" title="Obtain multi-SAN certificate by Let's Encrypt" class="md-nav__link">
+    Obtain multi-SAN certificate by Let's Encrypt
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rspamd-web-ui" title="Rspamd Web UI" class="md-nav__link">
+    Rspamd Web UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-reverse-proxy" title="Optional: Reverse proxy" class="md-nav__link">
+    Optional: Reverse proxy
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-24" title="Apache 2.4" class="md-nav__link">
+    Apache 2.4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx" title="Nginx" class="md-nav__link">
+    Nginx
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-setup-a-relayhost" title="Optional: Setup a relayhost" class="md-nav__link">
+    Optional: Setup a relayhost
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helper-script" title="Helper script" class="md-nav__link">
+    Helper script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-log-to-syslog" title="Optional: Log to Syslog" class="md-nav__link">
+    Optional: Log to Syslog
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-fail2ban" title="Use Fail2ban" class="md-nav__link">
+    Use Fail2ban
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-a-local-mta" title="Install a local MTA" class="md-nav__link">
+    Install a local MTA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sender-and-receiver-model" title="Sender and receiver model" class="md-nav__link">
+    Sender and receiver model
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sogo-mail-from-addresses" title="SOGo "mail from" addresses" class="md-nav__link">
+    SOGo "mail from" addresses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../u_and_e/" title="Usage & Examples" class="md-nav__link">
+      Usage & Examples
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-and-how-to-use-lets-encrypt" title="SSL (and: How to use Let's Encrypt)" class="md-nav__link">
+    SSL (and: How to use Let's Encrypt)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtain-multi-san-certificate-by-lets-encrypt" title="Obtain multi-SAN certificate by Let's Encrypt" class="md-nav__link">
+    Obtain multi-SAN certificate by Let's Encrypt
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rspamd-web-ui" title="Rspamd Web UI" class="md-nav__link">
+    Rspamd Web UI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-reverse-proxy" title="Optional: Reverse proxy" class="md-nav__link">
+    Optional: Reverse proxy
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-24" title="Apache 2.4" class="md-nav__link">
+    Apache 2.4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nginx" title="Nginx" class="md-nav__link">
+    Nginx
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-setup-a-relayhost" title="Optional: Setup a relayhost" class="md-nav__link">
+    Optional: Setup a relayhost
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helper-script" title="Helper script" class="md-nav__link">
+    Helper script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-log-to-syslog" title="Optional: Log to Syslog" class="md-nav__link">
+    Optional: Log to Syslog
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-fail2ban" title="Use Fail2ban" class="md-nav__link">
+    Use Fail2ban
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-a-local-mta" title="Install a local MTA" class="md-nav__link">
+    Install a local MTA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sender-and-receiver-model" title="Sender and receiver model" class="md-nav__link">
+    Sender and receiver model
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sogo-mail-from-addresses" title="SOGo "mail from" addresses" class="md-nav__link">
+    SOGo "mail from" addresses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+               
+                 <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/first_steps.md" title="Edit this page" class="md-icon md-content__edit">edit</a>
+               
+              
+                
+                  <h1>First Steps</h1>
+                
+                <h2 id="ssl-and-how-to-use-lets-encrypt">SSL (and: How to use Let's Encrypt)<a class="headerlink" href="#ssl-and-how-to-use-lets-encrypt" title="Permanent link">&para;</a></h2>
+<p>mailcow dockerized comes with a snakeoil CA "mailcow" and a server certificate in <code>data/assets/ssl</code>. Please use your own trusted certificates.</p>
+<p>mailcow uses 3 domain names that should be covered by your new certificate:</p>
+<ul>
+<li>${MAILCOW_HOSTNAME}</li>
+<li>autodiscover.<strong>example.org</strong></li>
+<li>autoconfig.<strong>example.org</strong></li>
+</ul>
+<h3 id="obtain-multi-san-certificate-by-lets-encrypt">Obtain multi-SAN certificate by Let's Encrypt<a class="headerlink" href="#obtain-multi-san-certificate-by-lets-encrypt" title="Permanent link">&para;</a></h3>
+<p>This is just an example of how to obtain certificates with certbot. There are several methods!</p>
+<p>1. Get the certbot client:</p>
+<div class="codehilite"><pre><span></span>wget https://dl.eff.org/certbot-auto -O /usr/local/sbin/certbot <span class="o">&amp;&amp;</span> chmod +x /usr/local/sbin/certbot
+</pre></div>
+
+
+<p>2. Make sure you set <code>HTTP_BIND=0.0.0.0</code> and <code>HTTP_PORT=80</code> in <code>mailcow.conf</code> or setup a reverse proxy to enable connections to port 80. If you changed HTTP_BIND, then rebuild Nginx:</p>
+<div class="codehilite"><pre><span></span>docker-compose up -d
+</pre></div>
+
+
+<p>3. Request the certificate with the webroot method:</p>
+<div class="codehilite"><pre><span></span><span class="nb">cd</span> /path/to/git/clone/mailcow-dockerized
+<span class="nb">source</span> mailcow.conf
+certbot certonly <span class="se">\</span>
+    --webroot <span class="se">\</span>
+    -w <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/data/web <span class="se">\</span>
+    -d <span class="si">${</span><span class="nv">MAILCOW_HOSTNAME</span><span class="si">}</span> <span class="se">\</span>
+    -d autodiscover.example.org <span class="se">\</span>
+    -d autoconfig.example.org <span class="se">\</span>
+    --email you@example.org <span class="se">\</span>
+    --agree-tos
+</pre></div>
+
+
+<p><strong>Remember to replace the example.org domain with your own domain, this command will not work if you dont.</strong></p>
+<p>4. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:</p>
+<div class="codehilite"><pre><span></span>mv data/assets/ssl/cert.<span class="o">{</span>pem,pem.backup<span class="o">}</span>
+mv data/assets/ssl/key.<span class="o">{</span>pem,pem.backup<span class="o">}</span>
+ln <span class="k">$(</span>readlink -f /etc/letsencrypt/live/<span class="si">${</span><span class="nv">MAILCOW_HOSTNAME</span><span class="si">}</span>/fullchain.pem<span class="k">)</span> data/assets/ssl/cert.pem
+ln <span class="k">$(</span>readlink -f /etc/letsencrypt/live/<span class="si">${</span><span class="nv">MAILCOW_HOSTNAME</span><span class="si">}</span>/privkey.pem<span class="k">)</span> data/assets/ssl/key.pem
+</pre></div>
+
+
+<p>5. Restart affected containers:</p>
+<div class="codehilite"><pre><span></span>docker-compose restart postfix-mailcow dovecot-mailcow nginx-mailcow
+</pre></div>
+
+
+<p>When renewing certificates, run the last two steps (link + restart) as post-hook in a script.</p>
+<h2 id="rspamd-web-ui">Rspamd Web UI<a class="headerlink" href="#rspamd-web-ui" title="Permanent link">&para;</a></h2>
+<p>At first you may want to setup Rspamds web interface which provides some useful features and information.</p>
+<p>1. Generate a Rspamd controller password hash:</p>
+<div class="codehilite"><pre><span></span>docker-compose exec rspamd-mailcow rspamadm pw
+</pre></div>
+
+
+<p>2. Replace the default hash in <code>data/conf/rspamd/override.d/worker-controller.inc</code> by your newly generated:</p>
+<div class="codehilite"><pre><span></span>enable_password = &quot;myhash&quot;;
+</pre></div>
+
+
+<p>You can use <code>password = "myhash";</code> instead of <code>enable_password</code> to disable write-access in the web UI.</p>
+<p>3. Restart rspamd:</p>
+<div class="codehilite"><pre><span></span>docker-compose restart rspamd-mailcow
+</pre></div>
+
+
+<p>Open https://${MAILCOW_HOSTNAME}/rspamd in a browser and login!</p>
+<h2 id="optional-reverse-proxy">Optional: Reverse proxy<a class="headerlink" href="#optional-reverse-proxy" title="Permanent link">&para;</a></h2>
+<p>You don't need to change the Nginx site that comes with mailcow: dockerized.
+mailcow: dockerized trusts the default gateway IP 172.22.1.1 as proxy. This is very important to control access to Rspamd's web UI.</p>
+<p>1. Make sure you change HTTP_BIND and HTTPS_BIND in <code>mailcow.conf</code> to a local address and set the ports accordingly, for example:</p>
+<div class="codehilite"><pre><span></span><span class="nv">HTTP_BIND</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nv">HTTP_PORT</span><span class="o">=</span><span class="m">8080</span>
+<span class="nv">HTTPS_PORT</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nv">HTTPS_PORT</span><span class="o">=</span><span class="m">8443</span>
+</pre></div>
+
+
+<p><strong> IMPORTANT: Do not use port 8081 </strong></p>
+<p>Recreate affected containers by running <code>docker-compose up -d</code>.</p>
+<p>2. Configure your local webserver as reverse proxy:</p>
+<h3 id="apache-24">Apache 2.4<a class="headerlink" href="#apache-24" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:443</span><span class="nt">&gt;</span>
+    <span class="nb">ServerName</span> mail.example.org
+    <span class="nb">ServerAlias</span> autodiscover.example.org
+    <span class="nb">ServerAlias</span> autoconfig.example.org
+
+    <span class="err">[</span>...<span class="err">]</span>
+    <span class="c"># You should proxy to a plain HTTP session to offload SSL processing</span>
+    <span class="nb">ProxyPass</span> / http://127.0.0.1:8080/
+    <span class="nb">ProxyPassReverse</span> / http://127.0.0.1:8080/
+    <span class="nb">ProxyPreserveHost</span> <span class="k">Off</span>
+    <span class="err">your-ssl-configuration-</span><span class="nb">here</span>
+    [...]
+
+    <span class="c"># If you plan to proxy to a HTTPS host:</span>
+    <span class="c">#SSLProxyEngine On</span>
+
+    <span class="c"># If you plan to proxy to an untrusted HTTPS host:</span>
+    <span class="c">#SSLProxyVerify none</span>
+    <span class="c">#SSLProxyCheckPeerCN off</span>
+    <span class="c">#SSLProxyCheckPeerName off</span>
+    <span class="c">#SSLProxyCheckPeerExpire off</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+
+
+<h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
+    <span class="err">listen</span> <span class="err">443</span><span class="p">;</span>
+    <span class="err">server_name</span> <span class="err">mail.example.org</span> <span class="err">autodiscover.example.org</span> <span class="err">autoconfig.example.org</span><span class="p">;</span>
+
+    <span class="cp">[</span><span class="nx">...</span><span class="cp">]</span>
+    <span class="err">your-ssl-configuration-here</span>
+    <span class="err">location</span> <span class="err">/</span> <span class="err">{</span>
+        <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="mi">8080</span><span class="o">/</span><span class="p">;</span>
+        <span class="err">proxy_redirect</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="mi">8080</span><span class="o">/</span> <span class="err">$</span><span class="n">scheme</span><span class="o">://</span><span class="err">$</span><span class="n">host</span><span class="o">:</span><span class="err">$</span><span class="n">server_port</span><span class="o">/</span><span class="p">;</span>
+        <span class="err">proxy_set_header</span> <span class="err">X-Real-IP</span> <span class="err">$remote_addr</span><span class="p">;</span>
+        <span class="err">proxy_set_header</span> <span class="err">X-Forwarded-For</span> <span class="err">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="err">proxy_set_header</span> <span class="err">X-Forwarded-Proto</span> <span class="err">$scheme</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cp">[</span><span class="nx">...</span><span class="cp">]</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h2 id="optional-setup-a-relayhost">Optional: Setup a relayhost<a class="headerlink" href="#optional-setup-a-relayhost" title="Permanent link">&para;</a></h2>
+<p>Insert these lines to <code>data/conf/postfix/main.cf</code>. "relayhost" does already exist (empty), just change its value.</p>
+<div class="codehilite"><pre><span></span>relayhost = [your-relayhost]:587
+smtp_sasl_password_maps = hash:/opt/postfix/conf/smarthost_passwd
+smtp_sasl_auth_enable = yes
+</pre></div>
+
+
+<p>Create the credentials file:</p>
+<div class="codehilite"><pre><span></span>echo &quot;your-relayhost username:password&quot; &gt; data/conf/postfix/smarthost_passwd
+</pre></div>
+
+
+<p>Run:</p>
+<div class="codehilite"><pre><span></span>docker-compose exec postfix-mailcow postmap /opt/postfix/conf/smarthost_passwd
+docker-compose exec postfix-mailcow chown root:postfix /opt/postfix/conf/smarthost_passwd /opt/postfix/conf/smarthost_passwd.db
+docker-compose exec postfix-mailcow chmod 660 /opt/postfix/conf/smarthost_passwd /opt/postfix/conf/smarthost_passwd.db
+docker-compose exec postfix-mailcow postfix reload
+</pre></div>
+
+
+<h3 id="helper-script">Helper script<a class="headerlink" href="#helper-script" title="Permanent link">&para;</a></h3>
+<p>There is a helper script <code>mailcow-setup-relayhost.sh</code> you can run to setup a relayhost.</p>
+<div class="codehilite"><pre><span></span>Usage:
+
+Setup a relayhost:
+./mailcow-setup-relayhost.sh relayhost port <span class="o">(</span>username<span class="o">)</span> <span class="o">(</span>password<span class="o">)</span>
+Username and password are optional parameters.
+
+Reset to defaults:
+./mailcow-setup-relayhost.sh reset
+</pre></div>
+
+
+<h2 id="optional-log-to-syslog">Optional: Log to Syslog<a class="headerlink" href="#optional-log-to-syslog" title="Permanent link">&para;</a></h2>
+<p>Enable Rsyslog to receive logs on 524/tcp:</p>
+<div class="codehilite"><pre><span></span># This setting depends on your Rsyslog version and configuration format.
+# For most Debian derivates it will work like this...
+$ModLoad imtcp
+$TCPServerAddress 127.0.0.1
+$InputTCPServerRun 524
+
+# ...while for Ubuntu 16.04 it looks like this:
+module(load=&quot;imtcp&quot;)
+input(type=&quot;imtcp&quot; address=&quot;127.0.0.1&quot; port=&quot;524&quot;)
+
+# No matter your Rsyslog version, you should set this option to off
+# if you plan to use Fail2ban
+$RepeatedMsgReduction off
+</pre></div>
+
+
+<p>Restart rsyslog after enabling the TCP listener.</p>
+<p>Now setup Docker daemon to start with the syslog driver.
+This enables the syslog driver for all containers!</p>
+<p>Debian users can change the startup configuration in <code>/etc/default/docker</code> while CentOS users find it in <code>/etc/sysconfig/docker</code>:</p>
+<div class="codehilite"><pre><span></span>...
+DOCKER_OPTS=&quot;--log-driver=syslog --log-opt syslog-address=tcp://127.0.0.1:524&quot;
+...
+</pre></div>
+
+
+<p><strong>Caution:</strong> For some reason Ubuntu 16.04 and some, but not all, systemd based distros do not read the defaults file parameters.</p>
+<p>Just run <code>systemctl edit docker.service</code> and add the following content to fix it.</p>
+<p><strong>Note:</strong> If "systemctl edit" is not available, just copy the content to <code>/etc/systemd/system/docker.service.d/override.conf</code>.</p>
+<p>The first empty ExecStart parameter is not a mistake.</p>
+<div class="codehilite"><pre><span></span><span class="k">[Service]</span>
+<span class="na">EnvironmentFile</span><span class="o">=</span><span class="s">/etc/default/docker</span>
+<span class="na">ExecStart</span><span class="o">=</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/docker daemon -H fd:// $DOCKER_OPTS</span>
+</pre></div>
+
+
+<p>Restart the Docker daemon and run <code>docker-compose down &amp;&amp; docker-compose up -d</code> to recreate the containers.</p>
+<h3 id="use-fail2ban">Use Fail2ban<a class="headerlink" href="#use-fail2ban" title="Permanent link">&para;</a></h3>
+<p><strong>This is a subsection of "Log to Syslog", which is required for Fail2ban to work.</strong></p>
+<p>Open <code>/etc/fail2ban/filter.d/common.conf</code> and search for the prefix_line parameter, change it to ".*":</p>
+<div class="codehilite"><pre><span></span>__prefix_line = .*
+</pre></div>
+
+
+<p>Create <code>/etc/fail2ban/jail.d/dovecot.conf</code>...</p>
+<div class="codehilite"><pre><span></span><span class="k">[dovecot]</span>
+<span class="na">enabled</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">filter</span>  <span class="o">=</span> <span class="s">dovecot</span>
+<span class="na">logpath</span> <span class="o">=</span> <span class="s">/var/log/syslog</span>
+<span class="na">chain</span> <span class="o">=</span> <span class="s">FORWARD</span>
+</pre></div>
+
+
+<p>and <code>jail.d/postfix-sasl.conf</code>:</p>
+<div class="codehilite"><pre><span></span><span class="k">[postfix-sasl]</span>
+<span class="na">enabled</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">filter</span>  <span class="o">=</span> <span class="s">postfix-sasl</span>
+<span class="na">logpath</span> <span class="o">=</span> <span class="s">/var/log/syslog</span>
+<span class="na">chain</span> <span class="o">=</span> <span class="s">FORWARD</span>
+</pre></div>
+
+
+<p>Restart Fail2ban.</p>
+<h2 id="install-a-local-mta">Install a local MTA<a class="headerlink" href="#install-a-local-mta" title="Permanent link">&para;</a></h2>
+<p>The easiest option would be to disable the listener on port 25/tcp.</p>
+<p><strong>Postfix</strong> users disable the listener by commenting the following line (starting with <code>smtp</code> or <code>25</code>) in <code>/etc/postfix/master.cf</code>:</p>
+<div class="codehilite"><pre><span></span>#smtp      inet  n       -       -       -       -       smtpd
+</pre></div>
+
+
+<p>Restart Postfix after applying your changes.</p>
+<h2 id="sender-and-receiver-model">Sender and receiver model<a class="headerlink" href="#sender-and-receiver-model" title="Permanent link">&para;</a></h2>
+<p>When a mailbox is created, a user is allowed to send mail from and receive mail for his own mailbox address.</p>
+<div class="codehilite"><pre><span></span>Mailbox me@example.org is created. example.org is a primary domain. 
+Note: a mailbox cannot be created in an alias domain.
+
+me@example.org is only known as me@example.org.
+me@example.org is allowed to send as me@example.org.
+</pre></div>
+
+
+<p>We can add an alias domain for example.org:</p>
+<div class="codehilite"><pre><span></span>Alias domain alias.com is added and assigned to primary domain example.org.
+me@example.org is now known as me@example.org and me@alias.com.
+me@example.org is now allowed to send as me@example.org and me@alias.com.
+</pre></div>
+
+
+<p>We can add aliases for a mailbox to receive mail for and to send from this new address.</p>
+<p>It is important to know, that you are not able to receive mail for <code>my-alias@my-alias-domain.tld</code>. You would need to create this particular alias.</p>
+<div class="codehilite"><pre><span></span>me@example.org is assigned the alias alias@example.org
+me@example.org is now known as alias@example.org, me@alias.com, alias@example.org
+
+me@example.org is NOT known as alias@alias.com.
+</pre></div>
+
+
+<p>Administrators and domain administrators can edit mailboxes to allow specific users to send as other mailbox users ("delegate" them).</p>
+<p>You can choose between mailbox users or completely disable the sender check for domains.</p>
+<h3 id="sogo-mail-from-addresses">SOGo "mail from" addresses<a class="headerlink" href="#sogo-mail-from-addresses" title="Permanent link">&para;</a></h3>
+<p>Mailbox users can, obviously, select their own mailbox address, as well as all alias addresses and aliases that exist through alias domains.</p>
+<p>If you want to select another <em>existing</em> mailbox user as your "mail from" address, this user has to delegate you access through SOGo (see SOGo documentation). Moreover a mailcow (domain) administrator
+needs to grant you access as described above.</p>
+              
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../install/" title="Installation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Installation
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../u_and_e/" title="Usage & Examples" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Usage & Examples
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        and
+        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="https://github.com/mailcow/mailcow-dockerized" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application-30ac6a1727.js"></script>
+      <script>app.initialize({url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
