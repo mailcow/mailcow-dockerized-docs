@@ -313,7 +313,7 @@ Reset mailcow admin to `admin:moohoo`:
 
 ```
 cd mailcow_path
-bash reset_admin.sh
+bash mailcow-reset-admin.sh
 ```
 
 ## Rspamd
@@ -378,9 +378,6 @@ data/conf
 │       ├── listen_plain.template
 │       ├── listen_ssl.template
 │       └── server_name.template
-├── pdns
-│   ├── pdns_custom.lua
-│   └── recursor.conf
 ├── postfix
 │   ├── main.cf
 │   ├── master.cf
