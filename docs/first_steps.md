@@ -145,6 +145,19 @@ server {
 }
 ```
 
+### HAProxy
+```
+frontend https-in
+  bind :::443 v4v6 ssl crt mailcow.pem
+  default_backend mailcow
+
+backend mailcow
+  option forwardfor
+  http-request set-header X-Forwarded-Proto https if { ssl_fc }
+  http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
+  server mailcow 127.0.0.1:8080 check
+```
+
 ## Optional: Setup a relayhost
 
 Insert these lines to `data/conf/postfix/main.cf`. "relayhost" does already exist (empty), just change its value.
