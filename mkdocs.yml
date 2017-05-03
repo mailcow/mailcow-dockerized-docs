@@ -1,4 +1,4 @@
-site_name: "mailcow: dockerized"
+site_name: "mailcow: dockerized documentation"
 repo_url: https://github.com/mailcow/mailcow-dockerized
 remote_branch: gh-pages
 theme: material
@@ -16,7 +16,7 @@ markdown_extensions:
   - toc(permalink=true)
 
 pages:
-    - 'This is mailcow': 'index.md'
+    - 'About mailcow: dockerized': 'index.md'
     - 'Installation': 'install.md'
     - 'First Steps': 'first_steps.md'
     - 'Usage & Examples': 'u_and_e.md'
