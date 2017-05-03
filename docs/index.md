@@ -46,7 +46,7 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 - Allow mailbox users to toggle incoming and outgoing TLS enforcement
 - Allow users to reset SOGo ActiveSync device caches
 - imapsync to migrate or pull remote mailboxes regularly
-- TFA: Yubi OTP and U2F USB (Google Chrome and derivates only)
+- TFA: Yubi OTP and U2F USB (Google Chrome and derivates only), TOTP
 - Add domains, mailboxes, aliases, domain aliases and SOGo resources
 - Add whitelisted hosts to forward mail to mailcow
 
