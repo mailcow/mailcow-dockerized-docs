@@ -108,6 +108,9 @@ Recreate affected containers by running `docker-compose up -d`.
     ProxyPreserveHost On
     ProxyAddHeaders On
 
+    # This header does not need to be set when using http
+    RequestHeader set X-Forwarded-Proto "https"
+
     your-ssl-configuration-here
     [...]
 
