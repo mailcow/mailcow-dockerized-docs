@@ -1,5 +1,5 @@
 site_name: "mailcow: dockerized documentation"
-repo_url: https://github.com/mailcow/mailcow-dockerized
+repo_url: https://github.com/mailcow/mailcow-dockerized-docs
 remote_branch: gh-pages
 theme: material
 extra:
