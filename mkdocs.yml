@@ -7,14 +7,12 @@ extra:
     primary: 'indigo'
     accent: 'yellow'
   logo: 'images/logo.svg'
-
 markdown_extensions:
   - admonition
   - codehilite(guess_lang=true)
   - footnotes
   - meta
   - toc(permalink=true)
-
 pages:
     - 'About mailcow: dockerized': 'index.md'
     - 'Installation': 'install.md'
