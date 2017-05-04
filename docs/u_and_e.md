@@ -450,11 +450,17 @@ Mailbox users can tag their mail address like in `me+facebook@example.org` and c
 
 ## Two-factor authentication
 
-So far two methods for TFA are implemented. Both work with the fantastic [Yubikey](https://www.yubico.com).
+So far three methods for TFA are implemented.
 
-While Yubi OTP needs an active internet connection and an API ID and key, U2F will work with any FIDO U2F USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
+FOr U2F to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
 
-Both methods support multiple YubiKeys.
+Both U2F and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).
+
+While Yubi OTP needs an active internet connection and an API ID + key, U2F will work with any FIDO U2F USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
+
+U2F and Yubi OTP support multiple keys per user.
+
+As the third TFA method mailcow uses TOTP: time-based one-time passwords. Those psaswords can be generated with apps like "Google Authenticator" after initially scanning a QR code or entering the given secret manually.
 
 As administrator you are able to temporary disable a domain administrators TFA login until they successfully logged in.
 
@@ -471,6 +477,11 @@ Only Google Chrome (+derivates) and Opera support U2F authentication to this day
 For Firefox you will need to install the "U2F Support Add-on" as provided on [mozilla.org](https://addons.mozilla.org/en-US/firefox/addon/u2f-support-add-on/).
 
 U2F works without an internet connection.
+
+### TOTP
+
+The best known TFA method mostly used with a smartphone.
+
 
 ## Portainer
 
