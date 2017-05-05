@@ -1,4 +1,5 @@
 Before you run **mailcow: dockerized**, there are a few requirements that you should check:
+
 - **WARNING**: When you want to run the dockerized version on your Debian 8 (Jessie) box you should consider switching to the kernel 4.9 from jessie backports because there is a bug (kernel panic) with the kernel 3.16 when running docker containers with *healthchecks*!
 - Mailcow: dockerized requires some ports to be open for incomming connections, so make sure that your firewall is not bloking these. Also make sure that no other application is interferring with mailcow's configuration.
 - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the basis covered bevore you begin!
