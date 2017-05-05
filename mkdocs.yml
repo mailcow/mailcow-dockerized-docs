@@ -6,29 +6,33 @@ markdown_extensions:
   - codehilite(guess_lang=true)
   - toc(permalink=true)
 pages:
-- 'Information and support': 'index.md'
-- 'Installation & update':
+- 'Information & Support': 'index.md'
+- 'Prerequisites':
+  - 'System Requirements': 'requirements.md'
+  - 'DNS Setup': 'dns.md'
+- 'Migrating from mailcow 0.14': 'mc14_import.md'
+- 'Installation & Update':
   - 'Installation': 'install.md'
   - 'Update': 'update.md'
-- 'First Steps': 
+- 'First Steps':
   - 'SSL': 'ssl.md'
   - 'Rspamd Web UI': 'rspamd_ui.md'
   - 'Reverse Proxy': 'rp.md'
-  - 'Setup a relayhost (optional)': 'relayhost.md'
+  - 'Setup a Relayhost (optional)': 'relayhost.md'
   - 'Log to Syslog': 'syslog.md'
-  - 'Local MTA on Docker host': 'local_mta.md'
-  - 'Sender and receiver model': 'sender_rcv.md'
+  - 'Local MTA on Docker Host': 'local_mta.md'
+  - 'Sender and Receiver Model': 'sender_rcv.md'
 - 'Usage & Examples':
-  - 'mailcow UI configuration': 'mailcow_ui.md'
+  - 'mailcow UI Configuration': 'mailcow_ui.md'
   - 'Redirect HTTP to HTTPS': '80_to_443.md'
-  - 'Anonymize headers': 'anonym_headers.md'
-  - 'Adjust service configurations': 'change_config.md'
-  - 'Docker Compose Bash completion': 'dc_bash_compl.md'
-  - 'Two-factor authentication': 'tfa.md'
+  - 'Anonymize Headers': 'anonym_headers.md'
+  - 'Adjust Service Configurations': 'change_config.md'
+  - 'Docker Compose Bash Completion': 'dc_bash_compl.md'
+  - 'Two-Factor Authentication': 'tfa.md'
   - 'Blacklist / Whitelist': 'bl_wl.md'
   - 'Backup Maildir': 'backup_maildir.md'
   - 'Customize Dockerfiles': 'cust_dockerfiles.md'
-  - 'Disable sender addresses verification': 'disable_sender_verification.md'
+  - 'Disable Sender Addresses Verification': 'disable_sender_verification.md'
   - 'Debug': 'debug.md'
   - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
   - 'Redis': 'redis.md'
