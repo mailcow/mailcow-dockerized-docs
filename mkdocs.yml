@@ -1,19 +1,19 @@
 site_name: "mailcow: dockerized documentation"
 repo_url: https://github.com/mailcow/mailcow-dockerized
-#remote_branch: gh-pages
-#theme: material
-#extra:
-#  palette:
-#    primary: 'indigo'
-#    accent: 'yellow'
-#  logo: 'images/logo.svg'
+remote_branch: gh-pages
+theme: material
+extra:
+  palette:
+    primary: 'indigo'
+    accent: 'yellow'
+  logo: 'images/logo.svg'
 
-#markdown_extensions:
-#  - admonition
-#  - codehilite(guess_lang=true)
-#  - footnotes
-#  - meta
-#  - toc(permalink=true)
+markdown_extensions:
+  - admonition
+  - codehilite(guess_lang=true)
+  - footnotes
+  - meta
+  - toc(permalink=true)
 
 pages:
     - 'About mailcow: dockerized': 'index.md'
