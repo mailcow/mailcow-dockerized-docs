@@ -1,14 +1,44 @@
-# mailcow: dockerized - 🐮 + 🐋 = 💕
+# 🐮 + 🐋 = 💕
 
-[![Servercow](https://www.servercow.de/img/cow_globe_200.svg)](https://www.servercow.de)
+## Help mailcow
 
-If you want to support mailcow, consider hosting mailcow on a Servercow virtual machine @ Servercow!
+Let us know about your ideas in #mailcow @ Freenode.
+
+[Servercow](https://www.servercow.de) - hosted mailcow, KVM based virtual servers, webhosting and more.
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JWBSYHF4SMC68)
+
+## Get support
+
+### Commercial support
+
+For commercial support contact [info@servercow.de](mailto:info@servercow.de).
+
+### Community support
+
+- IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
+- Forum @ [forum.mailcow.email](forum.mailcow.email)
+- GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
 ## Screenshots
 
 You can find screenshots [on Imgur](http://imgur.com/a/oewYt).
 
 ## Overview
+
+The integrated **mailcow UI** allows administrative work on your mail server instance as well as separated domain administrator and mailbox user access:
+
+- DKIM key management
+- Black- and whitelists per domain and per user
+- Spam score managment per-user (reject spam, mark spam, greylist)
+- Allow mailbox users to create temporary spam aliases
+- Prepend mail tags to subject or move mail to subfolder (per-user)
+- Allow mailbox users to toggle incoming and outgoing TLS enforcement
+- Allow users to reset SOGo ActiveSync device caches
+- imapsync to migrate or pull remote mailboxes regularly
+- TFA: Yubi OTP and U2F USB (Google Chrome and derivates only), TOTP
+- Add domains, mailboxes, aliases, domain aliases and SOGo resources
+- Add whitelisted hosts to forward mail to mailcow
 
 mailcow dockerized comes with **12 containers** linked in **one bridged network**.
 Each container represents a single application.
@@ -35,19 +65,3 @@ Each container represents a single application.
 - rspamd-vol-1
 - postfix-vol-1
 - crypt-vol-1
-
-The integrated **mailcow UI** allows administrative work on your mail server instance as well as separated domain administrator and mailbox user access:
-
-- DKIM key management
-- Black- and whitelists per domain and per user
-- Spam score managment per-user (reject spam, mark spam, greylist)
-- Allow mailbox users to create temporary spam aliases
-- Prepend mail tags to subject or move mail to subfolder (per-user)
-- Allow mailbox users to toggle incoming and outgoing TLS enforcement
-- Allow users to reset SOGo ActiveSync device caches
-- imapsync to migrate or pull remote mailboxes regularly
-- TFA: Yubi OTP and U2F USB (Google Chrome and derivates only), TOTP
-- Add domains, mailboxes, aliases, domain aliases and SOGo resources
-- Add whitelisted hosts to forward mail to mailcow
-
-*[Looking for a farm to host your cow?](https://www.servercow.de)* 

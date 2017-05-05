@@ -2,21 +2,46 @@ site_name: "mailcow: dockerized documentation"
 repo_url: https://github.com/mailcow/mailcow-dockerized
 remote_branch: gh-pages
 theme: material
+markdown_extensions:
+  - codehilite(guess_lang=true)
+  - toc(permalink=true)
+pages:
+- 'Information and support': 'index.md'
+- 'Installation & update':
+  - 'Installation': 'install.md'
+  - 'Update': 'update.md'
+- 'First Steps': 
+  - 'SSL': 'ssl.md'
+  - 'Rspamd Web UI': 'rspamd_ui.md'
+  - 'Reverse Proxy': 'rp.md'
+  - 'Setup a relayhost (optional)': 'relayhost.md'
+  - 'Log to Syslog': 'syslog.md'
+  - 'Local MTA on Docker host': 'local_mta.md'
+  - 'Sender and receiver model': 'sender_rcv.md'
+- 'Usage & Examples':
+  - 'mailcow UI configuration': 'mailcow_ui.md'
+  - 'Redirect HTTP to HTTPS': '80_to_443.md'
+  - 'Anonymize headers': 'anonym_headers.md'
+  - 'Adjust service configurations': 'change_config.md'
+  - 'Docker Compose Bash completion': 'dc_bash_compl.md'
+  - 'Two-factor authentication': 'tfa.md'
+  - 'Blacklist / Whitelist': 'bl_wl.md'
+  - 'Backup Maildir': 'backup_maildir.md'
+  - 'Customize Dockerfiles': 'cust_dockerfiles.md'
+  - 'Disable sender addresses verification': 'disable_sender_verification.md'
+  - 'Debug': 'debug.md'
+  - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
+  - 'Redis': 'redis.md'
+  - 'MySQL': 'mysql.md'
+  - 'Rspamd': 'rspamd.md'
+  - 'Tagging': 'tagging.md'
+  - 'Why bind9?': 'why_bind9.md'
+- 'Third party apps':
+  - 'Roundcube': 'roundcube.md'
+  - 'Portainer': 'portainer.md'
+  - 'Gogs': 'gogs.md'
 extra:
+  logo: 'images/logo.svg'
   palette:
     primary: 'indigo'
-    accent: 'yellow'
-  logo: 'images/logo.svg'
-
-markdown_extensions:
-  - admonition
-  - codehilite(guess_lang=true)
-  - footnotes
-  - meta
-  - toc(permalink=true)
-
-pages:
-    - 'About mailcow: dockerized': 'index.md'
-    - 'Installation': 'install.md'
-    - 'First Steps': 'first_steps.md'
-    - 'Usage & Examples': 'u_and_e.md'
+    accent: 'orange'
