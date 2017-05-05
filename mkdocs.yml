@@ -8,12 +8,12 @@ repo_url: https://github.com/mailcow/mailcow-dockerized
 #    accent: 'yellow'
 #  logo: 'images/logo.svg'
 
-markdown_extensions:
-  - admonition
-  - codehilite(guess_lang=true)
-  - footnotes
-  - meta
-  - toc(permalink=true)
+#markdown_extensions:
+#  - admonition
+#  - codehilite(guess_lang=true)
+#  - footnotes
+#  - meta
+#  - toc(permalink=true)
 
 pages:
     - 'About mailcow: dockerized': 'index.md'
