@@ -1,4 +1,4 @@
-### Client
+## Client
 
 Redis is used as a key-value store for (some of) mailcow's and rspamd's settings and data. If you are unfamilliar with redis please read the [introduction to redis](https://redis.io/topics/introduction) and maybe visit this [wonderfull guide](http://try.redis.io/) on how to use it.
 
@@ -10,7 +10,10 @@ docker-compose exec redis-mailcow redis-cli
 
 Here are some usefull commands for the redis-cli for debugging:
 
-**monitor**: Listens for all requests received by the server in real time:
+##### MONITOR
+
+Listens for all requests received by the server in real time:
+
 ```
 # docker-compose exec redis-mailcow redis-cli
 127.0.0.1:6379> monitor
@@ -20,13 +23,17 @@ OK
 [...]
 ```
 
-**keys**: Get all keys matching your pattern:
+##### KEYS
+
+Get all keys matching your pattern:
 
 ```
 
 ```
 
-**ping**: Test a connection
+##### PING
+
+Test a connection:
 
 ```
 127.0.0.1:6379> PING
