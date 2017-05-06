@@ -46,21 +46,27 @@ MariaDB [mailcow]> DESC mailbox;
 
 When this is done we can backup the tables:
 
-```
+```bash
+# Load your mysql variables into environment
+DBHOST=$(grep database_host /var/www/mail/inc/vars.inc.php | cut -d'"' -f2)
+DBNAME=$(grep database_name /var/www/mail/inc/vars.inc.php | cut -d'"' -f2)
+DBUSER=$(grep database_user /var/www/mail/inc/vars.inc.php | cut -d'"' -f2)
+DBPASS=$(grep database_pass /var/www/mail/inc/vars.inc.php | cut -d'"' -f2)
+
+# Backup your tables
 mysqldump --replace --no-create-info --default-character-set=utf8mb4 \
-    -u $MAILCOWDB_USER -p$MAILCOWDB_PW $MAILCOWDB_NAME \
+    --host &{DBHOST}-u${DBUSER} -p${DBPASS} ${DBNAME} \
     alias alias_domain domain domain_admins mailbox quota2 sender_acl > backup_mailcow.sql
 ```
 
-> **--replace**: Write `REPLACE` statements rather than `INSERT` statements
-> **--no-create-info**: Don't write `CREATE TABLE` statements.
-> **--default-character-set** make sure our exported default charset is *utf8mb4*.
-> *Remember to adjust your mysql details* `MAILCOWDB_*`
+- **--replace**: Write `REPLACE` statements rather than `INSERT` statements
+- **--no-create-info**: Don't write `CREATE TABLE` statements.
+- **--default-character-set** make sure our exported default charset is *utf8mb4*.
 
 
 ## Prepare mailcow: dockerized
 
-Visit your new installation (http://host.domain.tld) with a browser of your choice to initiate the empty database. Check if the DB is initiated afterwards:
+To initiate your a fresh database, visit **https://${MAILCOW_HOSTNAME}** with a browser of your choice. Check if the DB is initiated correctly afterwards:
 
 ```
 # source mailcow.conf
