@@ -4,7 +4,7 @@
 !!! info
     Also note that this guide doesn't touch on the users settings like *Spamlevels*, *TLS Settings*, etc. nor the export / import of your roundcube or SOGo settings.
 
-    Lastly please check the section on how to [import / restore](backup_maildir/#restore) your maildir backup to get an idea how to migrate your mails.
+    Lastly please check the section on how to [import / restore](u_e-backup_restore-maildir/#restore) your maildir backup to get an idea how to migrate your mails.
 
 ## Create mailcow db backups
 

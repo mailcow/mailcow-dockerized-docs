@@ -21,13 +21,13 @@ pages:
   - 'Installation': 'install.md'
   - 'Update': 'install-update.md'
 - 'First Steps (optional)':
-  - 'SSL': 'fiststeps-ssl.md'
-  - 'Rspamd Web UI': 'fiststeps-rspamd_ui.md'
-  - 'Reverse Proxy': 'fiststeps-rp.md'
-  - 'Setup a relayhost': 'fiststeps-relayhost.md'
-  - 'Log to Syslog': 'fiststeps-syslog.md'
-  - 'Local MTA on Docker host': 'fiststeps-local_mta.md'
-  - 'Sender and receiver model': 'fiststeps-sender_rcv.md'
+  - 'SSL': 'firststeps-ssl.md'
+  - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
+  - 'Reverse Proxy': 'firststeps-rp.md'
+  - 'Setup a relayhost': 'firststeps-relayhost.md'
+  - 'Log to Syslog': 'firststeps-syslog.md'
+  - 'Local MTA on Docker host': 'firststeps-local_mta.md'
+  - 'Sender and receiver model': 'firststeps-sender_rcv.md'
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
     - 'Logs': 'debug-logs.md'
@@ -60,9 +60,9 @@ pages:
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
 - 'Third party apps':
-  - 'Roundcube': 'roundcube.md'
-  - 'Portainer': 'portainer.md'
-  - 'Gogs': 'gogs.md'
+  - 'Roundcube': 'third_party-roundcube.md'
+  - 'Portainer': 'third_party-portainer.md'
+  - 'Gogs': 'third_party-gogs.md'
 extra:
   logo: 'images/logo.svg'
   palette:

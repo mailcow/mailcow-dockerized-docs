@@ -30,7 +30,7 @@ OK
 Get all keys matching your pattern:
 
 ```
-
+KEYS *
 ```
 
 ##### PING
