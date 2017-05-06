@@ -13,11 +13,3 @@ docker-compose exec redis-mailcow redis-cli
 - Remove volume `rspamd-vol-1` to remove all Rspamd data.
 
 Running `docker-compose down -v` will **destroy all mailcow: dockerized volumes** and delete any related containers.
-
-## Reset admin password
-Reset mailcow admin to `admin:moohoo`:
-
-```
-cd mailcow_path
-bash mailcow-reset-admin.sh
-```
