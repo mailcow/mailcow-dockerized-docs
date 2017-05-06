@@ -2,4 +2,6 @@ To add or edit an entry to your **domain wide** filter table, login to your *mai
 
 ![Black- and Whitelist configuration](images/mailcow-bl_wl.png)
 
-Beware that a mailbox user can login to mailcow and override a domain policy filter item.
+
+!!! info
+    Be aware that a user [may override](spamfilter.md) this setting by setting his own black- and whitelist!
