@@ -1,34 +1,9 @@
-## Logs
+When a problem occurs, then always for a reason! :slight_smile: What you want to do in such a case is:
 
-You can use `docker-compose logs $service-name` for all containers.
-
-Run `docker-compose logs` for all logs at once.
-
-Follow the log output by running docker-compose with `logs -f`.
-
-Limit the output by calling logs with `--tail=300` like `docker-compose logs --tail=300 mysql-mailcow`.
-
-## Reset admin password
-Reset mailcow admin to `admin:moohoo`:
-
-```
-cd mailcow_path
-bash mailcow-reset-admin.sh
-```
-
-## What container does what
-
-Here is a brief overview of what container does what:
-
-| Service Name  | Service Descriptions                                                      |
-| --------------- | ------------------------------------------------------------------------- |
-| bind9-mailcow   | Local (DNSSEC) DNS Resolver                                               |
-| mysql-mailcow   | Stores SOGo's and most of mailcow's settings                                         |
-| postfix-mailcow | Receives and sends mails                                                  |
-| dovecot-mailcow | User logins and sieve filter                                              |
-| redis-mailcow   | Storage backend for DKIM keys, Rmilter and Rspamd                         |
-| rspamd-mailcow  | Mail filtering system. Used for av handling, dkim signing, spam handling  |
-| rmilter-mailcow | Integrates Rspamd into postfix                                            |
-| clamd-mailcow   | Scans attachments for viruses                                             |
-| sogo-mailcow    | Webmail client that handles Microsoft ActiveSync and Cal- / CardDav       |
-| nginx-mailcow   | Nginx remote proxy that handles all mailcow related HTTP / HTTPS requests |
+1. Read your logs; follow them to see what the reason for your problem is.
+2. Follow the leads given to you in your logfiles and start investigating.
+3. Restarting the troubled service or the whole stack to see if the problem persists.
+4. Read the documentation of the troubled service and search it's bugtracker for your problem.
+5. Search our [issues](https://github.com/mailcow/mailcow-dockerized/issues) and [forum](https://forum.mailcow.email/) for topics related to your problem.
+6. [Create an issue](https://github.com/mailcow/mailcow-dockerized/issues) over at our GitHub repository if you think your problem might be a bug or a missing feature you badly need. But please make sure, that you include **all the logs** and a full description to your problem.
+7. If you need help with a problem on a configuration or a setup, or got a question please head over to our [forum](https://forum.mailcow.email/) and open a thread.

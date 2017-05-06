@@ -28,8 +28,14 @@ pages:
   - 'Log to Syslog': 'syslog.md'
   - 'Local MTA on Docker host': 'local_mta.md'
   - 'Sender and receiver model': 'sender_rcv.md'
+- 'Debugging & Troubleshooting':
+    - 'Introduction': debug.md
+    - 'Logs': 'debug_logs.md'
+    - 'Reset Passwords': 'reset_pw.md'
+    - 'Service Descriptions': 'service_desc.md'
+    - 'Remove Persistent Data': 'rm_volumes.md'
+    - 'Common Problems': 'troubles.md'
 - 'Usage & Examples':
-  - 'Debugging & Troubleshooting': 'debug.md'
   - 'mailcow UI':
       - 'Configuration': 'mailcow_ui.md'
       - 'Blacklist / Whitelist': 'bl_wl.md'
