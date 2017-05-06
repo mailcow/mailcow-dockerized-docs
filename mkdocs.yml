@@ -34,7 +34,6 @@ pages:
     - 'Reset Passwords': 'reset_pw.md'
     - 'Service Descriptions': 'service_desc.md'
     - 'Remove Persistent Data': 'rm_volumes.md'
-    - 'Common Problems': 'troubles.md'
 - 'Usage & Examples':
   - 'mailcow UI':
       - 'Configuration': 'mailcow_ui.md'

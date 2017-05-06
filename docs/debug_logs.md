@@ -4,6 +4,7 @@ To view the logs of a specific service you can use `docker-compose logs [options
 
 !!! info
     The available options for the command **docker-compose logs** are:
+
     - **--no-color**: Produce monochrome output.
     - **-f**: Follow the log output.
     - **-t**: Show timestamps.
