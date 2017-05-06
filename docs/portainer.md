@@ -6,7 +6,7 @@ In order to enable Portainer, the docker-compose.yml and site.conf for nginx mus
       image: portainer/portainer
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
-        - /opt/portainer/data:/data
+        - ./data/conf/portainer:/data
       restart: always
       dns:
         - 172.22.1.254
