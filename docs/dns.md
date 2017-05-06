@@ -11,7 +11,7 @@ Below you can find a list of **recommended DNS records**. While some are mandato
 
 ## Reverse DNS of your IP
 
-Make sure that the PTR record of your IP matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` (= host.domain.tld). This record is usually set at the provider you leased the IP (server) from.
+Make sure that the PTR record of your IP matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` [^1]. This record is usually set at the provider you leased the IP (server) from.
 
 ## The minimal DNS configuration
 
@@ -76,3 +76,5 @@ If you are interested in statistics, you can additionally register with the [Pos
 ```
 @                   IN TXT     "google-site-verification=..."
 ```
+
+[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts devided by a dot: the hostname (myhost), the domain name (mydomain) and the toplevel domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
