@@ -2,4 +2,4 @@ These temporary email aliases are mostly used for places where we need to provid
 
 To create, delete or extend a temporary email aliase you need to login to mailcow's UI as a mailbox user and navigate to the tab **Temporary email aliases**:
 
-![How to set spam- or temporary email aliases in mailcow](images/spamalias.png)
+![How to set spam- or temporary email aliases in mailcow](images/mailcow-spamalias.png)
