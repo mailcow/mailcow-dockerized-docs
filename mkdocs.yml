@@ -46,6 +46,7 @@ pages:
   - 'Blacklist / Whitelist': 'bl_wl.md'
   - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
   - 'Disable Sender Addresses Verification': 'disable_sender_verification.md'
+  - 'Deinstall': 'deinstall.md'
 - 'Third party apps':
   - 'Roundcube': 'roundcube.md'
   - 'Portainer': 'portainer.md'
