@@ -20,8 +20,8 @@ Please make sure that your system has at least the following resources:
 
 Please check if any of mailcow's standard ports are open and not blocked by other applications:
 
-```bash
-netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995'
+```
+# netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995'
 ```
 
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
@@ -40,7 +40,7 @@ If you have a firewall already up and running please make sure that these ports 
 | Dovecot POP3        | TCP      | 110    | dovecot-mailcow | `${POP_PORT}`                  |
 | Dovecot POP3S       | TCP      | 995    | dovecot-mailcow | `${POPS_PORT}`                 |
 | Dovecot ManageSieve | TCP      | 4190   | dovecot-mailcow | `${SIEVE_PORT}`                |
-| HTTP(S)             | TCP      | 80/443 | nginx-mailcow   | `${HTTP_PORT}`/`${HTTPS_PORT}` |
+| HTTP(S)             | TCP      | 80/443 | nginx-mailcow   | `${HTTP_PORT}` / `${HTTPS_PORT}` |
 
 ## Date and Time
 

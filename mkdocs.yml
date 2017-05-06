@@ -8,7 +8,7 @@ markdown_extensions:
 pages:
 - 'Information & Support': 'index.md'
 - 'Prerequisites':
-  - 'System Requirements': 'requirements.md'
+  - 'Prepare Your System': 'requirements.md'
   - 'DNS Setup': 'dns.md'
 - 'Migrating from mailcow 0.14': 'mc14_import.md'
 - 'Installation & Update':
