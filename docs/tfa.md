@@ -1,4 +1,4 @@
-So far three methods for *Two Factor Authentication* are implemented: U2F, Yubi OTP, and TOTP
+So far three methods for *Two-Factor Authentication* are implemented: U2F, Yubi OTP, and TOTP
 
 - For U2F to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
 - Both U2F and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).

@@ -66,7 +66,7 @@ mysqldump --replace --no-create-info --default-character-set=utf8mb4 \
 
 ## Prepare mailcow: dockerized
 
-To initiate your a fresh database, visit **https://${MAILCOW_HOSTNAME}** with a browser of your choice. Check if the DB is initiated correctly afterwards:
+To initiate your fresh installed database, visit **https://${MAILCOW_HOSTNAME}** with a browser of your choice. Check if the DB is initiated correctly afterwards:
 
 ```
 # source mailcow.conf
@@ -93,8 +93,8 @@ MariaDB [mailcow]> show tables;
   # docker-compose exec dovecot-mailcow doveadm quota recalc -A
   ```
 
-  Restart SOGo:
+  Restart services:
 
   ```
-  # docker-compose restart sogo-mailcow
+  # docker-compose restart
   ```
