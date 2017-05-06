@@ -1,4 +1,4 @@
-Insert these lines to `data/conf/postfix/main.cf`. "relayhost" does already exist (empty), just change its value.
+Insert these lines into `data/conf/postfix/main.cf`. "relayhost" does already exist (empty), just change its value.
 ```
 relayhost = [your-relayhost]:587
 smtp_sasl_password_maps = hash:/opt/postfix/conf/smarthost_passwd

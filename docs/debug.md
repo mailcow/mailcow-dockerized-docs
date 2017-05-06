@@ -20,7 +20,7 @@ bash mailcow-reset-admin.sh
 
 Here is a brief overview of what container does what:
 
-| Container Name  | Service Descriptions                                                      |
+| Service Name  | Service Descriptions                                                      |
 | --------------- | ------------------------------------------------------------------------- |
 | bind9-mailcow   | Local (DNSSEC) DNS Resolver                                               |
 | mysql-mailcow   | Stores most of mailcow's settings                                         |
