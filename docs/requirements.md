@@ -12,12 +12,12 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 Please make sure that your system has at least the following resources:
 
-| Resource                | mailcow: dockerized |
-| ----------------------- | ------------------- |
-| CPU                     | 1 GHz               |
-| RAM                     | 1 GiB               |
-| Disk                    | 5 GiB               |
-| System Type             | x86_64              |
+| Resource                | mailcow: dockerized   |
+| ----------------------- | --------------------- |
+| CPU                     | 1 GHz                 |
+| RAM                     | 1 GiB                 |
+| Disk                    | 5 GiB (without mails) |
+| System Type             | x86_64                |
 
 ## Firewall & Ports
 
