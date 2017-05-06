@@ -1,4 +1,4 @@
-When a problem occurs, then always for a reason! :slight_smile: What you want to do in such a case is:
+When a problem occurs, then always for a reason! What you want to do in such a case is:
 
 1. Read your logs; follow them to see what the reason for your problem is.
 2. Follow the leads given to you in your logfiles and start investigating.
