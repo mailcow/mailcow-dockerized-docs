@@ -1,4 +1,4 @@
-MySQL is used for most of mailcow's and SOGo's settings.
+MySQL is used for SOGo's and most of mailcow's settings.
 
 ### Connect
 ```
