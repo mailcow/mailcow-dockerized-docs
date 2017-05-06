@@ -1,14 +1,11 @@
-So far three methods for TFA are implemented.
+So far three methods for *Two-Factor Authentication* are implemented: U2F, Yubi OTP, and TOTP
 
-FOr U2F to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
-
-Both U2F and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).
-
-While Yubi OTP needs an active internet connection and an API ID + key, U2F will work with any FIDO U2F USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
-
-U2F and Yubi OTP support multiple keys per user.
-
-As the third TFA method mailcow uses TOTP: time-based one-time passwords. Those psaswords can be generated with apps like "Google Authenticator" after initially scanning a QR code or entering the given secret manually.
+- For U2F to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
+- Both U2F and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).
+<!-- @andryyy, ich bin mir nicht sicher, was du mit diesem Absatz sagen möchtest, Yubi OTP oder U2F? -->
+- While Yubi OTP needs an active internet connection and an API ID + key, U2F will work with any FIDO U2F USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
+- U2F and Yubi OTP support multiple keys per user.
+- As the third TFA method mailcow uses TOTP: time-based one-time passwords. Those psaswords can be generated with apps like "Google Authenticator" after initially scanning a QR code or entering the given secret manually.
 
 As administrator you are able to temporary disable a domain administrators TFA login until they successfully logged in.
 

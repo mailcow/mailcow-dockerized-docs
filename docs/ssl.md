@@ -1,6 +1,6 @@
 mailcow dockerized comes with a snakeoil CA "mailcow" and a server certificate in `data/assets/ssl`. Please use your own trusted certificates.
 
-mailcow uses 3 domain names that should be covered by your new certificate:
+mailcow uses **at least** 3 domain names that should be covered by your new certificate:
 
 - ${MAILCOW_HOSTNAME}
 - autodiscover.**example.org**
@@ -35,7 +35,7 @@ certbot certonly \
 ```
 
 **Remember to replace the example.org domain with your own domain, this command will not work if you dont.**
-    
+
 4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
 ``` bash
 mv data/assets/ssl/cert.{pem,pem.backup}

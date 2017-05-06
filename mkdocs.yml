@@ -11,8 +11,12 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
 pages:
-- 'Information and support': 'index.md'
-- 'Installation & update':
+- 'Information & Support': 'index.md'
+- 'Prerequisites':
+  - 'Prepare Your System': 'requirements.md'
+  - 'DNS Setup': 'dns.md'
+- 'Migrating from mailcow 0.14': 'mc14_import.md'
+- 'Installation & Update':
   - 'Installation': 'install.md'
   - 'Update': 'update.md'
 - 'First Steps (optional)': 
@@ -24,23 +28,23 @@ pages:
   - 'Local MTA on Docker host': 'local_mta.md'
   - 'Sender and receiver model': 'sender_rcv.md'
 - 'Usage & Examples':
-  - 'mailcow UI configuration': 'mailcow_ui.md'
-  - 'Redirect HTTP to HTTPS': '80_to_443.md'
-  - 'Anonymize headers': 'anonym_headers.md'
-  - 'Adjust service configurations': 'change_config.md'
-  - 'Docker Compose Bash completion': 'dc_bash_compl.md'
-  - 'Two-factor authentication': 'tfa.md'
-  - 'Blacklist / Whitelist': 'bl_wl.md'
-  - 'Backup Maildir': 'backup_maildir.md'
-  - 'Customize Dockerfiles': 'cust_dockerfiles.md'
-  - 'Disable sender addresses verification': 'disable_sender_verification.md'
-  - 'Debug': 'debug.md'
-  - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
+  - 'Debugging & Troubleshooting': 'debug.md'
+  - 'mailcow UI Configuration': 'mailcow_ui.md'
   - 'Redis': 'redis.md'
   - 'MySQL': 'mysql.md'
   - 'Rspamd': 'rspamd.md'
-  - 'Tagging': 'tagging.md'
   - 'Why bind9?': 'why_bind9.md'
+  - 'Adjust Service Configurations': 'change_config.md'
+  - 'Customize Dockerfiles': 'cust_dockerfiles.md'
+  - 'Docker Compose Bash Completion': 'dc_bash_compl.md'
+  - 'Backup Maildir': 'backup_maildir.md'
+  - 'Two-Factor Authentication': 'tfa.md'
+  - 'Redirect HTTP to HTTPS': '80_to_443.md'
+  - 'Anonymize Headers': 'anonym_headers.md'
+  - 'Tagging': 'tagging.md'
+  - 'Blacklist / Whitelist': 'bl_wl.md'
+  - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
+  - 'Disable Sender Addresses Verification': 'disable_sender_verification.md'
 - 'Third party apps':
   - 'Roundcube': 'roundcube.md'
   - 'Portainer': 'portainer.md'
