@@ -12,3 +12,28 @@ Here is a brief overview of what container / service does what:
 | clamd-mailcow   | Scans attachments for viruses                                             |
 | sogo-mailcow    | Webmail client that handles Microsoft ActiveSync and Cal- / CardDav       |
 | nginx-mailcow   | Nginx remote proxy that handles all mailcow related HTTP / HTTPS requests |
+
+## Attaching a Container to your Shell
+
+To attach a container to your shell you can simply run
+
+```
+docker-compose exec $Service_Name /bin/bash
+```
+
+### Connecting to Services
+
+If you whant to connect to a service / application directly it is always a good idea to `source mailcow.conf` to get all relevant variables in your environment.
+
+#### MySQL
+
+```
+source mailcow.conf
+docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+```
+
+#### Redis
+
+```
+docker-compose exec redis-mailcow redis-cli
+```
