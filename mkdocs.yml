@@ -5,6 +5,11 @@ theme: material
 markdown_extensions:
   - codehilite(guess_lang=true)
   - toc(permalink=true)
+  - admonition
+  - pymdownx.magiclink
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.mark
+  - pymdownx.tilde
 pages:
 - 'Information & Support': 'index.md'
 - 'Prerequisites':
@@ -14,14 +19,14 @@ pages:
 - 'Installation & Update':
   - 'Installation': 'install.md'
   - 'Update': 'update.md'
-- 'First Steps':
+- 'First Steps (optional)': 
   - 'SSL': 'ssl.md'
   - 'Rspamd Web UI': 'rspamd_ui.md'
   - 'Reverse Proxy': 'rp.md'
-  - 'Setup a Relayhost (optional)': 'relayhost.md'
-  - 'Log to Syslog & fail2ban': 'syslog.md'
-  - 'Local MTA on Docker Host': 'local_mta.md'
-  - 'Sender and Receiver Model': 'sender_rcv.md'
+  - 'Setup a relayhost': 'relayhost.md'
+  - 'Log to Syslog': 'syslog.md'
+  - 'Local MTA on Docker host': 'local_mta.md'
+  - 'Sender and receiver model': 'sender_rcv.md'
 - 'Usage & Examples':
   - 'Debugging & Troubleshooting': 'debug.md'
   - 'mailcow UI Configuration': 'mailcow_ui.md'
@@ -49,3 +54,4 @@ extra:
   palette:
     primary: 'indigo'
     accent: 'orange'
+extra_css: [extra.css]
