@@ -1,11 +1,12 @@
 Below you can find a list of **recommended DNS records**. While some are mandatory for a mail server (A, MX), others are recommended to build a good reputation score (TXT/SPF) or used for auto-configuration of mail clients (SRV).
 
 ## References
-* A good article covering all relevant topics:
+
+- A good article covering all relevant topics:
   ["3 DNS Records Every Email Marketer Must Know"](https://www.rackaid.com/blog/email-dns-records)      
-* Another great one, but Zimbra as an example platform:
+- Another great one, but Zimbra as an example platform:
   ["Best Practices on Email Protection: SPF, DKIM and DMARC"](https://wiki.zimbra.com/wiki/Best_Practices_on_Email_Protection:_SPF,_DKIM_and_DMARC)       
-* An in-depth discussion of SPF, DKIM and DMARC:
+- An in-depth discussion of SPF, DKIM and DMARC:
   ["How to eliminate spam and protect your name with DMARC"](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)
 
 ## Reverse DNS of your IP
@@ -14,9 +15,10 @@ Make sure that the PTR record of your IP matches the FQDN hostname of your mailc
 
 ## The minimal DNS configuration
 
-This example shows you a set of records for one domain. Each domain that is added to mailcow needs at least this set or records.
+This example shows you a set of records for one domain managed by mailcow. Each domain that is added to mailcow needs at least this set or records to function correctly.
 
 ```
+# Name              Type       Value
 mail                IN A       1.2.3.4
 autodiscover        IN A       1.2.3.4
 autoconfig          IN A       1.2.3.4
@@ -58,9 +60,10 @@ _autoconfig._tcp    IN SRV     0 1 443 autoconfig.example.org.
 _autodiscover._tcp  IN SRV     0 1 443 autodiscover.example.org.
 ```
 
-
 ## Testing
+
 Here are some tools you can use to verify your DNS configuration:
+
 - [MX Toolbox](https://mxtoolbox.com/SuperTool.aspx) (DNS, SMTP, RBL)
 - [port25.com](https://www.port25.com/dkim-wizard/) (DKIM, SPF)
 - [HAD Pilot](https://www.had-pilot.com/testdetails.html) (DKIM, DMARC, SPF)

@@ -5,7 +5,7 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
   Fore more details read: [github.com/docker/docker/issues/30402](https://github.com/docker/docker/issues/30402) and [forum.mailcow.email/t/solved-mailcow-docker-causes-kernel-panic-edit/448](https://forum.mailcow.email/t/solved-mailcow-docker-causes-kernel-panic-edit/448)
 - Mailcow: dockerized requires [some ports](#default-ports) to be open for incomming connections, so make sure that your firewall is not bloking these. Also make sure that no other application is interferring with mailcow's configuration.
 - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the [basics](dns/#the-minimal-dns-configuration) covered bevore you begin!
-- Make sure that your system has a correct date and time setup. This is crucial for stuff like two factor TOTP authentication.
+- Make sure that your system has a correct date and [time setup](#date-and-time). This is crucial for stuff like two factor TOTP authentication.
 
 ## Minimum System Resources
 
@@ -44,11 +44,11 @@ If you have a firewall already up and running please make sure that these ports 
 | Dovecot ManageSieve | TCP      | 4190   | dovecot-mailcow | `${SIEVE_PORT}`                |
 | HTTP(S)             | TCP      | 80/443 | nginx-mailcow   | `${HTTP_PORT}`/`${HTTPS_PORT}` |
 
-## Enabling NTP services
+## Date and Time
 
 To ensure that you have the correct date and time setup on your system, please check the output of `timedatectl status`:
 
-```bash
+```
 $ timedatectl status
       Local time: Sat 2017-05-06 02:12:33 CEST
   Universal time: Sat 2017-05-06 00:12:33 UTC
