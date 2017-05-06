@@ -31,8 +31,8 @@ pages:
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
     - 'Logs': 'debug_logs.md'
+    - 'Attach a Container': 'attach_service.md'
     - 'Reset Passwords': 'reset_pw.md'
-    - 'Service Descriptions': 'service_desc.md'
     - 'Remove Persistent Data': 'rm_volumes.md'
 - 'Usage & Examples':
   - 'mailcow UI':
