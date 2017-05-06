@@ -1,3 +1,5 @@
+MySQL is used for most of mailcow's and SOGo's settings.
+
 ### Connect
 ```
 source mailcow.conf
