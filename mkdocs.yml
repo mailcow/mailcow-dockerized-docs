@@ -43,7 +43,6 @@ pages:
       - 'Tagging': 'tagging.md'
       - 'Two-Factor Authentication': 'tfa.md'
   - 'Redis': 'redis.md'
-  - 'MySQL': 'mysql.md'
   - 'Rspamd': 'rspamd.md'
   - 'Postfix':
       - 'Anonymize Headers': 'anonym_headers.md'
@@ -51,6 +50,7 @@ pages:
   - 'Why bind9?': 'why_bind9.md'
   - 'Backup & Restore':
       - 'Backup Maildir': 'backup_maildir.md'
+      - 'MySQL': 'mysql.md'
   - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
   - 'Redirect HTTP to HTTPS': '80_to_443.md'
   - 'Adjust Service Configurations': 'change_config.md'
