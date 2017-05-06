@@ -33,6 +33,7 @@ pages:
   - 'mailcow UI':
       - 'Configuration': 'mailcow_ui.md'
       - 'Blacklist / Whitelist': 'bl_wl.md'
+      - 'Temporary email aliase': 'spamalias.md'
       - 'Tagging': 'tagging.md'
       - 'Two-Factor Authentication': 'tfa.md'
   - 'Redis': 'redis.md'
