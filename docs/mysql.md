@@ -1,13 +1,13 @@
 MySQL is used for SOGo's and most of mailcow's settings.
 
-### Connect
+## Connect
 
 ```
 source mailcow.conf
 docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 ```
 
-### Backup
+## Backup
 
 ```
 cd /path/to/mailcow-dockerized
@@ -16,7 +16,7 @@ DATE=$(date +"%Y%m%d_%H%M%S")
 docker-compose exec mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} > backup_${DBNAME}_${DATE}.sql
 ```
 
-### Restore
+## Restore
 
 You should redirect the sql dump without Docker-Compose to prevent parsing errors.
 
@@ -26,7 +26,7 @@ source mailcow.conf
 docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} < backup_file.sql
 ```
 
-### Reset MySQL passwords
+## Reset MySQL passwords
 
 Stop the stack by running `docker-compose stop`.
 
@@ -36,7 +36,7 @@ When the containers came to a stop, run this command:
 docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables & sleep 10 && mysql -hlocalhost -uroot && exit 0"' mysql-mailcow
 ```
 
-**1\. Find database name**
+### 1\. Find database name
 
 ```
 MariaDB [(none)]> show databases;
@@ -51,7 +51,7 @@ MariaDB [(none)]> show databases;
 4 rows in set (0.00 sec)
 ```
 
-**2\. Reset one or more users**
+### 2\. Reset one or more users
 
 Both "password" and "authentication_string" exist. Currently "password" is used, but better set both.
 
