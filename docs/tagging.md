@@ -2,6 +2,8 @@ Mailbox users can tag their mail address like in `me+facebook@example.org`. They
 
 ![mailcow mail tagging settings](images/mailcow-tagging.png)
 
+### Available Actions
+
 1\. Move this message to a subfolder "facebook" (will be created lower case if not existing)
 
 2\. Prepend the tag to the subject: "[facebook] Subject"
