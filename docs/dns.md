@@ -11,7 +11,7 @@ Below you can find a list of **recommended DNS records**. While some are mandato
 
 ## Reverse DNS of your IP
 
-Make sure that the PTR record of your IP matches the FQDN hostname of your mailcow host: `mail.domain.tld`. This record is usually set at the provider you leased the IP (server) from.
+Make sure that the PTR record of your IP matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` (= host.domain.tld). This record is usually set at the provider you leased the IP (server) from.
 
 ## The minimal DNS configuration
 
@@ -28,13 +28,13 @@ autoconfig          IN A       1.2.3.4
 
 ## DKIM, SPF and DMARC
 
-In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.openspf.org).
+In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.openspf.org) for further reading.
 
 ```
 @                   IN TXT     "v=spf1 mx ~all"
 ```
 
-It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org).
+It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
 
 ```
 default._domainkey  IN TXT     "v=DKIM1; k=rsa; t=s; s=email; p=..."
