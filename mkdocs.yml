@@ -10,6 +10,7 @@ markdown_extensions:
   - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.mark
   - pymdownx.tilde
+  - footnotes
 pages:
 - 'Information & Support': 'index.md'
 - 'Prerequisites':
@@ -27,24 +28,35 @@ pages:
   - 'Log to Syslog': 'syslog.md'
   - 'Local MTA on Docker host': 'local_mta.md'
   - 'Sender and receiver model': 'sender_rcv.md'
+- 'Debugging & Troubleshooting':
+    - 'Introduction': debug.md
+    - 'Logs': 'debug_logs.md'
+    - 'Attach a Container': 'attach_service.md'
+    - 'Reset Passwords': 'reset_pw.md'
+    - 'Remove Persistent Data': 'rm_volumes.md'
 - 'Usage & Examples':
-  - 'Debugging & Troubleshooting': 'debug.md'
-  - 'mailcow UI Configuration': 'mailcow_ui.md'
+  - 'mailcow UI':
+      - 'Configuration': 'mailcow_ui.md'
+      - 'Blacklist / Whitelist': 'bl_wl.md'
+      - 'Spamfilter': 'spamfilter.md'
+      - 'Temporary email aliase': 'spamalias.md'
+      - 'Tagging': 'tagging.md'
+      - 'Two-Factor Authentication': 'tfa.md'
   - 'Redis': 'redis.md'
-  - 'MySQL': 'mysql.md'
   - 'Rspamd': 'rspamd.md'
+  - 'Postfix':
+      - 'Anonymize Headers': 'anonym_headers.md'
+      - 'Disable Sender Addresses Verification': 'disable_sender_verification.md'
   - 'Why bind9?': 'why_bind9.md'
+  - 'Backup & Restore':
+      - 'Backup Maildir': 'backup_maildir.md'
+      - 'MySQL': 'mysql.md'
+  - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
+  - 'Redirect HTTP to HTTPS': '80_to_443.md'
   - 'Adjust Service Configurations': 'change_config.md'
   - 'Customize Dockerfiles': 'cust_dockerfiles.md'
   - 'Docker Compose Bash Completion': 'dc_bash_compl.md'
-  - 'Backup Maildir': 'backup_maildir.md'
-  - 'Two-Factor Authentication': 'tfa.md'
-  - 'Redirect HTTP to HTTPS': '80_to_443.md'
-  - 'Anonymize Headers': 'anonym_headers.md'
-  - 'Tagging': 'tagging.md'
-  - 'Blacklist / Whitelist': 'bl_wl.md'
-  - 'Autodiscover / Autoconfig': 'autodiscover_config.md'
-  - 'Disable Sender Addresses Verification': 'disable_sender_verification.md'
+  - 'Deinstall': 'deinstall.md'
 - 'Third party apps':
   - 'Roundcube': 'roundcube.md'
   - 'Portainer': 'portainer.md'

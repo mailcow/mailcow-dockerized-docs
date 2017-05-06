@@ -34,7 +34,8 @@ certbot certonly \
     --agree-tos
 ```
 
-**Remember to replace the example.org domain with your own domain, this command will not work if you dont.**
+!!! warning
+    Remember to replace the example.org domain with your own domain, this command will not work if you dont.
 
 4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
 ``` bash

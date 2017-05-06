@@ -1,4 +1,6 @@
-### Learn spam and ham
+Rspamd is used for av handling, dkim signing and spam handling. It's a powerfull and fast filter system. For a more in-depth documentation on Rspamd please visit it's [own documentation](https://rspamd.com/doc/index.html).
+
+## Learn Spam & Ham
 
 Rspamd learns mail as spam or ham when you move a message in or out of the junk folder to any mailbox besides trash.
 This is archived by using the Dovecot plugin "antispam" and a simple parser script.
@@ -9,7 +11,7 @@ The bayes statistics are written to Redis as keys `BAYES_HAM` and `BAYES_SPAM`.
 
 You can also use Rspamd's web ui to learn ham and/or spam.
 
-### Learn ham or spam from existing directory
+### Learn Spam or Ham from existing directory
 
 You can use a one-liner to learn mail in plain-text (uncompressed) format:
 ```
@@ -25,7 +27,7 @@ Consider attaching a local folder as new volume to `rspamd-mailcow` in `docker-c
 for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam < zcat $file; done
 ```
 
-### CLI tools
+## CLI tools
 
 ```
 docker-compose exec rspamd-mailcow rspamc --help
@@ -33,4 +35,3 @@ docker-compose exec rspamd-mailcow rspamadm --help
 ```
 
 See [Rspamd documentation](https://rspamd.com/doc/index.html)
-

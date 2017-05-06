@@ -28,11 +28,13 @@ DOCKER_OPTS="--log-driver=syslog --log-opt syslog-address=tcp://127.0.0.1:524"
 ...
 ```
 
-**Caution:** For some reason Ubuntu 16.04 and some, but not all, systemd based distros do not read the defaults file parameters.
+!!! warning
+    For some reason Ubuntu 16.04 and some, but not all, systemd based distros do not read the defaults file parameters.
 
 Just run `systemctl edit docker.service` and add the following content to fix it.
 
-**Note:** If "systemctl edit" is not available, just copy the content to `/etc/systemd/system/docker.service.d/override.conf`.
+!!! info
+    If "systemctl edit" is not available, just copy the content to `/etc/systemd/system/docker.service.d/override.conf`.
 
 The first empty ExecStart parameter is not a mistake.
 
