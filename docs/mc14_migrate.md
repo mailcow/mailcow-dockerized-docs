@@ -61,9 +61,10 @@ mysqldump --replace --no-create-info --default-character-set=utf8mb4 \
     alias alias_domain domain domain_admins mailbox quota2 sender_acl > backup_mailcow.sql
 ```
 
-- **--replace**: Write `REPLACE` statements rather than `INSERT` statements
-- **--no-create-info**: Don't write `CREATE TABLE` statements.
-- **--default-character-set** make sure our exported default charset is *utf8mb4*.
+!!! Info
+    **--replace**: Write `REPLACE` statements rather than `INSERT` statements
+    **--no-create-info**: Don't write `CREATE TABLE` statements.
+    **--default-character-set** make sure our exported default charset is *utf8mb4*.
 
 
 ## Prepare mailcow: dockerized
