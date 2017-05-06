@@ -15,11 +15,11 @@ pages:
 - 'Prerequisites':
   - 'Prepare Your System': 'requirements.md'
   - 'DNS Setup': 'dns.md'
-- 'Migrating from mailcow 0.14': 'mc14_import.md'
+- 'Migrating from mailcow 0.14': 'mc14_merge.md'
 - 'Installation & Update':
   - 'Installation': 'install.md'
   - 'Update': 'update.md'
-- 'First Steps (optional)': 
+- 'First Steps (optional)':
   - 'SSL': 'ssl.md'
   - 'Rspamd Web UI': 'rspamd_ui.md'
   - 'Reverse Proxy': 'rp.md'
