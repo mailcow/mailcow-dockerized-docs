@@ -1,8 +1,10 @@
-**WARNING** Please be adviced that this guide is a first draft. Mailcow: dockerized changed quite a lot on its DB configuration. It now uses the InnoDB file format `Barracuda` and the `utf8mb4` character set. There is also some change to the DB / TABLE structure.
+!!! warning
+    Please be adviced that this guide is a first draft. Mailcow: dockerized changed quite a lot on its DB configuration. It now uses the InnoDB file format `Barracuda` and the `utf8mb4` character set. There is also some change to the DB / TABLE structure.
 
-Also note that this guide doesn't touch on the users settings like *Spamlevels*, *TLS Settings*, etc. nor the export / import of your roundcube or SOGo settings.
+!!! info
+    Also note that this guide doesn't touch on the users settings like *Spamlevels*, *TLS Settings*, etc. nor the export / import of your roundcube or SOGo settings.
 
-Lastly please check the section on how to [import / restore](backup_maildir/#restore) your maildir backup to get an idea how to migrate your mails.
+    Lastly please check the section on how to [import / restore](backup_maildir/#restore) your maildir backup to get an idea how to migrate your mails.
 
 ## Create mailcow db backups
 
@@ -59,9 +61,12 @@ mysqldump --replace --no-create-info --default-character-set=utf8mb4 \
     alias alias_domain domain domain_admins mailbox quota2 sender_acl > backup_mailcow.sql
 ```
 
-- **--replace**: Write `REPLACE` statements rather than `INSERT` statements
-- **--no-create-info**: Don't write `CREATE TABLE` statements.
-- **--default-character-set** make sure our exported default charset is *utf8mb4*.
+!!! Info
+    **--replace**: Write `REPLACE` statements rather than `INSERT` statements
+
+    **--no-create-info**: Don't write `CREATE TABLE` statements.
+    
+    **--default-character-set** make sure our exported default charset is *utf8mb4*.
 
 
 ## Prepare mailcow: dockerized

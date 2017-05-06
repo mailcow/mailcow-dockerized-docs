@@ -15,7 +15,7 @@ pages:
 - 'Prerequisites':
   - 'Prepare Your System': 'requirements.md'
   - 'DNS Setup': 'dns.md'
-- 'Migrating from mailcow 0.14': 'mc14_merge.md'
+- 'Migrating from mailcow 0.14': 'mc14_migrate.md'
 - 'Installation & Update':
   - 'Installation': 'install.md'
   - 'Update': 'update.md'
