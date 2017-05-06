@@ -10,7 +10,7 @@ docker-compose exec redis-mailcow redis-cli
 
 Here are some usefull commands for the redis-cli for debugging:
 
-##### MONITOR
+**MONITOR**
 
 Listens for all requests received by the server in real time:
 
@@ -23,7 +23,7 @@ OK
 [...]
 ```
 
-##### KEYS
+**KEYS**
 
 Get all keys matching your pattern:
 
@@ -31,7 +31,7 @@ Get all keys matching your pattern:
 
 ```
 
-##### PING
+**PING**
 
 Test a connection:
 
