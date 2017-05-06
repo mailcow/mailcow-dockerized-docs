@@ -1,12 +1,14 @@
 MySQL is used for SOGo's and most of mailcow's settings.
 
 ### Connect
+
 ```
 source mailcow.conf
 docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 ```
 
 ### Backup
+
 ```
 cd /path/to/mailcow-dockerized
 source mailcow.conf
