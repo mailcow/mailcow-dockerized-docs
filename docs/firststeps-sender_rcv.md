@@ -1,6 +1,6 @@
 When a mailbox is created, a user is allowed to send mail from and receive mail for his own mailbox address.
 
-    Mailbox me@example.org is created. example.org is a primary domain. 
+    Mailbox me@example.org is created. example.org is a primary domain.
     Note: a mailbox cannot be created in an alias domain.
 
     me@example.org is only known as me@example.org.

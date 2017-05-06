@@ -22,7 +22,7 @@ Escape character is '^]'.
 
 ## My mails are identified as Spam
 
-Please read our guide on [DNS configuration](dns.md).
+Please read our guide on [DNS configuration](prerequesite-dns.md).
 
 ## docker-compose throws weird erros
 
@@ -51,4 +51,4 @@ If you get an error message like:
 ERROR: for postfix-mailcow  Cannot start service postfix-mailcow: driver failed programming external     connectivity on endpoint mailcowdockerized_postfix-mailcow_1: Error starting userland proxy: listen tcp 0.0.0.0:25: bind: address already in use
 ```
 
-while trying to start / install mailcow: dockerized, make sure you've followed our section on the [prerequisites](requirements/#firewall-ports).
+while trying to start / install mailcow: dockerized, make sure you've followed our section on the [prerequisites](prerequesite-system/#firewall-ports).
