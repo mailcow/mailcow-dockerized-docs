@@ -60,5 +60,5 @@ This works similar to resetting a MySQL password, now we do it from the host wit
 
 ```
 source mailcow.conf
-docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e DELETE FROM tfa WHERE username='YOUR_USERNAME'
+docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e "DELETE FROM tfa WHERE username='YOUR_USERNAME';"
 ```
