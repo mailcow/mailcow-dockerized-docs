@@ -17,7 +17,7 @@ For commercial support contact [info@servercow.de](mailto:info@servercow.de).
 ### Community support
 
 - IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
-- Forum @ [forum.mailcow.email](forum.mailcow.email)
+- Forum @ [forum.mailcow.email](https://forum.mailcow.email)
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
 ## Screenshots
