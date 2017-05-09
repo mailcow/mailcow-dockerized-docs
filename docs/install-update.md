@@ -13,7 +13,7 @@ git stash pop
 ```
 
 ### Step 1, method 2
-Fetch new data from GitHub, commit changes and merge remote repository: 
+Fetch new data from GitHub, commit changes and merge remote repository:
 
 ```
 # Get updates/changes
@@ -21,7 +21,7 @@ git fetch
 # Add all changed files to local clone
 git add -A
 # Commit changes, ignore git complaining about username and mail address
-git commit -m "Local config aat $(date)"
+git commit -m "Local config at $(date)"
 # Merge changes
 git merge
 ```
@@ -45,9 +45,9 @@ Keep in mind that all local changes _to configuration files_ will be lost. Howev
 - Stop and remove mailcow containers: `docker-compose down`
 - Delete the directory or rename it
 - Clone the remote repository again (`git clone https://github.com/andryyy/mailcow-dockerized && cd mailcow-dockerized`). **Pay attention** to this step - the folder must have the same name of the previous one!
-- Copy back your previous `mailcow.conf` into the mailcow-dockerizd folder 
+- Copy back your previous `mailcow.conf` into the mailcow-dockerizd folder
 
-If you forgot to stop Docker before deleting the cloned directoy, you can use the following commands:
+If you forgot to stop Docker before deleting the cloned directory, you can use the following commands:
 ```
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)

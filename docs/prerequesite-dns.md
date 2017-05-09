@@ -3,9 +3,9 @@ Below you can find a list of **recommended DNS records**. While some are mandato
 ## References
 
 - A good article covering all relevant topics:
-  ["3 DNS Records Every Email Marketer Must Know"](https://www.rackaid.com/blog/email-dns-records)      
+  ["3 DNS Records Every Email Marketer Must Know"](https://www.rackaid.com/blog/email-dns-records)
 - Another great one, but Zimbra as an example platform:
-  ["Best Practices on Email Protection: SPF, DKIM and DMARC"](https://wiki.zimbra.com/wiki/Best_Practices_on_Email_Protection:_SPF,_DKIM_and_DMARC)       
+  ["Best Practices on Email Protection: SPF, DKIM and DMARC"](https://wiki.zimbra.com/wiki/Best_Practices_on_Email_Protection:_SPF,_DKIM_and_DMARC)
 - An in-depth discussion of SPF, DKIM and DMARC:
   ["How to eliminate spam and protect your name with DMARC"](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)
 
@@ -77,4 +77,4 @@ If you are interested in statistics, you can additionally register with the [Pos
 @                   IN TXT     "google-site-verification=..."
 ```
 
-[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts devided by a dot: the hostname (myhost), the domain name (mydomain) and the toplevel domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
+[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.

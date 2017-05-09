@@ -1,4 +1,4 @@
-You may want to remove a set of persistend data to resolve a conflict or to start over:
+You may want to remove a set of persistent data to resolve a conflict or to start over:
 
 ```
 docker volume rm mailcowdockerized_${VOLUME_NAME}

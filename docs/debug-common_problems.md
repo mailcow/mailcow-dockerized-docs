@@ -11,7 +11,7 @@ Please check in your mailcow UI if you made the domain a **backup MX**:
 There are a lot of things that could prevent you from sending mail:
 
 - Check if your IP is on any blacklists. You could use [dnsbl.info](http://www.dnsbl.info/) or any other similar service to check for your IP.
-- There are some consumer ISP routers out there, that block mailports for non whitelisted domains. Please check if you can reach your server on the ports `465` or `587`:
+- There are some consumer ISP routers out there, that block mail ports for non whitelisted domains. Please check if you can reach your server on the ports `465` or `587`:
 
 ```
 # telnet 74.125.133.27 465
@@ -24,7 +24,7 @@ Escape character is '^]'.
 
 Please read our guide on [DNS configuration](prerequesite-dns.md).
 
-## docker-compose throws weird erros
+## docker-compose throws weird errors
 
 ... like:
 

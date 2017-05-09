@@ -1,5 +1,5 @@
 !!! warning
-    mailcow dockerized comes with a snakeoil CA "mailcow" and a server certificate in `data/assets/ssl`. Please use your own trusted certificates.
+    mailcow dockerized comes with a snake-oil CA "mailcow" and a server certificate in `data/assets/ssl`. Please use your own trusted certificates.
 
 mailcow uses **at least** 3 domain names that should be covered by your new certificate:
 
@@ -36,7 +36,7 @@ certbot certonly \
 ```
 
 !!! warning
-    Remember to replace the example.org domain with your own domain, this command will not work if you dont.
+    Remember to replace the example.org domain with your own domain, this command will not work if you don't.
 
 ### 4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
 ``` bash

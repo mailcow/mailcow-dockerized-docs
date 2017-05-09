@@ -56,7 +56,7 @@ MariaDB [(none)]> FLUSH PRIVILEGES;
 
 ## Remove Two-Factor Authentication
 
-This works similar to resetting a MySQL password, now we do it from the host without connecting to the MySQL cli:
+This works similar to resetting a MySQL password, now we do it from the host without connecting to the MySQL CLI:
 
 ```
 source mailcow.conf

@@ -8,7 +8,7 @@ docker-compose exec $Service_Name /bin/bash
 
 ### Connecting to Services
 
-If you whant to connect to a service / application directly it is always a good idea to `source mailcow.conf` to get all relevant variables into your environment.
+If you want to connect to a service / application directly it is always a good idea to `source mailcow.conf` to get all relevant variables into your environment.
 
 #### MySQL
 
@@ -33,7 +33,7 @@ Here is a brief overview of what container / service does what:
 | mysql-mailcow   | Stores SOGo's and most of mailcow's settings                                         |
 | postfix-mailcow | Receives and sends mails                                                  |
 | dovecot-mailcow | User logins and sieve filter                                              |
-| redis-mailcow   | Storage backend for DKIM keys, Rmilter and Rspamd                         |
+| redis-mailcow   | Storage back-end for DKIM keys, Rmilter and Rspamd                         |
 | rspamd-mailcow  | Mail filtering system. Used for av handling, dkim signing, spam handling  |
 | rmilter-mailcow | Integrates Rspamd into postfix                                            |
 | clamd-mailcow   | Scans attachments for viruses                                             |
