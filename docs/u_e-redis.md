@@ -1,4 +1,4 @@
-Redis is used as a key-value store for rspamd's and (some of) mailcow's settings and data. If you are familiar with redis please read the [introduction to redis](https://redis.io/topics/introduction) and maybe visit this [wonderfull guide](http://try.redis.io/) on how to use it.
+Redis is used as a key-value store for rspamd's and (some of) mailcow's settings and data. If you are unfamiliar with redis please read the [introduction to redis](https://redis.io/topics/introduction) and maybe visit this [wonderfull guide](http://try.redis.io/) on how to use it.
 
 ## Client
 

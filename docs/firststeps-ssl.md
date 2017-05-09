@@ -11,17 +11,17 @@ mailcow uses **at least** 3 domain names that should be covered by your new cert
 
 This is just an example of how to obtain certificates with certbot. There are several methods!
 
-### 1\. Get the certbot client:
+1\. Get the certbot client:
 ``` bash
 wget https://dl.eff.org/certbot-auto -O /usr/local/sbin/certbot && chmod +x /usr/local/sbin/certbot
 ```
 
-### 2\. Make sure you set `HTTP_BIND=0.0.0.0` and `HTTP_PORT=80` in `mailcow.conf` or setup a reverse proxy to enable connections to port 80. If you changed HTTP_BIND, then rebuild Nginx:
+2\. Make sure you set `HTTP_BIND=0.0.0.0` and `HTTP_PORT=80` in `mailcow.conf` or setup a reverse proxy to enable connections to port 80. If you changed HTTP_BIND, then rebuild Nginx:
 ``` bash
 docker-compose up -d
 ```
 
-### 3\. Request the certificate with the webroot method:
+3\. Request the certificate with the webroot method:
 ``` bash
 cd /path/to/git/clone/mailcow-dockerized
 source mailcow.conf
@@ -38,7 +38,7 @@ certbot certonly \
 !!! warning
     Remember to replace the example.org domain with your own domain, this command will not work if you don't.
 
-### 4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
+4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
 ``` bash
 mv data/assets/ssl/cert.{pem,pem.backup}
 mv data/assets/ssl/key.{pem,pem.backup}
@@ -46,7 +46,7 @@ ln $(readlink -f /etc/letsencrypt/live/${MAILCOW_HOSTNAME}/fullchain.pem) data/a
 ln $(readlink -f /etc/letsencrypt/live/${MAILCOW_HOSTNAME}/privkey.pem) data/assets/ssl/key.pem
 ```
 
-### 5\. Restart affected containers:
+5\. Restart affected containers:
 ```
 docker-compose restart postfix-mailcow dovecot-mailcow nginx-mailcow
 ```
