@@ -8,7 +8,7 @@ docker-compose exec $Service_Name /bin/bash
 
 ### Connecting to Services
 
-If you whant to connect to a service / application directly it is always a good idea to `source mailcow.conf` to get all relevant variables in your environment.
+If you whant to connect to a service / application directly it is always a good idea to `source mailcow.conf` to get all relevant variables into your environment.
 
 #### MySQL
 

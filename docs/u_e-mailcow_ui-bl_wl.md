@@ -4,4 +4,4 @@ To add or edit an entry to your **domain wide** filter table, login to your *mai
 
 
 !!! info
-    Be aware that a user [may override](u_e-mailcow_ui-spamalias.md) this setting by setting his own black- and whitelist!
+    Be aware that a user [may override](u_e-mailcow_ui-spamfilter.md) this setting by setting his own black- and whitelist!
