@@ -43,11 +43,14 @@ pages:
       - 'Temporary email aliase': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
-  - 'Redis': 'u_e-redis.md'
-  - 'Rspamd': 'u_e-rspamd.md'
   - 'Postfix':
       - 'Anonymize Headers': 'u_e-postfix-anonym_headers.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
+  - 'Dovecot':
+      - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
+      - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
+  - 'Redis': 'u_e-redis.md'
+  - 'Rspamd': 'u_e-rspamd.md'
   - 'Docker':
       - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
       - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
