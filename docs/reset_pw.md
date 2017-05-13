@@ -1,4 +1,4 @@
-## Mailcow Admin Account
+## mailcow Admin Account
 
 Reset mailcow admin to `admin:moohoo`:
 

@@ -4,7 +4,6 @@ When a problem occurs, then always for a reason! What you want to do in such a c
 2. Follow the leads given to you in your logfiles and start investigating.
 3. Restarting the troubled service or the whole stack to see if the problem persists.
 4. Read the documentation of the troubled service and search it's bugtracker for your problem.
-5. Search our [issues](https://github.com/mailcow/mailcow-dockerized/issues) and [forum](https://forum.mailcow.email/) for topics related to your problem.
+5. Search our [issues](https://github.com/mailcow/mailcow-dockerized/issues) for your problem.
 6. [Create an issue](https://github.com/mailcow/mailcow-dockerized/issues) over at our GitHub repository if you think your problem might be a bug or a missing feature you badly need. But please make sure, that you include **all the logs** and a full description to your problem.
-7. If you need help with a problem on a configuration or a setup, or got a question please head over to our [forum](https://forum.mailcow.email/) and open a thread.
 8. Connect to IRC ([chat.freenode.net](https://webchat.freenode.net/)) and join our IRC channel [#mailcow](irc://chat.freenode.net:6667/mailcow).
