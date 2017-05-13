@@ -57,7 +57,7 @@ DBPASS=$(grep database_pass /var/www/mail/inc/vars.inc.php | cut -d'"' -f2)
 
 # Backup your tables
 mysqldump --replace --no-create-info --default-character-set=utf8mb4 \
-    --host &{DBHOST}-u${DBUSER} -p${DBPASS} ${DBNAME} \
+    --host ${DBHOST} -u${DBUSER} -p${DBPASS} ${DBNAME} \
     alias alias_domain domain domain_admins mailbox quota2 sender_acl > backup_mailcow.sql
 ```
 
