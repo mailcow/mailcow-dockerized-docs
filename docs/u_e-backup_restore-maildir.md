@@ -16,5 +16,5 @@ Set the filename `backup_vmail.tar.gz` to any custom name, but leave the path as
 cd /path/to/mailcow-dockerized
 source mailcow.conf
 DATE=$(date +"%Y%m%d_%H%M%S")
-{% raw %}docker run --rm -it -v $(docker inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail" }}{{ .Name }}{{ end }}{{ end }}' $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:jessie tar xvfz /backup/backup_vmail.tar.gz{% endraw %}
+docker run --rm -it -v $(docker inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail" }}{{ .Name }}{{ end }}{{ end }}' $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:jessie tar xvfz /backup/backup_vmail.tar.gz
 ```
