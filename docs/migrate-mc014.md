@@ -4,7 +4,7 @@
 !!! info
     Also note that this guide doesn't touch on the users settings like *Spamlevels*, *TLS Settings*, etc. nor the export / import of your roundcube or SOGo settings.
 
-    Lastly please check the section on how to [import / restore](backup_maildir/#restore) your maildir backup to get an idea how to migrate your mails.
+    Lastly please check the section on how to [import / restore](u_e-backup_restore-maildir/#restore) your maildir backup to get an idea how to migrate your mails.
 
 ## Create mailcow db backups
 
@@ -57,7 +57,7 @@ DBPASS=$(grep database_pass /var/www/mail/inc/vars.inc.php | cut -d'"' -f2)
 
 # Backup your tables
 mysqldump --replace --no-create-info --default-character-set=utf8mb4 \
-    --host &{DBHOST}-u${DBUSER} -p${DBPASS} ${DBNAME} \
+    --host ${DBHOST} -u${DBUSER} -p${DBPASS} ${DBNAME} \
     alias alias_domain domain domain_admins mailbox quota2 sender_acl > backup_mailcow.sql
 ```
 
@@ -85,19 +85,19 @@ MariaDB [mailcow]> show tables;
 
 ## Import your backups:
 
-  ```
-  # source mailcow.conf
-  # docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} < backup_mailcow.sql
-  ```
+```
+# source mailcow.conf
+# docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} < backup_mailcow.sql
+```
 
-  Recalculate used quota with `doveadm`:
+Recalculate used quota with `doveadm`:
 
-  ```
-  # docker-compose exec dovecot-mailcow doveadm quota recalc -A
-  ```
+```
+# docker-compose exec dovecot-mailcow doveadm quota recalc -A
+```
 
-  Restart services:
+Restart services:
 
-  ```
-  # docker-compose restart
-  ```
+```
+# docker-compose restart
+```

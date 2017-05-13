@@ -1,5 +1,3 @@
-MySQL is used to store the settings and / or usertables of the whole mail-stack (mailcow UI, SOGo, dovecot, postfix).
-
 ## Backup
 
 ```
@@ -11,7 +9,8 @@ docker-compose exec mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${
 
 ## Restore
 
-You should redirect the sql dump without Docker-Compose to prevent parsing errors.
+!!! warning
+    You should redirect the SQL dump without `docker-compose` to prevent parsing errors.
 
 ```
 cd /path/to/mailcow-dockerized

@@ -1,4 +1,5 @@
-mailcow dockerized comes with a snakeoil CA "mailcow" and a server certificate in `data/assets/ssl`. Please use your own trusted certificates.
+!!! warning
+    mailcow dockerized comes with a snake-oil CA "mailcow" and a server certificate in `data/assets/ssl`. Please use your own trusted certificates.
 
 mailcow uses **at least** 3 domain names that should be covered by your new certificate:
 
@@ -6,7 +7,7 @@ mailcow uses **at least** 3 domain names that should be covered by your new cert
 - autodiscover.**example.org**
 - autoconfig.**example.org**
 
-### Let's Encrypt
+## Let's Encrypt
 
 This is just an example of how to obtain certificates with certbot. There are several methods!
 
@@ -35,7 +36,7 @@ certbot certonly \
 ```
 
 !!! warning
-    Remember to replace the example.org domain with your own domain, this command will not work if you dont.
+    Remember to replace the example.org domain with your own domain, this command will not work if you don't.
 
 4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
 ``` bash
@@ -51,3 +52,18 @@ docker-compose restart postfix-mailcow dovecot-mailcow nginx-mailcow
 ```
 
 When renewing certificates, run the last two steps (link + restart) as post-hook in a script.
+
+## Check your configuration
+
+To check if nginx serves the correct certificate, simply use a browser of your choice and check the displayed certificate.
+
+To check the certificate served by dovecot or postfix we will use `openssl`:
+
+```
+# Connect via SMTP (25)
+openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:25
+# Connect via SMTPS (465)
+openssl s_client -showcerts -connect mx.mailcow.email:465
+# Connect via SUBMISSION (587)
+openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
+```

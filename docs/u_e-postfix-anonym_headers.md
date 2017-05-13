@@ -1,4 +1,4 @@
-Save as `data/conf/postfix/mailcow_anonymize_headers.pcre`:
+To disguise your users details like IP, email client, etc. we have to create a new file in `data/conf/postfix/mailcow_anonymize_headers.pcre` and insert the following:
 
 ```
 /^\s*Received:[^\)]+\)\s+\(Authenticated sender:(.+)/
@@ -10,7 +10,8 @@ Save as `data/conf/postfix/mailcow_anonymize_headers.pcre`:
 /^\s*X-Forward/         IGNORE
 ```
 
-Add this to `data/conf/postfix/main.cf`:
+Next we need to add the following to `data/conf/postfix/main.cf`:
+
 ```
 smtp_header_checks = pcre:/opt/postfix/conf/mailcow_anonymize_headers.pcre
 ```

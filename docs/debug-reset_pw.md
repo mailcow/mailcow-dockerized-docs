@@ -7,12 +7,6 @@ cd mailcow_path
 bash mailcow-reset-admin.sh
 ```
 
-## Remove Two-Factor Authentication
-
-```
-
-```
-
 ## Reset MySQL Passwords
 
 Stop the stack by running `docker-compose stop`.
@@ -26,6 +20,8 @@ docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant
 ### 1\. Find database name
 
 ```
+# source mailcow.conf
+# docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 MariaDB [(none)]> show databases;
 +--------------------+
 | Database           |
@@ -56,4 +52,13 @@ MariaDB [(none)]> FLUSH PRIVILEGES;
 MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('gotr00t'), password = PASSWORD('gotr00t') WHERE User = 'root' AND Host = '%';
 MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('mookuh'), password = PASSWORD('mookuh') WHERE User = 'mailcow' AND Host = '%';
 MariaDB [(none)]> FLUSH PRIVILEGES;
+```
+
+## Remove Two-Factor Authentication
+
+This works similar to resetting a MySQL password, now we do it from the host without connecting to the MySQL CLI:
+
+```
+source mailcow.conf
+docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e "DELETE FROM tfa WHERE username='YOUR_USERNAME';"
 ```

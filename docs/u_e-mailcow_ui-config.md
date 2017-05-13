@@ -4,11 +4,11 @@ The local configuration file is persistent over updates of mailcow. Try not to c
 
 mailcow UI configuration parameters can be to...
 
-- ...change the default language*
+- ...change the default language[^1]
 - ...change the default bootstrap theme
 - ...set a password complexity regex
 - ...add mailcow app buttons to the login screen
 - ...set a pagination trigger
 - ...set action after submitting forms (stay in form, return to previous page)
 
-\* To change SOGos default language, you will need to edit `data/conf/sogo/sogo.conf` and replace "English" by your preferred language.
+[^1]: To change SOGos default language, you will need to edit `data/conf/sogo/sogo.conf` and replace "English" by your preferred language.

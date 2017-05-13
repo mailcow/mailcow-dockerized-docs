@@ -35,7 +35,7 @@ If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.
 
 You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](https://andryyy.github.io/mailcow-dockerized/first_steps/#install-a-local-mta) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
 
-5\. Pull the images and run the composer file. The paramter `-d` will start mailcow: dockerized detached:
+5\. Pull the images and run the composer file. The parameter `-d` will start mailcow: dockerized detached:
 ```
 docker-compose pull
 docker-compose up -d

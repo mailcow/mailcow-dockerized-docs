@@ -1,4 +1,4 @@
-Rspamd is used for av handling, dkim signing and spam handling. It's a powerfull and fast filter system. For a more in-depth documentation on Rspamd please visit it's [own documentation](https://rspamd.com/doc/index.html).
+Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful and fast filter system. For a more in-depth documentation on Rspamd please visit it's [own documentation](https://rspamd.com/doc/index.html).
 
 ## Learn Spam & Ham
 
@@ -9,7 +9,7 @@ Rspamd also auto-learns mail when a high or low score is detected (see https://r
 
 The bayes statistics are written to Redis as keys `BAYES_HAM` and `BAYES_SPAM`.
 
-You can also use Rspamd's web ui to learn ham and/or spam.
+You can also use Rspamd's web UI to learn ham and / or spam or to adjust certain settings of Rspamd.
 
 ### Learn Spam or Ham from existing directory
 

@@ -1,6 +1,6 @@
 With Gogs' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:
 
-1\. Open `docker-compose.yml` and add gogs:
+1\. Open `docker-compose.yml` and add Gogs:
 
 ```
     gogs-mailcow:
@@ -27,7 +27,7 @@ location /gogs/ {
 }
 ```
 
-3\. Open `mailcow.conf` and define ports you want gogs to open, as well as future database password. Example:
+3\. Open `mailcow.conf` and define ports you want Gogs to open, as well as future database password. Example:
 
 ```
 GOGS_WWW_PORT=3000

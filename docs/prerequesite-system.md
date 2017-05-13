@@ -12,12 +12,12 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 Please make sure that your system has at least the following resources:
 
-| Resource                | mailcow: dockerized |
-| ----------------------- | ------------------- |
-| CPU                     | 1 GHz               |
-| RAM                     | 1 GiB               |
-| Disk                    | 5 GiB               |
-| System Type             | x86_64              |
+| Resource                | mailcow: dockerized   |
+| ----------------------- | --------------------- |
+| CPU                     | 1 GHz                 |
+| RAM                     | 1 GiB                 |
+| Disk                    | 5 GiB (without mails) |
+| System Type             | x86_64                |
 
 ## Firewall & Ports
 
@@ -31,7 +31,7 @@ If this command returns any results please remove or stop the application runnin
 
 ### Default Ports
 
-If you have a firewall already up and running please make sure that these ports are open for incomming connections:
+If you have a firewall already up and running please make sure that these ports are open for incoming connections:
 
 | Service             | Protocol | Port   | Container       | Variable                       |
 | --------------------|:--------:|:-------|:----------------|--------------------------------|
@@ -67,7 +67,7 @@ NTP synchronized: yes
                   Sun 2017-10-29 02:00:00 CET
 ```
 
-The lines `NTP enabled: yes` and `NTP synchronized: yes` indicate wether you have NTP enabled and if it's syncronized.
+The lines `NTP enabled: yes` and `NTP synchronized: yes` indicate wether you have NTP enabled and if it's synchronized.
 
 To enable NTP you need to run the command `timedatectl set-ntp true`. You also need to edit your `/etc/systemd/timesyncd.conf`:
 

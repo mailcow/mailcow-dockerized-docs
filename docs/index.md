@@ -4,7 +4,7 @@
 
 Let us know about your ideas in #mailcow @ Freenode.
 
-[Servercow](https://www.servercow.de) - hosted mailcow, KVM based virtual servers, webhosting and more.
+[Servercow](https://www.servercow.de) - hosted mailcow, KVM based virtual servers, web-hosting and more.
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JWBSYHF4SMC68)
 
@@ -29,13 +29,13 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 
 - DKIM key management
 - Black- and whitelists per domain and per user
-- Spam score managment per-user (reject spam, mark spam, greylist)
+- Spam score management per-user (reject spam, mark spam, greylist)
 - Allow mailbox users to create temporary spam aliases
-- Prepend mail tags to subject or move mail to subfolder (per-user)
+- Prepend mail tags to subject or move mail to sub folder (per-user)
 - Allow mailbox users to toggle incoming and outgoing TLS enforcement
 - Allow users to reset SOGo ActiveSync device caches
 - imapsync to migrate or pull remote mailboxes regularly
-- TFA: Yubi OTP and U2F USB (Google Chrome and derivates only), TOTP
+- TFA: Yubi OTP and U2F USB (Google Chrome and derivatives only), TOTP
 - Add domains, mailboxes, aliases, domain aliases and SOGo resources
 - Add whitelisted hosts to forward mail to mailcow
 

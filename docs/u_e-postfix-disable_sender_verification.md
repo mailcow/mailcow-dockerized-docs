@@ -1,4 +1,4 @@
-This option is not best-practice and should only be implemented when there is no other option available to archive whatever you are trying to do.
+This option is not best-practice and should only be implemented when there is no other option available to achieve whatever you are trying to do.
 
 Simply create a file `data/conf/postfix/check_sasl_access` and enter the following content. This user must exist in your installation and needs to authenticate before sending mail.
 ```
