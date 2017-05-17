@@ -16,12 +16,12 @@ Please make sure that your system has at least the following resources:
 | ----------------------- | --------------------- |
 | CPU                     | 1 GHz                 |
 | RAM                     | 1 GiB                 |
-| Disk                    | 5 GiB (without mails) |
+| Disk                    | 5 GiB (without emails)|
 | System Type             | x86_64                |
 
 ## Firewall & Ports
 
-Please check if any of mailcow's standard ports are open and not blocked by other applications:
+Please check if any of mailcow's standard ports are open and not in use by other applications:
 
 ```
 # netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995'

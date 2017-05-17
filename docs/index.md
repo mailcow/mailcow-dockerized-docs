@@ -55,10 +55,9 @@ Each container represents a single application.
 - Rspamd
 - SOGo
 
-**7 volumes** to keep dynamic data - take care of them!
+**6 volumes** to keep dynamic data - take care of them!
 
 - vmail-vol-1
-- dkim-vol-1
 - redis-vol-1
 - mysql-vol-1
 - rspamd-vol-1
