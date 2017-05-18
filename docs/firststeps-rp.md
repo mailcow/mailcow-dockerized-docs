@@ -5,7 +5,7 @@ mailcow: dockerized trusts the default gateway IP 172.22.1.1 as proxy. This is v
 ``` bash
 HTTP_BIND=127.0.0.1
 HTTP_PORT=8080
-HTTPS_PORT=127.0.0.1
+HTTPS_BIND=127.0.0.1
 HTTPS_PORT=8443
 ```
 ** IMPORTANT: Do not use port 8081 **
