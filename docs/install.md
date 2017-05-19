@@ -19,7 +19,7 @@ Please use the latest Docker engine available and do not use the engine that shi
 
 2\. Clone the master branch of the repository
 ```
-git clone https://github.com/andryyy/mailcow-dockerized && cd mailcow-dockerized
+git clone https://github.com/mailcow/mailcow-dockerized && cd mailcow-dockerized
 ```
 
 3\. Generate a configuration file. Use a FQDN (`host.domain.tld`) as hostname when asked.
