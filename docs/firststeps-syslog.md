@@ -1,4 +1,4 @@
-Enable Rsyslog to receive logs on 524/tcp:
+Enable Rsyslog to receive logs on 524/tcp at `rsyslog.conf`:
 
 ```
 # This setting depends on your Rsyslog version and configuration format.
@@ -21,31 +21,31 @@ Restart rsyslog after enabling the TCP listener.
 Now setup Docker daemon to start with the syslog driver.
 This enables the syslog driver for all containers!
 
-Debian users can change the startup configuration in `/etc/default/docker` while CentOS users find it in `/etc/sysconfig/docker`:
+Linux users can add or change the configuration in `/etc/docker/daemon.json`. Windows users please have a look at the [docker documentation](https://docs.docker.com/engine/reference/commandline/dockerd//#windows-configuration-file) :
 ```
+{
 ...
-DOCKER_OPTS="--log-driver=syslog --log-opt syslog-address=tcp://127.0.0.1:524"
+    "log-driver": "syslog",
+    "log-opts": {
+        "syslog-address": "tcp://127.0.0.1:524"
+    }
 ...
+}
+
 ```
-
-!!! warning
-    For some reason Ubuntu 16.04 and some, but not all, systemd based distros do not read the defaults file parameters.
-
-Just run `systemctl edit docker.service` and add the following content to fix it.
 
 !!! info
-    If "systemctl edit" is not available, just copy the content to `/etc/systemd/system/docker.service.d/override.conf`.
-
-The first empty ExecStart parameter is not a mistake.
-
-```
-[Service]
-EnvironmentFile=/etc/default/docker
-ExecStart=
-ExecStart=/usr/bin/docker daemon -H fd:// $DOCKER_OPTS
-```
-
+    If you prefere the udp protocol use:
+    
+    ```
+    $ModLoad imudp
+    $UDPServerRun 524
+    ```
+    
+    at `rsyslog.conf` and `"syslog-address": "udp://127.0.0.1:524"` at `daemon.json`.
+    
 Restart the Docker daemon and run `docker-compose down && docker-compose up -d` to recreate the containers.
+
 
 ### Fail2ban
 
