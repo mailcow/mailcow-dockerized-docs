@@ -45,7 +45,7 @@ Keep in mind that all local changes _to configuration files_ will be lost. Howev
 - Stop and remove mailcow containers: `docker-compose down`
 - Delete the directory or rename it
 - Clone the remote repository again (`git clone https://github.com/mailcow/mailcow-dockerized && cd mailcow-dockerized`). **Pay attention** to this step - the folder must have the same name of the previous one!
-- Copy back your previous `mailcow.conf` into the mailcow-dockerizd folder
+- Copy back your previous `mailcow.conf` into the mailcow-dockerized folder
 
 If you forgot to stop Docker before deleting the cloned directory, you can use the following commands:
 ```
