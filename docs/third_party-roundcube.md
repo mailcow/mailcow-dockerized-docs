@@ -85,7 +85,7 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 Optionally, you can add Roundcube's link to the mailcow Apps list.
 To do this, open or create `data/web/inc/vars.local.inc.php` and add the following code-block:
 
-**Don't forget to add the `<?php` delimiter on the first line**
+*NOTE: Don't forget to add the `<?php` delimiter on the first line*
 
 ````
 ...
