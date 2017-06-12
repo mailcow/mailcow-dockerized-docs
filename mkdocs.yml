@@ -1,5 +1,6 @@
 site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
+site_favicon: images/favicon.png
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
