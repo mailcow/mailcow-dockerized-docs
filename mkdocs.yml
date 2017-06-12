@@ -77,3 +77,4 @@ extra:
     primary: 'indigo'
     accent: 'orange'
 extra_css: [extra.css]
+google_analytics: ['UA-92608422-4', 'mailcow.github.io']
