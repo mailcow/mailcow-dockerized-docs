@@ -97,8 +97,8 @@ $MAILCOW_APPS = array(
     'link' => '/SOGo/'
   ),
   array(
-     'name' => 'Roundcube',
-     'link' => '/roundcube/'
+    'name' => 'Roundcube',
+    'link' => '/roundcube/'
    )
 );
 ...
