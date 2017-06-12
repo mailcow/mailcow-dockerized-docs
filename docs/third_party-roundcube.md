@@ -82,6 +82,8 @@ $config['password_algorithm_prefix'] = '{SSHA256}';
 $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
 
+---
+
 Optionally, you can add Roundcube's link to the mailcow Apps list.
 To do this, open or create `data/web/inc/vars.local.inc.php` and add the following code-block:
 
