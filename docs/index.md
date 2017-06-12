@@ -1,5 +1,3 @@
-HELLO!
-
 # 🐮 + 🐋 = 💕
 
 ## Help mailcow
