@@ -98,7 +98,7 @@ $MAILCOW_APPS = array(
   ),
   array(
     'name' => 'Roundcube',
-    'link' => '/roundcube/'
+    'link' => '/rc/'
    )
 );
 ...
