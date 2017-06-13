@@ -76,5 +76,10 @@ extra:
   palette:
     primary: 'indigo'
     accent: 'orange'
+  social:
+    - type: globe
+      link: http://mailcow.email
+    - type: github-alt
+      link: https://github.com/mailcow
 extra_css: [extra.css]
 google_analytics: ['UA-92608422-4', 'mailcow.github.io']
