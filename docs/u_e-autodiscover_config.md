@@ -4,8 +4,8 @@ Open or create `data/web/inc/vars.local.inc.php` and paste the following code-bl
 > Note: don't forget to add the `<?php` delimiter.
 ````
 $config = array(
-     'useEASforOutlook' => 'yes',
-     'autodiscoverType' => 'activesync',
+     'useEASforOutlook' => 'no',
+     'autodiscoverType' => 'imap',
      'imap' => array(
        'server' => $mailcow_hostname,
        'port' => '993',
@@ -21,6 +21,7 @@ $config = array(
      )
 );
 ````
-Then set `'useEASforOutlook' => 'yes'` to `'useEASforOutlook' => 'no'`.
+
+Tell Outlook clients to use SMTP and IMAP `'useEASforOutlook' => 'yes'` to `'useEASforOutlook' => 'no'`.
 
 To always use IMAP and SMTP instead of EAS, set `'autodiscoverType' => 'imap'`.
