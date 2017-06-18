@@ -6,19 +6,6 @@ Open or create `data/web/inc/vars.local.inc.php` and paste the following code-bl
 $config = array(
      'useEASforOutlook' => 'no',
      'autodiscoverType' => 'imap',
-     'imap' => array(
-       'server' => $mailcow_hostname,
-       'port' => '993',
-       'ssl' => 'on',
-     ),
-     'smtp' => array(
-       'server' => $mailcow_hostname,
-       'port' => '465',
-       'ssl' => 'on'
-     ),
-     'activesync' => array(
-       'url' => 'https://'.$mailcow_hostname.'/Microsoft-Server-ActiveSync'
-     )
 );
 ````
 
