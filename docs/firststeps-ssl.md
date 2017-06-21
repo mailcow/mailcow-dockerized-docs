@@ -1,59 +1,21 @@
-!!! warning
-    mailcow dockerized comes with a snake-oil CA "mailcow" and a server certificate in `data/assets/ssl`. Please use your own trusted certificates.
+## Let's Encrypt (out-of-the-box)
 
-mailcow uses **at least** 3 domain names that should be covered by your new certificate:
-
-- ${MAILCOW_HOSTNAME}
-- autodiscover.**example.org**
-- autoconfig.**example.org**
-
-## Let's Encrypt
-
-This is just an example of how to obtain certificates with certbot. There are several methods!
-
-1\. Get the certbot client:
-``` bash
-wget https://dl.eff.org/certbot-auto -O /usr/local/sbin/certbot && chmod +x /usr/local/sbin/certbot
-```
-
-2\. Make sure you set `HTTP_BIND=0.0.0.0` and `HTTP_PORT=80` in `mailcow.conf` or setup a reverse proxy to enable connections to port 80. If you changed HTTP_BIND, then rebuild Nginx:
-``` bash
-docker-compose up -d
-```
-
-3\. Request the certificate with the webroot method:
-``` bash
-cd /path/to/git/clone/mailcow-dockerized
-source mailcow.conf
-certbot certonly \
-    --webroot \
-    -w ${PWD}/data/web \
-    -d ${MAILCOW_HOSTNAME} \
-    -d autodiscover.example.org \
-    -d autoconfig.example.org \
-    --email you@example.org \
-    --agree-tos
-```
+The newly introduced "acme-mailcow" container (21st of June) will try to obtain a valid LE certificate for you.
 
 !!! warning
-    Remember to replace the example.org domain with your own domain, this command will not work if you don't.
+    mailcow ***must** be available on port 80 for the acme-client to work.
+    
+By default, which means **0 domains** are added to mailcow, it will try to obtain a certificate for ${MAILCOW_HOSTNAME}.
 
-4\. Create hard links to the full path of the new certificates. Assuming you are still in the mailcow root folder:
-``` bash
-mv data/assets/ssl/cert.{pem,pem.backup}
-mv data/assets/ssl/key.{pem,pem.backup}
-ln $(readlink -f /etc/letsencrypt/live/${MAILCOW_HOSTNAME}/fullchain.pem) data/assets/ssl/cert.pem
-ln $(readlink -f /etc/letsencrypt/live/${MAILCOW_HOSTNAME}/privkey.pem) data/assets/ssl/key.pem
-```
+For each domain you add, it will try to resolve autodiscover.ADDED_MAIL_DOMAIN and autoconfig.ADDED_MAIL_DOMAIN to your servers IPv4 address. If it succeeds, these names will be added as SANs to the certificate request.
 
-5\. Restart affected containers:
-```
-docker-compose restart postfix-mailcow dovecot-mailcow nginx-mailcow
-```
+You could add an A record for "autodiscover" but omit "autoconfig", the client will only validate "autodiscover" and skip "autoconfig" then.
 
-When renewing certificates, run the last two steps (link + restart) as post-hook in a script.
+For every domain you remove, the certificate will be moved and a new certificate will be requested. It is not possible to keep domains in a certificate, when we are not able validate the challenge for those.
 
 ## Check your configuration
+
+Run `docker-compose logs acme-mailcow` to find out why a validation fails.
 
 To check if nginx serves the correct certificate, simply use a browser of your choice and check the displayed certificate.
 
