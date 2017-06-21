@@ -13,6 +13,16 @@ You could add an A record for "autodiscover" but omit "autoconfig", the client w
 
 For every domain you remove, the certificate will be moved and a new certificate will be requested. It is not possible to keep domains in a certificate, when we are not able validate the challenge for those.
 
+### Additional domain names
+
+Edit "mailcow.conf" and add a parameter "ADDITIONAL_SAN" like this:
+
+```
+ADDITIONAL_SAN="cert1.example.org cert1.example.com cert2.example.org cert3.example.org"
+```
+
+Each name will be validated against its IPv4 address.
+
 ## Check your configuration
 
 Run `docker-compose logs acme-mailcow` to find out why a validation fails.
