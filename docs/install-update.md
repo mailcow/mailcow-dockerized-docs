@@ -1,6 +1,13 @@
 There is no update routine. You need to refresh your pulled repository clone and apply your local changes (if any). Actually there are many ways to merge local changes.
 
 ### Step 1
+
+You may want to backup your certificates, as an upgrade from an older mailcow: dockerized version may remove these files:
+
+```
+cp -rp data/assets/ssl /tmp/ssl_backup_mailcow
+```
+
 Fetch new data from GitHub, commit changes and merge remote repository:
 
 ```
@@ -16,6 +23,12 @@ git merge -Xtheirs -Xpatience
 # If it conflicts with files that were deleted from the mailcow repository, just run...
 git status --porcelain | grep -E "UD|DU" | awk '{print $2}' | xargs rm -v
 # ...and repeat step 2 and 3
+```
+
+Check data/assets/ssl for your certificates (and dhparams.pem). If you miss them, recover your files:
+
+```
+cp -rp /tmp/ssl_backup_mailcow/* data/assets/ssl/
 ```
 
 ### Step 2
