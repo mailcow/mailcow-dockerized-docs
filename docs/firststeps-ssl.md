@@ -23,6 +23,10 @@ ADDITIONAL_SAN="cert1.example.org cert1.example.com cert2.example.org cert3.exam
 
 Each name will be validated against its IPv4 address.
 
+**Skip Let's Encrypt function**
+
+Add `SKIP_LETS_ENCRYPT=y` to mailcow.conf and restart the stack by running `docker-compose down && docker-compose up -d`.
+
 ## Use own certificates
 
 To use your own certificates, just save the combined certificate (containing the certificate and intermediate CA/CA if any) to `data/assets/ssl/cert.pem` and the corresponding key to `data/assets/ssl/key.pem`.
