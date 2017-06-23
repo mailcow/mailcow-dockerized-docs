@@ -28,6 +28,7 @@ You can find screenshots [on Imgur](http://imgur.com/a/oewYt).
 The integrated **mailcow UI** allows administrative work on your mail server instance as well as separated domain administrator and mailbox user access:
 
 - DKIM key management
+- ARC support
 - Black- and whitelists per domain and per user
 - Spam score management per-user (reject spam, mark spam, greylist)
 - Allow mailbox users to create temporary spam aliases
@@ -38,8 +39,9 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 - TFA: Yubi OTP and U2F USB (Google Chrome and derivatives only), TOTP
 - Add domains, mailboxes, aliases, domain aliases and SOGo resources
 - Add whitelisted hosts to forward mail to mailcow
+- Fail2ban-like integration
 
-mailcow dockerized comes with **12 containers** linked in **one bridged network**.
+mailcow dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.
 
 - Dovecot
@@ -47,13 +49,15 @@ Each container represents a single application.
 - Memcached
 - Redis
 - MySQL
-- Bind9 (Resolver) (formerly PDNS Recursor)
+- Unbound (as resolver)
 - PHP-FPM
 - Postfix
+- ACME-Client (thanks to @bebehei)
 - Nginx
 - Rmilter
 - Rspamd
 - SOGo
+- Fail2ban-like integration by @mkuron
 
 **6 volumes** to keep dynamic data - take care of them!
 
