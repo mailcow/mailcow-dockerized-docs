@@ -30,7 +30,6 @@ pages:
   - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
   - 'Setup a relayhost': 'firststeps-relayhost.md'
-  - 'Log to Syslog': 'firststeps-syslog.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
   - 'Sender and receiver model': 'firststeps-sender_rcv.md'
 - 'Debugging & Troubleshooting':
@@ -59,7 +58,7 @@ pages:
   - 'Docker':
       - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
       - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
-  - 'Why bind9?': 'u_e-why_bind9.md'
+  - 'Why a DNS recursor?': 'u_e-why_dns_recursor.md'
   - 'Backup & Restore':
       - 'Backup Maildir': 'u_e-backup_restore-maildir.md'
       - 'MySQL': 'u_e-backup_restore-mysql.md'
