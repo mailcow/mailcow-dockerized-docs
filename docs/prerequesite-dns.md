@@ -20,8 +20,8 @@ This example shows you a set of records for one domain managed by mailcow. Each 
 ```
 # Name              Type       Value
 mail                IN A       1.2.3.4
-autodiscover        IN A       1.2.3.4
-autoconfig          IN A       1.2.3.4
+autodiscover        IN CNAME   mail
+autoconfig          IN CNAME   mail
 
 @                   IN MX 10   mail
 ```
@@ -56,6 +56,7 @@ _imaps._tcp         IN SRV     0 1 993 mail.example.org.
 _pop3._tcp          IN SRV     0 1 110 mail.example.org.
 _pop3s._tcp         IN SRV     0 1 995 mail.example.org.
 _submission._tcp    IN SRV     0 1 587 mail.example.org.
+_smtps._tcp         IN SRV     0 1 465 mail.example.org.
 _autoconfig._tcp    IN SRV     0 1 443 autoconfig.example.org.
 _autodiscover._tcp  IN SRV     0 1 443 autodiscover.example.org.
 ```
