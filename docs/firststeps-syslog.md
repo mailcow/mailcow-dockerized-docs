@@ -1,6 +1,27 @@
 !!! warning
     You will lose the integrated fail2ban functionality when using a logging driver other than json (default).
 
+!!! warning
+    In newer versions of mailcow: dockerized we decided to set a max. log size. You need to remove all "logging: xy" lines and options from docker-compose.yml to be able to start the stack.
+
+    Example:
+    ````
+    logging:
+      options:
+        max-size: "5m"
+    ```
+
+    !!! info
+    If you prefere the udp protocol use:
+
+    ```
+    $ModLoad imudp
+    $UDPServerRun 524
+    ```
+
+    at `rsyslog.conf` and `"syslog-address": "udp://127.0.0.1:524"` at `daemon.json`.
+
+
 Enable Rsyslog to receive logs on 524/tcp at `rsyslog.conf`:
 
 ```
@@ -37,24 +58,35 @@ Linux users can add or change the configuration in `/etc/docker/daemon.json`. Wi
 
 ```
 
-!!! warning
-    In newer versions of mailcow: dockerized we decided to set a max. log size. You need to remove all "logging: xy" lines and options from docker-compose.yml to be able to start the stack.
-    
-    Example:
-    ````
-    logging:
-      options:
-        max-size: "5m"
-    ```
-
-    !!! info
-    If you prefere the udp protocol use:
-    
-    ```
-    $ModLoad imudp
-    $UDPServerRun 524
-    ```
-    
-    at `rsyslog.conf` and `"syslog-address": "udp://127.0.0.1:524"` at `daemon.json`.
-    
 Restart the Docker daemon and run `docker-compose down && docker-compose up -d` to recreate the containers.
+
+### Fail2ban with Docker syslog logging driver
+
+**This only applies to syslog-enabled Docker environments.**
+
+Open `/etc/fail2ban/filter.d/common.conf` and search for the prefix_line parameter, change it to ".*":
+
+```
+__prefix_line = .*
+```
+
+Create `/etc/fail2ban/jail.d/dovecot.conf`...
+```
+[dovecot]
+enabled = true
+filter  = dovecot
+logpath = /var/log/syslog
+chain = FORWARD
+```
+
+and `jail.d/postfix-sasl.conf`:
+```
+[postfix-sasl]
+enabled = true
+filter  = postfix-sasl
+logpath = /var/log/syslog
+chain = FORWARD
+```
+
+Restart Fail2ban.
+
