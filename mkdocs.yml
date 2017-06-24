@@ -59,7 +59,7 @@ pages:
   - 'Docker':
       - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
       - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
-  - 'Why bind9?': 'u_e-why_bind9.md'
+  - 'Why unbound?': 'u_e-why_unbound.md'
   - 'Backup & Restore':
       - 'Backup Maildir': 'u_e-backup_restore-maildir.md'
       - 'MySQL': 'u_e-backup_restore-mysql.md'
