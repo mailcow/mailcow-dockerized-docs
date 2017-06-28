@@ -17,8 +17,13 @@ For every domain you remove, the certificate will be moved and a new certificate
 
 Edit "mailcow.conf" and add a parameter "ADDITIONAL_SAN" like this:
 
+!!! info
+    Make sure you are using acme-mailcow:1.5 or above in docker-compose.yml - if not, update mailcow first!
+
+Do not use quotes (`"`)!
+
 ```
-ADDITIONAL_SAN="cert1.example.org cert1.example.com cert2.example.org cert3.example.org"
+ADDITIONAL_SAN=cert1.example.org,cert1.example.com,cert2.example.org,cert3.example.org
 ```
 
 Each name will be validated against its IPv4 address.
