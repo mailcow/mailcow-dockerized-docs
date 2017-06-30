@@ -57,7 +57,6 @@ _pop3._tcp          IN SRV     0 1 110 mail.example.org.
 _pop3s._tcp         IN SRV     0 1 995 mail.example.org.
 _submission._tcp    IN SRV     0 1 587 mail.example.org.
 _smtps._tcp         IN SRV     0 1 465 mail.example.org.
-_autoconfig._tcp    IN SRV     0 1 443 autoconfig.example.org.
 _autodiscover._tcp  IN SRV     0 1 443 autodiscover.example.org.
 ```
 
