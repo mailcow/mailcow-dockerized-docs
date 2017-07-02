@@ -1,4 +1,6 @@
-Open/create `data/web/vars.local.inc.php` and add this configuration array (as a copy of `$autodiscover_config` from `data/web/vars.inc.php`):
+Open/create `data/web/vars.local.inc.php` and add your changes to the configuration array.
+
+Changes will be merged with "$autodiscover_config" in `data/web/vars.inc.php`):
 
 ```
 $autodiscover_config = array(
@@ -6,18 +8,24 @@ $autodiscover_config = array(
   'useEASforOutlook' => 'yes',
   // General autodiscover service type: "activesync" or "imap"
   'autodiscoverType' => 'activesync',
+  // Please don't use STARTTLS-enabled service ports here.
+  // The autodiscover service will always point to SMTPS and IMAPS (TLS-wrapped services).
   'imap' => array(
     'server' => $mailcow_hostname,
     'port' => getenv('IMAPS_PORT'),
-    'ssl' => 'on',
   ),
   'smtp' => array(
     'server' => $mailcow_hostname,
     'port' => getenv('SMTPS_PORT'),
-    'ssl' => 'on'
   ),
   'activesync' => array(
     'url' => 'https://'.$mailcow_hostname.'/Microsoft-Server-ActiveSync'
+  ),
+  'caldav' => array(
+    'url' => 'https://'.$mailcow_hostname
+  )
+  'carddav' => array(
+    'url' => 'https://'.$mailcow_hostname
   )
 );
 ```
