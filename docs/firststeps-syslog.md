@@ -11,7 +11,7 @@
         max-size: "5m"
     ```
 
-    !!! info
+!!! info
     If you prefere the udp protocol use:
 
     ```
