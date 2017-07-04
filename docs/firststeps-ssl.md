@@ -3,7 +3,7 @@
 The newly introduced "acme-mailcow" container (21st of June) will try to obtain a valid LE certificate for you.
 
 !!! warning
-    mailcow ***must** be available on port 80 for the acme-client to work.
+    mailcow **must** be available on port 80 for the acme-client to work.
     
 By default, which means **0 domains** are added to mailcow, it will try to obtain a certificate for ${MAILCOW_HOSTNAME}.
 
