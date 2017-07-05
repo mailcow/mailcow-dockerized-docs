@@ -15,6 +15,8 @@ You could add an A record for "autodiscover" but omit "autoconfig", the client w
 
 For every domain you remove, the certificate will be moved and a new certificate will be requested. It is not possible to keep domains in a certificate, when we are not able validate the challenge for those.
 
+If you want to re-run the ACME client, use `docker-compose restart acme-mailcow`.
+
 ### Additional domain names
 
 Edit "mailcow.conf" and add a parameter "ADDITIONAL_SAN" like this:

@@ -1,7 +1,4 @@
 !!! warning
-    You will lose the integrated fail2ban functionality when using a logging driver other than json (default).
-
-!!! warning
     In newer versions of mailcow: dockerized we decided to set a max. log size. You need to remove all "logging: xy" lines and options from docker-compose.yml to be able to start the stack.
 
     Example:
