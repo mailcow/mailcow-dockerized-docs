@@ -1,4 +1,19 @@
-There is no update routine. You need to refresh your pulled repository clone and apply your local changes (if any). Actually there are many ways to merge local changes.
+## Automatic update
+
+An update script in your mailcow-dockerized directory will take care of updates.
+
+But use it with caution! If you think you made a lot of changes to the mailcow code, you should use the manual update guide below.
+
+Run the update script:
+```
+./update.sh
+```
+
+If it needs to, it will ask you how you wish to proceed.
+Merge errors will be reported.
+Some minor conflicts will be auto-corrected (in favour of the mailcow: dockerized repository code).
+
+## Manual update
 
 ### Step 1
 
