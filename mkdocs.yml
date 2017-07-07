@@ -68,6 +68,7 @@ pages:
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
 - 'Third party apps':
+  - 'Thunderbird': 'third_party-thunderbird.md'
   - 'Roundcube': 'third_party-roundcube.md'
   - 'Portainer': 'third_party-portainer.md'
   - 'Gogs': 'third_party-gogs.md'
