@@ -30,7 +30,7 @@ pages:
   - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
   - 'Setup a relayhost': 'firststeps-relayhost.md'
-  - 'Log to Syslog': 'firststeps-syslog.md'
+  - 'Logging': 'firststeps-logging.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
   - 'Sender and receiver model': 'firststeps-sender_rcv.md'
 - 'Debugging & Troubleshooting':
