@@ -67,7 +67,7 @@ To enable telnet on a Windows after Vista please check this [guide](https://soci
 dism /online /Enable-Feature /FeatureName:TelnetClient
 ```
 
-## Inotify instance limit for user 5000 (UID vmail) exceeded ([Issue #453](https://github.com/mailcow/mailcow-dockerized/issues/453#issuecomment-314711232))
+## Inotify instance limit for user 5000 (UID vmail) exceeded ([see #453](https://github.com/mailcow/mailcow-dockerized/issues/453#issuecomment-314711232))
 
 Docker containers use the Docker hosts inotify limits. Setting them on your Docker host will pass them to the container.
 
