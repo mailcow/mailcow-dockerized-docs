@@ -15,6 +15,7 @@ markdown_extensions:
   - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.extra
   - footnotes
 pages:
 - 'Information & Support': 'index.md'
@@ -67,6 +68,16 @@ pages:
   - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
+- 'Client Configuration':
+  - 'Overview': 'client.md'
+  - 'Android': 'client-android.md'
+  - 'Apple macOS / iOS': 'client-apple.md'
+  - 'eM Client': 'client-emclient.md'
+  - 'KDE Kontact': 'client-kontact.md'
+  - 'Microsoft Outlook': 'client-outlook.md'
+  - 'Mozilla Thunderbird': 'client-thunderbird.md'
+  - 'Windows': 'client-windows.md'
+  - 'Windows Phone': 'client-windowsphone.md'
 - 'Third party apps':
   - 'Roundcube': 'third_party-roundcube.md'
   - 'Portainer': 'third_party-portainer.md'
@@ -82,4 +93,5 @@ extra:
     - type: github-alt
       link: https://github.com/mailcow
 extra_css: [extra.css]
+extra_javascript: [clients.js]
 google_analytics: ['UA-92608422-4', 'mailcow.github.io']
