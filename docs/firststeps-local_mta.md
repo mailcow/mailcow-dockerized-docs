@@ -5,10 +5,12 @@ The easiest option would be to disable the listener on port 25/tcp.
 #smtp      inet  n       -       -       -       -       smtpd
 ```
 
-Furthermore, to relay your local mail over the dockerized mailcow, you may want to add `172.22.1.1` as relayhost:
+Furthermore, to relay over a dockerized mailcow, you may want to add `172.22.1.1` as relayhost and remove the Docker interface from "inet_interfaces":
 
 ```
 postconf -e 'relayhost = 172.22.1.1'
+postconf -e "mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
+postconf -e "inet_interfaces = loopback-only"
 ```
 
 "172.22.1.1" is the mailcow created network gateway in Docker.
