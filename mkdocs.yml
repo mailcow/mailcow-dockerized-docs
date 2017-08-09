@@ -51,6 +51,7 @@ pages:
   - 'Postfix':
       - 'Anonymize Headers': 'u_e-postfix-anonym_headers.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
+      - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
   - 'Dovecot':
       - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
