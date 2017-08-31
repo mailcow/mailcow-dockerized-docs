@@ -31,8 +31,8 @@ If you want to automate such a task you can create a cron job on your host that 
 
 ```
 #!/bin/bash
-/usr/local/bin/docker-compose exec -T doveadm dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
-/usr/local/bin/docker-compose exec -T doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
+/usr/local/bin/docker-compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
+/usr/local/bin/docker-compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
 [...]
 ```
 
