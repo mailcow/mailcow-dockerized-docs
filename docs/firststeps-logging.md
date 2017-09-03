@@ -16,7 +16,7 @@ Some logs are filtered and written to Redis keys but also streamed to a Redis ch
 
 The Redis channel is used to stream logs with failed authentication attempts to be read by fail2ban-mailcow.
 
-The Redis keys are persistent and will keep up to 5000 lines of logs for the web UI.
+The Redis keys are persistent and will keep 10001 lines of logs for the web UI.
 
 This mechanism makes it possible to use whatever Docker logging driver you want to, without losing 
 the ability to read logs from the UI or ban suspicious clients with fail2ban-mailcow.
