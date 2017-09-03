@@ -56,6 +56,7 @@ while trying to start / install mailcow: dockerized, make sure you've followed o
 ## XYZ can't connect to ...
 
 Please check your local firewall!
+Docker and iptables-based firewalls sometimes create conflicting rules, so disable the firewall on your host to determine whether your connection issues are caused by such conflicts. If they are, you need to manually create appropriate rules in your host firewall to permit the necessary connections.
 
 If you experience connection problems from home, please check your ISP router's firewall too, some of them block mail traffic on the *SMTP* (587) or *SMTPS* (465) ports. It could also be, that your ISP is blocking the ports for *SUBMISSION* (25).
 
