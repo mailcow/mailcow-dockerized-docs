@@ -1,6 +1,6 @@
-Open/create `data/web/vars.local.inc.php` and add your changes to the configuration array.
+Open/create `data/web/inc/vars.local.inc.php` and add your changes to the configuration array.
 
-Changes will be merged with "$autodiscover_config" in `data/web/vars.inc.php`):
+Changes will be merged with "$autodiscover_config" in `data/web/inc/vars.inc.php`):
 
 ```
 $autodiscover_config = array(
