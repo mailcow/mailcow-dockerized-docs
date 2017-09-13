@@ -3,6 +3,7 @@ Open/create `data/web/inc/vars.local.inc.php` and add your changes to the config
 Changes will be merged with "$autodiscover_config" in `data/web/inc/vars.inc.php`):
 
 ```
+<?php
 $autodiscover_config = array(
   // Enable the autodiscover service for Outlook desktop clients
   'useEASforOutlook' => 'yes',
