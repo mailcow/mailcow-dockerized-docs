@@ -64,6 +64,10 @@ docker-compose up -d --remove-orphans
 ### Step 3
 Clean-up dangling (unused) images and volumes:
 
+It is **very important** to _not_ run these commands when your containers are deleted.
+Running `docker-compose down` - for example - will delete your containers. Your volumes are now in a dangling state! Running the commands shown below, _will_ remove your volumes and therefore your data.
+
+
 ```
 docker rmi -f $(docker images -f "dangling=true" -q)
 docker volume rm $(docker volume ls -qf dangling=true)
