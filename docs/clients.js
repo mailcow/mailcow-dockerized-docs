@@ -1,5 +1,5 @@
 if (window.location.href.indexOf('/client/') >= 0) {
-    window.onload = function () {
+    window.window.addEventListener('load', function () {
         function getParameterByName(name) {
             var match = RegExp('[?#&]' + name + '=([^&]*)').exec(window.location.hash);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
@@ -26,11 +26,11 @@ if (window.location.href.indexOf('/client/') >= 0) {
         if (getParameterByName('outlookEAS')) {
             document.cookie = "outlookEAS=" + getParameterByName('outlookEAS') + "; path=/";
         }
-    }
+    });
 }
 
 if (window.location.href.indexOf('/client') >= 0) {
-    window.onload = function () {
+    window.window.addEventListener('load', function () {
         function getCookie(cn) {
             var cs = document.cookie.split(';');
             for (var i = 0; i < cs.length; i++) {
@@ -108,5 +108,5 @@ if (window.location.href.indexOf('/client') >= 0) {
                 el.style.display = 'none';
             });
         }
-    }
+    });
 }

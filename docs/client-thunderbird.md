@@ -24,7 +24,7 @@
   Close the account settings window with the <i>OK</i> button.
 </li>
 <li class="client_integrator_enabled">
-  In your web browser, download <a class="client_var_integrator_link" href="/thunderbird-plugins/sogo-integrator-__VERSION__-__DOMAIN__.xpi">SOGo Integrator</a>.
+  In your web browser, download <span class="client_variables_unavailable">SOGo Integrator</span><span class="client_variables_available"><a class="client_var_integrator_link" href="/thunderbird-plugins/sogo-integrator-__VERSION__-__DOMAIN__.xpi">SOGo Integrator</a></span>.
 </li>
 <li class="client_integrator_enabled">
   Back in Thunderbird, go to the <i>Tools</i> menu and select <i>Add-ons</i>.
