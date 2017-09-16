@@ -10,7 +10,7 @@
 10. Choose *DAV groupware resource* and click *OK*.
 11. Enter your email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and your password. Click *Next*.
 12. Select *ScalableOGo* from the dropdown menu and click *Next*.
-13. Enter<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable"> your Mailcow hostname</span> into the *Host* field and click *Next*.
+13. Enter<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable"> your mailcow hostname</span> into the *Host* field and click *Next*.
 14. Click *Test Connection* and then *Finish*. Finally, click *OK* twice.
 
 Once you have set up Kontact, you can also use KMail, KOrganizer and KAddressBook individually.

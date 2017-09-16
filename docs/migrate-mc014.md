@@ -8,7 +8,7 @@
 
 ## Create mailcow db backups
 
-First you need to modify the table `mailcow`. Mailcow-dockerized adds three and moves two existing columns in the table `mailbox`. The columns `tls_enforce_in` and `tls_enforce_out` get moved two rows up (behind `domain`). The columns `key`, `multiple_bookings` and `wants_tagged_subject` need to be added after `tls_enforce_out`.
+First you need to modify the table `mailcow`. mailcow: dockerized adds three and moves two existing columns in the table `mailbox`. The columns `tls_enforce_in` and `tls_enforce_out` get moved two rows up (behind `domain`). The columns `key`, `multiple_bookings` and `wants_tagged_subject` need to be added after `tls_enforce_out`.
 
 It should look like this:
 
