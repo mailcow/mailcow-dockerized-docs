@@ -77,7 +77,7 @@ pages:
   - 'KDE Kontact': 'client-kontact.md'
   - 'Microsoft Outlook': 'client-outlook.md'
   - 'Mozilla Thunderbird': 'client-thunderbird.md'
-  - 'Windows': 'client-windows.md'
+  - 'Windows Mail': 'client-windows.md'
   - 'Windows Phone': 'client-windowsphone.md'
 - 'Third party apps':
   - 'Roundcube': 'third_party-roundcube.md'
