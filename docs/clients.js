@@ -29,7 +29,7 @@ if (window.location.href.indexOf('/client/') >= 0) {
     }
 }
 
-if (window.location.href.indexOf('/client-') >= 0) {
+if (window.location.href.indexOf('/client') >= 0) {
     window.onload = function () {
         function getCookie(cn) {
             var cs = document.cookie.split(';');

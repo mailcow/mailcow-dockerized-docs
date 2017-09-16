@@ -1,3 +1,5 @@
+Windows 8 and higher support email, contacts and calendar via Exchange ActiveSync.
+
 1. Open the *Mail* app.
 2. If you have not previously used Mail, you can click *Add Account* in the main window. Proceed to step 4.
 3. Click *Accounts* in the sidebar on the left, then click *Add Account* on the far right.
