@@ -51,13 +51,13 @@ data/conf
 │   │   ├── options.inc
 │   │   ├── redis.conf
 │   │   ├── rspamd.conf.local
-│   │   └── statistic.conf
+│   │   ├── statistic.conf
+│   │   ├── logging.inc
+│   │   ├── worker-controller.inc
+│   │   └── worker-normal.inc
 │   ├── lua
 │   │   └── rspamd.local.lua
-│   └── override.d
-│       ├── logging.inc
-│       ├── worker-controller.inc
-│       └── worker-normal.inc
+│   └── override.d (files in this directory can be created to override settings from files in local.d)
 └── sogo
     ├── sieve.creds
     └── sogo.conf
