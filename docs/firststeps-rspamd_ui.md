@@ -5,7 +5,7 @@ At first you may want to setup Rspamds web interface which provides some useful 
 docker-compose exec rspamd-mailcow rspamadm pw
 ```
 
-2\. Replace the default hash in `data/conf/rspamd/override.d/worker-controller.inc` by your newly generated:
+2\. Add a line with your newly-generated hash to `data/conf/rspamd/override.d/worker-controller.inc`:
 ```
 enable_password = "myhash";
 ```
