@@ -7,6 +7,7 @@ mailcow UI configuration parameters can be to...
 - ...change the default language[^1]
 - ...change the default bootstrap theme
 - ...set a password complexity regex
+- ...enable DKIM private key visibility
 - ...add mailcow app buttons to the login screen
 - ...set a pagination trigger
 - ...set action after submitting forms (stay in form, return to previous page)
