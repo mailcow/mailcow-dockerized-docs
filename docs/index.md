@@ -22,7 +22,7 @@ For commercial support contact [info@servercow.de](mailto:info@servercow.de).
 
 ## Screenshots
 
-You can find screenshots [on Imgur](http://imgur.com/a/oewYt).
+You can find screenshots [on Imgur](https://imgur.com/a/TBmub).
 
 ## Overview
 
