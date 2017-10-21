@@ -79,3 +79,32 @@ backend mailcow
   http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
   server mailcow 127.0.0.1:8080 check
 ```
+
+### traefik
+
+You can also use [traefik](https://traefik.io/) as frontend for mailcow.
+
+1. Comment out the two `ports` line in the nginx-mailcow section in `docker-compose.yml`.
+1. Use the following `docker-compose.override.yml` or add the statements to the original `docker-compose.yml` (change `traefik_web` to your traefik-network):
+
+````
+version: '2.3'
+
+services:
+    nginx-mailcow:
+      expose:
+         - "80"
+      labels:
+        - "traefik.backend=mailcow"
+        - "traefik.docker.network=traefik_web"
+        - "traefik.enable=true"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:${MAILCOW_HOSTNAME}"
+      networks:
+        web:
+
+networks:
+  web:
+    external:
+      name: traefik_web
+````
