@@ -24,7 +24,7 @@ $autodiscover_config = array(
   ),
   'caldav' => array(
     'url' => 'https://'.$mailcow_hostname
-  )
+  ),
   'carddav' => array(
     'url' => 'https://'.$mailcow_hostname
   )
