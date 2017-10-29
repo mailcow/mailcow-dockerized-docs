@@ -63,7 +63,7 @@ pages:
       - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
   - 'Why unbound?': 'u_e-why_unbound.md'
   - 'Backup & Restore':
-      - 'Backup Maildir': 'u_e-backup_restore-maildir.md'
+      - 'Maildir': 'u_e-backup_restore-maildir.md'
       - 'MySQL': 'u_e-backup_restore-mysql.md'
   - 'Autodiscover / Autoconfig': 'u_e-autodiscover_config.md'
   - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
