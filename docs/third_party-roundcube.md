@@ -1,6 +1,6 @@
 Download Roundcube 1.3.0 (26 June 2017, Roundcube Webmail 1.3.0 released) to the web htdocs directory and extract it (here `rc/`):
 ```
-cd data/web/rc
+cd data/web
 wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.3.0/roundcubemail-1.3.0-complete.tar.gz | tar xfvz -
 # Change folder name
 mv roundcubemail-1.3.0 rc
