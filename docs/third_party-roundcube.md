@@ -1,9 +1,9 @@
-Download Roundcube 1.3.0 (26 June 2017, Roundcube Webmail 1.3.0 released) to the web htdocs directory and extract it (here `rc/`):
+Download Roundcube 1.3.x to the web htdocs directory and extract it (here `rc/`):
 ```
 cd data/web/rc
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.3.0/roundcubemail-1.3.0-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.3.x/roundcubemail-1.3.x-complete.tar.gz | tar xfvz -
 # Change folder name
-mv roundcubemail-1.3.0 rc
+mv roundcubemail-1.3.x rc
 # Change permissions
 chown -R root: rc/
 ```
@@ -39,7 +39,7 @@ $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
 'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
-$config['enable_installer'] = false;
+$config['enable_installer'] = true;
 $config['smtp_conn_options'] = array(
 'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
