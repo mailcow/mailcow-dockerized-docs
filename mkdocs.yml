@@ -1,6 +1,6 @@
 site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-site_favicon: images/favicon.png
+site_favicon: images/favicon.ico
 copyright: 'Copyright &copy; 2017 André Peters'
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
