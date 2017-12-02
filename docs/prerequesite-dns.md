@@ -48,7 +48,7 @@ _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@
 
 ## The advanced DNS configuration
 
-**SRV** records specify the server(s) for a specific protocol on your domain. If you want to explicitly announce a service as not provided, give "." as the target address (instead of "mail.example.tld."). Please refer to [RFC 2782](https://tools.ietf.org/html/rfc2782).
+**SRV** records specify the server(s) for a specific protocol on your domain. If you want to explicitly announce a service as not provided, give "." as the target address (instead of "mail.example.org."). Please refer to [RFC 2782](https://tools.ietf.org/html/rfc2782).
 
 ```
 _imap._tcp          IN SRV     0 1 143   mail.example.org.
@@ -58,7 +58,11 @@ _pop3s._tcp         IN SRV     0 1 995   mail.example.org.
 _submission._tcp    IN SRV     0 1 587   mail.example.org.
 _smtps._tcp         IN SRV     0 1 465   mail.example.org.
 _sieve._tcp         IN SRV     0 1 4190  mail.example.org.
-_autodiscover._tcp  IN SRV     0 1 443   autodiscover.example.org.
+_autodiscover._tcp  IN SRV     0 1 443   mail.example.org.
+_carddavs._tcp      IN SRV     0 1 443   mail.example.org.
+_carddavs._tcp      IN TXT     "path=/SOGo/dav/"
+_caldavs._tcp       IN SRV     0 1 443   mail.example.org.
+_caldavs._tcp       IN TXT     "path=/SOGo/dav/"
 ```
 
 ## Testing
