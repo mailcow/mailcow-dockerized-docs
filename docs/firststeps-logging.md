@@ -47,7 +47,7 @@ Linux users can also add or edit the Docker daemons configuration file `/etc/doc
 ...
     "log-driver": "gelf",
     "log-opts": {
-        "gelf-address": "udp://graylog:12201"
+        "gelf-address": "udp://graylog:12201",
         "gelf-tag": "mailcow-logs"
     }
 ...
