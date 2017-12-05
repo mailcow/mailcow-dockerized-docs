@@ -50,6 +50,7 @@ pages:
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
   - 'Postfix':
       - 'Anonymize Headers': 'u_e-postfix-anonym_headers.md'
+      - 'Automatically Encrypt Emails': 'u_e-postfix-auto_encrypt.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
   - 'Dovecot':
