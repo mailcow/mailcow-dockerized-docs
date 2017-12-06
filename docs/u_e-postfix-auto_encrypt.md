@@ -30,3 +30,6 @@ chown zeyple: /var/lib/zeyple/keys
 
 !!! warning
     When sending mail, any sent emails are kept unencrypted in the "Sent" box by default - this includes mail sent between internal users. Change your options if this is a concern.
+
+!!! warning
+    When using DKIM, and sending to an external mail service that you are encrypting to that expects your mail signed, the remote service may reject or junk your email. This is due to the DKIM signature being done by a "milter" (pre-queue), whilst Zeyple encryption is done post-queue as a content filter. The encryption will break the DKIM signature as your message contents has been changed since the message was signed (so DKIM signature won't match the content). SpamAssassin scores gain 0.1 points for being DKIM signed, -1 for being an encrypted message, and 0.001 for having an invalid DKIM signature.
