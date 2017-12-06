@@ -27,3 +27,6 @@ docker-compose exec postfix-mailcow /bin/bash
 chmod 700 /var/lib/zeyple/keys
 chown zeyple: /var/lib/zeyple/keys
 ```
+
+!!! warning
+    When sending mail, any sent emails are kept unencrypted in the "Sent" box by default - this includes mail sent between internal users. Change your options if this is a concern.
