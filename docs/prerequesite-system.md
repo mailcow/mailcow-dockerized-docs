@@ -4,7 +4,8 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
     When running mailcow: dockerized on a Debian 8 (Jessie) box, you should [switch to kernel 4.9 from Jessie backports](https://packages.debian.org/jessie-backports/linux-image-amd64) to avoid a bug when running Docker containers with *healthchecks*! For more details read: [github.com/docker/docker/issues/30402](https://github.com/docker/docker/issues/30402)
 
 !!! info
-    - mailcow: dockerized requires [some ports](#default-ports) to be open for incomming connections, so make sure that your firewall is not bloking these. Also make sure that no other application is interferring with mailcow's configuration.
+    - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
+    - Make sure that no other application is interferring with mailcow's configuratio, such as another mail service
     - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the [basics](prerequesite-dns/#the-minimal-dns-configuration) covered before you begin!
     - Make sure that your system has a correct date and [time setup](#date-and-time). This is crucial for stuff like two factor TOTP authentication.
 
@@ -31,6 +32,7 @@ Please check if any of mailcow's standard ports are open and not in use by other
 
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
 
+
 ### Default Ports
 
 If you have a firewall already up and running please make sure that these ports are open for incoming connections:
@@ -51,6 +53,18 @@ To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
 
+To unblock firewalls using ufw you can use the following commands:
+```
+# ufw allow 25
+# ufw allow 80
+# ufw allow 110
+# ufw allow 143
+# ufw allow 443
+# ufw allow 465
+# ufw allow 587
+# ufw allow 993
+# ufw allow 995
+```
 
 ## Date and Time
 
