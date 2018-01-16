@@ -5,7 +5,7 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
-    - Make sure that no other application is interferring with mailcow's configuratio, such as another mail service
+    - Make sure that no other application is interferring with mailcow's configuration, such as another mail service
     - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the [basics](prerequesite-dns/#the-minimal-dns-configuration) covered before you begin!
     - Make sure that your system has a correct date and [time setup](#date-and-time). This is crucial for stuff like two factor TOTP authentication.
 
@@ -31,7 +31,6 @@ Please check if any of mailcow's standard ports are open and not in use by other
 ```
 
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
-
 
 ### Default Ports
 
