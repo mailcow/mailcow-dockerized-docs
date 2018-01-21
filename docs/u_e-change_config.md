@@ -37,8 +37,6 @@ data/conf
 │       ├── mysql_virtual_relay_domain_maps.cf
 │       ├── mysql_virtual_sender_acl.cf
 │       └── mysql_virtual_spamalias_maps.cf
-├── rmilter
-│   └── rmilter.conf
 ├── rspamd
 │   ├── dynmaps
 │   │   ├── authoritative.php

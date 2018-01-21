@@ -55,7 +55,6 @@ Each container represents a single application.
 - Postfix
 - ACME-Client (thanks to @bebehei)
 - Nginx
-- Rmilter
 - Rspamd
 - SOGo
 - Fail2ban-like integration by @mkuron
