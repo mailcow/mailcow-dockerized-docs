@@ -1,5 +1,9 @@
 if (window.location.href.indexOf('/client/') >= 0) {
     window.window.addEventListener('load', function () {
+        function setCookie(name, value) {
+            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; path=/";
+        }
+    
         function getParameterByName(name) {
             var match = RegExp('[?#&]' + name + '=([^&]*)').exec(window.location.hash);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
@@ -7,24 +11,24 @@ if (window.location.href.indexOf('/client/') >= 0) {
     
         /* Store URL variables in cookies */
         if (getParameterByName('host')) {
-            document.cookie = "host=" + getParameterByName('host') + "; path=/";
+            setCookie("host", getParameterByName('host'));
         }
         if (getParameterByName('email')) {
             var email = getParameterByName('email');
-            document.cookie = "email=" + email + "; path=/";
-            document.cookie = "domain=" + email.substring(email.indexOf('@') + 1) + "; path=/";
+            setCookie("email", email);
+            setCookie("domain", email.substring(email.indexOf('@') + 1));
         }
         if (getParameterByName('name')) {
-            document.cookie = "name=" + getParameterByName('name') + "; path=/";
+            setCookie("name", getParameterByName('name'));
         }
         if (getParameterByName('port')) {
-            document.cookie = "port=" + getParameterByName('port') + "; path=/";
+            setCookie("port", getParameterByName('port'));
         }
         if (getParameterByName('integrator')) {
-            document.cookie = "integrator=" + getParameterByName('integrator') + "; path=/";
+            setCookie("integrator", getParameterByName('integrator'));
         }
         if (getParameterByName('outlookEAS')) {
-            document.cookie = "outlookEAS=" + getParameterByName('outlookEAS') + "; path=/";
+            setCookie("outlookEAS", getParameterByName('outlookEAS'));
         }
     });
 }
@@ -32,14 +36,15 @@ if (window.location.href.indexOf('/client/') >= 0) {
 if (window.location.href.indexOf('/client') >= 0) {
     window.window.addEventListener('load', function () {
         function getCookie(cn) {
+            var fixedcn = encodeURIComponent(cn);
             var cs = document.cookie.split(';');
             for (var i = 0; i < cs.length; i++) {
                 var c = cs[i];
                 while (c.charAt(0) == ' ') {
                     c = c.substring(1);
                 }
-                if (c.indexOf(cn + "=") == 0) {
-                    return c.substring(cn.length + 1, c.length);
+                if (c.indexOf(fixedcn + "=") == 0) {
+                    return decodeURIComponent(c.substring(cn.length + 1, c.length));
                 }
             }
             return "";
