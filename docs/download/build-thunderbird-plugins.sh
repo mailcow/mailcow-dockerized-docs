@@ -3,6 +3,10 @@
 set -e
 
 MAILHOST=$1
+if [ "$MAILHOST" = "" ]; then
+	echo "Usage: echo example.com example.org | $0 mailcow.example.com"
+	exit 1
+fi
 
 cd $(dirname $0)
 
