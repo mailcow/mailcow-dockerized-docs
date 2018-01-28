@@ -83,6 +83,7 @@ pages:
   - 'Windows Mail': 'client-windows.md'
   - 'Windows Phone': 'client-windowsphone.md'
 - 'Third party apps':
+  - 'SOGo Integrator for Thunderbird': 'third_party-thunderbird.md'
   - 'Roundcube': 'third_party-roundcube.md'
   - 'Portainer': 'third_party-portainer.md'
   - 'Gogs': 'third_party-gogs.md'
