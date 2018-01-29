@@ -9,6 +9,6 @@ curl -o data/web/rainloop/installer.php -s http://repository.rainloop.net/instal
 docker exec -it $(docker ps -qf name=php-fpm-mailcow) php /web/rainloop/installer.php
 ```
 
-3\. Login to ${MAILCOW_HOSTNAME}/rainloop/?admin` to set a password
+3\. Login to `${MAILCOW_HOSTNAME}/rainloop/?admin` to set a password
 
 Add and configure a new domain as you need.
