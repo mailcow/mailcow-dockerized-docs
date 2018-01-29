@@ -1,7 +1,9 @@
-In order to enable Portainer, the docker-compose.yml and site.conf for nginx must be modified.
+In order to enable Portainer, the docker-compose.yml and site.conf for Nginx must be modified.
 
-1\. docker-compose.yml: Insert this block for portainer
+1\. Create a new file `docker-compose.override.yml` in the mailcow-dockerized root folder and insert the following configuration
 ```
+version: '2.1'
+services:
     portainer-mailcow:
       image: portainer/portainer
       volumes:
@@ -16,7 +18,7 @@ In order to enable Portainer, the docker-compose.yml and site.conf for nginx mus
           aliases:
             - portainer
 ```
-2a\. data/conf/nginx/site.conf: Just beneath the opening line, at the same level as a server { block, add this:
+2a\. Create `data/conf/nginx/portainer.conf`:
 ```
 upstream portainer {
   server portainer-mailcow:9000;
@@ -28,7 +30,7 @@ map $http_upgrade $connection_upgrade {
 }
 ```
 
-2b\. data/conf/nginx/site.conf: Then, inside **both** (ssl and plain) server blocks, add this:
+2b\. Insert a new location to the default mailcow site by creating the file `data/conf/nginx/site.portainer.custom`:
 ```
   location /portainer/ {
     proxy_http_version 1.1;
@@ -49,6 +51,11 @@ map $http_upgrade $connection_upgrade {
     proxy_set_header Connection $connection_upgrade;
     proxy_pass http://portainer/api/websocket/;
   }
+```
+
+3\. Apply your changes:
+```
+docker-compose up -d && docker-compose restart nginx-mailcow
 ```
 
 Now you can simply navigate to https://${MAILCOW_HOSTNAME}/portainer/ to view your Portainer container monitoring page. You’ll then be prompted to specify a new password for the **admin** account. After specifying your password, you’ll then be able to connect to the Portainer UI.
