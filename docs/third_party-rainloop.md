@@ -4,9 +4,10 @@ mkdir data/web/rainloop
 curl -o data/web/rainloop/installer.php -s http://repository.rainloop.net/installer.php
 ```
 
-2\. Run the installert from within the PHP-FPM mailcow container:
+2\. Run the installert from within the PHP-FPM mailcow container and delete the installer:
 ```
 docker exec -it $(docker ps -qf name=php-fpm-mailcow) php /web/rainloop/installer.php
+rm data/web/rainloop/installer.php
 ```
 
 3\. Login to `${MAILCOW_HOSTNAME}/rainloop/?admin` to set a password. The default credentials are `admin`:`12345`.
