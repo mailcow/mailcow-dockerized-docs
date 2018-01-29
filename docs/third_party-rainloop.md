@@ -11,4 +11,8 @@ docker exec -it $(docker ps -qf name=php-fpm-mailcow) php /web/rainloop/installe
 
 3\. Login to `${MAILCOW_HOSTNAME}/rainloop/?admin` to set a password. The default credentials are `admin`:`12345`.
 
-Add and configure a new domain as you need.
+Add and configure a new domain as you need. Use "dovecot" as IMAP server name and "postfix" as SMTP server name.
+
+![Screenshot1](https://i.imgur.com/yz0A3dT.png)
+
+![Screenshot2](https://i.imgur.com/m1riawB.png)
