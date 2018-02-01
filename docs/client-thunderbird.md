@@ -45,7 +45,7 @@
 
 <div class="client_integrator_disabled client_variables_available" markdown="1">
 Automatic configuration of calendars and address books in Thunderbird is not currently supported.
-      You can ask your server administrator to enable [SOGo Integrator](third_party-thunderbird) if you need it.
+      You can ask your server administrator to enable SOGo Integrator if you need it.
 </div>
 
 <div class="client_variables_unavailable" markdown="1">

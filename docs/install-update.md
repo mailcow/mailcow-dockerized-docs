@@ -11,7 +11,18 @@ Run the update script:
 
 If it needs to, it will ask you how you wish to proceed.
 Merge errors will be reported.
-Some minor conflicts will be auto-corrected (in favour of the mailcow: dockerized repository code).
+Some minor conflicts will be auto-corrected (in favour for the mailcow: dockerized repository code).
+
+### Options
+
+```
+# Check for updates
+./update.sh --check
+
+# Update with merge strategy "ours" instead of "theirs" 
+# This will merge in favor for your local changes.
+./update.sh --ours
+# 
 
 ## Manual update
 
@@ -32,7 +43,7 @@ git fetch origin master
 git add -A
 # 3. Commit changes, ignore git complaining about username and mail address
 git commit -m "Local config at $(date)"
-# 4. Merge changes, prefere mailcow repository
+# 4. Merge changes, prefer mailcow repository, replace "theirs" by "ours" to change merge strategy
 git merge -Xtheirs -Xpatience
 
 # If it conflicts with files that were deleted from the mailcow repository, just run...
