@@ -15,3 +15,9 @@ Next we need to add the following to `data/conf/postfix/main.cf`:
 ```
 smtp_header_checks = pcre:/opt/postfix/conf/mailcow_anonymize_headers.pcre
 ```
+
+Then restart Postfix:
+
+```
+docker-compose restart postfix-mailcow
+```
