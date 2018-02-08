@@ -3,7 +3,7 @@ Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful 
 ## Learn Spam & Ham
 
 Rspamd learns mail as spam or ham when you move a message in or out of the junk folder to any mailbox besides trash.
-This is archived by using the Dovecot plugin "antispam" and a simple parser script.
+This is achieved by using the Dovecot plugin "antispam" and a simple parser script.
 
 Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning)
 
