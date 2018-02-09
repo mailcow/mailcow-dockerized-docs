@@ -9,7 +9,7 @@ apt-get install make tar zip
 Next, go to `data/web` inside mailcow-dockerized.
 Place the file [thunderbird-plugins.php](download/thunderbird-plugins.php) into that directory.
 Create a new directory `thunderbrid-plugins` and place the script [build-plugins.sh](download/build-thunderbird-plugins.sh) into it.
-Finally, execute the script with your hostname as an argument and piping it the names of all domains that Mailcow handles.
+Finally, execute the script with your hostname as an argument and piping it the names of all domains that mailcow handles.
 All of this can be done using the following commands:
 
 ```
@@ -23,5 +23,5 @@ echo example.com example.org | ./build-plugins.sh mailcow.example.com
 
 # Install it in Thunderbird
 
-After you have set up your Mailcow IMAP account in Thunderbird, download the SOGo integrator plugin for your domain, e.g. https://mailcow.example.com/thunderbird-plugins/sogo-integrator-31.0.5-example.com.xpi, and install it into Thunderbird.
+After you have set up your mailcow IMAP account in Thunderbird, download the SOGo integrator plugin for your domain, e.g. https://mailcow.example.com/thunderbird-plugins/sogo-integrator-31.0.5-example.com.xpi, and install it into Thunderbird.
 All your address books and calendars will be configured automatically.
