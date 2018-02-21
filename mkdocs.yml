@@ -82,6 +82,7 @@ pages:
   - 'Mozilla Thunderbird': 'client-thunderbird.md'
   - 'Windows Mail': 'client-windows.md'
   - 'Windows Phone': 'client-windowsphone.md'
+  - 'Manual configuration': 'client-manual.md'
 - 'Third party apps':
   - 'SOGo Integrator for Thunderbird': 'third_party-thunderbird.md'
   - 'Roundcube': 'third_party-roundcube.md'

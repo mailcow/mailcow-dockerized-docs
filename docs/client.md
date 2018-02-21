@@ -23,3 +23,4 @@ Since you accessed this page after logging into your mailcow server, all of the 
 - [Mozilla Thunderbird](client-thunderbird)
 - [Windows Mail](client-windows)
 - [Windows Phone](client-windowsphone)
+- [Manual configuration](client-manual)
