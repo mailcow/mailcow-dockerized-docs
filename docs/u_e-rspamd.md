@@ -1,4 +1,4 @@
-Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful and fast filter system. For a more in-depth documentation on Rspamd please visit it's [own documentation](https://rspamd.com/doc/index.html).
+Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful and fast filter system. For a more in-depth documentation on Rspamd please visit its [own documentation](https://rspamd.com/doc/index.html).
 
 ## Learn Spam & Ham
 
