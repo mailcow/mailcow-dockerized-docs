@@ -3,8 +3,8 @@ SOGo is used for accessing your mails via a webbrowser, adding and sharing your 
 
 ## Change Theme
 
-You can change SOGo's theme by editing `data/conf/sogo/sogo.conf`. Per default it uses a blue theme, which you can change e.g. to a green or red theme. More colored themes will be supported in the future.
-After you edited said file you need to restart the SOGO container with `docker-compose restart sogo-mailcow` or via the Mailcow UI.
+You can change SOGo's theme by editing `data/conf/sogo/sogo.conf`. Per default it uses a blue theme, which you can change e.g. to a green (non-default SOGo-green) theme. More colored themes will be supported in the future.
+After you edited said file you need to restart the SOGO container with `docker-compose restart sogo-mailcow` or via the mailcow UI.
 
 ##### Example (`data/conf/sogo/sogo.conf`, line 17):
 ```
@@ -12,7 +12,10 @@ before:
 SOGoUIAdditionalJSFiles = (js/theme-blue.js);
 
 after:
-SOGoUIAdditionalJSFiles = (js/theme-red.js);
+SOGoUIAdditionalJSFiles = (js/theme-green.js);
+
+SOGo default:
+//SOGoUIAdditionalJSFiles
 ```
 
 ## Change Logo
