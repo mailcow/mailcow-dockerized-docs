@@ -7,6 +7,9 @@ Quick installation for most operation systems:
 - Docker
 ```
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
+# After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
+systemctl enable docker.service
+systemctl start docker.service
 ```
 
 - Docker-Compose
@@ -17,9 +20,13 @@ chmod +x /usr/local/bin/docker-compose
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
-**2\.** Clone the master branch of the repository
+**2\.** Clone the master branch of the repository, make sure your umask equals 0022.
 ```
-git clone https://github.com/mailcow/mailcow-dockerized && cd mailcow-dockerized
+# umask
+0022
+# cd /opt
+# git clone https://github.com/mailcow/mailcow-dockerized
+# cd mailcow-dockerized
 ```
 
 **3\.** Generate a configuration file. Use a FQDN (`host.domain.tld`) as hostname when asked.
