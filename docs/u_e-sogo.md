@@ -20,4 +20,7 @@ SOGo default:
 
 ## Change Logo
 You can change SOGo's logo by replacing `data/Dockerfiles/sogo/sogo-full.svg`.
-After you replaced said file you need to rebuild the container by executing `docker-compose build sogo-mailcow` and start it with `docker-compose up -d sogo-mailcow`.
+After you replaced said file you need to rebuild the SOGo container by executing following command:
+```
+docker-compose up -d --build --force-recreate sogo-mailcow
+```
