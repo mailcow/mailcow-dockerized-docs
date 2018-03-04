@@ -64,6 +64,7 @@ pages:
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
   - 'Redis': 'u_e-redis.md'
   - 'Rspamd': 'u_e-rspamd.md'
+  - 'SOGo': 'u_e-sogo.md'
   - 'Docker':
       - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
       - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
