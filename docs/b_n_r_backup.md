@@ -15,7 +15,7 @@ You can also use "all" as second parameter to backup all components.
 ./helper-scripts/backup_and_restore.sh backup all
 
 # Backup vmail and mysql data
-./helper-scripts/backup_and_restore.sh vmail mysql
+./helper-scripts/backup_and_restore.sh backup vmail mysql
 
 ```
 
