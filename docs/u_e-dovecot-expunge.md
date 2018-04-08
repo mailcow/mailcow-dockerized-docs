@@ -31,7 +31,9 @@ If you want to automate such a task you can create a cron job on your host that 
 
 ```
 #!/bin/bash
-cd /opt/mailcow-dockerized
+# Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
+cd /path/to/your/mailcow-dockerized
+
 /usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
 /usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
 [...]
