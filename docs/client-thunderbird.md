@@ -30,6 +30,9 @@
   Back in Thunderbird, go to the <i>Tools</i> menu and select <i>Add-ons</i>.
 </li>
 <li class="client_integrator_enabled">
+  Click <i>Extensions</i> on the left and ensure that the <i>Lightning</i> add-on is already installed. It is installed by default in the Windows and macOS versions of Thunderbird, but if you are running Linux and installed Thunderbird through your distribution's package manager, <i>Lightning</i> might be available as a separate package (e.g. xul-ext-lightning on Ubuntu).
+</li>
+<li class="client_integrator_enabled">
   Click <i>Extensions</i> on the left, click the little gear icon at the top and select <i>Install Add-on From File</i>. Select the file you downloaded in step 9, click <i>Open</i> and, after waiting for a few seconds, <i>Install Now</i>.
 </li>
 <li class="client_integrator_enabled">
