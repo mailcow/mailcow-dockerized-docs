@@ -16,6 +16,7 @@ All of this can be done using the following commands:
 cd data/web
 curl -LO https://github.com/mailcow/mailcow-dockerized-docs/raw/master/docs/download/thunderbird-plugins.php
 mkdir thunderbird-plugins
+cd thunderbird-plugins
 curl -Lo build-plugins.sh https://github.com/mailcow/mailcow-dockerized-docs/raw/master/docs/download/build-thunderbird-plugins.sh
 chmod +x build-plugins.sh
 echo example.com example.org | ./build-plugins.sh mailcow.example.com
