@@ -83,3 +83,8 @@ Running `docker-compose down` - for example - will delete your containers. Your 
 docker rmi -f $(docker images -f "dangling=true" -q)
 docker volume rm $(docker volume ls -qf dangling=true)
 ```
+
+
+Footnote
+
+There is no release cycle regarding updates.
