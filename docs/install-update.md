@@ -85,6 +85,6 @@ docker volume rm $(docker volume ls -qf dangling=true)
 ```
 
 
-Footnote
+## Footnotes
 
-There is no release cycle regarding updates.
+- There is no release cycle regarding updates.
