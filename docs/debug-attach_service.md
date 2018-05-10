@@ -38,8 +38,8 @@ Here is a brief overview of what container / service does what:
 | clamd-mailcow     | Scans attachments for viruses                                             |
 | sogo-mailcow      | Webmail client that handles Microsoft ActiveSync and Cal- / CardDav       |
 | nginx-mailcow     | Nginx remote proxy that handles all mailcow related HTTP / HTTPS requests |
-| acme-mailcow      | 
-| memcached-mailcow |
-| watchdog-mailcow  |
-| php-fpm-mailcow   |
-| netfilter-mailcow |
+| acme-mailcow      | Automates HTTPS (SSL/TLS) certificate deployment                          |
+| memcached-mailcow | Internal caching system for mailcow services                              |
+| watchdog-mailcow  | Allows the monitoring of docker containers / services                     |
+| php-fpm-mailcow   | Powers the mailcow web UI                                                 |
+| netfilter-mailcow | Fail2Ban like integration                                                 |
