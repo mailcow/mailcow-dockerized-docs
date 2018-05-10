@@ -27,14 +27,19 @@ docker-compose exec redis-mailcow redis-cli
 
 Here is a brief overview of what container / service does what:
 
-| Service Name  | Service Descriptions                                                        |
-| --------------- | ------------------------------------------------------------------------- |
-| unbound-mailcow | Local (DNSSEC) DNS Resolver                                               |
-| mysql-mailcow   | Stores SOGo's and most of mailcow's settings                              |
-| postfix-mailcow | Receives and sends mails                                                  |
-| dovecot-mailcow | User logins and sieve filter                                              |
-| redis-mailcow   | Storage back-end for DKIM keys and Rspamd                                 |
-| rspamd-mailcow  | Mail filtering system. Used for av handling, dkim signing, spam handling  |
-| clamd-mailcow   | Scans attachments for viruses                                             |
-| sogo-mailcow    | Webmail client that handles Microsoft ActiveSync and Cal- / CardDav       |
-| nginx-mailcow   | Nginx remote proxy that handles all mailcow related HTTP / HTTPS requests |
+| Service Name      | Service Descriptions                                                      |
+| ----------------- | ------------------------------------------------------------------------- |
+| unbound-mailcow   | Local (DNSSEC) DNS Resolver                                               |
+| mysql-mailcow     | Stores SOGo's and most of mailcow's settings                              |
+| postfix-mailcow   | Receives and sends mails                                                  |
+| dovecot-mailcow   | User logins and sieve filter                                              |
+| redis-mailcow     | Storage back-end for DKIM keys and Rspamd                                 |
+| rspamd-mailcow    | Mail filtering system. Used for av handling, dkim signing, spam handling  |
+| clamd-mailcow     | Scans attachments for viruses                                             |
+| sogo-mailcow      | Webmail client that handles Microsoft ActiveSync and Cal- / CardDav       |
+| nginx-mailcow     | Nginx remote proxy that handles all mailcow related HTTP / HTTPS requests |
+| acme-mailcow      | Automates HTTPS (SSL/TLS) certificate deployment                          |
+| memcached-mailcow | Internal caching system for mailcow services                              |
+| watchdog-mailcow  | Allows the monitoring of docker containers / services                     |
+| php-fpm-mailcow   | Powers the mailcow web UI                                                 |
+| netfilter-mailcow | Fail2Ban like integration                                                 |

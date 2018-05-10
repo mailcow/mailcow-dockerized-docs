@@ -57,7 +57,7 @@ Each container represents a single application.
 - Nginx
 - Rspamd
 - SOGo
-- Fail2ban-like integration by @mkuron
+- Netfilter (Fail2ban-like integration by @mkuron)
 
 **6 volumes** to keep dynamic data - take care of them!
 
