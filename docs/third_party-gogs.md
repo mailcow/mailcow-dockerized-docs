@@ -47,7 +47,7 @@ mysql> GRANT ALL PRIVILEGES ON gogs.* to gogs;
 
 5\. Run `docker-compose up -d` to bring up Gogs container. Verify with `curl http://172.22.1.123:3000/` that it is running.
 
-6\. Proceed to installer from browser, for the time being using direct url `http://${MAILCOW_HOSTNAME}:${GOGS_WWW_PORT}/`, for example `http://example.org:3000/`. For database details set `172.22.1.2` as database host, user `gogs`, database name `gogs` and password as set above
+6\. Proceed to installer from browser, for the time being using direct url `http://${MAILCOW_HOSTNAME}:${GOGS_WWW_PORT}/`, for example `http://example.org:3000/`. For database details set `mysql` as database host, user `gogs`, database name `gogs` and password as set above
 
 7\. Once install is complete, login as admin and in settings - authorization enable SMTP. SMTP Host should be `172.22.1.8` with port `587`. You'll probably want to set `Skip TLS Verify`.
 
