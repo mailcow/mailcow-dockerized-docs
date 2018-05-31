@@ -1,8 +1,8 @@
 To disguise your users details like IP, email client, etc. we have to create a new file in `data/conf/postfix/mailcow_anonymize_headers.pcre` and insert the following:
 
 ```
-/^\s*Received:[^\)]+\)\s+\(Authenticated sender:(.+)/
-	REPLACE Received: from localhost (localhost [127.0.0.1]) (Authenticated sender:$1
+/^\s*Received:.*Authenticated sender:(.+)/
+    REPLACE Received: from localhost (localhost [127.0.0.1]) (Authenticated sender:$1
 /^\s*User-Agent/        IGNORE
 /^\s*X-Enigmail/        IGNORE
 /^\s*X-Mailer/          IGNORE
