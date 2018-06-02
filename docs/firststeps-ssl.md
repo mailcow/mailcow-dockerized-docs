@@ -36,7 +36,7 @@ Run `docker-compose up -d` to recreate changed containers.
 
 **Skip Let's Encrypt function**
 
-Add `SKIP_LETS_ENCRYPT=y` to mailcow.conf and restart the stack by running `docker-compose down && docker-compose up -d`.
+Change `SKIP_LETS_ENCRYPT=y` in mailcow.conf and restart the stack by running `docker-compose down && docker-compose up -d`.
 
 ## Use own certificates
 
