@@ -61,6 +61,7 @@ pages:
   - 'Dovecot':
       - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
+      - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md' 
   - 'Redis': 'u_e-redis.md'
   - 'Rspamd': 'u_e-rspamd.md'
   - 'SOGo': 'u_e-sogo.md'
