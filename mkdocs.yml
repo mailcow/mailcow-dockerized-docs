@@ -89,6 +89,7 @@ pages:
   - 'Roundcube': 'third_party-roundcube.md'
   - 'Portainer': 'third_party-portainer.md'
   - 'Gogs': 'third_party-gogs.md'
+  - 'Gitea': 'third_party-gitea.md'
 extra:
   logo: 'images/logo.svg'
   palette:
