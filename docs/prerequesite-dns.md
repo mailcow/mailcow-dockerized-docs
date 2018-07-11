@@ -15,7 +15,7 @@ Make sure that the PTR record of your IP matches the FQDN of your mailcow host: 
 
 ## The minimal DNS configuration
 
-This example shows you a set of records for one domain managed by mailcow. Each domain that is added to mailcow needs at least this set or records to function correctly.
+This example shows you a set of records for one domain managed by mailcow. Each domain that is added to mailcow needs at least this set of records to function correctly.
 
 ```
 # Name              Type       Value
