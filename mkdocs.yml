@@ -19,8 +19,8 @@ markdown_extensions:
 pages:
 - 'Information & Support': 'index.md'
 - 'Prerequisites':
-  - 'Prepare Your System': 'prerequesite-system.md'
-  - 'DNS Setup': 'prerequesite-dns.md'
+  - 'Prepare Your System': 'prerequisite-system.md'
+  - 'DNS Setup': 'prerequisite-dns.md'
 - 'Installation & Update':
   - 'Installation': 'install.md'
   - 'Update': 'install-update.md'
