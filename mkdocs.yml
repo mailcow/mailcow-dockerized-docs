@@ -29,6 +29,7 @@ pages:
   - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
   - 'SNAT': 'firststeps-snat.md'
+  - 'Disable IPv6': 'firststeps-disable_ipv6.md'
   - 'Setup a relayhost': 'firststeps-relayhost.md'
   - 'Logging': 'firststeps-logging.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
