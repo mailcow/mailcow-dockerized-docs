@@ -1,3 +1,11 @@
+## New guide
+
+Edit a mailbox and select "Allow to send as *".
+
+For historical reasons we kept the old and deprecated guide below:
+
+## Deprecated guide
+
 This option is not best-practice and should only be implemented when there is no other option available to achieve whatever you are trying to do.
 
 Simply create a file `data/conf/postfix/check_sasl_access` and enter the following content. This user must exist in your installation and needs to authenticate before sending mail.
