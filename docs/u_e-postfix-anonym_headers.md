@@ -19,5 +19,5 @@ smtp_header_checks = pcre:/opt/postfix/conf/mailcow_anonymize_headers.pcre
 Then restart Postfix:
 
 ```
-docker-compose restart postfix-mailcow
+docker exec -it $(docker ps -qf name=postfix-mailcow) postfix reload
 ```
