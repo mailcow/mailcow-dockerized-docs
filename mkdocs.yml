@@ -60,7 +60,9 @@ pages:
       - 'Anonymize Headers': 'u_e-postfix-anonym_headers.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
+      - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
   - 'Dovecot':
+      - "(Re-)Enable any and all authenticated ACL settings": 'u_e-dovecot-any_acl.md'
       - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md' 
@@ -77,7 +79,7 @@ pages:
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
 - 'Client Configuration':
-  - 'Overview': 'client/client.md'
+  - 'Overview': 'client.md'
   - 'Android': 'client/client-android.md'
   - 'Apple macOS / iOS': 'client/client-apple.md'
   - 'eM Client': 'client/client-emclient.md'
