@@ -16,7 +16,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.extra
   - footnotes
-pages:
+nav:
 - 'Information & Support': 'index.md'
 - 'Prerequisites':
   - 'Prepare Your System': 'prerequisite-system.md'
@@ -33,7 +33,9 @@ pages:
   - 'Setup a relayhost': 'firststeps-relayhost.md'
   - 'Logging': 'firststeps-logging.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
-  - 'Sender and receiver model': 'firststeps-sender_rcv.md'
+- 'Models':
+  - 'Sender and receiver model': 'model-sender_rcv.md'
+  - 'ACL': 'model-acl.md'
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
     - 'Logs': 'debug-logs.md'
