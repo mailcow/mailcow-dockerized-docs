@@ -8,7 +8,7 @@ apt-get install make tar zip
 
 Next, go to `data/web` inside mailcow-dockerized.
 Place the file [thunderbird-plugins.php](download/thunderbird-plugins.php) into that directory.
-Create a new directory `thunderbrid-plugins` and place the script [build-plugins.sh](download/build-thunderbird-plugins.sh) into it.
+Create a new directory `thunderbird-plugins` and place the script [build-plugins.sh](download/build-thunderbird-plugins.sh) into it.
 Finally, execute the script with your hostname as an argument and piping it the names of all domains that mailcow handles.
 All of this can be done using the following commands:
 
