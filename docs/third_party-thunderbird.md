@@ -24,5 +24,5 @@ echo example.com example.org | ./build-plugins.sh mailcow.example.com
 
 # Install it in Thunderbird
 
-After you have set up your mailcow IMAP account in Thunderbird, download the SOGo integrator plugin for your domain, e.g. https://mailcow.example.com/thunderbird-plugins/sogo-integrator-31.0.5-example.com.xpi, and install it into Thunderbird.
+After you have set up your mailcow IMAP account in Thunderbird, download the SOGo integrator plugin for your domain, e.g. https://mailcow.example.com/thunderbird-plugins/sogo-integrator-31.0.6-example.com.xpi, and install it into Thunderbird.
 All your address books and calendars will be configured automatically.
