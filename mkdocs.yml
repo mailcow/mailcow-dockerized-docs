@@ -28,6 +28,7 @@ pages:
   - 'SSL': 'firststeps-ssl.md'
   - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
+  - 'Security with IPTables': 'firststeps-iptables.md'
   - 'SNAT': 'firststeps-snat.md'
   - 'Disable IPv6': 'firststeps-disable_ipv6.md'
   - 'Setup a relayhost': 'firststeps-relayhost.md'
