@@ -82,6 +82,35 @@ $config['password_algorithm_prefix'] = '{SSHA256}';
 $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
 
+### Integrate CardDAV addressbooks in Roundcube
+
+Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmcarddav/) to the Roundcube plugin directory and extract it (here `rc/plugins`):
+```
+cd data/web/rc/plugins
+wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+```
+  
+Copy the file `config.inc.php.dist` to `config.inc.php` (here in `rc/plugins/carddav`) and append the following preset to the end of the file - don't forget to replace `mx.example.org` with your own hostname:
+```
+$prefs['SOGo'] = array(
+    'name'         =>  'SOGo',
+    'username'     =>  '%u',
+    'password'     =>  '%p',
+    'url'          =>  'https://mx.example.org/SOGo/dav/%u/',
+    'carddav_name_only' => true,
+    'use_categories' => true,
+    'active'       =>  true,
+    'readonly'     =>  false,
+    'refresh_time' => '02:00:00',
+    'fixed'        =>  array( 'active', 'name', 'username', 'password', 'refresh_time' ),
+    'hide'        =>  false,
+);
+```
+
+Enable the plugin by adding `carddav` to `$config['plugins']` in `roundcube/config/config.inc.php`.
+
+If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks are accessable, append `$config['address_book_type'] = '';` to the config file `data/web/rc/config/config.inc.php`.
+
 ---
 
 Optionally, you can add Roundcube's link to the mailcow Apps list.
