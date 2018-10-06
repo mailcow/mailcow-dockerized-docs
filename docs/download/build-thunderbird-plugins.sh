@@ -10,8 +10,8 @@ fi
 
 cd $(dirname $0)
 
-wget -O integrator.tar.gz https://github.com/inverse-inc/sogo-integrator.tb31/archive/master.tar.gz
-wget -O connector.tar.gz https://github.com/inverse-inc/sogo-connector.tb31/archive/master.tar.gz
+wget -O integrator.tar.gz https://github.com/inverse-inc/sogo-integrator/archive/master.tar.gz
+wget -O connector.tar.gz https://github.com/inverse-inc/sogo-connector/archive/master.tar.gz
 
 mkdir -p integrator connector
 tar --strip-components=1 -C integrator -xf integrator.tar.gz
