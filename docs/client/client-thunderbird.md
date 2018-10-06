@@ -52,5 +52,5 @@ Automatic configuration of calendars and address books in Thunderbird is not cur
 </div>
 
 <div class="client_variables_unavailable" markdown="1">
-Automatic configuration of calendars and address books (from step 9 onward) in Thunderbird is only supported if your server administrator has enabled [SOGo Integrator](../third_party-thunderbird).
+Automatic configuration of calendars and address books (from step 9 onward) in Thunderbird is only supported if your server administrator has enabled [SOGo Integrator](https://mailcow.github.io/mailcow-dockerized-docs/third_party-thunderbird).
 </div>
