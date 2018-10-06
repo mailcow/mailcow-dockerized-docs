@@ -88,6 +88,7 @@ Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmca
 ```
 cd data/web/rc/plugins
 wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+chown -R root: carddav/
 ```
   
 Copy the file `config.inc.php.dist` to `config.inc.php` (here in `rc/plugins/carddav`) and append the following preset to the end of the file - don't forget to replace `mx.example.org` with your own hostname:
@@ -106,6 +107,7 @@ $prefs['SOGo'] = array(
     'hide'        =>  false,
 );
 ```
+Please note, that this preset only integrates the default addressbook (the one that's named "Personal Address Book" and can't be deleted). Additional addressbooks are currently not automatically detected but can be manually added within the roundecube settings.
 
 Enable the plugin by adding `carddav` to `$config['plugins']` in `roundcube/config/config.inc.php`.
 
