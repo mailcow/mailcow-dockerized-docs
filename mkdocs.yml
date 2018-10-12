@@ -69,6 +69,7 @@ nav:
   - 'Dovecot':
       - "(Re-)Enable any and all authenticated ACL settings": 'u_e-dovecot-any_acl.md'
       - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
+      - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
       - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md' 
