@@ -66,6 +66,8 @@ nav:
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
       - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
+  - 'Unbound':
+      - 'Using an external DNS service': 'u_e-unbound-fwd.md'
   - 'Dovecot':
       - "(Re-)Enable any and all authenticated ACL settings": 'u_e-dovecot-any_acl.md'
       - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
