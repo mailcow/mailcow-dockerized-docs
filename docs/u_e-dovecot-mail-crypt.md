@@ -6,7 +6,7 @@ Enter Dovecot by running `docker-compose exec dovecot-mailcow /bin/bash` in the 
 
 ```
 # Decrypt /var/vmail
-for file in $(find /var/vmail/ -type f -regextype egrep -regex '/.*[0-9]{10}.+,.+'); do
+find /var/vmail/ -type f -regextype egrep -regex '/.*[0-9]{10}.+,.+' | while read file; do
 if [[ $(head -c7 "$file") == "CRYPTED" ]]; then
 doveadm fs get crypt private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
   "$file" > "/tmp/$(basename "$file")"
@@ -17,7 +17,7 @@ fi
 done
 
 # Encrypt /var/vmail
-for file in $(find /var/vmail/ -type f -regextype egrep -regex '/.*[0-9]{10}.+,.+'); do
+find /var/vmail/ -type f -regextype egrep -regex '/.*[0-9]{10}.+,.+' | while read file; do
 if [[ $(head -c7 "$file") != "CRYPTED" ]]; then
 doveadm fs put crypt private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
   "$file" "$file"
