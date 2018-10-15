@@ -1,3 +1,5 @@
+**As of 15.10.2018 this is enabled by default.**
+
 To disguise your users details like IP, email client, etc. we have to create a new file in `data/conf/postfix/mailcow_anonymize_headers.pcre` and insert the following:
 
 ```
