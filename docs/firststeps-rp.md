@@ -31,33 +31,43 @@ Required modules:
 ```
 a2enmod rewrite proxy proxy_http headers ssl
 ```
+We rewrite to HTTPS, but keep requests to autoconfig.* on a plain session.
 
-``` apache
+Let's Encrypt will follow our rewrite, certificate requests will work fine.
+
+**Take care of highlighted lines.**
+
+``` apache hl_lines="2 12 13 19 23 24 29 30"
 <VirtualHost *:80>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
   RewriteEngine on
-  RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+  RewriteCond %{HTTP_HOST} ^autoconfig\. [NC]
+  RewriteRule ^ - [S=1]
+  RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI}# [L,NE,R=permanent]
+  RewriteRule ^ /autoconfig.php [PT]
+
+  ProxyPass / http://127.0.0.1:8080/
+  ProxyPassReverse / http://127.0.0.1:8080/
+  ProxyPreserveHost On
+  ProxyAddHeaders On
+  RequestHeader set X-Forwarded-Proto "http"
 </VirtualHost>
 <VirtualHost *:443>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
-  ServerAlias autoconfig.*
 
   # You should proxy to a plain HTTP session to offload SSL processing
   ProxyPass / http://127.0.0.1:8080/
   ProxyPassReverse / http://127.0.0.1:8080/
-
   ProxyPreserveHost On
   ProxyAddHeaders On
-
-  # This header does not need to be set when using http
   RequestHeader set X-Forwarded-Proto "https"
 
-  # Change the pathes if necessary!
-  SSLCertificateFile /opt/mailcow-dockerized/data/assets/ssl/cert.pem
-  SSLCertificateKeyFile /opt/mailcow-dockerized/data/assets/ssl/key.pem
+  SSLCertificateFile MAILCOW_PATH/data/assets/ssl/cert.pem
+  SSLCertificateKeyFile MAILCOW_PATH/data/assets/ssl/key.pem
 
   # If you plan to proxy to a HTTPS host:
   #SSLProxyEngine On
@@ -71,25 +81,24 @@ a2enmod rewrite proxy proxy_http headers ssl
 ```
 
 ### Nginx
-```
+In our Nginx reverse proxy template, we rewrite all requests to HTTPS, while keeping autoconfig.* domains on a plain session.
+
+Let's Encrypt will follow our rewrite, certificate requests will work fine.
+
+**Take care of highlighted lines.**
+
+``` hl_lines="4 13 23 26 27"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.*;
   return 301 https://$host$request_uri;
 }
 server {
-  listen 443;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
-
-  ssl on;
-  ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers         HIGH:!aNULL:!MD5;
-
-  # Change the pathes if necessary!
-  ssl_certificate /opt/mailcow-dockerized/data/assets/ssl/cert.pem;
-  ssl_certificate_key /opt/mailcow-dockerized/data/assets/ssl/key.pem;
-
+  listen 80;
+  listen [::]:80;
+  server_name autoconfig.*;
+  rewrite ^/(.*)$ /autoconfig.php last;
   location / {
     proxy_pass http://127.0.0.1:8080/;
     proxy_set_header Host $http_host;
@@ -97,6 +106,25 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     client_max_body_size 0;
+  }
+}
+server {
+  listen 443;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
+
+  ssl on;
+  ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
+  ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_ciphers HIGH:!aNULL:!MD5;
+
+  location / {
+      proxy_pass http://127.0.0.1:8080/;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      client_max_body_size 0;
   }
 }
 ```
