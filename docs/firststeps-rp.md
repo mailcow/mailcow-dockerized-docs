@@ -19,8 +19,9 @@ Recreate affected containers by running `docker-compose up -d`.
 !!! info
     Using the site configs below will **forward ACME requests to mailcow** and let it handle certificates itself.
     The downside of using mailcow as ACME client behind a reverse proxy is, that you will need to reload Apache after the certificate changed. You can either reload Apache daily or write a script to watch the file for changes.
+    On many servers logrotate will reload Apache2 daily anyway.
 
-    If you want to use a local certbot installation, you can omit the configurations for port 80 and change the SSL certificate parameters accordingly.
+    If you want to use a local certbot installation, you will need to change the SSL certificate parameters accordingly.
     **Make sure you run a post-hook script** when you decide to use external ACME clients. You will find an example at the bottom of this page.
 
 
