@@ -37,6 +37,14 @@ if (file_exists('version.csv'))
         'version' => $row[1],
         'filename' => str_replace('__DOMAIN__', $_GET["domain"], $row[2]),
       );
+      if (count($row) > 3)
+      {
+          $plugins[$row[0]]['min_version'] = $row[3];
+      }
+      else
+      {
+          $plugins[$row[0]]['min_version'] = '30.0';
+      }
     }
     fclose($fh);
   }
@@ -44,8 +52,8 @@ if (file_exists('version.csv'))
 
 $applications
 = array( "thunderbird" => "<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
-                <em:minVersion>31.0</em:minVersion>
-                <em:maxVersion>31.*</em:maxVersion>" );
+                <em:minVersion>__MIN_VERSION__</em:minVersion>
+                <em:maxVersion>99.*</em:maxVersion>" );
 
 $pluginname = $_GET["plugin"];
 $plugin =& $plugins[$pluginname];
@@ -62,7 +70,21 @@ if ( $plugin ) {
   }
 }
 
+if (preg_match('/Thunderbird\/([0-9\.]+)/', $_SERVER['HTTP_USER_AGENT'], $client_ver))
+{
+	$client_ver = $client_ver[1];
+}
+else
+{
+	$client_ver = $plugin['min_version'];
+}
+
 if ( $plugin ) {
+  if (version_compare($client_ver, $plugin['min_version'], '<')) {
+    header("Content-type: text/plain; charset=utf-8", true, 404);
+    echo( 'Plugin not compatible with client version' );
+    exit;
+  }
   header("Content-type: text/xml; charset=utf-8");
   echo ('<?xml version="1.0"?>' . "\n");
 ?>
@@ -77,7 +99,7 @@ if ( $plugin ) {
             <em:version><?php echo $plugin["version"] ?></em:version>
             <em:targetApplication>
               <Description>
-                <?php echo $applications[$plugin["application"]] ?>
+                <?php echo str_replace('__MIN_VERSION__', $plugin['min_version'], $applications[$plugin["application"]]); ?>
                 
                 <em:updateLink><?php echo 'https://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/' .  $plugin_dir . '/' . $plugin["filename"] ?></em:updateLink>
               </Description>
