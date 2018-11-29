@@ -100,6 +100,7 @@ nav:
   - 'Manual configuration': 'client/client-manual.md'
 - 'Third party apps':
   - 'SOGo Integrator for Thunderbird': 'third_party-thunderbird.md'
+  - 'RainLoop': 'third_party-rainloop.md'
   - 'Roundcube': 'third_party-roundcube.md'
   - 'Portainer': 'third_party-portainer.md'
   - 'Gogs': 'third_party-gogs.md'
