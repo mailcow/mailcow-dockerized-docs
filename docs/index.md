@@ -13,7 +13,9 @@ Let us know about your ideas in #mailcow @ Freenode.
 
 ### Commercial support
 
-For commercial support contact [info@servercow.de](mailto:info@servercow.de).
+For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a support subscription at [Servercow](https://www.servercow.de/mailcow#server).
+
+A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed).
 
 ### Community support
 
@@ -23,6 +25,7 @@ For commercial support contact [info@servercow.de](mailto:info@servercow.de).
 ## Demo
 
 You can find a demo at [demo.mailcow.email](demo.mailcow.email), use the following credentials to login:
+
 - **Administrator**: admin / moohon
 - **Domain administrator**: department / moohoo
 - **Mailbox**: demo@mailcow.email / moohoo
