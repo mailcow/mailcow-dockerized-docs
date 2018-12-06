@@ -31,8 +31,7 @@ You can find a demo at [demo.mailcow.email](demo.mailcow.email), use the followi
 
 The integrated **mailcow UI** allows administrative work on your mail server instance as well as separated domain administrator and mailbox user access:
 
-- DKIM key management
-- ARC support
+- DKIM and ARC support
 - Black- and whitelists per domain and per user
 - Spam score management per-user (reject spam, mark spam, greylist)
 - Allow mailbox users to create temporary spam aliases
@@ -44,6 +43,8 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 - Add domains, mailboxes, aliases, domain aliases and SOGo resources
 - Add whitelisted hosts to forward mail to mailcow
 - Fail2ban-like integration
+- Quarantine system
+- A lot more...
 
 mailcow dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.
