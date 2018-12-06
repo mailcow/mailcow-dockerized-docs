@@ -9,11 +9,10 @@ volumes:
       o: bind
 ```
 
-The process to move the vmail folder is:
-Locate the current vmail folder: `docker volume inspect mailcowdockerized_vmail-vol-1` 
-Copy the `_data` folder to the new folder using `cp -a`
-Stop Mailcow by executing (from the Mailcow root folder) `docker-compose down`
-Create the file `docker-compose.override.yml`
-Delete the current vmail folder: `docker volume rm mailcowdockerized_vmail-vol-1`
-Start Mailcow by executing (from the Mailcow root folder) `docker-compose up -d`
-
+Moving an existing vmail folder:
+- Locate the current vmail folder by its "Mountpoint" attribute: `docker volume inspect mailcowdockerized_vmail-vol-1` 
+- Copy the `_data` folder to the new folder using `cp -a`, `rsync -a` or a similar non strcuture breaking copy command
+- Stop mailcow by executing `docker-compose down` from within your mailcow root folder (e.g. "/opt/mailcow-dockerized")
+- Create the file `docker-compose.override.yml`
+- Delete the current vmail folder: `docker volume rm mailcowdockerized_vmail-vol-1`
+- Start mailcow by executing `docker-compose up -d` from within your mailcow root folder (e.g. "/opt/mailcow-dockerized")
