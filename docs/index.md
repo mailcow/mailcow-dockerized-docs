@@ -20,9 +20,12 @@ For commercial support contact [info@servercow.de](mailto:info@servercow.de).
 - IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
-## Screenshots
+## Demo
 
-You can find screenshots [on Imgur](https://imgur.com/a/TBmub).
+You can find a demo at [demo.mailcow.email](demo.mailcow.email), use the following credentials to login:
+- **Administrator**: admin / moohon
+- **Domain administrator**: department / moohoo
+- **Mailbox**: demo@mailcow.email / moohoo
 
 ## Overview
 
