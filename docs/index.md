@@ -26,7 +26,7 @@ A fully featured managed mailcow is also available [here](https://www.servercow.
 
 You can find a demo at [demo.mailcow.email](https://demo.mailcow.email), use the following credentials to login:
 
-- **Administrator**: admin / moohon
+- **Administrator**: admin / moohoo
 - **Domain administrator**: department / moohoo
 - **Mailbox**: demo@mailcow.email / moohoo
 
