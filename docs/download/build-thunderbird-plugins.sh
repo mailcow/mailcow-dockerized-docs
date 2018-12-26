@@ -54,9 +54,9 @@ wget -O sieve-${SIEVE_VER}.xpi ${SIEVE_URL}
 unset SIEVE_RELEASES
 
 # download ACL plugin
-IMAP_ACL_RELEASES=$(wget -qO - 'https://addons.mozilla.org/api/v3/addons/addon/176736')
-IMAP_ACL_VER=$(echo "$IMAP_ACL_RELEASES" | grep -o '"version": *"[^"]*"' | head -n 1 | awk -F '"' '{print $4}')
-IMAP_ACL_URL=$(echo "$IMAP_ACL_RELEASES" | grep -o '"url": *"[^"]*\.xpi' | head -n 1 | awk -F '"' '{print $4}')
+IMAP_ACL_RELEASES=$(wget -qO - 'https://addons.thunderbird.net/en-US/thunderbird/addon/imap-acl-extension/')
+IMAP_ACL_VER=$(echo "$IMAP_ACL_RELEASES" | grep version-number | awk -F '[<>]' '{print $3}' | head -n 1)
+IMAP_ACL_URL=$(echo "$IMAP_ACL_RELEASES" | grep -o 'https://.*\.xpi' | head -n 1)
 wget -O imap_acl_extension-${IMAP_ACL_VER}-tb.xpi ${IMAP_ACL_URL}
 unset IMAP_ACL_RELEASES
 
