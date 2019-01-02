@@ -1,4 +1,4 @@
-To migrate across a mailbox or domain from one mailcow installation to another (or to import a mailbox from any Postfix/Dovecot server) follow the following instructions:
+To migrate across a mailbox or domain from one mailcow installation to another (or to import a mailbox from any IMAP server) follow the following instructions:
 
 > IMPORTANT: Read all of the steps at least once before trying to execute the process as even the slightest mess can cause irreversable damage. You may not be able to recover the emails from source or destination if anything is not set properly. 
 
