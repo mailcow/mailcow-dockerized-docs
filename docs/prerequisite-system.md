@@ -52,7 +52,44 @@ To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
 
-To unblock firewalls using ufw you can use the following commands:
+#### ufw unblock ports
+
+To unblock firewalls using ufw you can choose between two options.
+
+**ufw option A**
+Create the file `/etc/ufw/applications.d/mailcow.ufw.profile` and insert the following code:
+```
+[SMTP]
+title=SMTP
+description=Simple Mail Transfer Protocol (SMTP) is an Internet standard for email transmission.
+ports=25,465,587/tcp
+
+[IMAP]
+title=IMAP
+description=Internet Message Access Protocol, an Internet standard protocol used by email clients.
+ports=143,993/tcp
+
+[POP]
+title=POP
+description=Post Office Protocol, an Internet e-mail protocol, the current version of which is POP3.
+ports=110,995/tcp
+
+[Sieve]
+title=Sieve
+description=Sieve is a programming language that can be used for email filtering.
+ports=4190/tcp
+```
+After this use the following commands:
+```
+# ufw allow SMTP
+# ufw allow IMAP
+# ufw allow POP
+# ufw allow Sieve
+# ufw allow "Apache Full"
+```
+
+**ufw option B**
+Just use the following commands:
 ```
 # ufw allow 25/tcp
 # ufw allow 80/tcp
