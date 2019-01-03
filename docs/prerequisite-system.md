@@ -54,15 +54,15 @@ To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT
 
 To unblock firewalls using ufw you can use the following commands:
 ```
-# ufw allow 25
-# ufw allow 80
-# ufw allow 110
-# ufw allow 143
-# ufw allow 443
-# ufw allow 465
-# ufw allow 587
-# ufw allow 993
-# ufw allow 995
+# ufw allow 25/tcp
+# ufw allow 80/tcp
+# ufw allow 110/tcp
+# ufw allow 143/tcp
+# ufw allow 443/tcp
+# ufw allow 465/tcp
+# ufw allow 587/tcp
+# ufw allow 993/tcp
+# ufw allow 995/tcp
 ```
 
 ## Date and Time
