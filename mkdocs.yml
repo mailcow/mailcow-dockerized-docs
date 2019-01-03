@@ -36,7 +36,7 @@ nav:
   - 'Setup a relayhost': 'firststeps-relayhost.md'
   - 'Logging': 'firststeps-logging.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
-  - 'Sync Jobs Migration': 'firststeps-sync-jobs-migration.md'
+  - 'Sync Jobs Migration': 'firststeps-sync_jobs_migration.md'
 - 'Models':
   - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'ACL': 'model-acl.md'
