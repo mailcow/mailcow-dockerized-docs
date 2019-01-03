@@ -1,32 +1,22 @@
-To migrate across a mailbox or domain from one mailcow installation to another (or to import a mailbox from any IMAP server) follow the following instructions:
+Sync jobs are used to copy or move existing emails from an external IMAP server or within mailcow's existing mailboxes.
 
-> IMPORTANT: Read all of the steps at least once before trying to execute the process as even the slightest mess can cause irreversable damage. You may not be able to recover the emails from source or destination if anything is not set properly. 
+!!! info
+    Depending on your mailbox's ACL you may not have the option to do add a sync job. Please contact your domain administrator if otherwise.
 
+# Setup a Sync Job
+1. In the "Mail Setup" or "User Settings" interface, create a new sync job.
 
-Step #1: On the Destination mailcow, Add the domain and create the mailbox(es) with sufficient Quota. 
+2. If you are an administrator, select the username of the downstream mailcow mailbox in the "Username" dropdown.
 
-Step #2: Visit the Sync Jobs tab, Select the Relevant email account,
+3. Fill in the "Host" and "Port" fields with their respective correct values from the upstream IMAP server.
 
-  a. Select Create a new Sync Job.
+4. In the "Username" and 'Password" fields, supply the correct access credentials from the upstream IMAP server.
 
-  b. Select the Correct username (This is the Recepient Inbox Account). 
+5. Select the "Encryption Method". If the upstream IMAP server uses port 143, it is likely that the encryption method is TLS and SSL for port 993. Nevertheless, you can use PLAIN authentication, but it is stongly discouraged.
 
-  c. Fill in Host (The Donor Mailcow Server address) & Port (Use 143 or 993).
+6. For all ther other fields, you can leave them as is or modify them as desired.
 
-  d. Fill in the Username & Password (This is the login for the mailbox you're trying to import).
+7. Make sure to tick "Active" and click "Add".
 
-  e.  Select Encryption method (Plain in case of Port 143 or SSL in case of Port 993).
-
-  f. Polling Interval may be set to a Lower Number e.g. 1 for syncing faster. (Set this depending upon mailbox size and server load.) 
-
-  g. Sync into Folder: Keep it blank for a 1:1 folder mapping or all your emails will be stored in a separate folder e.g. external of your mailbox. 
-
-Step #3: Tweak other options if required, All of the options are self-explanatory. 
-
-Step #4: Monitor! Check the logs of the sync job after ~5 minutes of first run to make sure it executed correctly. If there were any errors, resolve them and wait for the Job to be executed again. 
-
-Step #5: Once Completed, Log into the mailbox and check if all emails are imported correctly. If all goes well, All your mails shall end up in your new mailbox.
-
-Step #6: If migrating a domain across mailcow installations, Now is the time that You update the DNS records in order to reflect the changes. Easiest way to find correct DNS records is to visit the domains tab on mailcow admin page and click on the DNS button corresponding to your domain. Make relevant adjustments to your DNS records and all new emails shall arrive to your new new inbox now. 
-
-Step #7: Inactive the Sync Job once the transition is complete. 
+!!! info
+    Once Completed, log into the mailbox and check if all emails are imported correctly. If all goes well, All your mails shall end up in your new mailbox. And don't forget to delete or deactivate the sync job after it is used.
