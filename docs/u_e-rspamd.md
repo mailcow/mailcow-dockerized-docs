@@ -34,4 +34,16 @@ docker-compose exec rspamd-mailcow rspamc --help
 docker-compose exec rspamd-mailcow rspamadm --help
 ```
 
+## Disable Greylisting
+
+You can disable rspamd's greylisting server-wide by editing:
+
+`{mailcow-dir}/data/conf/rspamd/local.d/greylist.conf`
+
+Simply add the line:
+
+`enabled = false;`
+
+Save the file and then restart the rspamd container.
+
 See [Rspamd documentation](https://rspamd.com/doc/index.html)
