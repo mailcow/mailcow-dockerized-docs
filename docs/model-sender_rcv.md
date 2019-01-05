@@ -17,7 +17,7 @@ We can add aliases for a mailbox to receive mail for and to send from this new a
 It is important to know, that you are not able to receive mail for `my-alias@my-alias-domain.tld`. You would need to create this particular alias.
 
     me@example.org is assigned the alias alias@example.org
-    me@example.org is now known as alias@example.org, me@alias.com, alias@example.org
+    me@example.org is now known as me@example.org, me@alias.com, alias@example.org
 
     me@example.org is NOT known as alias@alias.com.
 
