@@ -87,4 +87,4 @@ docker-compose up -d && docker-compose restart nginx-mailcow
 
 Now you can simply navigate to https://DOMAIN.TLD/admin to view your Ghost container Admin page. You’ll then be prompted to specify a new Admin account. After specifying your Account, you’ll then be able to connect to the Ghost UI.
 
-[^1](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/)
+[^1] see [First Steps (optional) - SSL](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/)
