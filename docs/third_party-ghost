@@ -1,0 +1,3 @@
+In order to enable Portainer, the docker-compose.yml and site.conf for Nginx must be modified.
+
+1. 
