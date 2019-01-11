@@ -1,6 +1,6 @@
 In order to enable [Ghost](https://ghost.org), the `docker-compose.override.yml` must be modified.
 
-1\. Add the Additional domain names in `mailcow.conf`[^1] e.g. DOMAIN.TLD and www.DOMAIN.TLD
+1\. Add the Additional domain names in `mailcow.conf` [^1] e.g. DOMAIN.TLD and www.DOMAIN.TLD
 
 2\. Create a new file `docker-compose.override.yml` (or expand existing one) in the mailcow-dockerized root folder and insert the following configuration
 
