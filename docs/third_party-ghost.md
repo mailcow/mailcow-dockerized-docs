@@ -1,8 +1,12 @@
-In order to enable Portainer, the docker-compose.yml and site.conf for Nginx must be modified.
+In order to enable [Ghost](https://ghost.org), the `docker-compose.override.yml` must be modified.
 
-1\. 
+1\. Add the Additional domain names in `mailcow.conf`.[^1] e.g. DOMAIN.TLD and www.DOMAIN.TLD
 
 2\. Create a new file `docker-compose.override.yml` (or expand existing one) in the mailcow-dockerized root folder and insert the following configuration
+
+!!! info
+   Change DOMAIN.TLD is importand and schema is __not__ http**s**
+   
 ```
 version: '2.1'
 services:
@@ -20,7 +24,6 @@ services:
           aliases:
             - ghost
 ```
-Change DOMAIN.TLD is importand
 
 3\. Create `data/conf/nginx/ghost.conf`:
 ```
@@ -83,3 +86,5 @@ docker-compose up -d && docker-compose restart nginx-mailcow
 ```
 
 Now you can simply navigate to https://DOMAIN.TLD/admin to view your Ghost container Admin page. You’ll then be prompted to specify a new Admin account. After specifying your Account, you’ll then be able to connect to the Ghost UI.
+
+[^1](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/)
