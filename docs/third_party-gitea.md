@@ -7,7 +7,7 @@ version: '2.1'
 services:
 
 		gitea-mailcow:
-			image: gitea/gitea:latest
+			image: gitea/gitea:1
 			volumes:
 				- ./data/gitea:/data
 			networks:

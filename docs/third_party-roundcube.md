@@ -28,21 +28,34 @@ $config['smtp_user'] = '%u';
 $config['smtp_pass'] = '%p';
 $config['support_url'] = '';
 $config['product_name'] = 'Roundcube Webmail';
-$config['des_key'] = 'rcmail-!24ByteDESkey*Str';
+$config['des_key'] = 'yourrandomstring_changeme';
 $config['log_dir'] = '/dev/null';
 $config['temp_dir'] = '/tmp';
 $config['plugins'] = array(
-    'archive',
+  'archive',
+  'managesieve'
 );
 $config['skin'] = 'larry';
 $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
-'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
+  'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
 $config['enable_installer'] = true;
 $config['smtp_conn_options'] = array(
-'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
+  'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
+
+$config['managesieve_port'] = 4190;
+$config['managesieve_host'] = 'tls://dovecot';
+$config['managesieve_conn_options'] = array(
+  'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
+);
+// Enables separate management interface for vacation responses (out-of-office)
+// 0 - no separate section (default),
+// 1 - add Vacation section,
+// 2 - add Vacation section, but hide Filters section
+$config['managesieve_vacation'] = 1;
+
 ```
 
 Point your browser to `https://myserver/rc/installer` and follow the instructions.
