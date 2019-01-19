@@ -10,6 +10,8 @@ Since we run in Docker and create our containers with the "restart: always" flag
 
 ## FTS related Dovecot commands
 
+
+### Repair index
 ```
 docker-compose exec dovecot-mailcow doveadm fts rescan -u user@domain
 `# All:
@@ -20,10 +22,16 @@ Dovecot Wiki: "Scan what mails exist in the full text search index and compare t
 
 This does **not** re-index a mailbox. It basically repairs a given index.
 
+### Re-index
 If you want to re-index a users data, you can run the followig command, where '*' can also be a mailbox mask like 'Sent':
 
 ```
 docker-compose exec dovecot-mailcow doveadm index -u user@domain '*'
+```
+
+To re-index all mailboxes at once:
+```
+docker-compose exec dovecot-mailcow doveadm index -A '*'
 ```
 
 This **will** take some time depending on your machine and Solr may even run oom.
