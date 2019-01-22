@@ -146,6 +146,49 @@ backend mailcow
   server mailcow 127.0.0.1:8080 check
 ```
 
+### Caddy
+In our Caddy reverse proxy template, we rewrite all requests to HTTPS, while keeping autoconfig.* domains on a plain session.
+
+Let's Encrypt will follow our rewrite, certificate requests will work fine.
+
+**Take care of highlighted lines.**
+
+``` hl_lines="1 2 14"
+CHANGE_TO_MAILCOW_HOSTNAME:80 CHANGE_TO_MAILCOW_HOSTNAME:443 autodiscover.YOURDOMAIN:80 autodiscover.YOURDOMAIN:443 {
+    tls MAILCOW_PATH/data/assets/ssl/cert.pem MAILCOW_PATH/data/assets/ssl/key.pem
+    proxy / 127.0.0.1:8080 {
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-For {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+    redir 301 {
+                if {scheme} not https
+                / https://{host}{uri}
+    }
+}
+http://autoconfig.YOURDOMAIN {
+    rewrite / /autoconfig.php
+    proxy / 127.0.0.1:8080 {
+         header_upstream Host {host}
+         header_upstream X-Real-IP {remote}
+         header_upstream X-Forwarded-For {remote}
+         header_upstream X-Forwarded-Proto {scheme}
+    }
+}
+```
+
+!!! warning
+    If Caddy is running under a non-root user you need to change the permissions of the `key.pem` with these commands:
+    ``` hl_lines="1 2"
+    chmod 440 MAILCOW_PATH/data/assets/ssl/key.pem
+    chown root:caddy MAILCOW_PATH/data/assets/ssl/key.pem
+    ```
+
+!!! info
+    The Caddy reverse proxy template is unusual, normaly we would use the Automatic HTTPS feature of Caddy but we don't want to get banned by Let's Encrypt by issuing duplicate certificates from the same IP.
+    The port specification is unusual too, it's due to the fact that Caddy bind to the default port 2015 when a custom certificate is used, please refer to [this issue](https://github.com/mholt/caddy/issues/1673) for more informations.
+
 ### Optional: Post-hook script for non-mailcow ACME clients
 
 Using a local certbot (or any other ACME client) requires to restart some containers, you can do this with a post-hook script.
