@@ -4,12 +4,12 @@ These instructions are valid for unchanged port bindings only!
 
 |Service|Encryption|Host|Port|
 |--- |--- |--- |--- |
-|IMAP|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|143|
-|IMAPS|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|993|
-|POP3|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|110|
-|POP3S|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|995|
-|SMTP|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|587|
-|SMTPS|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|465|
+|IMAP|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|143|
+|IMAPS|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|993|
+|POP3|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|110|
+|POP3S|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|995|
+|SMTP|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|587|
+|SMTPS|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|465|
 
 Please use "plain" as authentication mechanisms. Contrary to the assumption no passwords will be transfered plain text, as no authentication is allowed to take place without TLS.
 

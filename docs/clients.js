@@ -3,12 +3,12 @@ if (window.location.href.indexOf('/client/') >= 0) {
         function setCookie(name, value) {
             document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; path=/";
         }
-    
+
         function getParameterByName(name) {
             var match = RegExp('[?#&]' + name + '=([^&]*)').exec(window.location.hash);
             return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         }
-    
+
         /* Store URL variables in cookies */
         if (getParameterByName('host')) {
             setCookie("host", getParameterByName('host'));
@@ -49,7 +49,7 @@ if (window.location.href.indexOf('/client') >= 0) {
             }
             return "";
         }
-    
+
         /* Hide variable fields if no values are available */
         if (!getCookie('host')) {
             Array.prototype.forEach.call(document.getElementsByClassName('client_variables_available'), function(el) {
@@ -60,12 +60,12 @@ if (window.location.href.indexOf('/client') >= 0) {
                 el.style.display = 'none';
             });
         }
-    
+
         /* Hide the TOC, which might contain hidden content */
         Array.prototype.forEach.call(document.getElementsByClassName('md-sidebar--secondary'), function(el) {
             el.style.display = 'none';
         });
-    
+
         /* Substitute variables */
         Array.prototype.forEach.call(document.getElementsByClassName('client_var_host'), function(el) {
             el.innerText = getCookie('host');
@@ -85,12 +85,7 @@ if (window.location.href.indexOf('/client') >= 0) {
         Array.prototype.forEach.call(document.getElementsByClassName('client_var_name'), function(el) {
             el.innerText = getCookie('name');
         });
-        if (getCookie('port') != '443') {
-            Array.prototype.forEach.call(document.getElementsByClassName('client_var_port'), function(el) {
-                el.innerText = ':' + getCookie('port');
-            });
-        }
-    
+
         /* Hide those sections that are not applicable because useOutlookForEAS is disabled or SOGo integrator is not available */
         if (getCookie('integrator')) {
             Array.prototype.forEach.call(document.getElementsByClassName('client_var_integrator_link'), function(el) {

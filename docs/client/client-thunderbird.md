@@ -42,7 +42,7 @@
   Thunderbird briefly shows a message that it is updating extensions, then restarts automatically once more.
 </li>
 <li class="client_integrator_enabled">
-  When you are prompted to authenticate<span class="client_variables_available"> for <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span>, enter your email address and password, check <i>Use Password Manager</i> and click <i>OK</i>.
+  When you are prompted to authenticate<span class="client_variables_available"> for <code><span class="client_var_host"></span></code></span>, enter your email address and password, check <i>Use Password Manager</i> and click <i>OK</i>.
 </li>
 </ol>
 
