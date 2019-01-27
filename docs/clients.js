@@ -74,12 +74,15 @@ if (window.location.href.indexOf('/client') >= 0) {
             el.innerText = getCookie('host');
         });
         Array.prototype.forEach.call(document.getElementsByClassName('client_var_link'), function(el) {
-            if (!getCookie('ui')) {
+            if (!getCookie('ui') && !getCookie('host')) {
                 el.href = '#';
-            } else if (getCookie('port') != '443') {
-                el.href = 'https://' + getCookie('ui') + ':' + getCookie('port') + '/' + el.getAttribute("href");
             } else {
-                el.href = 'https://' + getCookie('ui') + '/' + el.getAttribute("href");
+                var ui_domain = getCookie('ui') ? getCookie('ui') : getCookie('host');
+                if (getCookie('port') != '443') {
+                    el.href = 'https://' + ui_domain + ':' + getCookie('port') + '/' + el.getAttribute("href");
+                } else {
+                    el.href = 'https://' + ui_domain + '/' + el.getAttribute("href");
+                }
             }
         });
         Array.prototype.forEach.call(document.getElementsByClassName('client_var_email'), function(el) {
