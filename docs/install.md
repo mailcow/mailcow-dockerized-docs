@@ -1,5 +1,5 @@
 !!! warning
-    Make sure you've read ["Prepare Your System"](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system) before proceeding1
+    Make sure you've read ["Prepare Your System"](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system) before proceeding!
 
 
 You need Docker and Docker Compose.
