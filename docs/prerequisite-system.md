@@ -13,14 +13,14 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 Please make sure that your system has at least the following resources:
 
-| Resource                | mailcow: dockerized              |
-| ----------------------- | -------------------------------- |
-| CPU                     | 1 GHz                            |
-| RAM                     | 1 GiB (or better 1,5 GiB + Swap) |
-| Disk                    | 5 GiB (without emails)           |
-| System Type             | x86_64                           |
+| Resource                | mailcow: dockerized                 |
+| ----------------------- | ----------------------------------- |
+| CPU                     | 1 GHz                               |
+| RAM                     | 2 GiB + Swap (better: 4 GiB + Swap) |
+| Disk                    | 5 GiB (without emails)              |
+| System Type             | x86_64                              |
 
-ClamAV is a greedy RAM muncher. You can disable it in `mailcow.conf` by settings SKIP_CLAMD=y.
+ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
 
 ## Firewall & Ports
 
