@@ -52,19 +52,6 @@ To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
 
-To unblock firewalls using ufw you can use the following commands:
-```
-# ufw allow 25
-# ufw allow 80
-# ufw allow 110
-# ufw allow 143
-# ufw allow 443
-# ufw allow 465
-# ufw allow 587
-# ufw allow 993
-# ufw allow 995
-```
-
 ## Date and Time
 
 To ensure that you have the correct date and time setup on your system, please check the output of `timedatectl status`:
@@ -96,3 +83,22 @@ To enable NTP you need to run the command `timedatectl set-ntp true`. You also n
 [Time]
 Servers=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
 ```
+
+## Hetzner Cloud (and probably others)
+
+Check `/etc/network/interfaces.d/50-cloud-init.cfg` and change the IPv6 interface from eth0:0 to eth0:
+
+```
+# Wrong:
+auto eth0:0
+iface eth0:0 inet6 static
+# Right:
+auto eth0
+iface eth0 inet6 static
+```
+
+Reboot or restart the interface.
+
+# MTU on OpenStack
+
+Please check your MTU and set it accordingly in docker-compose.yml. See **4.1** in https://mailcow.github.io/mailcow-dockerized-docs/install/
