@@ -99,6 +99,6 @@ iface eth0 inet6 static
 
 Reboot or restart the interface.
 
-# MTU on OpenStack
+## MTU on OpenStack
 
 Please check your MTU and set it accordingly in docker-compose.yml. See **4.1** in https://mailcow.github.io/mailcow-dockerized-docs/install/
