@@ -98,7 +98,8 @@ iface eth0 inet6 static
 ```
 
 Reboot or restart the interface.
+You may want to [disable cloud-init network changes.](https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes)
 
-## MTU on OpenStack
+## MTU
 
-Please check your MTU and set it accordingly in docker-compose.yml. See **4.1** in https://mailcow.github.io/mailcow-dockerized-docs/install/
+Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See **4.1** in [our installation docs](https://mailcow.github.io/mailcow-dockerized-docs/install/).
