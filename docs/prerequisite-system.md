@@ -30,11 +30,17 @@ Please check if any of mailcow's standard ports are open and not in use by other
 # netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995'
 ```
 
+!!! warning
+    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this blog post](https://blog.donnex.net/docker-and-iptables-filtering/) for information about how to use iptables-persistent with the DOCKER-USER chain.
+    As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
+
+**
+
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
 
 ### Default Ports
 
-If you have a firewall already up and running please make sure that these ports are open for incoming connections:
+If you have a firewall in front of mailcow, please make sure that these ports are open for incoming connections:
 
 | Service             | Protocol | Port   | Container       | Variable                         |
 | --------------------|:--------:|:-------|:----------------|----------------------------------|
