@@ -21,6 +21,14 @@ It is important to know, that you are not able to receive mail for `my-alias@my-
 
     me@example.org is NOT known as alias@alias.com.
 
+Please note that this does not apply to catch-all aliases:
+
+    Alias domain alias.com is added and assigned to primary domain example.org
+    me@example.org is assigned the catch-all alias @example.org
+    me@example.org is still just known as me@example.org, which is the only available send-as option
+    
+    Any email send to alias.com will match the catch-all alias for example.org
+
 Administrators and domain administrators can edit mailboxes to allow specific users to send as other mailbox users ("delegate" them).
 
 You can choose between mailbox users or completely disable the sender check for domains.
