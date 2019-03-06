@@ -32,8 +32,13 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@some.other.mach
 ```
 
 **4\.**    Shut down Mailcow via `docker-compose down` and stop Docker on the source machine.
+
 **5\.**    Repeat step 3 with the same commands (this will be much quicker than the first time).
+
 **6\.**    Start docker on the target machine `systemctl start docker.service`.
+
 **7\.**    Go into the /opt/mailcow-dockerized directory and run `docker-compose pull`.
+
 **8\.**    Start the whole mailcow stack with `docker-compose up -d` and everything should be fine.
+
 **9\.**    Change your DNS settings.
