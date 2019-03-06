@@ -1,6 +1,6 @@
 site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: 'Copyright &copy; 2018 André Peters'
+copyright: 'Copyright &copy; 2019 André Peters'
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -24,9 +24,10 @@ nav:
 - 'Prerequisites':
   - 'Prepare Your System': 'prerequisite-system.md'
   - 'DNS Setup': 'prerequisite-dns.md'
-- 'Installation & Update':
-  - 'Installation': 'install.md'
-  - 'Update': 'install-update.md'
+- 'Installation, Update & Migration':
+  - 'Installation': 'i_u_m_install.md'
+  - 'Update': 'i_u_m_update.md'
+  - 'Migration': 'i_u_m_migration.md'
 - 'First Steps (optional)':
   - 'SSL': 'firststeps-ssl.md'
   - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
