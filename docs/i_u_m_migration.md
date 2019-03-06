@@ -1,4 +1,4 @@
-If you want to migrate your old mailcow installation to a new server you can follow this:
+If you want to migrate your old mailcow:dockerized installation to a new server you can follow this:
 
 **1\.** 
 Install [Docker](https://docs.docker.com/engine/installation/linux/) and [Docker Compose](https://docs.docker.com/compose/install/) on your new server.
