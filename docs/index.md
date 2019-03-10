@@ -49,11 +49,12 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 - Quarantine system
 - A lot more...
 
-mailcow dockerized comes with multiple containers linked in one bridged network.
+mailcow: dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.
 
 - Dovecot
-- ClamAV
+- ClamAV (optional)
+- Solr (optional)
 - Memcached
 - Redis
 - MySQL
@@ -65,10 +66,12 @@ Each container represents a single application.
 - Rspamd
 - SOGo
 - Netfilter (Fail2ban-like integration by @mkuron)
+- Watchdog (basic monitoring)
 
-**6 volumes** to keep dynamic data - take care of them!
+**Docker volumes** to keep dynamic data - take care of them!
 
 - vmail-vol-1
+- solr-vol-1
 - redis-vol-1
 - mysql-vol-1
 - rspamd-vol-1

@@ -13,14 +13,14 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 Please make sure that your system has at least the following resources:
 
-| Resource                | mailcow: dockerized              |
-| ----------------------- | -------------------------------- |
-| CPU                     | 1 GHz                            |
-| RAM                     | 1 GiB (or better 1,5 GiB + Swap) |
-| Disk                    | 5 GiB (without emails)           |
-| System Type             | x86_64                           |
+| Resource                | mailcow: dockerized                 |
+| ----------------------- | ----------------------------------- |
+| CPU                     | 1 GHz                               |
+| RAM                     | 2 GiB + Swap (better: 4 GiB + Swap) |
+| Disk                    | 5 GiB (without emails)              |
+| System Type             | x86_64                              |
 
-ClamAV is a greedy RAM muncher. You can disable it in `mailcow.conf` by settings SKIP_CLAMD=y.
+ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
 
 ## Firewall & Ports
 
@@ -30,11 +30,17 @@ Please check if any of mailcow's standard ports are open and not in use by other
 # netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995'
 ```
 
+!!! warning
+    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this blog post](https://blog.donnex.net/docker-and-iptables-filtering/) for information about how to use iptables-persistent with the DOCKER-USER chain.
+    As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
+
+**
+
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
 
 ### Default Ports
 
-If you have a firewall already up and running please make sure that these ports are open for incoming connections:
+If you have a firewall in front of mailcow, please make sure that these ports are open for incoming connections:
 
 | Service             | Protocol | Port   | Container       | Variable                         |
 | --------------------|:--------:|:-------|:----------------|----------------------------------|
@@ -51,19 +57,6 @@ If you have a firewall already up and running please make sure that these ports 
 To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT=1.2.3.4:25`
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
-
-To unblock firewalls using ufw you can use the following commands:
-```
-# ufw allow 25
-# ufw allow 80
-# ufw allow 110
-# ufw allow 143
-# ufw allow 443
-# ufw allow 465
-# ufw allow 587
-# ufw allow 993
-# ufw allow 995
-```
 
 ## Date and Time
 
@@ -96,3 +89,23 @@ To enable NTP you need to run the command `timedatectl set-ntp true`. You also n
 [Time]
 Servers=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
 ```
+
+## Hetzner Cloud (and probably others)
+
+Check `/etc/network/interfaces.d/50-cloud-init.cfg` and change the IPv6 interface from eth0:0 to eth0:
+
+```
+# Wrong:
+auto eth0:0
+iface eth0:0 inet6 static
+# Right:
+auto eth0
+iface eth0 inet6 static
+```
+
+Reboot or restart the interface.
+You may want to [disable cloud-init network changes.](https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes)
+
+## MTU
+
+Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See **4.1** in [our installation docs](https://mailcow.github.io/mailcow-dockerized-docs/install/).

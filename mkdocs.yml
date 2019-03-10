@@ -1,6 +1,6 @@
 site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: 'Copyright &copy; 2018 André Peters'
+copyright: 'Copyright &copy; 2019 André Peters'
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -24,9 +24,10 @@ nav:
 - 'Prerequisites':
   - 'Prepare Your System': 'prerequisite-system.md'
   - 'DNS Setup': 'prerequisite-dns.md'
-- 'Installation & Update':
-  - 'Installation': 'install.md'
-  - 'Update': 'install-update.md'
+- 'Installation, Update & Migration':
+  - 'Installation': 'i_u_m_install.md'
+  - 'Update': 'i_u_m_update.md'
+  - 'Migration': 'i_u_m_migration.md'
 - 'First Steps (optional)':
   - 'SSL': 'firststeps-ssl.md'
   - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
@@ -63,7 +64,6 @@ nav:
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
   - 'Postfix':
-      - 'Anonymize Headers': 'u_e-postfix-anonym_headers.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
       - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
@@ -75,7 +75,8 @@ nav:
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
-      - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md' 
+      - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
+      - 'FTS (Solr)': 'u_e-dovecot-fts.md'
   - 'Nginx': 'u_e-nginx.md'
   - 'Redis': 'u_e-redis.md'
   - 'Rspamd': 'u_e-rspamd.md'
