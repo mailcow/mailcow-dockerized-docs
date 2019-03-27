@@ -1,19 +1,16 @@
 <div class="client_outlookEAS_enabled" markdown="1">
 
-## Outlook 2016 (from Office365) on Windows
+## Outlook 2016 or higher from Office 365 on Windows
 
 <div class="client_variables_unavailable" markdown="1">
   This is only applicable if your server administrator has not disabled EAS for Outlook. If it is disabled, please follow the guide for Outlook 2007 instead.
 </div>
 
-Outlook 2016 has an [issue with autodiscover](https://github.com/mailcow/mailcow-dockerized/issues/615). Only Outlook 2016 from Office365 is affected. If you installed Outlook 2016 from another source, please follow the guide for Outlook 2013 or higher. For EAS you must use the old Assistent:
+Outlook 2016 has an [issue with autodiscover](https://github.com/mailcow/mailcow-dockerized/issues/615). Only Outlook from Office 365 is affected. If you installed Outlook from another source, please follow the guide for Outlook 2013 or higher. 
 
-1. Launch `C:\Program Files (x86)\Microsoft Office\root\Office16\OLCFG.EXE`
-2. If this is the first time you launched Outlook, it asks you to add a new profile. After that the account setup can be started.
-4. Enter your name<span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span>, email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and your password. Click *Next*.
-5. When prompted, enter your password again, check *Remember my credentials* and click *OK*.
-6. Click the *Allow* button.
-7. Click *Finish*.
+For EAS you must use the old assistant by launching `C:\Program Files (x86)\Microsoft Office\root\Office16\OLCFG.EXE`. If this application opens, you can go to step 4 of the guide for Outlook 2013 below.
+
+If it does not open, you can completely [disable the new account creation wizard](https://support.microsoft.com/en-us/help/3189194/how-to-disable-simplified-account-creation-in-outlook) and follow the guide for Outlook 2013 below.
 
 ## Outlook 2013 or higher on Windows
 
