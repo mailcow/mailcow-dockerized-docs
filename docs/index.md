@@ -19,6 +19,7 @@ A fully featured managed mailcow is also available [here](https://www.servercow.
 
 ### Community support
 
+- Forum @ [mailcow.farm](https://mailcow.farm)
 - IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
