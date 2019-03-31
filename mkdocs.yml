@@ -48,6 +48,7 @@ nav:
     - 'Reset Passwords': 'debug-reset_pw.md'
     - 'Remove Persistent Data': 'debug-rm_volumes.md'
     - 'Common Problems': 'debug-common_problems.md'
+    - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
 - 'Backup & Restore':
   - 'Helper script':
       - 'Backup': 'b_n_r_backup.md'
