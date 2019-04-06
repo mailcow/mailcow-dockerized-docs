@@ -26,11 +26,11 @@ Please use the latest Docker engine available and do not use the engine that shi
 
 **2\.** Clone the master branch of the repository, make sure your umask equals 0022.
 ```
-# umask
-0022
-# cd /opt
-# git clone https://github.com/mailcow/mailcow-dockerized
-# cd mailcow-dockerized
+umask
+# 0022
+cd /opt
+git clone https://github.com/mailcow/mailcow-dockerized
+cd mailcow-dockerized
 ```
 
 **3\.** Generate a configuration file. Use a FQDN (`host.domain.tld`) as hostname when asked.
