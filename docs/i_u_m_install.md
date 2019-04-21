@@ -22,6 +22,14 @@ curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://w
 chmod +x /usr/local/bin/docker-compose
 ```
 
+If you're running CoreOS, you'll need to install `docker-compose` into `/opt/bin`, since `/usr/local/bin` is read-only  on CoreOS.  
+As the `core` user:
+```
+sudo mkdir -p /opt/bin
+sudo sh -c 'curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /opt/bin/docker-compose'
+sudo chmod +x /opt/bin/docker-compose
+```
+
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
 **2\.** Clone the master branch of the repository, make sure your umask equals 0022.
