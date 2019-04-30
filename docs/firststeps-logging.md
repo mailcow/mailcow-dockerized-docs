@@ -38,7 +38,6 @@ logging:
   log_driver: "gelf"
   options:
     gelf-address: "udp://graylog:12201"
-    gelf-tag: "mailcow-logs"
 ```
 
 Linux users can also add or edit the Docker daemons configuration file `/etc/docker/daemon.json` to affect the global logging behavior. Windows users please have a look at the [docker documentation](https://docs.docker.com/engine/reference/commandline/dockerd//#windows-configuration-file):
@@ -48,8 +47,7 @@ Linux users can also add or edit the Docker daemons configuration file `/etc/doc
 ...
     "log-driver": "gelf",
     "log-opts": {
-        "gelf-address": "udp://graylog:12201",
-        "gelf-tag": "mailcow-logs"
+        "gelf-address": "udp://graylog:12201"
     }
 ...
 }
