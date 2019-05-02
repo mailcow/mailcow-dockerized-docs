@@ -47,7 +47,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
   RewriteCond %{HTTP_HOST} ^autoconfig\. [NC]
   RewriteRule ^ - [S=1]
-  RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI}# [L,NE,R=permanent]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}# [L,NE,R=permanent]
   RewriteRule ^ /autoconfig.php [PT]
 
   ProxyPass / http://127.0.0.1:8080/
