@@ -9,6 +9,9 @@ Let us know about your ideas in #mailcow @ Freenode.
 [![Donate (PayPal)](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JWBSYHF4SMC68)
 [![Donate (Bitcoin)](https://img.shields.io/badge/Donate-Bitcoin-blue.svg)](bitcoin:1E5rgzgA1sS3QH7r1ToWxRC3GEavfsGMrx)
 
+## 💡 Entwickler gesucht!
+Wir möchten die Kuh clustern und noch sicherererer machen, daher suchen wir dringend Entwickler, die dabei unterstützen. Bis hin zur Festanstellung alle Möglichkeiten offen. Bitte meldet euch bei info@servercow.de
+
 ## Get support
 
 ### Commercial support
