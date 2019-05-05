@@ -1,5 +1,3 @@
-## Custom sites
-
 To create persistent (over updates) sites hosted by mailcow: dockerized, a new site configuration must be placed inside `data/conf/nginx/`:
 
 ```
