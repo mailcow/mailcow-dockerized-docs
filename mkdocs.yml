@@ -79,7 +79,7 @@ nav:
       - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
       - 'FTS (Solr)': 'u_e-dovecot-fts.md'
   - 'Nginx': 
-     - "General information": 'u_e-nginx.md'
+     - "Custom sites": 'u_e-nginx.md'
      - "Create subdomain webmail.example.org": 'u_e-webmail-site.md'
   - 'Redis': 'u_e-redis.md'
   - 'Rspamd': 'u_e-rspamd.md'
