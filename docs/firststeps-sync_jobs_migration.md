@@ -18,5 +18,13 @@ Sync jobs are used to copy or move existing emails from an external IMAP server 
 
 7. Make sure to tick "Active" and click "Add".
 
+!!! Example custom parameters
+    ```
+    --addheader --resyncflags --f1f2 "Deleted Messages"=Trash --f1f2 "Sent Messages"=Sent
+    ```
+
+    For more information how to use the parameters, see this [documentation]https://imapsync.lamiral.info/README.
+
 !!! info
     Once Completed, log into the mailbox and check if all emails are imported correctly. If all goes well, All your mails shall end up in your new mailbox. And don't forget to delete or deactivate the sync job after it is used.
+
