@@ -1,4 +1,4 @@
-If you want to migrate your old mailcow:dockerized installation to a new server you can follow this:
+#### Please note: This guide assumes you intend to migrate an existing Mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within `/var/lib/docker/volumes` and thus any Docker volumes you may have already set up.
 
 **1\.** 
 Install [Docker](https://docs.docker.com/engine/installation/linux/) and [Docker Compose](https://docs.docker.com/compose/install/) on your new server.
@@ -25,20 +25,35 @@ Please use the latest Docker engine available and do not use the engine that shi
 systemctl status docker.service
 ```
     
-**3\.**	Run the following commands on the source machine (take care of adding the trailing slashes in the first path parameter as shown below!):
+**3\.**	Run the following commands on the source machine (take care of adding the trailing slashes in the first path parameter as shown below!) - **WARNING: This command will erase anything that may already exist under `/var/lib/docker/volumes`**:
 ```
 rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@some.other.machine.net:/opt/mailcow-dockerized
 rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@some.other.machine.net:/var/lib/docker/volumes
 ```
 
-**4\.**    Shut down Mailcow via `docker-compose down` and stop Docker on the source machine.
+**4\.** Shut down Mailcow and stop Docker on the source machine.
+```
+cd /opt/mailcow-dockerized
+docker-compose down
+systemctl stop docker.service
+```
 
-**5\.**    Repeat step 3 with the same commands (this will be much quicker than the first time).
+**5\.** Repeat step 3 with the same commands. This will be much quicker than the first time.
 
-**6\.**    Start docker on the target machine `systemctl start docker.service`.
+**6\.** Switch over to the target machine and start Docker.
+```
+systemctl start docker.service
+```
 
-**7\.**    Go into the /opt/mailcow-dockerized directory and run `docker-compose pull`.
+**7\.** Now pull the Mailcow Docker images on the target machine.
+```
+cd /opt/mailcow-dockerized
+docker-compose pull
+```
 
-**8\.**    Start the whole mailcow stack with `docker-compose up -d` and everything should be fine.
+**8\.** Start the whole Mailcow stack and everything should be done!
+```
+docker-compose up -d
+```
 
-**9\.**    Change your DNS settings.
+**9\.** Finally, change your DNS settings to point to the target server.
