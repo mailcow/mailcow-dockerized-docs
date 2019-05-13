@@ -1,4 +1,4 @@
-#### Please note: This guide assumes you intend to migrate an existing Mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within `/var/lib/docker/volumes` and thus any Docker volumes you may have already set up.
+#### Please note: This guide assumes you intend to migrate an existing mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within `/var/lib/docker/volumes` and thus any Docker volumes you may have already set up.
 
 **1\.** 
 Install [Docker](https://docs.docker.com/engine/installation/linux/) and [Docker Compose](https://docs.docker.com/compose/install/) on your new server.
@@ -31,7 +31,7 @@ rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@some.other.mach
 rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@some.other.machine.net:/var/lib/docker/volumes
 ```
 
-**4\.** Shut down Mailcow and stop Docker on the source machine.
+**4\.** Shut down mailcow and stop Docker on the source machine.
 ```
 cd /opt/mailcow-dockerized
 docker-compose down
@@ -45,13 +45,13 @@ systemctl stop docker.service
 systemctl start docker.service
 ```
 
-**7\.** Now pull the Mailcow Docker images on the target machine.
+**7\.** Now pull the mailcow Docker images on the target machine.
 ```
 cd /opt/mailcow-dockerized
 docker-compose pull
 ```
 
-**8\.** Start the whole Mailcow stack and everything should be done!
+**8\.** Start the whole mailcow stack and everything should be done!
 ```
 docker-compose up -d
 ```
