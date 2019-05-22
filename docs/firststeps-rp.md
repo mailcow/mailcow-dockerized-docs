@@ -88,7 +88,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 13 23 26 27"
+``` hl_lines="4 13 24 26 27"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -110,10 +110,10 @@ server {
   }
 }
 server {
-  listen 443;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
   server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 
-  ssl on;
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
