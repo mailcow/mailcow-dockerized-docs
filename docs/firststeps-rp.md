@@ -38,7 +38,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` apache hl_lines="2 12 13 19 23 24 29 30"
+``` apache hl_lines="2 12 13 19 23 24 25 26 31 32"
 <VirtualHost *:80>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
@@ -61,6 +61,8 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
   ServerAlias autodiscover.*
 
   # You should proxy to a plain HTTP session to offload SSL processing
+  ProxyPass /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=400
+  ProxyPassReverse /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync
   ProxyPass / http://127.0.0.1:8080/
   ProxyPassReverse / http://127.0.0.1:8080/
   ProxyPreserveHost On
@@ -88,7 +90,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 13 23 26 27"
+``` hl_lines="4 13 23 26 27 32 45"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -118,6 +120,19 @@ server {
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
   ssl_ciphers HIGH:!aNULL:!MD5;
+
+  location /Microsoft-Server-ActiveSync {
+    proxy_pass http://127.0.0.1:8080/;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    client_max_body_size 0;
+    proxy_connect_timeout 4000;
+    proxy_next_upstream timeout error;
+    proxy_send_timeout 4000;
+    proxy_read_timeout 4000;
+  }
 
   location / {
       proxy_pass http://127.0.0.1:8080/;
