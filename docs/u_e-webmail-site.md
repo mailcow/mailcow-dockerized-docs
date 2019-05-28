@@ -12,6 +12,7 @@ server {
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name webmail.example.org;
 
+  root /web;
   location ^~ /.well-known/acme-challenge/ {
     allow all;
     default_type "text/plain";
