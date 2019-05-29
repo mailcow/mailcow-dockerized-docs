@@ -113,6 +113,7 @@ server {
 }
 server {
   listen 443;
+  listen [::]:443;
   server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 
   ssl on;
