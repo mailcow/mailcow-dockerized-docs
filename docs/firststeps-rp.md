@@ -90,7 +90,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 13 23 26 27 32 45"
+``` hl_lines="4 14 24 27 28 33 46"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
