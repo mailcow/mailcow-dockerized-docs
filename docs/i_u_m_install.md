@@ -4,7 +4,7 @@
 
 You need Docker and Docker Compose.
 
-**1\.** Learn how to install [Docker](https://docs.docker.com/engine/installation/linux/) and [Docker Compose](https://docs.docker.com/compose/install/).
+**1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
 Quick installation for most operation systems:
 
