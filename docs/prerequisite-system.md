@@ -17,7 +17,7 @@ Please make sure that your system has at least the following resources:
 | ----------------------- | -------------------------------------------- |
 | CPU                     | 1 GHz                                        |
 | RAM                     | 2 GiB + Swap (better: 4 GiB and more + Swap) |
-| Disk                    | 155 GiB (without emails)                     |
+| Disk                    | 15 GiB (without emails)                      |
 | System Type             | x86_64                                       |
 
 ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
