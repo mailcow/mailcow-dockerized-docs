@@ -10,7 +10,7 @@ Let us know about your ideas in #mailcow @ Freenode.
 [![Donate (Bitcoin)](https://img.shields.io/badge/Donate-Bitcoin-blue.svg)](bitcoin:1E5rgzgA1sS3QH7r1ToWxRC3GEavfsGMrx)
 
 ## 💡 Entwickler gesucht!
-Wir möchten die Kuh clustern und noch sicherererer machen, daher suchen wir dringend Entwickler, die dabei unterstützen. Bis hin zur Festanstellung alle Möglichkeiten offen. Bitte meldet euch bei info@servercow.de
+Wir suchen für die Entwicklung eines sicheren Mailstacks dringend erfahrene DevOps. Bis hin zur Festanstellung sind alle Möglichkeiten offen. Bitte meldet euch bei info@servercow.de. Voraussetzung: Erfahrung mit dem Betreiben von E-Mail-Umgebungen - bestenfalls im Cluster.
 
 ## Get support
 
