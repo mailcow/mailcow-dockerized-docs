@@ -90,6 +90,7 @@ nav:
   - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
+  - 'Watchdog': 'u_e-watchdog.md'
 - 'Client Configuration':
   - 'Overview': 'client.md'
   - 'Android': 'client/client-android.md'
