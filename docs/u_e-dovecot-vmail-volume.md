@@ -9,7 +9,7 @@ volumes:
       o: bind
 ```
 
-Moving an existing vmail folder:
+### Moving an existing vmail folder:
 
 - Locate the current vmail folder by its "Mountpoint" attribute: `docker volume inspect mailcowdockerized_vmail-vol-1`
 
