@@ -30,7 +30,15 @@ Do not use quotes (`"`)!
 ADDITIONAL_SAN=cert1.example.org,cert1.example.com,cert2.example.org,cert3.example.org
 ```
 
-Each name will be validated against its IPv4 address.
+Each name will be validated against its IPv6 address (prefered if present) or IPv4.
+
+Before recreating the acme container make sure that your Domain provider actually already returns the new address(es). Some needs a bit of time to do that and when it fails the next retry is after 24 hours.
+
+```
+dig cert1.example.org NS +short | head -1
+dig cert1.example.org +short @(return from above)
+```
+The last output needs to return the correct IPv4 address. If you use IPv6 you need to add AAAA in the last command before the @. If it is not installed ```apt install dnsutils```.
 
 Run `docker-compose up -d` to recreate changed containers.
 
