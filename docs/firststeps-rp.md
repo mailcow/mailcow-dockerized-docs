@@ -32,23 +32,20 @@ Required modules:
 ```
 a2enmod rewrite proxy proxy_http headers ssl
 ```
-We rewrite to HTTPS, but keep requests to autoconfig.* on a plain session.
 
-Let's Encrypt will follow our rewrite, certificate requests will work fine.
+Let's Encrypt will follow our rewrite, certificate requests in mailcow will work fine.
 
 **Take care of highlighted lines.**
 
-``` apache hl_lines="2 12 13 19 23 24 25 26 31 32"
+``` apache hl_lines="2 10 11 17 22 23 24 25 30 31"
 <VirtualHost *:80>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
   RewriteEngine on
 
-  RewriteCond %{HTTP_HOST} ^autoconfig\. [NC]
-  RewriteRule ^ - [S=1]
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}# [L,NE,R=permanent]
-  RewriteRule ^ /autoconfig.php [PT]
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
 
   ProxyPass / http://127.0.0.1:8080/
   ProxyPassReverse / http://127.0.0.1:8080/
@@ -59,6 +56,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 <VirtualHost *:443>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
+  ServerAlias autoconfig.*
 
   # You should proxy to a plain HTTP session to offload SSL processing
   ProxyPass /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=4000
@@ -84,32 +82,17 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 ```
 
 ### Nginx
-In our Nginx reverse proxy template, we rewrite all requests to HTTPS, while keeping autoconfig.* domains on a plain session.
 
 Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 14 24 27 28 33 46"
+``` hl_lines="4 10 13 14 19 32"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.*;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
   return 301 https://$host$request_uri;
-}
-server {
-  listen 80;
-  listen [::]:80;
-  server_name autoconfig.*;
-  rewrite ^/(.*)$ /autoconfig.php last;
-  location / {
-    proxy_pass http://127.0.0.1:8080/;
-    proxy_set_header Host $http_host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    client_max_body_size 0;
-  }
 }
 server {
   listen 443;
