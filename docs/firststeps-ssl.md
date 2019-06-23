@@ -1,48 +1,61 @@
 ## Let's Encrypt (out-of-the-box)
 
-The newly introduced "acme-mailcow" container (21st of June) will try to obtain a valid LE certificate for you.
+The "acme-mailcow" container will try to obtain a LE certificate for you.
 
 !!! warning
-    mailcow **must** be available on port 80 for the acme-client to work.
+    mailcow **must** be available on port 80 for the acme-client to work. Our reverse proxy example configurations do cover that. You can also use any external ACME client (certbot for example) to obtain certificates, but you will need to make sure, that they are copied to the correct location and a post-hook reloads affected containers. See more in the Reverse Proxy documentation.
     
-By default, which means **0 domains** are added to mailcow, it will try to obtain a certificate for ${MAILCOW_HOSTNAME}.
+By default, which means **0 domains** are added to mailcow, it will try to obtain a certificate for `${MAILCOW_HOSTNAME}`.
 
-For each domain you add, it will try to resolve autodiscover.ADDED_MAIL_DOMAIN and autoconfig.ADDED_MAIL_DOMAIN to your servers IPv4 address. If it succeeds, these names will be added as SANs to the certificate request.
+For each domain you add, it will try to resolve `autodiscover.ADDED_MAIL_DOMAIN` to its IPv6 or - if IPv6 is not configured in your domain - IPv4 address. If it succeeds, a name will be added as SAN to the certificate request.
 
-You can skip the IP verification by adding SKIP_IP_CHECK=y to mailcow.conf (no quotes). Be warned that a misconfiguration will get you ratelimited by Let's Encrypt! This is primarily useful for multi-IP setups where the IP check would return the incorrect source IP. Due to using dynamic IPs for acme-mailcow, source NAT is not consistent over restarts.
-
-You could add an A record for "autodiscover" but omit "autoconfig", the client will only validate "autodiscover" and skip "autoconfig" then.
+Only names that can be validated, will be added as SAN.
 
 For every domain you remove, the certificate will be moved and a new certificate will be requested. It is not possible to keep domains in a certificate, when we are not able validate the challenge for those.
 
-If you want to re-run the ACME client, use `docker-compose restart acme-mailcow`.
+If you want to re-run the ACME client, use `docker-compose restart acme-mailcow` and monitor its logs with `docker-compose logs --tail=200 -f acme-mailcow`.
 
 ### Additional domain names
 
 Edit "mailcow.conf" and add a parameter "ADDITIONAL_SAN" like this:
 
-!!! info
-    Make sure you are using acme-mailcow:1.5 or above in docker-compose.yml - if not, update mailcow first!
-
 Do not use quotes (`"`)!
 
 ```
-ADDITIONAL_SAN=cert1.example.org,cert1.example.com,cert2.example.org,cert3.example.org
+ADDITIONAL_SAN=cert1.example.org,cert1.example.com,cert2.example.org,cert3.example.org,autoconfig.*,whatever.*
 ```
 
-Each name will be validated against its IPv4 address.
+Each name will be validated against its IPv6 or - if IPv6 is not configured in your domain - IPv4 address.
 
-Run `docker-compose up -d` to recreate changed containers.
+Run `docker-compose up -d` to recreate affected containers automatically.
 
-**Skip Let's Encrypt function**
+## Validation errors and how to skip validation
 
-Change `SKIP_LETS_ENCRYPT=y` in mailcow.conf and restart the stack by running `docker-compose down && docker-compose up -d`.
+You can skip the **IP verification** by adding SKIP_IP_CHECK=y to mailcow.conf (no quotes). Be warned that a misconfiguration will get you ratelimited by Let's Encrypt! This is primarily useful for multi-IP setups where the IP check would return the incorrect source IP. Due to using dynamic IPs for acme-mailcow, source NAT is not consistent over restarts.
 
-## Use own certificates
+If you encounter problems with "HTTP validation", but your IP confirmation succeeds, you are most likely using firewalld, ufw or any other firewall, that disallows connections from `br-mailcow` to your external interface. Both firewalld and ufw disallow this by default. It is often not enough to just stop these firewall services. You'd need to stop mailcow (`docker-compose down`), stop the firewall service, flush the chains and restart Docker.
+
+You can also skip this validation method by setting `SKIP_HTTP_VERIFICATION=n` in "mailcow.conf". Be warned that this is discouraged. Some DNS validations (like TLSA lookups) in mailcow UI will fail.
+
+If you changed a SKIP_* parameter, run `docker-compose up -d` to apply your changes.
+
+## Disable Let's Encrypt function
+
+Set `SKIP_LETS_ENCRYPT=y` in "mailcow.conf" and recreate "acme-mailcow" by running `docker-compose up -d`.
+
+## How to use your own ceritficate
+
+Make sure you disable mailcows internal LE client (see above).
 
 To use your own certificates, just save the combined certificate (containing the certificate and intermediate CA/CA if any) to `data/assets/ssl/cert.pem` and the corresponding key to `data/assets/ssl/key.pem`.
 
-Restart changed containers by running `docker-compose up -d`.
+Reload affected service:
+
+```
+docker exec $(docker ps -qaf name=postfix-mailcow) postfix reload
+docker exec $(docker ps -qaf name=nginx-mailcow) nginx -s reload
+docker exec $(docker ps -qaf name=dovecot-mailcow) dovecot reload
+```
 
 ## Check your configuration
 
@@ -50,13 +63,13 @@ Run `docker-compose logs acme-mailcow` to find out why a validation fails.
 
 To check if nginx serves the correct certificate, simply use a browser of your choice and check the displayed certificate.
 
-To check the certificate served by dovecot or postfix we will use `openssl`:
+To check the certificate served by Postfix, Dovecot and Nginx we will use `openssl`:
 
 ```
-# Connect via SMTP (25)
-openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:25
-# Connect via SMTPS (465)
-openssl s_client -showcerts -connect mx.mailcow.email:465
-# Connect via SUBMISSION (587)
-openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
+# Connect via SMTP (587)
+echo "Q" | openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
+# Connect via IMAP (143)
+echo "Q" | openssl s_client -starttls imap -showcerts -connect mx.mailcow.email:143
+# Connect via HTTPS (443)
+echo "Q" | openssl s_client -connect mx.mailcow.email:443
 ```
