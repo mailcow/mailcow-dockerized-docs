@@ -17,7 +17,7 @@ If you want to re-run the ACME client, use `docker-compose restart acme-mailcow`
 
 ### Additional domain names
 
-Edit "mailcow.conf" and add a parameter "ADDITIONAL_SAN" like this:
+Edit "mailcow.conf" and add a parameter `ADDITIONAL_SAN` like this:
 
 Do not use quotes (`"`)!
 
@@ -26,6 +26,8 @@ ADDITIONAL_SAN=cert1.example.org,cert1.example.com,cert2.example.org,cert3.examp
 ```
 
 Each name will be validated against its IPv6 or - if IPv6 is not configured in your domain - IPv4 address.
+
+A wildcard name like `autoconfig.*` will try to obtain a autoconfig.DOMAIN_NAME SAN for each domain added to mailcow.
 
 Run `docker-compose up -d` to recreate affected containers automatically.
 
