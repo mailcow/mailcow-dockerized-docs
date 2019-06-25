@@ -25,7 +25,7 @@ Recreate affected containers by running `docker-compose up -d`.
     **Make sure you run a post-hook script** when you decide to use external ACME clients. You will find an example at the bottom of this page.
 
 
-2\. Configure your local webserver as reverse proxy:
+2\. Configure your local webserver (host) as reverse proxy, pick one from these:
 
 ### Apache 2.4
 Required modules:
@@ -34,6 +34,8 @@ a2enmod rewrite proxy proxy_http headers ssl
 ```
 
 Let's Encrypt will follow our rewrite, certificate requests in mailcow will work fine.
+
+Typically you want to edit `/etc/apache2/sites-available/000-default.conf`
 
 **Take care of highlighted lines.**
 
@@ -84,6 +86,8 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
 ### Nginx
 
 Let's Encrypt will follow our rewrite, certificate requests will work fine.
+
+Typically you want to edit `/etc/nginx/sites-enabled/default`
 
 **Take care of highlighted lines.**
 
