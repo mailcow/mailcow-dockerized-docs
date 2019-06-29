@@ -1,13 +1,13 @@
 ## Let's Encrypt (out-of-the-box)
 
-The "acme-mailcow" container will try to obtain a LE certificate for you.
+The "acme-mailcow" container will try to obtain a LE certificate for `${MAILCOW_HOSTNAME}`, `autodiscover.ADDED_MAIL_DOMAIN` and `autoconfig.ADDED_MAIL_DOMAIN`.
 
 !!! warning
     mailcow **must** be available on port 80 for the acme-client to work. Our reverse proxy example configurations do cover that. You can also use any external ACME client (certbot for example) to obtain certificates, but you will need to make sure, that they are copied to the correct location and a post-hook reloads affected containers. See more in the Reverse Proxy documentation.
     
 By default, which means **0 domains** are added to mailcow, it will try to obtain a certificate for `${MAILCOW_HOSTNAME}`.
 
-For each domain you add, it will try to resolve `autodiscover.ADDED_MAIL_DOMAIN` to its IPv6 or - if IPv6 is not configured in your domain - IPv4 address. If it succeeds, a name will be added as SAN to the certificate request.
+For each domain you add, it will try to resolve `autodiscover.ADDED_MAIL_DOMAIN` and `autoconfig.ADDED_MAIL_DOMAIN` to its IPv6 or - if IPv6 is not configured in your domain - IPv4 address. If it succeeds, a name will be added as SAN to the certificate request.
 
 Only names that can be validated, will be added as SAN.
 
@@ -22,12 +22,12 @@ Edit "mailcow.conf" and add a parameter `ADDITIONAL_SAN` like this:
 Do not use quotes (`"`)!
 
 ```
-ADDITIONAL_SAN=cert1.example.org,cert1.example.com,cert2.example.org,cert3.example.org,autoconfig.*,whatever.*
+ADDITIONAL_SAN=smtp.*,cert1.example.com,cert2.example.org,whatever.*
 ```
 
 Each name will be validated against its IPv6 or - if IPv6 is not configured in your domain - IPv4 address.
 
-A wildcard name like `autoconfig.*` will try to obtain a autoconfig.DOMAIN_NAME SAN for each domain added to mailcow.
+A wildcard name like `smtp.*` will try to obtain a smtp.DOMAIN_NAME SAN for each domain added to mailcow.
 
 Run `docker-compose up -d` to recreate affected containers automatically.
 
