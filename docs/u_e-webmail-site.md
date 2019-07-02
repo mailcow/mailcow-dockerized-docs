@@ -7,7 +7,7 @@ server {
   ssl_certificate_key /etc/ssl/mail/key.pem;
   index index.php index.html;
   client_max_body_size 0;
-
+  root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name webmail.example.org;
