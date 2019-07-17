@@ -27,6 +27,29 @@ Consider attaching a local folder as new volume to `rspamd-mailcow` in `docker-c
 for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam < zcat $file; done
 ```
 
+### Reset learned data
+
+You need to delete keys in Redis to reset learned mail, so create a copy of your Redis database now:
+
+**Backup database**
+```
+# It is better to stop Redis before you copy the file.
+cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
+```
+
+**Reset Bayes data**
+```
+docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xargs redis-cli del'
+docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
+```
+
+If it complains about...
+```
+(error) ERR wrong number of arguments for 'del' command
+```
+...the key pattern was not found and thus no data is available to delete.
+
+
 ## CLI tools
 
 ```
