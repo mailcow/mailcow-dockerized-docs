@@ -24,6 +24,7 @@ A fully featured managed mailcow is also available [here](https://www.servercow.
 
 - IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
+- Telegram @ [t.me/mailcow](https://t.me/mailcow)
 
 ## Demo
 
