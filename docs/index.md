@@ -4,10 +4,7 @@
 
 Let us know about your ideas in #mailcow @ Freenode.
 
-[Servercow](https://www.servercow.de) - hosted mailcow, KVM based virtual servers, web-hosting and more.
-
-[![Donate (PayPal)](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JWBSYHF4SMC68)
-[![Donate (Bitcoin)](https://img.shields.io/badge/Donate-Bitcoin-blue.svg)](bitcoin:1E5rgzgA1sS3QH7r1ToWxRC3GEavfsGMrx)
+Please [consider a support contract (around 30 € per month) with Servercow](https://www.servercow.de/mailcow#support) to support further development. _We_ support _you_ while _you_ support _us_. :)
 
 ## Get support
 
@@ -15,7 +12,7 @@ Let us know about your ideas in #mailcow @ Freenode.
 
 For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a support subscription at [Servercow](https://www.servercow.de/mailcow#support).
 
-A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed).
+A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed) (if not sold out, sorry).
 
 ### Community support
 
