@@ -1,7 +1,7 @@
 To create a subdomain `webmail.example.org` and redirect it to SOGo, you need to create a new Nginx site. Take care of "CHANGE_TO_MAILCOW_HOSTNAME"!
 
 **nano data/conf/nginx/webmail.conf**
-``` hl_lines="17"
+``` hl_lines="9 17"
 server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
