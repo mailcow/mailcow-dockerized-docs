@@ -10,7 +10,7 @@ chown -R root: rc/
 
 Create a file `data/web/rc/config/config.inc.php` with the following content.
 
-**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password.
+**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password. The "db_prefix" is optional but recommended.
 
 ```
 <?php
@@ -55,6 +55,7 @@ $config['managesieve_conn_options'] = array(
 // 1 - add Vacation section,
 // 2 - add Vacation section, but hide Filters section
 $config['managesieve_vacation'] = 1;
+$config['db_prefix'] = 'mailcow_rc1';
 
 ```
 
