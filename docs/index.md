@@ -1,12 +1,12 @@
-# 🐮 + 🐋 = 💕
+ # 🐮 + 🐋 = 💕
 
 ## Help mailcow
 
 Let us know about your ideas in #mailcow @ Freenode or in our Telegram channel @ [t.me/mailcow](https://t.me/mailcow).
 
-Please [consider a support contract (around 30 € per month) with Servercow](https://www.servercow.de/mailcow#support) to support further development. _We_ support _you_ while _you_ support _us_. :)
+Please consider a support contract (around 30 € per month including 19 % tax within the EU) with [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow?#support) to support further development. _We_ support _you_ while _you_ support _us_. :)
 
-If you are super awesome, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at [Servercow](https://www.servercow.de/mailcow?lang=en#sal).
+If you are super awesome, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at [Servercow EN](https://www.servercow.de/mailcow?lang=en#sal)/[Servercow DE](https://www.servercow.de/mailcow#sal)
 
 We are looking for a build machine and demo installations. If you want to help us, please contact [info@servercow.de](mailto:info@servercow.de).
 
@@ -14,7 +14,7 @@ We are looking for a build machine and demo installations. If you want to help u
 
 ### Commercial support
 
-For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a basic support subscription at [Servercow](https://www.servercow.de/mailcow#support).
+For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a basic support subscription at [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow#support).
 
 A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed) - if not sold out.
 
