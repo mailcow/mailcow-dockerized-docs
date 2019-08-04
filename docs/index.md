@@ -2,23 +2,30 @@
 
 ## Help mailcow
 
-Let us know about your ideas in #mailcow @ Freenode.
+Let us know about your ideas in #mailcow @ Freenode or in our Telegram channel @ [t.me/mailcow](https://t.me/mailcow).
 
 Please [consider a support contract (around 30 € per month) with Servercow](https://www.servercow.de/mailcow#support) to support further development. _We_ support _you_ while _you_ support _us_. :)
+
+If you are super awesome, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at [Servercow](https://www.servercow.de/mailcow?lang=en#sal).
+
+We are looking for a build machine and demo installations. If you want to help us, please contact [info@servercow.de](mailto:info@servercow.de).
 
 ## Get support
 
 ### Commercial support
 
-For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a support subscription at [Servercow](https://www.servercow.de/mailcow#support).
+For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a basic support subscription at [Servercow](https://www.servercow.de/mailcow#support).
 
-A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed) (if not sold out, sorry).
+A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed) - if not sold out.
 
 ### Community support
 
 - IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
-- GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 - Telegram @ [t.me/mailcow](https://t.me/mailcow)
+
+For bug tracking, feature requests and code contributions **only**:
+
+- GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
 ## Demo
 
@@ -45,6 +52,7 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 - Add whitelisted hosts to forward mail to mailcow
 - Fail2ban-like integration
 - Quarantine system
+- Integrated basic monitoring
 - A lot more...
 
 mailcow: dockerized comes with multiple containers linked in one bridged network.
@@ -53,13 +61,14 @@ Each container represents a single application.
 - Dovecot
 - ClamAV (optional)
 - Solr (optional)
+- Oletools via Olefy
 - Memcached
 - Redis
 - MySQL
-- Unbound (as resolver)
+- Unbound (DNS resolver)
 - PHP-FPM
 - Postfix
-- ACME-Client (thanks to @bebehei)
+- ACME-Client
 - Nginx
 - Rspamd
 - SOGo
