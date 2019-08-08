@@ -49,7 +49,7 @@ MariaDB [(none)]> SELECT user FROM mysql.user;
 2 rows in set (0.00 sec)
 
 MariaDB [(none)]> FLUSH PRIVILEGES;
-MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('gotr00t'), password = PASSWORD('gotr00t') WHERE User = 'root' AND Host = '%';
+MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('gotr00t'), password = PASSWORD('gotr00t') WHERE User = 'root';
 MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('mookuh'), password = PASSWORD('mookuh') WHERE User = 'mailcow' AND Host = '%';
 MariaDB [(none)]> FLUSH PRIVILEGES;
 ```
