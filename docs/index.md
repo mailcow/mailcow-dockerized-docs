@@ -4,21 +4,23 @@
 
 Let us know about your ideas in #mailcow @ Freenode or in our Telegram channel @ [t.me/mailcow](https://t.me/mailcow).
 
-Please consider a support contract (around 30 € per month including 19 % tax within the EU) with [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow?#support) to support further development. _We_ support _you_ while _you_ support _us_. :)
+Please consider a support contract for a small monthly fee at [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow?#support) to support further development. _We_ support _you_ while _you_ support _us_. :)
 
-If you are super awesome, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at [Servercow EN](https://www.servercow.de/mailcow?lang=en#sal)/[Servercow DE](https://www.servercow.de/mailcow#sal)
-
-We are looking for a build machine and demo installations. If you want to help us, please contact [info@servercow.de](mailto:info@servercow.de).
+If you are super awesome and would like to support without a contract, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at [Servercow EN](https://www.servercow.de/mailcow?lang=en#sal)/[Servercow DE](https://www.servercow.de/mailcow#sal).
 
 ## Get support
 
+There are two ways to achieve support for your mailcow installation.
+
 ### Commercial support
 
-For commercial support contact [info@servercow.de](mailto:info@servercow.de) or get a basic support subscription at [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow#support).
+For professional and prioritized commercial support you can sign a basic support subscription at [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow#support). For custom inquiries or questions please contact us at [info@servercow.de](mailto:info@servercow.de) instead.
 
-A fully featured managed mailcow is also available [here](https://www.servercow.de/mailcow#managed) - if not sold out.
+Furthermore we do also provide a fully featured and managed mailcow [here](https://www.servercow.de/mailcow#managed). This way we take care about the technical magic underneath and you can enjoy your whole mail experience in a hassle-free way.
 
 ### Community support
+
+The other alternative is our free community-support on our various channels below. Please notice, that this support is driven by our awesome community around mailcow. This kind of support is best-effort, voluntary and there is no guarantee for anything.
 
 - IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
 - Telegram @ [t.me/mailcow](https://t.me/mailcow)
@@ -47,11 +49,12 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 - Allow mailbox users to toggle incoming and outgoing TLS enforcement
 - Allow users to reset SOGo ActiveSync device caches
 - imapsync to migrate or pull remote mailboxes regularly
-- TFA: Yubi OTP and U2F USB (Google Chrome and derivatives only), TOTP
+- TFA: Yubikey OTP and U2F USB (Google Chrome and derivatives only), TOTP
 - Add domains, mailboxes, aliases, domain aliases and SOGo resources
 - Add whitelisted hosts to forward mail to mailcow
 - Fail2ban-like integration
 - Quarantine system
+- Antivirus scanning incl. macro scanning in office documents
 - Integrated basic monitoring
 - A lot more...
 
