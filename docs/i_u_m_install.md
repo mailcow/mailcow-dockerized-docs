@@ -70,3 +70,5 @@ Done!
 You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials `admin` + password `moohoo`.
 
 The database will be initialized right after a connection to MySQL can be established.
+
+Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker-compose down` without removing persistent data.
