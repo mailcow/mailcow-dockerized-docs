@@ -8,6 +8,9 @@ HTTP_PORT=8080
 HTTPS_BIND=127.0.0.1
 HTTPS_PORT=8443
 ```
+
+This will also change the bindings inside the Nginx container! This is important, if you decide to use a proxy within Docker.
+
 **IMPORTANT:** Do not use port 8081, 9081 or 65510!
 
 Recreate affected containers by running `docker-compose up -d`.
