@@ -46,7 +46,9 @@ If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.
 
 You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-local_mta/) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
 
-**4\.1\.** OpenStack users and users with a MTU not equal to 1500:
+**4\.1\.** Users with a MTU not equal to 1500 (e.g. OpenStack):
+
+**Whenever you run into trouble and strange phenomena, please check your MTU.**
 
 Edit `docker-compose.yml` and change the network settings according to your MTU.
 Add the new driver_opts parameter like this:
