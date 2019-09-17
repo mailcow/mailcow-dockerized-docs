@@ -2,8 +2,7 @@
 
 Please do not copy this script to another location.
 
-To run a restore, write "restore" as first parameter.
-
+To run a restore, **start mailcow**, use the script with "restore" as first parameter.
 
 ```
 # Syntax:
