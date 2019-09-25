@@ -108,4 +108,4 @@ You may want to [disable cloud-init network changes.](https://wiki.hetzner.de/in
 
 ## MTU
 
-Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See **4.1** in [our installation docs](https://mailcow.github.io/mailcow-dockerized-docs/install/).
+Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See **4.1** in [our installation docs](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/).
