@@ -85,4 +85,7 @@ To whitelist this particular signature (and enable sending this type of file att
 
 `echo 'PUA.Pdf.Trojan.EmbeddedJavaScript-1' >> data/conf/clamav/whitelist.ign2`
 
-Then restart the clamd-mailcow service.
+Then restart the clamd-mailcow service container in the mailcow UI, or using docker-compose:
+
+`docker-compose restart clamd-mailcow`
+
