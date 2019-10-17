@@ -16,7 +16,7 @@ Please make sure that your system has at least the following resources:
 | Resource                | mailcow: dockerized                          |
 | ----------------------- | -------------------------------------------- |
 | CPU                     | 1 GHz                                        |
-| RAM                     | 2 GiB + Swap (better: 4 GiB and more + Swap) |
+| RAM                     | 3 GiB + Swap (better: 4 GiB and more + Swap) |
 | Disk                    | 15 GiB (without emails)                      |
 | System Type             | x86_64                                       |
 
