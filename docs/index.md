@@ -41,7 +41,7 @@ You can find a demo at [demo.mailcow.email](https://demo.mailcow.email), use the
 
 The integrated **mailcow UI** allows administrative work on your mail server instance as well as separated domain administrator and mailbox user access:
 
-- DKIM and ARC support
+- [DKIM](http://dkim.org) and [ARC](http://arc-spec.org/) support
 - Black- and whitelists per domain and per user
 - Spam score management per-user (reject spam, mark spam, greylist)
 - Allow mailbox users to create temporary spam aliases
@@ -61,22 +61,22 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 mailcow: dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.
 
-- Dovecot
-- ClamAV (optional)
-- Solr (optional)
-- Oletools via Olefy
-- Memcached
-- Redis
-- MySQL
-- Unbound (DNS resolver)
-- PHP-FPM
-- Postfix
-- ACME-Client
-- Nginx
-- Rspamd
-- SOGo
-- Netfilter (Fail2ban-like integration by @mkuron)
-- Watchdog (basic monitoring)
+- [Dovecot](https://www.dovecot.org/)
+- [ClamAV](https://www.clamav.net/) (optional)
+- [Solr](http://lucene.apache.org/solr/) (optional)
+- Oletools via [Olefy](https://github.com/HeinleinSupport/olefy)
+- [Memcached](https://www.memcached.org/)
+- [Redis](https://redis.io/)
+- [MySQL](https://redis.io/)
+- [Unbound](https://unbound.net/) (DNS resolver)
+- [PHP-FPM](https://secure.php.net/manual/install.fpm.php)
+- [Postfix](http://www.postfix.org/)
+- [ACME](https://letsencrypt.org/)-Client
+- [Nginx](https://nginx.org/)
+- [Rspamd](https://www.rspamd.com/)
+- [SOGo](https://sogo.nu/)
+- [Netfilter](https://www.netfilter.org/) (Fail2ban-like integration by [@mkuron](https://github.com/mkuron))
+- [Watchdog](https://linux.die.net/man/8/watchdog) (basic monitoring)
 
 **Docker volumes** to keep dynamic data - take care of them!
 
