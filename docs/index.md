@@ -67,7 +67,7 @@ Each container represents a single application.
 - Oletools via [Olefy](https://github.com/HeinleinSupport/olefy)
 - [Memcached](https://www.memcached.org/)
 - [Redis](https://redis.io/)
-- [MySQL](https://redis.io/)
+- MySQL (well, actually [MariaDB](https://mariadb.org/))
 - [Unbound](https://unbound.net/) (DNS resolver)
 - [PHP-FPM](https://secure.php.net/manual/install.fpm.php)
 - [Postfix](http://www.postfix.org/)
