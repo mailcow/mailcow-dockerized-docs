@@ -39,11 +39,19 @@ if (file_exists('version.csv'))
       );
       if (count($row) > 3)
       {
-          $plugins[$row[0]]['min_version'] = $row[3];
+          $plugins[$row[0]]['min_version'] = str_replace('*', '99', $row[3]);
       }
       else
       {
           $plugins[$row[0]]['min_version'] = '30.0';
+      }
+      if (count($row) > 4)
+      {
+          $plugins[$row[0]]['max_version'] = str_replace('*', '99', $row[4]);
+      }
+      else
+      {
+          $plugins[$row[0]]['max_version'] = '99.*';
       }
     }
     fclose($fh);
@@ -53,7 +61,7 @@ if (file_exists('version.csv'))
 $applications
 = array( "thunderbird" => "<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
                 <em:minVersion>__MIN_VERSION__</em:minVersion>
-                <em:maxVersion>99.*</em:maxVersion>" );
+                <em:maxVersion>__MAX_VERSION__</em:maxVersion>" );
 
 $pluginname = $_GET["plugin"];
 $plugin =& $plugins[$pluginname];
@@ -80,7 +88,7 @@ else
 }
 
 if ( $plugin ) {
-  if (version_compare($client_ver, $plugin['min_version'], '<')) {
+  if (version_compare($client_ver, $plugin['min_version'], '<') or version_compare($client_ver, $plugin['max_version'], '>')) {
     header("Content-type: text/plain; charset=utf-8", true, 404);
     echo( 'Plugin not compatible with client version' );
     exit;
@@ -99,9 +107,11 @@ if ( $plugin ) {
             <em:version><?php echo $plugin["version"] ?></em:version>
             <em:targetApplication>
               <Description>
-                <?php echo str_replace('__MIN_VERSION__', $plugin['min_version'], $applications[$plugin["application"]]); ?>
+                <?php  $intermidiate = str_replace('__MIN_VERSION__', $plugin['min_version'], $applications[$plugin["application"]]);
+                       $result = str_replace('__MAX_VERSION__', $plugin['max_version'], $intermidiate);
+                       echo $result ?>
                 
-                <em:updateLink><?php echo 'https://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/' .  $plugin_dir . '/' . $plugin["filename"] ?></em:updateLink>
+                <em:updateLink><?php echo 'https://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . $plugin_dir . '/' . $plugin["filename"] ?></em:updateLink>
               </Description>
             </em:targetApplication>
           </Description>
