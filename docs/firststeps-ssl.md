@@ -50,7 +50,37 @@ Set `SKIP_LETS_ENCRYPT=y` in "mailcow.conf" and recreate "acme-mailcow" by runni
 
 Add `ONLY_MAILCOW_HOSTNAME=y` to "mailcow.conf" and recreate "acme-mailcow" by running `docker-compose up -d`.
 
-### How to use your own ceritficate
+### The Let's Encrypt subjectAltName limit of 100 domains
+
+Let's Encrypt currently has [a limit of 100 Domain Names per Certificate](https://letsencrypt.org/docs/rate-limits/).
+
+By default, "acme-mailcow" will create a single SAN certificate for all validated domains
+(see the [first section](#lets-encrypt-out-of-the-box) and [Additional domain names](#additional-domain-names)).
+This provides best compatibility but means the Let's Encrypt limit exceeds if you add too many domains to a single mailcow installation.
+
+To solve this, you can configure `ENABLE_SSL_SNI` to generate:
+* A main server certificate with `MAILCOW_HOSTNAME` and all fully qualified domain names in the `ADDITIONAL_SAN` config
+* One additional certificate for each domain found in the database with autodiscover.*, autoconfig.* and any other `ADDITIONAL_SAN` configured in this format (subdomain.*)
+
+Postfix, Dovecot and Nginx will then serve these certificates with SNI.
+
+Set `ENABLE_SSL_SNI=y` in "mailcow.conf" and recreate "acme-mailcow" by running `docker-compose up -d`.
+
+!!! warning
+    Not all clients support SNI, [see Dovecot documentation](https://wiki.dovecot.org/SSL/SNIClientSupport) or [Wikipedia](https://en.wikipedia.org/wiki/Server_Name_Indication#Support).
+    You should make sure these clients use the `MAILCOW_HOSTNAME` for secure connections if you enable this feature.
+
+Here is an example:
+* `MAILCOW_HOSTNAME=server.email.tld`
+* `ADDITIONAL_SAN=webmail.email.tld,mail.*`
+* Mailcow email domains: "domain1.tld" and "domain2.tld"
+
+The following certificates will be generated:
+* `server.email.tld, webmail.email.tld` -> this is the default certificate, all clients can connect with these domains
+* `mail.domain1.tld, autoconfig.domain1.tld, autodiscover.domain1.tld` -> individual certificate for domain1.tld, cannot be used by clients without SNI support
+* `mail.domain2.tld, autoconfig.domain2.tld, autodiscover.domain2.tld` -> individual certificate for domain2.tld, cannot be used by clients without SNI support
+
+### How to use your own certificate
 
 Make sure you disable mailcows internal LE client (see above).
 
