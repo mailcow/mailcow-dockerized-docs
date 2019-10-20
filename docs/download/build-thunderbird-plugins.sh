@@ -27,7 +27,7 @@ while read DOMAINS; do
 		echo > custom/${DOMAIN}/defaults/preferences/site.js
 		echo 'pref("sogo-connector.autocomplete.server.urlid", "'${DOMAIN}'");' > custom/${DOMAIN}/defaults/preferences/site.js
 		echo 'pref("mail.collect_email_address_outgoing", false);' >> custom/${DOMAIN}/defaults/preferences/site.js
-		sed -i 's/<\/Seq>/<li><Description em:id="sieve@mozdev.org" em:name="Sieve"\/><\/li><li><Description em:id="imap-acl@sirphreak.com" em:name="Imap-ACL-Extension"\/><\/li><\/Seq>/g' custom/${DOMAIN}/chrome/content/sogo-connector/global/extensions.rdf
+		#sed -i 's/<\/Seq>/<li><Description em:id="sieve@mozdev.org" em:name="Sieve"\/><\/li><li><Description em:id="imap-acl@sirphreak.com" em:name="Imap-ACL-Extension"\/><\/li><\/Seq>/g' custom/${DOMAIN}/chrome/content/sogo-connector/global/extensions.rdf
 		make build=${DOMAIN}
 		CONNECTOR_VER=$(grep em:version install.rdf | awk -F '"' '{print $2}')
 		CONNECTOR_MIN_VER=$(grep em:minVersion install.rdf | grep -Eo '[0-9\.]+' | head -n 1)
@@ -35,6 +35,8 @@ while read DOMAINS; do
 		cd ..
 	done
 done
+
+# if you add any other plugins below, you need to add them into extensions.rdf as in the line commented out above
 
 # # download Sieve plugin
 # SIEVE_RELEASES=$(wget --header="Accept: application/vnd.github.v3+json" -qO - https://api.github.com/repos/thsmi/sieve/releases)
