@@ -64,19 +64,19 @@ Each container represents a single application.
 - [Dovecot](https://www.dovecot.org/)
 - [ClamAV](https://www.clamav.net/) (optional)
 - [Solr](http://lucene.apache.org/solr/) (optional)
-- Oletools via [Olefy](https://github.com/HeinleinSupport/olefy)
+- [Oletools](https://github.com/decalage2/oletools) via [Olefy](https://github.com/HeinleinSupport/olefy)
 - [Memcached](https://www.memcached.org/)
 - [Redis](https://redis.io/)
-- MySQL (well, actually [MariaDB](https://mariadb.org/))
-- [Unbound](https://unbound.net/) (DNS resolver)
-- [PHP-FPM](https://secure.php.net/manual/install.fpm.php)
+- [MariaDB](https://mariadb.org/)
+- [Unbound](https://unbound.net/)
+- [PHP](https://php.net/)
 - [Postfix](http://www.postfix.org/)
-- [ACME](https://letsencrypt.org/)-Client
+- [ACME](https://letsencrypt.org/)
 - [Nginx](https://nginx.org/)
 - [Rspamd](https://www.rspamd.com/)
 - [SOGo](https://sogo.nu/)
 - [Netfilter](https://www.netfilter.org/) (Fail2ban-like integration by [@mkuron](https://github.com/mkuron))
-- [Watchdog](https://linux.die.net/man/8/watchdog) (basic monitoring)
+- A Watchdog to provide basic monitoring
 
 **Docker volumes** to keep dynamic data - take care of them!
 
