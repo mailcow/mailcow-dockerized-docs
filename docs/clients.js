@@ -27,8 +27,8 @@ if (window.location.href.indexOf('/client/') >= 0) {
         if (getParameterByName('port')) {
             setCookie("port", getParameterByName('port'));
         }
-        if (getParameterByName('integrator')) {
-            setCookie("integrator", getParameterByName('integrator'));
+        if (getParameterByName('connector')) {
+            setCookie("connector", getParameterByName('connector'));
         }
         if (getParameterByName('outlookEAS')) {
             setCookie("outlookEAS", getParameterByName('outlookEAS'));
@@ -97,16 +97,16 @@ if (window.location.href.indexOf('/client') >= 0) {
             });
         }
 
-        /* Hide those sections that are not applicable because useOutlookForEAS is disabled or SOGo integrator is not available */
-        if (getCookie('integrator')) {
-            Array.prototype.forEach.call(document.getElementsByClassName('client_var_integrator_link'), function(el) {
-                el.href = el.href.replace('__DOMAIN__', getCookie('domain')).replace('__VERSION__', getCookie('integrator'));
+        /* Hide those sections that are not applicable because useOutlookForEAS is disabled or SOGo Connector is not available */
+        if (getCookie('connector')) {
+            Array.prototype.forEach.call(document.getElementsByClassName('client_var_connector_link'), function(el) {
+                el.href = el.href.replace('__DOMAIN__', getCookie('domain')).replace('__VERSION__', getCookie('connector'));
             });
-            Array.prototype.forEach.call(document.getElementsByClassName('client_integrator_disabled'), function(el) {
+            Array.prototype.forEach.call(document.getElementsByClassName('client_connector_disabled'), function(el) {
                 el.style.display = 'none';
             });
         } else if (getCookie('host')) {
-            Array.prototype.forEach.call(document.getElementsByClassName('client_integrator_enabled'), function(el) {
+            Array.prototype.forEach.call(document.getElementsByClassName('client_connector_enabled'), function(el) {
                 el.style.display = 'none';
             });
         }

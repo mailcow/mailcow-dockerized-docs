@@ -1,4 +1,4 @@
-# Build the SOGo Integrator plugin
+# Build the SOGo Connector plugin
 
 Install GNU Make, tar, and ZIP if you don't already have them installed. On Debian/Ubuntu, this can be done using
 
@@ -24,5 +24,5 @@ echo example.com example.org | ./build-plugins.sh mailcow.example.com
 
 # Install it in Thunderbird
 
-After you have set up your mailcow IMAP account in Thunderbird, download the SOGo integrator plugin for your domain, e.g. https://mailcow.example.com/thunderbird-plugins/sogo-integrator-31.0.6-example.com.xpi, and install it into Thunderbird.
+After you have set up your mailcow IMAP account in Thunderbird, download the SOGo Connector plugin for your domain, e.g. https://mailcow.example.com/thunderbird-plugins/sogo-connector-68.0.0-example.com.xpi, and install it into Thunderbird.
 All your address books and calendars will be configured automatically.

@@ -23,34 +23,34 @@
 <li>
   Close the account settings window with the <i>OK</i> button.
 </li>
-<li class="client_integrator_enabled">
-  In your web browser, download <span class="client_variables_unavailable">SOGo Integrator</span><span class="client_variables_available"><a class="client_var_integrator_link client_var_link" href="/thunderbird-plugins/sogo-integrator-__VERSION__-__DOMAIN__.xpi">SOGo Integrator</a></span>.
+<li class="client_connector_enabled">
+  In your web browser, download <span class="client_variables_unavailable">SOGo Connector</span><span class="client_variables_available"><a class="client_var_connector_link client_var_link" href="/thunderbird-plugins/sogo-connector-__VERSION__-__DOMAIN__.xpi">SOGo Connector</a></span>.
 </li>
-<li class="client_integrator_enabled">
+<li class="client_connector_enabled">
   Back in Thunderbird, go to the <i>Tools</i> menu and select <i>Add-ons</i>.
 </li>
-<li class="client_integrator_enabled">
+<li class="client_connector_enabled">
   Click <i>Extensions</i> on the left and ensure that the <i>Lightning</i> add-on is already installed. It is installed by default in the Windows and macOS versions of Thunderbird, but if you are running Linux and installed Thunderbird through your distribution's package manager, <i>Lightning</i> might be available as a separate package (e.g. xul-ext-lightning on Ubuntu).
 </li>
-<li class="client_integrator_enabled">
+<li class="client_connector_enabled">
   Click <i>Extensions</i> on the left, click the little gear icon at the top and select <i>Install Add-on From File</i>. Select the file you downloaded in step 9, click <i>Open</i> and, after waiting for a few seconds, <i>Install Now</i>.
 </li>
-<li class="client_integrator_enabled">
+<li class="client_connector_enabled">
   Click the <i>Restart Now</i> button at the top that appears.
 </li>
-<li class="client_integrator_enabled">
+<li class="client_connector_enabled">
   Thunderbird briefly shows a message that it is updating extensions, then restarts automatically once more.
 </li>
-<li class="client_integrator_enabled">
+<li class="client_connector_enabled">
   When you are prompted to authenticate<span class="client_variables_available"> for <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span>, enter your email address and password, check <i>Use Password Manager</i> and click <i>OK</i>.
 </li>
 </ol>
 
-<div class="client_integrator_disabled client_variables_available" markdown="1">
+<div class="client_connector_disabled client_variables_available" markdown="1">
 Automatic configuration of calendars and address books in Thunderbird is not currently supported.
-      You can ask your server administrator to enable SOGo Integrator if you need it.
+      You can ask your server administrator to enable SOGo Connector if you need it.
 </div>
 
 <div class="client_variables_unavailable" markdown="1">
-Automatic configuration of calendars and address books (from step 9 onward) in Thunderbird is only supported if your server administrator has enabled [SOGo Integrator](https://mailcow.github.io/mailcow-dockerized-docs/third_party-thunderbird).
+Automatic configuration of calendars and address books (from step 9 onward) in Thunderbird is only supported if your server administrator has enabled [SOGo Connector](https://mailcow.github.io/mailcow-dockerized-docs/third_party-thunderbird).
 </div>

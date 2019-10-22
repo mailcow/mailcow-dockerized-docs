@@ -105,7 +105,7 @@ nav:
   - 'Windows Phone': 'client/client-windowsphone.md'
   - 'Manual configuration': 'client/client-manual.md'
 - 'Third party apps':
-  - 'SOGo Integrator for Thunderbird': 'third_party-thunderbird.md'
+  - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
   - 'Roundcube': 'third_party-roundcube.md'
   - 'Portainer': 'third_party-portainer.md'
   - 'Gogs': 'third_party-gogs.md'
