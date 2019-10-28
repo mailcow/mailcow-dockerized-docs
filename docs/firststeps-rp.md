@@ -90,7 +90,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 10 13 14 19 32"
+``` hl_lines="4 10 13 14 19 33"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -114,11 +114,12 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_connect_timeout 75;
+    proxy_send_timeout 3650;
+    proxy_read_timeout 3650;
+    proxy_buffers 64 256k;
+    client_body_buffer_size 512k;
     client_max_body_size 0;
-    proxy_connect_timeout 4000;
-    proxy_next_upstream timeout error;
-    proxy_send_timeout 4000;
-    proxy_read_timeout 4000;
   }
 
   location / {
