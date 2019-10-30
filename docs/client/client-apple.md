@@ -1,6 +1,6 @@
 ## Method 1 via Mobileconfig
 
-Email, contacts and calendars can be configured automatically on Apple devices by installing a profile.
+Email, contacts and calendars can be configured automatically on Apple devices by installing a profile. To download a profile you must login to the Mailcow UI first.
 
 ## Method 1.1: IMAP, SMTP and Cal/CardDAV
 
