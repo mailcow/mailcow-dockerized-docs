@@ -1228,6 +1228,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#global-smtp-from-blacklist" class="md-nav__link">
+    Global SMTP From Blacklist
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#whitelist-specific-clamav-signatures" class="md-nav__link">
     Whitelist specific ClamAV signatures
   </a>
@@ -1729,6 +1736,20 @@ This is achieved by using the Dovecot plugin "antispam" and a simple parser scri
 <p><code>enabled = false;</code></p>
 <p>Save the file and then restart the rspamd container.</p>
 <p>See <a href="https://rspamd.com/doc/index.html">Rspamd documentation</a></p>
+
+<h2 id="global-smtp-from-blacklist">Global SMTP From Blacklist<a class="headerlink" href="#global-smtp-from-blacklist" title="Permanent link">&para;</a></h2>
+<p>Mailcow has integration with Rspamd at Configuration &#38; Details > Global filter maps.</p>
+<p>You can blacklist emails based from whod domain they was received. <code>global_smtp_from_blacklist.map</code> use regex syntax and applied as pre-filter for reject spam immediately without putting it to quarantine.</p>
+<p>Such a blacklist can be very handy, but can lead to the fact that useful mail does not reach the recipients. To follow best practices by <a href="https://tools.ietf.org/html/rfc822#section-6.3">RFC822 6.3 Reserved Address</a>:</p>
+<p>1. create alias from postmaster@your.domain to your tehnical support email.</p>
+<p>2.1. allow postmaster to receive emails without spam filtering.</p>
+<p>2.2. Go to Configuration &#38; Details > Configuration > Rspamd settings map > Add rule.</p>
+<p>2.3. Choose: <code>Insert example preset "Postmasters want spam"</code>, and click Add button.</p>
+<p>3.1. By default blacklisted domains will receive error: <code>ERROR_CODE :554, ERROR_CODE :5.7.1 Matched map: GLOBAL_SMTP_FROM_BL</code>. This error not much information so better change it.</p>
+<p>3.2. Open <code>{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf</code> and find <code>GLOBAL_SMTP_FROM_BL</code> section.</p>
+<p>3.3. Add to this section <code>message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";</code> or something similar.</p>
+<p>4. Save the file and then restart the rspamd container.</p>
+
 <h2 id="whitelist-specific-clamav-signatures">Whitelist specific ClamAV signatures<a class="headerlink" href="#whitelist-specific-clamav-signatures" title="Permanent link">&para;</a></h2>
 <p>You may find that legitimate (clean) mail is being blocked by ClamAV (Rspamd will flag the mail with <code>VIRUS_FOUND</code>). For instance, interactive PDF form attachments are blocked by default because the embedded Javascript code may be used for nefarious purposes. Confirm by looking at the clamd logs, e.g.:</p>
 <p><code>docker-compose logs clamd-mailcow | grep FOUND</code></p>
