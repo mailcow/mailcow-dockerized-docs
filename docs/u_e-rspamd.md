@@ -71,6 +71,30 @@ Save the file and then restart the rspamd container.
 
 See [Rspamd documentation](https://rspamd.com/doc/index.html)
 
+## Global SMTP From Blacklist
+
+Mailcow has integration with Rspamd at Configuration & Details > Global filter maps.
+
+You can blacklist emails based from whod domain they was received.`global_smtp_from_blacklist.map` use regex syntax and applied as pre-filter for reject spam immediately without putting it to quarantine.
+
+Such a blacklist can be very handy, but can lead to the fact that useful mail does not reach the recipients. To follow best practices by [RFC822 6.3 Reserved Address](https://tools.ietf.org/html/rfc822#section-6.3)
+
+1. create alias from postmaster@your.domain to your tehnical support email.
+
+2.1. allow postmaster to receive emails without spam filtering.
+
+2.2. Go to Configuration &#38; Details > Configuration > Rspamd settings map > Add rule.
+
+2.3. Choose: `Insert example preset "Postmasters want spam"`, and click Add button.
+
+3.1. By default blacklisted domains will receive error: `ERROR_CODE :554, ERROR_CODE :5.7.1 Matched map: GLOBAL_SMTP_FROM_BL`. This error not much information so better change it.
+
+3.2. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find `GLOBAL_SMTP_FROM_BL` section.
+
+3.3. Add to this section `message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";` or something similar.
+
+4. Save the file and then restart the rspamd container.
+
 ## Whitelist specific ClamAV signatures
 
 You may find that legitimate (clean) mail is being blocked by ClamAV (Rspamd will flag the mail with `VIRUS_FOUND`). For instance, interactive PDF form attachments are blocked by default because the embedded Javascript code may be used for nefarious purposes. Confirm by looking at the clamd logs, e.g.:
