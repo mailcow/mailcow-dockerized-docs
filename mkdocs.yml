@@ -65,6 +65,7 @@ nav:
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
   - 'Postfix':
+      - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
