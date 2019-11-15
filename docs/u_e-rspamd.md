@@ -71,29 +71,34 @@ Save the file and then restart the rspamd container.
 
 See [Rspamd documentation](https://rspamd.com/doc/index.html)
 
-## Global SMTP From Blacklist
+## Custom reject messages
 
-Mailcow has integration with Rspamd at Configuration & Details > Global filter maps.
+The default spam reject message can be changed by adding a new file `data/conf/rspamd/override.d/worker-proxy.custom.inc` with the following content:
 
-You can blacklist emails based from whod domain they was received.`global_smtp_from_blacklist.map` use regex syntax and applied as pre-filter for reject spam immediately without putting it to quarantine.
+```
+reject_message = "My custom reject message";
+```
 
-Such a blacklist can be very handy, but can lead to the fact that useful mail does not reach the recipients. To follow best practices by [RFC822 6.3 Reserved Address](https://tools.ietf.org/html/rfc822#section-6.3)
+Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
 
-1. create alias from postmaster@your.domain to your tehnical support email.
+While the above works for rejected mails with a high spam score, global maps (as found in "Global filter maps" in /admin) will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
 
-2.1. allow postmaster to receive emails without spam filtering.
+1. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find the desired map symbol (e.g. `GLOBAL_SMTP_FROM_BL`).
 
-2.2. Go to Configuration &#38; Details > Configuration > Rspamd settings map > Add rule.
+2. Add your custom message as new line:
 
-2.3. Choose: `Insert example preset "Postmasters want spam"`, and click Add button.
+```
+GLOBAL_SMTP_FROM_BL {
+  type = "from";
+  message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";`
+  map = "$LOCAL_CONFDIR/custom/global_smtp_from_blacklist.map";
+  regexp = true;
+  prefilter = true;
+  action = "reject";
+}
+```
 
-3.1. By default blacklisted domains will receive error: `ERROR_CODE :554, ERROR_CODE :5.7.1 Matched map: GLOBAL_SMTP_FROM_BL`. This error not much information so better change it.
-
-3.2. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find `GLOBAL_SMTP_FROM_BL` section.
-
-3.3. Add to this section `message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";` or something similar.
-
-4. Save the file and then restart the rspamd container.
+3. Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
 
 ## Whitelist specific ClamAV signatures
 
