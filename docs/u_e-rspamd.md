@@ -78,6 +78,35 @@ Save the file and then restart the rspamd container.
 
 See [Rspamd documentation](https://rspamd.com/doc/index.html)
 
+## Custom reject messages
+
+The default spam reject message can be changed by adding a new file `data/conf/rspamd/override.d/worker-proxy.custom.inc` with the following content:
+
+```
+reject_message = "My custom reject message";
+```
+
+Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
+
+While the above works for rejected mails with a high spam score, global maps (as found in "Global filter maps" in /admin) will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
+
+1. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find the desired map symbol (e.g. `GLOBAL_SMTP_FROM_BL`).
+
+2. Add your custom message as new line:
+
+```
+GLOBAL_SMTP_FROM_BL {
+  type = "from";
+  message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";`
+  map = "$LOCAL_CONFDIR/custom/global_smtp_from_blacklist.map";
+  regexp = true;
+  prefilter = true;
+  action = "reject";
+}
+```
+
+3. Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
+
 ## Whitelist specific ClamAV signatures
 
 You may find that legitimate (clean) mail is being blocked by ClamAV (Rspamd will flag the mail with `VIRUS_FOUND`). For instance, interactive PDF form attachments are blocked by default because the embedded Javascript code may be used for nefarious purposes. Confirm by looking at the clamd logs, e.g.:
