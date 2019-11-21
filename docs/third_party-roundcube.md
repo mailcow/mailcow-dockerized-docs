@@ -123,7 +123,7 @@ $prefs['SOGo'] = array(
 ```
 Please note, that this preset only integrates the default addressbook (the one that's named "Personal Address Book" and can't be deleted). Additional addressbooks are currently not automatically detected but can be manually added within the roundecube settings.
 
-Enable the plugin by adding `carddav` to `$config['plugins']` in `roundcube/config/config.inc.php`.
+Enable the plugin by adding `carddav` to `$config['plugins']` in `rc/config/config.inc.php`.
 
 If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks are accessable, append `$config['address_book_type'] = '';` to the config file `data/web/rc/config/config.inc.php`.
 
