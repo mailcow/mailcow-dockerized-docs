@@ -1,4 +1,4 @@
-This is **NOT** recommended!
+This is **ONLY** recommended if you do not have an IPv6 enabled network!
 
 If IPv6 MUST be disabled to fit a network, open `docker-compose.yml`, search for `enable_ipv6`...
 
