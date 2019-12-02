@@ -48,11 +48,7 @@ You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See
 
 Some updates modify mailcow.conf and add new parameters. It is hard to keep track of them in the documentation. Please check their description and, if unsure, ask at the known channels for advise.
 
-**4\.1\.** Users without a IPv6 enabled network:
-
-**If you do not have an IPv6 enabled network it is recommended to [disable IPv6](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/) for the mailcow stack to prevent unforeseen issues.**
-
-**4\.2\.** Users with a MTU not equal to 1500 (e.g. OpenStack):
+**4\.1\.** Users with a MTU not equal to 1500 (e.g. OpenStack):
 
 **Whenever you run into trouble and strange phenomena, please check your MTU.**
 
@@ -66,6 +62,13 @@ networks:
       com.docker.network.driver.mtu: 1450
     ...
 ```
+
+**4\.2\.** Users without an IPv6 enabled network on their host system:
+
+**Enable IPv6. Finally.**
+
+If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/) for the mailcow network to prevent unforeseen issues.
+
 
 **5\.** Pull the images and run the composer file. The parameter `-d` will start mailcow: dockerized detached:
 ```
