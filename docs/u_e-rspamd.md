@@ -58,7 +58,7 @@ docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs
 # We need to enter the redis-cli first:
 docker-compose exec redis-mailcow redis-cli
 # In redis-cli:
-127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy_*
+127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
 ```
 
 **Info**
