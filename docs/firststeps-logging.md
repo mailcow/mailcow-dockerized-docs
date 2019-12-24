@@ -28,19 +28,19 @@ Redis keys will only hold logs from applications and filter out system messages 
 
 Here is the good news: Since Docker has some great logging drivers, you can integrate mailcow: dockerized into your existing logging environment with ease.
 
-Docker logging drivers can now be implemented as plugins, next to Dockers integrated drivers.
-Logging driver plugins are available in Docker 17.05 and higher.
-
-Edit `docker-compose.yml` and append, for example, this block to use the "gelf" logging plugin:
+Create a `docker-compose.override.yml` and add, for example, this block to use the "gelf" logging plugin for `postfix-mailcow`:
 
 ```
-logging:
-  driver: "gelf"
-  options:
-    gelf-address: "udp://graylog:12201"  
+version: '2.1'
+services:
+  postfix-mailcow: # or any other
+    logging:
+      driver: "gelf"
+      options:
+        gelf-address: "udp://graylog:12201"  
 ```
 
-Linux users can also add or edit the Docker daemons configuration file `/etc/docker/daemon.json` to affect the global logging behavior. Windows users please have a look at the [docker documentation](https://docs.docker.com/engine/reference/commandline/dockerd//#windows-configuration-file):
+If you want to change the logging driver globally, edit Dockers daemon configuration file `/etc/docker/daemon.json` and restart the Docker service:
 
 ```
 {

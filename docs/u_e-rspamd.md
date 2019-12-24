@@ -28,9 +28,9 @@ Consider attaching a local folder as new volume to `rspamd-mailcow` in `docker-c
 for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam < zcat $file; done
 ```
 
-### Reset learned data
+### Reset learned data (Bayes, Neural)
 
-You need to delete keys in Redis to reset learned mail, so create a copy of your Redis database now:
+You need to delete keys in Redis to reset learned data, so create a copy of your Redis database now:
 
 **Backup database**
 
@@ -46,13 +46,30 @@ docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xa
 docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
 ```
 
-If it complains about...
+**Reset Neural data**
+
+```bash
+docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs redis-cli del'
+```
+
+**Reset Fuzzy data**
+
+```bash
+# We need to enter the redis-cli first:
+docker-compose exec redis-mailcow redis-cli
+# In redis-cli:
+127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
+```
+
+**Info**
+
+If redis-cli complains about...
 
 ```text
 (error) ERR wrong number of arguments for 'del' command
 ```
 
-...the key pattern was not found and thus no data is available to delete.
+...the key pattern was not found and thus no data is available to delete - it is fine.
 
 
 ## CLI tools
@@ -77,6 +94,35 @@ enabled = false;
 Save the file and then restart the rspamd container.
 
 See [Rspamd documentation](https://rspamd.com/doc/index.html)
+
+## Custom reject messages
+
+The default spam reject message can be changed by adding a new file `data/conf/rspamd/override.d/worker-proxy.custom.inc` with the following content:
+
+```
+reject_message = "My custom reject message";
+```
+
+Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
+
+While the above works for rejected mails with a high spam score, global maps (as found in "Global filter maps" in /admin) will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
+
+1. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find the desired map symbol (e.g. `GLOBAL_SMTP_FROM_BL`).
+
+2. Add your custom message as new line:
+
+```
+GLOBAL_SMTP_FROM_BL {
+  type = "from";
+  message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";`
+  map = "$LOCAL_CONFDIR/custom/global_smtp_from_blacklist.map";
+  regexp = true;
+  prefilter = true;
+  action = "reject";
+}
+```
+
+3. Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
 
 ## Whitelist specific ClamAV signatures
 

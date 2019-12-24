@@ -63,6 +63,13 @@ networks:
     ...
 ```
 
+**4\.2\.** Users without an IPv6 enabled network on their host system:
+
+**Enable IPv6. Finally.**
+
+If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/) for the mailcow network to prevent unforeseen issues.
+
+
 **5\.** Pull the images and run the composer file. The parameter `-d` will start mailcow: dockerized detached:
 ```
 docker-compose pull
