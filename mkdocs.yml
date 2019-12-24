@@ -45,7 +45,8 @@ nav:
     - 'Introduction': debug.md
     - 'Logs': 'debug-logs.md'
     - 'Attach a Container': 'debug-attach_service.md'
-    - 'Reset Passwords': 'debug-reset_pw.md'
+    - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
+    - 'Manual MySQL upgrade': 'debug-mysql_upgrade.md'
     - 'Remove Persistent Data': 'debug-rm_volumes.md'
     - 'Common Problems': 'debug-common_problems.md'
     - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
