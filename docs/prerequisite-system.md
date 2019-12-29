@@ -1,7 +1,7 @@
 Before you run **mailcow: dockerized**, there are a few requirements that you should check:
 
 !!! warning
-    When running mailcow: dockerized on a Debian 8 (Jessie) box, you should [switch to kernel 4.9 from Jessie backports](https://packages.debian.org/jessie-backports/linux-image-amd64) to avoid a bug when running Docker containers with *healthchecks*! For more details read: [github.com/docker/docker/issues/30402](https://github.com/docker/docker/issues/30402)
+    When running mailcow: dockerized on a Debian 8 (Jessie) box, you should [switch to kernel 4.9 from Jessie backports](https://packages.debian.org/jessie-backports/linux-image-amd64) to avoid a bug when running Docker containers with *healthchecks*! For more details read: [github.com/docker/docker/issues/30402](https://github.com/docker/docker/issues/30402). Running mailcow on Debian Jessie is discouraged.
 
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
@@ -19,6 +19,8 @@ Please make sure that your system has at least the following resources:
 | RAM                     | 3 GiB + Swap (better: 4 GiB and more + Swap) |
 | Disk                    | 15 GiB (without emails)                      |
 | System Type             | x86_64                                       |
+
+As of today (29th Dec 2019), we recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04.
 
 ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
 
