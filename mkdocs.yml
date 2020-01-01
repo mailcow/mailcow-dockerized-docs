@@ -1,6 +1,6 @@
 site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: 'Copyright &copy; 2019 André Peters'
+copyright: 'Copyright &copy; 2020 André Peters'
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -119,7 +119,7 @@ extra:
     accent: 'orange'
   social:
     - type: globe
-      link: http://mailcow.email
+      link: https://mailcow.email
     - type: github-alt
       link: https://github.com/mailcow
 extra_css: [extra.css]
