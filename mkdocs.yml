@@ -124,4 +124,3 @@ extra:
       link: https://github.com/mailcow
 extra_css: [extra.css]
 extra_javascript: [clients.js]
-google_analytics: ['UA-92608422-4', 'mailcow.github.io']
