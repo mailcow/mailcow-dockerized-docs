@@ -1,5 +1,5 @@
 !!! warning
-    Please note: This guide assumes you intend to migrate an existing mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within `/var/lib/docker/volumes` and thus any Docker volumes you may have already set up.
+    This guide assumes you intend to migrate an existing mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within `/var/lib/docker/volumes` and thus any Docker volumes you may have already set up.
 
 !!! tip
     Alternatively, you can use the `./helper-scripts/backup_and_restore.sh` script to create a full backup on the source machine, then install mailcow on the target machine as usual, copy over your `mailcow.conf` and use the same script to restore your backup to the target machine.
