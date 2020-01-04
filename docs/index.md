@@ -34,7 +34,7 @@ You can find a demo at [demo.mailcow.email](https://demo.mailcow.email), use the
 
 - **Administrator**: admin / moohoo
 - **Domain administrator**: department / moohoo
-- **Mailbox**: demo@mailcow.email / moohoo
+- **Mailbox**:  demo@440044.xyz / moohoo
 
 ## Overview
 
