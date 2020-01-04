@@ -22,10 +22,9 @@ Furthermore we do also provide a fully featured and managed mailcow [here](https
 
 The other alternative is our free community-support on our various channels below. Please notice, that this support is driven by our awesome community around mailcow. This kind of support is best-effort, voluntary and there is no guarantee for anything.
 
-- IRC @ [Freenode, #mailcow](irc://irc.freenode.org:6667/mailcow)
-- Telegram @ [t.me/mailcow](https://t.me/mailcow)
+- Telegram @ [t.me/mailcow](https://t.me/mailcow). Desktop clients are available for [multiple platforms](https://desktop.telegram.org). You can search the groups history for keywords.
 
-For bug tracking, feature requests and code contributions **only**:
+For **bug tracking, feature requests and code contributions** only:
 
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
