@@ -48,6 +48,7 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   RewriteEngine on
 
   RewriteCond %{HTTPS} !=on
+  RewriteCond %{THE_REQUEST} !\s/+(/.well-known/*)\s [NC]
   RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
 
   ProxyPass / http://127.0.0.1:8080/
