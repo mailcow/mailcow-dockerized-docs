@@ -149,6 +149,111 @@ backend mailcow
   server mailcow 127.0.0.1:8080 check
 ```
 
+### Traefik v2
+
+**Important**: This config only covers the "reverseproxing" of the webpannel (nginx-mailcow) using Traefik v2, if you also want to reverseproxy the mail services such as dovecot, postfix... you'll just need to adapt the following config to each container and create an [EntryPoint](https://docs.traefik.io/routing/entrypoints/) on your `traefik.toml` or `traefik.yml` (depending which config you use) for each port. 
+
+For this section we'll assume you have your Traefik 2 `[certificatesresolvers]` properly configured on your traefik configuration file, and also using acme, also, the following example uses Lets Encrypt, but feel free to change it to your own cert resolver. You can find a basic Traefik 2 toml config file with all the above implemented which can be used for this example here [traefik.toml](https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml) if you need one, or a hint on how to adapt your config.
+
+
+So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
+For this we'll have to set `SKIP_LETS_ENCRYPT=y` on our `mailcow.conf`, and run `docker-compose up -d` to apply the changes.
+
+Then, we'll need to edit our mailcow `docker-compose.yml`, most specifically the nginx-mailcow container part, we'll remove the exposed ports (80 & 443), and add the following labels which will let Traefik manage the routing from MAILCOW_HOSTNAME to the container.
+
+```
+labels:
+    # Enables traefik over the container.
+    - traefik.enable=true
+    
+    # Creates a router called "moo" for the container, and sets up a rule to link the container to certain rule,
+    #    in this case, a Host rule with our MAILCOW_HOSTNAME var.
+    - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
+    
+    # Enables tls over the router we created before.
+    - traefik.http.routers.moo.tls=true
+    
+    # Specifies which kind of cert resolver we'll use, in this case le (Lets Encrypt).
+    - traefik.http.routers.moo.tls.certresolver=le
+    
+    # Creates a service called "moo" for the container, and specifies which internal port of the container 
+    #       should traefik route the incoming data to.
+    - traefik.http.services.moo.loadbalancer.server.port=80
+    
+    # Specifies which entrypoint (external port) should traefik listen to, for this container.
+    #       websecure being port 443, check the traefik.toml file liked above.
+    - traefik.http.routers.moo.entrypoints=websecure
+    
+    # These lables will tell traefik to redirect all trafic from the external port 443 that comes trough the domain we setted on                 `mailcow.conf` (MAILCOW_HOSTNAME) to the internal port 80 of the 'nginx-mailcow' container.
+```
+
+**Important**: Don't forget to join the container (nginx-mailcow) to the Traefik network, or you'll get a `Gateway Timeout` error while accessing your domain, this happends due that traefik will try to search for the container interally, but if said container (nginx-mailcow) isn't in its reach, it will timeout.
+
+``` hl_lines="37 38 39 40 41 42 43 45"
+nginx-mailcow:
+      depends_on:
+        - sogo-mailcow
+        - php-fpm-mailcow
+        - redis-mailcow
+      image: nginx:mainline-alpine
+      dns:
+        - ${IPV4_NETWORK:-172.22.1}.254
+      command: /bin/sh -c "envsubst < /etc/nginx/conf.d/templates/listen_plain.template > /etc/nginx/conf.d/listen_plain.active &&
+        envsubst < /etc/nginx/conf.d/templates/listen_ssl.template > /etc/nginx/conf.d/listen_ssl.active &&
+        envsubst < /etc/nginx/conf.d/templates/server_name.template > /etc/nginx/conf.d/server_name.active &&
+        envsubst < /etc/nginx/conf.d/templates/sogo.template > /etc/nginx/conf.d/sogo.active &&
+        envsubst < /etc/nginx/conf.d/templates/sogo_eas.template > /etc/nginx/conf.d/sogo_eas.active &&
+        . /etc/nginx/conf.d/templates/sogo.auth_request.template.sh > /etc/nginx/conf.d/sogo_proxy_auth.active &&
+        . /etc/nginx/conf.d/templates/sites.template.sh > /etc/nginx/conf.d/sites.active &&
+        nginx -qt &&
+        until ping phpfpm -c1 > /dev/null; do sleep 1; done &&
+        until ping sogo -c1 > /dev/null; do sleep 1; done &&
+        until ping redis -c1 > /dev/null; do sleep 1; done &&
+        until ping rspamd -c1 > /dev/null; do sleep 1; done &&
+        exec nginx -g 'daemon off;'"
+      environment:
+        - HTTPS_PORT=${HTTPS_PORT:-443}
+        - HTTP_PORT=${HTTP_PORT:-80}
+        - MAILCOW_HOSTNAME=${MAILCOW_HOSTNAME}
+        - IPV4_NETWORK=${IPV4_NETWORK:-172.22.1}
+        - TZ=${TZ}
+        - ALLOW_ADMIN_EMAIL_LOGIN=${ALLOW_ADMIN_EMAIL_LOGIN:-n}
+      volumes:
+        - ./data/web:/web:ro
+        - ./data/conf/rspamd/dynmaps:/dynmaps:ro
+        - ./data/assets/ssl/:/etc/ssl/mail/:ro
+        - ./data/conf/nginx/:/etc/nginx/conf.d/:rw
+        - ./data/conf/rspamd/meta_exporter:/meta_exporter:ro
+        - sogo-web-vol-1:/usr/lib/GNUstep/SOGo/
+      restart: always
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
+        - traefik.http.routers.moo.tls=true
+        - traefik.http.routers.moo.tls.certresolver=le
+        - traefik.http.services.moo.loadbalancer.server.port=80
+        - traefik.http.routers.moo.entrypoints=websecure
+      networks:
+        traefik-network:  # Your Traefik Network.
+        mailcow-network:
+          aliases:
+            - nginx
+```
+
+And recreate the container with `sudo docker-compose up -d --force-recreate nginx-mailcow`.
+
+
+Now, theres only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have [this tiny container](https://hub.docker.com/r/humenius/traefik-certs-dumper) which grabs the `acme.json` file trough a volume, and a variable `DOMAIN=example.org`, and with these, the container will output the `cert.pem` and `key.pem` files, for this we'll simply run the `traefik-certs-dumper` container binding the `/traefik` volume to the folder where our `acme.json` is saved, bind the `/output` volume to our mailcow `data/assets/ssl/` folder, and set up the `DOMAIN=example.org` variable to the domain we want the certs dumped from. 
+
+This container will watch over the `acme.json` file for any changes, and regenerate the `cert.pem` and `key.pem` files directly into `data/assets/ssl/` being the path binded to the container's `/output` path.
+
+You can use the command line to run it, or use the docker-compose shown [here](https://hub.docker.com/r/humenius/traefik-certs-dumper).
+
+After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how [here](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate).
+
+Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / trefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.
+
+
 ### Optional: Post-hook script for non-mailcow ACME clients
 
 Using a local certbot (or any other ACME client) requires to restart some containers, you can do this with a post-hook script.
