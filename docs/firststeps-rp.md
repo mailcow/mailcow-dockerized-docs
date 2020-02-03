@@ -189,7 +189,8 @@ labels:
 
 **Important**: Don't forget to join the container (nginx-mailcow) to the Traefik network, or you'll get a `Gateway Timeout` error while accessing your domain, this happends due that traefik will try to search for the container interally, but if said container (nginx-mailcow) isn't in its reach, it will timeout.
 
-``` hl_lines="37 38 39 40 41 42 43 45"
+``` hl_lines="38 39 40 41 42 43 44 46 47 48"
+...
 nginx-mailcow:
       depends_on:
         - sogo-mailcow
@@ -234,10 +235,13 @@ nginx-mailcow:
         - traefik.http.services.moo.loadbalancer.server.port=80
         - traefik.http.routers.moo.entrypoints=websecure
       networks:
-        traefik-network:  # Your Traefik Network.
+        default:
+            external:
+                traefik-network:  # Your Traefik Network.
         mailcow-network:
           aliases:
             - nginx
+...
 ```
 
 And recreate the container with `sudo docker-compose up -d --force-recreate nginx-mailcow`.
