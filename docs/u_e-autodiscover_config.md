@@ -1,3 +1,8 @@
+**You do not need to change or create this file, autodiscover works out of the box**. This guide is only meant for customizations to the autodiscover or autoconfig process.
+
+Newer Outlook clients (especially those delivered with O365) will not autodiscover mail profiles.
+Keep in mind, that **ActiveSync should NOT be used with a desktop client**.
+
 Open/create `data/web/inc/vars.local.inc.php` and add your changes to the configuration array.
 
 Changes will be merged with "$autodiscover_config" in `data/web/inc/vars.inc.php`):
