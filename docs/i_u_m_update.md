@@ -27,14 +27,12 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 ./update.sh --prefetch
 ```
 
-## Manual update
+## Manual update (not maintained anymore, please use update.sh)
 
 ### Step 1
 
-You may want to backup your certificates, as an upgrade from an older mailcow: dockerized version may remove these files:
-
 ```
-cp -rp data/assets/ssl /tmp/ssl_backup_mailcow
+docker-compose down
 ```
 
 Fetch new data from GitHub, commit changes and merge remote repository:
@@ -54,19 +52,7 @@ git status --porcelain | grep -E "UD|DU" | awk '{print $2}' | xargs rm -v
 # ...and repeat step 2 and 3
 ```
 
-Check data/assets/ssl for your certificates (and dhparams.pem). If you miss them, recover your files:
-
-```
-cp -rp /tmp/ssl_backup_mailcow/* data/assets/ssl/
-```
-
 ### Step 2
-
-When upgrading from a version older than May 13th, 2017 to a version released after that date, you need to run the following command first as network settings have been changed:
-
-```
-docker-compose down
-```
 
 Pull new images (if any) and recreate changed containers:
 
