@@ -112,6 +112,7 @@ nav:
   - 'Portainer': 'third_party-portainer.md'
   - 'Gogs': 'third_party-gogs.md'
   - 'Gitea': 'third_party-gitea.md'
+  - 'Nextcloud': 'third_party-nextcloud.md'
 extra:
   logo: 'images/logo.svg'
   palette:
