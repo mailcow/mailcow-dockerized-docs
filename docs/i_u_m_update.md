@@ -16,14 +16,19 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 ### Options
 
 ```
-# Check for updates
+# Options can be combined
+
+# - Check for updates
 ./update.sh --check
 
-# Update with merge strategy "ours" instead of "theirs" 
-# This will merge in favor for your local changes.
+# - Do not start mailcow after applying an update
+./update.sh --skip-start
+
+# - Update with merge strategy "ours" instead of "theirs" 
+#   This will merge in favor for your local changes.
 ./update.sh --ours
 
-# Don't update, but prefetch images and exit
+# - Don't update, but prefetch images and exit
 ./update.sh --prefetch
 ```
 
