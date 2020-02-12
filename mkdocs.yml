@@ -95,6 +95,7 @@ nav:
   - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
+  - 'Re-enable TLS 1.0 upwards': 'u_e-reeanble-weak-protocols.md'
 - 'Client Configuration':
   - 'Overview': 'client.md'
   - 'Android': 'client/client-android.md'
