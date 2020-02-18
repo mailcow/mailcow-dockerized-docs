@@ -97,6 +97,68 @@ $config['password_algorithm_prefix'] = '{SSHA256}';
 $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
 
+### Enable enigma plugin in Roundcube
+
+!!! warning
+    Enigma plugin requires `proc_open` function in php which is disabled for security reasons.
+
+```
+# remove proc_open from disabled functions in [web-worker]
+sed -i "$ s/ proc_open,//" data/conf/phpfpm/php-fpm.d/pools.conf
+```
+
+Add enigma plugin to Roundcube config file `data/web/rc/config/config.inc.php`
+
+```
+<?php
+...
+$config['temp_dir'] = '/tmp';
+$config['plugins'] = array(
+  'archive',
+  'managesieve',
+  'enigma'
+);
+$config['skin'] = 'larry';
+...
+```
+
+Configure path for enigma keys.
+
+```
+# Copy default enigma config
+cp data/web/rc/plugins/enigma/config.inc.php.dist data/web/rc/plugins/enigma/config.inc.php
+# Set directory for enigma key
+sed -i "/enigma_pgp_homedir/s/null/\'\/enigma-keys\'/" data/web/rc/plugins/enigma/config.inc.php
+```
+
+Create directory `data/assets/enigma-keys` and set correct permissions.
+
+```
+mkdir data/assets/enigma-keys
+# check uid and gid number
+docker-compose exec php-fpm-mailcow id www-data
+# set permissions
+chown 82:82 data/assets/enigma-keys
+```
+
+Mount `data/assets/enigma-keys` to php-fpm-mailcow container via `docker-compose.override.yml`
+
+```
+version: '2.1'
+
+services:
+ php-fpm-mailcow:
+      volumes:
+        - ./data/assets/enigma-keys:/enigma-keys:rw
+```
+
+Shutdown mailcow and start it again.
+
+```
+docker-compose down
+docker-compose up -d
+```
+
 ### Integrate CardDAV addressbooks in Roundcube
 
 Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmcarddav/) to the Roundcube plugin directory and extract it (here `rc/plugins`):
