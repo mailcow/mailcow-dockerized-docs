@@ -39,9 +39,14 @@ cd mailcow-dockerized
 ```
 
 **4\.** Change configuration if you want or need to.
+
+Carefully review the `IPV4_NETWORK` variable as this is from a template and not specific to your system.
+Set this to something that is not used by an existing Docker network (`docker network ls`)
+
 ```
 nano mailcow.conf
 ```
+
 If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.1 on port 8443 and HTTP to 127.0.0.1 on port 8080.
 
 You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-local_mta/) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
