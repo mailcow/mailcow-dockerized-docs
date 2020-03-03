@@ -33,7 +33,7 @@ Run `docker-compose up -d` to recreate affected containers automatically.
 
 ### Force renewal
 
-To force a renewal, you need to touch a file and restart `acme-mailcow`:
+To force a renewal, you need to create a file named `force_renew` and restart the `acme-mailcow` container:
 
 ```
 cd /opt/mailcow-dockerized
