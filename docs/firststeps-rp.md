@@ -234,13 +234,15 @@ nginx-mailcow:
         - traefik.http.routers.moo.tls.certresolver=le
         - traefik.http.services.moo.loadbalancer.server.port=80
         - traefik.http.routers.moo.entrypoints=websecure
+        - traefik.docker.network=traefik-network
       networks:
-        default:
-            external:
-                traefik-network:  # Your Traefik Network.
+        traefik-network: # Your Traefik Network.
         mailcow-network:
           aliases:
             - nginx
+            
+      traefik-network:
+        external: true
 ...
 ```
 
@@ -255,7 +257,7 @@ You can use the command line to run it, or use the docker-compose shown [here](h
 
 After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how [here](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate).
 
-Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / trefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.
+Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.
 
 
 ### Optional: Post-hook script for non-mailcow ACME clients
