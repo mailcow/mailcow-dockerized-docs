@@ -62,7 +62,7 @@ nav:
       - 'Configuration': 'u_e-mailcow_ui-config.md'
       - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
       - 'Spamfilter': 'u_e-mailcow_ui-spamfilter.md'
-      - 'Temporary email aliase': 'u_e-mailcow_ui-spamalias.md'
+      - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
   - 'Postfix':
