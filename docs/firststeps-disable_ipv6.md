@@ -7,7 +7,9 @@ Instead of editing docker-compose.yml directly, it is preferrable to create an o
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.
 
 To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). 
-Change ```enable_ipv6: true``` to ```enable_ipv6: false```:
+
+Change `enable_ipv6: true` to `enable_ipv6: false`:
+
 ```
 networks:
   mailcow-network:
@@ -25,10 +27,12 @@ networks:
 To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": 
 
 **NOTE:** If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!
+
 ```
 # cd /opt/mailcow-dockerized
 # touch docker-compose.override.yml
 ```
+
 Open the file in your favourite text editor and fill in the following:
 
 ```
@@ -39,7 +43,9 @@ services:
       restart: "no"
       entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
 ```
+
 For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:
+
 ```
 docker-compose down
 docker-compose up -d
