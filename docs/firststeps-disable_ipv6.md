@@ -23,12 +23,12 @@ networks:
 ```
 
 To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": 
+
+**NOTE:** If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!
 ```
 # cd /opt/mailcow-dockerized
 # touch docker-compose.override.yml
 ```
-**NOTE:** If you already have an override file, of course don't recreate it, but merge the lines below int your existing one accordingly!
-
 Open the file in your favourite text editor and fill in the following:
 
 ```
@@ -37,7 +37,7 @@ services:
 
     ipv6nat-mailcow:
       restart: "no"
-      entrypoint: ["echo", "pv6nat disabled in compose.override.yml"]
+      entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
 ```
 For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:
 ```
