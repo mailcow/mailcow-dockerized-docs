@@ -134,6 +134,9 @@ server {
 
 ### HAProxy (community supported)
 
+!!! warning
+    This is an unsupported community contribution. Feel free to provide fixes.
+
 **Important/Fixme**: This example only forwards HTTPS traffic and does not use mailcows built-in ACME client.
 
 ```
@@ -149,6 +152,9 @@ backend mailcow
 ```
 
 ### Traefik v2 (community supported)
+
+!!! warning
+    This is an unsupported community contribution. Feel free to provide fixes.
 
 **Important**: This config only covers the "reverseproxing" of the webpannel (nginx-mailcow) using Traefik v2, if you also want to reverseproxy the mail services such as dovecot, postfix... you'll just need to adapt the following config to each container and create an [EntryPoint](https://docs.traefik.io/routing/entrypoints/) on your `traefik.toml` or `traefik.yml` (depending which config you use) for each port. 
 
