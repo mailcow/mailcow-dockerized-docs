@@ -68,7 +68,7 @@ nav:
   - 'Postfix':
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
-      - 'Customize or expand main.cf': 'u_e-postfix-extra_cf.md'
+      - 'Customize/Expand main.cf': 'u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
       - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
@@ -77,6 +77,7 @@ nav:
   - 'Dovecot':
       - "(Re-)Enable any and all authenticated ACL settings": 'u_e-dovecot-any_acl.md'
       - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
+      - "Customize/Expand dovecot.conf": 'u_e-dovecot-extra_conf.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
