@@ -68,6 +68,7 @@ nav:
   - 'Postfix':
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
+      - 'Customize or expand main.cf': 'u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
       - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
