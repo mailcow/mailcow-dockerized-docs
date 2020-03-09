@@ -24,8 +24,9 @@ chmod +x /usr/local/bin/docker-compose
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
-**2\.** Make sure that Docker is stopped:
+**2\.** Stop Docker and assure Docker has stopped:
 ```
+systemctl stop docker.service
 systemctl status docker.service
 ```
     

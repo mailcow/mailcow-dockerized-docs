@@ -31,6 +31,20 @@ A wildcard name like `smtp.*` will try to obtain a smtp.DOMAIN_NAME SAN for each
 
 Run `docker-compose up -d` to recreate affected containers automatically.
 
+### Force renewal
+
+To force a renewal, you need to create a file named `force_renew` and restart the `acme-mailcow` container:
+
+```
+cd /opt/mailcow-dockerized
+touch data/assets/ssl/force_renew
+docker-compose restart acme-mailcow
+# Now check the logs for a renewal
+docker-compose logs --tail=200 -f acme-mailcow
+```
+
+The file will be deleted automatically.
+
 ### Validation errors and how to skip validation
 
 You can skip the **IP verification** by setting `SKIP_IP_CHECK=y` in mailcow.conf (no quotes). Be warned that a misconfiguration will get you ratelimited by Let's Encrypt! This is primarily useful for multi-IP setups where the IP check would return the incorrect source IP. Due to using dynamic IPs for acme-mailcow, source NAT is not consistent over restarts.

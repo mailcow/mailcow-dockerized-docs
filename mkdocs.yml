@@ -62,7 +62,7 @@ nav:
       - 'Configuration': 'u_e-mailcow_ui-config.md'
       - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
       - 'Spamfilter': 'u_e-mailcow_ui-spamfilter.md'
-      - 'Temporary email aliase': 'u_e-mailcow_ui-spamalias.md'
+      - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
   - 'Postfix':
@@ -96,7 +96,7 @@ nav:
   - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
-  - 'Re-enable TLS 1.0 upwards': 'u_e-reeanble-weak-protocols.md'
+  - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
 - 'Client Configuration':
   - 'Overview': 'client.md'
   - 'Android': 'client/client-android.md'
