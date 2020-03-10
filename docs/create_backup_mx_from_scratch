@@ -76,10 +76,85 @@ docker-compose pull
 docker-compose up -d
 ```
 
-Done!
-
 You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials `admin` + password `moohoo`.
 
 The database will be initialized right after a connection to MySQL can be established.
 
 Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker-compose down` without removing persistent data.
+
+
+**6\.** Using the Mailcow as Backup-MX
+
+**6\.1\.** Change password of user admin, in case you dod not do that (see above for the default login)
+**6\.2\.** 
+```
+Click on
+Configuration
+-- Mail Setup 
+--- Domains
+---- Add Domain
+
+Enter following Information:
+Domain: yourdomainhere.tld
+skip anything till
+Backup MX Options:
+Check both boxes
+Add Domain
+-> Repeat until the last domain
+-> Remind, its not possible to use alias domains as Backup-MX option, each domain has to be added manually
+-> On the Last Domain, use Add Domain and Restart SOGo
+```
+**6\.3\.** Add the Secondary host (Backup-MX(BMX)) as Relayhost to the Primary Host (Primary MX(PMX))
+```
+Login into your PMX
+Goto 
+- Configuration
+-- Configuration and Details
+--- Configuration
+---- Forwarding Hosts
+----- Enter the BMX as hostname
+------ Decide if you want to have the Spam Filter enabled or not.
+```
+
+**6\.4\.** Update your DNS
+MX1=PMX
+MX2=BMX
+
+```
+mx1.yourdomain.tld.          180     IN      A       192.168.0.1
+mx2.yourdomain.tld.          180     IN      A       192.168.0.2
+
+yourdomain.tld.             180     IN      MX      20 mx2.yourdomain.tld.
+yourdomain.tld.             180     IN      MX      10 mx1.yourdomain.tld.
+
+yourdomain.tld.             180     IN      TXT     "v=spf1 a mx a:mx1.yourdomain.tld a:mx2.yourdomain.tld ip4:192.168.0.1/32 ip4:192.168.0.2/32 ~all"
+```
+
+**6\.5\.** Time for drink a Coffe...
+It may take some time, that the DNS Changes to take affect (usually some minutes, but it can also take days!)
+If this is done, you can check your domainn with
+```
+dig yourdomain.tld MX
+```
+If its telling 2 Entrys (or more, if you setup more as twice) the its fine
+as Written above, it should looking like
+```
+yourdomain.tld.             180     IN      MX      20 mx2.yourdomain.tld.
+yourdomain.tld.             180     IN      MX      10 mx1.yourdomain.tld.
+``
+
+**6\.6\.** Time To Test!
+
+**6\.6\.1.\** PMX "Shutdown"
+Bring the PMX down and send an mail
+
+**6\.6\.2\** Check Queue on the BMX
+if you got now a mail fine
+if not, wait some minutes and check again
+
+**6\.6\.2\** PMX startup
+Start your stack again, and be happy ;)
+
+Original by: Unknown
+Modified by github.com/djdomi
+
