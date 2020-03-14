@@ -1,0 +1,33 @@
+## Docker Container running on the same host as mailcow
+
+Follow this instructions if you have other containers running on the same docker host as your mailcow and you want to be able to send and receive emails.
+The main problem we run in to is that docker by design separates containers from eachother and therefore with the default mailcow settings it is not possible for the container to establish a connection with mailcow.
+The solution to this problem is to attach the postfix container with a new network which will be shared with the containers that need the ability to send emails via mailcow.
+
+1. Create a new external network by typing `docker network create mailcow-external`.
+2. Go to your mailcow root folder and create a `docker-compose.override.yml` file, which will override the specific defined settings in the main `docker-compose.yml`.
+3. Add following code to the `docker-compose.override.yml`
+
+```
+version: '2.1'
+services:
+  postfix-mailcow:  
+    networks:
+      mailcow-external:
+        aliases:
+          - ${MAILCOW_HOSTNAME} #The alias should match your mailcow hostname in order to avoid ssl errors.
+
+networks:
+  mailcow-external:
+    external: true
+```
+
+4. Run `docker-compose up -d` to apply the new settings to the mailcow-postfix container.
+5. Finally attach your container(s) to the newly created mailcow-external network. The container should reach mailcow the same way as an external client would be.
+
+Please note that the `docker-compose.override.yml` file will keep working after updates. It is not recommended to apply the adjustments within the `docker-compose.yml`.
+
+
+## Container running on a separate host as mailcow
+
+Here is nothing to modify with your mailcow config. Just make sure the second host has a working connection to the mailcow host.
