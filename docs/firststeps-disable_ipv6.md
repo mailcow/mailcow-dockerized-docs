@@ -13,15 +13,9 @@ Change `enable_ipv6: true` to `enable_ipv6: false`:
 ```
 networks:
   mailcow-network:
-    driver: bridge
-    driver_opts:
-      com.docker.network.bridge.name: br-mailcow
-    enable_ipv6: true
-    ipam:
-      driver: default
-      config:
-        - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
-        - subnet: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
+    [...]
+    enable_ipv6: true # <<< set to false
+    [...]
 ```
 
 To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": 
