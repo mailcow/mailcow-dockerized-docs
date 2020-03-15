@@ -19,6 +19,9 @@ Recreate affected containers by running `docker-compose up -d`.
     Make sure you run `generate_config.sh` before you enable any site configuration examples below.
     The script `generate_config.sh` copies snake-oil certificates to the correct location, so the services will not fail to start due to missing files.
 
+!!! warning
+    If you enable TLS SNI (`ENABLE_TLS_SNI` in mailcow.conf), the certificate pathes in your reverse proxy **must** match the correct pathes in data/assets/ssl/{hostname}. The certificates will be split into `data/assets/ssl/{hostname1,hostname2,etc}` and therefore will not work when you copy the examples from below pointing to `data/assets/ssl/cert.pem` etc.
+
 !!! info
     Using the site configs below will **forward ACME requests to mailcow** and let it handle certificates itself.
     The downside of using mailcow as ACME client behind a reverse proxy is, that you will need to reload your webserver after acme-mailcow changed/renewed/created the certificate. You can either reload your webserver daily or write a script to watch the file for changes.
