@@ -28,7 +28,7 @@ autoconfig          IN CNAME   mail
 
 ## DKIM, SPF and DMARC
 
-In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.openspf.org) for further reading.
+In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.open-spf.org/) for further reading.
 
 ```
 @                   IN TXT     "v=spf1 mx ~all"
