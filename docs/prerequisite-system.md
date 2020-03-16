@@ -31,7 +31,9 @@ ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` 
 Please check if any of mailcow's standard ports are open and not in use by other applications:
 
 ```
-# netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
+ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
+# or:
+netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 ```
 
 !!! warning
