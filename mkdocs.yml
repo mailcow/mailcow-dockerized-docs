@@ -38,7 +38,7 @@ nav:
   - 'Logging': 'firststeps-logging.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
   - 'Sync Jobs Migration': 'firststeps-sync_jobs_migration.md'
-  - 'Bind To Multiple Addresses': 'firststeps-bind_to_multiple_addresses.md'
+  - 'IP bindings': 'firststeps-ip_bindings.md'
 - 'Models':
   - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'ACL': 'model-acl.md'
