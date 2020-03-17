@@ -22,22 +22,22 @@ markdown_extensions:
 nav:
 - 'Information & Support': 'index.md'
 - 'Prerequisites':
-  - 'Prepare Your System': 'prerequisite-system.md'
-  - 'DNS Setup': 'prerequisite-dns.md'
+  - 'Prepare your system': 'prerequisite-system.md'
+  - 'DNS setup': 'prerequisite-dns.md'
 - 'Installation, Update & Migration':
   - 'Installation': 'i_u_m_install.md'
   - 'Update': 'i_u_m_update.md'
   - 'Migration': 'i_u_m_migration.md'
 - 'First Steps (optional)':
-  - 'SSL': 'firststeps-ssl.md'
-  - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
+  - 'Advanced SSL': 'firststeps-ssl.md'
+  - 'Rspamd UI': 'firststeps-rspamd_ui.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
   - 'SNAT': 'firststeps-snat.md'
   - 'Disable IPv6': 'firststeps-disable_ipv6.md'
-  - 'Setup a relayhost': 'firststeps-relayhost.md'
+  - 'Relayhosts': 'firststeps-relayhost.md'
   - 'Logging': 'firststeps-logging.md'
   - 'Local MTA on Docker host': 'firststeps-local_mta.md'
-  - 'Sync Jobs Migration': 'firststeps-sync_jobs_migration.md'
+  - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
   - 'IP bindings': 'firststeps-ip_bindings.md'
 - 'Models':
   - 'Sender and receiver model': 'model-sender_rcv.md'
