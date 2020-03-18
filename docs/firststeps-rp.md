@@ -196,6 +196,7 @@ services:
     certdumper:
         image: humenius/traefik-certs-dumper
         container_name: traefik_certdumper
+        network_mode: none
         volumes:
           # mount the folder which contains Traefik's `acme.json' file
           #   in this case Traefik is started from its own docker-compose in ../traefik
