@@ -100,12 +100,12 @@ Make sure you disable mailcows internal LE client (see above).
 
 To use your own certificates, just save the combined certificate (containing the certificate and intermediate CA/CA if any) to `data/assets/ssl/cert.pem` and the corresponding key to `data/assets/ssl/key.pem`.
 
-Reload affected services afterwards:
+Restart affected services afterwards:
 
 ```
-docker exec $(docker ps -qaf name=postfix-mailcow) postfix reload
-docker exec $(docker ps -qaf name=nginx-mailcow) nginx -s reload
-docker exec $(docker ps -qaf name=dovecot-mailcow) dovecot reload
+docker restart $(docker ps -qaf name=postfix-mailcow)
+docker restart $(docker ps -qaf name=nginx-mailcow)
+docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
 See https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients for a full example script.
