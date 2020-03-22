@@ -16,11 +16,13 @@ For professional and prioritized commercial support you can sign a basic support
 
 Furthermore we do also provide a fully featured and managed mailcow [here](https://www.servercow.de/mailcow#managed). This way we take care about the technical magic underneath and you can enjoy your whole mail experience in a hassle-free way.
 
-### Community support
+### Community support and chat
 
 The other alternative is our free community-support on our various channels below. Please notice, that this support is driven by our awesome community around mailcow. This kind of support is best-effort, voluntary and there is no guarantee for anything.
 
 - Telegram @ [t.me/mailcow](https://t.me/mailcow). Desktop clients are available for [multiple platforms](https://desktop.telegram.org). You can search the groups history for keywords.
+
+- Our community (beta) @ [community.mailcow.email](https://community.mailcow.email)
 
 For **bug tracking, feature requests and code contributions** only:
 
