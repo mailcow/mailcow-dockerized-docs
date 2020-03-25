@@ -4,7 +4,7 @@ In the following, we will only assume that you have already set up NextCloud at 
 To set up authentication via mailcow, you can use OAuth2 as described below. 
 
 1. Log into mailcow as administrator.
-2. Scroll down to _OAuth2 Apps_ and click the _Add_ button. Specify the redirect URI as `https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/Mailcow` (for NextCloud 18 without `index.php`) and click _Add_. Save the client ID and secret for later.
+2. Scroll down to _OAuth2 Apps_ and click the _Add_ button. Specify the redirect URI as `https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/Mailcow` and click _Add_. Save the client ID and secret for later.
 
    !!! info
    Some installations, including those setup using the helper script of mailcow, need to remove index.php/ from the URL to get a successful redirect: `https://cloud.example.com/apps/sociallogin/custom_oauth2/Mailcow`
