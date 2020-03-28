@@ -32,6 +32,7 @@ In the example DNS zone file snippet below, a simple **SPF** TXT record is used 
 
 ```
 @                   IN TXT     "v=spf1 mx ~all"
+mail                IN TXT     "v=spf1 a ~all"
 ```
 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
