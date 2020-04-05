@@ -20,9 +20,13 @@ Furthermore we do also provide a fully featured and managed mailcow [here](https
 
 The other alternative is our free community-support on our various channels below. Please notice, that this support is driven by our awesome community around mailcow. This kind of support is best-effort, voluntary and there is no guarantee for anything.
 
-- Telegram @ [t.me/mailcow](https://t.me/mailcow). Desktop clients are available for [multiple platforms](https://desktop.telegram.org). You can search the groups history for keywords.
+- Our mailcow community @ [community.mailcow.email](https://community.mailcow.email)
 
-- Our community (beta) @ [community.mailcow.email](https://community.mailcow.email)
+- Telegram @ [t.me/mailcow](https://t.me/mailcow).
+
+- Telegram @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
+
+Telegram desktop clients are available for [multiple platforms](https://desktop.telegram.org). You can search the groups history for keywords.
 
 For **bug tracking, feature requests and code contributions** only:
 
