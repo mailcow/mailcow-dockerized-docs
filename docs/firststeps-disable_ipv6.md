@@ -8,6 +8,8 @@ and implement your changes to the service there. Unfortunately, this right now o
 
 To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). 
 
+**1.** Modify docker-compose.yml
+
 Change `enable_ipv6: true` to `enable_ipv6: false`:
 
 ```
@@ -17,6 +19,8 @@ networks:
     enable_ipv6: true # <<< set to false
     [...]
 ```
+
+**2.** Disable ipv6nat-mailcow
 
 To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": 
 
@@ -45,3 +49,18 @@ docker-compose down
 docker-compose up -d
 ```
 
+**3.** Disable IPv6 in unbound-mailcow
+
+Edit `data/conf/unbound/unbound.conf` and set `do-ip6` to "no":
+
+```
+server:
+...
+  do-ip6: no
+```
+
+Restart Unbound:
+
+```
+docker-compose restart unbound-mailcow
+```
