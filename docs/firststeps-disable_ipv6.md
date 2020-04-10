@@ -55,9 +55,9 @@ Edit `data/conf/unbound/unbound.conf` and set `do-ip6` to "no":
 
 ```
 server:
-[...]
+  [...]
   do-ip6: no
-[...]
+  [...]
 ```
 
 Restart Unbound:
