@@ -10,6 +10,8 @@ As administrator you are able to temporary disable a domain administrators TFA l
 
 The key used to login will be displayed in green, while other keys remain grey.
 
+Information on how to remove 2FA can be found [here](https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_pw/#remove-two-factor-authentication).
+
 ### Yubi OTP
 
 The Yubi API ID and Key will be checked against the Yubico Cloud API. When setting up TFA you will be asked for your personal API account for this key.
