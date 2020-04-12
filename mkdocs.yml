@@ -62,6 +62,7 @@ nav:
   - 'mailcow UI':
       - 'Configuration': 'u_e-mailcow_ui-config.md'
       - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
+      - 'Pushover': 'u_e-mailcow_ui-pushover.md'
       - 'Spamfilter': 'u_e-mailcow_ui-spamfilter.md'
       - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
