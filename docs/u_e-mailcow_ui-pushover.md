@@ -16,7 +16,7 @@ You can use Pushover to get a push notification on every mail you receive for ea
 4\. Create an Applications to get the API Token/Key which you also need to put in your mailbox settings
 
 
-5\. Optional you can add a notification title and a notification text
+5\. Optional you can edit the notification title/text and define certain sender email addresses where a push notification is triggered
 
 
 6\. Save everything and then you can verify your credentials
