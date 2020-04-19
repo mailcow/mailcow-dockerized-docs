@@ -36,7 +36,6 @@ $config['plugins'] = array(
   'archive',
   'managesieve'
 );
-$config['skin'] = 'larry';
 $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
