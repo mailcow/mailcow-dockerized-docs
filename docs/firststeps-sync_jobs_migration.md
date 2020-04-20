@@ -25,4 +25,6 @@ Sync jobs are used to copy or move existing emails from an external IMAP server 
 
 Importing from GMail will lead to duplicates. This can be prevented by using an exclude filter like 
 
-`(?i)spam|(?i)junk|\[Gmail\]\/Alle\sNachrichten|\[Gmail\]\/Markiert|\[Gmail\]\/Wichtig` (for the german version, adapt accordingly)
+`(?i)spam|(?i)junk|\[Gmail\]\/Alle\sNachrichten|\[Gmail\]\/Markiert|\[Gmail\]\/Wichtig` 
+
+(for the german version, adapt accordingly)
