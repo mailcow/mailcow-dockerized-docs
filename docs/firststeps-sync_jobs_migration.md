@@ -20,3 +20,7 @@ Sync jobs are used to copy or move existing emails from an external IMAP server 
 
 !!! info
     Once Completed, log into the mailbox and check if all emails are imported correctly. If all goes well, All your mails shall end up in your new mailbox. And don't forget to delete or deactivate the sync job after it is used.
+    
+## Syncing from GMail
+
+Importing from GMail will lead to duplicates. This can be prevented by using an exclude filter like `(?i)spam|(?i)junk|\[Gmail\]\/Alle\sNachrichten|\[Gmail\]\/Markiert|\[Gmail\]\/Wichtig` (for the german version, adapt accordingly)
