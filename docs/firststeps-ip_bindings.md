@@ -3,7 +3,7 @@
 
 ## IPv4 binding
 
-To adjust one or multiple IPv4 bindings, open `mailcow.conf` and edit one, mulitple or all variables as per your needs:
+To adjust one or multiple IPv4 bindings, open `mailcow.conf` and edit one, multiple or all variables as per your needs:
 
 ```
 # For technical reasons, http bindings are a bit different from other service bindings.

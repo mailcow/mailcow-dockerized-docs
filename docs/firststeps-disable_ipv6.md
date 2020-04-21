@@ -3,7 +3,7 @@ This is **ONLY** recommended if you do not have an IPv6 enabled network on your 
 If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.
 
-Instead of editing docker-compose.yml directly, it is preferrable to create an override file for it 
+Instead of editing docker-compose.yml directly, it is preferable to create an override file for it 
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.
 
 To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). 

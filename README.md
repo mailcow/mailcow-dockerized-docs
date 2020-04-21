@@ -2,7 +2,7 @@
 
 # mailcow: dockerized documentation
 
-This project aims to provide the mailcow: dockerized documention for the [mailcow: dockerized](https://github.com/mailcow/mailcow-dockerized) project.
+This project aims to provide the mailcow: dockerized documentation for the [mailcow: dockerized](https://github.com/mailcow/mailcow-dockerized) project.
 
 https://mailcow.github.io/mailcow-dockerized-docs
 
