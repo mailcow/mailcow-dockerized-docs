@@ -51,7 +51,7 @@ You can skip the **IP verification** by setting `SKIP_IP_CHECK=y` in mailcow.con
 
 If you encounter problems with "HTTP validation", but your IP confirmation succeeds, you are most likely using firewalld, ufw or any other firewall, that disallows connections from `br-mailcow` to your external interface. Both firewalld and ufw disallow this by default. It is often not enough to just stop these firewall services. You'd need to stop mailcow (`docker-compose down`), stop the firewall service, flush the chains and restart Docker.
 
-You can also skip this validation method by setting `SKIP_HTTP_VERIFICATION=y` in "mailcow.conf". Be warned that this is discouraged. Some DNS validations (like TLSA lookups) in mailcow UI will fail.
+You can also skip this validation method by setting `SKIP_HTTP_VERIFICATION=y` in "mailcow.conf". Be warned that this is discouraged. In most cases, the HTTP verification is skipped to workaround unknown NAT reflection issues, which are not resolved by ignoring this specific network misconfiguration. If you encounter problems generating TLSA records in the DNS overview within mailcow, you are most likely having issues with NAT reflection you should fix.
 
 If you changed a SKIP_* parameter, run `docker-compose up -d` to apply your changes.
 
