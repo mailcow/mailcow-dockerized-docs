@@ -125,7 +125,7 @@ Please note, that this preset only integrates the default addressbook (the one t
 
 Enable the plugin by adding `carddav` to `$config['plugins']` in `rc/config/config.inc.php`.
 
-If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks are accessable, append `$config['address_book_type'] = '';` to the config file `data/web/rc/config/config.inc.php`.
+If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks are accessible, append `$config['address_book_type'] = '';` to the config file `data/web/rc/config/config.inc.php`.
 
 ---
 

@@ -62,7 +62,7 @@ If you experience connection problems from home, please check your ISP router's 
 
 While Linux users can chose from a variety of tools[^1] to check if a port is open, the Windows user has only the command `telnet host port` available by default (and it has to be activated since Windows Vista).
 
-To enable telnet on a Windows after Vista please check this [guide](https://social.technet.microsoft.com/wiki/contents/articles/910.windows-7-enabling-telnet-client.aspx) or enter the following command in an terminal **with administrator priviliges**:
+To enable telnet on a Windows after Vista please check this [guide](https://social.technet.microsoft.com/wiki/contents/articles/910.windows-7-enabling-telnet-client.aspx) or enter the following command in an terminal **with administrator privileges**:
 
 ```
 dism /online /Enable-Feature /FeatureName:TelnetClient

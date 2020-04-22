@@ -86,7 +86,7 @@ NTP synchronized: yes
                   Sun 2017-10-29 02:00:00 CET
 ```
 
-The lines `NTP enabled: yes` and `NTP synchronized: yes` indicate wether you have NTP enabled and if it's synchronized.
+The lines `NTP enabled: yes` and `NTP synchronized: yes` indicate whether you have NTP enabled and if it's synchronized.
 
 To enable NTP you need to run the command `timedatectl set-ntp true`. You also need to edit your `/etc/systemd/timesyncd.conf`:
 

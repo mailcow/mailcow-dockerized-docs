@@ -20,7 +20,7 @@ Recreate affected containers by running `docker-compose up -d`.
     The script `generate_config.sh` copies snake-oil certificates to the correct location, so the services will not fail to start due to missing files.
 
 !!! warning
-    If you enable TLS SNI (`ENABLE_TLS_SNI` in mailcow.conf), the certificate pathes in your reverse proxy **must** match the correct pathes in data/assets/ssl/{hostname}. The certificates will be split into `data/assets/ssl/{hostname1,hostname2,etc}` and therefore will not work when you copy the examples from below pointing to `data/assets/ssl/cert.pem` etc.
+    If you enable TLS SNI (`ENABLE_TLS_SNI` in mailcow.conf), the certificate paths in your reverse proxy **must** match the correct paths in data/assets/ssl/{hostname}. The certificates will be split into `data/assets/ssl/{hostname1,hostname2,etc}` and therefore will not work when you copy the examples from below pointing to `data/assets/ssl/cert.pem` etc.
 
 !!! info
     Using the site configs below will **forward ACME requests to mailcow** and let it handle certificates itself.
@@ -215,7 +215,7 @@ networks:
 Start the new containers with `docker-compose up -d`.
 
 
-Now, theres only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have [this tiny container](https://hub.docker.com/r/humenius/traefik-certs-dumper) which grabs the `acme.json` file trough a volume, and a variable `DOMAIN=example.org`, and with these, the container will output the `cert.pem` and `key.pem` files, for this we'll simply run the `traefik-certs-dumper` container binding the `/traefik` volume to the folder where our `acme.json` is saved, bind the `/output` volume to our mailcow `data/assets/ssl/` folder, and set up the `DOMAIN=example.org` variable to the domain we want the certs dumped from. 
+Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have [this tiny container](https://hub.docker.com/r/humenius/traefik-certs-dumper) which grabs the `acme.json` file trough a volume, and a variable `DOMAIN=example.org`, and with these, the container will output the `cert.pem` and `key.pem` files, for this we'll simply run the `traefik-certs-dumper` container binding the `/traefik` volume to the folder where our `acme.json` is saved, bind the `/output` volume to our mailcow `data/assets/ssl/` folder, and set up the `DOMAIN=example.org` variable to the domain we want the certs dumped from. 
 
 This container will watch over the `acme.json` file for any changes, and regenerate the `cert.pem` and `key.pem` files directly into `data/assets/ssl/` being the path binded to the container's `/output` path.
 
@@ -229,7 +229,7 @@ Aaand that should be it 😊, you can check if the Traefik router works fine tro
 ### Optional: Post-hook script for non-mailcow ACME clients
 
 Using a local certbot (or any other ACME client) requires to restart some containers, you can do this with a post-hook script.
-Make sure you change the pathes accordingly:
+Make sure you change the paths accordingly:
 ```
 #!/bin/bash
 cp /etc/letsencrypt/live/my.domain.tld/fullchain.pem /opt/mailcow-dockerized/data/assets/ssl/cert.pem
