@@ -93,7 +93,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 10 12 13 23 37"
+``` hl_lines="4 10 12 13 29 43"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -114,6 +114,12 @@ server {
   ssl_protocols TLSv1.2;
   ssl_ciphers HIGH:!aNULL:!MD5:!SHA1:!kRSA;
   ssl_prefer_server_ciphers off;
+
+  # Recommended ssl settings if your system supports it
+  # See https://ssl-config.mozilla.org/#server=nginx for latest ssl settings recommendations
+  #ssl_protocols TLSv1.2 TLSv1.3;
+  #ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+  #ssl_prefer_server_ciphers off;
 
   location /Microsoft-Server-ActiveSync {
     proxy_pass http://127.0.0.1:8080/Microsoft-Server-ActiveSync;
