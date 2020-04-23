@@ -1,5 +1,5 @@
-   !!! warning
-   Changing the binding does not affect source NAT. See [SNAT](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-snat/) for required steps.
+!!! warning
+    Changing the binding does not affect source NAT. See [SNAT](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-snat/) for required steps.
 
 ## IPv4 binding
 
