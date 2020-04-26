@@ -93,7 +93,7 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 
 **Take care of highlighted lines.**
 
-``` hl_lines="4 10 12 13 18 32"
+``` hl_lines="4 10 12 13 25 39"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -101,14 +101,21 @@ server {
   return 301 https://$host$request_uri;
 }
 server {
-  listen 443 ssl;
-  listen [::]:443 ssl;
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
   server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers HIGH:!aNULL:!MD5;
+  ssl_session_timeout 1d;
+  ssl_session_cache shared:SSL:50m;
+  ssl_session_tickets off;
+
+  # See https://ssl-config.mozilla.org/#server=nginx for the latest ssl settings recommendations
+  # An example config is given below
+  ssl_protocols TLSv1.2;
+  ssl_ciphers HIGH:!aNULL:!MD5:!SHA1:!kRSA;
+  ssl_prefer_server_ciphers off;
 
   location /Microsoft-Server-ActiveSync {
     proxy_pass http://127.0.0.1:8080/Microsoft-Server-ActiveSync;
@@ -125,12 +132,12 @@ server {
   }
 
   location / {
-      proxy_pass http://127.0.0.1:8080/;
-      proxy_set_header Host $http_host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-      client_max_body_size 0;
+    proxy_pass http://127.0.0.1:8080/;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    client_max_body_size 0;
   }
 }
 ```
