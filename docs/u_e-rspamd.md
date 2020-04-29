@@ -81,19 +81,42 @@ docker-compose exec rspamd-mailcow rspamadm --help
 
 ## Disable Greylisting
 
-You can disable rspamd's greylisting server-wide by editing:
+Only messages with a higher score will be considered to be greylisted (soft rejected). It is bad practice to disable greylisting.
+
+You can disable greylisting server-wide by editing:
 
 `{mailcow-dir}/data/conf/rspamd/local.d/greylist.conf`
 
-Simply add the line:
+Add the line:
 
 ```cpp
 enabled = false;
 ```
 
-Save the file and then restart the rspamd container.
+Save the file and restart "rspamd-mailcow": `docker-compose restart rspamd-mailcow`
 
-See [Rspamd documentation](https://rspamd.com/doc/index.html)
+## Spam filter thresholds (global)
+
+Each user is able to change [their spam rating individually](https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-spamfilter/). To define a new **server-wide** limit, edit `data/conf/rspamd/local.d/actions.conf`:
+
+```cpp
+reject = 15;
+add_header = 8;
+greylist = 7;
+```
+
+Save the file and restart "rspamd-mailcow": `docker-compose restart rspamd-mailcow`
+
+Existing settings of users will not be overwritten!
+
+To reset custom defined thresholds, run:
+
+```
+source mailcow.conf
+docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel';"
+# or:
+# docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel' and object = 'only-this-mailbox@example.org';"
+```
 
 ## Custom reject messages
 
