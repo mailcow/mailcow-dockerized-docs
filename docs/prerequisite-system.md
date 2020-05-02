@@ -1,7 +1,7 @@
 Before you run **mailcow: dockerized**, there are a few requirements that you should check:
 
 !!! warning
-    When running mailcow: dockerized on a Debian 8 (Jessie) box, you should [switch to kernel 4.9 from Jessie backports](https://packages.debian.org/jessie-backports/linux-image-amd64) to avoid a bug when running Docker containers with *healthchecks*! For more details read: [github.com/docker/docker/issues/30402](https://github.com/docker/docker/issues/30402). Running mailcow on Debian Jessie is discouraged.
+    Do not try to install mailcow on a Synology/QNAP device (any NAS), OpenVZ, LXC or other container platforms. KVM, ESX, Hyper-V and other full virtualization platforms are supported.
 
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
