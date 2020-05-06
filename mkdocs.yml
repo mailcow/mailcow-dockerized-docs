@@ -29,6 +29,7 @@ nav:
   - 'Update': 'i_u_m_update.md'
   - 'Migration': 'i_u_m_migration.md'
 - 'First Steps (optional)':
+  - 'Untrust RFC 1918': 'firststeps-rfc-1918.md'
   - 'Advanced SSL': 'firststeps-ssl.md'
   - 'Rspamd UI': 'firststeps-rspamd_ui.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
