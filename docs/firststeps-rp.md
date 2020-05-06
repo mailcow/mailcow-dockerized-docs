@@ -13,6 +13,8 @@ This will also change the bindings inside the Nginx container! This is important
 
 **IMPORTANT:** Do not use port 8081, 9081 or 65510!
 
+**IMPORTANT:** If you use a reverse proxy for SMTP TCP ports, make sure to check the postfix relay configuration. By default, mailcow considers all internal networks (i.e., 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) as trusted and relays all traffic coming from there.
+
 Recreate affected containers by running `docker-compose up -d`.
 
 !!! warning
