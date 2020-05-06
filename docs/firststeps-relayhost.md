@@ -2,6 +2,12 @@ As of September 12, 2018 you can setup relayhosts as admin by using the mailcow 
 
 This is useful if you want to relay outgoing emails for a specific domain to a third-party spam filter or a service like Mailgun or Sendgrid. This is also known as a _smarthost_.
 
+## Private networks (RC1918)
+
+Per default, mailcow considers all private RFC1918 networks (i.e. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) as trusted. Though it is reasonable in most cases, you may want to restrict this setting under certain circumstances. In particular, if you are using some kind of reverse proxy for SMTP TCP ports. If your reverse proxy host is located in a private net, mailcow will consider all traffic from it as trusted, which may result in an open relay. 
+
+To change this behaviour override the default value of `mynetworks` parameter through the `data/conf/postfix/extra.cf` configuration file.
+
 ## Add a new relayhost
 Go to the `Routing` tab of the `Configuration and Details` section of the admin UI.
 Here you will see a list of relayhosts currently setup.
