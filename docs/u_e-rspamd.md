@@ -173,3 +173,16 @@ Then restart the clamd-mailcow service container in the mailcow UI, or using doc
 docker-compose restart clamd-mailcow
 ```
 
+## Discard instead of reject
+
+If you want to silently drop a message, create or edit the file `data/conf/rspamd/override.d/worker-proxy.custom.inc` and add the following content:
+
+```
+discard_on_reject = true;
+```
+
+Restart Rspamd:
+
+```bash
+docker-compose restart rspamd-mailcow
+```
