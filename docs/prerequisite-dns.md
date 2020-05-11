@@ -31,7 +31,7 @@ autoconfig          IN CNAME   mail
 In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.open-spf.org/) for further reading.
 
 ```
-@                   IN TXT     "v=spf1 mx ~all"
+@                   IN TXT     "v=spf1 mx a -all"
 ```
 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
