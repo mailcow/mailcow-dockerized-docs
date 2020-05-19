@@ -25,13 +25,15 @@ chmod +x /usr/local/bin/docker-compose
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
-**2\.** Clone the master branch of the repository, make sure your umask equals 0022.
+**2\.** Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while boostrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. **We drop permissions for every exposed application** and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.
+
 ```
-umask
-# 0022
-cd /opt
-git clone https://github.com/mailcow/mailcow-dockerized
-cd mailcow-dockerized
+$ su
+# umask
+0022 # <- Verify it is 0022
+# cd /opt
+# git clone https://github.com/mailcow/mailcow-dockerized
+# cd mailcow-dockerized
 ```
 
 **3\.** Generate a configuration file. Use a FQDN (`host.domain.tld`) as hostname when asked.
