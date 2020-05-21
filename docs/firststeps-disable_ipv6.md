@@ -65,3 +65,17 @@ Restart Unbound:
 ```
 docker-compose restart unbound-mailcow
 ```
+
+**4.** Disable IPv6 in postfix-mailcow
+
+Create `data/conf/postfix/extra.cf` and set `smtp_address_preference` to `ipv4`:
+
+```
+smtp_address_preference = ipv4
+```
+
+Restart Postfix:
+
+```
+docker-compose restart postfix-mailcow
+```
