@@ -27,3 +27,5 @@ Search...
       (example.org, example.com, example.net)
     );
 ```
+
+Restart SOGo: `docker-compose restart sogo-mailcow`
