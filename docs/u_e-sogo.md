@@ -29,3 +29,10 @@ Search...
 ```
 
 Restart SOGo: `docker-compose restart sogo-mailcow`
+
+## Disable password changing
+
+Edit `data/conf/sogo/sogo.conf` and **change** `SOGoPasswordChangeEnabled` to `NO`. Please do not add a new parameter.
+
+Run `docker-compose restart sogo-mailcow memcached-mailcow` to activate the changes.
+
