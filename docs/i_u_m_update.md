@@ -21,11 +21,20 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 # - Check for updates
 ./update.sh --check
 
+# Do not try to update docker-compose, **make sure to use the latest docker-compose available**
+./update.sh --no-update-compose
+
 # - Do not start mailcow after applying an update
 ./update.sh --skip-start
 
+# - Force update (unattended, but unsupported, use at own risk)
+./update.sh --force
+
+# - Run garbage collector to cleanup old image tags and exit
+./update.sh --gc
+
 # - Update with merge strategy "ours" instead of "theirs" 
-#   This will merge in favor for your local changes.
+#   This will merge in favor for your local changes, should be avoided
 ./update.sh --ours
 
 # - Don't update, but prefetch images and exit
