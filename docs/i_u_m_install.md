@@ -18,6 +18,8 @@ systemctl start docker.service
 ```
 
 - Docker-Compose
+**Use the latest docker-compose available** if you don't want to run the commands below.
+Do **not** use deprecated versions that come with your distro.
 ```
 curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
