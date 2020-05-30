@@ -33,8 +33,8 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 # - Run garbage collector to cleanup old image tags and exit
 ./update.sh --gc
 
-# - Update with merge strategy "ours" instead of "theirs" 
-#   This will merge in favor for your local changes, should be avoided
+# - Update with merge strategy option "ours" instead of "theirs"
+#   This will **solve conflicts** when merging in favor for your local changes and should be avoided. Local changes will always be kept, unless we changed file XY, too.
 ./update.sh --ours
 
 # - Don't update, but prefetch images and exit
