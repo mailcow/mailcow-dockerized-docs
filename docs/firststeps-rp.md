@@ -187,7 +187,7 @@ services:
       labels:
         - traefik.enable=true
         # Creates a router called "moo" for the container, and sets up a rule to link the container to certain rule,
-        #   in this case, a Host rule with our MAILCOW_HOSTNAME var.
+        #   in this case, a Host rule with our MAILCOW_HOStraefik.docker.network=proxyTNAME var.
         - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
         # Enables tls over the router we created before.
         - traefik.http.routers.moo.tls=true
@@ -199,6 +199,8 @@ services:
         # Specifies which entrypoint (external port) should traefik listen to, for this container.
         #   websecure being port 443, check the traefik.toml file liked above.
         - traefik.http.routers.moo.entrypoints=secure
+        # Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network
+        - traefik.docker.network=web
 
     certdumper:
         image: humenius/traefik-certs-dumper
