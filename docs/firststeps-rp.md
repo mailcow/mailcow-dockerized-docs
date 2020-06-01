@@ -187,7 +187,7 @@ services:
       labels:
         - traefik.enable=true
         # Creates a router called "moo" for the container, and sets up a rule to link the container to certain rule,
-        #   in this case, a Host rule with our MAILCOW_HOStraefik.docker.network=proxyTNAME var.
+        #   in this case, a Host rule with our MAILCOW_HOSTNAME var.
         - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
         # Enables tls over the router we created before.
         - traefik.http.routers.moo.tls=true
