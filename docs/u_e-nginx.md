@@ -4,7 +4,7 @@ To create persistent (over updates) sites hosted by mailcow: dockerized, a new s
 nano data/conf/nginx/my_custom_site.conf
 ```
 
-A good template to begin with.
+A good template to begin with:
 
 ``` hl_lines="9"
 server {
