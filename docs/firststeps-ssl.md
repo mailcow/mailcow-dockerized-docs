@@ -126,3 +126,10 @@ echo "Q" | openssl s_client -starttls imap -showcerts -connect mx.mailcow.email:
 # Connect via HTTPS (443)
 echo "Q" | openssl s_client -connect mx.mailcow.email:443
 ```
+
+To validate the expiry dates as returned by openssl against MAILCOW_HOSTNAME, you are able to use our helper script:
+
+```
+cd /opt/mailcow-dockerized
+bash helper-scripts/expiry-dates.sh
+```
