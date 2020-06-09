@@ -19,8 +19,8 @@ Please make sure that your system has at least the following resources:
 | Resource                | mailcow: dockerized                          |
 | ----------------------- | -------------------------------------------- |
 | CPU                     | 1 GHz                                        |
-| RAM                     | 3 GiB + Swap (better: 4 GiB and more + Swap) |
-| Disk                    | 15 GiB (without emails)                      |
+| RAM                     | Minimum 4 GiB + Swap                         |
+| Disk                    | 20 GiB (without emails)                      |
 | System Type             | x86_64                                       |
 
 As of today (29th Dec 2019), we recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04.
