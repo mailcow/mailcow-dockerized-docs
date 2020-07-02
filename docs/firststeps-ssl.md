@@ -19,7 +19,7 @@ If you want to re-run the ACME client, use `docker-compose restart acme-mailcow`
 
 Edit "mailcow.conf" and add a parameter `ADDITIONAL_SAN` like this:
 
-Do not use quotes (`"`)!
+Do not use quotes (`"`) and do not use spaces between the names!
 
 ```
 ADDITIONAL_SAN=smtp.*,cert1.example.com,cert2.example.org,whatever.*
