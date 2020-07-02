@@ -44,7 +44,18 @@ $config['enable_installer'] = true;
 $config['smtp_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
+$config['db_prefix'] = 'mailcow_rc1';
+```
 
+Point your browser to `https://myserver/rc/installer` and follow the instructions.
+Initialize the database and leave the installer.
+
+**Delete the directory `data/web/rc/installer` after a successful installation!**
+
+### Configure ManageSieve filtering
+
+Open `data/web/rc/plugins/managesieve/config.inc.php` and change the following parameters (or add them at the bottom of that file):
+```
 $config['managesieve_port'] = 4190;
 $config['managesieve_host'] = 'tls://dovecot';
 $config['managesieve_conn_options'] = array(
@@ -55,14 +66,7 @@ $config['managesieve_conn_options'] = array(
 // 1 - add Vacation section,
 // 2 - add Vacation section, but hide Filters section
 $config['managesieve_vacation'] = 1;
-$config['db_prefix'] = 'mailcow_rc1';
-
 ```
-
-Point your browser to `https://myserver/rc/installer` and follow the instructions.
-Initialize the database and leave the installer.
-
-**Delete the directory `data/web/rc/installer` after a successful installation!**
 
 ### Enable change password function in Roundcube
 
