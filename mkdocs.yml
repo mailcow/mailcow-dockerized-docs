@@ -80,7 +80,7 @@ nav:
   - 'Dovecot':
       - 'Enable "any" ACL settings': 'u_e-dovecot-any_acl.md'
       - 'Public folders': 'u_e-dovecot-public_folder.md'
-      - 'Expunge a User's Mails': 'u_e-dovecot-expunge.md'
+      - 'Expunge a Users mails': 'u_e-dovecot-expunge.md'
       - 'Customize/Expand dovecot.conf': 'u_e-dovecot-extra_conf.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
