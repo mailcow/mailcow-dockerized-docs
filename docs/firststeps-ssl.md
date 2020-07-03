@@ -110,6 +110,24 @@ docker restart $(docker ps -qaf name=dovecot-mailcow)
 
 See https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients for a full example script.
 
+### Test against staging ACME directory
+
+Edit `mailcow.conf` and add `LE_STAGING=y`.
+
+Run `docker-compose up -d` to activate your changes.
+
+### Custom directory URL
+
+Edit `mailcow.conf` and add the corresponding directory URL to the new variable `DIRECTORY_URL`:
+
+```
+DIRECTORY_URL=https://acme-custom-v9000.api.letsencrypt.org/directory
+```
+
+You cannot use `LE_STAGING` with `DIRECTORY_URL`. If both are set, only `LE_STAGING` is used.
+
+Run `docker-compose up -d` to activate your changes.
+
 ### Check your configuration
 
 Run `docker-compose logs acme-mailcow` to find out why a validation fails.
