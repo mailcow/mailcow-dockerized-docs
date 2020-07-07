@@ -39,6 +39,6 @@ authenticated kxeilprwts
 
 `kxeilprwts` equals to `lookup read write write-seen write-deleted insert post delete expunge create`.
 
-You can use `doveadm acl set -u user@domain "Public/Develcow" user=user@domain lookup read` to limit access for a single user. You may also turn it around to limit access for all users to "lr" while only some users are allowed full access.
+You can use `doveadm acl set -u user@domain "Public/Develcow" user=user@domain lookup read` to limit access for a single user. You may also turn it around to limit access for all users to "lr" and grant only some users full access.
 
 See [Dovecot ACL](https://doc.dovecot.org/settings/plugin/acl/) for further information about ACL.
