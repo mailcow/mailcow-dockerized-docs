@@ -25,6 +25,16 @@ To allow all authenticated users access full to that new mailbox, run:
 docker-compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create
 ```
 
-Adjust the command to your needs if you like to assign more granular rights per user.
+Adjust the command to your needs if you like to assign more granular rights per user (use `-u user@domain` instead of `-A` for example).
+
+To allow all authenticated users access full access to the whole public namespace and its subfolders, create a new `dovecot-acl` file in the namespace root directory:
+
+Open/edit/create `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/public/dovecot-acl` (adjust the path accordingly) to create the global ACL file with the following content:
+
+```
+authenticated kxeilprwts
+```
+
+`kxeilprwts` equals to `lookup read write write-seen write-deleted insert post delete expunge create`.
 
 See [Dovecot ACL](https://doc.dovecot.org/settings/plugin/acl/) for further information about ACL.
