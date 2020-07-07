@@ -27,7 +27,7 @@ docker-compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authen
 
 Adjust the command to your needs if you like to assign more granular rights per user (use `-u user@domain` instead of `-A` for example).
 
-### Allow authenticated users access to the whole public namespace
+## Allow authenticated users access to the whole public namespace
 
 To allow all authenticated users access full access to the whole public namespace and its subfolders, create a new `dovecot-acl` file in the namespace root directory:
 
