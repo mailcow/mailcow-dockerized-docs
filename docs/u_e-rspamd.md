@@ -186,3 +186,19 @@ Restart Rspamd:
 ```bash
 docker-compose restart rspamd-mailcow
 ```
+
+## Wipe all ratelimit keys
+
+If you don't want to use the UI and instead wipe all keys in the Redis database, you can use redis-cli for that task:
+
+```
+docker-compose exec redis-mailcow sh
+# Unlink (available in Redis >=4.) will delete in the backgronud
+redis-cli --scan --pattern RL* | xargs redis-cli unlink
+```
+
+Restart Rspamd:
+
+```bash
+docker-compose exec redis-mailcow sh
+```
