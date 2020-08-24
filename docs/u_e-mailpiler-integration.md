@@ -19,15 +19,16 @@ With hooking into the authentication process of mailpiler this fires API request
 
 ## The solution
 
-Paths might depend on your particular setup.
+Note: File paths might vary depending on your setup.
 
 ### Requirements
 
-- A working Mailcow instance
+- A working mailcow instance
 - A working mailpiler instance
 - An mailcow API key (read-only works just fine): `Configuration & Details - Access - Read-Only Access`. Don't forget to allow API access from your mailpiler IP.
 
-**Important note**: As mailpiler authenticates against mailcow, our IMAP server, failed logins of users or bots might trigger a block for your mailpiler instance. Therefore you might want to consider whitelisting the IP address of the mailpiler instance within mailcow: `Configuration & Details - Configuration - Fail2ban parameters - Whitelisted networks/hosts`.
+!!! warning
+    As mailpiler authenticates against mailcow, our IMAP server, failed logins of users or bots might trigger a block for your mailpiler instance. Therefore you might want to consider whitelisting the IP address of the mailpiler instance within mailcow: `Configuration & Details - Configuration - Fail2ban parameters - Whitelisted networks/hosts`.
 
 ### Setup
 
@@ -51,4 +52,8 @@ Paths might depend on your particular setup.
     curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
     ```
 
-3. Then you need to re-login for changes to take effect. If it doesn't work, something's wrong with the API query itself. Consider debugging by sending manual API requests to the API.
+3. Done!
+
+   Make sure to re-login with your IMAP credentials for changes to take effect.
+
+   If it doesn't work, most likely something's wrong with the API query itself. Consider debugging by sending manual API requests to the API. (Tip: Open `https://mail.domain.tld/api` on your instance)
