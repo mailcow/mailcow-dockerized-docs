@@ -15,7 +15,10 @@ $config['IMAP_SSL'] = true;
 
 So when you log in using `patrik@example.com`, you will only see delivered emails sent from or to this specific email address. When additional aliases are defined in mailcow, like `team@example.com`, you won't see emails sent from or to this email even the fact you're a recipient of mails sent to this alias.
 
-With hooking into the authentication process of mailpiler this fires API requests to the mailcow API (requiring read-only API access) to read out the aliases your email address participates. Beside that, it will also read the "Name" of the mailbox specified to display it on the top-right of mailpiler after login.
+By hooking into the authentication process of mailpiler, we are able to get required data via the mailcow API during login. This fires API requests to the mailcow API (requiring read-only API access) to read out the aliases your email address participates and also the "Name" of the mailbox specified to display it on the top-right of mailpiler after login.
+
+!!! info
+    This is only pulled once during the authentication process. The authorized aliases and the realname are valid for the whole duration of the user session as mailpiler sets them in the session data. If user is removed from specific alias, this will only take effect after next login.
 
 ## The solution
 
