@@ -68,6 +68,7 @@ nav:
       - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
+      - 'Mailpiler Integration': 'u_e-mailpiler-integration.md'
   - 'Postfix':
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
