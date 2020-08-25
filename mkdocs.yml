@@ -68,7 +68,6 @@ nav:
       - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
-      - 'Mailpiler Integration': 'u_e-mailpiler-integration.md'
   - 'Postfix':
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
@@ -103,6 +102,7 @@ nav:
   - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
   - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
+  - 'Mailpiler Integration': 'u_e-mailpiler-integration.md'
 - 'Client Configuration':
   - 'Overview': 'client.md'
   - 'Android': 'client/client-android.md'
