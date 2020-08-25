@@ -30,7 +30,7 @@ Note: File paths might vary depending on your setup.
 ### Requirements
 
 - A working mailcow instance
-- A working mailpiler instance
+- A working mailpiler instance ([You can find an installation guide here](https://patrik.kernstock.net/2020/08/mailpiler-installation-guide/))
 - An mailcow API key (read-only works just fine): `Configuration & Details - Access - Read-Only Access`. Don't forget to allow API access from your mailpiler IP.
 
 !!! warning
