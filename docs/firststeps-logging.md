@@ -45,13 +45,25 @@ If you want to change the logging driver globally, edit Dockers daemon configura
 ```
 {
 ...
-    "log-driver": "gelf",
-    "log-opts": {
-        "gelf-address": "udp://graylog:12201"
-    }
+  "log-driver": "gelf",
+  "log-opts": {
+    "gelf-address": "udp://graylog:12201"
+  }
 ...
 }
+```
 
+For Syslog:
+
+```
+{
+...
+  "log-driver": "syslog",
+  "log-opts": {
+    "syslog-address": "udp://1.2.3.4:514"
+  }
+...
+}
 ```
 
 Restart the Docker daemon and run `docker-compose down && docker-compose up -d` to recreate the containers with the new logging driver.
