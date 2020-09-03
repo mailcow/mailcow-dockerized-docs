@@ -43,7 +43,7 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
 
 **Take care of highlighted lines.**
 
-``` apache hl_lines="2 10 11 17 22 23 24 25 30 31 32"
+``` apache hl_lines="2 10 11 17 22 23 24 25 30 31"
 <VirtualHost *:80>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
@@ -73,7 +73,6 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   ProxyAddHeaders On
   RequestHeader set X-Forwarded-Proto "https"
 
-  SSLEngine on
   SSLCertificateFile MAILCOW_PATH/data/assets/ssl/cert.pem
   SSLCertificateKeyFile MAILCOW_PATH/data/assets/ssl/key.pem
 
@@ -87,6 +86,8 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   #SSLProxyCheckPeerExpire off
 </VirtualHost>
 ```
+
+Note: In some cases, `SSLEngine` must be explicitly set to `On` in your SSL VirtualHost-Config.
 
 ### Nginx
 
