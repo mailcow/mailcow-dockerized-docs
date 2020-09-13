@@ -74,7 +74,8 @@ This provides best compatibility but means the Let's Encrypt limit exceeds if yo
 
 To solve this, you can configure `ENABLE_SSL_SNI` to generate:
 * A main server certificate with `MAILCOW_HOSTNAME` and all fully qualified domain names in the `ADDITIONAL_SAN` config
-* One additional certificate for each domain found in the database with autodiscover.*, autoconfig.* and any other `ADDITIONAL_SAN` configured in this format (subdomain.*)
+* One additional certificate for each domain found in the database with autodiscover.*, autoconfig.* and any other `ADDITIONAL_SAN` configured in this format (subdomain.*).
+* Limitations: A certificate name `ADDITIONAL_SAN=test.example.com` will be added as SAN to the main certificate. A separate certificate/key pair will **not** be generated for this format.
 
 Postfix, Dovecot and Nginx will then serve these certificates with SNI.
 
