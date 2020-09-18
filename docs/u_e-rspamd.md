@@ -167,10 +167,18 @@ To whitelist this particular signature (and enable sending this type of file att
 echo 'PUA.Pdf.Trojan.EmbeddedJavaScript-1' >> data/conf/clamav/whitelist.ign2
 ```
 
-Then restart the clamd-mailcow service container in the mailcow UI, or using docker-compose:
+Then restart the clamd-mailcow service container in the mailcow UI or using docker-compose:
 
 ```bash
 docker-compose restart clamd-mailcow
+```
+
+Cleanup cached ClamAV results in Redis:
+
+```
+# docker-compose exec redis-mailcow  /bin/sh
+/data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
+/data # exit
 ```
 
 ## Discard instead of reject
