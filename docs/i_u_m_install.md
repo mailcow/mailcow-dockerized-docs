@@ -18,8 +18,11 @@ systemctl start docker.service
 ```
 
 - Docker-Compose
-**Use the latest docker-compose available** if you don't want to run the commands below.
-Do **not** use deprecated versions that come with your distro.
+
+!!! warning
+    **mailcow requires the latest version of docker-compose.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the latest version.
+    _Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
+    
 ```
 curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
