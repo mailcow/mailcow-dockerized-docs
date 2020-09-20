@@ -21,7 +21,7 @@ services:
 2\. Create `data/conf/nginx/site.gogs.custom`, add:
 ```
 location /gogs/ {
-    proxy_pass http://gogs:3000/;
+    proxy_pass http://gogs:4000/;
 }
 ```
 
