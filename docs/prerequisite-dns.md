@@ -37,7 +37,7 @@ In the example DNS zone file snippet below, a simple **SPF** TXT record is used 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
 
 ```
-dkim._domainkey  IN TXT     "v=DKIM1; k=rsa; t=s; s=email; p=..."
+dkim._domainkey     IN TXT     "v=DKIM1; k=rsa; t=s; s=email; p=..."
 ```
 
 The last step in protecting yourself and others is the implementation of a **DMARC** TXT record, for example by using the [DMARC Assistant](http://www.kitterman.com/dmarc/assistant.html) ([check](https://dmarcian.com/dmarc-inspector/google.com)).
