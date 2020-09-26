@@ -40,6 +40,11 @@ This useful in case:
 - you want to check that your DMARC Reports send correctly, e.g.: check that they signed by DKIM, etc.
 - you want to analyze own reports to get statics data, f.e: use with ParseDMARC or other analytic system
 
+**Important:**
+
+Future `additional_address_bcc` is broken, lead to not sending reports to `additional_address` even while it `false`.
+Do not add this option to `dmarc.conf` till bug https://github.com/rspamd/rspamd/issues/3465 will be resolved and fixed version will be used in mailcow.
+
 ## DMARC Force actions 
 This module also allows to enable force actions based on sender DMARC policy to reject or quarantine emails which has failed policy.
 This good from security point, but not allow whitelist broken senders. This up to your choice enable it or not.
