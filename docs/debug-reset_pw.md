@@ -69,9 +69,9 @@ MariaDB [(none)]> SELECT user FROM mysql.user;
 2 rows in set (0.00 sec)
 
 MariaDB [(none)]> FLUSH PRIVILEGES;
-MariaDB [(none)]> ALTER USER 'mailcow'@'%' IDENTIFIED BY 'FB6RsEqbfxjc10MqVt5hGpf3zk0F';
-MariaDB [(none)]> ALTER USER 'root'@'%' IDENTIFIED BY 'kRFU4SG9ZTWAS7vMd3Nh4uTkk7Ns';
-MariaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY 'kRFU4SG9ZTWAS7vMd3Nh4uTkk7Ns';
+MariaDB [(none)]> ALTER USER 'mailcow'@'%' IDENTIFIED BY 'mookuh';
+MariaDB [(none)]> ALTER USER 'root'@'%' IDENTIFIED BY 'gotr00t';
+MariaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY 'gotr00t';
 MariaDB [(none)]> FLUSH PRIVILEGES;
 ```
 
