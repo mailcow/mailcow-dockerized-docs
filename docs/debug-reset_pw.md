@@ -36,6 +36,8 @@ MariaDB [(none)]> show databases;
 
 ### 2\. Reset one or more users
 
+#### 2\.1 Maria DB < 10.4 (older mailcow installations)
+
 Both "password" and "authentication_string" exist. Currently "password" is used, but better set both.
 
 ```
@@ -43,7 +45,7 @@ MariaDB [(none)]> SELECT user FROM mysql.user;
 +--------------+
 | user         |
 +--------------+
-| mailcow_user | <=====
+| mailcow      | <=====
 | root         |
 +--------------+
 2 rows in set (0.00 sec)
@@ -51,6 +53,25 @@ MariaDB [(none)]> SELECT user FROM mysql.user;
 MariaDB [(none)]> FLUSH PRIVILEGES;
 MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('gotr00t'), password = PASSWORD('gotr00t') WHERE User = 'root';
 MariaDB [(none)]> UPDATE mysql.user SET authentication_string = PASSWORD('mookuh'), password = PASSWORD('mookuh') WHERE User = 'mailcow' AND Host = '%';
+MariaDB [(none)]> FLUSH PRIVILEGES;
+```
+
+#### 2\.2 Maria DB >= 10.4 (current mailcows)
+
+```
+MariaDB [(none)]> SELECT user FROM mysql.user;
++--------------+
+| user         |
++--------------+
+| mailcow      | <=====
+| root         |
++--------------+
+2 rows in set (0.00 sec)
+
+MariaDB [(none)]> FLUSH PRIVILEGES;
+MariaDB [(none)]> ALTER USER 'mailcow'@'%' IDENTIFIED BY 'FB6RsEqbfxjc10MqVt5hGpf3zk0F';
+MariaDB [(none)]> ALTER USER 'root'@'%' IDENTIFIED BY 'kRFU4SG9ZTWAS7vMd3Nh4uTkk7Ns';
+MariaDB [(none)]> ALTER USER 'root'@'localhost' IDENTIFIED BY 'kRFU4SG9ZTWAS7vMd3Nh4uTkk7Ns';
 MariaDB [(none)]> FLUSH PRIVILEGES;
 ```
 
