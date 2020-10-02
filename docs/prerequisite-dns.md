@@ -64,6 +64,21 @@ _carddavs._tcp      IN TXT     "path=/SOGo/dav/"
 _caldavs._tcp       IN SRV     0 1 443   mail.example.org.
 _caldavs._tcp       IN TXT     "path=/SOGo/dav/"
 ```
+## Linode-CLI
+
+Since this is a lot to enter into many DNS interfaces, you might try a CLI, such as Linode supplies. Each dommand looks somethig like this:
+
+```sh
+linode-cli domains records-create \
+ --service _imaps._tcp \
+ --type SRV \
+ --weight 0 \
+ --priority 1 \
+ --port 993 \
+ --target mail.wireceive.com. \
+ 1917767
+```
+The last value is the ID of the domain in Linodes Domains/DNS system and is in the address bar when visiting it. Using an editor with multi-cursor support can help you apply this across manyenntries in a row. It uses lines breaks to look gooder.
 
 ## Testing
 
