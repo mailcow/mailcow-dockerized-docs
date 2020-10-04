@@ -66,53 +66,6 @@ docker-compose pull
 docker-compose up -d
 ```
 
-## Manual update (not maintained anymore, please use update.sh)
-
-### Step 1
-
-```
-docker-compose down
-```
-
-Fetch new data from GitHub, commit changes and merge remote repository:
-
-```
-# 1. Get updates/changes
-git fetch origin master
-# 2. Add all changed files to local clone
-git add -A
-# 3. Commit changes, ignore git complaining about username and mail address
-git commit -m "Local config at $(date)"
-# 4. Merge changes, prefer mailcow repository, replace "theirs" by "ours" to change merge strategy
-git merge -Xtheirs -Xpatience
-
-# If it conflicts with files that were deleted from the mailcow repository, just run...
-git status --porcelain | grep -E "UD|DU" | awk '{print $2}' | xargs rm -v
-# ...and repeat step 2 and 3
-```
-
-### Step 2
-
-Pull new images (if any) and recreate changed containers:
-
-```
-docker-compose pull
-docker-compose up -d --remove-orphans
-```
-
-### Step 3
-Clean-up dangling (unused) images and volumes:
-
-It is **very important** to _not_ run these commands when your containers are deleted.
-Running `docker-compose down` - for example - will delete your containers. Your volumes are now in a dangling state! Running the commands shown below, _will_ remove your volumes and therefore your data.
-
-
-```
-docker rmi -f $(docker images -f "dangling=true" -q)
-docker volume rm $(docker volume ls -qf dangling=true)
-```
-
-
 ## Footnotes
 
 - There is no release cycle regarding updates.
