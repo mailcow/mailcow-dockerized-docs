@@ -101,6 +101,8 @@ Make sure you disable mailcows internal LE client (see above).
 
 To use your own certificates, just save the combined certificate (containing the certificate and intermediate CA/CA if any) to `data/assets/ssl/cert.pem` and the corresponding key to `data/assets/ssl/key.pem`.
 
+**IMPORTANT:** Do not use symbolic links! Make sure you copy the certificates and do not link them to `data/assets/ssl`.
+
 Restart affected services afterwards:
 
 ```
