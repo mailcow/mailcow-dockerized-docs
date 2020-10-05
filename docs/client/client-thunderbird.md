@@ -54,3 +54,11 @@ Automatic configuration of calendars and address books in Thunderbird is not cur
 <div class="client_variables_unavailable" markdown="1">
 Automatic configuration of calendars and address books (from step 9 onward) in Thunderbird is only supported if your server administrator has enabled [SOGo Connector](https://mailcow.github.io/mailcow-dockerized-docs/third_party-thunderbird).
 </div>
+
+## Different method of connecting Cal-/CardDAV in Thunderbird with automatic detection of address books and calendars
+
+Instead of using SOGo Connector you can use a combination of
+- https://addons.thunderbird.net/de/thunderbird/addon/tbsync/ and
+- https://addons.thunderbird.net/de/thunderbird/addon/dav-4-tbsync/
+
+To add Cal-/CardDAV accounts you go to `Tools` and look near the account settings - there should be a new entry about TbSync there. You can add new accounts via the CalDAV & CardDAV provider there.
