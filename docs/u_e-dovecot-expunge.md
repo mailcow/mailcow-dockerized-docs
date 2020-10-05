@@ -16,6 +16,12 @@ Delete **all** user's mails in the junk folder that are **older** than 7 days
 docker-compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 7d
 ```
 
+Delete **all** mails (of all users) in **all** folders that are **older** than 52 weeks (internal date of the mail, not the date it was saved on the system => `before` instead of `savedbefore`). Useful for deleting very old mails on all users and folders (thus especially useful for GDPR-compliance).
+
+```
+docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+```
+
 Delete mails inside a custom folder **inside** a user's inbox that are **not** flagged and **older** than 2 weeks
 
 ```
