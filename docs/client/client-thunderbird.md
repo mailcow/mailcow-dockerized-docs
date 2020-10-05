@@ -61,4 +61,20 @@ Instead of using SOGo Connector you can use a combination of
 - https://addons.thunderbird.net/de/thunderbird/addon/tbsync/ and
 - https://addons.thunderbird.net/de/thunderbird/addon/dav-4-tbsync/
 
-To add Cal-/CardDAV accounts you go to `Tools` and look near the account settings - there should be a new entry about TbSync there. You can add new accounts via the CalDAV & CardDAV provider there.
+1. To add Cal-/CardDAV accounts you go to `Tools` and look near the account settings - there should be a new entry about TbSync there:
+
+![TbSync](../images/thunderbird-tbsync.png)
+
+2. You can add new accounts via the CalDAV & CardDAV provider there:
+
+![TbSync - CalDAV & CardDAV Provider](../images/thunderbird-tbsync-caldav.png)
+
+3. Choose "Automatic Configuration" next. Use your mail address for Account name and User name and choose your mail password for the Password. The server URL is your MAILCOW_HOSTNAME (specifying any protocol is not necessary, just enter the full domain).
+
+4. Now tick the checkbox for "Enable and synchronize this account" in the Synchronization status tab:
+
+![TbSync - Enable](../images/thunderbird-tbsync-enable.png)
+
+5. Several available resources should appear in the same window area now. Tick all checkboxes of the resources (address books and calendars) that you want to sync. Choose a periodic synchronization (in minutes) in the same window area before clicking on "Synchronize now". If you leave the periodic sync at 0 it will only sync manually so choose at least 30 minutes for periodic synchronization.
+
+If you want to manually synchronize you can find this option under "Account actions" - the dropdown-menu where you added the Cal-/CardDAV account (step 2).
