@@ -30,6 +30,28 @@ chmod +x /usr/local/bin/docker-compose
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
+**1\.1\.** On SELinux enabled systems (e.g. CentOS 7, CentOS Atomic, Fedora CoreOS):
+
+- Check if "container-selinux" package is present on your system:
+```
+rpm -qa | grep container-selinux
+```
+If the above command returns an empty or no output, you should install it via your package manager.
+
+- Check if docker has SELinux support enabled:
+```
+# docker info | grep selinux
+```
+If the above command returns an empty or no output, create or edit `/etc/docker/daemon.json` and add `"selinux-enabled": true`. Example file content:
+```
+{
+  "selinux-enabled": true
+}
+```
+Then restart the docker daemon and check again.
+
+This needs to be done so that mailcow's volumes are properly labeled as declared in the compose file. If you are interested in how this works, you can check out the Readme of https://github.com/containers/container-selinux which links to a lot of useful information on that topic.
+
 **2\.** Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while boostrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. **We drop permissions for every exposed application** and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.
 
 ```
