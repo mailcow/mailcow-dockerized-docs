@@ -10,7 +10,7 @@ fi
 
 cd $(dirname $0)
 
-wget -O connector.tar.gz https://github.com/inverse-inc/sogo-connector/archive/master.tar.gz
+wget -O connector.tar.gz https://github.com/inverse-inc/sogo-connector/archive/sogo-connector-68.0.1.tar.gz
 
 mkdir -p connector
 tar --strip-components=1 -C connector -xf connector.tar.gz
