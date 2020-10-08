@@ -43,7 +43,7 @@ If the above command returns an empty or no output, you should install it via yo
 - Check if docker has SELinux support enabled:
 
 ```
-# docker info | grep selinux
+docker info | grep selinux
 ```
 
 If the above command returns an empty or no output, create or edit `/etc/docker/daemon.json` and add `"selinux-enabled": true`. Example file content:
