@@ -30,7 +30,7 @@ chmod +x /usr/local/bin/docker-compose
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
-**1\.1\.** On SELinux enabled systems (e.g. CentOS 7, CentOS Atomic, Fedora CoreOS):
+**1\.1\.** On SELinux enabled systems, e.g. CentOS 7:
 
 - Check if "container-selinux" package is present on your system:
 ```
