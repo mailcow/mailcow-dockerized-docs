@@ -30,7 +30,7 @@ server {
 
 Another example with a reverse proxy configuration:
 
-``` hl_lines="9,21"
+``` hl_lines="9 21"
 server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
