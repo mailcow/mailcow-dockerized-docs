@@ -103,6 +103,7 @@ nav:
   - 'Deinstall': 'u_e-deinstall.md'
   - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
   - 'Mailpiler Integration': 'u_e-mailpiler-integration.md'
+  - 'Exchange Hybrid Setup': 'u_e-exchange-onprem.md'
 - 'Client Configuration':
   - 'Overview': 'client.md'
   - 'Android': 'client/client-android.md'
