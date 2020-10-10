@@ -1,65 +1,37 @@
-This is a simple integration of mailcow aliases and the mailbox name into mailpiler when using IMAP authentication.
+Using Microsoft Exchange in a hybrid setup is possible with mailcow. With this setup you can add mailboxes on your mailcow and still use [Exchange Online Protection](https://docs.microsoft.com/microsoft-365/security/office-365-security/exchange-online-protection-overview?view=o365-worldwide).
+**All mailboxes setup in Exchange will receive their mails as usual**, while with the hybrid approach additional Mailboxes can be setup in mailcow without any further configuration.
 
-**Disclaimer**: This is not officially maintained nor supported by the mailcow project nor its contributors. No warranty or support is being provided, however you're free to open issues on GitHub for filing a bug or provide further ideas. [GitHub repo can be found here](https://github.com/patschi/mailpiler-mailcow-integration).
+This setup becomes very handy if you have enabled the [Office 365 security defaults](https://docs.microsoft.com/azure/active-directory/fundamentals/concept-fundamentals-security-defaults) and third party applications can no longer login into your mailboxes by any of the [supported methods](https://docs.microsoft.com/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365).
 
-## The problem to solve
 
-mailpiler offers the authentication based on IMAP, for example:
+## Requirements
+- The mx Record of your domain needs to point at the Exchange mail service. Log into your Admin center and lookout for the dns settings of your domain to find your personalized gateway domain. It should look like this `contoso-com.mail.protection.outlook.com`. Contact your domain registrant to get further information on how to change mx record.
+- The domain you want to have additional mailboxes for must be setup as `internal relay domain` in Exchange.
+    1. Log in to your [Exchange Admin Center](https://admin.exchange.microsoft.com)
+    2. Select the `mail flow` pane and click on `accepted domains`
+    3. Select the domain and switch it from `authorative` to `internal relay`
+    
+    
+## Setup the mailcow
+Your mailcow needs to relay all mails to your personalized Exchange Host. It is the same host address we already looked up for the mx Record.
 
-```php
-$config['ENABLE_IMAP_AUTH'] = 1;
-$config['IMAP_HOST'] = 'mail.example.com';
-$config['IMAP_PORT'] =  993;
-$config['IMAP_SSL'] = true;
-```
+1. Add the domain to your mailcow
+2. [Add your personalized Exchange Host address as relayhost](/firststeps-relayhost)
+3. Go to the domain settings and select the newly added host on the `Sender-dependent transports` dropdown. Enable relaying by ticking the `Relay this domain`, `Relay all recipients` and the `Relay non-existing mailboxes only.` checkboxes
 
-- So when you log in using `patrik@example.com`, you will only see delivered emails sent from or to this specific email address.
-- When additional aliases are defined in mailcow, like `team@example.com`, you won't see emails sent to or from this email address even the fact you're a recipient of mails sent to this alias address.
-
-By hooking into the authentication process of mailpiler, we are able to get required data via the mailcow API during login. This fires API requests to the mailcow API (requiring read-only API access) to read out the aliases your email address participates and also the "Name" of the mailbox specified to display it on the top-right of mailpiler after login.
-
-Permitted email addresses can be seen in the mailpiler settings top-right after logging in.
-
-!!! info
-    This is only pulled once during the authentication process. The authorized aliases and the realname are valid for the whole duration of the user session as mailpiler sets them in the session data. If user is removed from specific alias, this will only take effect after next login.
-
-## The solution
-
-Note: File paths might vary depending on your setup.
-
-### Requirements
-
-- A working mailcow instance
-- A working mailpiler instance ([You can find an installation guide here](https://patrik.kernstock.net/2020/08/mailpiler-installation-guide/))
-- An mailcow API key (read-only works just fine): `Configuration & Details - Access - Read-Only Access`. Don't forget to allow API access from your mailpiler IP.
+## Setup Connectors in Exchange
+All mail traffic now goes through Exchange. At this point the Exchange Online Protection already filters all incoming and outgoing mails. Now we need to setup two connectors to relay incoming mails from our Exchange Service to the mailcow and another one to allow mails relayed from the mailcow to our exchange service. You can follow the [official guide from Microsoft](https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server).
 
 !!! warning
-    As mailpiler authenticates against mailcow, our IMAP server, failed logins of users or bots might trigger a block for your mailpiler instance. Therefore you might want to consider whitelisting the IP address of the mailpiler instance within mailcow: `Configuration & Details - Configuration - Fail2ban parameters - Whitelisted networks/hosts`.
+    For the connector that handles mails from your mailcow to Exchange Microsoft offers two ways of authenticating it. The recommended way is to use a tls certificate configured with a subject name that matches an accepted domain in Exchange. Otherwise you need to choose authentication with the static ip address of your mailcow.
+    
+## Validating
+The easiest way to validate the hybrid setup is by sending a mail from the internet to a mailbox that only exists on the mailcow and vice versa.
 
-### Setup
+### Common Issues
+- The connector validation from Exchange to your mailcow failed with `550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient test@contoso.com not found by SMTP address lookup`  
+**Possible Solution:** Your domain is not setup as `internal relay`. Exchange therefore cannot find the recipient
+- Mails sent from the mailcow to a mailbox in the internet cannot be sent. Non Delivery Report with error `550 5.7.64 TenantAttribution; Relay Access Denied`  
+**Possible Solution:** The authentication method failed. Make sure the certificate subject matches an accepted domain in Exchange. Try authenticating by static ip instead.
 
-1. Set the custom query function of mailpiler and append this to `/usr/local/etc/piler/config-site.php`:
-
-    ```php
-    $config['MAILCOW_API_KEY'] = 'YOUR_READONLY_API_KEY';
-    $config['MAILCOW_SET_REALNAME'] = true; // when not specified, then default is false
-    $config['CUSTOM_EMAIL_QUERY_FUNCTION'] = 'query_mailcow_for_email_access';
-    include('auth-mailcow.php');
-    ```
-
-    You can also change the mailcow hostname, if required:
-    ```php
-    $config['MAILCOW_HOST'] = 'mail.domain.tld'; // defaults to $config['IMAP_HOST']
-    ```
-
-2. Download the PHP file with the functions from the [GitHub repo](https://github.com/patschi/mailpiler-mailcow-integration):
-
-    ```sh
-    curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
-    ```
-
-3. Done!
-
-   Make sure to re-login with your IMAP credentials for changes to take effect.
-
-   If it doesn't work, most likely something's wrong with the API query itself. Consider debugging by sending manual API requests to the API. (Tip: Open `https://mail.domain.tld/api` on your instance)
+Microsoft Guide for the connector setup and additional requirements: https://docs.microsoft.com/de-de/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#prerequisites-for-your-on-premises-email-environment
