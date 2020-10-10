@@ -42,8 +42,10 @@ dkim._domainkey     IN TXT     "v=DKIM1; k=rsa; t=s; s=email; p=..."
 
 The last step in protecting yourself and others is the implementation of a **DMARC** TXT record, for example by using the [DMARC Assistant](http://www.kitterman.com/dmarc/assistant.html) ([check](https://dmarcian.com/dmarc-inspector/google.com)).
 
+> ⚠️ Note to those using copy/paste: you must replace the fake email (`XXX-REPLACE-XXX@example.COM`in the snippet below:
+
 ```
-_dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@example.org"
+_dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:XXX-REPLACE-XXX@example.COM"
 ```
 
 ## The advanced DNS configuration
