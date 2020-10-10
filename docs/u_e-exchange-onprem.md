@@ -5,7 +5,7 @@ This setup becomes very handy if you have enabled the [Office 365 security defau
 
 
 ## Requirements
-- The mx Record of your domain needs to point at the Exchange mail service. Log into your Admin center and lookout for the dns settings of your domain to find your personalized gateway domain. It should look like this `contoso-com.mail.protection.outlook.com`. Contact your domain registrant to get further information on how to change mx record.
+- The mx Record of your domain needs to point at the Exchange mail service. Log into your Admin center and look out for the dns settings of your domain to find your personalized gateway domain. It should look like this `contoso-com.mail.protection.outlook.com`. Contact your domain registrant to get further information on how to change mx record.
 - The domain you want to have additional mailboxes for must be setup as `internal relay domain` in Exchange.
     1. Log in to your [Exchange Admin Center](https://admin.exchange.microsoft.com)
     2. Select the `mail flow` pane and click on `accepted domains`
