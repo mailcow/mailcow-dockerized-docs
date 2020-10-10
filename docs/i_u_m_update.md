@@ -18,7 +18,7 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 ```
 # Options can be combined
 
-# - Check for updates
+# - Check for updates and show changes
 ./update.sh --check
 
 # Do not try to update docker-compose, **make sure to use the latest docker-compose available**
