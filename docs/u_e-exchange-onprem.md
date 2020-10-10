@@ -34,4 +34,4 @@ The easiest way to validate the hybrid setup is by sending a mail from the inter
 - Mails sent from the mailcow to a mailbox in the internet cannot be sent. Non Delivery Report with error `550 5.7.64 TenantAttribution; Relay Access Denied`  
 **Possible Solution:** The authentication method failed. Make sure the certificate subject matches an accepted domain in Exchange. Try authenticating by static ip instead.
 
-Microsoft Guide for the connector setup and additional requirements: https://docs.microsoft.com/de-de/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#prerequisites-for-your-on-premises-email-environment
+Microsoft Guide for the connector setup and additional requirements: https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#prerequisites-for-your-on-premises-email-environment
