@@ -12,14 +12,14 @@ This setup becomes very handy if you have enabled the [Office 365 security defau
     3. Select the domain and switch it from `authorative` to `internal relay`
     
     
-## Setup the mailcow
+## Set up the mailcow
 Your mailcow needs to relay all mails to your personalized Exchange Host. It is the same host address we already looked up for the mx Record.
 
 1. Add the domain to your mailcow
 2. [Add your personalized Exchange Host address as relayhost](/firststeps-relayhost)
 3. Go to the domain settings and select the newly added host on the `Sender-dependent transports` dropdown. Enable relaying by ticking the `Relay this domain`, `Relay all recipients` and the `Relay non-existing mailboxes only.` checkboxes
 
-## Setup Connectors in Exchange
+## Set up Connectors in Exchange
 All mail traffic now goes through Exchange. At this point the Exchange Online Protection already filters all incoming and outgoing mails. Now we need to setup two connectors to relay incoming mails from our Exchange Service to the mailcow and another one to allow mails relayed from the mailcow to our exchange service. You can follow the [official guide from Microsoft](https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server).
 
 !!! warning
@@ -30,7 +30,7 @@ The easiest way to validate the hybrid setup is by sending a mail from the inter
 
 ### Common Issues
 - The connector validation from Exchange to your mailcow failed with `550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient test@contoso.com not found by SMTP address lookup`  
-**Possible Solution:** Your domain is not setup as `internal relay`. Exchange therefore cannot find the recipient
+**Possible Solution:** Your domain is not set up as `internal relay`. Exchange therefore cannot find the recipient
 - Mails sent from the mailcow to a mailbox in the internet cannot be sent. Non Delivery Report with error `550 5.7.64 TenantAttribution; Relay Access Denied`  
 **Possible Solution:** The authentication method failed. Make sure the certificate subject matches an accepted domain in Exchange. Try authenticating by static ip instead.
 
