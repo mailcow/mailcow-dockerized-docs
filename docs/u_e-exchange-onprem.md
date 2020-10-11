@@ -17,7 +17,7 @@ Your mailcow needs to relay all mails to your personalized Exchange Host. It is 
 
 1. Add the domain to your mailcow
 2. [Add your personalized Exchange Host address as relayhost](/firststeps-relayhost)
-3. Add your personalized Exchange Host address as forwarding host to unconditionally accepted all relayed mails from Exchange. 
+3. Add your personalized Exchange Host address as forwarding host to unconditionally accepted all relayed mails from Exchange. (Admin > Configuration & Details > Configuration Dropdown > Forwarding Hosts)
 4. Go to the domain settings and select the newly added host on the `Sender-dependent transports` dropdown. Enable relaying by ticking the `Relay this domain`, `Relay all recipients` and the `Relay non-existing mailboxes only.` checkboxes
 
 !!! info
@@ -25,7 +25,7 @@ Your mailcow needs to relay all mails to your personalized Exchange Host. It is 
 
 
 ## Set up Connectors in Exchange
-All mail traffic now goes through Exchange. At this point the Exchange Online Protection already filters all incoming and outgoing mails. Now we need to setup two connectors to relay incoming mails from our Exchange Service to the mailcow and another one to allow mails relayed from the mailcow to our exchange service. You can follow the [official guide from Microsoft](https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server).
+All mail traffic now goes through Exchange. At this point the Exchange Online Protection already filters all incoming and outgoing mails. Now we need to set up two connectors to relay incoming mails from our Exchange Service to the mailcow and another one to allow mails relayed from the mailcow to our exchange service. You can follow the [official guide from Microsoft](https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server).
 
 !!! warning
     For the connector that handles mails from your mailcow to Exchange Microsoft offers two ways of authenticating it. The recommended way is to use a tls certificate configured with a subject name that matches an accepted domain in Exchange. Otherwise you need to choose authentication with the static ip address of your mailcow.
