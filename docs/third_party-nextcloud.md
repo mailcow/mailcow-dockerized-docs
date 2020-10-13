@@ -1,12 +1,11 @@
 
-## Manage the Nextcloud using the helper script
+## Manage Nextcloud using the helper script
 
 Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [helper script](https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh) included with mailcow. In order to install Nextcloud simply navigate to your mailcow-dockerized root folder and run the helper script as follows:
 
 `./helper-scripts/nextcloud.sh -i`
 
-Calling the helper script with `-r` as parameter allows you to reset the password for any given Nextcloud in case you have forgotten the admin password and can't request a new one [via the password reset link on the login screen](https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset). Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.
-
+In case you have forgotten the password (e.g. for admin) and can't request a new one [via the password reset link on the login screen](https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset) calling the helper script with `-r` as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.
 
 ## Configure Nextcloud to use mailcow for authentication
 
