@@ -8,8 +8,8 @@ Below you can find a list of **recommended DNS records**. While some are mandato
   ["Best Practices on Email Protection: SPF, DKIM and DMARC"](https://wiki.zimbra.com/wiki/Best_Practices_on_Email_Protection:_SPF,_DKIM_and_DMARC)
 - An in-depth discussion of SPF, DKIM and DMARC:
   ["How to eliminate spam and protect your name with DMARC"](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)
-- A thorough guide on DMARC
-[Demystifying DMARC: A guide to preventing email spoofing](https://seanthegeek.net/459/demystifying-dmarc/)
+- A thorough guide on understanding DMARC:
+["Demystifying DMARC: A guide to preventing email spoofing"](https://seanthegeek.net/459/demystifying-dmarc/)
 
 
 ## Reverse DNS of your IP
