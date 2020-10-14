@@ -79,3 +79,5 @@ Restart Postfix:
 ```
 docker-compose restart postfix-mailcow
 ```
+
+**NOTE:** if your mail is getting rejected, your IPv4 could be blacklisted by a DNSBL (Domain Name Sytem Blacklist), and Mailcow will attempt to use IPv6 even if it is disabled. This may produce an error appearing as an issue with IPv6 network being unreachable (which is of course disabled given you followed this guide), however it is recommended to check your Postfix logs as it may reveal that your domain is on a DNSBL (that may not be checked with some of the popular blacklist checking tools).
