@@ -31,18 +31,21 @@ autoconfig          IN CNAME   mail
 In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.open-spf.org/) for further reading.
 
 ```
+# Name              Type       Value
 @                   IN TXT     "v=spf1 mx a -all"
 ```
 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
 
 ```
+# Name              Type       Value
 dkim._domainkey     IN TXT     "v=DKIM1; k=rsa; t=s; s=email; p=..."
 ```
 
 The last step in protecting yourself and others is the implementation of a **DMARC** TXT record, for example by using the [DMARC Assistant](http://www.kitterman.com/dmarc/assistant.html) ([check](https://dmarcian.com/dmarc-inspector/google.com)).
 
 ```
+# Name              Type       Value
 _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@example.org"
 ```
 
@@ -51,18 +54,19 @@ _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@
 **SRV** records specify the server(s) for a specific protocol on your domain. If you want to explicitly announce a service as not provided, give "." as the target address (instead of "mail.example.org."). Please refer to [RFC 2782](https://tools.ietf.org/html/rfc2782).
 
 ```
-_imap._tcp          IN SRV     0 1 143   mail.example.org.
-_imaps._tcp         IN SRV     0 1 993   mail.example.org.
-_pop3._tcp          IN SRV     0 1 110   mail.example.org.
-_pop3s._tcp         IN SRV     0 1 995   mail.example.org.
-_submission._tcp    IN SRV     0 1 587   mail.example.org.
-_smtps._tcp         IN SRV     0 1 465   mail.example.org.
-_sieve._tcp         IN SRV     0 1 4190  mail.example.org.
-_autodiscover._tcp  IN SRV     0 1 443   mail.example.org.
-_carddavs._tcp      IN SRV     0 1 443   mail.example.org.
-_carddavs._tcp      IN TXT     "path=/SOGo/dav/"
-_caldavs._tcp       IN SRV     0 1 443   mail.example.org.
-_caldavs._tcp       IN TXT     "path=/SOGo/dav/"
+# Name              Type       Priority Weight Port    Value
+_imap._tcp          IN SRV     0        1      143      mail.example.org.
+_imaps._tcp         IN SRV     0        1      993      mail.example.org.
+_pop3._tcp          IN SRV     0        1      110      mail.example.org.
+_pop3s._tcp         IN SRV     0        1      995      mail.example.org.
+_submission._tcp    IN SRV     0        1      587      mail.example.org.
+_smtps._tcp         IN SRV     0        1      465      mail.example.org.
+_sieve._tcp         IN SRV     0        1      4190     mail.example.org.
+_autodiscover._tcp  IN SRV     0        1      443      mail.example.org.
+_carddavs._tcp      IN SRV     0        1      443      Mail.example.org.
+_carddavs._tcp      IN TXT                              "path=/SOGo/dav/"
+_caldavs._tcp       IN SRV     0        1      443      mail.example.org.
+_caldavs._tcp       IN TXT                              "path=/SOGo/dav/"
 ```
 
 ## Testing
@@ -73,10 +77,11 @@ Here are some tools you can use to verify your DNS configuration:
 - [port25.com](https://www.port25.com/dkim-wizard/) (DKIM, SPF)
 - [Mail-tester](https://www.mail-tester.com/) (DKIM, DMARC, SPF)
 - [DMARC Analyzer](https://www.dmarcanalyzer.com/spf/checker/) (DMARC, SPF)
+- [MultiRBL.valli.org](http://multirbl.valli.org/) (DNSBL, RBL, FCrDNS)
 
 ## Misc
 
-If you are interested in statistics, you can additionally register with the [Postmaster Tool](https://gmail.com/postmaster)  by Google and supply a **google-site-verification** TXT record, which will give you details about spam-classified mails by your domain. This is clearly optional.
+If you are interested in statistics, you can additionally register with the [Postmaster Tool](https://gmail.com/postmaster)  by Google and supply a **google-site-verification** TXT record, which will give you details about spam-classified mails by your domain. Another alternative service is [Postmark](https://dmarc.postmarkapp.com) These are clearly optional.
 
 ```
 @                   IN TXT     "google-site-verification=..."
