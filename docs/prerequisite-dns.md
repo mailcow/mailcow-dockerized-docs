@@ -8,6 +8,9 @@ Below you can find a list of **recommended DNS records**. While some are mandato
   ["Best Practices on Email Protection: SPF, DKIM and DMARC"](https://wiki.zimbra.com/wiki/Best_Practices_on_Email_Protection:_SPF,_DKIM_and_DMARC)
 - An in-depth discussion of SPF, DKIM and DMARC:
   ["How to eliminate spam and protect your name with DMARC"](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)
+- A thorough guide on DMARC
+[Demystifying DMARC: A guide to preventing email spoofing](https://seanthegeek.net/459/demystifying-dmarc/)
+
 
 ## Reverse DNS of your IP
 
@@ -96,11 +99,9 @@ The services should provide you with a TXT record, which will give you details a
 Using Google Postmaster as an example:
 
 ```
-
 # Name              Type       Value
 
 @                   IN TXT     "google-site-verification=..."
-
 ```
 
 However, ensure to read documentation from the service you choose, as this process may vary.
