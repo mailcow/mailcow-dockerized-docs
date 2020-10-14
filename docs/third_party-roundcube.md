@@ -2,9 +2,9 @@ Download Roundcube 1.4.x to the web htdocs directory and extract it (here `rc/`)
 ```
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.4.8/roundcubemail-1.4.8-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.4.9/roundcubemail-1.4.9-complete.tar.gz | tar xfvz -
 # Change folder name
-mv roundcubemail-1.4.8 rc
+mv roundcubemail-1.4.9 rc
 # Change permissions
 chown -R root: rc/
 ```
