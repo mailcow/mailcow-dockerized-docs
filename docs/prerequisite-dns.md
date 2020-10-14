@@ -81,10 +81,27 @@ Here are some tools you can use to verify your DNS configuration:
 
 ## Misc
 
-If you are interested in statistics, you can additionally register with the [Postmaster Tool](https://gmail.com/postmaster)  by Google and supply a **google-site-verification** TXT record, which will give you details about spam-classified mails by your domain. Another alternative service is [Postmark](https://dmarc.postmarkapp.com) These are clearly optional.
+### Optional DMARC Statistics
+If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services, or self-host your own.
+
+**NOTE:** It is worth considering that if you request DMARC statistic reports to your Mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for recieving DMARC reports.
+
+- [Postmaster Tool](https://gmail.com/postmaster)
+- [parsedmarc](https://github.com/domainaware/parsedmarc) (self-hosted)
+- [Fraudmarc](https://fraudmarc.com/)
+- [Postmark](https://dmarc.postmarkapp.com)
+- [Dmarcian](https://dmarcian.com/)
+
+The services should provide you with a TXT record, which will give you details about spam-classified mails by your domain.
+Using Google Postmaster as an example:
 
 ```
+
+# Name              Type       Value
+
 @                   IN TXT     "google-site-verification=..."
+
 ```
+
 
 [^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
