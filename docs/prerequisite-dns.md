@@ -103,5 +103,6 @@ Using Google Postmaster as an example:
 
 ```
 
+However, ensure to read documentation from the service you choose, as this process may vary.
 
 [^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
