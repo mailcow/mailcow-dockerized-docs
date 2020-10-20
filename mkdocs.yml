@@ -79,14 +79,15 @@ nav:
       - 'Using an external DNS service': 'u_e-unbound-fwd.md'
   - 'Dovecot':
       - 'Enable "any" ACL settings': 'u_e-dovecot-any_acl.md'
-      - 'Public folders': 'u_e-dovecot-public_folder.md'
       - 'Expunge a Users mails': 'u_e-dovecot-expunge.md'
       - 'Customize/Expand dovecot.conf': 'u_e-dovecot-extra_conf.md'
+      - 'FTS (Solr)': 'u_e-dovecot-fts.md'
+      - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
       - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
-      - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
-      - 'FTS (Solr)': 'u_e-dovecot-fts.md'
+      - 'Public folders': 'u_e-dovecot-public_folder.md'
+      - 'Static master user': 'u_e-dovecot-static_master.md'
   - 'Nginx': 
      - 'Custom sites': 'u_e-nginx.md'
      - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
