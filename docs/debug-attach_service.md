@@ -36,6 +36,8 @@ Here is a brief overview of what container / service does what:
 | redis-mailcow     | Storage back-end for DKIM keys and Rspamd                                 |
 | rspamd-mailcow    | Mail filtering system. Used for av handling, dkim signing, spam handling  |
 | clamd-mailcow     | Scans attachments for viruses                                             |
+| olefy-mailcow     | Scans attached office documents for macro-viruses                         |
+| solr-mailcow      | Provides full-text search in Dovecot                                      |
 | sogo-mailcow      | Webmail client that handles Microsoft ActiveSync and Cal- / CardDav       |
 | nginx-mailcow     | Nginx remote proxy that handles all mailcow related HTTP / HTTPS requests |
 | acme-mailcow      | Automates HTTPS (SSL/TLS) certificate deployment                          |
