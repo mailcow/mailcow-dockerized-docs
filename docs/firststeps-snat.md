@@ -1,7 +1,5 @@
-## SNAT
-
 SNAT is used to change the source address of the packets sent by mailcow.
-It can be used to change the outgoing IP on systems with multiple IP addresses.
+It can be used to change the outgoing IP address on systems with multiple IP addresses.
 
 Open `mailcow.conf`, set either or both of the following parameters:
 

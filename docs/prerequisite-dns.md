@@ -9,9 +9,9 @@ Below you can find a list of **recommended DNS records**. While some are mandato
 - An in-depth discussion of SPF, DKIM and DMARC:
   ["How to eliminate spam and protect your name with DMARC"](https://www.skelleton.net/2015/03/21/how-to-eliminate-spam-and-protect-your-name-with-dmarc/)
 
-## Reverse DNS of your IP
+## Reverse DNS of your IP address
 
-Make sure that the PTR record of your IP matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` [^1]. This record is usually set at the provider you leased the IP (server) from.
+Make sure that the PTR record of your IP address matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` [^1]. This record is usually set at the provider you leased the IP address (server) from.
 
 ## The minimal DNS configuration
 
@@ -31,7 +31,7 @@ autoconfig          IN CNAME   mail
 In the example DNS zone file snippet below, a simple **SPF** TXT record is used to only allow THIS server (the MX) to send mail for your domain. Every other server is disallowed but able to ("`~all`"). Please refer to [SPF Project](http://www.open-spf.org/) for further reading.
 
 ```
-@                   IN TXT     "v=spf1 mx a -all"
+@                   IN TXT     "v=spf1 mx -all"
 ```
 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
@@ -82,4 +82,4 @@ If you are interested in statistics, you can additionally register with the [Pos
 @                   IN TXT     "google-site-verification=..."
 ```
 
-[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
+[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name `mailcow` and the tld `email`.

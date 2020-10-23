@@ -22,7 +22,7 @@ systemctl start docker.service
 !!! warning
     **mailcow requires the latest version of docker-compose.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the latest version.
     _Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
-    
+
 ```
 curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
@@ -108,7 +108,7 @@ networks:
 If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/) for the mailcow network to prevent unforeseen issues.
 
 
-**5\.** Pull the images and run the composer file. The parameter `-d` will start mailcow: dockerized detached:
+**5\.** Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
 ```
 docker-compose pull
 docker-compose up -d
@@ -118,8 +118,8 @@ Done!
 
 You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials `admin` + password `moohoo`.
 
-   !!! info
-   If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](https://mailcow.github.io/mailcow-dockerized-docs/u_e-80_to_443/).
+!!! info
+    If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](https://mailcow.github.io/mailcow-dockerized-docs/u_e-80_to_443/).
 
 The database will be initialized right after a connection to MySQL can be established.
 
