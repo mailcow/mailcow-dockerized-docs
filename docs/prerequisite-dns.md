@@ -89,21 +89,15 @@ If you are interested in statistics, you can additionally register with some of 
 
 **NOTE:** It is worth considering that if you request DMARC statistic reports to your Mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for recieving DMARC reports.
 
+It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.
+
 - [Postmaster Tool](https://gmail.com/postmaster)
 - [parsedmarc](https://github.com/domainaware/parsedmarc) (self-hosted)
 - [Fraudmarc](https://fraudmarc.com/)
 - [Postmark](https://dmarc.postmarkapp.com)
 - [Dmarcian](https://dmarcian.com/)
 
-The services should provide you with a TXT record, which will give you details about spam-classified mails by your domain.
-Using Google Postmaster as an example:
+**NOTE:** The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.
 
-```
-# Name              Type       Value
-
-@                   IN TXT     "google-site-verification=..."
-```
-
-However, ensure to read documentation from the service you choose, as this process may vary.
-
+### Fully Qualified Domain Name (FQDN)
 [^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
