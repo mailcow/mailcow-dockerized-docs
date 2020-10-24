@@ -25,9 +25,14 @@ Please make sure that your system has at least the following resources:
 
 As of today (29th Dec 2019), we recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04.
 
-ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
+**NOTE:** It is technically possible to host Mailcow on a system with only 2 GiB RAM + Swap, however this is not ideal and may cause a variety of issues. Despite this, there are many Mailcow users whom have achieved hosting Mailcow without issue, and is generally done by users who are only hosting for themselves and not multiple users. It is also unlikely to be able to properly utilize ClamAV and Solr as they rely on large amounts of RAM. Despite being possible to host on such small resources, it is still highly recommended to have the minimum resources detailed in the table above, or more to avoid any complications.
+
+**NOTE:** ClamAV and Solr are greedy RAM munchers. If working with minimal resources, it may be desired to disable either of these services.
+You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
 
 ## Firewall & Ports
+
+**Important:** Some hosts and internet service providers may block ports such as 25 (SMTP) from being used, this can cause many issues, and can cause Mailcow to simply not function altogether. Please keep this in mind when choosing a provider or internet service provider to host Mailcow behind, and read thoroughly what they allow. 
 
 Please check if any of mailcow's standard ports are open and not in use by other applications:
 
@@ -37,13 +42,18 @@ ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 ```
 
+If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
+
 !!! warning
-    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this blog post](https://blog.donnex.net/docker-and-iptables-filtering/) for information about how to use iptables-persistent with the DOCKER-USER chain.
+    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. Please refer to any of the following blog posts for information about how to use iptables-persistent with the DOCKER-USER chain for a working firewall setup.
     As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
+- https://blog.donnex.net/docker-and-iptables-filtering/
+- https://unrouted.io/2017/08/15/docker-firewall/
+   
 
 **
 
-If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
+
 
 ### Default Ports
 
