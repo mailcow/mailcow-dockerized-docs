@@ -4,10 +4,10 @@ The "acme-mailcow" container will try to obtain a LE certificate for `${MAILCOW_
 
 !!! warning
     mailcow **must** be available on port 80 for the acme-client to work. Our reverse proxy example configurations do cover that. You can also use any external ACME client (certbot for example) to obtain certificates, but you will need to make sure, that they are copied to the correct location and a post-hook reloads affected containers. See more in the Reverse Proxy documentation.
-    
+
 By default, which means **0 domains** are added to mailcow, it will try to obtain a certificate for `${MAILCOW_HOSTNAME}`.
 
-For each domain you add, it will try to resolve `autodiscover.ADDED_MAIL_DOMAIN` and `autoconfig.ADDED_MAIL_DOMAIN` to its IPv6 or - if IPv6 is not configured in your domain - IPv4 address. If it succeeds, a name will be added as SAN to the certificate request.
+For each domain you add, it will try to resolve `autodiscover.ADDED_MAIL_DOMAIN` and `autoconfig.ADDED_MAIL_DOMAIN` to its IPv6 address or - if IPv6 is not configured in your domain - IPv4 address. If it succeeds, a name will be added as SAN to the certificate request.
 
 Only names that can be validated, will be added as SAN.
 
@@ -25,7 +25,7 @@ Do not use quotes (`"`) and do not use spaces between the names!
 ADDITIONAL_SAN=smtp.*,cert1.example.com,cert2.example.org,whatever.*
 ```
 
-Each name will be validated against its IPv6 or - if IPv6 is not configured in your domain - IPv4 address.
+Each name will be validated against its IPv6 address or - if IPv6 is not configured in your domain - IPv4 address.
 
 A wildcard name like `smtp.*` will try to obtain a smtp.DOMAIN_NAME SAN for each domain added to mailcow.
 
@@ -47,9 +47,9 @@ The file will be deleted automatically.
 
 ### Validation errors and how to skip validation
 
-You can skip the **IP verification** by setting `SKIP_IP_CHECK=y` in mailcow.conf (no quotes). Be warned that a misconfiguration will get you ratelimited by Let's Encrypt! This is primarily useful for multi-IP setups where the IP check would return the incorrect source IP. Due to using dynamic IPs for acme-mailcow, source NAT is not consistent over restarts.
+You can skip the **IP verification** by setting `SKIP_IP_CHECK=y` in mailcow.conf (no quotes). Be warned that a misconfiguration will get you ratelimited by Let's Encrypt! This is primarily useful for multi-IP setups where the IP check would return the incorrect source IP address. Due to using dynamic IPs for acme-mailcow, source NAT is not consistent over restarts.
 
-If you encounter problems with "HTTP validation", but your IP confirmation succeeds, you are most likely using firewalld, ufw or any other firewall, that disallows connections from `br-mailcow` to your external interface. Both firewalld and ufw disallow this by default. It is often not enough to just stop these firewall services. You'd need to stop mailcow (`docker-compose down`), stop the firewall service, flush the chains and restart Docker.
+If you encounter problems with "HTTP validation", but your IP address confirmation succeeds, you are most likely using firewalld, ufw or any other firewall, that disallows connections from `br-mailcow` to your external interface. Both firewalld and ufw disallow this by default. It is often not enough to just stop these firewall services. You'd need to stop mailcow (`docker-compose down`), stop the firewall service, flush the chains and restart Docker.
 
 You can also skip this validation method by setting `SKIP_HTTP_VERIFICATION=y` in "mailcow.conf". Be warned that this is discouraged. In most cases, the HTTP verification is skipped to workaround unknown NAT reflection issues, which are not resolved by ignoring this specific network misconfiguration. If you encounter problems generating TLSA records in the DNS overview within mailcow, you are most likely having issues with NAT reflection you should fix.
 
@@ -73,9 +73,10 @@ By default, "acme-mailcow" will create a single SAN certificate for all validate
 This provides best compatibility but means the Let's Encrypt limit exceeds if you add too many domains to a single mailcow installation.
 
 To solve this, you can configure `ENABLE_SSL_SNI` to generate:
-* A main server certificate with `MAILCOW_HOSTNAME` and all fully qualified domain names in the `ADDITIONAL_SAN` config
-* One additional certificate for each domain found in the database with autodiscover.*, autoconfig.* and any other `ADDITIONAL_SAN` configured in this format (subdomain.*).
-* Limitations: A certificate name `ADDITIONAL_SAN=test.example.com` will be added as SAN to the main certificate. A separate certificate/key pair will **not** be generated for this format.
+
+- A main server certificate with `MAILCOW_HOSTNAME` and all fully qualified domain names in the `ADDITIONAL_SAN` config
+- One additional certificate for each domain found in the database with autodiscover.*, autoconfig.* and any other `ADDITIONAL_SAN` configured in this format (subdomain.*).
+- Limitations: A certificate name `ADDITIONAL_SAN=test.example.com` will be added as SAN to the main certificate. A separate certificate/key pair will **not** be generated for this format.
 
 Postfix, Dovecot and Nginx will then serve these certificates with SNI.
 
@@ -86,14 +87,16 @@ Set `ENABLE_SSL_SNI=y` in "mailcow.conf" and recreate "acme-mailcow" by running 
     You should make sure these clients use the `MAILCOW_HOSTNAME` for secure connections if you enable this feature.
 
 Here is an example:
-* `MAILCOW_HOSTNAME=server.email.tld`
-* `ADDITIONAL_SAN=webmail.email.tld,mail.*`
-* Mailcow email domains: "domain1.tld" and "domain2.tld"
+
+- `MAILCOW_HOSTNAME=server.email.tld`
+- `ADDITIONAL_SAN=webmail.email.tld,mail.*`
+- Mailcow email domains: "domain1.tld" and "domain2.tld"
 
 The following certificates will be generated:
-* `server.email.tld, webmail.email.tld` -> this is the default certificate, all clients can connect with these domains
-* `mail.domain1.tld, autoconfig.domain1.tld, autodiscover.domain1.tld` -> individual certificate for domain1.tld, cannot be used by clients without SNI support
-* `mail.domain2.tld, autoconfig.domain2.tld, autodiscover.domain2.tld` -> individual certificate for domain2.tld, cannot be used by clients without SNI support
+
+- `server.email.tld, webmail.email.tld` -> this is the default certificate, all clients can connect with these domains
+- `mail.domain1.tld, autoconfig.domain1.tld, autodiscover.domain1.tld` -> individual certificate for domain1.tld, cannot be used by clients without SNI support
+- `mail.domain2.tld, autoconfig.domain2.tld, autodiscover.domain2.tld` -> individual certificate for domain2.tld, cannot be used by clients without SNI support
 
 ### How to use your own certificate
 
@@ -111,7 +114,7 @@ docker restart $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
-See https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients for a full example script.
+See [Post-hook script for non-mailcow ACME clients](../firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients) for a full example script.
 
 ### Test against staging ACME directory
 

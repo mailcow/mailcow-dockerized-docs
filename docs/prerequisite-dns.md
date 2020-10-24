@@ -12,9 +12,9 @@ Below you can find a list of **recommended DNS records**. While some are mandato
 ["Demystifying DMARC: A guide to preventing email spoofing"](https://seanthegeek.net/459/demystifying-dmarc/)
 
 
-## Reverse DNS of your IP
+## Reverse DNS of your IP address
 
-Make sure that the PTR record of your IP matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` [^1]. This record is usually set at the provider you leased the IP (server) from.
+Make sure that the PTR record of your IP address matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` [^1]. This record is usually set at the provider you leased the IP address (server) from.
 
 ## The minimal DNS configuration
 
@@ -35,7 +35,7 @@ In the example DNS zone file snippet below, a simple **SPF** TXT record is used 
 
 ```
 # Name              Type       Value
-@                   IN TXT     "v=spf1 mx a -all"
+@                   IN TXT     "v=spf1 mx -all"
 ```
 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
@@ -100,4 +100,4 @@ It is worth mentioning, that the following suggestions are not a comprehensive l
 **NOTE:** The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.
 
 ### Fully Qualified Domain Name (FQDN)
-[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name 'mailcow' and the tld `email`.
+[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name `mailcow` and the tld `email`.
