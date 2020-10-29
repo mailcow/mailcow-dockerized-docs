@@ -99,5 +99,32 @@ It is worth mentioning, that the following suggestions are not a comprehensive l
 
 **NOTE:** The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.
 
+### Email Test for SPF, DKIM and DMARC:
+
+To test send an email to the email below and wait for a reply:
+
+check-auth@verifier.port25.com
+
+You will get a report back that looks like the following:
+
+```
+
+==========================================================
+Summary of Results
+==========================================================
+SPF check:          pass
+"iprev" check:      pass
+DKIM check:         pass
+DKIM check:         pass
+SpamAssassin check: ham
+
+==========================================================
+Details:
+==========================================================
+....
+```
+The full report will contain more technical details this is just the first section, we found this to be quite usful for testing both outgoing mail and spam scores.
+
+
 ### Fully Qualified Domain Name (FQDN)
 [^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name `mailcow` and the tld `email`.
