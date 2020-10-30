@@ -210,3 +210,15 @@ Restart Rspamd:
 ```bash
 docker-compose exec redis-mailcow sh
 ```
+
+## Trigger a resend of quarantine notifications
+
+Should be used for debugging only!
+
+```
+docker-compose exec dovecot-mailcow bash
+mysql -umailcow -p$DBPASS mailcow -e "update quarantine set notified = 0;"
+redis-cli -h redis DEL Q_LAST_NOTIFIED
+quarantine_notify.py
+```
+
