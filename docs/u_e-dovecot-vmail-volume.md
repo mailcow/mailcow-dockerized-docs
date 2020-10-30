@@ -2,10 +2,12 @@ If you want to use another folder for the vmail-volume, you can create a `docker
 
 ```
 version: '2.1'
-services:
-    dovecot-mailcow:
-      volumes:
-        - /data/mailcow/vmail:/var/vmail
+volumes:
+  vmail-vol-1:
+    driver_opts:
+      type: none
+      device: /data/mailcow/vmail	
+      o: bind
 ```
 
 ### Moving an existing vmail folder:
