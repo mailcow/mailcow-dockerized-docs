@@ -3,11 +3,13 @@ Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful 
 ## Learn Spam & Ham
 
 Rspamd learns mail as spam or ham when you move a message in or out of the junk folder to any mailbox besides trash.
-This is achieved by using the Dovecot plugin "antispam" and a simple parser script.
+This is achieved by using the Sieve plugin "sieve_imapsieve" and parser scripts.
 
-Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning)
+Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning). We configured the plugin to keep a sane ratio between spam and ham learns.
 
 The bayes statistics are written to Redis as keys `BAYES_HAM` and `BAYES_SPAM`.
+
+Besides bayes, a local fuzzy storage is used to learn recurring patterns in text or images that indicate ham or spam.
 
 You can also use Rspamd's web UI to learn ham and / or spam or to adjust certain settings of Rspamd.
 
