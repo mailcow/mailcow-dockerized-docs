@@ -123,6 +123,7 @@ nav:
   - 'Gogs': 'third_party-gogs.md'
   - 'Gitea': 'third_party-gitea.md'
   - 'Nextcloud': 'third_party-nextcloud.md'
+  - 'Mailman': 'third_party-mailman.md'
 icon:
   logo: 'images/logo.svg'
 extra:
