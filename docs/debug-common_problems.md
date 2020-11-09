@@ -74,13 +74,12 @@ Docker containers use the Docker hosts inotify limits. Setting them on your Dock
 
 ## Dovecot keeps restarting (see [#2672](https://github.com/mailcow/mailcow-dockerized/issues/2672))
 
-Check that you have the following files in `data/assets/ssl`:
-
+Check that you have at least the following files in `data/assets/ssl`:
 
 ```
--r--r--r-- 1 root root 3554 Nov  3 17:07 cert.pem
--rw-r--r-- 1 root root  769 Nov  3 18:24 dhparams.pem
--r-------- 1 root root 1704 Nov  3 17:07 key.pem
+cert.pem
+dhparams.pem
+key.pem
 ```
 
 If `dhparams.pem` is missing, you can generate it with
