@@ -171,7 +171,7 @@ Edit `docker-compose.override.yml` and crate/extend the section for `php-fpm-mai
 ```yml
 version: '2.1'
 services:
-  postfix-mailcow:
+  php-fpm-mailcow:
     environment:
       - ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}
 ```
