@@ -43,6 +43,7 @@ nav:
 - 'Models':
   - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'ACL': 'model-acl.md'
+  - 'Password hashing': 'model-passwd.md'
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
     - 'Logs': 'debug-logs.md'
