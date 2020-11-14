@@ -41,9 +41,9 @@ nav:
   - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
   - 'IP bindings': 'firststeps-ip_bindings.md'
 - 'Models':
-  - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'ACL': 'model-acl.md'
   - 'Password hashing': 'model-passwd.md'
+  - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'WebAuthn / FIDO2': 'model-fido2.md'
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
