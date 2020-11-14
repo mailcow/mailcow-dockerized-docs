@@ -72,6 +72,7 @@ Create `data/conf/postfix/extra.cf` and set `smtp_address_preference` to `ipv4`:
 
 ```
 smtp_address_preference = ipv4
+inet_protocols = ipv4
 ```
 
 Restart Postfix:

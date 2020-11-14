@@ -1,4 +1,4 @@
-# Fully supported hashing methods
+## Fully supported hashing methods
 
 The most current mailcow fully supports the following hashing methods.
 The default hashing method is written in bold:
