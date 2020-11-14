@@ -44,6 +44,7 @@ nav:
   - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'ACL': 'model-acl.md'
   - 'Password hashing': 'model-passwd.md'
+  - 'WebAuthn / FIDO2': 'model-fido2.md'
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
     - 'Logs': 'debug-logs.md'
