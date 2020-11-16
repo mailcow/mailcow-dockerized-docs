@@ -1,6 +1,6 @@
 ## How is UV handled in mailcow?
 
-The UV flag (as in "user verification") enforces WebAuthn to verify the user before it allows access to the key (think of a PIN). We don't enforce but prefer UV to allow logins via iOS and NFC (YubiKey). W
+The UV flag (as in "user verification") enforces WebAuthn to verify the user before it allows access to the key (think of a PIN). We don't enforce but prefer UV to allow logins via iOS and NFC (YubiKey).
 
 ## Login and key processing
 
