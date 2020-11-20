@@ -44,7 +44,6 @@ nav:
   - 'ACL': 'model-acl.md'
   - 'Password hashing': 'model-passwd.md'
   - 'Sender and receiver model': 'model-sender_rcv.md'
-  - 'WebAuthn / FIDO2': 'model-fido2.md'
 - 'Debugging & Troubleshooting':
     - 'Introduction': debug.md
     - 'Logs': 'debug-logs.md'
@@ -70,6 +69,7 @@ nav:
       - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
+      - 'WebAuthn / FIDO2': 'u_e-fido2.md'
   - 'Postfix':
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
