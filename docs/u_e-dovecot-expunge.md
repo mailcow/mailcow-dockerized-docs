@@ -54,11 +54,15 @@ To create a cron job you may execute `crontab -e` and insert something like the 
 0 4 * * * /path/to/your/expunge_mailboxes.sh
 ```
 
-### via Docker (Ofelia)
+### via Docker job scheduler
 
-If you prefer to do it via Docker, you can do it with [mcuadros/ofelia](https://github.com/mcuadros/ofelia) which is a low memory foot print docker job scheduler written in Go. It's quite easy to setup, first of all you need a Ofelia container running on your host (one container works for all other containers). To do so, you can add this to your mailcow docker.override.yml:
+To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
 
 ```
+version: '2.1'
+
+ services:
+  
   ofelia:
     image: mcuadros/ofelia:latest
     restart: always
@@ -66,23 +70,18 @@ If you prefer to do it via Docker, you can do it with [mcuadros/ofelia](https://
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro   
     network_mode: none
-```
 
-Ofelia doesn't need any network access, but access to the docker control socket to access the other containers. Once Ofelia is running by either adding it via the docker-compose.override.yml, or you running it otherwise, we can go and add the new job labels to the dovecot-mailcow container. I show here an example where I clean out the trash folder from any mails older then 2 weeks every day at 4 am.
-
-```
   dovecot-mailcow:
     labels:
       - "ofelia.enabled=true"
       - "ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *"
       - "ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox 'Junk' savedbefore 2w"
       - "ofelia.job-exec.dovecot-expunge-trash.tty=false"
+
 ```
 
-Add those lines to the docker-compose.override.yml of your mailcow or if you modified the dovecot definition already, extend the labels. The first one is clear, turns on Ofelia for this container. Next we have our cron-style time definiton, important here is also that part after ".job-execute." is the individual job name. This is important when you add more jobs to this container.
-Those of us who struggle with the cron definitions, i can suggest [crontab guru](https://crontab.guru/) which gives you much more of a gasp on the time string defintion. Next line is the command, which is similar to above to clean out the trash. We don't need to name the container here as that is pointed out by Ofelia by the label already. "tty=false" tells Ofelia we don't need a pseudo-terminal to runs this.
-
-To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
+The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
+This docker-compose.override.yml deletes all mails older then 2 weeks every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
 
 ```
 common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
@@ -90,3 +89,5 @@ common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Finished i
 ```
 
 If it failed it will say so and give you the output of the doveadm in the log to make it easy on you to debug.
+
+In case you want to add more jobs, ensure you change the "dovecot-expunge-trash" part after "ofelia.job-exec." to something else, it defines the name of the job. Syntax of the labels you find at [mcuadros/ofelia](https://github.com/mcuadros/ofelia).
