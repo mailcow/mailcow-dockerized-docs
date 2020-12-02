@@ -47,9 +47,9 @@ Do not add this option to `dmarc.conf` till bug https://github.com/rspamd/rspamd
 
 ## DMARC Force actions 
 This module also allows to enable force actions based on sender DMARC policy to reject or quarantine emails which has failed policy.
-This good from security point, but not allow whitelist broken senders. This up to your choice enable it or not.
+This good from security point, but not allow whitelist broken senders. Better avoid using this option.
 
-To enable it, add to end of `data/conf/rspamd/local.d/dmarc.conf`:
+If you still want to enable it, add to end of `data/conf/rspamd/local.d/dmarc.conf`:
 ```
 actions {
     quarantine = "add_header";
