@@ -32,6 +32,8 @@ report_settings {
 ```
 2. Create required `dmarc_reports_last_sent` file:
 `docker-compose exec rspamd-mailcow bash -c "touch /var/lib/rspamd/dmarc_reports_last_sent; chown 101:101 /var/lib/rspamd/dmarc_reports_last_sent; chmod 644 /var/lib/rspamd/dmarc_reports_last_sent"`
+3. Restart rspamd container:
+`docker-compose restart rspamd-mailcow`
 
 ## Disable DMARC Reports
 To disable reports set `send_reports` to `false`
