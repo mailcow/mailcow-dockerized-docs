@@ -11,8 +11,8 @@ Edit `data/conf/unbound/unbound.conf` and append the following parameters:
 ```
 forward-zone:
   name: "."
-  forward-addr: 8.8.8.8 # NO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
-  forward-addr: 8.8.4.4 # NO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
+  forward-addr: 8.8.8.8 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
+  forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
 ```
 
 Restart Unbound:
