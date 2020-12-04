@@ -36,7 +36,7 @@ report_settings {
 `docker-compose restart rspamd-mailcow`
 
 ## Disable DMARC Reports
-To disable reports set `send_reports` to `false`
+To disable reporting set `send_reports` to `false` and restart rspamd container
 
 ## Send a copy reports to yourself
 To get copy of own generated reports you can add `additional_address = "noreply-dmarc@pnnsoft.com";` in `report_settings` section.
