@@ -14,7 +14,7 @@ Offical configuration options and documentation can be found here: https://rspam
     - In case you plan to resend a copy of reports to yourself: you need add condition to previous filter example `From is not noreply-dmarc@example.com`
 
 ## Enable DMARC Reports
-Create or edit file in `data/conf/rspamd/local.d/dmarc.conf` and set content to:
+1. Create or edit file in `data/conf/rspamd/local.d/dmarc.conf` and set content to:
 ```
 reporting = true;
 send_reports = true;
@@ -30,6 +30,8 @@ report_settings {
     hscan_count = 1500
 }
 ```
+2. Create required `dmarc_reports_last_sent` file:
+`docker-compose exec rspamd-mailcow bash -c "touch /var/lib/rspamd/dmarc_reports_last_sent; chown 101:101 /var/lib/rspamd/dmarc_reports_last_sent; chmod 644 /var/lib/rspamd/dmarc_reports_last_sent"`
 
 ## Disable DMARC Reports
 To disable reports set `send_reports` to `false`
