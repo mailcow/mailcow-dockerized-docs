@@ -4,6 +4,7 @@ The most current mailcow fully supports the following hashing methods.
 The default hashing method is written in bold:
 
 - **BLF-CRYPT**
+- SSHA
 - SSHA256
 - SSHA512
 
