@@ -234,6 +234,77 @@ After we have the certs dumped, we'll have to reload the configs from our postfi
 
 Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.
 
+### Traefik 2 with SAN certificate (community supported)
+
+!!! warning
+    This is an unsupported community contribution. Feel free to provide fixes.
+    
+This guide expand the previous guide [Traefik v2 (community supported)](#traefik-v2-community-supported) just slightly, so make sure to read it before and then read ahead here to see which option you need to set for this to work.
+Since some of you want to host additional services along with mailcow or just to cover the autoconfig/autodiscover domain in your Let's Encrypt certificate it is useful to go with a SAN (Subject Alternative Name) certificate. To archive this you can use the following `docker-compose.override.yml` in order to override the `docker-compose.yml` found in the mailcow root folder:
+
+
+```
+version: '2.1'
+
+services:
+    nginx-mailcow:
+      networks:
+        # add Traefik's network
+        web:
+      labels:
+        - traefik.enable=true
+        # Creates a router called "moo" for the container, and sets up a rule to link the container to certain rule,
+        #   in this case, a Host rule with our MAILCOW_HOSTNAME var.
+        - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
+        # Enables tls over the router we created before.
+        - traefik.http.routers.moo.tls=true
+        # Specifies which kind of cert resolver we'll use, in this case le (Lets Encrypt).
+        - traefik.http.routers.moo.tls.certresolver=le
+        # Here we specify first the mailcow domain to be the primary domain for the LE certificate
+        - traefik.http.routers.moo.tls.domains[0].main=${MAILCOW_HOSTNAME}
+        # And now we add the additional domains we want to cover with this certificate
+        - traefik.http.routers.moo.tls.domains[0].sans=${ADDITIONAL_SAN}
+        # Creates a service called "moo" for the container, and specifies which internal port of the container
+        #   should traefik route the incoming data to.
+        - traefik.http.services.moo.loadbalancer.server.port=80
+        # Specifies which entrypoint (external port) should traefik listen to, for this container.
+        #   websecure being port 443, check the traefik.toml file liked above.
+        - traefik.http.routers.moo.entrypoints=secure
+        # Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network
+        - traefik.docker.network=web
+
+    certdumper:
+        image: humenius/traefik-certs-dumper
+        container_name: traefik_certdumper
+        network_mode: none
+        volumes:
+          # mount the folder which contains Traefik's `acme.json' file
+          #   in this case Traefik is started from its own docker-compose in ../traefik
+          - ../traefik/data:/traefik:ro
+          # mount mailcow's SSL folder
+          - ./data/assets/ssl/:/output:rw
+        environment:
+          # only change this, if you're using another domain for mailcow's web frontend compared to the standard config
+          - DOMAIN=${MAILCOW_HOSTNAME}
+
+networks:
+  web:
+    external: true
+```
+
+Now we have 2 more lines for the .tls part of Traefik. The mailcow fdqn gets covered automatically but you need to add your additional domains to be covered in the file .env (located in the mailcow root folder) where it says ADDITIONAL_SAN. The format is exactly as the description in .env says, so follow that.
+After adding your additional domains, follow the guide [Traefik v2 (community supported)](#traefik-v2-community-supported) on how to start mailcow and so on. The cert dumper works fine with this and don't require changes, since this way traefik build one certificate covering all the domains, not multiple.
+
+If you already have a certificate for the mailcow fdqn with traefik or need to change the domains covered by ADDITIONAL_SAN you need to delete the entry for the domain in the acme.json (the name for the storage of the LE data might vary), restart traefik,  and so force traefik to obtain a new certificate.
+To do so you can try the following if you use a json file (assuming your in the folder holding the json and its called `acme.json`):
+
+```
+mv acme.json acme.json.org
+jq "del(.le.Certificates[] | select(.domain.main == \"subdomain.example.domain\"))" acme.json.org > acme.json
+```
+
+This uses [jq](https://stedolan.github.io/jq/), a commandline json processor to remove the entry in the json file for the domain. Replace the `subdomain.example.domain` with mailcow fdqn (even if you just want to add/remove a addtional domain). Ensure to keep the \" at the beginning/end intact. After that restart traefik to have him read and apply the new config.
+Once you checked everything is fine, you can go ahead and delete the acme.json.org. If something went wrong, you delete the new acme.json and replace it with the acme.json.org to go back to the working file. It's a bit ugly but currently the only way without using external certificates.
 
 ### Optional: Post-hook script for non-mailcow ACME clients
 
