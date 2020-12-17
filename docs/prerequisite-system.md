@@ -12,7 +12,7 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 ## Minimum System Resources
 
-**Do not** use OpenVZ or LXC as guests for mailcow.
+**OpenVZ or LXC are not supported**.
 
 Please make sure that your system has at least the following resources:
 
