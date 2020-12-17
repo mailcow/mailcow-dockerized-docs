@@ -33,7 +33,7 @@ A single SOGo worker **can** acquire ~350 MiB RAM before it gets purged. The mor
 
 #### Usage examples
 
-A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections should plan 16 GB RAM.
+A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections should plan 16 GiB RAM.
 
 6 GiB RAM + 1 GiB swap are fine for most private installations while 8 GiB RAM are recommended for ~5 to 10 users.
 
