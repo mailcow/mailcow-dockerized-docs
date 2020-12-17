@@ -16,16 +16,28 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 Please make sure that your system has at least the following resources:
 
-| Resource                | mailcow: dockerized                          |
-| ----------------------- | -------------------------------------------- |
-| CPU                     | 1 GHz                                        |
-| RAM                     | Minimum 4 GiB + Swap                         |
-| Disk                    | 20 GiB (without emails)                      |
-| System Type             | x86_64                                       |
+| Resource                | mailcow: dockerized                              |
+| ----------------------- | ------------------------------------------------ |
+| CPU                     | 1 GHz                                            |
+| RAM                     | **Minimum** 6 GiB + 1 GiB swap (default config)  |
+| Disk                    | 20 GiB (without emails)                          |
+| System Type             | x86_64                                           |
 
-As of today (29th Dec 2019), we recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04.
+We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04/20.04.
 
-ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
+ClamAV and Solr can be greedy with RAM. You may disable them in `mailcow.conf` by settings `SKIP_CLAMD=y` and `SKIP_SOLR=y`.
+
+**Info**: We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.
+
+A single SOGo worker **can** acquire ~350 MiB RAM before it gets purged. The more ActiveSync connections you plan to use, the more RAM you will need. A default configuration spawns 20 workers.
+
+#### Usage examples
+
+A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections should plan 16 GB RAM.
+
+6 GiB RAM + 1 GiB swap are fine for most private installations while 8 GiB RAM are recommended for ~5 to 10 users.
+
+We can help to correctly plan your setup as part of our support.
 
 ## Firewall & Ports
 
