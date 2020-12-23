@@ -58,18 +58,21 @@ _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@
 
 ```
 # Name              Type       Priority Weight Port    Value
+_autodiscover._tcp  IN SRV     0        1      443      mail.example.org.
+_caldavs._tcp       IN SRV     0        1      443      mail.example.org.
+_caldavs._tcp       IN TXT                              "path=/SOGo/dav/"
+_carddavs._tcp      IN SRV     0        1      443      Mail.example.org.
+_carddavs._tcp      IN TXT                              "path=/SOGo/dav/"
 _imap._tcp          IN SRV     0        1      143      mail.example.org.
 _imaps._tcp         IN SRV     0        1      993      mail.example.org.
 _pop3._tcp          IN SRV     0        1      110      mail.example.org.
 _pop3s._tcp         IN SRV     0        1      995      mail.example.org.
-_submission._tcp    IN SRV     0        1      587      mail.example.org.
-_smtps._tcp         IN SRV     0        1      465      mail.example.org.
 _sieve._tcp         IN SRV     0        1      4190     mail.example.org.
-_autodiscover._tcp  IN SRV     0        1      443      mail.example.org.
-_carddavs._tcp      IN SRV     0        1      443      Mail.example.org.
-_carddavs._tcp      IN TXT                              "path=/SOGo/dav/"
-_caldavs._tcp       IN SRV     0        1      443      mail.example.org.
-_caldavs._tcp       IN TXT                              "path=/SOGo/dav/"
+_smtps._tcp         IN SRV     0        1      465      mail.example.org.
+_submission._tcp    IN SRV     0        1      587      mail.example.org.
+
+
+
 ```
 
 ## Testing
