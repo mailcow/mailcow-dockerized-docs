@@ -2,6 +2,9 @@ This is a simple integration of mailcow aliases and the mailbox name into mailpi
 
 **Disclaimer**: This is not officially maintained nor supported by the mailcow project nor its contributors. No warranty or support is being provided, however you're free to open issues on GitHub for filing a bug or provide further ideas. [GitHub repo can be found here](https://github.com/patschi/mailpiler-mailcow-integration).
 
+!!! info
+    Support for domain wildcards were implemented in Piler 1.3.10 which was released on 03.01.2021. Prior versions basically do work, but after logging in you won't see emails sent from or to the domain alias. (e.g. when @example.com is an alias for admin@example.com)
+
 ## The problem to solve
 
 mailpiler offers the authentication based on IMAP, for example:
@@ -30,7 +33,7 @@ Note: File paths might vary depending on your setup.
 ### Requirements
 
 - A working mailcow instance
-- A working mailpiler instance ([You can find an installation guide here](https://patrik.kernstock.net/2020/08/mailpiler-installation-guide/))
+- A working mailpiler instance ([You can find an installation guide here](https://patrik.kernstock.net/2020/08/mailpiler-installation-guide/), [check supported versions here](https://github.com/patschi/mailpiler-mailcow-integration#piler))
 - An mailcow API key (read-only works just fine): `Configuration & Details - Access - Read-Only Access`. Don't forget to allow API access from your mailpiler IP.
 
 !!! warning
