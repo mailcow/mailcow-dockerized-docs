@@ -16,8 +16,8 @@ HTTPS_PORT=443
 HTTPS_BIND=
 
 # Other services are bound by using the following format:
-# SMTP_PORT=25 equals to SMTP_PORT=0.0.0.0:25
 # SMTP_PORT=1.2.3.4:25 will bind SMTP to the IP 1.2.3.4 on port 25
+# Important! Specifying an IPv4 address will skip all IPv6 bindings since Docker 20.x.
 # doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.
 
 SMTP_PORT=25
