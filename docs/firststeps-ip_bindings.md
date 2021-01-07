@@ -8,11 +8,12 @@ To adjust one or multiple IPv4 bindings, open `mailcow.conf` and edit one, multi
 ```
 # For technical reasons, http bindings are a bit different from other service bindings.
 # You will find the following variables, separated by a bind address and its port:
+# Example: HTTP_BIND=1.2.3.4
 
 HTTP_PORT=80
-HTTP_BIND=0.0.0.0
+HTTP_BIND=
 HTTPS_PORT=443
-HTTPS_BIND=0.0.0.0
+HTTPS_BIND=
 
 # Other services are bound by using the following format:
 # SMTP_PORT=25 equals to SMTP_PORT=0.0.0.0:25
