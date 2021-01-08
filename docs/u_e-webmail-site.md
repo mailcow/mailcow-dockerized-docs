@@ -1,4 +1,4 @@
-**Edit**: TODO: This guide only applies to non SNI enabled configurations. The certificate path needs to be adjusted if SNI is enabled. Something like `ssl_certificate,key /etc/ssl/mail/webmail.example.org/cert.pem,key.pem;` will do. **But**: The certificate should be acquired **first** and only after the certificate exists a site config should be created. Nginx will fail to start if it cannot find the certificate and key.
+**IMPORTANT**: This guide only applies to non SNI enabled configurations. The certificate path needs to be adjusted if SNI is enabled. Something like `ssl_certificate,key /etc/ssl/mail/webmail.example.org/cert.pem,key.pem;` will do. **But**: The certificate should be acquired **first** and only after the certificate exists a site config should be created. Nginx will fail to start if it cannot find the certificate and key.
 
 To create a subdomain `webmail.example.org` and redirect it to SOGo, you need to create a **new** Nginx site. Take care of "CHANGE_TO_MAILCOW_HOSTNAME"!
 
