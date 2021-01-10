@@ -234,14 +234,74 @@ After we have the certs dumped, we'll have to reload the configs from our postfi
 
 Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.
 
-###  jwilder/nginx-proxy & letsencrypt-nginx-proxy-companion (community supported)
+###  Jwilder/nginx-proxy & letsencrypt-nginx-proxy-companion (community supported)
 
 !!! warning
     This is an unsupported community contribution. Feel free to provide fixes.
 
 **Important**: This config only covers the "reverseproxing" of the webpanel (nginx-mailcow) using the [jwilder/nginx-proxy](https://github.com/nginx-proxy/nginx-proxy) and [letsencrypt-nginx-proxy-companion](https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion)!
 
+This section shows you, how you can use the jwilder/nginx-proxy
 This section assumes that you already have the reverse proxy up and running with a separate network for your proxied containers called `proxy-network`.
+
+First, you will need to set `SKIP_LETS_ENCRYPT=y` in `mailcow.conf`, so mailcow will not attempt to do the certificate handling, as we want the reverse proxy to do this.
+
+Then you will need to add these lines to an override file for `docker-compose.yml` called `docker-compose.override.yml` so our configuration will be safe for future updates. This file should have the follow contents:
+
+```
+version: '2.1'
+services:
+  
+  postfix-mailcow:
+    networks:
+      mailcow-network:
+        aliases:
+          - postfix
+  
+  nginx-mailcow:
+    expose:
+      - "8080"
+    environment:
+      - VIRTUAL_HOST=${MAILCOW_HOSTNAME}
+      - LETSENCRYPT_HOST=${MAILCOW_HOSTNAME}
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8080
+    volumes:
+      - /var/lib/docker/volumes/YOURVOLUMENAME/_data/${MAILCOW_HOSTNAME}/fullchain.pem:/etc/ssl/mail/cert.pem:ro
+      - /var/lib/docker/volumes/YOURVOLUMENAME/_data/${MAILCOW_HOSTNAME}/key.pem:/etc/ssl/mail/key.pem:ro
+    networks:
+      mailcow-network:
+        aliases:
+          - nginx
+      proxy-network:
+
+  dovecot-mailcow:
+    volumes:
+      - /var/lib/docker/volumes/YOURVOLUMENAME/_data/${MAILCOW_HOSTNAME}/fullchain.pem:/etc/ssl/mail/cert.pem:ro
+      - /var/lib/docker/volumes/YOURVOLUMENAME/_data/${MAILCOW_HOSTNAME}/key.pem:/etc/ssl/mail/key.pem:ro
+  
+  postfix-mailcow:
+    volumes:
+      - /var/lib/docker/volumes/YOURVOLUMENAME/_data/${MAILCOW_HOSTNAME}/fullchain.pem:/etc/ssl/mail/cert.pem:ro
+      - /var/lib/docker/volumes/YOURVOLUMENAME/_data/${MAILCOW_HOSTNAME}/key.pem:/etc/ssl/mail/key.pem:ro
+
+networks:
+  
+  mailcow-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-mailcow
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
+        - subnet: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
+  
+  proxy-network:
+    external: true
+```
+Please make sure to link the correct docker volume that the `jwilder/nginx-proxy` uses to store the certificates and link it as read-only.
 
 ### Optional: Post-hook script for non-mailcow ACME clients
 
