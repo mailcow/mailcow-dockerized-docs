@@ -252,12 +252,6 @@ Then you will need to add these lines to an override file for `docker-compose.ym
 version: '2.1'
 services:
   
-  postfix-mailcow:
-    networks:
-      mailcow-network:
-        aliases:
-          - postfix
-  
   nginx-mailcow:
     expose:
       - "8080"
