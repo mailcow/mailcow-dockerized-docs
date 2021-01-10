@@ -234,6 +234,14 @@ After we have the certs dumped, we'll have to reload the configs from our postfi
 
 Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.
 
+###  jwilder/nginx-proxy & letsencrypt-nginx-proxy-companion (community supported)
+
+!!! warning
+    This is an unsupported community contribution. Feel free to provide fixes.
+
+**Important**: This config only covers the "reverseproxing" of the webpanel (nginx-mailcow) using the [jwilder/nginx-proxy](https://github.com/nginx-proxy/nginx-proxy) and [letsencrypt-nginx-proxy-companion](https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion)!
+
+This section assumes that you already have the reverse proxy up and running with a separate network for your proxied containers called `proxy-network`.
 
 ### Optional: Post-hook script for non-mailcow ACME clients
 
