@@ -1,6 +1,6 @@
 !!! warning
     Make sure you've read ["Prepare Your System"](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system) before proceeding!
-    **Do not** use CentOS 8 with Centos 7 Docker packages. You may create an open relay.
+    **We do not recommend** CentOS 8 anymore.
 
 
 You need Docker and Docker Compose.
