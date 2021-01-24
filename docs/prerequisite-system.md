@@ -53,8 +53,6 @@ netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
     There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this blog post](https://blog.donnex.net/docker-and-iptables-filtering/) for information about how to use iptables-persistent with the DOCKER-USER chain.
     As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
 
-**
-
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
 
 ### Default Ports
@@ -76,6 +74,51 @@ If you have a firewall in front of mailcow, please make sure that these ports ar
 To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT=1.2.3.4:25`
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
+
+### Important for Hetzner firewalls
+
+Quoting https://github.com/chermsen via https://github.com/mailcow/mailcow-dockerized/issues/497#issuecomment-469847380 (THANK YOU!):
+
+For all who are struggling with the Hetzner firewall:
+
+Port 53 unimportant for the firewall configuration in this case. According to the documentation unbound uses the port range 1024-65535 for outgoing requests.
+Since the Hetzner Robot Firewall is a static firewall (each incoming packet is checked isolated) - the following rules must be applied:
+
+**For TCP**
+```
+SRC-IP:       ---
+DST IP:       ---
+SRC Port:    ---
+DST Port:    1024-65535
+Protocol:    tcp
+TCP flags:   ack
+Action:      Accept
+```
+
+**For UDP**
+```
+SRC-IP:       ---
+DST IP:       ---
+SRC Port:    ---
+DST Port:    1024-65535
+Protocol:    udp
+Action:      Accept
+```
+
+If you want to apply a more restrictive port range you have to change the config of unbound first (after installation):
+
+{mailcow-dockerized}/data/conf/unbound/unbound.conf:
+```
+outgoing-port-avoid: 0-32767
+```
+
+Now the firewall rules can be adjusted as follows:
+
+```
+[...]
+DST Port:  32768-65535
+[...]
+```
 
 ## Date and Time
 
