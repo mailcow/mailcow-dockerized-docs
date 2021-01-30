@@ -3,7 +3,7 @@ SOGo is used for accessing your mails via a webbrowser, adding and sharing your 
 
 ## Change theme
 mailcow builds after 28 January 2021 can change SOGo's theme by editing `data/conf/sogo/custom-theme.js`.
-Please check AngularJS Material [Intro](https://material.angularjs.org/latest/Theming/01_introduction) and [Configuring a theme](https://material.angularjs.org/latest/Theming/03_configuring_a_theme) documentation to get more details on how this works.
+Please check AngularJS Material [Intro](https://material.angularjs.org/latest/Theming/01_introduction) & [Configuring theme](https://material.angularjs.org/latest/Theming/03_configuring_a_theme) documentation with [Material Style Color](https://material.io/archive/guidelines/style/color.html#color-color-palette) page to learn how this works.
 After you updated said file you need to restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
 
 ## Reset to SOGo default theme
