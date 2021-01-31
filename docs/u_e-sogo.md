@@ -32,13 +32,13 @@ and replace with:
 ```
 
 ## Change favicon
-mailcow builds after 30 January 2021 can change SOGo's favicon by replacing `data/conf/sogo/custom-favicon.ico` for SOGo and `data/web/favicon.png` for mailcow UI.
-To note: you can use `.png` favicons for SOGo, by renaming them to `custom-favicon.ico`.
-For both SOGo and mailcow UI faviconsyou need use one of standard dimensions: 16x16, 32x32, 64x64, 128x128 and 256x256.
+mailcow builds after 31 January 2021 can change SOGo's favicon by replacing `data/conf/sogo/custom-favicon.ico` for SOGo and `data/web/favicon.png` for mailcow UI.
+**Note**: You can use `.png` favicons for SOGo by renaming them to `custom-favicon.ico`.
+For both SOGo and mailcow UI favicons you need use one of the standard dimensions: 16x16, 32x32, 64x64, 128x128 and 256x256.
 After you replaced said file you need to restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
 
 ## Change logo
-mailcow builds after 21 December 2018 can change SOGo's logo by replacing `data/conf/sogo/sogo-full.svg`.
+mailcow builds after 21 December 2018 can change SOGo's logo by replacing or creating (if missing) `data/conf/sogo/sogo-full.svg`.
 After you replaced said file you need to restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
 
 ## Connect domains
