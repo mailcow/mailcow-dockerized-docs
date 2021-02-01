@@ -50,7 +50,7 @@ netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 ```
 
 !!! warning
-    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this blog post](https://blog.donnex.net/docker-and-iptables-filtering/) for information about how to use iptables-persistent with the DOCKER-USER chain.
+    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) or [this (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) guide for information about how to use iptables-persistent with the DOCKER-USER chain.
     As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
 
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
