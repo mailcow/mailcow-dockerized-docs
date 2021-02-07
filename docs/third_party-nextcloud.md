@@ -75,3 +75,13 @@ If you have previously used Nextcloud without mailcow authentication, but with t
 ```
 INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users;
 ```
+
+---
+
+## Update
+
+The Nextcloud instance can be updated easily with the web update mechanism. In the case of larger updates, there may be further changes to be made after the update. After the Nextcloud instance has been checked, problems are shown. This can be e.g. missing indices in the DB or similar.
+It shows which commands have to be executed, these have to be placed in the php-fpm-mailcow container.
+
+As an an example run the following command to add the missing indices.
+`docker exec -it -u www-data $ (docker ps -f name = php-fpm-mailcow -q) bash -c "php / web / nextcloud / occ db: add-missing-indices"`
