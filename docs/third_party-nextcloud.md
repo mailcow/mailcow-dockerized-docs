@@ -75,3 +75,31 @@ If you have previously used Nextcloud without mailcow authentication, but with t
 ```
 INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users;
 ```
+
+---
+
+## Update
+
+The Nextcloud instance can be updated easily with the web update mechanism. In the case of larger updates, there may be further changes to be made after the update. After the Nextcloud instance has been checked, problems are shown. This can be e.g. missing indices in the DB or similar.
+It shows which commands have to be executed, these have to be placed in the php-fpm-mailcow container.
+
+As an an example run the following command to add the missing indices.
+`docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"`
+
+---
+
+## Debugging & Troubleshooting
+
+It may happen that you cannot reach the Nextcloud instance from your network. This may be due to the fact that the entry of your subnet in the array 'trusted_proxies' is missing. You can make changes in the Nextcloud config.php in `data/web/nextcloud/config/*`.
+
+```
+'trusted_proxies' =>
+  array (
+    0 => 'fd4d:6169:6c63:6f77::/64',
+    1 => '172.22.1.0/24',
+    2 => 'NewSubnet/24',
+  ),
+```
+
+After the changes have been made, the nginx container must be restarted.
+`docker-compose restart nginx-mailcow`
