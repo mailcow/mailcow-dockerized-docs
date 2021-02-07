@@ -84,7 +84,7 @@ The Nextcloud instance can be updated easily with the web update mechanism. In t
 It shows which commands have to be executed, these have to be placed in the php-fpm-mailcow container.
 
 As an an example run the following command to add the missing indices.
-`docker exec -it -u www-data $ (docker ps -f name = php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db: add-missing-indices"`
+`docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"`
 
 ---
 
