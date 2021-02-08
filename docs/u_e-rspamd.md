@@ -224,3 +224,52 @@ redis-cli -h redis DEL Q_LAST_NOTIFIED
 quarantine_notify.py
 ```
 
+## Configure dmarc reports
+
+If the mail server is to send dmarc reports, a dmarc configuration must be created. The configuration is saved in the dmarc.conf file in the data/conf/rspamd/local.d folder.
+
+Example configuration of dmarc.conf:
+```
+# dmarc configuration for mailexchange jzone.mx
+reporting = true;
+#servers = "redis:6379";
+#kex_prefix = "dmarc_";
+#actions = {
+#  quarantine = "add_header";
+#  reject = "reject";
+#}
+send_reports = true;
+# report_settings MUST be present
+report_settings {
+  # The following elements MUST be present
+  # organisation name to use for reports
+  org_name = "Your dmarc report name";
+  # organisation domain
+  domain = "example.org";
+  # sender address to use for reports
+  email = "noreply-dmarc@example.org";
+  # The following elements MAY be present
+  # sender name to use for reports ("Rspamd" if unset)
+  from_name = "DMARC Reporter MailCow Exchange";
+  # SMTP host to send reports to ("127.0.0.1" if unset)
+  smtp = "postfix";
+  # TCP port to use for SMTP (25 if unset)
+  smtp_port = 25;
+  # HELO to use for SMTP ("rspamd" if unset)
+  helo = "rspamd";
+  # Number of retries on temporary errors (2 if unset)
+  retries = 3;
+  # Send DMARC reports here instead of domain owners
+  #override_address = "noreply-dmarc@example.org";
+  # Send DMARC reports here in addition to domain owners
+  #additional_address = "noreply-dmarc@example.org";
+  #additional_address_bcc = true;
+  # Number of records to request with HSCAN
+  hscan_count = 1500;
+}
+```
+
+After the file has been created, the rspamd container must be restarted. `docker-compose restart rspamd-mailcow`
+
+Configuration options and examples can also be found in the rspamd documentation.
+[RSPAMD - DMARC module] (https://www.rspamd.com/doc/modules/dmarc.html)
