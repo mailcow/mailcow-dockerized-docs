@@ -61,7 +61,7 @@ To archive this with a docker job scheduler use this docker-compose.override.yml
 ```
 version: '2.1'
 
- services:
+services:
   
   ofelia:
     image: mcuadros/ofelia:latest
