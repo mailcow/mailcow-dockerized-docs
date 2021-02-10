@@ -5,7 +5,7 @@ In order to enable Portainer, the docker-compose.yml and site.conf for Nginx mus
 version: '2.1'
 services:
     portainer-mailcow:
-      image: portainer/portainer
+      image: portainer/portainer-ce
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         - ./data/conf/portainer:/data
