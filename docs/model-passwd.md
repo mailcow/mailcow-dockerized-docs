@@ -12,29 +12,31 @@ The methods above can be used in `mailcow.conf` as `MAILCOW_PASS_SCHEME` value.
 
 ## Read-only hashing methods
 
-The following methods are supported **read only**. 
+The following methods are supported **read only**.
+If you plan to use SOGo (as per default), you need a SOGo compatible hashing method. Please see the note at the bottom of this page how to update the view if necessary.
+With SOGo disabled, all hashing methods below will be able to be read by mailcow and Dovecot.
 
-- ARGON2I
-- ARGON2ID
+- ARGON2I (SOGo compatible)
+- ARGON2ID (SOGo compatible)
 - CLEAR
 - CLEARTEXT
-- CRYPT
+- CRYPT (SOGo compatible)
 - DES-CRYPT
-- LDAP-MD5
-- MD5
-- MD5-CRYPT
-- PBKDF2
-- PLAIN
+- LDAP-MD5 (SOGo compatible)
+- MD5 (SOGo compatible)
+- MD5-CRYPT (SOGo compatible)
+- PBKDF2 (SOGo compatible)
+- PLAIN (SOGo compatible)
 - PLAIN-MD4
 - PLAIN-MD5
 - PLAIN-TRUNC
-- SHA
-- SHA1
-- SHA256
-- SHA256-CRYPT
-- SHA512
-- SHA512-CRYPT
-- SMD5
+- SHA (SOGo compatible)
+- SHA1 (SOGo compatible)
+- SHA256 (SOGo compatible)
+- SHA256-CRYPT (SOGo compatible)
+- SHA512 (SOGo compatible)
+- SHA512-CRYPT (SOGo compatible)
+- SMD5 (SOGo compatible)
 
 That means mailcow is able to verify users with a hash like `{PLAIN-MD5}1a1dc91c907325c69271ddf0c944bc72` from the database.
 
