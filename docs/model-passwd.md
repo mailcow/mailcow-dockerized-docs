@@ -14,9 +14,27 @@ The methods above can be used in `mailcow.conf` as `MAILCOW_PASS_SCHEME` value.
 
 The following methods are supported **read only**. 
 
+- ARGON2I
+- ARGON2ID
+- CLEAR
+- CLEARTEXT
+- CRYPT
+- DES-CRYPT
+- LDAP-MD5
+- MD5
 - MD5-CRYPT
+- PBKDF2
+- PLAIN
+- PLAIN-MD4
 - PLAIN-MD5
+- PLAIN-TRUNC
+- SHA
+- SHA1
+- SHA256
+- SHA256-CRYPT
+- SHA512
 - SHA512-CRYPT
+- SMD5
 
 That means mailcow is able to verify users with a hash like `{PLAIN-MD5}1a1dc91c907325c69271ddf0c944bc72` from the database.
 
