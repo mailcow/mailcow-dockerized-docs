@@ -38,7 +38,7 @@ With SOGo disabled, all hashing methods below will be able to be read by mailcow
 - SHA512-CRYPT (SOGo compatible)
 - SMD5 (SOGo compatible)
 
-That means mailcow is able to verify users with a hash like `{PLAIN-MD5}1a1dc91c907325c69271ddf0c944bc72` from the database.
+That means mailcow is able to verify users with a hash like `{MD5}1a1dc91c907325c69271ddf0c944bc72` from the database.
 
 The value of `MAILCOW_PASS_SCHEME` will _always_ be used to encrypt new passwords.
 
