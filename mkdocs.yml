@@ -32,6 +32,7 @@ nav:
   - 'Untrust RFC 1918': 'firststeps-rfc-1918.md'
   - 'Advanced SSL': 'firststeps-ssl.md'
   - 'Rspamd UI': 'firststeps-rspamd_ui.md'
+  - 'DMARC Reporting': 'firststeps-dmarc_reporting.md'
   - 'Reverse Proxy': 'firststeps-rp.md'
   - 'SNAT': 'firststeps-snat.md'
   - 'Disable IPv6': 'firststeps-disable_ipv6.md'
