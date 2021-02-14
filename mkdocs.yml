@@ -28,7 +28,7 @@ nav:
   - 'Installation': 'i_u_m_install.md'
   - 'Update': 'i_u_m_update.md'
   - 'Migration': 'i_u_m_migration.md'
-- 'Post-Installation tasks (optional)':
+- 'Post Installation Tasks':
   - 'Advanced SSL': 'firststeps-ssl.md'
   - 'Disable IPv6': 'firststeps-disable_ipv6.md'
   - 'IP bindings': 'firststeps-ip_bindings.md'
