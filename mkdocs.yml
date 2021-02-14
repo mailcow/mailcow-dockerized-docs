@@ -138,8 +138,8 @@ extra:
     accent: 'orange'
   social:
     - icon: fontawesome/solid/globe-americas
-    link: https://mailcow.email
+      link: https://mailcow.email
     - icon: fontawesome/brands/github-alt
-    link: https://github.com/mailcow
+      link: https://github.com/mailcow
 extra_css: [extra.css]
 extra_javascript: [clients.js]
