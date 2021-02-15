@@ -98,8 +98,6 @@ nav:
   - 'SOGo': 'u_e-sogo.md'
   - 'XMPP':
     - 'Enable XMPP': 'u_e-xmpp-enable.md'
-    - 'Certificates': 'u_e-xmpp-certs.md'
-    - 'Autoconfig': 'u_e-xmpp-autoconfig.md'
   - 'Docker':
     - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
     - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
