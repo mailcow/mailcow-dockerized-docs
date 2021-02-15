@@ -8,11 +8,12 @@ To enable XMPP for a domain, you need to edit the given domain in mailcow UI:
 
 ![Screen1](https://i.imgur.com/oLyHBke.png)
 
-The chosen prefix will be your XMPP domain for all XMPP-enabled users in mailcow, for example:
+The chosen prefix will be used to derive your XMPP login.
 
-- Mailbox cowboy@develcow.de will equal to Jabber ID  cowboy@**xmpp_prefix**.develcow.de
+A prefix **xmpp_prefix** for the mailbox user `cowboy@develcow.de` would equal to the JID `cowboy@xmpp_prefix.develcow.de`.
 
-**The passwords for mail and XMPP are the same.**
+!!! info
+    The login passwords for mail and XMPP are the same. XMPP users are authenticated against mailcow.
 
 Before enabling XMPP for a domain, you should create two CNAME records in DNS:
 
@@ -36,9 +37,9 @@ Once ejabberd is enabled, you may want to re-run the DNS check in the mailcow UI
 
 ```
 # SRV records
-# Name                            Type       Priority Weight Port    Value
-_xmpp-client._tcp.xmpp_prefix     IN SRV     10       1      5222    mail.example.org. (your ${MAILCOW_HOSTNAME})
-_xmpp-server._tcp.xmpp_prefix     IN SRV     10       1      5269    mail.example.org. (your ${MAILCOW_HOSTNAME})
+# Name                            Type       Value
+_xmpp-client._tcp.xmpp_prefix     IN SRV     10 1 5222 mail.example.org. (your ${MAILCOW_HOSTNAME})
+_xmpp-server._tcp.xmpp_prefix     IN SRV     10 1 5269 mail.example.org. (your ${MAILCOW_HOSTNAME})
 ```
 
 There is no need to restart ejabberd, add these SRV records whenever you like. These records are crucial for autoconfiguration of XMPP clients and server-to-server connections.
