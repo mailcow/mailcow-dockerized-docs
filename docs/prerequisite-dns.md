@@ -23,10 +23,9 @@ This example shows you a set of records for one domain managed by mailcow. Each 
 ```
 # Name              Type       Value
 mail                IN A       1.2.3.4
-autodiscover        IN CNAME   mail
-autoconfig          IN CNAME   mail
-
-@                   IN MX 10   mail
+autodiscover        IN CNAME   mail.example.org. (your ${MAILCOW_HOSTNAME})
+autoconfig          IN CNAME   mail.example.org. (your ${MAILCOW_HOSTNAME})
+@                   IN MX 10   mail.example.org. (your ${MAILCOW_HOSTNAME})
 ```
 
 ## DKIM, SPF and DMARC
@@ -35,7 +34,7 @@ In the example DNS zone file snippet below, a simple **SPF** TXT record is used 
 
 ```
 # Name              Type       Value
-@                   IN TXT     "v=spf1 mx -all"
+@                   IN TXT     "v=spf1 mx a -all"
 ```
 
 It is highly recommended to create a **DKIM** TXT record in your mailcow UI and set the corresponding TXT record in your DNS records. Please refer to [OpenDKIM](http://www.opendkim.org) for further reading.
@@ -58,21 +57,18 @@ _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@
 
 ```
 # Name              Type       Priority Weight Port    Value
-_autodiscover._tcp  IN SRV     0        1      443      mail.example.org.
-_caldavs._tcp       IN SRV     0        1      443      mail.example.org.
+_autodiscover._tcp  IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_caldavs._tcp       IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _caldavs._tcp       IN TXT                              "path=/SOGo/dav/"
-_carddavs._tcp      IN SRV     0        1      443      Mail.example.org.
+_carddavs._tcp      IN SRV     0        1      443      Mail.example.org. (your ${MAILCOW_HOSTNAME})
 _carddavs._tcp      IN TXT                              "path=/SOGo/dav/"
-_imap._tcp          IN SRV     0        1      143      mail.example.org.
-_imaps._tcp         IN SRV     0        1      993      mail.example.org.
-_pop3._tcp          IN SRV     0        1      110      mail.example.org.
-_pop3s._tcp         IN SRV     0        1      995      mail.example.org.
-_sieve._tcp         IN SRV     0        1      4190     mail.example.org.
-_smtps._tcp         IN SRV     0        1      465      mail.example.org.
-_submission._tcp    IN SRV     0        1      587      mail.example.org.
-
-
-
+_imap._tcp          IN SRV     0        1      143      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_imaps._tcp         IN SRV     0        1      993      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_pop3._tcp          IN SRV     0        1      110      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_pop3s._tcp         IN SRV     0        1      995      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_sieve._tcp         IN SRV     0        1      4190     mail.example.org. (your ${MAILCOW_HOSTNAME})
+_smtps._tcp         IN SRV     0        1      465      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_submission._tcp    IN SRV     0        1      587      mail.example.org. (your ${MAILCOW_HOSTNAME})
 ```
 
 ## Testing
