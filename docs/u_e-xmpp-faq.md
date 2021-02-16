@@ -1,5 +1,7 @@
 ## FAQ
 
+Please find the most frequently asked questions with their corresponding configuration in `data/conf/ejabberd/ejabberd.yml` (if any).
+
 - **I do not want to run ejabberd, is there a `SKIP_XMPP` variable?**
 
 No, there is not. But you don't need one either.
@@ -35,4 +37,40 @@ The retention policy saves them for 30 days:
 
 - **Are messages stored when a JID is offline?**
 
-Yes, up to 1000 messages are stored.
+Yes, up to 1000 messages are stored for "normal" users and administrators:
+
+```
+shaper_rules:
+  max_user_offline_messages:
+    1000: admin
+    1000: all
+```
+
+- **Are messages written in group chats stored?**
+
+No, messages are not stored:
+
+```
+  mod_muc:
+    default_room_options:
+      mam: false
+```
+
+- **Are group chats persistent when the last participant leaves?**
+
+No, they will vanish:
+
+```
+  mod_muc:
+    default_room_options:
+      persistent: false
+```
+
+- **How many client sessions can be open at the same time?**
+
+10 sessions are allowed per session.
+
+```
+shaper_rules:
+  max_user_sessions: 10
+```
