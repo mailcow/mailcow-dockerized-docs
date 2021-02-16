@@ -252,3 +252,13 @@ dovecot_c=$(docker ps -qaf name=dovecot-mailcow)
 nginx_c=$(docker ps -qaf name=nginx-mailcow)
 docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
 ```
+
+### Adding additional server names for mailcow UI
+
+If you plan to use a server name that is not `MAILCOW_HOSTNAME` in your reverse proxy, make sure to populate that name in mailcow.conf via `ADDITIONAL_SERVER_NAMES` first. Names must be separated by commas and **must not** contain spaces. If you skip this step, mailcow may respond to your reverse proxy with an incorrect site.
+
+```
+ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
+```
+
+Run `docker-compose up -d` to apply.
