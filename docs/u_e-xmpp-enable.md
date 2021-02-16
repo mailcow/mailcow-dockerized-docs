@@ -2,35 +2,6 @@ XMPP is provided by ejabberd, which describes itself as robust, scalable and ext
 
 So first of all, thanks to ejabberd and its contributers!
 
-## FAQs
-
-- **Are messages stored on the server?**
-
-Not by default. The default setting is to disable the message archive via mod_mam but allow users to enable the function if they want to:
-
-```
-  mod_mam:
-    clear_archive_on_room_destroy: true
-    default: never
-    compress_xml: true
-    request_activates_archiving: true
-```
-
-- **Are uploaded files stored on the server?**
-
-Yes, uploaded files are stored in the volume `xmpp-uploads-vol-1`.
-
-The retention policy saves them for 30 days:
-
-```
-  mod_http_upload_quota:
-    max_days: 30
-```
-
-- **Are messages stored when a JID is offline?**
-
-Yes, up to 1000 messages are stored.
-
 ## Enable XMPP in mailcow
 
 To enable XMPP for a domain, you need to edit the given domain in mailcow UI:

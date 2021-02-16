@@ -97,6 +97,8 @@ nav:
   - 'Rspamd': 'u_e-rspamd.md'
   - 'SOGo': 'u_e-sogo.md'
   - 'XMPP': 'u_e-xmpp-enable.md'
+    - 'FAQ': 'u_e-xmpp-faq.md'
+    - 'Enable XMPP': 'u_e-xmpp-enable.md'
   - 'Docker':
     - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
     - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
