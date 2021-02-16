@@ -76,6 +76,18 @@ If your reverse proxy is configured to point to a site like `webmail.domain.tld`
 
 That's because mailcow does not know it should respond to `webmail.domain.tld` with mailcow UI.
 
+### Method 1
+
+A more simple approach is defining `ADDITIONAL_SERVER_NAMES` in `mailcow.conf`:
+
+```
+ADDITIONAL_SERVER_NAMES=webmail.domain.tld
+```
+
+Run `docker-compose up -d` to apply.
+
+### Method 2
+
 In your reverse proxy configuration, make sure you set a "Host" header that mailcow actually services, similar to this (Nginx example):
 
 ```
