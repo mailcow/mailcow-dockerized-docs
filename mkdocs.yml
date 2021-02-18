@@ -96,7 +96,7 @@ nav:
   - 'Redis': 'u_e-redis.md'
   - 'Rspamd': 'u_e-rspamd.md'
   - 'SOGo': 'u_e-sogo.md'
-  - 'XMPP': 'u_e-xmpp-enable.md'
+  - 'XMPP':
     - 'FAQ': 'u_e-xmpp-faq.md'
     - 'Enable XMPP': 'u_e-xmpp-enable.md'
   - 'Docker':
