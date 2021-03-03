@@ -10,27 +10,28 @@ fi
 
 cd $(dirname $0)
 
-wget -O connector.tar.gz https://github.com/inverse-inc/sogo-connector/archive/sogo-connector-68.0.1.tar.gz
-
-mkdir -p connector
-tar --strip-components=1 -C connector -xf connector.tar.gz
+# we have to use the master branch, because there is no tag or release at the moment
+wget -O connector.zip https://github.com/inverse-inc/sogo-connector/archive/master.zip
+unzip connector.zip
 
 # build custom connector
 while read DOMAINS; do
 	for DOMAIN in $DOMAINS; do
 		echo "Building SOGo Connector for $DOMAIN hosted on $MAILHOST"
-		cd connector
+		cd sogo-connector-master
 		mkdir -p custom/${DOMAIN}
 		cp -r custom/sogo-demo/* custom/${DOMAIN}/
-		sed -i "s/http:\/\/sogo-demo\.inverse\.ca/https:\/\/${MAILHOST}/g" custom/${DOMAIN}/chrome/content/sogo-connector/global/extensions.rdf
-		sed -i "s/plugins\/updates\.php[?]/thunderbird-plugins.php?domain=${DOMAIN}\&amp;/g" custom/${DOMAIN}/chrome/content/sogo-connector/global/extensions.rdf
-		echo > custom/${DOMAIN}/defaults/preferences/site.js
-		echo 'pref("sogo-connector.autocomplete.server.urlid", "'${DOMAIN}'");' > custom/${DOMAIN}/defaults/preferences/site.js
-		echo 'pref("mail.collect_email_address_outgoing", false);' >> custom/${DOMAIN}/defaults/preferences/site.js
-		#sed -i 's/<\/Seq>/<li><Description em:id="sieve@mozdev.org" em:name="Sieve"\/><\/li><li><Description em:id="imap-acl@sirphreak.com" em:name="Imap-ACL-Extension"\/><\/li><\/Seq>/g' custom/${DOMAIN}/chrome/content/sogo-connector/global/extensions.rdf
+		sed -i "s/https:\/\/demo\.sogo\.nu/https:\/\/${MAILHOST}/g" custom/${DOMAIN}/chrome/content/sogo-connector/general/custom-preferences.js
+		sed -i "s/plugins\/updates\.php[?]/thunderbird-plugins.php?domain=${DOMAIN}\&amp;/g" chrome/content/sogo-connector/global/extensions.rdf
+		# adjust sogo-connector.autocomplete.server.urlid
+		sed -i "s/\"public\"/\"${MAILHOST}\"/g" custom/${DOMAIN}/chrome/content/sogo-connector/general/custom-preferences.js
+		# remove wrong timezone setting
+		sed -i 's/char_pref(\"calendar\.timezone\.local\", \"\/mozilla\.org\/20070129_1\/America\/Montreal\");//g' custom/${DOMAIN}/chrome/content/sogo-connector/general/custom-preferences.js
+
+		echo 'bool_pref("mail.collect_email_address_outgoing", false);' >> custom/${DOMAIN}/chrome/content/sogo-connector/general/custom-preferences.js
 		make build=${DOMAIN}
-		CONNECTOR_VER=$(grep em:version install.rdf | awk -F '"' '{print $2}')
-		CONNECTOR_MIN_VER=$(grep em:minVersion install.rdf | grep -Eo '[0-9\.]+' | head -n 1)
+		CONNECTOR_VER=$(grep \"version\" manifest.json | awk -F '"' '{print $4}')
+		CONNECTOR_MIN_VER=$(grep strict_min_version manifest.json | grep -Eo '[0-9\.]+' | head -n 1)
 		mv sogo-connector-*.xpi ../sogo-connector-${CONNECTOR_VER}-${DOMAIN}.xpi
 		cd ..
 	done
@@ -57,4 +58,4 @@ echo "sogo-connector@inverse.ca;${CONNECTOR_VER};sogo-connector-${CONNECTOR_VER}
 # echo "sieve@mozdev.org;${SIEVE_VER};sieve-${SIEVE_VER}.xpi" >> version.csv
 # echo "imap-acl@sirphreak.com;${IMAP_ACL_VER};imap_acl_extension-${IMAP_ACL_VER}-tb.xpi" >> version.csv
 
-rm -rf connector *.tar.gz
+rm -rf sogo-connector-master *.zip
