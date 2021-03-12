@@ -1,6 +1,6 @@
 language: python
 install:
-- pip install mkdocs-material pygments
+- pip install mkdocs-material pygments mkdocs-redirects
 script:
 - mkdocs build --verbose --clean
 deploy:

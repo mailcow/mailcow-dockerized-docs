@@ -142,3 +142,7 @@ extra:
       link: https://github.com/mailcow
 extra_css: [extra.css]
 extra_javascript: [clients.js]
+plugins:
+    - redirects:
+        redirect_maps:
+            'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
