@@ -5,7 +5,7 @@ script:
 - mkdocs build --verbose --clean
 deploy:
  provider: pages
- cleanup: false
+ skip_cleanup: true
  github_token: $GITHUB_TOKEN
  local_dir: site
  name: $BOT_NAME
