@@ -6,6 +6,10 @@ Please consider a support contract for a small monthly fee at [Servercow EN](htt
 
 If you are super awesome and would like to support without a contract, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at [Servercow EN](https://www.servercow.de/mailcow?lang=en#sal)/[Servercow DE](https://www.servercow.de/mailcow#sal).
 
+₿ If you like anonymous donations, please consider a Bitcoin donation via **1E5rgzgA1sS3QH7r1ToWxRC3GEavfsGMrx**
+
+![grafik](https://user-images.githubusercontent.com/2972950/111918092-beb7d680-8a83-11eb-9a98-1fe43d3e0deb.png)
+
 ## Get support
 
 There are two ways to achieve support for your mailcow installation.
