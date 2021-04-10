@@ -64,29 +64,36 @@ The integrated **mailcow UI** allows administrative work on your mail server ins
 mailcow: dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.
 
-- [Dovecot](https://www.dovecot.org/)
+- [ACME](https://letsencrypt.org/)
 - [ClamAV](https://www.clamav.net/) (optional)
-- [Solr](http://lucene.apache.org/solr/) (optional)
-- [Oletools](https://github.com/decalage2/oletools) via [Olefy](https://github.com/HeinleinSupport/olefy)
-- [Memcached](https://www.memcached.org/)
-- [Redis](https://redis.io/)
+- [Dovecot](https://www.dovecot.org/)
+- [ejabberd](https://www.ejabberd.im/)
 - [MariaDB](https://mariadb.org/)
-- [Unbound](https://unbound.net/)
+- [Memcached](https://www.memcached.org/)
+- [Netfilter](https://www.netfilter.org/) (Fail2ban-like integration by [@mkuron](https://github.com/mkuron))
+- [Nginx](https://nginx.org/)
+- [Oletools](https://github.com/decalage2/oletools) via [Olefy](https://github.com/HeinleinSupport/olefy)
 - [PHP](https://php.net/)
 - [Postfix](http://www.postfix.org/)
-- [ACME](https://letsencrypt.org/)
-- [Nginx](https://nginx.org/)
+- [Redis](https://redis.io/)
 - [Rspamd](https://www.rspamd.com/)
 - [SOGo](https://sogo.nu/)
-- [Netfilter](https://www.netfilter.org/) (Fail2ban-like integration by [@mkuron](https://github.com/mkuron))
+- [Solr](http://lucene.apache.org/solr/) (optional)
+- [Unbound](https://unbound.net/)
 - A Watchdog to provide basic monitoring
 
 **Docker volumes** to keep dynamic data - take care of them!
 
-- vmail-vol-1
-- solr-vol-1
-- redis-vol-1
-- mysql-vol-1
-- rspamd-vol-1
-- postfix-vol-1
 - crypt-vol-1
+- mysql-socket-vol-1
+- mysql-vol-1
+- postfix-vol-1
+- redis-vol-1
+- rspamd-vol-1
+- sogo-userdata-backup-vol-1
+- sogo-web-vol-1
+- solr-vol-1
+- vmail-index-vol-1
+- vmail-vol-1
+- xmpp-upload-vol-1
+- xmpp-vol-1
