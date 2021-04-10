@@ -39,7 +39,7 @@ nav:
   - 'Rspamd UI': 'firststeps-rspamd_ui.md'
   - 'SNAT': 'firststeps-snat.md'
   - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
-  - 'Untrust RFC 1918': 'firststeps-rfc-1918.md'
+  - 'Add trsteded networks': 'firststeps-trust_networks.md'
 - 'Models':
   - 'ACL': 'model-acl.md'
   - 'Password hashing': 'model-passwd.md'
