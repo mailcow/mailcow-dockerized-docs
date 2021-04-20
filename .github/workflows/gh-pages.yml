@@ -14,8 +14,8 @@ jobs:
           pip install mkdocs-material pygments==2.8.1 mkdocs-redirects
 
       - name: Build site 🔧
-	    run: |
-		  mkdocs build --verbose --clean
+        run: |
+          mkdocs build --verbose --clean
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.1
