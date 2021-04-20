@@ -1,4 +1,4 @@
-![TRAVIS-CI](https://api.travis-ci.org/mailcow/mailcow-dockerized-docs.svg?branch=master)
+[![Build and deploy to gh-pages](https://github.com/mailcow/mailcow-dockerized-docs/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/mailcow/mailcow-dockerized-docs/actions/workflows/gh-pages.yml)
 
 # mailcow: dockerized documentation
 
