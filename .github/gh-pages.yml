@@ -1,0 +1,21 @@
+name: Build and deploy to gh-pages
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 📥
+        uses: actions/checkout@v2.3.4
+
+      - name: Install and Build 🔧
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install python3-pip
+          pip install mkdocs-material pygments mkdocs-redirects
+          mkdocs build --verbose --clean
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: . # The folder the action should deploy.
