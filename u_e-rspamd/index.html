@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/u_e-rspamd/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.33e2939f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f955dcd.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
@@ -475,8 +475,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-rfc-1918/" class="md-nav__link">
-        Untrust RFC 1918
+      <a href="../firststeps-trust_networks/" class="md-nav__link">
+        Add trusted networks
       </a>
     </li>
   
@@ -1320,6 +1320,7 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+      
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Rspamd
           <span class="md-nav__icon md-icon"></span>
@@ -1331,6 +1332,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
   
@@ -1419,6 +1421,13 @@
         <li class="md-nav__item">
   <a href="#trigger-a-resend-of-quarantine-notifications" class="md-nav__link">
     Trigger a resend of quarantine notifications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#increase-history-retention" class="md-nav__link">
+    Increase history retention
   </a>
   
 </li>
@@ -1927,6 +1936,7 @@
   
   
   
+  
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
@@ -2012,6 +2022,13 @@
         <li class="md-nav__item">
   <a href="#trigger-a-resend-of-quarantine-notifications" class="md-nav__link">
     Trigger a resend of quarantine notifications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#increase-history-retention" class="md-nav__link">
+    Increase history retention
   </a>
   
 </li>
@@ -2170,6 +2187,14 @@ mysql -umailcow -p$DBPASS mailcow -e &quot;update quarantine set notified = 0;&q
 redis-cli -h redis DEL Q_LAST_NOTIFIED
 quarantine_notify.py
 </code></pre></div>
+<h2 id="increase-history-retention">Increase history retention<a class="headerlink" href="#increase-history-retention" title="Permanent link">&para;</a></h2>
+<p>By default Rspamd keeps 1000 elements in the history.</p>
+<p>The history is stored compressed.</p>
+<p>It is recommended not to use a disproportionate high value here, try something along 5000 or 10000 and see how your server handles it:</p>
+<p>Edit <code>data/conf/rspamd/local.d/history_redis.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>nrows = 1000; # change this value
+</code></pre></div>
+<p>Restart Rspamd afterwards: <code>docker-compose restart rspamd-mailcow</code></p>
                 
               
               
@@ -2267,7 +2292,7 @@ quarantine_notify.py
     <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d892486b.min.js"></script>
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
       
         <script src="../clients.js"></script>
       

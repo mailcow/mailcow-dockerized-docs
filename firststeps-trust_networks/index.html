@@ -9,18 +9,18 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rfc-1918/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-trust_networks/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
-        <title>Untrust RFC 1918 - mailcow: dockerized documentation</title>
+        <title>Add trusted networks - mailcow: dockerized documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.33e2939f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f955dcd.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
@@ -88,7 +88,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Untrust RFC 1918
+              Add trusted networks
             
           </span>
         </div>
@@ -478,9 +478,31 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Add trusted networks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Untrust RFC 1918
+        Add trusted networks
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1815,19 +1837,19 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/firststeps-rfc-1918.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/firststeps-trust_networks.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Untrust RFC 1918</h1>
+                  <h1>Add trusted networks</h1>
                 
-                <p>Per default, mailcow considers all private RFC1918 networks (i.e. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) as trusted. Though it is reasonable in most cases, you may want to restrict this setting under certain circumstances. In particular, if you are using some kind of reverse proxy for SMTP TCP ports. If your reverse proxy host is located in a private net, mailcow will consider all traffic from it as trusted, which may result in an open relay. </p>
+                <p>Per default mailcow considers all networks as untrusted, except for its own IPV4_NETWORK and IPV6_NETWORK scope. Though it is reasonable in most cases, you may want to loosen this restriction under certain circumstances to allow connections from other networks.</p>
 <p>To change this behaviour override the default value of <code>mynetworks</code> parameter through the <code>data/conf/postfix/extra.cf</code> configuration file.</p>
-<p><strong>Important</strong>: Do <strong>not</strong> remove the networks listed as <code>IPV4_NETWORK</code> and <code>IPV6_NETWORK</code> in your mailcow.conf. You should also keep local addresses.</p>
-<p>The default values for those variables - <code>172.22.1.0/24</code> and <code>fd4d:6169:6c63:6f77::/64</code> - would result in the following, minimal configuration:</p>
-<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64
+<p><strong>Important</strong>: Do <strong>not</strong> remove the networks listed as <code>IPV4_NETWORK</code> and <code>IPV6_NETWORK</code> in your mailcow.conf. You should also keep local addresses. To add <code>1.2.3.4/32</code> it may look like the configuration below:</p>
+<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 1.2.3.4/32
 </code></pre></div>
+<p>Per default we use "mynetworks_style = subnet" to only include local networks we are part of.</p>
                 
               
               
@@ -1925,7 +1947,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d892486b.min.js"></script>
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
       
         <script src="../clients.js"></script>
       

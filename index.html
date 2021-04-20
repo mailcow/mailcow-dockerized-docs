@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/">
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.33e2939f.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.6f955dcd.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ef6f36e2.min.css">
@@ -204,6 +204,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -218,6 +219,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -554,8 +556,8 @@
   
   
     <li class="md-nav__item">
-      <a href="firststeps-rfc-1918/" class="md-nav__link">
-        Untrust RFC 1918
+      <a href="firststeps-trust_networks/" class="md-nav__link">
+        Add trusted networks
       </a>
     </li>
   
@@ -1893,6 +1895,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -2024,32 +2027,39 @@
 <p>mailcow: dockerized comes with multiple containers linked in one bridged network.
 Each container represents a single application.</p>
 <ul>
-<li><a href="https://www.dovecot.org/">Dovecot</a></li>
+<li><a href="https://letsencrypt.org/">ACME</a></li>
 <li><a href="https://www.clamav.net/">ClamAV</a> (optional)</li>
-<li><a href="http://lucene.apache.org/solr/">Solr</a> (optional)</li>
-<li><a href="https://github.com/decalage2/oletools">Oletools</a> via <a href="https://github.com/HeinleinSupport/olefy">Olefy</a></li>
-<li><a href="https://www.memcached.org/">Memcached</a></li>
-<li><a href="https://redis.io/">Redis</a></li>
+<li><a href="https://www.dovecot.org/">Dovecot</a></li>
+<li><a href="https://www.ejabberd.im/">ejabberd</a></li>
 <li><a href="https://mariadb.org/">MariaDB</a></li>
-<li><a href="https://unbound.net/">Unbound</a></li>
+<li><a href="https://www.memcached.org/">Memcached</a></li>
+<li><a href="https://www.netfilter.org/">Netfilter</a> (Fail2ban-like integration by <a href="https://github.com/mkuron">@mkuron</a>)</li>
+<li><a href="https://nginx.org/">Nginx</a></li>
+<li><a href="https://github.com/decalage2/oletools">Oletools</a> via <a href="https://github.com/HeinleinSupport/olefy">Olefy</a></li>
 <li><a href="https://php.net/">PHP</a></li>
 <li><a href="http://www.postfix.org/">Postfix</a></li>
-<li><a href="https://letsencrypt.org/">ACME</a></li>
-<li><a href="https://nginx.org/">Nginx</a></li>
+<li><a href="https://redis.io/">Redis</a></li>
 <li><a href="https://www.rspamd.com/">Rspamd</a></li>
 <li><a href="https://sogo.nu/">SOGo</a></li>
-<li><a href="https://www.netfilter.org/">Netfilter</a> (Fail2ban-like integration by <a href="https://github.com/mkuron">@mkuron</a>)</li>
+<li><a href="http://lucene.apache.org/solr/">Solr</a> (optional)</li>
+<li><a href="https://unbound.net/">Unbound</a></li>
 <li>A Watchdog to provide basic monitoring</li>
 </ul>
 <p><strong>Docker volumes</strong> to keep dynamic data - take care of them!</p>
 <ul>
-<li>vmail-vol-1</li>
-<li>solr-vol-1</li>
-<li>redis-vol-1</li>
-<li>mysql-vol-1</li>
-<li>rspamd-vol-1</li>
-<li>postfix-vol-1</li>
 <li>crypt-vol-1</li>
+<li>mysql-socket-vol-1</li>
+<li>mysql-vol-1</li>
+<li>postfix-vol-1</li>
+<li>redis-vol-1</li>
+<li>rspamd-vol-1</li>
+<li>sogo-userdata-backup-vol-1</li>
+<li>sogo-web-vol-1</li>
+<li>solr-vol-1</li>
+<li>vmail-index-vol-1</li>
+<li>vmail-vol-1</li>
+<li>xmpp-upload-vol-1</li>
+<li>xmpp-vol-1</li>
 </ul>
                 
               
@@ -2134,7 +2144,7 @@ Each container represents a single application.</p>
     <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.d892486b.min.js"></script>
+      <script src="assets/javascripts/bundle.4ea5477f.min.js"></script>
       
         <script src="clients.js"></script>
       
