@@ -1,5 +1,5 @@
 ### Backup
-
+#### backup_and_restore.sh
 You can use the provided script `helper-scripts/backup_and_restore.sh` to backup mailcow automatically.
 
 Please do not copy this script to another location.
@@ -29,4 +29,35 @@ To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variab
 
 ```
 MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+```
+
+#### Cronjob
+You can call the backupscript regularly using a cronjob. Normally cron informs you about the result of each backup operation by e-mail. If you want cron to create an email only in case of an error, you can use the following snippet in `/etc/cron.daily/mailcow-backup` for example. If necessary the paths must be modified.
+
+```
+#!/bin/sh
+
+# Backup mailcow data
+# https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/
+
+set -e
+
+OUT="$(mktemp)"
+export MAILCOW_BACKUP_LOCATION="/opt/backup"
+SCRIPT="/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh"
+PARAMETERS="backup all"
+OPTIONS="--delete-days 30"
+
+# run command
+set +e
+"${SCRIPT}" ${PARAMETERS} ${OPTIONS} 2>&1 > "$OUT"
+RESULT=$?
+
+if [ $RESULT -ne 0 ]
+    then
+            echo "${SCRIPT} ${PARAMETERS} ${OPTIONS} encounters an error:"
+            echo "RESULT=$RESULT"
+            echo "STDOUT / STDERR:"
+            cat "$OUT"
+fi
 ```
