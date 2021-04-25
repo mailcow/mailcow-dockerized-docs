@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/u_e-xmpp-faq/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
     
     
       
@@ -20,7 +20,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6f955dcd.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
@@ -1894,7 +1894,7 @@
 <li><strong>I do not want to run ejabberd, is there a <code>SKIP_XMPP</code> variable?</strong></li>
 </ul>
 <p>No, there is not. But you don't need one either.</p>
-<p>The xmppd behaves the same way as SOGo or Solr do when disabled. A shell will be idling and ejabberd will <strong>not</strong> be started.</p>
+<p>The xmppd behaves the same way as SOGo or Solr do when disabled. A shell will be idling and ejabberd will <strong>not</strong> be started (but open unconnected ports).</p>
 <p>As soon as a domain is enabled for XMPP, the container will be restarted and ejabberd bootstrapped.</p>
 <p>ejabberd is <strong>very</strong> light on resources, you may want to give it a try.</p>
 <ul>
