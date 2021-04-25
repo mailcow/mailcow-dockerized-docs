@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-trust_networks/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/third_party-borgmatic/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
     
     
       
-        <title>Add trusted networks - mailcow: dockerized documentation</title>
+        <title>Borgmatic Backup - mailcow: dockerized documentation</title>
       
     
     
@@ -62,6 +62,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#borgmatic-backup" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -88,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Add trusted networks
+              Borgmatic Backup
             
           </span>
         </div>
@@ -327,14 +332,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       <label class="md-nav__link" for="__nav_4">
         Post Installation Tasks
@@ -470,19 +473,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../firststeps-trust_networks/" class="md-nav__link">
         Add trusted networks
       </a>
-      
     </li>
   
 
@@ -1684,12 +1679,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
       
       <label class="md-nav__link" for="__nav_10">
         Third party apps
@@ -1705,11 +1702,188 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../third_party-borgmatic/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Borgmatic Backup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Borgmatic Backup
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-borgmatic" class="md-nav__link">
+    Setting up borgmatic
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up borgmatic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-or-amend-docker-composeoverrideyml" class="md-nav__link">
+    Create or amend docker-compose.override.yml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-dataconfborgmaticetcconfigyaml" class="md-nav__link">
+    Create data/conf/borgmatic/etc/config.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-crontab" class="md-nav__link">
+    Create a crontab
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-ssh-keys-in-folder" class="md-nav__link">
+    Place SSH keys in folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bring-up-the-container" class="md-nav__link">
+    Bring up the container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-the-repository" class="md-nav__link">
+    Initialize the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restart-container" class="md-nav__link">
+    Restart container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restoring-from-a-backup" class="md-nav__link">
+    Restoring from a backup
+  </a>
+  
+    <nav class="md-nav" aria-label="Restoring from a backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restore-maildir" class="md-nav__link">
+    Restore maildir
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restore-mysql" class="md-nav__link">
+    Restore MySQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-restoring" class="md-nav__link">
+    After restoring
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-commands" class="md-nav__link">
+    Useful commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-archiving-run-with-debugging-output" class="md-nav__link">
+    Manual archiving run (with debugging output)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-all-available-archives" class="md-nav__link">
+    Listing all available archives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#break-lock" class="md-nav__link">
+    Break lock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-keys" class="md-nav__link">
+    Exporting keys
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1823,24 +1997,358 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-borgmatic" class="md-nav__link">
+    Setting up borgmatic
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up borgmatic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-or-amend-docker-composeoverrideyml" class="md-nav__link">
+    Create or amend docker-compose.override.yml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-dataconfborgmaticetcconfigyaml" class="md-nav__link">
+    Create data/conf/borgmatic/etc/config.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-crontab" class="md-nav__link">
+    Create a crontab
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#place-ssh-keys-in-folder" class="md-nav__link">
+    Place SSH keys in folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bring-up-the-container" class="md-nav__link">
+    Bring up the container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-the-repository" class="md-nav__link">
+    Initialize the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restart-container" class="md-nav__link">
+    Restart container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restoring-from-a-backup" class="md-nav__link">
+    Restoring from a backup
+  </a>
+  
+    <nav class="md-nav" aria-label="Restoring from a backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restore-maildir" class="md-nav__link">
+    Restore maildir
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restore-mysql" class="md-nav__link">
+    Restore MySQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-restoring" class="md-nav__link">
+    After restoring
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-commands" class="md-nav__link">
+    Useful commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-archiving-run-with-debugging-output" class="md-nav__link">
+    Manual archiving run (with debugging output)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-all-available-archives" class="md-nav__link">
+    Listing all available archives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#break-lock" class="md-nav__link">
+    Break lock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-keys" class="md-nav__link">
+    Exporting keys
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/firststeps-trust_networks.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/third_party-borgmatic.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Add trusted networks</h1>
-                
-                <p>Per default mailcow considers all networks as untrusted, except for its own IPV4_NETWORK and IPV6_NETWORK scope. Though it is reasonable in most cases, you may want to loosen this restriction under certain circumstances to allow connections from other networks.</p>
-<p>To change this behaviour override the default value of <code>mynetworks</code> parameter through the <code>data/conf/postfix/extra.cf</code> configuration file.</p>
-<p><strong>Important</strong>: Do <strong>not</strong> remove the networks listed as <code>IPV4_NETWORK</code> and <code>IPV6_NETWORK</code> in your mailcow.conf. You should also keep local addresses. To add <code>1.2.3.4/32</code> it may look like the configuration below:</p>
-<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 1.2.3.4/32
+                <h1 id="borgmatic-backup">Borgmatic Backup<a class="headerlink" href="#borgmatic-backup" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Borgmatic is a great way to run backups on your Mailcow setup as it securely encrypts your data and is extremely easy to
+set up.</p>
+<p>Due to it's deduplication capabilities you can store a great number of backups without wasting large amounts of disk
+space. This allows you to run backups in very short intervals to ensure minimal data loss when the need arises to
+recover data from a backup.</p>
+<p>This document guides you through the process to enable continuous backups for mailcow with borgmatic. The borgmatic
+functionality is provided by the <a href="https://github.com/b3vis/docker-borgmatic">borgmatic Docker image by b3vis</a>. Check out
+the <code>README</code> in that repository to find out about the other options (such as push notifications) that are available.
+This guide only covers the basics.</p>
+<h2 id="setting-up-borgmatic">Setting up borgmatic<a class="headerlink" href="#setting-up-borgmatic" title="Permanent link">&para;</a></h2>
+<h3 id="create-or-amend-docker-composeoverrideyml">Create or amend <code>docker-compose.override.yml</code><a class="headerlink" href="#create-or-amend-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
+<p>In the mailcow-dockerized root folder create or edit <code>docker-compose.override.yml</code> and insert the following
+configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.1&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">borgmatic-mailcow</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">b3vis/borgmatic</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">dns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}.254</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vmail-vol-1:/mnt/source/vmail:ro</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql-socket-vol-1:/var/run/mysqld/:z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/etc:/etc/borgmatic.d:Z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/state:/root/.config/borg:Z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/ssh:/root/.ssh:Z</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">TZ=${TZ}</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="nt">mailcow-network</span><span class="p">:</span>
+        <span class="nt">aliases</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">borgmatic</span>
 </code></pre></div>
-<p>Per default we use "mynetworks_style = subnet" to only include local networks we are part of.</p>
+<p>Ensure that you change the <code>BORG_PASSPHRASE</code> to a secure passphrase of your choosing.</p>
+<p>For security reasons we mount the maildir as read-only. If you later want to restore data you will need to remove
+the <code>ro</code> flag prior to restoring the data. This is described in the section on restoring backups.</p>
+<h3 id="create-dataconfborgmaticetcconfigyaml">Create <code>data/conf/borgmatic/etc/config.yaml</code><a class="headerlink" href="#create-dataconfborgmaticetcconfigyaml" title="Permanent link">&para;</a></h3>
+<p>Next, we need to create the borgmatic configuration.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span> mailcow.conf
+cat <span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
+<span class="s">location:</span>
+<span class="s">    source_directories:</span>
+<span class="s">        - /mnt/source</span>
+<span class="s">    repositories:</span>
+<span class="s">        - user@rsync.net:mailcow</span>
+<span class="s">    remote_path: borg1</span>
+
+<span class="s">retention:</span>
+<span class="s">    keep_hourly: 24</span>
+<span class="s">    keep_daily: 7</span>
+<span class="s">    keep_weekly: 4</span>
+<span class="s">    keep_monthly: 6</span>
+
+<span class="s">hooks:</span>
+<span class="s">    mysql_databases:</span>
+<span class="s">        - name: ${DBNAME}</span>
+<span class="s">          username: ${DBUSER}</span>
+<span class="s">          password: ${DBPASS}</span>
+<span class="s">          options: --default-character-set=utf8mb4</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p>Creating the file in this way ensures the correct MySQL credentials are pulled in from <code>mailcow.conf</code>.</p>
+<p>This file is a minimal example for using borgmatic with an account <code>user</code> on the cloud storage provider <code>rsync.net</code> for
+a repository called <code>mailcow</code> (see <code>repositories</code> setting). It will backup both the maildir and MySQL database, which is
+all you should need to restore your mailcow setup after an incident. The retention settings will keep one archive for
+each hour of the past 24 hours, one per day of the week, one per week of the month and one per month of the past half
+year.</p>
+<p>Check the <a href="https://torsion.org/borgmatic/">borgmatic documentation</a> on how to use other types of repositories or
+configuration options. If you choose to use a local filesystem as a backup destination make sure to mount it into the
+container. The container defines a volume called <code>/mnt/borg-repository</code> for this purpose.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not use rsync.net you can most likely drop the <code>remote_path</code> element from your config.</p>
+</div>
+<h3 id="create-a-crontab">Create a crontab<a class="headerlink" href="#create-a-crontab" title="Permanent link">&para;</a></h3>
+<p>Create a new text file in <code>data/conf/borgmatic/etc/crontab.txt</code> with the following content:</p>
+<div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2&gt;&amp;1
+</code></pre></div>
+<p>This file expects crontab syntax. The example shown here will trigger the backup to run every hour at 14 minutes past
+the hour and log some nice stats at the end.</p>
+<h3 id="place-ssh-keys-in-folder">Place SSH keys in folder<a class="headerlink" href="#place-ssh-keys-in-folder" title="Permanent link">&para;</a></h3>
+<p>Place the SSH keys you intend to use for remote repository connections in <code>data/conf/borgmatic/ssh</code>. OpenSSH expects the
+usual <code>id_rsa</code>, <code>id_ed25519</code> or similar to be in this directory. Ensure the file is <code>chmod 600</code> and not world readable
+or OpenSSH will refuse to use the SSH key.</p>
+<h3 id="bring-up-the-container">Bring up the container<a class="headerlink" href="#bring-up-the-container" title="Permanent link">&para;</a></h3>
+<p>For the next step we need the container to be up and running in a configured state. To do that run:</p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
+<h3 id="initialize-the-repository">Initialize the repository<a class="headerlink" href="#initialize-the-repository" title="Permanent link">&para;</a></h3>
+<p>By now your borgmatic container is up and running, but the backups will currently fail due to the repository not being
+initialized.</p>
+<p>To initialize the repository run:</p>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic init --encryption repokey-blake2
+</code></pre></div>
+<p>You will be asked you to authenticate the SSH host key of your remote repository server. See if it matches and confirm
+the prompt by entering <code>yes</code>. The repository will be initialized with the passphrase you set in the <code>BORG_PASSPHRASE</code>
+environment variable earlier.</p>
+<p>When using any of the <code>repokey</code> encryption methods the encryption key will be stored in the repository itself and not on
+the client, so there is no further action required in this regard. If you decide to use a <code>keyfile</code> instead of
+a <code>repokey</code> make sure you export the key and back it up separately. Check the <a href="#exporting-keys">Exporting Keys</a> section
+for how to retrieve the key.</p>
+<h3 id="restart-container">Restart container<a class="headerlink" href="#restart-container" title="Permanent link">&para;</a></h3>
+<p>Now that we finished configuring and initializing the repository restart the container to ensure it is in a defined
+state:</p>
+<div class="highlight"><pre><span></span><code>docker-compose restart borgmatic-mailcow
+</code></pre></div>
+<h2 id="restoring-from-a-backup">Restoring from a backup<a class="headerlink" href="#restoring-from-a-backup" title="Permanent link">&para;</a></h2>
+<p>Restoring a backup assumes you are starting off with a fresh installation of mailcow, and you currently do not have
+any custom data in your maildir or your mailcow database.</p>
+<h3 id="restore-maildir">Restore maildir<a class="headerlink" href="#restore-maildir" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Doing this will overwrite files in your maildir! Do not run this unless you actually intend to recover mail
+files from a backup.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">If you use SELinux in Enforcing mode</p>
+<p>If you are using mailcow on a host with SELinux in Enforcing mode you will have to temporarily disable it during
+extraction of the archive as the mailcow setup labels the vmail volume as private, belonging to the dovecot container
+exclusively. SELinux will (rightfully) prevent any other container, such as the borgmatic container, from writing to
+this volume.</p>
+</div>
+<p>Before running a restore you must make the vmail volume writeable in <code>docker-compose.override.yml</code> by removing
+the <code>ro</code> flag from the volume.
+Then you can use the following command to restore the maildir from a backup:</p>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+</code></pre></div>
+<p>Alternatively you can specify any archive name from the list of archives (see
+<a href="#listing-all-available-archives">Listing all available archives</a>)</p>
+<h3 id="restore-mysql">Restore MySQL<a class="headerlink" href="#restore-mysql" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Running this command will delete and recreate the mailcow database! Do not run this unless you actually
+intend to recover the mailcow database from a backup.</p>
+</div>
+<p>To restore the MySQL database from the latest archive use this command:</p>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic restore --archive latest
+</code></pre></div>
+<p>Alternatively you can specify any archive name from the list of archives (see
+<a href="#listing-all-available-archives">Listing all available archives</a>)</p>
+<h3 id="after-restoring">After restoring<a class="headerlink" href="#after-restoring" title="Permanent link">&para;</a></h3>
+<p>After restoring you need to restart mailcow. If you disabled SELinux enforcing mode now would be a good time to
+re-enable it.</p>
+<p>To restart mailcow use the follwing command:</p>
+<div class="highlight"><pre><span></span><code>docker-compose down <span class="o">&amp;&amp;</span> docker-compose up -d
+</code></pre></div>
+<p>If you use SELinux this will also trigger the re-labeling of all files in your vmail volume. Be patient, as this may
+take a while if you have lots of files.</p>
+<h2 id="useful-commands">Useful commands<a class="headerlink" href="#useful-commands" title="Permanent link">&para;</a></h2>
+<h3 id="manual-archiving-run-with-debugging-output">Manual archiving run (with debugging output)<a class="headerlink" href="#manual-archiving-run-with-debugging-output" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic -v <span class="m">2</span>
+</code></pre></div>
+<h3 id="listing-all-available-archives">Listing all available archives<a class="headerlink" href="#listing-all-available-archives" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic list
+</code></pre></div>
+<h3 id="break-lock">Break lock<a class="headerlink" href="#break-lock" title="Permanent link">&para;</a></h3>
+<p>When borg is interrupted during an archiving run it will leave behind a stale lock that needs to be cleared before any
+new operations can be performed:</p>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+</code></pre></div>
+<p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
+<p>Now would be a good time to do a manual archiving run to ensure it can be successfully performed.</p>
+<h3 id="exporting-keys">Exporting keys<a class="headerlink" href="#exporting-keys" title="Permanent link">&para;</a></h3>
+<p>When using any of the <code>keyfile</code> methods for encryption you <strong>MUST</strong> take care of backing up the key files yourself. The
+key files are generated when you initialize the repository. The <code>repokey</code> methods store the key file within the
+repository, so a manual backup isn't as essential.</p>
+<p>Note that in either case you also must have the passphrase to decrypt any archives.</p>
+<p>To fetch the keyfile run:</p>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
+</code></pre></div>
+<p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
                 
               
               
@@ -1859,7 +2367,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../firststeps-sync_jobs_migration/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../client/client-manual/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1868,19 +2376,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Sync job migration
+              Manual configuration
             </div>
           </div>
         </a>
       
       
-        <a href="../model-acl/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../third_party-exchange_onprem/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              ACL
+              Exchange Hybrid Setup
             </div>
           </div>
           <div class="md-footer__button md-icon">
