@@ -1850,7 +1850,8 @@
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
 <span class="hll">  server_name mysite.example.org;
-</span>
+</span>  server_tokens off;
+
   location ^~ /.well-known/acme-challenge/ {
     allow all;
     default_type &quot;text/plain&quot;;
@@ -1871,7 +1872,8 @@
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
 <span class="hll">  server_name example.domain.tld;
-</span>
+</span>  server_tokens off;
+
   location ^~ /.well-known/acme-challenge/ {
     allow all;
     default_type &quot;text/plain&quot;;
@@ -1881,9 +1883,9 @@
     return 301 https://$host$request_uri;
   }
 
-  location / {
-<span class="hll">    proxy_pass http://service:3000/;
-</span>    proxy_set_header Host $http_host;
+<span class="hll">  location / {
+</span>    proxy_pass http://service:3000/;
+    proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
