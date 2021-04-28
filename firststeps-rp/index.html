@@ -1979,6 +1979,11 @@ mailcow: dockerized trusts the default gateway IP 172.22.1.1 as proxy.</p>
 <p>This will also change the bindings inside the Nginx container! This is important, if you decide to use a proxy within Docker.</p>
 <p><strong>IMPORTANT:</strong> Do not use port 8081, 9081 or 65510!</p>
 <p>Recreate affected containers by running <code>docker-compose up -d</code>.</p>
+<p><strong>Important information, please read them carefully!</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you plan to use a reverse proxy and want to use another server name that is <strong>not</strong> MAILCOW_HOSTNAME, you need to read <strong>Adding additional server names for mailcow UI</strong> at the bottom of this page.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Make sure you run <code>generate_config.sh</code> before you enable any site configuration examples below.
