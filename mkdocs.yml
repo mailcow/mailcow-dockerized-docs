@@ -120,6 +120,7 @@ nav:
   - 'Windows Phone': 'client/client-windowsphone.md'
   - 'Manual configuration': 'client/client-manual.md'
 - 'Third party apps':
+  - 'Borgmatic Backup': 'third_party-borgmatic.md'
   - 'Exchange Hybrid Setup': 'third_party-exchange_onprem.md'
   - 'Gitea': 'third_party-gitea.md'
   - 'Gogs': 'third_party-gogs.md'

@@ -6,7 +6,7 @@ Please find the most frequently asked questions with their corresponding configu
 
 No, there is not. But you don't need one either.
 
-The xmppd behaves the same way as SOGo or Solr do when disabled. A shell will be idling and ejabberd will **not** be started.
+The xmppd behaves the same way as SOGo or Solr do when disabled. A shell will be idling and ejabberd will **not** be started (but open unconnected ports).
 
 As soon as a domain is enabled for XMPP, the container will be restarted and ejabberd bootstrapped.
 

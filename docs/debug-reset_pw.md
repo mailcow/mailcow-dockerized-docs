@@ -77,9 +77,17 @@ MariaDB [(none)]> FLUSH PRIVILEGES;
 
 ## Remove Two-Factor Authentication
 
+### For mailcow WebUI:
+
 This works similar to resetting a MySQL password, now we do it from the host without connecting to the MySQL CLI:
 
 ```
 source mailcow.conf
 docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e "DELETE FROM tfa WHERE username='YOUR_USERNAME';"
+```
+
+### For SOGo:
+
+```
+docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled '{"SOGoGoogleAuthenticatorEnabled":0}'
 ```

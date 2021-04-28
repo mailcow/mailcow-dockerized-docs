@@ -16,6 +16,7 @@ server {
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name mysite.example.org;
+  server_tokens off;
 
   location ^~ /.well-known/acme-challenge/ {
     allow all;
@@ -40,6 +41,7 @@ server {
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name example.domain.tld;
+  server_tokens off;
 
   location ^~ /.well-known/acme-challenge/ {
     allow all;
