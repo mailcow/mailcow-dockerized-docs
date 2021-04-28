@@ -105,7 +105,6 @@ nav:
   - 'Why unbound?': 'u_e-why_unbound.md'
   - 'Autodiscover / Autoconfig': 'u_e-autodiscover_config.md'
   - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
-  - 'Adjust Service Configurations': 'u_e-change_config.md'
   - 'Deinstall': 'u_e-deinstall.md'
   - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
 - 'Client Configuration':
