@@ -54,6 +54,7 @@ nav:
   - 'Remove Persistent Data': 'debug-rm_volumes.md'
   - 'Common Problems': 'debug-common_problems.md'
   - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
+  - 'Reset TLS certificates'': 'debug-reset-tls.md'
 - 'Backup & Restore':
   - 'Helper script':
     - 'Backup': 'b_n_r_backup.md'
