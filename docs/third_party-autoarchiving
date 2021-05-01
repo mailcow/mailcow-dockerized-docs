@@ -1,0 +1,100 @@
+# Automatic Archiving with dovecot-archive
+
+## Introduction
+
+dovecot-archive is a python wrapper for doveadm that allows for archiving email.
+
+This document guides you through the process to enable automated archiving of email across all mailcow domains. We will utilise ofelia to setup a schedule to trigger the archival script
+
+## Create or amend `docker-compose.override.yml`
+
+In the mailcow-dockerized root folder create or edit `docker-compose.override.yml` and insert the following
+configuration:
+
+```yaml
+version: '2.1'
+services:
+  ofelia:
+    image: mcuadros/ofelia:latest
+    restart: always
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    network_mode: none
+
+  dovecot-mailcow:
+    labels:
+      - "ofelia.enabled=true"
+      - "ofelia.job-exec.dovecot-auto-archive.schedule=0 4 * * *"
+      - "ofelia.job-exec.dovecot-auto-archive.command=/usr/local/bin/archive_email"
+      - "ofelia.job-exec.dovecot-auto-archive.tty=false"
+    volumes:
+      - ./data/assets/dovecot-archive/archive_email:/usr/local/bin/archive_email
+```
+
+## Create `data/conf/assets/dovecot-archive/archive_email`
+
+Next, we need to create the directory to contain the shell script.
+
+```shell
+mkdir -p .data/assets/dovecot-archive
+```
+
+Using your prefered text editor copy the below scipt into a file called archive email
+
+```bash
+#!/bin/bash
+
+#Move only mails sent before this date. YYYY-MM-DD or a human readable representation of elapsed time (e.g. "2 months", "3y").
+# If not given, all mails will be moved.
+ArchiveBefore="1y"
+
+#Name of the Archive Mailbox (Folder)
+ArchiveMailbox="Archive"
+
+# Archive Arguments
+# =================
+#
+# --split-by-year
+#  Create subfolders with the respective years in the destination folder structure as [/dst-root-folder]/<year>/<folder>/<subfolder>.
+#   If not given, folders will be moved as awhole.
+# --year-as-last-folder
+#  Create subfolders with the respective years as the last folder in the hieararchy as [/dst-root-folder]/<folder>/<subfolder>/<year>.
+#   Effective only when --split-by-year is used.
+# --copy
+#  Copy the mails instead of moving. If not given the mails are removed from the source location after successful move.
+DovecotArchiveArguments="--split-by-year --year-as-last-folder"
+
+#Mailboxes (folders) to move, space seperated
+ArchiveMailboxes+=("INBOX Sent")
+
+#install the required python modules. These are not installed in the mailcow instance
+pip3 install setuptools
+pip3 install wheel
+pip3 install dovecot-archive
+
+#for each specified mailbox append the mailbox to DovecotArchiveArguments variable
+for mailbox in ${ArchiveMailboxes[@]}; do
+  DovecotArchiveArguments+=" --folder $mailbox"
+done
+
+# Change to the vmail directory (where usermailboxes are found
+cd /var/vmail/
+
+#For each directory in the vmail directory get the directories that are domains and then exclude the mailcow.local folder
+for domain in $(ls -d * | grep "^[[:alnum:]]\+[[:alnum:]\-\.]\+[[:alnum:]]\+\.[[:alpha:]]\+\$" | grep -v mailcow.local) ; do
+  #Get a list of directories (users)
+  for users in $(ls -d $domain/*); do
+    #strip $domain off the username
+    user=$(echo $users | awk 'BEGIN { FS = "/" } ; { print $2 }')
+    #Archive the users Maildir
+    dovecot-archive --user $user@$domain --before $ArchiveBefore --dst-root-folder $ArchiveMailbox $DovecotArchiveArguments
+  done;
+done
+```
+
+We than need to make the file executable
+
+```shell
+chmod +x ./data/assets/dovecot-archive/archive_email
+```
