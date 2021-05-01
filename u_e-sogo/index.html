@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#change-theme" class="md-skip">
+        <a href="#apply-custom-sogo-theme" class="md-skip">
           Skip to content
         </a>
       
@@ -1379,8 +1379,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#change-theme" class="md-nav__link">
-    Change theme
+  <a href="#apply-custom-sogo-theme" class="md-nav__link">
+    Apply custom SOGo theme
   </a>
   
 </li>
@@ -1908,8 +1908,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#change-theme" class="md-nav__link">
-    Change theme
+  <a href="#apply-custom-sogo-theme" class="md-nav__link">
+    Apply custom SOGo theme
   </a>
   
 </li>
@@ -1969,10 +1969,15 @@
                   <h1>SOGo</h1>
                 
                 <p>SOGo is used for accessing your mails via a webbrowser, adding and sharing your contacts or calendars. For a more in-depth documentation on SOGo please visit its <a href="http://wiki.sogo.nu/">own documentation</a>.</p>
-<h2 id="change-theme">Change theme<a class="headerlink" href="#change-theme" title="Permanent link">&para;</a></h2>
+<h2 id="apply-custom-sogo-theme">Apply custom SOGo theme<a class="headerlink" href="#apply-custom-sogo-theme" title="Permanent link">&para;</a></h2>
 <p>mailcow builds after 28 January 2021 can change SOGo's theme by editing <code>data/conf/sogo/custom-theme.js</code>.
-Please check the AngularJS Material <a href="https://material.angularjs.org/latest/Theming/01_introduction">intro</a> and <a href="https://material.angularjs.org/latest/Theming/03_configuring_a_theme">documentation</a> as well as the <a href="https://material.io/archive/guidelines/style/color.html#color-color-palette">material style guideline</a> to learn how this works.
-After you updated said file you need to restart SOGo and Memcached containers by executing <code>docker-compose restart memcached-mailcow sogo-mailcow</code>.</p>
+Please check the AngularJS Material <a href="https://material.angularjs.org/latest/Theming/01_introduction">intro</a> and <a href="https://material.angularjs.org/latest/Theming/03_configuring_a_theme">documentation</a> as well as the <a href="https://material.io/archive/guidelines/style/color.html#color-color-palette">material style guideline</a> to learn how this works. </p>
+<p>You can use the provided <code>custom-theme.js</code> as an example starting point by removing the comments.
+After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes to your new SOGo theme you need to </p>
+<ul>
+<li>edit <code>data/conf/sogo/sogo.conf</code> and append/set <code>SOGoUIxDebugEnabled = YES;</code></li>
+<li>restart SOGo and Memcached containers by executing <code>docker-compose restart memcached-mailcow sogo-mailcow</code>.</li>
+</ul>
 <h2 id="reset-to-sogo-default-theme">Reset to SOGo default theme<a class="headerlink" href="#reset-to-sogo-default-theme" title="Permanent link">&para;</a></h2>
 <p>Checkout <code>data/conf/sogo/custom-theme.js</code> by executing <code>git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js</code>
 Find in <code>data/conf/sogo/custom-theme.js</code>:
@@ -1985,9 +1990,9 @@ Find in <code>data/conf/sogo/custom-theme.js</code>:
         &#39;hue-3&#39;: &#39;A700&#39;
       })
       .accentPalette(&#39;green&#39;, {
-        &#39;default&#39;: &#39;600&#39;,  // background color of fab buttons
+        &#39;default&#39;: &#39;600&#39;,  // background color of fab buttons and login screen
         &#39;hue-1&#39;: &#39;300&#39;,    // background color of center list toolbar
-        &#39;hue-2&#39;: &#39;300&#39;,
+        &#39;hue-2&#39;: &#39;300&#39;,    // highlight color for selected mail and current day calendar
         &#39;hue-3&#39;: &#39;A700&#39;
       })
       .backgroundPalette(&#39;frost-grey&#39;);
