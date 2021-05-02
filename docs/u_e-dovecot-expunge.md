@@ -34,7 +34,9 @@ docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mai
 
 ## Job scheduler
 
-To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
+This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. 
+
+> ℹ️ If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
 
 ```
 version: '2.1'
@@ -48,10 +50,7 @@ services:
 
 ```
 
-This adds a few labels to our dovecot-container to add the job scheduler and use a cron compatible scheduling format when to run. This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. 
-
-> ℹ️ If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
-
+##Logging/Troubleshooting
 To see if things ran proper, you can not only see in your mailbox but also check ofelia-mailcow docker log if it looks something like this:
 
 ```
