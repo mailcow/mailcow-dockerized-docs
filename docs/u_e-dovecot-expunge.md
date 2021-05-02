@@ -1,5 +1,7 @@
 If you want to delete old mails out of the `.Junk` or `.Trash` folders or maybe delete all read mails that are older than a certain amount of time you may use dovecot's tool doveadm [man doveadm-expunge](https://wiki.dovecot.org/Tools/Doveadm/Expunge).
 
+>:warning: Never move maildir files directly. Always use doveadm, as otherwise it will appear to end users that they have lost mail.
+
 ## The manual way
 
 That said, let's dive in:
@@ -28,50 +30,16 @@ Delete mails inside a custom folder **inside** a user's inbox that are **not** f
 docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'INBOX/custom-folder' not FLAGGED not SINCE 2w
 ```
 
-!!! info
-    For possible [time spans](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_date_specification) or [search keys](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_search_keys) have a look at [man doveadm-search-query](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery)
+> ℹ️ For possible [time spans](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_date_specification) or [search keys](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_search_keys) have a look at [man doveadm-search-query](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery)
 
 ## Job scheduler
-
-### via the host system cron
-
-If you want to automate such a task you can create a cron job on your host that calls a script like the one below:
-
-```
-#!/bin/bash
-# Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
-cd /path/to/your/mailcow-dockerized
-
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
-[...]
-```
-
-To create a cron job you may execute `crontab -e` and insert something like the following to execute a script:
-
-```
-# Execute everyday at 04:00 A.M.
-0 4 * * * /path/to/your/expunge_mailboxes.sh
-```
-
-### via Docker job scheduler
 
 To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
 
 ```
 version: '2.1'
-
 services:
-  
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: always
-    command: daemon --docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro   
-    network_mode: none
-
-  dovecot-mailcow:
+ dovecot-mailcow:
     labels:
       - "ofelia.enabled=true"
       - "ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *"
@@ -80,8 +48,11 @@ services:
 
 ```
 
-The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
-This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
+This adds a few labels to our dovecot-container to add the job scheduler and use a cron compatible scheduling format when to run. This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. 
+
+> ℹ️ If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
+
+To see if things ran proper, you can not only see in your mailbox but also check ofelia-mailcow docker log if it looks something like this:
 
 ```
 common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
