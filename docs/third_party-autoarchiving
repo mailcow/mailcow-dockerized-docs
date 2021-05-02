@@ -6,31 +6,23 @@ dovecot-archive is a python wrapper for doveadm that allows for archiving email.
 
 This document guides you through the process to enable automated archiving of email across all mailcow domains. We will utilise ofelia to setup a schedule to trigger the archival script
 
-## Create or amend `docker-compose.override.yml`
+##Create A Schedule
 
-In the mailcow-dockerized root folder create or edit `docker-compose.override.yml` and insert the following
-configuration:
+In the mailcow-dockerized root folder create or edit `docker-compose.override.yml` and insert the following configuration:
 
 ```yaml
 version: '2.1'
 services:
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: always
-    command: daemon --docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    network_mode: none
-
-  dovecot-mailcow:
+   dovecot-mailcow:
     labels:
-      - "ofelia.enabled=true"
       - "ofelia.job-exec.dovecot-auto-archive.schedule=0 4 * * *"
       - "ofelia.job-exec.dovecot-auto-archive.command=/usr/local/bin/archive_email"
       - "ofelia.job-exec.dovecot-auto-archive.tty=false"
     volumes:
       - ./data/assets/dovecot-archive/archive_email:/usr/local/bin/archive_email
 ```
+
+This will setup a ofelia job to run at 4 past midnight to run the script. You can change this as required to fit into a quiet period or around backup windows. This as you imagine can cause a large amount of IO as it runs across the mailboxes
 
 ## Create `data/conf/assets/dovecot-archive/archive_email`
 
@@ -68,6 +60,8 @@ DovecotArchiveArguments="--split-by-year --year-as-last-folder"
 #Mailboxes (folders) to move, space seperated
 ArchiveMailboxes+=("INBOX Sent")
 
+#-- DO NOT EDIT BELOW THIS LINE
+
 #install the required python modules. These are not installed in the mailcow instance
 pip3 install setuptools
 pip3 install wheel
@@ -98,3 +92,5 @@ We than need to make the file executable
 ```shell
 chmod +x ./data/assets/dovecot-archive/archive_email
 ```
+
+You can customise the script to your environment by editing the variables at the head of the file
