@@ -33,55 +33,21 @@ docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mai
 
 ## Job scheduler
 
-### via the host system cron
-
-If you want to automate such a task you can create a cron job on your host that calls a script like the one below:
-
-```
-#!/bin/bash
-# Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
-cd /path/to/your/mailcow-dockerized
-
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
-[...]
-```
-
-To create a cron job you may execute `crontab -e` and insert something like the following to execute a script:
-
-```
-# Execute everyday at 04:00 A.M.
-0 4 * * * /path/to/your/expunge_mailboxes.sh
-```
-
-### via Docker job scheduler
-
 To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
 
-```
+```yaml
 version: '2.1'
-
 services:
-  
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: always
-    command: daemon --docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro   
-    network_mode: none
-
   dovecot-mailcow:
     labels:
-      - "ofelia.enabled=true"
       - "ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *"
       - "ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox 'Junk' savedbefore 2w"
       - "ofelia.job-exec.dovecot-expunge-trash.tty=false"
 
 ```
 
-The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
-This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
+We add a few label to our dovecot-container to create the job scheduler and tell it in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
+This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check ofelia-mailcow docker log if it looks something like this:
 
 ```
 common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
