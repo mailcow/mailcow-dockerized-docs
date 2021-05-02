@@ -82,6 +82,7 @@ nav:
   - 'Unbound':
     - 'Using an external DNS service': 'u_e-unbound-fwd.md'
   - 'Dovecot':
+    - 'Performance Optimizations': 'u_e-dovecot-perf.md'
     - 'Enable "any" ACL settings': 'u_e-dovecot-any_acl.md'
     - 'Expunge a Users mails': 'u_e-dovecot-expunge.md'
     - 'Customize/Expand dovecot.conf': 'u_e-dovecot-extra_conf.md'
