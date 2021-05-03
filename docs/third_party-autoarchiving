@@ -15,14 +15,15 @@ version: '2.1'
 services:
    dovecot-mailcow:
     labels:
-      - "ofelia.job-exec.dovecot-auto-archive.schedule=@every 4h"
+      - "ofelia.job-exec.dovecot-auto-archive.schedule=* 0 4 * * *"
       - "ofelia.job-exec.dovecot-auto-archive.command=/usr/local/bin/archive_email"
       - "ofelia.job-exec.dovecot-auto-archive.tty=false"
     volumes:
       - ./data/assets/dovecot-archive/archive_email:/usr/local/bin/archive_email
 ```
 
-This will setup a ofelia job to run at 4 past midnight to run the script. You can change this as required to fit into a quiet period or around backup windows. This as you imagine can cause a large amount of IO as it runs across the mailboxes
+This will setup a ofelia job to run at 4 past midnight to run the script. You can change this as required to fit into a quiet period or around backup windows. This as you imagine can cause a large amount of IO as it runs across the mailboxes.
+For more information about the cron-like scheduling format (which includes seconds) see [here](https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc).
 
 ## Create `data/conf/assets/dovecot-archive/archive_email`
 
