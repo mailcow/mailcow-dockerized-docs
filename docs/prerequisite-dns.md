@@ -87,7 +87,7 @@ Here are some tools you can use to verify your DNS configuration:
 If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services, or self-host your own.
 
 !!! Tip
-It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for recieving DMARC reports.
+It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for receiving DMARC reports.
 
 It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.
 
