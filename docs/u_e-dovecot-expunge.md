@@ -45,7 +45,7 @@ services:
 
 ```
 
-We add a few label to our dovecot-container to create the job scheduler and tell it in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
+We add a few label to our dovecot-container to create the job scheduler and tell it in a cron-like scheduling format (plus seconds) when to run (see [here](https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc).
 This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check ofelia-mailcow docker log if it looks something like this:
 
 ```
