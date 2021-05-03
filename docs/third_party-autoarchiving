@@ -15,7 +15,7 @@ version: '2.1'
 services:
    dovecot-mailcow:
     labels:
-      - "ofelia.job-exec.dovecot-auto-archive.schedule=0 4 * * *"
+      - "ofelia.job-exec.dovecot-auto-archive.schedule=@every 4h"
       - "ofelia.job-exec.dovecot-auto-archive.command=/usr/local/bin/archive_email"
       - "ofelia.job-exec.dovecot-auto-archive.tty=false"
     volumes:
