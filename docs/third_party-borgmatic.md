@@ -18,6 +18,10 @@ This guide only covers the basics.
 
 ### Create or amend `docker-compose.override.yml`
 
+!!! NOTE
+This setup will backup your crypt volume. This is to allow for full disaster recovery where you are installing onto bare tin. Borgmatic will dedupe and encrypt all data on your local machine before sending it across to the remote system.
+If for security reasons you do prefer to back up your crypt volume via another method remove  crypt-vol-1:/mnt/source/crypt:ro from the volumes in the yaml below.
+
 In the mailcow-dockerized root folder create or edit `docker-compose.override.yml` and insert the following
 configuration:
 
