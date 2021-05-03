@@ -39,7 +39,7 @@ version: '2.1'
 services:
   dovecot-mailcow:
     labels:
-      - "ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *"
+      - "ofelia.job-exec.dovecot-expunge-trash.schedule=* 0 3 * * *"
       - "ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox 'Junk' savedbefore 2w"
       - "ofelia.job-exec.dovecot-expunge-trash.tty=false"
 
