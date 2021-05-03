@@ -20,7 +20,7 @@ mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0
 
 ### Permitting IPv6 hosts
 
-The addition of ipv6 hosts is done the same as ipv4, however the subnet needs to be placed between [ ] with the netmask appearing after it. To add 2001:DB8::/32 to be allowed to relay we would use the following configuration:
+The addition of IPv6 hosts is done the same as IPv4, however the subnet needs to be placed between [ ] with the netmask appearing after it. To add 2001:db8::/32 to be allowed to relay we would use the following configuration:
 
 ``` data/conf/postfix/extra.cf
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:DB8::]/32
