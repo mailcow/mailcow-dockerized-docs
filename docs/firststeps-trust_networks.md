@@ -12,7 +12,7 @@ Incorrect setup of mynetworks will allow your server to be used as an open relay
 To change the my behaviour override the default value of `mynetworks` parameter through the `data/conf/postfix/extra.cf` configuration file.
 
 ### Permitting IPV4 hosts
-To add `192.0.2.0/24` it may look like the configuration below:
+To add `192.168.2.0/24` it may look like the configuration below:
 
 ``` data/conf/postfix/extra.cf
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.0.2.0/24
