@@ -102,7 +102,7 @@ The services may provide you with a TXT record, which you would insert into your
 
 ### Email Test for SPF, DKIM and DMARC:
 
-To test send an email to the email check-auth@verifier.port25.com and wait for a reply. You will get a report back that looks like the following:
+To test send an email to the email `check-auth at verifier.port25.com` and wait for a reply. You will get a report back that looks like the following:
 
 ```
 ==========================================================
