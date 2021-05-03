@@ -86,7 +86,8 @@ Here are some tools you can use to verify your DNS configuration:
 ### Optional DMARC Statistics
 If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services, or self-host your own.
 
-**NOTE:** It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for recieving DMARC reports.
+!!! Tip
+It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for recieving DMARC reports.
 
 It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.
 
@@ -96,18 +97,14 @@ It is worth mentioning, that the following suggestions are not a comprehensive l
 - [Postmark](https://dmarc.postmarkapp.com)
 - [Dmarcian](https://dmarcian.com/)
 
-**NOTE:** The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.
+!!! Tip
+The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.
 
 ### Email Test for SPF, DKIM and DMARC:
 
-To test send an email to the email below and wait for a reply:
-
-check-auth@verifier.port25.com
-
-You will get a report back that looks like the following:
+To test send an email to the email check-auth@verifier.port25.com and wait for a reply. You will get a report back that looks like the following:
 
 ```
-
 ==========================================================
 Summary of Results
 ==========================================================
