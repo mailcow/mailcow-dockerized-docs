@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo apt-get -y update
           sudo apt-get -y install python3-pip
-          pip install mkdocs-material pygments==2.8.1 mkdocs-redirects
+          pip install mkdocs-material pygments==2.9.0 mkdocs-redirects
 
       - name: Build site 🔧
         run: |
