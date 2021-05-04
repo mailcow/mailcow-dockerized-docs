@@ -791,6 +791,54 @@
     Backup
   </a>
   
+    <nav class="md-nav" aria-label="Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
+    Manual
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cronjob" class="md-nav__link">
+    Cronjob
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binsh" class="md-nav__link">
+    !/bin/sh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-mailcow-data" class="md-nav__link">
+    Backup mailcow data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#httpsmailcowgithubiomailcow-dockerized-docsb_n_r_backup" class="md-nav__link">
+    https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-command" class="md-nav__link">
+    run command
+  </a>
+  
 </li>
       
     </ul>
@@ -1879,6 +1927,54 @@
     Backup
   </a>
   
+    <nav class="md-nav" aria-label="Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual" class="md-nav__link">
+    Manual
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cronjob" class="md-nav__link">
+    Cronjob
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binsh" class="md-nav__link">
+    !/bin/sh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-mailcow-data" class="md-nav__link">
+    Backup mailcow data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#httpsmailcowgithubiomailcow-dockerized-docsb_n_r_backup" class="md-nav__link">
+    https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-command" class="md-nav__link">
+    run command
+  </a>
+  
 </li>
       
     </ul>
@@ -1898,9 +1994,8 @@
                   </a>
                 
                 
-                  <h1>Backup</h1>
-                
                 <h3 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
+<h4 id="manual">Manual<a class="headerlink" href="#manual" title="Permanent link">&para;</a></h4>
 <p>You can use the provided script <code>helper-scripts/backup_and_restore.sh</code> to backup mailcow automatically.</p>
 <p>Please do not copy this script to another location.</p>
 <p>To run a backup, write "backup" as first parameter and either one or more components to backup as following parameters.
@@ -1922,6 +2017,34 @@ You should not rename those folders to not break the restore process.</p>
 <p>To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variable before starting the script:</p>
 <div class="highlight"><pre><span></span><code>MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 </code></pre></div>
+<h4 id="cronjob">Cronjob<a class="headerlink" href="#cronjob" title="Permanent link">&para;</a></h4>
+<p>You can run the backup script regularly via cronjob. Make sure <code>BACKUP_LOCATION</code> exists:</p>
+<p>```5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+<div class="highlight"><pre><span></span><code>Per default cron sends the full result of each backup operation by email. If you want cron to only mail on error (non-zero exit code) you may want to use the following snippet. Pathes need to be modified according to your setup (this script is a user contribution).
+
+This following script may be placed in `/etc/cron.daily/mailcow-backup` - do not forget to mark it as executable via `chmod +x`:
+</code></pre></div></p>
+<h1 id="binsh">!/bin/sh<a class="headerlink" href="#binsh" title="Permanent link">&para;</a></h1>
+<h1 id="backup-mailcow-data">Backup mailcow data<a class="headerlink" href="#backup-mailcow-data" title="Permanent link">&para;</a></h1>
+<h1 id="httpsmailcowgithubiomailcow-dockerized-docsb_n_r_backup"><a href="https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/">https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/</a><a class="headerlink" href="#httpsmailcowgithubiomailcow-dockerized-docsb_n_r_backup" title="Permanent link">&para;</a></h1>
+<p>set -e</p>
+<p>OUT="$(mktemp)"
+export MAILCOW_BACKUP_LOCATION="/opt/backup"
+SCRIPT="/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh"
+PARAMETERS="backup all"
+OPTIONS="--delete-days 30"</p>
+<h1 id="run-command">run command<a class="headerlink" href="#run-command" title="Permanent link">&para;</a></h1>
+<p>set +e
+"${SCRIPT}" ${PARAMETERS} ${OPTIONS} 2&gt;&amp;1 &gt; "$OUT"
+RESULT=$?</p>
+<p>if [ $RESULT -ne 0 ]
+    then
+            echo "${SCRIPT} ${PARAMETERS} ${OPTIONS} encounters an error:"
+            echo "RESULT=$RESULT"
+            echo "STDOUT / STDERR:"
+            cat "$OUT"
+fi
+```</p>
                 
               
               
