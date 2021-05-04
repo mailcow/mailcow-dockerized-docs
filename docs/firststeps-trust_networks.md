@@ -1,30 +1,37 @@
-## Default Unauthenticated Relaying
-By default mailcow considers all networks as untrusted, excluding its own IPV4_NETWORK and IPV6_NETWORK scopes. Though it is reasonable in most cases, there may be circumstances that you need to loosen this restriction 
-As default we use "mynetworks_style = subnet".
+By default mailcow considers **all networks as untrusted** excluding its own IPV4_NETWORK and IPV6_NETWORK scopes. Though it is reasonable in most cases, there may be circumstances that you need to loosen this restriction.
 
-## Permitting unauthenticated relaying.
+By default mailcow uses `mynetworks_style = subnet` to determine internal subnets and leaves `mynetworks` unconfigured.
+
+If you decide to set `mynetworks`, Postfix ignores the mynetworks_style setting. This means you **have to** add the IPV4_NETWORK and IPV6_NETWORK scopes as well as loopback subnets manually!
+
+## Unauthenticated relaying
 
 !!! Warning
-Incorrect setup of mynetworks will allow your server to be used as an open relay to send unsolicitated bulk email. This **will** affect your ability to send emails to other mail servers, and can take some time to be reversed. If you don't know what this is for, than you do not need it.
+Incorrect setup of `mynetworks` will allow your server to be used as an open relay. If abused, this **will** affect your ability to send emails and can take some time to be resolved.
 
-!!! Note  Do **not** remove the networks listed as `IPV4_NETWORK` and `IPV6_NETWORK` from your mailcow.conf, or the loopback ranges 127.0.0.0/8, [::ffff:127.0.0.0]/104, and [::1]. 
+### IPv4 hosts/subnets
 
-To change the my behaviour override the default value of `mynetworks` parameter through the `data/conf/postfix/extra.cf` configuration file.
+To add the subnet `192.168.2.0/24` to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:
 
-### Permitting IPV4 hosts
-To add `192.168.2.0/24` it may look like the configuration below:
+Edit `data/conf/postfix/extra.cf`:
 
-``` data/conf/postfix/extra.cf
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.0.2.0/24
+```
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
 ```
 
-### Permitting IPv6 hosts
+Run `docker-compose restart postfix-mailcow` to apply your new settings.
 
-The addition of IPv6 hosts is done the same as IPv4, however the subnet needs to be placed between [ ] with the netmask appearing after it. To add 2001:db8::/32 to be allowed to relay we would use the following configuration:
+### IPv6 hosts/subnets
+
+Adding IPv6 hosts is done the same as IPv4, however the subnet needs to be placed in brackets `[]` with the netmask appended.
+
+To add the subnet 2001:db8::/32 to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:
 
 ``` data/conf/postfix/extra.cf
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
 ```
 
+Run `docker-compose restart postfix-mailcow` to apply your new settings.
+
 !!! Info
-Further Information on Postfix's mynetwork can be located [here](http://www.postfix.org/postconf.5.html#mynetworks "Postfix's mynetworks")
+More information about mynetworks can be found in the [Postfix documentation](http://www.postfix.org/postconf.5.html#mynetworks).
