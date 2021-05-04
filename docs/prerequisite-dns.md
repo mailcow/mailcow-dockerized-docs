@@ -84,10 +84,11 @@ Here are some tools you can use to verify your DNS configuration:
 ## Misc
 
 ### Optional DMARC Statistics
-If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services, or self-host your own.
+
+If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services - or self-host your own.
 
 !!! Tip
-It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for receiving DMARC reports.
+It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.
 
 It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.
 
@@ -98,11 +99,12 @@ It is worth mentioning, that the following suggestions are not a comprehensive l
 - [Dmarcian](https://dmarcian.com/)
 
 !!! Tip
-The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.
 
-### Email Test for SPF, DKIM and DMARC:
+These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure to read the providers documentation from the service you choose as this process may vary.
 
-To test send an email to the email `check-auth at verifier.port25.com` and wait for a reply. You will get a report back that looks like the following:
+### Email test for SPF, DKIM and DMARC:
+
+To run a rudimentary email authentication check, send a mail to `check-auth at verifier.port25.com` and wait for a reply. You will find a report similar to the following:
 
 ```
 ==========================================================
@@ -119,8 +121,10 @@ Details:
 ==========================================================
 ....
 ```
-The full report will contain more technical details this is just the first section, we found this to be quite usful for testing both outgoing mail and spam scores.
+
+The full report will contain more technical details.
 
 
 ### Fully Qualified Domain Name (FQDN)
+
 [^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name `mailcow` and the tld `email`.
