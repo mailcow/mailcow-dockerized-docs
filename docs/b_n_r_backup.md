@@ -32,7 +32,15 @@ MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backu
 ```
 
 #### Cronjob
-You can call the backupscript regularly using a cronjob. Normally cron informs you about the result of each backup operation by e-mail. If you want cron to create an email only in case of an error, you can use the following snippet in `/etc/cron.daily/mailcow-backup` for example. If necessary the paths must be modified.
+
+You can run the backup script regularly via cronjob. Make sure `BACKUP_LOCATION` exists:
+
+```5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+```
+
+Per default cron sends the full result of each backup operation by email. If you want cron to only mail on error (non-zero exit code) you may want to use the following snippet. Pathes need to be modified according to your setup (this script is a user contribution).
+
+This following script may be placed in `/etc/cron.daily/mailcow-backup` - do not forget to mark it as executable via `chmod +x`:
 
 ```
 #!/bin/sh
