@@ -336,7 +336,7 @@
         
           <li class="md-nav__item">
   <a href="#email-test-for-spf-dkim-and-dmarc" class="md-nav__link">
-    Email Test for SPF, DKIM and DMARC:
+    Email test for SPF, DKIM and DMARC:
   </a>
   
 </li>
@@ -2000,7 +2000,7 @@
         
           <li class="md-nav__item">
   <a href="#email-test-for-spf-dkim-and-dmarc" class="md-nav__link">
-    Email Test for SPF, DKIM and DMARC:
+    Email test for SPF, DKIM and DMARC:
   </a>
   
 </li>
@@ -2098,8 +2098,11 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
 </ul>
 <h2 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h2>
 <h3 id="optional-dmarc-statistics">Optional DMARC Statistics<a class="headerlink" href="#optional-dmarc-statistics" title="Permanent link">&para;</a></h3>
-<p>If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services, or self-host your own.</p>
-<p><strong>NOTE:</strong> It is worth considering that if you request DMARC statistic reports to your mailcow server, if there are issues with that domain you may not get accurate results. You can consider using an alternative email domain for recieving DMARC reports.</p>
+<p>If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services - or self-host your own.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.</p>
 <p>It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.</p>
 <ul>
 <li><a href="https://gmail.com/postmaster">Postmaster Tool</a></li>
@@ -2108,12 +2111,13 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
 <li><a href="https://dmarc.postmarkapp.com">Postmark</a></li>
 <li><a href="https://dmarcian.com/">Dmarcian</a></li>
 </ul>
-<p><strong>NOTE:</strong> The services may provide you with a TXT record, which you would insert into your DNS records as the provider specifies. This record will give you details about spam-classified mails by your domain. However, please ensure to read the providers documentation from the service you choose, as this process may vary and not all providers may use a TXT record.</p>
-<h3 id="email-test-for-spf-dkim-and-dmarc">Email Test for SPF, DKIM and DMARC:<a class="headerlink" href="#email-test-for-spf-dkim-and-dmarc" title="Permanent link">&para;</a></h3>
-<p>To test send an email to the email below and wait for a reply:</p>
-<p><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#104;&#101;&#99;&#107;&#45;&#97;&#117;&#116;&#104;&#64;&#118;&#101;&#114;&#105;&#102;&#105;&#101;&#114;&#46;&#112;&#111;&#114;&#116;&#50;&#53;&#46;&#99;&#111;&#109;">&#99;&#104;&#101;&#99;&#107;&#45;&#97;&#117;&#116;&#104;&#64;&#118;&#101;&#114;&#105;&#102;&#105;&#101;&#114;&#46;&#112;&#111;&#114;&#116;&#50;&#53;&#46;&#99;&#111;&#109;</a></p>
-<p>You will get a report back that looks like the following:</p>
-<p><div class="highlight"><pre><span></span><code>==========================================================
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure to read the providers documentation from the service you choose as this process may vary.</p>
+<h3 id="email-test-for-spf-dkim-and-dmarc">Email test for SPF, DKIM and DMARC:<a class="headerlink" href="#email-test-for-spf-dkim-and-dmarc" title="Permanent link">&para;</a></h3>
+<p>To run a rudimentary email authentication check, send a mail to <code>check-auth at verifier.port25.com</code> and wait for a reply. You will find a report similar to the following:</p>
+<div class="highlight"><pre><span></span><code>==========================================================
 Summary of Results
 ==========================================================
 SPF check:          pass
@@ -2127,7 +2131,7 @@ Details:
 ==========================================================
 ....
 </code></pre></div>
-The full report will contain more technical details this is just the first section, we found this to be quite usful for testing both outgoing mail and spam scores.</p>
+<p>The full report will contain more technical details.</p>
 <h3 id="fully-qualified-domain-name-fqdn">Fully Qualified Domain Name (FQDN)<a class="headerlink" href="#fully-qualified-domain-name-fqdn" title="Permanent link">&para;</a></h3>
 <div class="footnote">
 <hr />
