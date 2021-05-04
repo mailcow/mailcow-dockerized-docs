@@ -1,5 +1,7 @@
 ### Backup
-#### backup_and_restore.sh
+
+#### Manual
+
 You can use the provided script `helper-scripts/backup_and_restore.sh` to backup mailcow automatically.
 
 Please do not copy this script to another location.
