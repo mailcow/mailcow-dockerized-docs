@@ -27,7 +27,9 @@ Adding IPv6 hosts is done the same as IPv4, however the subnet needs to be place
 
 To add the subnet 2001:db8::/32 to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:
 
-``` data/conf/postfix/extra.cf
+Edit `data/conf/postfix/extra.cf`:
+
+``` 
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
 ```
 
