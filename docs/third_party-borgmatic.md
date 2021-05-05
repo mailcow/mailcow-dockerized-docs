@@ -62,7 +62,11 @@ location:
         - user@rsync.net:mailcow
     remote_path: borg1
 
+storage:
+    archive_name_format: "mailcow-{now:%Y-%m-%dT%H:%M:%S.%f}"
+
 retention:
+    prefix: mailcow
     keep_hourly: 24
     keep_daily: 7
     keep_weekly: 4
