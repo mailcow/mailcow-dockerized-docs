@@ -1,7 +1,7 @@
 if (window.location.href.indexOf('/client/') >= 0) {
     window.window.addEventListener('load', function () {
         function setCookie(name, value) {
-            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; path=/";
+            sessionStorage.setItem(name, value);
         }
 
         function getParameterByName(name) {
@@ -39,18 +39,7 @@ if (window.location.href.indexOf('/client/') >= 0) {
 if (window.location.href.indexOf('/client') >= 0) {
     window.window.addEventListener('load', function () {
         function getCookie(cn) {
-            var fixedcn = encodeURIComponent(cn);
-            var cs = document.cookie.split(';');
-            for (var i = 0; i < cs.length; i++) {
-                var c = cs[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(fixedcn + "=") == 0) {
-                    return decodeURIComponent(c.substring(cn.length + 1, c.length));
-                }
-            }
-            return "";
+            return sessionStorage.getItem(cn);
         }
 
         /* Hide variable fields if no values are available */
