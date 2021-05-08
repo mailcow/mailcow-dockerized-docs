@@ -29,7 +29,7 @@ services:
     restart: always
     dns: ${IPV4_NETWORK:-172.22.1}.254
     volumes:
-      - vmail-vol-1:/mnt/source/vmail:ro
+      - vmail-vol-1:/mnt/source/vmail:ro,z
       - mysql-socket-vol-1:/var/run/mysqld/:z
       - ./data/conf/borgmatic/etc:/etc/borgmatic.d:Z
       - ./data/conf/borgmatic/state:/root/.config/borg:Z
@@ -160,12 +160,6 @@ any custom data in your maildir or your mailcow database.
 !!! warning
     Doing this will overwrite files in your maildir! Do not run this unless you actually intend to recover mail
     files from a backup.
-
-!!! note "If you use SELinux in Enforcing mode"
-    If you are using mailcow on a host with SELinux in Enforcing mode you will have to temporarily disable it during
-    extraction of the archive as the mailcow setup labels the vmail volume as private, belonging to the dovecot container
-    exclusively. SELinux will (rightfully) prevent any other container, such as the borgmatic container, from writing to
-    this volume.
 
 Before running a restore you must make the vmail volume writeable in `docker-compose.override.yml` by removing
 the `ro` flag from the volume.
