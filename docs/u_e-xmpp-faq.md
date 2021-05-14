@@ -68,7 +68,7 @@ No, they will vanish:
 
 - **How many client sessions can be open at the same time?**
 
-10 sessions are allowed per session.
+10 sessions are allowed per user.
 
 ```
 shaper_rules:
