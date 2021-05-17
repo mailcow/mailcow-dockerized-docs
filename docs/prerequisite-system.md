@@ -158,7 +158,9 @@ Servers=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
 ## Hetzner Cloud (and probably others)
 
 !!! warning
-Outgoing traffic to ports 25 and 465 is blocked by default on all new Hetzner cloud servers. Sending mail from servers is not possible for this reason. You have to contact the Hetzner support or request the release in the server settings under Networking, if this is already possible (a completed billing is assumed).
+Outgoing traffic to ports 25 and 465 is blocked by default on all new Hetzner cloud servers specially if you have a new cloud account as well. Sending mail from servers is not possible for this reason. Check your Cloud Console (see the image below) and contact the Hetzner support or request the release with the button in the server settings under Networking, if this is already possible (a completed billing is assumed).
+
+<img src="https://user-images.githubusercontent.com/4320619/118569794-ed4be800-b77a-11eb-926c-1f7cfe28a702.jpg" width=400px>
 
 Check `/etc/network/interfaces.d/50-cloud-init.cfg` and change the IPv6 interface from eth0:0 to eth0:
 
