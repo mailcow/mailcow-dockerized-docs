@@ -78,6 +78,13 @@ To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
 
+!!! warning
+Some providers block outgoing traffic to ports 25 and 465 by default specially if you have a new customer. Ask your provider to unblock the ports before running mailcow. Providers known to block SMTP-Ports by default: 
+- [DO](https://www.digitalocean.com/)
+- [GCP](https://cloud.google.com/)
+- [Hetzner](https://www.hetzner.com)
+- [Linode](https://www.linode.com/)
+
 ### Important for Hetzner firewalls
 
 Quoting https://github.com/chermsen via https://github.com/mailcow/mailcow-dockerized/issues/497#issuecomment-469847380 (THANK YOU!):
@@ -156,11 +163,6 @@ Servers=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
 ```
 
 ## Hetzner Cloud (and probably others)
-
-!!! warning
-Outgoing traffic to ports 25 and 465 is blocked by default on all new Hetzner cloud servers specially if you have a new cloud account as well. Sending mail from servers is not possible for this reason. Check your Cloud Console (see the image below) and contact the Hetzner support or request the release with the button in the server settings under Networking, if this is already possible (a completed billing is assumed).
-
-<img src="https://user-images.githubusercontent.com/4320619/118569794-ed4be800-b77a-11eb-926c-1f7cfe28a702.jpg" width=400px>
 
 Check `/etc/network/interfaces.d/50-cloud-init.cfg` and change the IPv6 interface from eth0:0 to eth0:
 
