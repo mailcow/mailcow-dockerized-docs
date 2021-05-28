@@ -1,10 +1,15 @@
 
 SOGo is used for accessing your mails via a webbrowser, adding and sharing your contacts or calendars. For a more in-depth documentation on SOGo please visit its [own documentation](http://wiki.sogo.nu/).
 
-## Change theme
+## Apply custom SOGo theme
 mailcow builds after 28 January 2021 can change SOGo's theme by editing `data/conf/sogo/custom-theme.js`.
-Please check the AngularJS Material [intro](https://material.angularjs.org/latest/Theming/01_introduction) and [documentation](https://material.angularjs.org/latest/Theming/03_configuring_a_theme) as well as the [material style guideline](https://material.io/archive/guidelines/style/color.html#color-color-palette) to learn how this works.
-After you updated said file you need to restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
+Please check the AngularJS Material [intro](https://material.angularjs.org/latest/Theming/01_introduction) and [documentation](https://material.angularjs.org/latest/Theming/03_configuring_a_theme) as well as the [material style guideline](https://material.io/archive/guidelines/style/color.html#color-color-palette) to learn how this works. 
+
+You can use the provided `custom-theme.js` as an example starting point by removing the comments.
+After you modified `data/conf/sogo/custom-theme.js` and made changes to your new SOGo theme you need to 
+
+* edit `data/conf/sogo/sogo.conf` and append/set `SOGoUIxDebugEnabled = YES;`
+* restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
 
 ## Reset to SOGo default theme
 Checkout `data/conf/sogo/custom-theme.js` by executing `git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js`
@@ -19,9 +24,9 @@ Find in `data/conf/sogo/custom-theme.js`:
         'hue-3': 'A700'
       })
       .accentPalette('green', {
-        'default': '600',  // background color of fab buttons
+        'default': '600',  // background color of fab buttons and login screen
         'hue-1': '300',    // background color of center list toolbar
-        'hue-2': '300',
+        'hue-2': '300',    // highlight color for selected mail and current day calendar
         'hue-3': 'A700'
       })
       .backgroundPalette('frost-grey');
