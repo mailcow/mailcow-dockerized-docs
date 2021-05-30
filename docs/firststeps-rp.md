@@ -96,6 +96,8 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
 </VirtualHost>
 ```
 
+Note: In some cases, `SSLEngine` must be explicitly set to `On` in your SSL VirtualHost-Config.
+
 ### Nginx
 
 Let's Encrypt will follow our rewrite, certificate requests will work fine.
