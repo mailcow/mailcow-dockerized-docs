@@ -39,7 +39,7 @@ services:
     logging:
       driver: "gelf"
       options:
-        gelf-address: "udp://graylog:12201"  
+        gelf-address: "udp://graylog:12201"
 ```
 
 Another example for **Syslog**:
