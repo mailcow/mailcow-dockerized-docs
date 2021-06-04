@@ -36,9 +36,6 @@ The following mobile browsers support this authentication type:
 
 Sources: [caniuse.com](https://caniuse.com/u2f), [blog.mozilla.org](https://blog.mozilla.org/security/2019/08/05/web-authentication-in-firefox-for-android/)
 
-Only Google Chrome (+derivatives) and Opera support U2F authentication to this day natively.
-Since version 67 Mozilla Firefox can handle U2F natively. ([Source](https://support.yubico.com/support/solutions/articles/15000017511-enabling-u2f-support-in-mozilla-firefox))
-
 U2F works without an internet connection.
 
 ### TOTP
