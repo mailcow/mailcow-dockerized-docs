@@ -72,7 +72,21 @@ dism /online /Enable-Feature /FeatureName:TelnetClient
 
 Docker containers use the Docker hosts inotify limits. Setting them on your Docker host will pass them to the container.
 
+## Dovecot keeps restarting (see [#2672](https://github.com/mailcow/mailcow-dockerized/issues/2672))
 
+Check that you have at least the following files in `data/assets/ssl`:
+
+```
+cert.pem
+dhparams.pem
+key.pem
+```
+
+If `dhparams.pem` is missing, you can generate it with
+
+```bash
+openssl dhparam -out data/assets/ssl/dhparams.pem 4096
+```
 
 
 [^1]: [netcat](https://linux.die.net/man/1/nc), [nmap](https://linux.die.net/man/1/nmap), [openssl](https://wiki.openssl.org/index.php/Manual:S_client(1)), [telnet](https://linux.die.net/man/1/telnet), etc.
