@@ -3,7 +3,7 @@
     **We do not recommend** CentOS 8 anymore.
 
 
-You need Docker and Docker Compose.
+You need Docker (a version >= `20.10.2` is required) and Docker Compose.
 
 **1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
