@@ -1957,8 +1957,21 @@
 <p>The Yubi API ID and Key will be checked against the Yubico Cloud API. When setting up TFA you will be asked for your personal API account for this key.
 The API ID, API key and the first 12 characters (your YubiKeys ID in modhex) are stored in the MySQL table as secret.</p>
 <h3 id="u2f">U2F<a class="headerlink" href="#u2f" title="Permanent link">&para;</a></h3>
-<p>Only Google Chrome (+derivatives) and Opera support U2F authentication to this day natively.
-Since version 67 Mozilla Firefox can handle U2F natively. (<a href="https://support.yubico.com/support/solutions/articles/15000017511-enabling-u2f-support-in-mozilla-firefox">Source</a>)</p>
+<p>To use U2F, the browser must support this standard.</p>
+<p>The following desktop browsers support this authentication type:</p>
+<ul>
+<li>Edge (&gt;=79)</li>
+<li>Firefox (&gt;=47, enabled by default since version 67)</li>
+<li>Chrome (&gt;=41)</li>
+<li>Safari (&gt;=13)</li>
+<li>Opera (40, &gt;=42, not 41)</li>
+</ul>
+<p>The following mobile browsers support this authentication type:</p>
+<ul>
+<li>Safari on iOS (&gt;=13.3)</li>
+<li>Firefox on Android (&gt;=68)</li>
+</ul>
+<p>Sources: <a href="https://caniuse.com/u2f">caniuse.com</a>, <a href="https://blog.mozilla.org/security/2019/08/05/web-authentication-in-firefox-for-android/">blog.mozilla.org</a></p>
 <p>U2F works without an internet connection.</p>
 <h3 id="totp">TOTP<a class="headerlink" href="#totp" title="Permanent link">&para;</a></h3>
 <p>The best known TFA method mostly used with a smartphone.</p>
