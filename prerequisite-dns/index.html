@@ -2117,7 +2117,7 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
 <p class="admonition-title">Tip</p>
 </div>
 <p>It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.</p>
-<p>It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.</p>
+<p>It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools available, but only a small few of the many choices.</p>
 <ul>
 <li><a href="https://gmail.com/postmaster">Postmaster Tool</a></li>
 <li><a href="https://github.com/domainaware/parsedmarc">parsedmarc</a> (self-hosted)</li>
@@ -2128,7 +2128,7 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 </div>
-<p>These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure to read the providers documentation from the service you choose as this process may vary.</p>
+<p>These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure you read the provider's documentation from the service you choose as this process may vary.</p>
 <h3 id="email-test-for-spf-dkim-and-dmarc">Email test for SPF, DKIM and DMARC:<a class="headerlink" href="#email-test-for-spf-dkim-and-dmarc" title="Permanent link">&para;</a></h3>
 <p>To run a rudimentary email authentication check, send a mail to <code>check-auth at verifier.port25.com</code> and wait for a reply. You will find a report similar to the following:</p>
 <div class="highlight"><pre><span></span><code>==========================================================
@@ -2151,7 +2151,7 @@ Details:
 <hr />
 <ol>
 <li id="fn:1">
-<p>A <strong>Fully Qualified Domain Name</strong> (<strong>FQDN</strong>) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short <strong>tld</strong> (com). In the example of <code>mx.mailcow.email</code> the hostname would be <code>mx</code>, the domain name <code>mailcow</code> and the tld <code>email</code>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>A <strong>Fully Qualified Domain Name</strong> (<strong>FQDN</strong>) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname, the domain name, and the Top Level Domain (<strong>TLD</strong> for short). In the example of <code>mx.mailcow.email</code> the hostname would be <code>mx</code>, the domain name <code>mailcow</code> and the TLD <code>email</code>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
