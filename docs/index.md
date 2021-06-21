@@ -78,7 +78,7 @@ Each container represents a single application.
 - [Redis](https://redis.io/)
 - [Rspamd](https://www.rspamd.com/)
 - [SOGo](https://sogo.nu/)
-- [Solr](http://lucene.apache.org/solr/) (optional)
+- [Solr](https://solr.apache.org/) (optional)
 - [Unbound](https://unbound.net/)
 - A Watchdog to provide basic monitoring
 
