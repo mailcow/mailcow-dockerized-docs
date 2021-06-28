@@ -60,7 +60,7 @@ _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@
 _autodiscover._tcp  IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _caldavs._tcp       IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _caldavs._tcp       IN TXT                              "path=/SOGo/dav/"
-_carddavs._tcp      IN SRV     0        1      443      Mail.example.org. (your ${MAILCOW_HOSTNAME})
+_carddavs._tcp      IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _carddavs._tcp      IN TXT                              "path=/SOGo/dav/"
 _imap._tcp          IN SRV     0        1      143      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _imaps._tcp         IN SRV     0        1      993      mail.example.org. (your ${MAILCOW_HOSTNAME})
