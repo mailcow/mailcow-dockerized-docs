@@ -99,9 +99,6 @@ nav:
   - 'Redis': 'u_e-redis.md'
   - 'Rspamd': 'u_e-rspamd.md'
   - 'SOGo': 'u_e-sogo.md'
-  - 'XMPP':
-    - 'FAQ': 'u_e-xmpp-faq.md'
-    - 'Enable XMPP': 'u_e-xmpp-enable.md'
   - 'Docker':
     - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
     - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
@@ -114,7 +111,6 @@ nav:
   - 'Android': 'client/client-android.md'
   - 'Apple macOS / iOS': 'client/client-apple.md'
   - 'eM Client': 'client/client-emclient.md'
-  - 'Gajim XMPP client': 'client/client-gajim_xmpp_client.md'
   - 'KDE Kontact': 'client/client-kontact.md'
   - 'Microsoft Outlook': 'client/client-outlook.md'
   - 'Mozilla Thunderbird': 'client/client-thunderbird.md'
