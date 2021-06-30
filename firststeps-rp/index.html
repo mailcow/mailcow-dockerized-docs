@@ -1453,62 +1453,11 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_9" type="checkbox" id="__nav_8_9" >
       
       <label class="md-nav__link" for="__nav_8_9">
-        XMPP
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="XMPP" data-md-level="2">
-        <label class="md-nav__title" for="__nav_8_9">
-          <span class="md-nav__icon md-icon"></span>
-          XMPP
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../u_e-xmpp-faq/" class="md-nav__link">
-        FAQ
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../u_e-xmpp-enable/" class="md-nav__link">
-        Enable XMPP
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_10" type="checkbox" id="__nav_8_10" >
-      
-      <label class="md-nav__link" for="__nav_8_10">
         Docker
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Docker" data-md-level="2">
-        <label class="md-nav__title" for="__nav_8_10">
+        <label class="md-nav__title" for="__nav_8_9">
           <span class="md-nav__icon md-icon"></span>
           Docker
         </label>
@@ -1665,18 +1614,6 @@
     <li class="md-nav__item">
       <a href="../client/client-emclient/" class="md-nav__link">
         eM Client
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../client/client-gajim_xmpp_client/" class="md-nav__link">
-        Gajim XMPP client
       </a>
     </li>
   
@@ -2026,9 +1963,7 @@ On many servers logrotate will reload the webserver daily anyway.</p>
 <span class="hll">  <span class="nb">ServerName</span> CHANGE_TO_MAILCOW_HOSTNAME
 </span>  <span class="nb">ServerAlias</span> autodiscover.*
   <span class="nb">ServerAlias</span> autoconfig.*
-<span class="hll">  <span class="nb">ServerAlias</span> xmpp_prefix_if_any.domain
-</span><span class="hll">  <span class="nb">ServerAlias</span> *.xmpp_prefix_if_any.domain
-</span>  <span class="nb">RewriteEngine</span> <span class="k">on</span>
+  <span class="nb">RewriteEngine</span> <span class="k">on</span>
 
   <span class="nb">RewriteCond</span> %{HTTPS} <span class="k">off</span>
   <span class="nb">RewriteRule</span> ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
@@ -2043,9 +1978,7 @@ On many servers logrotate will reload the webserver daily anyway.</p>
 <span class="hll">  <span class="nb">ServerName</span> CHANGE_TO_MAILCOW_HOSTNAME
 </span>  <span class="nb">ServerAlias</span> autodiscover.*
   <span class="nb">ServerAlias</span> autoconfig.*
-<span class="hll">  <span class="nb">ServerAlias</span> xmpp_prefix_if_any.domain
-</span><span class="hll">  <span class="nb">ServerAlias</span> *.xmpp_prefix_if_any.domain
-</span>
+
   <span class="c"># You should proxy to a plain HTTP session to offload SSL processing</span>
 <span class="hll">  <span class="nb">ProxyPass</span> <span class="sx">/Microsoft-Server-ActiveSync</span> http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=4000
 </span><span class="hll">  <span class="nb">ProxyPassReverse</span> <span class="sx">/Microsoft-Server-ActiveSync</span> http://127.0.0.1:8080/Microsoft-Server-ActiveSync
@@ -2074,13 +2007,13 @@ On many servers logrotate will reload the webserver daily anyway.</p>
 <div class="highlight"><pre><span></span><code>server {
   listen 80 default_server;
   listen [::]:80 default_server;
-<span class="hll">  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.* xmpp_prefix_if_any.domain *.xmpp_prefix_if_any.domain;
+<span class="hll">  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 </span>  return 301 https://$host$request_uri;
 }
 server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
-<span class="hll">  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.* xmpp_prefix_if_any.domain *.xmpp_prefix_if_any.domain;
+<span class="hll">  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 </span>
 <span class="hll">  ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
 </span><span class="hll">  ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
