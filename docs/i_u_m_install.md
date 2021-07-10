@@ -17,6 +17,9 @@ systemctl enable docker.service
 systemctl start docker.service
 ```
 
+!!! info
+    You might be tempted to mount /var/lib/docker as a separated partition and add few option on this mount point for security perspective. However from docker recommendation while [nodev](https://github.com/moby/moby/issues/4685) will works, [noexec](https://github.com/moby/moby/issues/7054) is not recommended and since most of image chown files inside containers, it is not recommended to use nosuid on /var/lib/docker.
+
 - Docker-Compose
 
 !!! warning
