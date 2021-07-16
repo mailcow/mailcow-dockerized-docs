@@ -75,6 +75,13 @@ To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
 
+!!! warning
+Some providers block outgoing traffic to ports 25 and 465 by default specially if you have a new customer. Ask your provider to unblock the ports before running mailcow. Providers known to block SMTP-Ports by default: 
+- [DO](https://www.digitalocean.com/)
+- [GCP](https://cloud.google.com/)
+- [Hetzner](https://www.hetzner.com)
+- [Linode](https://www.linode.com/)
+
 ### Important for Hetzner firewalls
 
 Quoting https://github.com/chermsen via https://github.com/mailcow/mailcow-dockerized/issues/497#issuecomment-469847380 (THANK YOU!):
