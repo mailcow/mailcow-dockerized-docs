@@ -18,6 +18,10 @@ This guide only covers the basics.
 
 ### Create or amend `docker-compose.override.yml`
 
+!!! NOTE
+This setup will backup your crypt volume. This is to allow for full disaster recovery where you are installing onto bare tin. Borgmatic will dedupe and encrypt all data on your local machine before sending it across to the remote system.
+If for security reasons you do prefer to back up your crypt volume via another method remove  crypt-vol-1:/mnt/source/crypt:ro from the volumes in the yaml below.
+
 In the mailcow-dockerized root folder create or edit `docker-compose.override.yml` and insert the following
 configuration:
 
@@ -29,6 +33,7 @@ services:
     restart: always
     dns: ${IPV4_NETWORK:-172.22.1}.254
     volumes:
+      - crypt-vol-1:/mnt/source/crypt:ro
       - vmail-vol-1:/mnt/source/vmail:ro
       - mysql-socket-vol-1:/var/run/mysqld/:z
       - ./data/conf/borgmatic/etc:/etc/borgmatic.d:Z
@@ -45,7 +50,7 @@ services:
 
 Ensure that you change the `BORG_PASSPHRASE` to a secure passphrase of your choosing.
 
-For security reasons we mount the maildir as read-only. If you later want to restore data you will need to remove
+For security reasons we mount the maildir and crypt as read-only. If you later want to restore data you will need to remove
 the `ro` flag prior to restoring the data. This is described in the section on restoring backups.
 
 ### Create `data/conf/borgmatic/etc/config.yaml`
@@ -163,7 +168,7 @@ any custom data in your maildir or your mailcow database.
     exclusively. SELinux will (rightfully) prevent any other container, such as the borgmatic container, from writing to
     this volume.
 
-Before running a restore you must make the vmail volume writeable in `docker-compose.override.yml` by removing
+Before running a restore you must make the vmail/crypt volume writeable in `docker-compose.override.yml` by removing
 the `ro` flag from the volume.
 Then you can use the following command to restore the maildir from a backup:
 
