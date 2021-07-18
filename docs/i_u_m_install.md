@@ -13,8 +13,7 @@ Quick installation for most operation systems:
 ```
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable docker.service
-systemctl start docker.service
+systemctl enable --now docker
 ```
 
 - Docker-Compose
