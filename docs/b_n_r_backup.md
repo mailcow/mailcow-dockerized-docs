@@ -72,3 +72,26 @@ if [ $RESULT -ne 0 ]
             cat "$OUT"
 fi
 ```
+
+# Backup strategy with rsync and mailcow backup script
+
+Create the destination directory for mailcows helper script:
+```
+mkdir -p /external_share/backups/backup_script
+```
+
+Create cronjobs:
+```
+25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
+40 2 * * * rsync -aH --delete /var/lib/docker/volumes /external_share/backups/var_lib_docker_volumes
+5 4 * * * cd /opt/mailcow-dockerized/; BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+# If you want to, use the acl util to backup permissions of some/all folders/files: getfacl -Rn /path
+```
+
+On the destination (in this case `/external_share/backups`) you may want to have snapshot capabilities (ZFS, Btrfs etc.). Snapshot daily and keep for n days for a consistent backup.
+Do **not** rsync to a Samba share, you need to keep the correct permissions!
+
+To restore you'd simply need to run rsync the other way round and restart Docker to re-read the volumes. Run `docker-compose pull` and `docker-compose up -d`.
+
+If you are lucky Redis and MariaDB can automatically fix the inconsistent databases (if they _are_ inconsistent).
+In case of a corrupted database you'd need to use the helper script to restore the inconsistent elements. If a restore fails, try to extract the backups and copy the files back manually. Keep the file permissions!
