@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_migration/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/u_e-update-hooks/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.1">
     
     
       
-        <title>Migration - mailcow: dockerized documentation</title>
+        <title>Run scripts before and after updates - mailcow: dockerized documentation</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Migration
+              Run scripts before and after updates
             
           </span>
         </div>
@@ -267,14 +267,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       <label class="md-nav__link" for="__nav_3">
         Installation, Update & Migration
@@ -314,19 +312,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../i_u_m_migration/" class="md-nav__link">
         Migration
       </a>
-      
     </li>
   
 
@@ -853,12 +843,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
       
       <label class="md-nav__link" for="__nav_8">
         Manual/Guides/Examples
@@ -1480,11 +1472,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../u_e-update-hooks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Run scripts before and after updates
       </a>
+      
     </li>
   
 
@@ -1795,65 +1795,21 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/i_u_m_migration.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/u_e-update-hooks.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Migration</h1>
+                  <h1>Run scripts before and after updates</h1>
                 
-                <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This guide assumes you intend to migrate an existing mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within <code>/var/lib/docker/volumes</code> and thus any Docker volumes you may have already set up.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Alternatively, you can use the <code>./helper-scripts/backup_and_restore.sh</code> script to create a full backup on the source machine, then install mailcow on the target machine as usual, copy over your <code>mailcow.conf</code> and use the same script to restore your backup to the target machine.</p>
-</div>
-<p><strong>1.</strong> 
-Install <a href="https://docs.docker.com/engine/installation/linux/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a> on your new server.</p>
-<p>Quick installation for most operation systems:</p>
+                <p>It is possible to add pre- and post-update-hooks to the <code>update.sh</code> script that upgrades your whole mailcow installation.</p>
+<p>To do so, just add the corresponding bash script into your mailcows root directory:  </p>
 <ul>
-<li>
-<p>Docker
-<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable docker.service
-</code></pre></div></p>
-</li>
-<li>
-<p>docker-compose
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-</code></pre></div></p>
-</li>
+<li><code>pre_update_hook.sh</code> for commands that should run before the update</li>
+<li><code>post_uddate_hook.sh</code> for commands that should run after the update is completed</li>
 </ul>
-<p>Please use the latest Docker engine available and do not use the engine that ships with your distros repository.</p>
-<p><strong>2.</strong> Stop Docker and assure Docker has stopped:
-<div class="highlight"><pre><span></span><code>systemctl stop docker.service
-systemctl status docker.service
-</code></pre></div></p>
-<p><strong>3.</strong> Run the following commands on the source machine (take care of adding the trailing slashes in the first path parameter as shown below!) - <strong>WARNING: This command will erase anything that may already exist under <code>/var/lib/docker/volumes</code> on the target machine</strong>:
-<div class="highlight"><pre><span></span><code>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
-rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.example.com:/var/lib/docker/volumes
-</code></pre></div></p>
-<p><strong>4.</strong> Shut down mailcow and stop Docker on the source machine.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose down
-systemctl stop docker.service
-</code></pre></div></p>
-<p><strong>5.</strong> Repeat step 3 with the same commands. This will be much quicker than the first time.</p>
-<p><strong>6.</strong> Switch over to the target machine and start Docker.
-<div class="highlight"><pre><span></span><code>systemctl start docker.service
-</code></pre></div></p>
-<p><strong>7.</strong> Now pull the mailcow Docker images on the target machine.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose pull
-</code></pre></div></p>
-<p><strong>8.</strong> Start the whole mailcow stack and everything should be done!
-<div class="highlight"><pre><span></span><code>docker-compose up -d
-</code></pre></div></p>
-<p><strong>9.</strong> Finally, change your DNS settings to point to the target server.</p>
+<p>Keep in mind that <code>pre_update_hook.sh</code> runs every time you call <code>update.sh</code> and <code>post_update_hook.sh</code> will only run if the update was successful and the script doesn't have to be re-run.</p>
+<p>The scripts will be run by bash, an interpreter (e.g. <code>#!/bin/bash</code>) as well as an execute permission flag ("+x") are not required.</p>
                 
               
               
@@ -1873,7 +1829,7 @@ docker-compose pull
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../i_u_m_update/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Update" rel="prev">
+        <a href="../u_e-reeanble-weak-protocols/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Re-enable TLS 1.0 and TLS 1.1" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1882,20 +1838,20 @@ docker-compose pull
               <span class="md-footer__direction">
                 Previous
               </span>
-              Update
+              Re-enable TLS 1.0 and TLS 1.1
             </div>
           </div>
         </a>
       
       
         
-        <a href="../i_u_m_deinstall/" class="md-footer__link md-footer__link--next" aria-label="Next: Deinstallation" rel="next">
+        <a href="../client/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Deinstallation
+              Overview
             </div>
           </div>
           <div class="md-footer__button md-icon">

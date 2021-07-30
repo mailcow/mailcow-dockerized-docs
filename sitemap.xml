@@ -401,6 +401,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-update-hooks/</loc>
+         <lastmod>2021-07-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-webmail-site/</loc>
          <lastmod>2021-07-30</lastmod>
          <changefreq>daily</changefreq>
