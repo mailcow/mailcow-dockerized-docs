@@ -1,6 +1,6 @@
-site_name: 'mailcow: dockerized documentation'
+site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: 'Copyright &copy; 2021 André Peters'
+copyright: "Copyright &copy; 2021 André Peters"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -46,7 +46,7 @@ nav:
     - 'Password hashing': 'model-passwd.md'
     - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'General Troubleshooting':
-    - 'Introduction': debug.md
+    - 'Introduction': 'debug.md'
     - 'Logs': 'debug-logs.md'
     - 'Attach a Container': 'debug-attach_service.md'
     - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
@@ -106,6 +106,7 @@ nav:
     - 'Autodiscover / Autoconfig': 'u_e-autodiscover_config.md'
     - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
     - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
+    - "Run scripts before and after updates": "u_e-update-hooks.md"
   - 'Client Configuration':
     - 'Overview': 'client.md'
     - 'Android': 'client/client-android.md'
@@ -128,20 +129,20 @@ nav:
     - 'Roundcube': 'third_party-roundcube.md'
     - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
 icon:
-  logo: 'images/logo.svg'
+  logo: "images/logo.svg"
 extra:
   palette:
-    primary: 'indigo'
-    accent: 'orange'
+    primary: "indigo"
+    accent: "orange"
   social:
     - icon: fontawesome/solid/globe-americas
       link: https://mailcow.email
     - icon: fontawesome/brands/github-alt
       link: https://github.com/mailcow
-extra_css: [extra.css]
-extra_javascript: [clients.js]
+extra_css: [ extra.css ]
+extra_javascript: [ clients.js ]
 plugins:
-    - search
-    - redirects:
-        redirect_maps:
-          'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
+  - search
+  - redirects:
+      redirect_maps:
+        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
