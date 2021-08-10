@@ -5,7 +5,10 @@ repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
 remote_branch: gh-pages
-theme: material
+theme:
+  name: material
+  logo: images/logo.svg
+  favicon: images/favicon.png
 markdown_extensions:
   - codehilite:
       guess_lang: true
@@ -74,7 +77,7 @@ nav:
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
       - 'WebAuthn / FIDO2': 'u_e-fido2.md'
     - 'Postfix':
-      - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
+      - 'Custom transport maps': 'u_e-postfix-custom_transport.md'
       - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
       - 'Customize/Expand main.cf': 'u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
@@ -93,7 +96,7 @@ nav:
       - 'Move Maildir (vmail)': 'u_e-dovecot-vmail-volume.md'
       - 'Public folders': 'u_e-dovecot-public_folder.md'
       - 'Static master user': 'u_e-dovecot-static_master.md'
-    - 'Nginx': 
+    - 'Nginx':
       - 'Custom sites': 'u_e-nginx.md'
       - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
     - 'Redis': 'u_e-redis.md'
@@ -128,8 +131,6 @@ nav:
     - 'Portainer': 'third_party-portainer.md'
     - 'Roundcube': 'third_party-roundcube.md'
     - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
-icon:
-  logo: "images/logo.svg"
 extra:
   palette:
     primary: "indigo"
