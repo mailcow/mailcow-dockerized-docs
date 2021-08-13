@@ -1825,6 +1825,7 @@ and implement your changes to the service there. Unfortunately, this right now o
 services:
 
     ipv6nat-mailcow:
+      image: bash:latest
       restart: &quot;no&quot;
       entrypoint: [&quot;echo&quot;, &quot;ipv6nat disabled in compose.override.yml&quot;]
 </code></pre></div>
