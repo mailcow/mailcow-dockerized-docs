@@ -38,6 +38,7 @@ version: '2.1'
 services:
 
     ipv6nat-mailcow:
+      image: bash:latest
       restart: "no"
       entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
 ```
