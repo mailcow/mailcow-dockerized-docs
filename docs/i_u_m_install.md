@@ -3,7 +3,7 @@
     **We do not recommend** CentOS 8 anymore.
 
 
-You need Docker and Docker Compose.
+You need Docker (a version >= `20.10.2` is required) and Docker Compose.
 
 **1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
@@ -13,8 +13,7 @@ Quick installation for most operation systems:
 ```
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable docker.service
-systemctl start docker.service
+systemctl enable --now docker
 ```
 
 - Docker-Compose

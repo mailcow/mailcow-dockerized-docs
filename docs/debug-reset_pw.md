@@ -1,6 +1,6 @@
 ## mailcow Admin Account
 
-Reset mailcow admin to `admin:moohoo`. Older mailcow: dockerized installations may find `mailcow-reset-admin.sh` in their mailcow root directory (mailcow_path).
+Resets the mailcow admin account to a random password. Older mailcow: dockerized installations may find the `mailcow-reset-admin.sh` script in their mailcow root directory (mailcow_path).
 
 ```
 cd mailcow_path

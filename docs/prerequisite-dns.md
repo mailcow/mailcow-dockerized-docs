@@ -60,7 +60,7 @@ _dmarc              IN TXT     "v=DMARC1; p=reject; rua=mailto:mailauth-reports@
 _autodiscover._tcp  IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _caldavs._tcp       IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _caldavs._tcp       IN TXT                              "path=/SOGo/dav/"
-_carddavs._tcp      IN SRV     0        1      443      Mail.example.org. (your ${MAILCOW_HOSTNAME})
+_carddavs._tcp      IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _carddavs._tcp      IN TXT                              "path=/SOGo/dav/"
 _imap._tcp          IN SRV     0        1      143      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _imaps._tcp         IN SRV     0        1      993      mail.example.org. (your ${MAILCOW_HOSTNAME})
@@ -90,7 +90,7 @@ If you are interested in statistics, you can additionally register with some of 
 !!! Tip
 It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.
 
-It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools avaialble, but only a small few of the many choices.
+It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools available, but only a small few of the many choices.
 
 - [Postmaster Tool](https://gmail.com/postmaster)
 - [parsedmarc](https://github.com/domainaware/parsedmarc) (self-hosted)
@@ -100,7 +100,7 @@ It is worth mentioning, that the following suggestions are not a comprehensive l
 
 !!! Tip
 
-These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure to read the providers documentation from the service you choose as this process may vary.
+These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure you read the provider's documentation from the service you choose as this process may vary.
 
 ### Email test for SPF, DKIM and DMARC:
 
@@ -127,4 +127,4 @@ The full report will contain more technical details.
 
 ### Fully Qualified Domain Name (FQDN)
 
-[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname (myhost), the domain name (mydomain) and the top level domain in short **tld** (com). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name `mailcow` and the tld `email`.
+[^1]: A **Fully Qualified Domain Name** (**FQDN**) is the complete (absolute) domain name for a specific computer or host, on the Internet. The FQDN consists of at least three parts divided by a dot: the hostname, the domain name, and the Top Level Domain (**TLD** for short). In the example of `mx.mailcow.email` the hostname would be `mx`, the domain name `mailcow` and the TLD `email`.

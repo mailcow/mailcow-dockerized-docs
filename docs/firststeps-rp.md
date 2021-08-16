@@ -48,13 +48,11 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
 
 **Take care of highlighted lines.**
 
-``` apache hl_lines="2 5 6 12 13 19 22 23 26 27 28 29 34 35"
+``` apache hl_lines="2 10 11 17 22 23 24 25 30 31"
 <VirtualHost *:80>
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
-  ServerAlias xmpp_prefix_if_any.domain
-  ServerAlias *.xmpp_prefix_if_any.domain
   RewriteEngine on
 
   RewriteCond %{HTTPS} off
@@ -70,8 +68,6 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
-  ServerAlias xmpp_prefix_if_any.domain
-  ServerAlias *.xmpp_prefix_if_any.domain
 
   # You should proxy to a plain HTTP session to offload SSL processing
   ProxyPass /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=4000
@@ -106,13 +102,13 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.* xmpp_prefix_if_any.domain *.xmpp_prefix_if_any.domain;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
   return 301 https://$host$request_uri;
 }
 server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.* xmpp_prefix_if_any.domain *.xmpp_prefix_if_any.domain;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
 
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;

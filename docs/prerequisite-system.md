@@ -70,9 +70,6 @@ If you have a firewall in front of mailcow, please make sure that these ports ar
 | Dovecot POP3S       | TCP      | 995    | dovecot-mailcow   | `${POPS_PORT}`                   |
 | Dovecot ManageSieve | TCP      | 4190   | dovecot-mailcow   | `${SIEVE_PORT}`                  |
 | HTTP(S)             | TCP      | 80/443 | nginx-mailcow     | `${HTTP_PORT}` / `${HTTPS_PORT}` |
-| XMPP (c2s)          | TCP      | 5222   | ejabberd-mailcow  | `${XMPP_C2S_PORT}`               |
-| XMPP (s2s)          | TCP      | 5269   | ejabberd-mailcow  | `${XMPP_C2S_PORT}`               |
-| XMPP (upload)       | TCP      | 5443   | ejabberd-mailcow  | `${XMPP_HTTPS_PORT}`             |
 
 To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT=1.2.3.4:25`
 

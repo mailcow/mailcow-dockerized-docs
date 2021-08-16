@@ -67,7 +67,6 @@ Each container represents a single application.
 - [ACME](https://letsencrypt.org/)
 - [ClamAV](https://www.clamav.net/) (optional)
 - [Dovecot](https://www.dovecot.org/)
-- [ejabberd](https://www.ejabberd.im/)
 - [MariaDB](https://mariadb.org/)
 - [Memcached](https://www.memcached.org/)
 - [Netfilter](https://www.netfilter.org/) (Fail2ban-like integration by [@mkuron](https://github.com/mkuron))
@@ -78,7 +77,7 @@ Each container represents a single application.
 - [Redis](https://redis.io/)
 - [Rspamd](https://www.rspamd.com/)
 - [SOGo](https://sogo.nu/)
-- [Solr](http://lucene.apache.org/solr/) (optional)
+- [Solr](https://solr.apache.org/) (optional)
 - [Unbound](https://unbound.net/)
 - A Watchdog to provide basic monitoring
 
@@ -95,5 +94,3 @@ Each container represents a single application.
 - solr-vol-1
 - vmail-index-vol-1
 - vmail-vol-1
-- xmpp-upload-vol-1
-- xmpp-vol-1
