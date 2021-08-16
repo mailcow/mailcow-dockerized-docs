@@ -62,6 +62,8 @@ nav:
   - 'Manually':
     - 'Maildir': 'u_e-backup_restore-maildir.md'
     - 'MySQL': 'u_e-backup_restore-mysql.md'
+  - 'Automatic backups'
+    - 'Recover accidentally deleted data': 'b_n_r_accidental_deletion.md'
 - 'Manual/Guides/Examples':
   - 'mailcow UI':
     - 'Configuration': 'u_e-mailcow_ui-config.md'
