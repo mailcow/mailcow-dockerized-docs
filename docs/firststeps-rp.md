@@ -199,8 +199,9 @@ services:
         # Specifies which kind of cert resolver we'll use, in this case le (Lets Encrypt).
         - traefik.http.routers.moo.tls.certresolver=le
         # Creates a service called "moo" for the container, and specifies which internal port of the container
-        #   should traefik route the incoming data to.
-        - traefik.http.services.moo.loadbalancer.server.port=80
+        #   should traefik route the incoming data to. We're using 8080 to match the recommended 
+        #   reverse proxy mailcow.conf and to avoid colliding with traefik
+        - traefik.http.services.moo.loadbalancer.server.port=8080
         # Specifies which entrypoint (external port) should traefik listen to, for this container.
         #   websecure being port 443, check the traefik.toml file liked above.
         - traefik.http.routers.moo.entrypoints=secure
