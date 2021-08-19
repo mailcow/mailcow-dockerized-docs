@@ -181,7 +181,7 @@ For this we'll have to set `SKIP_LETS_ENCRYPT=y` on our `mailcow.conf`, and run 
 
 Then we'll create a `docker-compose.override.yml` file in order to override the main `docker-compose.yml` found in your mailcow root folder. 
 
-```
+```yaml
 version: '2.1'
 
 services:
@@ -200,10 +200,10 @@ services:
         - traefik.http.routers.moo.tls.certresolver=le
         # Creates a service called "moo" for the container, and specifies which internal port of the container
         #   should traefik route the incoming data to.
-        - traefik.http.services.moo.loadbalancer.server.port=80
+        - traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}
         # Specifies which entrypoint (external port) should traefik listen to, for this container.
         #   websecure being port 443, check the traefik.toml file liked above.
-        - traefik.http.routers.moo.entrypoints=secure
+        - traefik.http.routers.moo.entrypoints=websecure
         # Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network
         - traefik.docker.network=web
 
