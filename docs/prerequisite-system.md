@@ -2,7 +2,6 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 !!! warning
     Do **not** try to install mailcow on a Synology/QNAP device (any NAS), OpenVZ, LXC or other container platforms. KVM, ESX, Hyper-V and other full virtualization platforms are supported.
-    We **do not** recommend to use CentOS 8 anymore!
 
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
