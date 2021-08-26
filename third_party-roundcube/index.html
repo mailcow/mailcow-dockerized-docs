@@ -2012,9 +2012,9 @@ $config[&#39;password_algorithm_prefix&#39;] = &#39;{SSHA256}&#39;;
 $config[&#39;password_query&#39;] = &quot;UPDATE mailbox SET password = %P WHERE username = %u&quot;;
 </code></pre></div>
 <h3 id="integrate-carddav-addressbooks-in-roundcube">Integrate CardDAV addressbooks in Roundcube<a class="headerlink" href="#integrate-carddav-addressbooks-in-roundcube" title="Permanent link">&para;</a></h3>
-<p>Download the latest release of <a href="https://github.com/blind-coder/rcmcarddav/">RCMCardDAV</a> to the Roundcube plugin directory and extract it (here <code>rc/plugins</code>):
+<p>Download the latest release of <a href="https://github.com/mstilkerich/rcmcarddav">RCMCardDAV</a> to the Roundcube plugin directory and extract it (here <code>rc/plugins</code>):
 <div class="highlight"><pre><span></span><code>cd data/web/rc/plugins
-wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.1.2/carddav-v4.1.2.tar.gz  | tar xfvz -
 chown -R root: carddav/
 </code></pre></div></p>
 <p>Copy the file <code>config.inc.php.dist</code> to <code>config.inc.php</code> (here in <code>rc/plugins/carddav</code>) and append the following preset to the end of the file - don't forget to replace <code>mx.example.org</code> with your own hostname:
