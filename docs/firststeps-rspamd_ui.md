@@ -1,4 +1,4 @@
-Rspamd (https://rspamd.com/webui/) is an easy to use spam filtering tool presently installed with mailcow.
+[Rspamd](https://rspamd.com/) is an easy to use spam filtering tool presently installed with mailcow.
 
 1. Go to the mailcow web admin interface
 2. Navigate to the Access tab. (Configuration > Administration > Access)

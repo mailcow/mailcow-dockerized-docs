@@ -10,7 +10,7 @@ Please check in your mailcow UI if you made the domain a **backup MX**:
 
 There are a lot of things that could prevent you from sending mail:
 
-- Check if your IP is on any blacklists. You could use [dnsbl.info](http://www.dnsbl.info/) or any other similar service to check for your IP.
+- Check if your IP address is on any blacklists. You could use [dnsbl.info](http://www.dnsbl.info/) or any other similar service to check for your IP address.
 - There are some consumer ISP routers out there, that block mail ports for non whitelisted domains. Please check if you can reach your server on the ports `465` or `587`:
 
 ```
@@ -40,7 +40,7 @@ This error tries to tell you that one of the (health) conditions for a certain c
 
 A wrong configured firewall could also cause such a failure. The containers need to be able to talk to each other over the network 172.22.1.1/24.
 
-It might also be wrongly linked file (i.e. SSL certificate) that prevents a crucial container (nginx) from starting, so always check your logs to get an Idea where your problem is coming from.
+It might also be wrongly linked file (i.e. SSL certificate) that prevents a crucial container (nginx) from starting, so always check your logs to get an idea where your problem is coming from.
 
 
 ## Address already in use
@@ -51,7 +51,7 @@ If you get an error message like:
 ERROR: for postfix-mailcow  Cannot start service postfix-mailcow: driver failed programming external     connectivity on endpoint mailcowdockerized_postfix-mailcow_1: Error starting userland proxy: listen tcp 0.0.0.0:25: bind: address already in use
 ```
 
-while trying to start / install mailcow: dockerized, make sure you've followed our section on the [prerequisites](prerequisite-system/#firewall-ports).
+while trying to start / install mailcow: dockerized, make sure you've followed our section on the [prerequisites](../prerequisite-system/#firewall-ports).
 
 ## XYZ can't connect to ...
 

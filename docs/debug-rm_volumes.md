@@ -1,6 +1,6 @@
 You may want to remove a set of persistent data to resolve a conflict or to start over.
 
-`mailcowdockerized` can vary and depends on your compose project name (if it's unchanged, `mailcowdockerized` is the correct value). If you are unsure about volume names, run `docker volumes ls` for a full list.
+`mailcowdockerized` can vary and depends on your compose project name (if it's unchanged, `mailcowdockerized` is the correct value). If you are unsure about volume names, run `docker volume ls` for a full list.
 
 Delete a single volume:
 

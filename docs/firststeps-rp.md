@@ -15,6 +15,11 @@ This will also change the bindings inside the Nginx container! This is important
 
 Recreate affected containers by running `docker-compose up -d`.
 
+**Important information, please read them carefully!**
+
+!!! info
+    If you plan to use a reverse proxy and want to use another server name that is **not** MAILCOW_HOSTNAME, you need to read **Adding additional server names for mailcow UI** at the bottom of this page.
+
 !!! warning
     Make sure you run `generate_config.sh` before you enable any site configuration examples below.
     The script `generate_config.sh` copies snake-oil certificates to the correct location, so the services will not fail to start due to missing files.
@@ -50,7 +55,7 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   ServerAlias autoconfig.*
   RewriteEngine on
 
-  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTPS} off
   RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
 
   ProxyPass / http://127.0.0.1:8080/
@@ -176,7 +181,7 @@ For this we'll have to set `SKIP_LETS_ENCRYPT=y` on our `mailcow.conf`, and run 
 
 Then we'll create a `docker-compose.override.yml` file in order to override the main `docker-compose.yml` found in your mailcow root folder. 
 
-```
+```yaml
 version: '2.1'
 
 services:
@@ -195,10 +200,10 @@ services:
         - traefik.http.routers.moo.tls.certresolver=le
         # Creates a service called "moo" for the container, and specifies which internal port of the container
         #   should traefik route the incoming data to.
-        - traefik.http.services.moo.loadbalancer.server.port=80
+        - traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}
         # Specifies which entrypoint (external port) should traefik listen to, for this container.
         #   websecure being port 443, check the traefik.toml file liked above.
-        - traefik.http.routers.moo.entrypoints=secure
+        - traefik.http.routers.moo.entrypoints=websecure
         # Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network
         - traefik.docker.network=web
 
@@ -248,3 +253,13 @@ dovecot_c=$(docker ps -qaf name=dovecot-mailcow)
 nginx_c=$(docker ps -qaf name=nginx-mailcow)
 docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
 ```
+
+### Adding additional server names for mailcow UI
+
+If you plan to use a server name that is not `MAILCOW_HOSTNAME` in your reverse proxy, make sure to populate that name in mailcow.conf via `ADDITIONAL_SERVER_NAMES` first. Names must be separated by commas and **must not** contain spaces. If you skip this step, mailcow may respond to your reverse proxy with an incorrect site.
+
+```
+ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
+```
+
+Run `docker-compose up -d` to apply.

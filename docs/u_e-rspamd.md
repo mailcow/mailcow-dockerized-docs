@@ -3,11 +3,13 @@ Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful 
 ## Learn Spam & Ham
 
 Rspamd learns mail as spam or ham when you move a message in or out of the junk folder to any mailbox besides trash.
-This is achieved by using the Dovecot plugin "antispam" and a simple parser script.
+This is achieved by using the Sieve plugin "sieve_imapsieve" and parser scripts.
 
-Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning)
+Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning). We configured the plugin to keep a sane ratio between spam and ham learns.
 
 The bayes statistics are written to Redis as keys `BAYES_HAM` and `BAYES_SPAM`.
+
+Besides bayes, a local fuzzy storage is used to learn recurring patterns in text or images that indicate ham or spam.
 
 You can also use Rspamd's web UI to learn ham and / or spam or to adjust certain settings of Rspamd.
 
@@ -128,20 +130,20 @@ reject_message = "My custom reject message";
 
 Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
 
-While the above works for rejected mails with a high spam score, global maps (as found in "Global filter maps" in /admin) will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
+While the above works for rejected mails with a high spam score, prefilter reject actions will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
 
-1. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find the desired map symbol (e.g. `GLOBAL_SMTP_FROM_BL`).
+1. Find prefilet reject symbol for which you want change message, to do it run: `grep -R "SYMBOL_YOU_WANT_TO_ADJUST" /opt/mailcow-dockerized/data/conf/rspamd/`
 
 2. Add your custom message as new line:
 
 ```
-GLOBAL_SMTP_FROM_BL {
-  type = "from";
-  message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";`
-  map = "$LOCAL_CONFDIR/custom/global_smtp_from_blacklist.map";
+GLOBAL_RCPT_BL {
+  type = "rcpt";
+  map = "${LOCAL_CONFDIR}/custom/global_rcpt_blacklist.map";
   regexp = true;
   prefilter = true;
   action = "reject";
+  message = "Sending mail to this recipient is prohibited by postmaster@your.domain";
 }
 ```
 
@@ -210,3 +212,31 @@ Restart Rspamd:
 ```bash
 docker-compose exec redis-mailcow sh
 ```
+
+## Trigger a resend of quarantine notifications
+
+Should be used for debugging only!
+
+```
+docker-compose exec dovecot-mailcow bash
+mysql -umailcow -p$DBPASS mailcow -e "update quarantine set notified = 0;"
+redis-cli -h redis DEL Q_LAST_NOTIFIED
+quarantine_notify.py
+```
+
+## Increase history retention
+
+By default Rspamd keeps 1000 elements in the history.
+
+The history is stored compressed.
+
+It is recommended not to use a disproportionate high value here, try something along 5000 or 10000 and see how your server handles it:
+
+Edit `data/conf/rspamd/local.d/history_redis.conf`:
+
+```
+nrows = 1000; # change this value
+```
+
+Restart Rspamd afterwards: `docker-compose restart rspamd-mailcow`
+

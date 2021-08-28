@@ -1,10 +1,10 @@
-Download Roundcube 1.4.x to the web htdocs directory and extract it (here `rc/`):
+Download Roundcube 1.5.x to the web htdocs directory and extract it (here `rc/`):
 ```
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.4.8/roundcubemail-1.4.8-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5-rc/roundcubemail-1.5-rc-complete.tar.gz | tar xfvz -
 # Change folder name
-mv roundcubemail-1.4.8 rc
+mv roundcubemail-1.5-rc rc
 # Change permissions
 chown -R root: rc/
 ```
@@ -102,10 +102,10 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 
 ### Integrate CardDAV addressbooks in Roundcube
 
-Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmcarddav/) to the Roundcube plugin directory and extract it (here `rc/plugins`):
+Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
 cd data/web/rc/plugins
-wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.1.2/carddav-v4.1.2.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
