@@ -56,11 +56,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-reset-tls/</loc>
-         <lastmod>2021-09-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_pw/</loc>
          <lastmod>2021-09-02</lastmod>
          <changefreq>daily</changefreq>
