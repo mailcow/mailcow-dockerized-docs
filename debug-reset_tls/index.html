@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-static_master/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_tls/">
       
       <link rel="icon" href="../images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.5">
     
     
       
-        <title>Static master user - mailcow: dockerized documentation</title>
+        <title>Reset TLS certificates - mailcow: dockerized documentation</title>
       
     
     
@@ -89,7 +89,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Static master user
+              Reset TLS certificates
             
           </span>
         </div>
@@ -571,12 +571,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       <label class="md-nav__link" for="__nav_6">
         General Troubleshooting
@@ -688,11 +690,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../debug-reset_tls/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Reset TLS certificates
       </a>
+      
     </li>
   
 
@@ -892,14 +902,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       <label class="md-nav__link" for="__nav_8">
         Manual/Guides/Examples
@@ -1188,14 +1196,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_4" type="checkbox" id="__nav_8_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_4" type="checkbox" id="__nav_8_4" >
       
       <label class="md-nav__link" for="__nav_8_4">
         Dovecot
@@ -1319,19 +1325,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../u_e-dovecot-static_master/" class="md-nav__link">
         Static master user
       </a>
-      
     </li>
   
 
@@ -1846,25 +1844,25 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/u_e-dovecot-static_master.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/debug-reset_tls.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Static master user</h1>
+                  <h1>Reset TLS certificates</h1>
                 
-                <p>Random master usernames and passwords are automatically created on every restart of dovecot-mailcow.</p>
-<p><strong>That's recommended and should not be changed.</strong></p>
-<p>If you need the user to be static anyway, please specify two variables in <code>mailcow.conf</code>.</p>
-<p><strong>Both</strong> parameters must not be empty!</p>
-<div class="highlight"><pre><span></span><code>DOVECOT_MASTER_USER=mymasteruser
-DOVECOT_MASTER_PASS=mysecretpass
+                <p>In case you encounter problems with your certificate, key or Let's Encrypt account, please try to reset the TLS assets:</p>
+<div class="highlight"><pre><span></span><code>source mailcow.conf
+docker-compose down
+rm -rf data/assets/ssl
+mkdir data/assets/ssl
+openssl req -x509 -newkey rsa:4096 -keyout data/assets/ssl-example/key.pem -out data/assets/ssl-example/cert.pem -days 365 -subj &quot;/C=DE/ST=NRW/L=Willich/O=mailcow/OU=mailcow/CN=${MAILCOW_HOSTNAME}&quot; -sha256 -nodes
+cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
+docker-compose up -d
 </code></pre></div>
-<p>Run <code>docker-compose up -d</code> to apply your changes.</p>
-<p>The static master username will be expanded to <code>DOVECOT_MASTER_USER@mailcow.local</code>.</p>
-<p>To login as <code>test@example.org</code> this would equal to <code>test@example.org*mymasteruser@mailcow.local</code> with the specified password above.</p>
-<p>A login to SOGo is not possible with this username. A click-to-login function for SOGo is available for admins as described <a href="https://mailcow.github.io/mailcow-dockerized-docs/debug-admin_login_sogo/">here</a>
-No master user is required.</p>
+<p>This will stop mailcow, source the variables we need, create a self-signed certificate and start mailcow.</p>
+<p>If you use Let's Encrypt you should be careful as you will create a new account and a new set of certificates. You will run into a ratelimit sooner or later.</p>
+<p>Please also note that previous TLSA records will be invalid.</p>
                 
               
               
@@ -1884,7 +1882,7 @@ No master user is required.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../u_e-dovecot-public_folder/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Public folders" rel="prev">
+        <a href="../debug-admin_login_sogo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Admin login to SOGo" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1893,20 +1891,20 @@ No master user is required.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Public folders
+              Admin login to SOGo
             </div>
           </div>
         </a>
       
       
         
-        <a href="../u_e-nginx/" class="md-footer__link md-footer__link--next" aria-label="Next: Custom sites" rel="next">
+        <a href="../debug-asan_rspamd/" class="md-footer__link md-footer__link--next" aria-label="Next: Advanced: Find memory leaks in Rspamd" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Custom sites
+              Advanced: Find memory leaks in Rspamd
             </div>
           </div>
           <div class="md-footer__button md-icon">

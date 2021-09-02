@@ -16,7 +16,7 @@
     
     
       
-        <title>Reset TLS certificates - mailcow: dockerized documentation</title>
+        <title>Debug reset tls - mailcow: dockerized documentation</title>
       
     
     
@@ -89,7 +89,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reset TLS certificates
+              Debug reset tls
             
           </span>
         </div>
@@ -571,14 +571,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
       <label class="md-nav__link" for="__nav_6">
         General Troubleshooting
@@ -690,19 +688,23 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../debug-reset_tls/" class="md-nav__link">
         Reset TLS certificates
       </a>
-      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debug-asan_rspamd/" class="md-nav__link">
+        Advanced: Find memory leaks in Rspamd
+      </a>
     </li>
   
 
@@ -1837,7 +1839,7 @@
                   </a>
                 
                 
-                  <h1>Reset TLS certificates</h1>
+                  <h1>Debug reset tls</h1>
                 
                 <p>In case you encounter problems with your certificate, key or Let's Encrypt account, please try to reset the TLS assets:</p>
 <div class="highlight"><pre><span></span><code>source mailcow.conf
@@ -1866,41 +1868,6 @@ docker-compose up -d
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../debug-admin_login_sogo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Admin login to SOGo" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Admin login to SOGo
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../b_n_r_backup/" class="md-footer__link md-footer__link--next" aria-label="Next: Backup" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Backup
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
