@@ -1,4 +1,4 @@
-A quick guide to deeply a malfunctioning Rspamd.
+A quick guide to deeply analyze a malfunctioning Rspamd.
 
 ```
 docker-compose exec rspamd-mailcow bash
