@@ -38,12 +38,10 @@ nav:
     - 'IP bindings': 'firststeps-ip_bindings.md'
     - 'Local MTA on Docker host': 'firststeps-local_mta.md'
     - 'Logging': 'firststeps-logging.md'
-    - 'Relayhosts': 'firststeps-relayhost.md'
     - 'Reverse Proxy': 'firststeps-rp.md'
     - 'Rspamd UI': 'firststeps-rspamd_ui.md'
     - 'SNAT': 'firststeps-snat.md'
     - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
-    - 'Add trusted networks': 'firststeps-trust_networks.md'
   - 'Models':
     - 'ACL': 'model-acl.md'
     - 'Password hashing': 'model-passwd.md'
@@ -80,12 +78,14 @@ nav:
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
       - 'WebAuthn / FIDO2': 'u_e-fido2.md'
     - 'Postfix':
+      - 'Add trusted networks': 'u_e-postfix-trust_networks.md'
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md'
-      - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
       - 'Customize/Expand main.cf': 'u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
+      - 'Relayhosts': 'u_e-postfix-relayhost.md'
       - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
+      - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
     - 'Unbound':
       - 'Using an external DNS service': 'u_e-unbound-fwd.md'
     - 'Dovecot':
