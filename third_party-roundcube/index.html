@@ -1951,10 +1951,10 @@ mv roundcubemail-1.5-rc rc
 # Change permissions
 chown -R root: rc/
 </code></pre></div></p>
-<p>Create a file <code>data/hooks/phpfpm/aspell.sh</code> with the following content, then <code>chmod +x data/hooks/phpfpm/aspell.sh</code>. This installs a local spell check engine.
+<p>If you need spell check features, create a file <code>data/hooks/phpfpm/aspell.sh</code> with the following content, then <code>chmod +x data/hooks/phpfpm/aspell.sh</code>. This installs a local spell check engine.
 <div class="highlight"><pre><span></span><code>#!/bin/bash
 apk update
-apk add aspell-en
+apk add aspell-en # or any other language
 </code></pre></div></p>
 <p>Create a file <code>data/web/rc/config/config.inc.php</code> with the following content.</p>
 <p><strong>Change the <code>des_key</code> parameter to a random value.</strong> It is used to temporarily store your IMAP password. The "db_prefix" is optional but recommended.</p>
