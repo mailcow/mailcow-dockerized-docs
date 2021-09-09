@@ -9,11 +9,11 @@ mv roundcubemail-1.5-rc rc
 chown -R root: rc/
 ```
 
-Create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine.
+If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine.
 ```
 #!/bin/bash
 apk update
-apk add aspell-en
+apk add aspell-en # or any other language
 ```
 
 Create a file `data/web/rc/config/config.inc.php` with the following content.
