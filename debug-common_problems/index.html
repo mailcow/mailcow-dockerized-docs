@@ -2050,7 +2050,7 @@ Escape character is &#39;^]&#39;.
 <p>Please check your local firewall!
 Docker and iptables-based firewalls sometimes create conflicting rules, so disable the firewall on your host to determine whether your connection issues are caused by such conflicts. If they are, you need to manually create appropriate rules in your host firewall to permit the necessary connections.</p>
 <p>If you experience connection problems from home, please check your ISP router's firewall too, some of them block mail traffic on the <em>SMTP</em> (587) or <em>SMTPS</em> (465) ports. It could also be, that your ISP is blocking the ports for <em>SUBMISSION</em> (25).</p>
-<p>While Linux users can chose from a variety of tools<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> to check if a port is open, the Windows user has only the command <code>telnet host port</code> available by default (and it has to be activated since Windows Vista).</p>
+<p>While Linux users can chose from a variety of tools<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> to check if a port is open, the Windows user has only the PowerShell command <code>Test-NetConnection -ComputerName host -Port port</code> available by default.</p>
 <p>To enable telnet on a Windows after Vista please check this <a href="https://social.technet.microsoft.com/wiki/contents/articles/910.windows-7-enabling-telnet-client.aspx">guide</a> or enter the following command in an terminal <strong>with administrator privileges</strong>:</p>
 <div class="highlight"><pre><span></span><code>dism /online /Enable-Feature /FeatureName:TelnetClient
 </code></pre></div>
