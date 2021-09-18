@@ -3,11 +3,15 @@ DMARC Reporting done via Rspamd DMARC Module.
 Rspamd documentation can be found here: https://rspamd.com/doc/modules/dmarc.html
 
 **Important:**
+
 1. Change `example.com`, `mail.example.com` and `Example` to reflect your setup
+
 2. DMARC reporting requires additional attention, especially over the first few days
+
 3. All receiving domains hosted on mailcow send from one reporting domain. It is recommended to use the parent domain of your `MAILCOW_HOSTNAME`:
     - If your `MAILCOW_HOSTNAME` is `mail.example.com` change the following config to `domain = "example.com";`
     - Set `email` equally, e.g. `email = "noreply-dmarc@example.com";`
+
 4. It is optional but recommended to create an email user `noreply-dmarc` in mailcow to handle bounces.
 
 ## Enable DMARC reporting
