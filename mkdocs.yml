@@ -40,6 +40,7 @@ nav:
     - 'Logging': 'firststeps-logging.md'
     - 'Reverse Proxy': 'firststeps-rp.md'
     - 'Rspamd UI': 'firststeps-rspamd_ui.md'
+    - 'DMARC Reporting': 'firststeps-dmarc_reporting.md'
     - 'SNAT': 'firststeps-snat.md'
     - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
   - 'Models':
