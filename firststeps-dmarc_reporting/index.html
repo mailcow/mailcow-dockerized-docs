@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-any_acl/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-dmarc_reporting/">
       
       <link rel="icon" href="../images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.6">
     
     
       
-        <title>Enable "any" ACL settings - mailcow: dockerized documentation</title>
+        <title>DMARC Reporting - mailcow: dockerized documentation</title>
       
     
     
@@ -64,6 +64,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#enable-dmarc-reporting" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -89,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enable "any" ACL settings
+              DMARC Reporting
             
           </span>
         </div>
@@ -343,12 +348,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       <label class="md-nav__link" for="__nav_4">
         Post Installation Tasks
@@ -448,11 +455,75 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../firststeps-dmarc_reporting/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          DMARC Reporting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         DMARC Reporting
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-dmarc-reporting" class="md-nav__link">
+    Enable DMARC reporting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#send-a-copy-reports-to-yourself" class="md-nav__link">
+    Send a copy reports to yourself
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-dmarc-reporting-frequency" class="md-nav__link">
+    Change DMARC reporting frequency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disable-dmarc-reporting" class="md-nav__link">
+    Disable DMARC Reporting
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -880,14 +951,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       <label class="md-nav__link" for="__nav_8">
         Manual/Guides/Examples
@@ -1200,14 +1269,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_4" type="checkbox" id="__nav_8_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_4" type="checkbox" id="__nav_8_4" >
       
       <label class="md-nav__link" for="__nav_8_4">
         Dovecot
@@ -1223,19 +1290,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../u_e-dovecot-any_acl/" class="md-nav__link">
         Enable "any" ACL settings
       </a>
-      
     </li>
   
 
@@ -1853,23 +1912,189 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-dmarc-reporting" class="md-nav__link">
+    Enable DMARC reporting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#send-a-copy-reports-to-yourself" class="md-nav__link">
+    Send a copy reports to yourself
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-dmarc-reporting-frequency" class="md-nav__link">
+    Change DMARC reporting frequency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disable-dmarc-reporting" class="md-nav__link">
+    Disable DMARC Reporting
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/u_e-dovecot-any_acl.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/firststeps-dmarc_reporting.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Enable "any" ACL settings</h1>
+                  <h1>DMARC Reporting</h1>
                 
-                <p>On August the 17th, we disabled the possibility to share with "any" or "all authenticated users" by default.</p>
-<p>This function can be re-enabled by setting <code>ACL_ANYONE</code> to <code>allow</code> in mailcow.conf:</p>
-<div class="highlight"><pre><span></span><code>ACL_ANYONE=allow
+                <p>DMARC Reporting done via Rspamd DMARC Module.</p>
+<p>Rspamd documentation can be found here: <a href="https://rspamd.com/doc/modules/dmarc.html">https://rspamd.com/doc/modules/dmarc.html</a></p>
+<p><strong>Important:</strong></p>
+<ol>
+<li>
+<p>Change <code>example.com</code>, <code>mail.example.com</code> and <code>Example</code> to reflect your setup</p>
+</li>
+<li>
+<p>DMARC reporting requires additional attention, especially over the first few days</p>
+</li>
+<li>
+<p>All receiving domains hosted on mailcow send from one reporting domain. It is recommended to use the parent domain of your <code>MAILCOW_HOSTNAME</code>:</p>
+<ul>
+<li>If your <code>MAILCOW_HOSTNAME</code> is <code>mail.example.com</code> change the following config to <code>domain = "example.com";</code></li>
+<li>Set <code>email</code> equally, e.g. <code>email = "noreply-dmarc@example.com";</code></li>
+</ul>
+</li>
+<li>
+<p>It is optional but recommended to create an email user <code>noreply-dmarc</code> in mailcow to handle bounces.</p>
+</li>
+</ol>
+<h2 id="enable-dmarc-reporting">Enable DMARC reporting<a class="headerlink" href="#enable-dmarc-reporting" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create the file <code>data/conf/rspamd/local.d/dmarc.conf</code> and set the following content:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>reporting {
+    enabled = true;
+    email = &#39;noreply-dmarc@example.com&#39;;
+    domain = &#39;example.com&#39;;
+    org_name = &#39;Example&#39;;
+    helo = &#39;rspamd&#39;;
+    smtp = &#39;postfix&#39;;
+    smtp_port = 25;
+    from_name = &#39;Example DMARC Report&#39;;
+    msgid_from = &#39;rspamd.mail.example.com&#39;;
+    max_entries = 2k;
+    keys_expire = 2d;
+}
 </code></pre></div>
-<p>Apply the changes by running <code>docker-compose up -d</code>.</p>
+<ol>
+<li>Create or modify <code>docker-compose.override.yml</code> in the mailcow-dockerized base directory:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+
+services:
+  rspamd-mailcow:
+    environment:
+      - MASTER=${MASTER:-y}
+    labels:
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting.schedule: &quot;@every 24h&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
+  ofelia-mailcow:
+    depends_on:
+      - rspamd-mailcow
+</code></pre></div>
+<ol>
+<li>Run <code>docker-compose up -d</code></li>
+</ol>
+<h2 id="send-a-copy-reports-to-yourself">Send a copy reports to yourself<a class="headerlink" href="#send-a-copy-reports-to-yourself" title="Permanent link">&para;</a></h2>
+<p>To receive a hidden copy of reports generated by Rspamd you can set a <code>bcc_addrs</code> list in the <code>reporting</code> config section of <code>data/conf/rspamd/local.d/dmarc.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>reporting {
+    enabled = true;
+    email = &#39;noreply-dmarc@example.com&#39;;
+    bcc_addrs = [&quot;noreply-dmarc@example.com&quot;,&quot;parsedmarc@example.com&quot;];
+[...]
+</code></pre></div>
+<p>Rspamd will load changes in real time, so you won't need to restart the container at this point.</p>
+<p>This can be useful if you...</p>
+<ul>
+<li>...want to check that your DMARC reports are sent correctly and authenticated.</li>
+<li>...want to analyze your own reports to get statistics, i.e. to use with ParseDMARC or other analytic systems.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p>Check when the report schedule last ran:</p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+</code></pre></div>
+<p>See the latest report output:</p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+</code></pre></div>
+<p>Manually trigger a DMARC report:</p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow rspamadm dmarc_report
+</code></pre></div>
+<p>Validate that Rspamd has recorded data in Redis:</p>
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli KEYS &#39;dmarc;*&#39;
+docker-compose exec redis-mailcow redis-cli HGETALL &quot;dmarc;example.com;20211231&quot;
+</code></pre></div>
+<h2 id="change-dmarc-reporting-frequency">Change DMARC reporting frequency<a class="headerlink" href="#change-dmarc-reporting-frequency" title="Permanent link">&para;</a></h2>
+<p>In the example above reports are sent once every 24 hours. You may want to change that interval:</p>
+<ol>
+<li>
+<p>Edit <code>docker-compose.override.yml</code> and a djust <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> to a desired value.</p>
+</li>
+<li>
+<p>Run <code>docker-compose up -d</code></p>
+</li>
+<li>
+<p>Run <code>docker-compose restart ofelia-mailcow</code></p>
+</li>
+</ol>
+<h2 id="disable-dmarc-reporting">Disable DMARC Reporting<a class="headerlink" href="#disable-dmarc-reporting" title="Permanent link">&para;</a></h2>
+<p>To disable reporting:</p>
+<ol>
+<li>
+<p>Set <code>enabled</code> to <code>false</code> in <code>data/conf/rspamd/local.d/dmarc.conf</code></p>
+</li>
+<li>
+<p>Revert changes done to <code>docker-compose.override.yml</code></p>
+</li>
+<li>
+<p>Run <code>docker-compose up -d</code></p>
+</li>
+</ol>
                 
               
               
@@ -1889,7 +2114,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../u_e-unbound-fwd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Using an external DNS service" rel="prev">
+        <a href="../firststeps-rspamd_ui/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Rspamd UI" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1898,20 +2123,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Using an external DNS service
+              Rspamd UI
             </div>
           </div>
         </a>
       
       
         
-        <a href="../u_e-dovecot-expunge/" class="md-footer__link md-footer__link--next" aria-label="Next: Expunge a Users mails" rel="next">
+        <a href="../firststeps-snat/" class="md-footer__link md-footer__link--next" aria-label="Next: SNAT" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Expunge a Users mails
+              SNAT
             </div>
           </div>
           <div class="md-footer__button md-icon">
