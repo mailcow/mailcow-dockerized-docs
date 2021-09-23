@@ -1,6 +1,6 @@
 # Installing Mailcow and Mailman3 based on dockerized versions
 
-This guide is a copy from [dockerized-mailcow-mailman](https://github.com/g4rf/dockerized-mailcow-mailman).
+This guide is a copy from [dockerized-mailcow-mailman](https://github.com/g4rf/dockerized-mailcow-mailman). Please post issues, questions and improvements in the [issue tracker](https://github.com/g4rf/dockerized-mailcow-mailman/issues) there.
 
 ## Introduction
 
