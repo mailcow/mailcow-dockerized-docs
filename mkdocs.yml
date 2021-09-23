@@ -135,6 +135,7 @@ nav:
     - 'Portainer': 'third_party-portainer.md'
     - 'Roundcube': 'third_party-roundcube.md'
     - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
+    - 'Mailman3': 'third_party-mailman3.md'
 extra:
   palette:
     primary: "indigo"
