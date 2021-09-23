@@ -9,6 +9,8 @@ theme:
   name: material
   logo: images/logo.svg
   favicon: images/favicon.png
+  features:
+    - navigation.top
 markdown_extensions:
   - codehilite:
       guess_lang: true
