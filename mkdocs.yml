@@ -37,12 +37,12 @@ nav:
   - 'Post Installation Tasks':
     - 'Advanced SSL': 'firststeps-ssl.md'
     - 'Disable IPv6': 'firststeps-disable_ipv6.md'
+    - 'DMARC Reporting': 'firststeps-dmarc_reporting.md'
     - 'IP bindings': 'firststeps-ip_bindings.md'
     - 'Local MTA on Docker host': 'firststeps-local_mta.md'
     - 'Logging': 'firststeps-logging.md'
     - 'Reverse Proxy': 'firststeps-rp.md'
     - 'Rspamd UI': 'firststeps-rspamd_ui.md'
-    - 'DMARC Reporting': 'firststeps-dmarc_reporting.md'
     - 'SNAT': 'firststeps-snat.md'
     - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
   - 'Models':
@@ -51,15 +51,15 @@ nav:
     - 'Sender and receiver model': 'model-sender_rcv.md'
   - 'General Troubleshooting':
     - 'Introduction': 'debug.md'
-    - 'Logs': 'debug-logs.md'
+    - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
+    - 'Advanced: Find memory leaks in Rspamd': 'debug-asan_rspamd.md'
     - 'Attach a Container': 'debug-attach_service.md'
-    - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
+    - 'Common Problems': 'debug-common_problems.md'
+    - 'Logs': 'debug-logs.md'
     - 'Manual MySQL upgrade': 'debug-mysql_upgrade.md'
     - 'Remove Persistent Data': 'debug-rm_volumes.md'
-    - 'Common Problems': 'debug-common_problems.md'
-    - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
+    - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
     - 'Reset TLS certificates': 'debug-reset_tls.md'
-    - 'Advanced: Find memory leaks in Rspamd': 'debug-asan_rspamd.md'
   - 'Backup & Restore':
     - 'Helper script':
       - 'Backup': 'b_n_r_backup.md'
@@ -71,13 +71,13 @@ nav:
       - 'Recover accidentally deleted data': 'b_n_r_accidental_deletion.md'
   - 'Manual/Guides/Examples':
     - 'mailcow UI':
+      - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
       - 'Configuration': 'u_e-mailcow_ui-config.md'
       - 'CSS overrides': 'u_e-mailcow_ui-css.md'
-      - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
       - 'Pushover': 'u_e-mailcow_ui-pushover.md'
       - 'Spamfilter': 'u_e-mailcow_ui-spamfilter.md'
-      - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
+      - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
       - 'WebAuthn / FIDO2': 'u_e-fido2.md'
     - 'Postfix':
@@ -92,9 +92,9 @@ nav:
     - 'Unbound':
       - 'Using an external DNS service': 'u_e-unbound-fwd.md'
     - 'Dovecot':
+      - 'Customize/Expand dovecot.conf': 'u_e-dovecot-extra_conf.md'
       - 'Enable "any" ACL settings': 'u_e-dovecot-any_acl.md'
       - 'Expunge a Users mails': 'u_e-dovecot-expunge.md'
-      - 'Customize/Expand dovecot.conf': 'u_e-dovecot-extra_conf.md'
       - 'FTS (Solr)': 'u_e-dovecot-fts.md'
       - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
@@ -104,8 +104,8 @@ nav:
       - 'Static master user': 'u_e-dovecot-static_master.md'
       - 'Vacation replies for catchall addresses': 'u_e-dovecot-catchall_vacation.md'
     - 'Nginx':
-      - 'Custom sites': 'u_e-nginx.md'
       - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
+      - 'Custom sites': 'u_e-nginx.md'
     - 'Redis': 'u_e-redis.md'
     - 'Rspamd': 'u_e-rspamd.md'
     - 'SOGo': 'u_e-sogo.md'
