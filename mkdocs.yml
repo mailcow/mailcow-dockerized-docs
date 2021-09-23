@@ -102,6 +102,7 @@ nav:
       - 'Move Maildir (vmail)': 'u_e-dovecot-vmail-volume.md'
       - 'Public folders': 'u_e-dovecot-public_folder.md'
       - 'Static master user': 'u_e-dovecot-static_master.md'
+      - 'Vacation replies for catchall addresses': 'u_e-dovecot-catchall_vacation.md'
     - 'Nginx':
       - 'Custom sites': 'u_e-nginx.md'
       - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
