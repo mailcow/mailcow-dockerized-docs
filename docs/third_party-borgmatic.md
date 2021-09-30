@@ -30,6 +30,7 @@ services:
     dns: ${IPV4_NETWORK:-172.22.1}.254
     volumes:
       - vmail-vol-1:/mnt/source/vmail:ro
+      - crypt-vol-1:/mnt/source/crypt:ro
       - mysql-socket-vol-1:/var/run/mysqld/:z
       - ./data/conf/borgmatic/etc:/etc/borgmatic.d:Z
       - ./data/conf/borgmatic/state:/root/.config/borg:Z
