@@ -43,7 +43,7 @@ $config['plugins'] = array(
   'archive',
   'managesieve'
 );
-$config['spellcheck_engine'] = 'pspell';
+$config['spellcheck_engine'] = 'aspell';
 $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
