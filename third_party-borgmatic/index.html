@@ -2522,6 +2522,7 @@ configuration:</p>
     <span class="nt">dns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}.254</span>
     <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vmail-vol-1:/mnt/source/vmail:ro</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">crypt-vol-1:/mnt/source/crypt:ro</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql-socket-vol-1:/var/run/mysqld/:z</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/etc:/etc/borgmatic.d:Z</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/state:/root/.config/borg:Z</span>
