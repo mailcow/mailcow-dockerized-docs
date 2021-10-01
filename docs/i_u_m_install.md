@@ -1,4 +1,4 @@
-You need Docker (a version >= `20.10.2` is required) and Docker Compose 1.x.
+You need Docker (a version >= `20.10.2` is required) and Docker Compose (a version `<= 2.0` is required).
 
 **1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
