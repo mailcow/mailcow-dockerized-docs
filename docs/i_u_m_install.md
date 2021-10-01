@@ -1,4 +1,4 @@
-You need Docker (a version >= `20.10.2` is required) and Docker Compose.
+You need Docker (a version >= `20.10.2` is required) and Docker Compose 1.x.
 
 **1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
@@ -14,7 +14,7 @@ systemctl enable --now docker
 - Docker-Compose
 
 !!! warning
-    **mailcow requires the latest version of docker-compose.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the latest version.
+    **mailcow requires the latest version of docker-compose v1.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the correct version.
     _Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
 
 ```
