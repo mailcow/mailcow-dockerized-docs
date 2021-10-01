@@ -2158,7 +2158,7 @@
                 
                   <h1>Installation</h1>
                 
-                <p>You need Docker (a version &gt;= <code>20.10.2</code> is required) and Docker Compose.</p>
+                <p>You need Docker (a version &gt;= <code>20.10.2</code> is required) and Docker Compose 1.x.</p>
 <p><strong>1.</strong> Learn how to install <a href="https://docs.docker.com/install/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p>
 <p>Quick installation for most operation systems:</p>
 <ul>
@@ -2175,7 +2175,7 @@ systemctl enable --now docker
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>mailcow requires the latest version of docker-compose.</strong> It is highly recommended to use the commands below to install <code>docker-compose</code>. Package managers (e.g. <code>apt</code>, <code>yum</code>) <strong>likely won't</strong> give you the latest version.
+<p><strong>mailcow requires the latest version of docker-compose v1.</strong> It is highly recommended to use the commands below to install <code>docker-compose</code>. Package managers (e.g. <code>apt</code>, <code>yum</code>) <strong>likely won't</strong> give you the correct version.
 <em>Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow).</em></p>
 </div>
 <div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
