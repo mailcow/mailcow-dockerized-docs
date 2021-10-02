@@ -1,38 +1,38 @@
-# Installing Mailcow and Mailman3 based on dockerized versions
+# Installing mailcow and Mailman 3 based on dockerized versions
 
-This guide is a copy from [dockerized-mailcow-mailman](https://github.com/g4rf/dockerized-mailcow-mailman). Please post issues, questions and improvements in the [issue tracker](https://github.com/g4rf/dockerized-mailcow-mailman/issues) there.
+!!! info
+    This guide is a copy from [dockerized-mailcow-mailman](https://github.com/g4rf/dockerized-mailcow-mailman). Please post issues, questions and improvements in the [issue tracker](https://github.com/g4rf/dockerized-mailcow-mailman/issues) there.
+
+!!! warning
+   mailcow is not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty. Make backups before starting, 'coze: **No backup no pity!**
 
 ## Introduction
 
-This guide aims to install and configure [mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized) with [docker-mailman](https://github.com/maxking/docker-mailman) and to provide some useful scripts. An essential condition is, to preserve *Mailcow* and *Mailman* in their own installations for independent updates.
+This guide aims to install and configure [mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized) with [docker-mailman](https://github.com/maxking/docker-mailman) and to provide some useful scripts. An essential condition is, to preserve *mailcow* and *Mailman* in their own installations for independent updates.
 
 There are some guides and projects on the internet, but they are not up to date and/or incomplete in documentation or configuration. This guide is based on the work of:
 
 - [mailcow-mailman3-dockerized](https://github.com/Shadowghost/mailcow-mailman3-dockerized) by [Shadowghost](https://github.com/Shadowghost)
 - [mailman-mailcow-integration](https://gitbucket.pgollor.de/docker/mailman-mailcow-integration)
 
-After finishing this guide, [mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized) and [docker-mailman](https://github.com/maxking/docker-mailman) will run and *Apache* as a reverse proxy will serve the web frontends. 
+After finishing this guide, [mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized) and [docker-mailman](https://github.com/maxking/docker-mailman) will run and *Apache* as a reverse proxy will serve the web frontends.
 
 The operating system used is an *Ubuntu 20.04 LTS*.
 
-## Disclaimer
-
-I'm not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty. Make backups before starting, 'coze: **No backup no pity!**
-
 ## Installation
 
-This guide ist based on different steps:
+This guide is based on different steps:
 
 1. DNS setup
 1. Install *Apache* as a reverse proxy
-1. Obtain ssl certificates with *Let's Encrypt*
-1. Install *Mailcow* with *Mailman* integration
+1. Obtain SSL certificates with *Let's Encrypt*
+1. Install *mailcow* with *Mailman* integration
 1. Install *Mailman*
 1. 🏃 Run
 
 ### DNS setup
 
-Most of the configuration ist covered by *Mailcow*s [DNS setup](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-dns/). After finishing this setup add another subdomain for *Mailman*, e.g. `lists.example.org` that points to the same server:
+Most of the configuration is covered by *mailcow*s [DNS setup](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-dns/). After finishing this setup add another subdomain for *Mailman*, e.g. `lists.example.org` that points to the same server:
 
 ```
 # Name    Type       Value
@@ -52,9 +52,9 @@ a2enmod rewrite proxy proxy_http headers ssl wsgi proxy_uwsgi http2
 
 Maybe you have to install further packages to get these modules. This [PPA](https://launchpad.net/~ondrej/+archive/ubuntu/apache2) by *Ondřej Surý* may help you.
 
-#### vhost configuration
+#### vHost configuration
 
-Copy the [mailcow.conf](https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailcow.conf) and the [mailman.conf](https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailman.conf) to the *Apache* conf folder `sites-available` (e.g. under `/etc/apache2/sites-available`).
+Copy the [mailcow.conf](https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailcow.conf) and the [mailman.conf](https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailman.conf) in the *Apache* conf folder `sites-available` (e.g. under `/etc/apache2/sites-available`).
 
 Change in `mailcow.conf`:
 - `MAILCOW_HOSTNAME` to your **MAILCOW_HOSTNAME**
@@ -65,7 +65,7 @@ Change in `mailman.conf`:
 **Don't activate the configuration, as the ssl certificates and directories are missing yet.**
 
 
-### Obtain ssl certificates with *Let's Encrypt*
+### Obtain SSL certificates with *Let's Encrypt*
 
 Check if your DNS config is available over the internet and points to the right IP addresses, e.g. with [MXToolBox](https://mxtoolbox.com):
 
@@ -83,33 +83,33 @@ apt install certbot
 Get the desired certificates (as *root* or *sudo*):
 
 ```
-certbot certonly -d MAILCOW_HOSTNAME
+certbot certonly -d mailcow_HOSTNAME
 certbot certonly -d MAILMAN_DOMAIN
 ```
 
-### Install *Mailcow* with *Mailman* integration
+### Install *mailcow* with *Mailman* integration
 
-#### install Mailcow
+#### Install mailcow
 
-Follow the [Mailcow installation](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/). **Omit step 5 and do not pull and up with `docker-compose`!**
+Follow the [mailcow installation](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/). **Omit step 5 and do not pull and up with `docker-compose`!**
 
-#### configure Mailcow
+#### Configure mailcow
 
-This is also **Step 4** in the official *Mailcow installation* (`nano mailcow.conf`). So change to your needs and alter the following variables:
+This is also **Step 4** in the official *mailcow installation* (`nano mailcow.conf`). So change to your needs and alter the following variables:
 
 ```
 HTTP_PORT=18080            # don't use 8080 as mailman needs it
-HTTP_BIND=127.0.0.1        # 
+HTTP_BIND=127.0.0.1        #
 HTTPS_PORT=18443           # you may use 8443
-HTTPS_BIND=127.0.0.1       # 
+HTTPS_BIND=127.0.0.1       #
 
-SKIP_LETS_ENCRYPT=y        # reverse proxy will do the ssl termination
+SKIP_LETS_ENCRYPT=y        # reverse proxy will do the SSL termination
 
-SNAT_TO_SOURCE=1.2.3.4     # change this to your ipv4
-SNAT6_TO_SOURCE=dead:beef  # change this to your global ipv6
+SNAT_TO_SOURCE=1.2.3.4     # change this to your IPv4
+SNAT6_TO_SOURCE=dead:beef  # change this to your global IPv6
 ```
 
-#### add Mailman integration
+#### Add Mailman integration
 
 Create the file `/opt/mailcow-dockerized/docker-compose.override.yml` (e.g. with `nano`) and add the following lines:
 
@@ -127,8 +127,9 @@ networks:
   docker-mailman_mailman:
     external: true
 ```
-The additional volume is used by *Mailman* to generate additional config files for *Mailcow postfix*. The external network is build and used by *Mailman*. *Mailcow* needs it to deliver incoming list mails to *Mailman*.
-dockerized-mailcow-mailman
+The additional volume is used by *Mailman* to generate additional config files for *mailcow postfix*. The external network is build and used by *Mailman*. *mailcow* needs it to deliver incoming list mails to *Mailman*.
+
+
 Create the file `/opt/mailcow-dockerized/data/conf/postfix/extra.cf` (e.g. with `nano`) and add the following lines:
 
 ```
@@ -158,16 +159,16 @@ relay_recipient_maps =
   proxy:mysql:/opt/postfix/conf/sql/mysql_relay_recipient_maps.cf,
   regexp:/opt/mailman/core/var/data/postfix_lmtp
 ```
-As we overwrite *Mailcow postfix* configuration here, this step may break your normal mail transports. Check the [original configuration files](https://github.com/mailcow/mailcow-dockerized/tree/master/data/conf/postfix) if anything changed.
+As we overwrite *mailcow postfix* configuration here, this step may break your normal mail transports. Check the [original configuration files](https://github.com/mailcow/mailcow-dockerized/tree/master/data/conf/postfix) if anything changed.
 
-#### ssl certificates
+#### SSL certificates
 
-As we proxying *Mailcow*, we need to copy the ssl certificates into the *Mailcow* file structure. This task will do the script [renew-ssl.sh](https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/scripts/renew-ssl.sh) for us:
+As we proxying *mailcow*, we need to copy the SSL certificates into the *mailcow* file structure. This task will do the script [renew-ssl.sh](https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/scripts/renew-ssl.sh) for us:
 
-- copy the file to `/opt/mailcow-dockerized`
-- change **MAILCOW_HOSTNAME** to your *Mailcow* hostname
-- make it executable (`chmod a+x renew-ssl.sh`)
-- **do not run it yet, as we first need Mailman**
+- Copy the file to `/opt/mailcow-dockerized`
+- Change **mailcow_HOSTNAME** to your *mailcow* hostname
+- Make it executable (`chmod a+x renew-ssl.sh`)
+- **Do not run it yet, as we first need Mailman**
 
 You have to create a *cronjob*, so that new certificates will be copied. Execute as *root* or *sudo*:
 
@@ -195,7 +196,7 @@ git clone https://github.com/maxking/docker-mailman
 cd docker-mailman
 ```
 
-#### configure Mailman
+#### Configure Mailman
 
 Create a long key for *Hyperkitty*, e.g. with the linux command `cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo`. Save this key for a moment as HYPERKITTY_KEY.
 
@@ -241,7 +242,7 @@ At `mailman-web` fill in correct values for `SERVE_FROM_DOMAIN` (e.g. `lists.exa
 
 About other configuration options read [Mailman-web](https://github.com/maxking/docker-mailman#mailman-web-1) and [Mailman-core](https://github.com/maxking/docker-mailman#mailman-core-1) documentation.
 
-#### configure Mailman core and Mailman web
+#### Configure Mailman core and Mailman web
 
 Create the file `/opt/mailman/core/mailman-extra.cfg` with the following content. `mailman@example.org` should be pointing to a valid mail box or redirection.
 
@@ -301,13 +302,13 @@ docker-compose restart postfix-mailcow
 
 ## Update
 
-**Mailcow** has it's own update script in `/opt/mailcow-dockerized/update.sh', [see the docs](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_update/).
+**mailcow** has it's own update script in `/opt/mailcow-dockerized/update.sh', [see the docs](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_update/).
 
 For **Mailman** just fetch the newest version from the [github repository](https://github.com/maxking/docker-mailman).
 
 ## Backup
 
-**Mailcow** has an own backup script. [Read the docs](https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/) for further informations.
+**mailcow** has an own backup script. [Read the docs](https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/) for further informations.
 
 **Mailman** won't state backup instructions in the README.md. In the [gitbucket of pgollor](https://gitbucket.pgollor.de/docker/mailman-mailcow-integration/blob/master/mailman-backup.sh) is a script that may be helpful.
 
