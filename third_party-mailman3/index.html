@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_tls/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/third_party-mailman3/">
       
       <link rel="icon" href="../images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.0">
     
     
       
-        <title>Reset TLS certificates - mailcow: dockerized documentation</title>
+        <title>Mailman3 - mailcow: dockerized documentation</title>
       
     
     
@@ -64,6 +64,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#installing-mailcow-and-mailman3-based-on-dockerized-versions" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reset TLS certificates
+              Mailman3
             
           </span>
         </div>
@@ -618,14 +623,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
       
       
@@ -772,19 +775,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../debug-reset_tls/" class="md-nav__link">
         Reset TLS certificates
       </a>
-      
     </li>
   
 
@@ -1985,12 +1980,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
       
       
       
@@ -2137,11 +2134,234 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../third_party-mailman3/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mailman3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Mailman3
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disclaimer" class="md-nav__link">
+    Disclaimer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-setup" class="md-nav__link">
+    DNS setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-apache-as-a-reverse-proxy" class="md-nav__link">
+    Install Apache as a reverse proxy
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Apache as a reverse proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vhost-configuration" class="md-nav__link">
+    vhost configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtain-ssl-certificates-with-lets-encrypt" class="md-nav__link">
+    Obtain ssl certificates with Let's Encrypt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-mailcow-with-mailman-integration" class="md-nav__link">
+    Install Mailcow with Mailman integration
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Mailcow with Mailman integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-mailcow" class="md-nav__link">
+    install Mailcow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mailcow" class="md-nav__link">
+    configure Mailcow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-mailman-integration" class="md-nav__link">
+    add Mailman integration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificates" class="md-nav__link">
+    ssl certificates
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-mailman" class="md-nav__link">
+    Install Mailman
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Mailman">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-mailman" class="md-nav__link">
+    configure Mailman
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mailman-core-and-mailman-web" class="md-nav__link">
+    configure Mailman core and Mailman web
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    🏃 Run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remarks" class="md-nav__link">
+    Remarks
+  </a>
+  
+    <nav class="md-nav" aria-label="Remarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-lists-arent-recognized-by-postfix-instantly" class="md-nav__link">
+    New lists aren't recognized by postfix instantly
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    ToDo
+  </a>
+  
+    <nav class="md-nav" aria-label="ToDo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-script" class="md-nav__link">
+    install script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2160,30 +2380,462 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disclaimer" class="md-nav__link">
+    Disclaimer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-setup" class="md-nav__link">
+    DNS setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-apache-as-a-reverse-proxy" class="md-nav__link">
+    Install Apache as a reverse proxy
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Apache as a reverse proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vhost-configuration" class="md-nav__link">
+    vhost configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtain-ssl-certificates-with-lets-encrypt" class="md-nav__link">
+    Obtain ssl certificates with Let's Encrypt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-mailcow-with-mailman-integration" class="md-nav__link">
+    Install Mailcow with Mailman integration
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Mailcow with Mailman integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-mailcow" class="md-nav__link">
+    install Mailcow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mailcow" class="md-nav__link">
+    configure Mailcow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-mailman-integration" class="md-nav__link">
+    add Mailman integration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificates" class="md-nav__link">
+    ssl certificates
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-mailman" class="md-nav__link">
+    Install Mailman
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Mailman">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-mailman" class="md-nav__link">
+    configure Mailman
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mailman-core-and-mailman-web" class="md-nav__link">
+    configure Mailman core and Mailman web
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    🏃 Run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remarks" class="md-nav__link">
+    Remarks
+  </a>
+  
+    <nav class="md-nav" aria-label="Remarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-lists-arent-recognized-by-postfix-instantly" class="md-nav__link">
+    New lists aren't recognized by postfix instantly
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    ToDo
+  </a>
+  
+    <nav class="md-nav" aria-label="ToDo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-script" class="md-nav__link">
+    install script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/debug-reset_tls.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/third_party-mailman3.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Reset TLS certificates</h1>
-                
-                <p>In case you encounter problems with your certificate, key or Let's Encrypt account, please try to reset the TLS assets:</p>
-<div class="highlight"><pre><span></span><code>source mailcow.conf
-docker-compose down
-rm -rf data/assets/ssl
-mkdir data/assets/ssl
-openssl req -x509 -newkey rsa:4096 -keyout data/assets/ssl-example/key.pem -out data/assets/ssl-example/cert.pem -days 365 -subj &quot;/C=DE/ST=NRW/L=Willich/O=mailcow/OU=mailcow/CN=${MAILCOW_HOSTNAME}&quot; -sha256 -nodes
-cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
-docker-compose up -d
+                <h1 id="installing-mailcow-and-mailman3-based-on-dockerized-versions">Installing Mailcow and Mailman3 based on dockerized versions<a class="headerlink" href="#installing-mailcow-and-mailman3-based-on-dockerized-versions" title="Permanent link">&para;</a></h1>
+<p>This guide is a copy from <a href="https://github.com/g4rf/dockerized-mailcow-mailman">dockerized-mailcow-mailman</a>. Please post issues, questions and improvements in the <a href="https://github.com/g4rf/dockerized-mailcow-mailman/issues">issue tracker</a> there.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This guide aims to install and configure <a href="https://github.com/mailcow/mailcow-dockerized">mailcow-dockerized</a> with <a href="https://github.com/maxking/docker-mailman">docker-mailman</a> and to provide some useful scripts. An essential condition is, to preserve <em>Mailcow</em> and <em>Mailman</em> in their own installations for independent updates.</p>
+<p>There are some guides and projects on the internet, but they are not up to date and/or incomplete in documentation or configuration. This guide is based on the work of:</p>
+<ul>
+<li><a href="https://github.com/Shadowghost/mailcow-mailman3-dockerized">mailcow-mailman3-dockerized</a> by <a href="https://github.com/Shadowghost">Shadowghost</a></li>
+<li><a href="https://gitbucket.pgollor.de/docker/mailman-mailcow-integration">mailman-mailcow-integration</a></li>
+</ul>
+<p>After finishing this guide, <a href="https://github.com/mailcow/mailcow-dockerized">mailcow-dockerized</a> and <a href="https://github.com/maxking/docker-mailman">docker-mailman</a> will run and <em>Apache</em> as a reverse proxy will serve the web frontends. </p>
+<p>The operating system used is an <em>Ubuntu 20.04 LTS</em>.</p>
+<h2 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h2>
+<p>I'm not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty. Make backups before starting, 'coze: <strong>No backup no pity!</strong></p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>This guide ist based on different steps:</p>
+<ol>
+<li>DNS setup</li>
+<li>Install <em>Apache</em> as a reverse proxy</li>
+<li>Obtain ssl certificates with <em>Let's Encrypt</em></li>
+<li>Install <em>Mailcow</em> with <em>Mailman</em> integration</li>
+<li>Install <em>Mailman</em></li>
+<li>🏃 Run</li>
+</ol>
+<h3 id="dns-setup">DNS setup<a class="headerlink" href="#dns-setup" title="Permanent link">&para;</a></h3>
+<p>Most of the configuration ist covered by <em>Mailcow</em>s <a href="https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-dns/">DNS setup</a>. After finishing this setup add another subdomain for <em>Mailman</em>, e.g. <code>lists.example.org</code> that points to the same server:</p>
+<div class="highlight"><pre><span></span><code># Name    Type       Value
+lists     IN A       1.2.3.4
+lists     IN AAAA    dead:beef
 </code></pre></div>
-<p>This will stop mailcow, source the variables we need, create a self-signed certificate and start mailcow.</p>
-<p>If you use Let's Encrypt you should be careful as you will create a new account and a new set of certificates. You will run into a ratelimit sooner or later.</p>
-<p>Please also note that previous TLSA records will be invalid.</p>
+<h3 id="install-apache-as-a-reverse-proxy">Install <em>Apache</em> as a reverse proxy<a class="headerlink" href="#install-apache-as-a-reverse-proxy" title="Permanent link">&para;</a></h3>
+<p>Install <em>Apache</em>, e.g. with this guide from <em>Digital Ocean</em>: <a href="https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04">How To Install the Apache Web Server on Ubuntu 20.04</a>.</p>
+<p>Activate certain <em>Apache</em> modules (as <em>root</em> or <em>sudo</em>):</p>
+<div class="highlight"><pre><span></span><code>a2enmod rewrite proxy proxy_http headers ssl wsgi proxy_uwsgi http2
+</code></pre></div>
+<p>Maybe you have to install further packages to get these modules. This <a href="https://launchpad.net/~ondrej/+archive/ubuntu/apache2">PPA</a> by <em>Ondřej Surý</em> may help you.</p>
+<h4 id="vhost-configuration">vhost configuration<a class="headerlink" href="#vhost-configuration" title="Permanent link">&para;</a></h4>
+<p>Copy the <a href="https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailcow.conf">mailcow.conf</a> and the <a href="https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailman.conf">mailman.conf</a> to the <em>Apache</em> conf folder <code>sites-available</code> (e.g. under <code>/etc/apache2/sites-available</code>).</p>
+<p>Change in <code>mailcow.conf</code>:
+- <code>MAILCOW_HOSTNAME</code> to your <strong>MAILCOW_HOSTNAME</strong></p>
+<p>Change in <code>mailman.conf</code>:
+- <code>MAILMAN_DOMAIN</code> to your <em>Mailman</em> domain (e.g. <code>lists.example.org</code>)</p>
+<p><strong>Don't activate the configuration, as the ssl certificates and directories are missing yet.</strong></p>
+<h3 id="obtain-ssl-certificates-with-lets-encrypt">Obtain ssl certificates with <em>Let's Encrypt</em><a class="headerlink" href="#obtain-ssl-certificates-with-lets-encrypt" title="Permanent link">&para;</a></h3>
+<p>Check if your DNS config is available over the internet and points to the right IP addresses, e.g. with <a href="https://mxtoolbox.com">MXToolBox</a>:</p>
+<ul>
+<li><a href="https://mxtoolbox.com/SuperTool.aspx?action=a%3aMAILCOW_HOSTNAME">https://mxtoolbox.com/SuperTool.aspx?action=a%3aMAILCOW_HOSTNAME</a></li>
+<li><a href="https://mxtoolbox.com/SuperTool.aspx?action=aaaa%3aMAILCOW_HOSTNAME">https://mxtoolbox.com/SuperTool.aspx?action=aaaa%3aMAILCOW_HOSTNAME</a></li>
+<li><a href="https://mxtoolbox.com/SuperTool.aspx?action=a%3aMAILMAN_DOMAIN">https://mxtoolbox.com/SuperTool.aspx?action=a%3aMAILMAN_DOMAIN</a></li>
+<li><a href="https://mxtoolbox.com/SuperTool.aspx?action=aaaa%3aMAILMAN_DOMAIN">https://mxtoolbox.com/SuperTool.aspx?action=aaaa%3aMAILMAN_DOMAIN</a></li>
+</ul>
+<p>Install <a href="https://certbot.eff.org/">certbot</a> (as <em>root</em> or <em>sudo</em>):</p>
+<div class="highlight"><pre><span></span><code>apt install certbot
+</code></pre></div>
+<p>Get the desired certificates (as <em>root</em> or <em>sudo</em>):</p>
+<div class="highlight"><pre><span></span><code>certbot certonly -d MAILCOW_HOSTNAME
+certbot certonly -d MAILMAN_DOMAIN
+</code></pre></div>
+<h3 id="install-mailcow-with-mailman-integration">Install <em>Mailcow</em> with <em>Mailman</em> integration<a class="headerlink" href="#install-mailcow-with-mailman-integration" title="Permanent link">&para;</a></h3>
+<h4 id="install-mailcow">install Mailcow<a class="headerlink" href="#install-mailcow" title="Permanent link">&para;</a></h4>
+<p>Follow the <a href="https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/">Mailcow installation</a>. <strong>Omit step 5 and do not pull and up with <code>docker-compose</code>!</strong></p>
+<h4 id="configure-mailcow">configure Mailcow<a class="headerlink" href="#configure-mailcow" title="Permanent link">&para;</a></h4>
+<p>This is also <strong>Step 4</strong> in the official <em>Mailcow installation</em> (<code>nano mailcow.conf</code>). So change to your needs and alter the following variables:</p>
+<div class="highlight"><pre><span></span><code>HTTP_PORT=18080            # don&#39;t use 8080 as mailman needs it
+HTTP_BIND=127.0.0.1        # 
+HTTPS_PORT=18443           # you may use 8443
+HTTPS_BIND=127.0.0.1       # 
+
+SKIP_LETS_ENCRYPT=y        # reverse proxy will do the ssl termination
+
+SNAT_TO_SOURCE=1.2.3.4     # change this to your ipv4
+SNAT6_TO_SOURCE=dead:beef  # change this to your global ipv6
+</code></pre></div>
+<h4 id="add-mailman-integration">add Mailman integration<a class="headerlink" href="#add-mailman-integration" title="Permanent link">&para;</a></h4>
+<p>Create the file <code>/opt/mailcow-dockerized/docker-compose.override.yml</code> (e.g. with <code>nano</code>) and add the following lines:</p>
+<p><div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+
+services:
+  postfix-mailcow:
+    volumes:
+      - /opt/mailman:/opt/mailman
+    networks:
+      - docker-mailman_mailman
+
+networks:
+  docker-mailman_mailman:
+    external: true
+</code></pre></div>
+The additional volume is used by <em>Mailman</em> to generate additional config files for <em>Mailcow postfix</em>. The external network is build and used by <em>Mailman</em>. <em>Mailcow</em> needs it to deliver incoming list mails to <em>Mailman</em>.
+dockerized-mailcow-mailman
+Create the file <code>/opt/mailcow-dockerized/data/conf/postfix/extra.cf</code> (e.g. with <code>nano</code>) and add the following lines:</p>
+<p><div class="highlight"><pre><span></span><code># mailman
+
+recipient_delimiter = +
+unknown_local_recipient_reject_code = 550
+owner_request_special = no
+
+local_recipient_maps =
+  regexp:/opt/mailman/core/var/data/postfix_lmtp,
+  proxy:unix:passwd.byname,
+  $alias_maps
+virtual_mailbox_maps =
+  proxy:mysql:/opt/postfix/conf/sql/mysql_virtual_mailbox_maps.cf,
+  regexp:/opt/mailman/core/var/data/postfix_lmtp
+transport_maps =
+  pcre:/opt/postfix/conf/custom_transport.pcre,
+  pcre:/opt/postfix/conf/local_transport,
+  proxy:mysql:/opt/postfix/conf/sql/mysql_relay_ne.cf,
+  proxy:mysql:/opt/postfix/conf/sql/mysql_transport_maps.cf,
+  regexp:/opt/mailman/core/var/data/postfix_lmtp
+relay_domains =
+  proxy:mysql:/opt/postfix/conf/sql/mysql_virtual_relay_domain_maps.cf,
+  regexp:/opt/mailman/core/var/data/postfix_domains
+relay_recipient_maps =
+  proxy:mysql:/opt/postfix/conf/sql/mysql_relay_recipient_maps.cf,
+  regexp:/opt/mailman/core/var/data/postfix_lmtp
+</code></pre></div>
+As we overwrite <em>Mailcow postfix</em> configuration here, this step may break your normal mail transports. Check the <a href="https://github.com/mailcow/mailcow-dockerized/tree/master/data/conf/postfix">original configuration files</a> if anything changed.</p>
+<h4 id="ssl-certificates">ssl certificates<a class="headerlink" href="#ssl-certificates" title="Permanent link">&para;</a></h4>
+<p>As we proxying <em>Mailcow</em>, we need to copy the ssl certificates into the <em>Mailcow</em> file structure. This task will do the script <a href="https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/scripts/renew-ssl.sh">renew-ssl.sh</a> for us:</p>
+<ul>
+<li>copy the file to <code>/opt/mailcow-dockerized</code></li>
+<li>change <strong>MAILCOW_HOSTNAME</strong> to your <em>Mailcow</em> hostname</li>
+<li>make it executable (<code>chmod a+x renew-ssl.sh</code>)</li>
+<li><strong>do not run it yet, as we first need Mailman</strong></li>
+</ul>
+<p>You have to create a <em>cronjob</em>, so that new certificates will be copied. Execute as <em>root</em> or <em>sudo</em>:</p>
+<div class="highlight"><pre><span></span><code>crontab -e
+</code></pre></div>
+<p>To run the script every day at 5am, add:</p>
+<div class="highlight"><pre><span></span><code>0   5  *   *   *     /opt/mailcow-dockerized/renew-ssl.sh
+</code></pre></div>
+<h3 id="install-mailman">Install <em>Mailman</em><a class="headerlink" href="#install-mailman" title="Permanent link">&para;</a></h3>
+<p>Basicly follow the instructions at <a href="https://github.com/maxking/docker-mailman">docker-mailman</a>. As they are a lot, here is in a nuthshell what to do:</p>
+<p>As <em>root</em> or <em>sudo</em>:</p>
+<div class="highlight"><pre><span></span><code>cd /opt
+mkdir -p mailman/core
+mkdir -p mailman/web
+git clone https://github.com/maxking/docker-mailman
+cd docker-mailman
+</code></pre></div>
+<h4 id="configure-mailman">configure Mailman<a class="headerlink" href="#configure-mailman" title="Permanent link">&para;</a></h4>
+<p>Create a long key for <em>Hyperkitty</em>, e.g. with the linux command <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Save this key for a moment as HYPERKITTY_KEY.</p>
+<p>Create a long password for the database, e.g. with the linux command <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Save this password for a moment as DBPASS.</p>
+<p>Create a long key for <em>Django</em>, e.g. with the linux command <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Save this key for a moment as DJANGO_KEY.</p>
+<p>Create the file <code>/opt/docker-mailman/docker-compose.override.yaml</code> and replace <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> and <code>DJANGO_KEY</code> with the generated values:</p>
+<div class="highlight"><pre><span></span><code>version: &#39;2&#39;
+
+services:
+  mailman-core:
+    environment:
+    - DATABASE_URL=postgres://mailman:DBPASS@database/mailmandb
+    - HYPERKITTY_API_KEY=HYPERKITTY_KEY
+    - TZ=Europe/Berlin
+    - MTA=postfix
+    restart: always
+    networks:
+      - mailman
+
+  mailman-web:
+    environment:
+    - DATABASE_URL=postgres://mailman:DBPASS@database/mailmandb
+    - HYPERKITTY_API_KEY=HYPERKITTY_KEY
+    - TZ=Europe/Berlin
+    - SECRET_KEY=DJANGO_KEY
+    - SERVE_FROM_DOMAIN=MAILMAN_DOMAIN # e.g. lists.example.org
+    - MAILMAN_ADMIN_USER=admin # the admin user
+    - MAILMAN_ADMIN_EMAIL=admin@example.org # the admin mail address
+    - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
+    restart: always
+
+  database:
+    environment:
+    - POSTGRES_PASSWORD=DBPASS
+    restart: always
+</code></pre></div>
+<p>At <code>mailman-web</code> fill in correct values for <code>SERVE_FROM_DOMAIN</code> (e.g. <code>lists.example.org</code>), <code>MAILMAN_ADMIN_USER</code> and <code>MAILMAN_ADMIN_EMAIL</code>. You need the admin credentials to log into the web interface (<em>Pistorius</em>). For setting <strong>the password for the first time</strong> use the <em>Forgot password</em> function in the web interface.</p>
+<p>About other configuration options read <a href="https://github.com/maxking/docker-mailman#mailman-web-1">Mailman-web</a> and <a href="https://github.com/maxking/docker-mailman#mailman-core-1">Mailman-core</a> documentation.</p>
+<h4 id="configure-mailman-core-and-mailman-web">configure Mailman core and Mailman web<a class="headerlink" href="#configure-mailman-core-and-mailman-web" title="Permanent link">&para;</a></h4>
+<p>Create the file <code>/opt/mailman/core/mailman-extra.cfg</code> with the following content. <code>mailman@example.org</code> should be pointing to a valid mail box or redirection.</p>
+<div class="highlight"><pre><span></span><code>[mailman]
+default_language: de
+site_owner: mailman@example.org
+</code></pre></div>
+<p>Create the file <code>/opt/mailman/web/settings_local.py</code> with the following content. <code>mailman@example.org</code> should be pointing to a valid mail box or redirection.</p>
+<p><div class="highlight"><pre><span></span><code># locale
+LANGUAGE_CODE = &#39;de-de&#39;
+
+# disable social authentication
+SOCIALACCOUNT_PROVIDERS = {}
+
+# change it
+DEFAULT_FROM_EMAIL = &#39;mailman@example.org&#39;
+
+DEBUG = False
+</code></pre></div>
+You can change <code>LANGUAGE_CODE</code> and <code>SOCIALACCOUNT_PROVIDERS</code> to your needs. At the moment <code>SOCIALACCOUNT_PROVIDERS</code> has no effect, see <a href="https://github.com/g4rf/dockerized-mailcow-mailman/issues/2">issue #2</a>.</p>
+<h3 id="run">🏃 Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h3>
+<p>Run (as <em>root</em> or <em>sudo</em>)</p>
+<div class="highlight"><pre><span></span><code>a2ensite mailcow.conf
+a2ensite mailman.conf
+systemctl restart apache2
+
+cd /opt/docker-mailman
+docker-compose pull
+docker-compose up -d
+
+cd /opt/mailcow-dockerized/
+docker-compose pull
+./renew-ssl.sh
+</code></pre></div>
+<p><strong>Wait a few minutes!</strong> The containers have to create there databases and config files. This can last up to 1 minute and more.</p>
+<h2 id="remarks">Remarks<a class="headerlink" href="#remarks" title="Permanent link">&para;</a></h2>
+<h3 id="new-lists-arent-recognized-by-postfix-instantly">New lists aren't recognized by postfix instantly<a class="headerlink" href="#new-lists-arent-recognized-by-postfix-instantly" title="Permanent link">&para;</a></h3>
+<p>When you create a new list and try to immediately send an e-mail, <em>postfix</em> responses with <code>User doesn't exist</code>, because <em>postfix</em> won't deliver it to <em>Mailman</em> yet. The configuration at <code>/opt/mailman/core/var/data/postfix_lmtp</code> is not instantly updated. If you need the list instantly, restart <em>postifx</em> manually:</p>
+<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
+docker-compose restart postfix-mailcow
+</code></pre></div>
+<h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
+<p><strong>Mailcow</strong> has it's own update script in `/opt/mailcow-dockerized/update.sh', <a href="https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_update/">see the docs</a>.</p>
+<p>For <strong>Mailman</strong> just fetch the newest version from the <a href="https://github.com/maxking/docker-mailman">github repository</a>.</p>
+<h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
+<p><strong>Mailcow</strong> has an own backup script. <a href="https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/">Read the docs</a> for further informations.</p>
+<p><strong>Mailman</strong> won't state backup instructions in the README.md. In the <a href="https://gitbucket.pgollor.de/docker/mailman-mailcow-integration/blob/master/mailman-backup.sh">gitbucket of pgollor</a> is a script that may be helpful.</p>
+<h2 id="todo">ToDo<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h2>
+<h3 id="install-script">install script<a class="headerlink" href="#install-script" title="Permanent link">&para;</a></h3>
+<p>Write a script like in <a href="https://gitbucket.pgollor.de/docker/mailman-mailcow-integration/blob/master/mailman-install.sh">mailman-mailcow-integration/mailman-install.sh</a> as many of the steps are automatable.</p>
+<ol>
+<li>Ask for all the configuration variables and create passwords and keys.</li>
+<li>Do a (semi-)automatic installation.</li>
+<li>Have fun!</li>
+</ol>
                 
               
               
@@ -2208,7 +2860,7 @@ docker-compose up -d
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../debug-reset_pw/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Reset Passwords (incl. SQL)" rel="prev">
+        <a href="../third_party-thunderbird/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SOGo Connector for Thunderbird" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2217,26 +2869,11 @@ docker-compose up -d
               <span class="md-footer__direction">
                 Previous
               </span>
-              Reset Passwords (incl. SQL)
+              SOGo Connector for Thunderbird
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../b_n_r_backup/" class="md-footer__link md-footer__link--next" aria-label="Next: Backup" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Backup
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
