@@ -4,7 +4,7 @@
     This guide is a copy from [dockerized-mailcow-mailman](https://github.com/g4rf/dockerized-mailcow-mailman). Please post issues, questions and improvements in the [issue tracker](https://github.com/g4rf/dockerized-mailcow-mailman/issues) there.
 
 !!! warning
-   mailcow is not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty. Make backups before starting, 'coze: **No backup no pity!**
+    mailcow is not responsible for any data loss, hardware damage or broken keyboards. This guide comes without any warranty. Make backups before starting, 'coze: **No backup no pity!**
 
 ## Introduction
 
