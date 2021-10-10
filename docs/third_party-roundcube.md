@@ -9,10 +9,17 @@ mv roundcubemail-1.5-rc rc
 chown -R root: rc/
 ```
 
+If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
+```
+#!/bin/bash
+apk update
+apk add aspell-en # or any other language
+```
+
 Create a file `data/web/rc/config/config.inc.php` with the following content.
-
-**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password. The "db_prefix" is optional but recommended.
-
+   - **Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password.
+   - The `db_prefix` is optional but recommended.
+   - If you didn't install spell check in the above step, remove `spellcheck_engine` parameter and replace it with `$config['enable_spellcheck'] = false;`.
 ```
 <?php
 error_reporting(0);
@@ -36,6 +43,7 @@ $config['plugins'] = array(
   'archive',
   'managesieve'
 );
+$config['spellcheck_engine'] = 'aspell';
 $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
