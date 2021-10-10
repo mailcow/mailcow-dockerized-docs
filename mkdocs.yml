@@ -52,6 +52,7 @@ nav:
     - 'Attach a Container': 'debug-attach_service.md'
     - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
     - 'Manual MySQL upgrade': 'debug-mysql_upgrade.md'
+    - 'Recover crashed Aria storage engine': 'debug-mysql_aria.md'
     - 'Remove Persistent Data': 'debug-rm_volumes.md'
     - 'Common Problems': 'debug-common_problems.md'
     - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
