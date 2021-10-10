@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/third_party-gogs/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/debug-mysql_aria/">
       
       <link rel="icon" href="../images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
     
     
       
-        <title>Gogs - mailcow: dockerized documentation</title>
+        <title>Recover crashed Aria storage engine - mailcow: dockerized documentation</title>
       
     
     
@@ -64,6 +64,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#mariadb-aria-recovery-after-crash" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gogs
+              Recover crashed Aria storage engine
             
           </span>
         </div>
@@ -618,12 +623,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
@@ -742,11 +749,47 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../debug-mysql_aria/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Recover crashed Aria storage engine
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Recover crashed Aria storage engine
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mariadb-aria-recovery-after-crash" class="md-nav__link">
+    MariaDB: Aria recovery after crash
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1989,14 +2032,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
       
       
       
@@ -2059,19 +2100,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../third_party-gogs/" class="md-nav__link">
         Gogs
       </a>
-      
     </li>
   
 
@@ -2174,55 +2207,64 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mariadb-aria-recovery-after-crash" class="md-nav__link">
+    MariaDB: Aria recovery after crash
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/third_party-gogs.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/debug-mysql_aria.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Gogs</h1>
+                  <h1>Recover crashed Aria storage engine</h1>
                 
-                <p>With Gogs' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:</p>
-<p>1. Open <code>docker-compose.override.yml</code> and add Gogs:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-services:
-
-    gogs-mailcow:
-      image: gogs/gogs
-      volumes:
-        - ./data/gogs:/data
-      networks:
-        mailcow-network:
-          aliases:
-            - gogs
-      ports:
-        - &quot;${GOGS_SSH_PORT:-127.0.0.1:4000}:22&quot;
+                <h2 id="mariadb-aria-recovery-after-crash">MariaDB: Aria recovery after crash<a class="headerlink" href="#mariadb-aria-recovery-after-crash" title="Permanent link">&para;</a></h2>
+<p>If your server crashed and MariaDB logs an error similar to <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code> you may want to try the following to recover the database to a healthy state:</p>
+<p>Start the stack and wait until mysql-mailcow begins to report a restarting state. Check by running <code>docker-compose ps</code>.</p>
+<p>Now run the following commands:</p>
+<div class="highlight"><pre><span></span><code># Stop the stack, don&#39;t run &quot;down&quot;
+docker-compose stop
+# Run a bash in the stopped container as user mysql
+docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
+# cd to the SQL data directory
+cd /var/lib/mysql
+# Run aria_chk
+aria_chk --check --force */*.MAI
+# Delete aria log files
+rm aria_log.*
 </code></pre></div>
-<p>2. Create <code>data/conf/nginx/site.gogs.custom</code>, add:
-<div class="highlight"><pre><span></span><code>location /gogs/ {
-    proxy_pass http://gogs:3000/;
-}
-</code></pre></div></p>
-<p>3. Open <code>mailcow.conf</code> and define the binding you want Gogs to use for SSH. Example:</p>
-<div class="highlight"><pre><span></span><code>GOGS_SSH_PORT=127.0.0.1:4000
-</code></pre></div>
-<p>5. Run <code>docker-compose up -d</code> to bring up the Gogs container and run <code>docker-compose restart nginx-mailcow</code> afterwards.</p>
-<p>6. Open <code>http://${MAILCOW_HOSTNAME}/gogs/</code>, for example <code>http://mx.example.org/gogs/</code>. For database details set <code>mysql</code> as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.</p>
-<p>7. Once the installation is complete, login as admin and set "settings" -&gt; "authorization" -&gt; "enable SMTP". SMTP Host should be <code>postfix</code> with port <code>587</code>, set <code>Skip TLS Verify</code> as we are using an unlisted SAN ("postfix" is most likely not part of your certificate).</p>
-<p>8. Create <code>data/gogs/gogs/conf/app.ini</code> and set following values. You can consult <a href="https://gogs.io/docs/advanced/configuration_cheat_sheet">Gogs cheat sheet</a> for their meaning and other possible values.</p>
-<div class="highlight"><pre><span></span><code>[server]
-SSH_LISTEN_PORT = 22
-# For GOGS_SSH_PORT=127.0.0.1:4000 in mailcow.conf, set:
-SSH_DOMAIN = 127.0.0.1
-SSH_PORT = 4000
-# For MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (and default ports for HTTPS), set:
-ROOT_URL = https://mx.example.org/gogs/
-</code></pre></div>
-<p>9. Restart Gogs with <code>docker-compose restart gogs-mailcow</code>. Your users should be able to login with mailcow managed accounts.</p>
+<p>Now run <code>docker-compose down</code> followed by <code>docker-compose up -d</code>.</p>
                 
               
               
@@ -2247,7 +2289,7 @@ ROOT_URL = https://mx.example.org/gogs/
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../third_party-gitea/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Gitea" rel="prev">
+        <a href="../debug-mysql_upgrade/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Manual MySQL upgrade" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2256,20 +2298,20 @@ ROOT_URL = https://mx.example.org/gogs/
               <span class="md-footer__direction">
                 Previous
               </span>
-              Gitea
+              Manual MySQL upgrade
             </div>
           </div>
         </a>
       
       
         
-        <a href="../third_party-mailman3/" class="md-footer__link md-footer__link--next" aria-label="Next: Mailman 3" rel="next">
+        <a href="../debug-rm_volumes/" class="md-footer__link md-footer__link--next" aria-label="Next: Remove Persistent Data" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Mailman 3
+              Remove Persistent Data
             </div>
           </div>
           <div class="md-footer__button md-icon">
