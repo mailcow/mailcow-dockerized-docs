@@ -70,3 +70,70 @@ services:
 ```
 
 To apply your changes, run `docker-compose down` followed by `docker-compose up -d`.
+
+### Common issues with IPv6 on Contabo-hosted servers
+This section is not only for Contabo-hosted servers. It applies to every server which doesn't already have IPv6 setup correctly out of the box. Keep in mind that in other providers, default files may change or lack prefilled information.
+
+#### Enabling IPv6
+By default, IPv6 is not enabled in newly ordered servers.
+First, to enable it, edit `/etc/netplan/01-netcfg.yaml` and uncomment the highlighted lines. This will enable IPv6 on your system and assign the IPv6 address that appears on the list.
+``` yaml hl_lines="10 11 19 20"
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens18:
+      match:
+        macaddress: 00:00:00:00:00:00
+      addresses:
+        - xxx.xxx.xxx.xxx/32
+        #- xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxx1/64
+      #gateway6: fe80::1
+      routes:
+        - to: 0.0.0.0/0
+          via: xxx.xxx.xxx.xxx
+          on-link: true
+      nameservers:
+        search: [ invalid ]
+        addresses:
+          #- 213.136.95.11
+          #- 213.136.95.10
+          - 2a02:c207::2:53
+          - 2a02:c207::1:53
+
+```
+
+Now run `netplan try` and wait a few seconds before confirming the system doesn't lose connectivity, and then press any key to save the changes.
+
+#### Using a different IPv6 in the assigned range
+If you want to use a different IPv6 (such as `xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:1234:1234`) than the first one in your assigned range, you must add it to the list of addresses in `/etc/netplan/01-netcfg.yaml` like so:
+``` yaml hl_lines="11"
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens18:
+      match:
+        macaddress: 00:00:00:00:00:00
+      addresses:
+        - xxx.xxx.xxx.xxx/32
+        - xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxx1/64
+        - xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:1234:1234/64
+      #gateway6: fe80::1
+      routes:
+        - to: 0.0.0.0/0
+          via: xxx.xxx.xxx.xxx
+          on-link: true
+      nameservers:
+        search: [ invalid ]
+        addresses:
+          - 213.136.95.11
+          - 213.136.95.10
+          - 2a02:c207::2:53
+          - 2a02:c207::1:53
+```
+Then, to apply the changes we proceed as before by running `netplan try`, waiting a few seconds and then pressing any key once we have confirmed we didn't lose connectivity.
+
+Now we will be able to listen to that IPv6 by adjusting it in the `docker-compose.override.yml` file.
+!!! warning
+    If you're using a reverse proxy, such as Nginx, make sure to remove the IPv6 bindings to a non-local address from proxied services (in this case, Nginx) on the `docker-compose.override.yml`, which are under the  `nginx-mailcow` section in said file.
