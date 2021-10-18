@@ -16,7 +16,7 @@
     
     
       
-        <title>MySQL - mailcow: dockerized documentation</title>
+        <title>MySQL (mysqldump) - mailcow: dockerized documentation</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MySQL
+              MySQL (mysqldump)
             
           </span>
         </div>
@@ -850,14 +850,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_1">
-          Helper script
+          Component backup
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Helper script" data-md-level="2">
+      <nav class="md-nav" aria-label="Component backup" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_1">
           <span class="md-nav__icon md-icon"></span>
-          Helper script
+          Component backup
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -867,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../b_n_r_backup/" class="md-nav__link">
+      <a href="../b_n_r-backup/" class="md-nav__link">
         Backup
       </a>
     </li>
@@ -881,7 +881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../b_n_r_restore/" class="md-nav__link">
+      <a href="../b_n_r-restore/" class="md-nav__link">
         Restore
       </a>
     </li>
@@ -900,6 +900,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../b_n_r-coldstandby/" class="md-nav__link">
+        Cold-standby (rolling)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -907,20 +921,20 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" checked>
       
       
       
       
-        <label class="md-nav__link" for="__nav_7_2">
-          Manually
+        <label class="md-nav__link" for="__nav_7_3">
+          Manual backups
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Manually" data-md-level="2">
-        <label class="md-nav__title" for="__nav_7_2">
+      <nav class="md-nav" aria-label="Manual backups" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
           <span class="md-nav__icon md-icon"></span>
-          Manually
+          Manual backups
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -952,12 +966,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          MySQL
+          MySQL (mysqldump)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        MySQL
+        MySQL (mysqldump)
       </a>
       
         
@@ -1011,20 +1025,20 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_7_3">
-          Automatic backups
+        <label class="md-nav__link" for="__nav_7_4">
+          mailcow-internal backups
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Automatic backups" data-md-level="2">
-        <label class="md-nav__title" for="__nav_7_3">
+      <nav class="md-nav" aria-label="mailcow-internal backups" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
-          Automatic backups
+          mailcow-internal backups
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1034,7 +1048,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../b_n_r_accidental_deletion/" class="md-nav__link">
+      <a href="../b_n_r_accidental_deletion.md" class="md-nav__link">
         Recover accidentally deleted data
       </a>
     </li>
@@ -2263,7 +2277,7 @@
                   </a>
                 
                 
-                  <h1>MySQL</h1>
+                  <h1>MySQL (mysqldump)</h1>
                 
                 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd /path/to/mailcow-dockerized
@@ -2320,13 +2334,13 @@ docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPAS
       
       
         
-        <a href="../b_n_r_accidental_deletion/" class="md-footer__link md-footer__link--next" aria-label="Next: Recover accidentally deleted data" rel="next">
+        <a href="../u_e-mailcow_ui-bl_wl/" class="md-footer__link md-footer__link--next" aria-label="Next: Blacklist / Whitelist" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Recover accidentally deleted data
+              Blacklist / Whitelist
             </div>
           </div>
           <div class="md-footer__button md-icon">
