@@ -62,13 +62,14 @@ nav:
     - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
     - 'Reset TLS certificates': 'debug-reset_tls.md'
   - 'Backup & Restore':
-    - 'Helper script':
-      - 'Backup': 'b_n_r_backup.md'
-      - 'Restore': 'b_n_r_restore.md'
-    - 'Manually':
+    - 'Component backup':
+      - 'Backup': 'b_n_r-backup.md'
+      - 'Restore': 'b_n_r-restore.md'
+    - 'Cold-standby (rolling)': 'b_n_r-coldstandby.md'
+    - 'Manual backups':
       - 'Maildir': 'u_e-backup_restore-maildir.md'
-      - 'MySQL': 'u_e-backup_restore-mysql.md'
-    - 'Automatic backups':
+      - 'MySQL (mysqldump)': 'u_e-backup_restore-mysql.md'
+    - 'mailcow-internal backups':
       - 'Recover accidentally deleted data': 'b_n_r_accidental_deletion.md'
   - 'Manual/Guides/Examples':
     - 'mailcow UI':
