@@ -65,7 +65,7 @@ nav:
     - 'Component backup':
       - 'Backup': 'b_n_r-backup.md'
       - 'Restore': 'b_n_r-restore.md'
-    - 'Cold-standby (rolling)': 'b_n_r-coldstandby.md'
+    - 'Cold-standby (rolling backup)': 'b_n_r-coldstandby.md'
     - 'Manual backups':
       - 'Maildir': 'u_e-backup_restore-maildir.md'
       - 'MySQL (mysqldump)': 'u_e-backup_restore-mysql.md'
