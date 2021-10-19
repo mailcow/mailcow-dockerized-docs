@@ -70,7 +70,7 @@ nav:
       - 'Maildir': 'u_e-backup_restore-maildir.md'
       - 'MySQL (mysqldump)': 'u_e-backup_restore-mysql.md'
     - 'mailcow-internal backups':
-      - 'Recover accidentally deleted data': 'b_n_r_accidental_deletion.md'
+      - 'Recover accidentally deleted data': 'b_n_r-accidental_deletion.md'
   - 'Manual/Guides/Examples':
     - 'mailcow UI':
       - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
