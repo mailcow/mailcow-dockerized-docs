@@ -180,7 +180,8 @@ wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.0/rou
 cd roundcubemail-1.5.0
 bin/installto.sh /web/rc
 
-# Type 'Y' and press enter, to upgrade your install of roundcube
+# Type 'Y' and press enter to upgrade your install of Roundcube
+
 
 # Remove leftover files
 
