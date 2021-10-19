@@ -165,7 +165,8 @@ $MAILCOW_APPS = array(
 
 ## Upgrading Roundcube
 
-Upgrading Roundcube is rather simple, go to the [Github releases](https://github.com/roundcube/roundcubemail/releases) page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands changing the url and roundcube folder name naturally. 
+Upgrading Roundcube is rather simple, go to the [Github releases](https://github.com/roundcube/roundcubemail/releases) page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands and change the URL and Roundcube folder name if needed. 
+
 
 ```
 # Enter a bash session of the mailcow PHP container
