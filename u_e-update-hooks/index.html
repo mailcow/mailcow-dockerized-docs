@@ -2201,10 +2201,10 @@
                   <h1>Run scripts before and after updates</h1>
                 
                 <p>It is possible to add pre- and post-update-hooks to the <code>update.sh</code> script that upgrades your whole mailcow installation.</p>
-<p>To do so, just add the corresponding bash script into your mailcows root directory:  </p>
+<p>To do so, just add the corresponding bash script into your mailcow root directory:  </p>
 <ul>
 <li><code>pre_update_hook.sh</code> for commands that should run before the update</li>
-<li><code>post_uddate_hook.sh</code> for commands that should run after the update is completed</li>
+<li><code>post_update_hook.sh</code> for commands that should run after the update is completed</li>
 </ul>
 <p>Keep in mind that <code>pre_update_hook.sh</code> runs every time you call <code>update.sh</code> and <code>post_update_hook.sh</code> will only run if the update was successful and the script doesn't have to be re-run.</p>
 <p>The scripts will be run by bash, an interpreter (e.g. <code>#!/bin/bash</code>) as well as an execute permission flag ("+x") are not required.</p>
