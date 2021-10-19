@@ -157,3 +157,4 @@ plugins:
   - redirects:
       redirect_maps:
         'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
+        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
