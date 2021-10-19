@@ -182,7 +182,8 @@ bin/installto.sh /web/rc
 
 # Type 'Y' and press enter, to upgrade your install of roundcube
 
-# Cleanup the upgrade files
+# Remove leftover files
+
 cd /tmp
 rm -rf roundcube*
 ```
