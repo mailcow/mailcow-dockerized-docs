@@ -74,3 +74,6 @@ Edit `data/conf/sogo/sogo.conf` and **change** `SOGoPasswordChangeEnabled` to `N
 
 Run `docker-compose restart memcached-mailcow sogo-mailcow` to activate the changes.
 
+## Reset TOTP / Disable TOTP
+
+Run `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@domain.tld SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` from within the mailcow directory.
