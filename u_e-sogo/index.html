@@ -1755,6 +1755,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reset-totp-disable-totp" class="md-nav__link">
+    Reset TOTP / Disable TOTP
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2314,6 +2321,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#reset-totp-disable-totp" class="md-nav__link">
+    Reset TOTP / Disable TOTP
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2391,6 +2405,8 @@ After you replaced said file you need to restart SOGo and Memcached containers b
 <h2 id="disable-password-changing">Disable password changing<a class="headerlink" href="#disable-password-changing" title="Permanent link">&para;</a></h2>
 <p>Edit <code>data/conf/sogo/sogo.conf</code> and <strong>change</strong> <code>SOGoPasswordChangeEnabled</code> to <code>NO</code>. Please do not add a new parameter.</p>
 <p>Run <code>docker-compose restart memcached-mailcow sogo-mailcow</code> to activate the changes.</p>
+<h2 id="reset-totp-disable-totp">Reset TOTP / Disable TOTP<a class="headerlink" href="#reset-totp-disable-totp" title="Permanent link">&para;</a></h2>
+<p>Run <code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@domain.tld SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> from within the mailcow directory.</p>
                 
               
               
