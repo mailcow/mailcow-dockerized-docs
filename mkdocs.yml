@@ -1,11 +1,16 @@
 site_name: "mailcow: dockerized documentation"
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: 'Copyright &copy; 2020 André Peters'
+copyright: "Copyright &copy; 2021 André Peters"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
 remote_branch: gh-pages
-theme: material
+theme:
+  name: material
+  logo: images/logo.svg
+  favicon: images/favicon.png
+  features:
+    - navigation.top
 markdown_extensions:
   - codehilite:
       guess_lang: true
@@ -20,109 +25,136 @@ markdown_extensions:
   - pymdownx.extra
   - footnotes
 nav:
-- 'Information & Support': 'index.md'
-- 'Prerequisites':
-  - 'Prepare Your System': 'prerequisite-system.md'
-  - 'DNS Setup': 'prerequisite-dns.md'
-- 'Installation, Update & Migration':
-  - 'Installation': 'i_u_m_install.md'
-  - 'Update': 'i_u_m_update.md'
-  - 'Migration': 'i_u_m_migration.md'
-- 'First Steps (optional)':
-  - 'SSL': 'firststeps-ssl.md'
-  - 'Rspamd Web UI': 'firststeps-rspamd_ui.md'
-  - 'Reverse Proxy': 'firststeps-rp.md'
-  - 'SNAT': 'firststeps-snat.md'
-  - 'Disable IPv6': 'firststeps-disable_ipv6.md'
-  - 'Setup a relayhost': 'firststeps-relayhost.md'
-  - 'Logging': 'firststeps-logging.md'
-  - 'Local MTA on Docker host': 'firststeps-local_mta.md'
-  - 'Sync Jobs Migration': 'firststeps-sync_jobs_migration.md'
-- 'Models':
-  - 'Sender and receiver model': 'model-sender_rcv.md'
-  - 'ACL': 'model-acl.md'
-- 'Debugging & Troubleshooting':
-    - 'Introduction': debug.md
-    - 'Logs': 'debug-logs.md'
-    - 'Attach a Container': 'debug-attach_service.md'
-    - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
-    - 'Manual MySQL upgrade': 'debug-mysql_upgrade.md'
-    - 'Remove Persistent Data': 'debug-rm_volumes.md'
-    - 'Common Problems': 'debug-common_problems.md'
+  - 'Information & Support': 'index.md'
+  - 'Prerequisites':
+    - 'Prepare your system': 'prerequisite-system.md'
+    - 'DNS setup': 'prerequisite-dns.md'
+  - 'Installation, Update & Migration':
+    - 'Installation': 'i_u_m_install.md'
+    - 'Update': 'i_u_m_update.md'
+    - 'Migration': 'i_u_m_migration.md'
+    - 'Deinstallation': 'i_u_m_deinstall.md'
+  - 'Post Installation Tasks':
+    - 'Advanced SSL': 'firststeps-ssl.md'
+    - 'Disable IPv6': 'firststeps-disable_ipv6.md'
+    - 'DMARC Reporting': 'firststeps-dmarc_reporting.md'
+    - 'IP bindings': 'firststeps-ip_bindings.md'
+    - 'Local MTA on Docker host': 'firststeps-local_mta.md'
+    - 'Logging': 'firststeps-logging.md'
+    - 'Reverse Proxy': 'firststeps-rp.md'
+    - 'Rspamd UI': 'firststeps-rspamd_ui.md'
+    - 'SNAT': 'firststeps-snat.md'
+    - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
+  - 'Models':
+    - 'ACL': 'model-acl.md'
+    - 'Password hashing': 'model-passwd.md'
+    - 'Sender and receiver model': 'model-sender_rcv.md'
+  - 'General Troubleshooting':
+    - 'Introduction': 'debug.md'
     - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
-- 'Backup & Restore':
-  - 'Helper script':
-      - 'Backup': 'b_n_r_backup.md'
-      - 'Restore': 'b_n_r_restore.md'
-  - 'Manually':
+    - 'Advanced: Find memory leaks in Rspamd': 'debug-asan_rspamd.md'
+    - 'Attach a Container': 'debug-attach_service.md'
+    - 'Common Problems': 'debug-common_problems.md'
+    - 'Logs': 'debug-logs.md'
+    - 'Manual MySQL upgrade': 'debug-mysql_upgrade.md'
+    - 'Recover crashed Aria storage engine': 'debug-mysql_aria.md'
+    - 'Remove Persistent Data': 'debug-rm_volumes.md'
+    - 'Reset Passwords (incl. SQL)': 'debug-reset_pw.md'
+    - 'Reset TLS certificates': 'debug-reset_tls.md'
+  - 'Backup & Restore':
+    - 'Component backup':
+      - 'Backup': 'b_n_r-backup.md'
+      - 'Restore': 'b_n_r-restore.md'
+    - 'Cold-standby (rolling backup)': 'b_n_r-coldstandby.md'
+    - 'Manual backups':
       - 'Maildir': 'u_e-backup_restore-maildir.md'
-      - 'MySQL': 'u_e-backup_restore-mysql.md'
-- 'Usage & Examples':
-  - 'mailcow UI':
-      - 'Configuration': 'u_e-mailcow_ui-config.md'
+      - 'MySQL (mysqldump)': 'u_e-backup_restore-mysql.md'
+    - 'mailcow-internal backups':
+      - 'Recover accidentally deleted data': 'b_n_r-accidental_deletion.md'
+  - 'Manual/Guides/Examples':
+    - 'mailcow UI':
       - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
+      - 'Configuration': 'u_e-mailcow_ui-config.md'
+      - 'CSS overrides': 'u_e-mailcow_ui-css.md'
+      - 'Pushover': 'u_e-mailcow_ui-pushover.md'
       - 'Spamfilter': 'u_e-mailcow_ui-spamfilter.md'
-      - 'Temporary email aliase': 'u_e-mailcow_ui-spamalias.md'
       - 'Tagging': 'u_e-mailcow_ui-tagging.md'
+      - 'Temporary email aliases': 'u_e-mailcow_ui-spamalias.md'
       - 'Two-Factor Authentication': 'u_e-mailcow_ui-tfa.md'
-  - 'Postfix':
-      - 'Custom transport maps': 'u_e-postfix-custom_transport.md' 
-      - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
+      - 'WebAuthn / FIDO2': 'u_e-fido2.md'
+    - 'Postfix':
+      - 'Add trusted networks': 'u_e-postfix-trust_networks.md'
+      - 'Custom transport maps': 'u_e-postfix-custom_transport.md'
+      - 'Customize/Expand main.cf': 'u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'u_e-postfix-disable_sender_verification.md'
       - 'Max. message size (attachment size)': 'u_e-postfix-attachment_size.md'
+      - 'Relayhosts': 'u_e-postfix-relayhost.md'
       - 'Statistics with pflogsumm': 'u_e-postfix-pflogsumm.md'
-  - 'Unbound':
+      - 'Whitelist IP in Postscreen': 'u_e-postfix-postscreen_whitelist.md'
+    - 'Unbound':
       - 'Using an external DNS service': 'u_e-unbound-fwd.md'
-  - 'Dovecot':
-      - "(Re-)Enable any and all authenticated ACL settings": 'u_e-dovecot-any_acl.md'
-      - "Expunge a User's Mails": 'u_e-dovecot-expunge.md'
+    - 'Dovecot':
+      - 'Customize/Expand dovecot.conf': 'u_e-dovecot-extra_conf.md'
+      - 'Enable "any" ACL settings': 'u_e-dovecot-any_acl.md'
+      - 'Expunge a Users mails': 'u_e-dovecot-expunge.md'
+      - 'FTS (Solr)': 'u_e-dovecot-fts.md'
+      - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
       - 'Mail crypt': 'u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'u_e-dovecot-more.md'
-      - 'Move vmail volume': 'u_e-dovecot-vmail-volume.md'
-      - 'IMAP IDLE interval': 'u_e-dovecot-idle_interval.md'
-      - 'FTS (Solr)': 'u_e-dovecot-fts.md'
-  - 'Nginx': 
-     - "Custom sites": 'u_e-nginx.md'
-     - "Create subdomain webmail.example.org": 'u_e-webmail-site.md'
-  - 'Redis': 'u_e-redis.md'
-  - 'Rspamd': 'u_e-rspamd.md'
-  - 'SOGo': 'u_e-sogo.md'
-  - 'Docker':
+      - 'Move Maildir (vmail)': 'u_e-dovecot-vmail-volume.md'
+      - 'Public folders': 'u_e-dovecot-public_folder.md'
+      - 'Static master user': 'u_e-dovecot-static_master.md'
+      - 'Vacation replies for catchall addresses': 'u_e-dovecot-catchall_vacation.md'
+    - 'Nginx':
+      - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
+      - 'Custom sites': 'u_e-nginx.md'
+    - 'Redis': 'u_e-redis.md'
+    - 'Rspamd': 'u_e-rspamd.md'
+    - 'SOGo': 'u_e-sogo.md'
+    - 'Docker':
       - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
       - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
-  - 'Why unbound?': 'u_e-why_unbound.md'
-  - 'Autodiscover / Autoconfig': 'u_e-autodiscover_config.md'
-  - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
-  - 'Adjust Service Configurations': 'u_e-change_config.md'
-  - 'Deinstall': 'u_e-deinstall.md'
-  - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
-- 'Client Configuration':
-  - 'Overview': 'client.md'
-  - 'Android': 'client/client-android.md'
-  - 'Apple macOS / iOS': 'client/client-apple.md'
-  - 'eM Client': 'client/client-emclient.md'
-  - 'KDE Kontact': 'client/client-kontact.md'
-  - 'Microsoft Outlook': 'client/client-outlook.md'
-  - 'Mozilla Thunderbird': 'client/client-thunderbird.md'
-  - 'Windows Mail': 'client/client-windows.md'
-  - 'Windows Phone': 'client/client-windowsphone.md'
-  - 'Manual configuration': 'client/client-manual.md'
-- 'Third party apps':
-  - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
-  - 'Roundcube': 'third_party-roundcube.md'
-  - 'Portainer': 'third_party-portainer.md'
-  - 'Gogs': 'third_party-gogs.md'
-  - 'Gitea': 'third_party-gitea.md'
-  - 'Nextcloud': 'third_party-nextcloud.md'
+    - 'Why unbound?': 'u_e-why_unbound.md'
+    - 'Autodiscover / Autoconfig': 'u_e-autodiscover_config.md'
+    - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
+    - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
+    - "Run scripts before and after updates": "u_e-update-hooks.md"
+  - 'Client Configuration':
+    - 'Overview': 'client.md'
+    - 'Android': 'client/client-android.md'
+    - 'Apple macOS / iOS': 'client/client-apple.md'
+    - 'eM Client': 'client/client-emclient.md'
+    - 'KDE Kontact': 'client/client-kontact.md'
+    - 'Microsoft Outlook': 'client/client-outlook.md'
+    - 'Mozilla Thunderbird': 'client/client-thunderbird.md'
+    - 'Windows Mail': 'client/client-windows.md'
+    - 'Windows Phone': 'client/client-windowsphone.md'
+    - 'Manual configuration': 'client/client-manual.md'
+  - 'Third party apps':
+    - 'Borgmatic Backup': 'third_party-borgmatic.md'
+    - 'Exchange Hybrid Setup': 'third_party-exchange_onprem.md'
+    - 'Gitea': 'third_party-gitea.md'
+    - 'Gogs': 'third_party-gogs.md'
+    - 'Mailman 3': 'third_party-mailman3.md'
+    - 'Mailpiler Integration': 'third_party-mailpiler_integration.md'
+    - 'Nextcloud': 'third_party-nextcloud.md'
+    - 'Portainer': 'third_party-portainer.md'
+    - 'Roundcube': 'third_party-roundcube.md'
+    - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
 extra:
-  logo: 'images/logo.svg'
   palette:
-    primary: 'indigo'
-    accent: 'orange'
+    primary: "indigo"
+    accent: "orange"
   social:
-    - type: globe
+    - icon: fontawesome/solid/globe-americas
       link: https://mailcow.email
-    - type: github-alt
+    - icon: fontawesome/brands/github-alt
       link: https://github.com/mailcow
-extra_css: [extra.css]
-extra_javascript: [clients.js]
+extra_css: [ extra.css ]
+extra_javascript: [ clients.js ]
+plugins:
+  - search
+  - redirects:
+      redirect_maps:
+        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
+        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'

@@ -1,4 +1,4 @@
-Open `data/conf/postfix/main.cf` and set the `message_size_limit` accordingly in bytes.
+Open `data/conf/postfix/extra.cf` and set the `message_size_limit` accordingly in bytes. See `main.cf` for the default value.
 
 Restart Postfix:
 

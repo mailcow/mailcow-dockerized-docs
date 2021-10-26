@@ -3,11 +3,13 @@ Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful 
 ## Learn Spam & Ham
 
 Rspamd learns mail as spam or ham when you move a message in or out of the junk folder to any mailbox besides trash.
-This is achieved by using the Dovecot plugin "antispam" and a simple parser script.
+This is achieved by using the Sieve plugin "sieve_imapsieve" and parser scripts.
 
-Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning)
+Rspamd also auto-learns mail when a high or low score is detected (see https://rspamd.com/doc/configuration/statistic.html#autolearning). We configured the plugin to keep a sane ratio between spam and ham learns.
 
 The bayes statistics are written to Redis as keys `BAYES_HAM` and `BAYES_SPAM`.
+
+Besides bayes, a local fuzzy storage is used to learn recurring patterns in text or images that indicate ham or spam.
 
 You can also use Rspamd's web UI to learn ham and / or spam or to adjust certain settings of Rspamd.
 
@@ -81,19 +83,42 @@ docker-compose exec rspamd-mailcow rspamadm --help
 
 ## Disable Greylisting
 
-You can disable rspamd's greylisting server-wide by editing:
+Only messages with a higher score will be considered to be greylisted (soft rejected). It is bad practice to disable greylisting.
+
+You can disable greylisting server-wide by editing:
 
 `{mailcow-dir}/data/conf/rspamd/local.d/greylist.conf`
 
-Simply add the line:
+Add the line:
 
 ```cpp
 enabled = false;
 ```
 
-Save the file and then restart the rspamd container.
+Save the file and restart "rspamd-mailcow": `docker-compose restart rspamd-mailcow`
 
-See [Rspamd documentation](https://rspamd.com/doc/index.html)
+## Spam filter thresholds (global)
+
+Each user is able to change [their spam rating individually](https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-spamfilter/). To define a new **server-wide** limit, edit `data/conf/rspamd/local.d/actions.conf`:
+
+```cpp
+reject = 15;
+add_header = 8;
+greylist = 7;
+```
+
+Save the file and restart "rspamd-mailcow": `docker-compose restart rspamd-mailcow`
+
+Existing settings of users will not be overwritten!
+
+To reset custom defined thresholds, run:
+
+```
+source mailcow.conf
+docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel';"
+# or:
+# docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel' and object = 'only-this-mailbox@example.org';"
+```
 
 ## Custom reject messages
 
@@ -105,20 +130,20 @@ reject_message = "My custom reject message";
 
 Save the file and restart Rspamd: `docker-compose restart rspamd-mailcow`.
 
-While the above works for rejected mails with a high spam score, global maps (as found in "Global filter maps" in /admin) will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
+While the above works for rejected mails with a high spam score, prefilter reject actions will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
 
-1. Open `{mailcow-dir}/data/conf/rspamd/local.d/multimap.conf` and find the desired map symbol (e.g. `GLOBAL_SMTP_FROM_BL`).
+1. Find prefilet reject symbol for which you want change message, to do it run: `grep -R "SYMBOL_YOU_WANT_TO_ADJUST" /opt/mailcow-dockerized/data/conf/rspamd/`
 
 2. Add your custom message as new line:
 
 ```
-GLOBAL_SMTP_FROM_BL {
-  type = "from";
-  message = "Your domain is blacklisted, contact postmaster@your.domain to resolve this case.";`
-  map = "$LOCAL_CONFDIR/custom/global_smtp_from_blacklist.map";
+GLOBAL_RCPT_BL {
+  type = "rcpt";
+  map = "${LOCAL_CONFDIR}/custom/global_rcpt_blacklist.map";
   regexp = true;
   prefilter = true;
   action = "reject";
+  message = "Sending mail to this recipient is prohibited by postmaster@your.domain";
 }
 ```
 
@@ -144,9 +169,74 @@ To whitelist this particular signature (and enable sending this type of file att
 echo 'PUA.Pdf.Trojan.EmbeddedJavaScript-1' >> data/conf/clamav/whitelist.ign2
 ```
 
-Then restart the clamd-mailcow service container in the mailcow UI, or using docker-compose:
+Then restart the clamd-mailcow service container in the mailcow UI or using docker-compose:
 
 ```bash
 docker-compose restart clamd-mailcow
 ```
+
+Cleanup cached ClamAV results in Redis:
+
+```
+# docker-compose exec redis-mailcow  /bin/sh
+/data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
+/data # exit
+```
+
+## Discard instead of reject
+
+If you want to silently drop a message, create or edit the file `data/conf/rspamd/override.d/worker-proxy.custom.inc` and add the following content:
+
+```
+discard_on_reject = true;
+```
+
+Restart Rspamd:
+
+```bash
+docker-compose restart rspamd-mailcow
+```
+
+## Wipe all ratelimit keys
+
+If you don't want to use the UI and instead wipe all keys in the Redis database, you can use redis-cli for that task:
+
+```
+docker-compose exec redis-mailcow sh
+# Unlink (available in Redis >=4.) will delete in the backgronud
+redis-cli --scan --pattern RL* | xargs redis-cli unlink
+```
+
+Restart Rspamd:
+
+```bash
+docker-compose exec redis-mailcow sh
+```
+
+## Trigger a resend of quarantine notifications
+
+Should be used for debugging only!
+
+```
+docker-compose exec dovecot-mailcow bash
+mysql -umailcow -p$DBPASS mailcow -e "update quarantine set notified = 0;"
+redis-cli -h redis DEL Q_LAST_NOTIFIED
+quarantine_notify.py
+```
+
+## Increase history retention
+
+By default Rspamd keeps 1000 elements in the history.
+
+The history is stored compressed.
+
+It is recommended not to use a disproportionate high value here, try something along 5000 or 10000 and see how your server handles it:
+
+Edit `data/conf/rspamd/local.d/history_redis.conf`:
+
+```
+nrows = 1000; # change this value
+```
+
+Restart Rspamd afterwards: `docker-compose restart rspamd-mailcow`
 

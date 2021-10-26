@@ -11,7 +11,7 @@ The feature is disabled by default. It can be enabled in the `mailcow.conf` by s
 ```
 ALLOW_ADMIN_EMAIL_LOGIN=y
 ```
-and restarting the affected containers with
+and recreating the affected containers with
 ```
 docker-compose up -d
 ```

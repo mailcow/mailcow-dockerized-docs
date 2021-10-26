@@ -4,7 +4,7 @@ Edit a mailbox and select "Allow to send as *".
 
 For historical reasons we kept the old and deprecated guide below:
 
-## Deprecated guide
+## Deprecated guide (DO NOT USE ON NEWER MAILCOWS!)
 
 This option is not best-practice and should only be implemented when there is no other option available to achieve whatever you are trying to do.
 

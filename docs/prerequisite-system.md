@@ -1,7 +1,7 @@
 Before you run **mailcow: dockerized**, there are a few requirements that you should check:
 
 !!! warning
-    When running mailcow: dockerized on a Debian 8 (Jessie) box, you should [switch to kernel 4.9 from Jessie backports](https://packages.debian.org/jessie-backports/linux-image-amd64) to avoid a bug when running Docker containers with *healthchecks*! For more details read: [github.com/docker/docker/issues/30402](https://github.com/docker/docker/issues/30402). Running mailcow on Debian Jessie is discouraged.
+    Do **not** try to install mailcow on a Synology/QNAP device (any NAS), OpenVZ, LXC or other container platforms. KVM, ESX, Hyper-V and other full virtualization platforms are supported.
 
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
@@ -11,34 +11,46 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 ## Minimum System Resources
 
-**Do not** use OpenVZ or LXC as guests for mailcow.
+**OpenVZ, Virtuozzo and LXC are not supported**.
 
 Please make sure that your system has at least the following resources:
 
-| Resource                | mailcow: dockerized                          |
-| ----------------------- | -------------------------------------------- |
-| CPU                     | 1 GHz                                        |
-| RAM                     | 3 GiB + Swap (better: 4 GiB and more + Swap) |
-| Disk                    | 15 GiB (without emails)                      |
-| System Type             | x86_64                                       |
+| Resource                | mailcow: dockerized                              |
+| ----------------------- | ------------------------------------------------ |
+| CPU                     | 1 GHz                                            |
+| RAM                     | **Minimum** 6 GiB + 1 GiB swap (default config)  |
+| Disk                    | 20 GiB (without emails)                          |
+| System Type             | x86_64                                           |
 
-As of today (29th Dec 2019), we recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04.
+We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04/20.04.
 
-ClamAV and Solr are greedy RAM munchers. You can disable them in `mailcow.conf` by settings SKIP_CLAMD=y and SKIP_SOLR=y.
+ClamAV and Solr can be greedy with RAM. You may disable them in `mailcow.conf` by settings `SKIP_CLAMD=y` and `SKIP_SOLR=y`.
+
+**Info**: We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.
+
+A single SOGo worker **can** acquire ~350 MiB RAM before it gets purged. The more ActiveSync connections you plan to use, the more RAM you will need. A default configuration spawns 20 workers.
+
+#### Usage examples
+
+A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections should plan 16 GiB RAM.
+
+6 GiB RAM + 1 GiB swap are fine for most private installations while 8 GiB RAM are recommended for ~5 to 10 users.
+
+We can help to correctly plan your setup as part of our support.
 
 ## Firewall & Ports
 
 Please check if any of mailcow's standard ports are open and not in use by other applications:
 
 ```
-# netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
+ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190|5222|5269|5443'
+# or:
+netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190|5222|5269|5443'
 ```
 
 !!! warning
-    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this blog post](https://blog.donnex.net/docker-and-iptables-filtering/) for information about how to use iptables-persistent with the DOCKER-USER chain.
+    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) or [this (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) guide for information about how to use iptables-persistent with the DOCKER-USER chain.
     As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
-
-**
 
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
 
@@ -46,21 +58,66 @@ If this command returns any results please remove or stop the application runnin
 
 If you have a firewall in front of mailcow, please make sure that these ports are open for incoming connections:
 
-| Service             | Protocol | Port   | Container       | Variable                         |
-| --------------------|:--------:|:-------|:----------------|----------------------------------|
-| Postfix SMTP        | TCP      | 25     | postfix-mailcow | `${SMTP_PORT}`                   |
-| Postfix SMTPS       | TCP      | 465    | postfix-mailcow | `${SMTPS_PORT}`                  |
-| Postfix Submission  | TCP      | 587    | postfix-mailcow | `${SUBMISSION_PORT}`             |
-| Dovecot IMAP        | TCP      | 143    | dovecot-mailcow | `${IMAP_PORT}`                   |
-| Dovecot IMAPS       | TCP      | 993    | dovecot-mailcow | `${IMAPS_PORT}`                  |
-| Dovecot POP3        | TCP      | 110    | dovecot-mailcow | `${POP_PORT}`                    |
-| Dovecot POP3S       | TCP      | 995    | dovecot-mailcow | `${POPS_PORT}`                   |
-| Dovecot ManageSieve | TCP      | 4190   | dovecot-mailcow | `${SIEVE_PORT}`                  |
-| HTTP(S)             | TCP      | 80/443 | nginx-mailcow   | `${HTTP_PORT}` / `${HTTPS_PORT}` |
+| Service             | Protocol | Port   | Container         | Variable                         |
+| --------------------|:--------:|:-------|:------------------|----------------------------------|
+| Postfix SMTP        | TCP      | 25     | postfix-mailcow   | `${SMTP_PORT}`                   |
+| Postfix SMTPS       | TCP      | 465    | postfix-mailcow   | `${SMTPS_PORT}`                  |
+| Postfix Submission  | TCP      | 587    | postfix-mailcow   | `${SUBMISSION_PORT}`             |
+| Dovecot IMAP        | TCP      | 143    | dovecot-mailcow   | `${IMAP_PORT}`                   |
+| Dovecot IMAPS       | TCP      | 993    | dovecot-mailcow   | `${IMAPS_PORT}`                  |
+| Dovecot POP3        | TCP      | 110    | dovecot-mailcow   | `${POP_PORT}`                    |
+| Dovecot POP3S       | TCP      | 995    | dovecot-mailcow   | `${POPS_PORT}`                   |
+| Dovecot ManageSieve | TCP      | 4190   | dovecot-mailcow   | `${SIEVE_PORT}`                  |
+| HTTP(S)             | TCP      | 80/443 | nginx-mailcow     | `${HTTP_PORT}` / `${HTTPS_PORT}` |
 
 To bind a service to an IP address, you can prepend the IP like this: `SMTP_PORT=1.2.3.4:25`
 
 **Important**: You cannot use IP:PORT bindings in HTTP_PORT and HTTPS_PORT. Please use `HTTP_PORT=1234` and `HTTP_BIND=1.2.3.4` instead.
+
+### Important for Hetzner firewalls
+
+Quoting https://github.com/chermsen via https://github.com/mailcow/mailcow-dockerized/issues/497#issuecomment-469847380 (THANK YOU!):
+
+For all who are struggling with the Hetzner firewall:
+
+Port 53 unimportant for the firewall configuration in this case. According to the documentation unbound uses the port range 1024-65535 for outgoing requests.
+Since the Hetzner Robot Firewall is a static firewall (each incoming packet is checked isolated) - the following rules must be applied:
+
+**For TCP**
+```
+SRC-IP:       ---
+DST IP:       ---
+SRC Port:    ---
+DST Port:    1024-65535
+Protocol:    tcp
+TCP flags:   ack
+Action:      Accept
+```
+
+**For UDP**
+```
+SRC-IP:       ---
+DST IP:       ---
+SRC Port:    ---
+DST Port:    1024-65535
+Protocol:    udp
+Action:      Accept
+```
+
+If you want to apply a more restrictive port range you have to change the config of unbound first (after installation):
+
+{mailcow-dockerized}/data/conf/unbound/unbound.conf:
+```
+outgoing-port-avoid: 0-32767
+```
+
+Now the firewall rules can be adjusted as follows:
+
+```
+[...]
+DST Port:  32768-65535
+[...]
+```
 
 ## Date and Time
 
@@ -84,7 +141,7 @@ NTP synchronized: yes
                   Sun 2017-10-29 02:00:00 CET
 ```
 
-The lines `NTP enabled: yes` and `NTP synchronized: yes` indicate wether you have NTP enabled and if it's synchronized.
+The lines `NTP enabled: yes` and `NTP synchronized: yes` indicate whether you have NTP enabled and if it's synchronized.
 
 To enable NTP you need to run the command `timedatectl set-ntp true`. You also need to edit your `/etc/systemd/timesyncd.conf`:
 
