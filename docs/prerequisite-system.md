@@ -22,7 +22,7 @@ Please make sure that your system has at least the following resources:
 | Disk                    | 20 GiB (without emails)                          |
 | System Type             | x86_64                                           |
 
-We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04/20.04.
+We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 10/11 and Ubuntu 18.04/20.04.
 
 ClamAV and Solr can be greedy with RAM. You may disable them in `mailcow.conf` by settings `SKIP_CLAMD=y` and `SKIP_SOLR=y`.
 
