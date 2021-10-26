@@ -2428,7 +2428,7 @@
 </tr>
 </tbody>
 </table>
-<p>We recommend using any distribution listed as supported by Docker CE (check <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>). We test on CentOS 7, Debian 9/10 and Ubuntu 18.04/20.04.</p>
+<p>We recommend using any distribution listed as supported by Docker CE (check <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>). We test on CentOS 7, Debian 10/11 and Ubuntu 18.04/20.04.</p>
 <p>ClamAV and Solr can be greedy with RAM. You may disable them in <code>mailcow.conf</code> by settings <code>SKIP_CLAMD=y</code> and <code>SKIP_SOLR=y</code>.</p>
 <p><strong>Info</strong>: We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.</p>
 <p>A single SOGo worker <strong>can</strong> acquire ~350 MiB RAM before it gets purged. The more ActiveSync connections you plan to use, the more RAM you will need. A default configuration spawns 20 workers.</p>
