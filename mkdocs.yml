@@ -108,6 +108,8 @@ nav:
     - 'Nginx':
       - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
       - 'Custom sites': 'u_e-nginx.md'
+    - 'Watchdog':
+      - 'Thresholds': 'u_e-watchdog-thresholds.md'
     - 'Redis': 'u_e-redis.md'
     - 'Rspamd': 'u_e-rspamd.md'
     - 'SOGo': 'u_e-sogo.md'
