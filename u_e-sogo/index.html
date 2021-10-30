@@ -2422,7 +2422,10 @@ After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes 
 <li>copy CSS file to mailcow server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>edit <code>data/conf/sogo/sogo.conf</code> and set <code>SOGoUIxDebugEnabled = NO;</code></li>
 <li>append/create <code>docker-compose.override.yml</code> with:
-<div class="highlight"><pre><span></span><code>  sogo-mailcow:
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+
+services:
+  sogo-mailcow:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
