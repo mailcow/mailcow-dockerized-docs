@@ -27,6 +27,9 @@ copy([].slice.call(document.styleSheets)
 9. edit `data/conf/sogo/sogo.conf` and set `SOGoUIxDebugEnabled = NO;`
 10. append/create `docker-compose.override.yml` with:
 ```
+version: '2.1'
+
+services:
   sogo-mailcow:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
