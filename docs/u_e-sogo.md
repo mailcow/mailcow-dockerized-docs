@@ -8,12 +8,35 @@ Please check the AngularJS Material [intro](https://material.angularjs.org/lates
 You can use the provided `custom-theme.js` as an example starting point by removing the comments.
 After you modified `data/conf/sogo/custom-theme.js` and made changes to your new SOGo theme you need to 
 
-* edit `data/conf/sogo/sogo.conf` and append/set `SOGoUIxDebugEnabled = YES;`
-* restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
+1. edit `data/conf/sogo/sogo.conf` and append/set `SOGoUIxDebugEnabled = YES;`
+2. restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
+3. open SOGo in browser
+4. open browser developer console, usually shortcut is F12
+5. only if you use Firefox: write by hands in dev console `allow pasting` and press enter
+6. paste java script snipet in dev console:
+```
+copy([].slice.call(document.styleSheets)
+  .map(e => e.ownerNode)
+  .filter(e => e.hasAttribute('md-theme-style'))
+  .map(e => e.textContent)
+  .join('\n')
+)
+```
+7. open text editor and paste data from clipboard (Ctrl+V), you should get minified CSS, save it
+8. copy CSS file to mailcow server `data/conf/sogo/custom-theme.css`
+9. edit `data/conf/sogo/sogo.conf` and set `SOGoUIxDebugEnabled = NO;`
+10. append/create `docker-compose.override.yml` with:
+```
+  sogo-mailcow:
+    volumes:
+      - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+```
+11. run `docker-compose up -d`
+12. run `docker-compose restart memcached-mailcow`
 
 ## Reset to SOGo default theme
-Checkout `data/conf/sogo/custom-theme.js` by executing `git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js`
-Find in `data/conf/sogo/custom-theme.js`:
+1. checkout `data/conf/sogo/custom-theme.js` by executing `git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js`
+2. find in `data/conf/sogo/custom-theme.js`:
 ```
 // Apply new palettes to the default theme, remap some of the hues
     $mdThemingProvider.theme('default')
@@ -31,10 +54,16 @@ Find in `data/conf/sogo/custom-theme.js`:
       })
       .backgroundPalette('frost-grey');
 ```
-and replace with:
+and replace it with:
 ```
     $mdThemingProvider.theme('default');
 ```
+3. remove from `docker-compose.override.yml` volume mount in `sogo-mailcow`:
+```
+- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+```
+4. run `docker-compose up -d`
+5. run `docker-compose restart memcached-mailcow`
 
 ## Change favicon
 mailcow builds after 31 January 2021 can change SOGo's favicon by replacing `data/conf/sogo/custom-favicon.ico` for SOGo and `data/web/favicon.png` for mailcow UI.
