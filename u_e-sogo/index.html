@@ -2404,13 +2404,35 @@
 Please check the AngularJS Material <a href="https://material.angularjs.org/latest/Theming/01_introduction">intro</a> and <a href="https://material.angularjs.org/latest/Theming/03_configuring_a_theme">documentation</a> as well as the <a href="https://material.io/archive/guidelines/style/color.html#color-color-palette">material style guideline</a> to learn how this works. </p>
 <p>You can use the provided <code>custom-theme.js</code> as an example starting point by removing the comments.
 After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes to your new SOGo theme you need to </p>
-<ul>
+<ol>
 <li>edit <code>data/conf/sogo/sogo.conf</code> and append/set <code>SOGoUIxDebugEnabled = YES;</code></li>
 <li>restart SOGo and Memcached containers by executing <code>docker-compose restart memcached-mailcow sogo-mailcow</code>.</li>
-</ul>
+<li>open SOGo in browser</li>
+<li>open browser developer console, usually shortcut is F12</li>
+<li>only if you use Firefox: write by hands in dev console <code>allow pasting</code> and press enter</li>
+<li>paste java script snipet in dev console:
+<div class="highlight"><pre><span></span><code>copy([].slice.call(document.styleSheets)
+  .map(e =&gt; e.ownerNode)
+  .filter(e =&gt; e.hasAttribute(&#39;md-theme-style&#39;))
+  .map(e =&gt; e.textContent)
+  .join(&#39;\n&#39;)
+)
+</code></pre></div></li>
+<li>open text editor and paste data from clipboard (Ctrl+V), you should get minified CSS, save it</li>
+<li>copy CSS file to mailcow server <code>data/conf/sogo/custom-theme.css</code></li>
+<li>edit <code>data/conf/sogo/sogo.conf</code> and set <code>SOGoUIxDebugEnabled = NO;</code></li>
+<li>append/create <code>docker-compose.override.yml</code> with:
+<div class="highlight"><pre><span></span><code>  sogo-mailcow:
+    volumes:
+      - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+</code></pre></div></li>
+<li>run <code>docker-compose up -d</code></li>
+<li>run <code>docker-compose restart memcached-mailcow</code></li>
+</ol>
 <h2 id="reset-to-sogo-default-theme">Reset to SOGo default theme<a class="headerlink" href="#reset-to-sogo-default-theme" title="Permanent link">&para;</a></h2>
-<p>Checkout <code>data/conf/sogo/custom-theme.js</code> by executing <code>git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js</code>
-Find in <code>data/conf/sogo/custom-theme.js</code>:
+<ol>
+<li>checkout <code>data/conf/sogo/custom-theme.js</code> by executing <code>git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js</code></li>
+<li>find in <code>data/conf/sogo/custom-theme.js</code>:
 <div class="highlight"><pre><span></span><code>// Apply new palettes to the default theme, remap some of the hues
     $mdThemingProvider.theme(&#39;default&#39;)
       .primaryPalette(&#39;green-cow&#39;, {
@@ -2427,9 +2449,15 @@ Find in <code>data/conf/sogo/custom-theme.js</code>:
       })
       .backgroundPalette(&#39;frost-grey&#39;);
 </code></pre></div>
-and replace with:
+and replace it with:
 <div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
-</code></pre></div></p>
+</code></pre></div></li>
+<li>remove from <code>docker-compose.override.yml</code> volume mount in <code>sogo-mailcow</code>:
+<div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+</code></pre></div></li>
+<li>run <code>docker-compose up -d</code></li>
+<li>run <code>docker-compose restart memcached-mailcow</code></li>
+</ol>
 <h2 id="change-favicon">Change favicon<a class="headerlink" href="#change-favicon" title="Permanent link">&para;</a></h2>
 <p>mailcow builds after 31 January 2021 can change SOGo's favicon by replacing <code>data/conf/sogo/custom-favicon.ico</code> for SOGo and <code>data/web/favicon.png</code> for mailcow UI.
 <strong>Note</strong>: You can use <code>.png</code> favicons for SOGo by renaming them to <code>custom-favicon.ico</code>.
