@@ -142,7 +142,6 @@ nav:
     - 'Nextcloud': 'third_party-nextcloud.md'
     - 'Portainer': 'third_party-portainer.md'
     - 'Roundcube': 'third_party-roundcube.md'
-    - 'SOGo Connector for Thunderbird': 'third_party-thunderbird.md'
 extra:
   palette:
     primary: "indigo"
