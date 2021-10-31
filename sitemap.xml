@@ -231,11 +231,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-thunderbird/</loc>
-         <lastmod>2021-10-31</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-80_to_443/</loc>
          <lastmod>2021-10-31</lastmod>
          <changefreq>daily</changefreq>
