@@ -1219,6 +1219,19 @@
     Yubi OTP
   </a>
   
+    <nav class="md-nav" aria-label="Yubi OTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-setup" class="md-nav__link">
+    Example setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1226,12 +1239,18 @@
     U2F
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="U2F">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#totp" class="md-nav__link">
     TOTP
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2309,6 +2328,19 @@
     Yubi OTP
   </a>
   
+    <nav class="md-nav" aria-label="Yubi OTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-setup" class="md-nav__link">
+    Example setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2316,12 +2348,18 @@
     U2F
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="U2F">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#totp" class="md-nav__link">
     TOTP
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2355,10 +2393,22 @@
 <p>As administrator you are able to temporary disable a domain administrators TFA login until they successfully logged in.</p>
 <p>The key used to login will be displayed in green, while other keys remain grey.</p>
 <p>Information on how to remove 2FA can be found <a href="https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_pw/#remove-two-factor-authentication">here</a>.</p>
-<h3 id="yubi-otp">Yubi OTP<a class="headerlink" href="#yubi-otp" title="Permanent link">&para;</a></h3>
+<h2 id="yubi-otp">Yubi OTP<a class="headerlink" href="#yubi-otp" title="Permanent link">&para;</a></h2>
 <p>The Yubi API ID and Key will be checked against the Yubico Cloud API. When setting up TFA you will be asked for your personal API account for this key.
 The API ID, API key and the first 12 characters (your YubiKeys ID in modhex) are stored in the MySQL table as secret.</p>
-<h3 id="u2f">U2F<a class="headerlink" href="#u2f" title="Permanent link">&para;</a></h3>
+<h3 id="example-setup">Example setup<a class="headerlink" href="#example-setup" title="Permanent link">&para;</a></h3>
+<p>First of all, the YubiKey must be configured for use as an OTP Generator. To do this, download the <code>YubiKey Manager</code> from the Yubico website: <a href="https://www.yubico.com/support/download/">here</a></p>
+<p>In the following you configure the YubiKey for OTP.
+Via the menu item <code>Applications</code> -&gt; <code>OTP</code> and a click on the <code>Configure</code> button. In the following menu select <code>Credential Type</code> -&gt; <code>Yubico OTP</code> and click on <code>Next</code>.</p>
+<p>Set a checkmark in the <code>Use serial</code> checkbox, generate a <code>Private ID</code> and a <code>Secret key</code> via the buttons. 
+So that the YubiKey can be validated later, the checkmark in the <code>Upload</code> checkbox must also be set and then click on <code>Finish</code>.</p>
+<p>Now a new browser window will open in which you have to enter an OTP of your YubiKey at the bottom of the form (click on the field and then tap on your YubiKey). Confirm the captcha and upload the information to the Yubico server by clicking 'Upload'. The processing of the data will take a moment.</p>
+<p>After the generation was successful, you will be shown a <code>Client ID</code> and a <code>Secret key</code>, make a note of this information in a safe place.</p>
+<p>Now you can select <code>Yubico OTP authentication</code> from the dropdown menu in the mailcow UI on the start page under <code>Access</code> -&gt; <code>Two-factor authentication</code>. 
+In the dialog that opened now you can enter a name for this YubiKey and insert the <code>Client ID</code> you noted before as well as the <code>Secret key</code> into the fields provided.
+Finally, enter your current account password and, after selecting the <code>Touch Yubikey</code> field, touch your YubiKey button.</p>
+<p>Congratulations! You can now log in to the mailcow UI using your YubiKey!</p>
+<h2 id="u2f">U2F<a class="headerlink" href="#u2f" title="Permanent link">&para;</a></h2>
 <p>To use U2F, the browser must support this standard.</p>
 <p>The following desktop browsers support this authentication type:</p>
 <ul>
