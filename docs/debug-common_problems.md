@@ -60,7 +60,7 @@ Docker and iptables-based firewalls sometimes create conflicting rules, so disab
 
 If you experience connection problems from home, please check your ISP router's firewall too, some of them block mail traffic on the *SMTP* (587) or *SMTPS* (465) ports. It could also be, that your ISP is blocking the ports for *SUBMISSION* (25).
 
-While Linux users can chose from a variety of tools[^1] to check if a port is open, the Windows user has only the command `telnet host port` available by default (and it has to be activated since Windows Vista).
+While Linux users can chose from a variety of tools[^1] to check if a port is open, the Windows user has only the PowerShell command `Test-NetConnection -ComputerName host -Port port` available by default.
 
 To enable telnet on a Windows after Vista please check this [guide](https://social.technet.microsoft.com/wiki/contents/articles/910.windows-7-enabling-telnet-client.aspx) or enter the following command in an terminal **with administrator privileges**:
 

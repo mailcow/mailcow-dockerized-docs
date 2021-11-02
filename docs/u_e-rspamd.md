@@ -224,3 +224,19 @@ redis-cli -h redis DEL Q_LAST_NOTIFIED
 quarantine_notify.py
 ```
 
+## Increase history retention
+
+By default Rspamd keeps 1000 elements in the history.
+
+The history is stored compressed.
+
+It is recommended not to use a disproportionate high value here, try something along 5000 or 10000 and see how your server handles it:
+
+Edit `data/conf/rspamd/local.d/history_redis.conf`:
+
+```
+nrows = 1000; # change this value
+```
+
+Restart Rspamd afterwards: `docker-compose restart rspamd-mailcow`
+

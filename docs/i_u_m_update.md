@@ -52,7 +52,7 @@ dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
 
 Run `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` to see what changed.
 
-### Can I role back?
+### Can I roll back?
 
 Yes.
 
@@ -65,6 +65,10 @@ git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
 docker-compose pull
 docker-compose up -d
 ```
+
+### Hooks
+
+You can hook into the update mechanism by adding scripts called `pre_commit_hook.sh` and `post_commit_hook.sh` to your mailcows root directory. See [this](./u_e-update-hooks.md) for more details.
 
 ## Footnotes
 

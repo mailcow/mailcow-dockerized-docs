@@ -1,18 +1,28 @@
-Download Roundcube 1.4.x to the web htdocs directory and extract it (here `rc/`):
+## Installing Roundcube
+
+Download Roundcube 1.5.x to the web htdocs directory and extract it (here `rc/`):
 ```
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.4.9/roundcubemail-1.4.9-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.0/roundcubemail-1.5.0-complete.tar.gz | tar xfvz -
 # Change folder name
-mv roundcubemail-1.4.9 rc
+mv roundcubemail-1.5.0 rc
+
 # Change permissions
 chown -R root: rc/
 ```
 
+If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
+```
+#!/bin/bash
+apk update
+apk add aspell-en # or any other language
+```
+
 Create a file `data/web/rc/config/config.inc.php` with the following content.
-
-**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password. The "db_prefix" is optional but recommended.
-
+   - **Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password.
+   - The `db_prefix` is optional but recommended.
+   - If you didn't install spell check in the above step, remove `spellcheck_engine` parameter and replace it with `$config['enable_spellcheck'] = false;`.
 ```
 <?php
 error_reporting(0);
@@ -36,6 +46,7 @@ $config['plugins'] = array(
   'archive',
   'managesieve'
 );
+$config['spellcheck_engine'] = 'aspell';
 $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
@@ -102,10 +113,10 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 
 ### Integrate CardDAV addressbooks in Roundcube
 
-Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmcarddav/) to the Roundcube plugin directory and extract it (here `rc/plugins`):
+Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
 cd data/web/rc/plugins
-wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.1.2/carddav-v4.1.2.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
@@ -152,3 +163,29 @@ $MAILCOW_APPS = array(
 );
 ...
 ````
+
+## Upgrading Roundcube
+
+Upgrading Roundcube is rather simple, go to the [Github releases](https://github.com/roundcube/roundcubemail/releases) page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands and change the URL and Roundcube folder name if needed. 
+
+
+```
+# Enter a bash session of the mailcow PHP container
+docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
+
+# Install required upgrade dependency, then upgrade Roundcube to wanted release
+
+apk add rsync
+cd /tmp
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.0/roundcubemail-1.5.0-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.5.0
+bin/installto.sh /web/rc
+
+# Type 'Y' and press enter to upgrade your install of Roundcube
+
+
+# Remove leftover files
+
+cd /tmp
+rm -rf roundcube*
+```

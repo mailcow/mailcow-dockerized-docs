@@ -31,6 +31,17 @@ A wildcard name like `smtp.*` will try to obtain a smtp.DOMAIN_NAME SAN for each
 
 Run `docker-compose up -d` to recreate affected containers automatically.
 
+!!! info
+    Using names other name `MAILCOW_HOSTNAME` to access the mailcow UI may need further configuration.
+
+If you plan to use a server name that is not `MAILCOW_HOSTNAME` to access the mailcow UI (for example by adding `mail.*` to `ADDITIONAL_SAN` make sure to populate that name in mailcow.conf via `ADDITIONAL_SERVER_NAMES`. Names must be separated by commas and **must not** contain spaces. If you skip this step, mailcow may respond with an incorrect site.
+
+```
+ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
+```
+
+Run `docker-compose up -d` to apply.
+
 ### Force renewal
 
 To force a renewal, you need to create a file named `force_renew` and restart the `acme-mailcow` container:
