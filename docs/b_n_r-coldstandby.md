@@ -49,7 +49,7 @@ The destination must have Docker and docker-compose **v1** available.
 
 The script will detect errors automatically and exit.
 
-You may want to test the connection by running `ssh mailcow-backup.host.name -p22 -i/path/to/keyfile`.
+You may want to test the connection by running `ssh mailcow-backup.host.name -p22 -i /path/to/keyfile`.
 
 ## Backup and refresh the cold-standby
 
