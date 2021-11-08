@@ -16,7 +16,7 @@ This setup becomes very handy if you have enabled the [Office 365 security defau
 Your mailcow needs to relay all mails to your personalized Exchange Host. It is the same host address we already looked up for the mx Record.
 
 1. Add the domain to your mailcow
-2. [Add your personalized Exchange Host address as relayhost](/u_e-postfix-relayhost)
+2. [Add your personalized Exchange Host address as relayhost](/mailcow-dockerized-docs/u_e-postfix-relayhost)
 3. Add your personalized Exchange Host address as forwarding host to unconditionally accepted all relayed mails from Exchange. (Admin > Configuration & Details > Configuration Dropdown > Forwarding Hosts)
 4. Go to the domain settings and select the newly added host on the `Sender-dependent transports` dropdown. Enable relaying by ticking the `Relay this domain`, `Relay all recipients` and the `Relay non-existing mailboxes only.` checkboxes
 
