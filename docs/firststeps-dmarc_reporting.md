@@ -16,7 +16,7 @@ Rspamd documentation can be found here: https://rspamd.com/doc/modules/dmarc.htm
 
 ## Enable DMARC reporting
 
-1. Create the file `data/conf/rspamd/local.d/dmarc.conf` and set the following content:
+Create the file `data/conf/rspamd/local.d/dmarc.conf` and set the following content:
 
 ```
 reporting {
@@ -34,7 +34,7 @@ reporting {
 }
 ```
 
-2. Create or modify `docker-compose.override.yml` in the mailcow-dockerized base directory:
+Create or modify `docker-compose.override.yml` in the mailcow-dockerized base directory:
 
 ```
 version: '2.1'
@@ -52,7 +52,7 @@ services:
       - rspamd-mailcow
 ```
 
-3. Run `docker-compose up -d`
+Run `docker-compose up -d`
 
 ## Send a copy reports to yourself
 
@@ -102,9 +102,13 @@ docker-compose exec redis-mailcow redis-cli HGETALL "dmarc;example.com;20211231"
 
 ## Change DMARC reporting frequency
 
-In the example above reports are sent once every 24 hours. You may want to change that interval:
+In the example above reports are sent once every 24 hours.
 
-1. Edit `docker-compose.override.yml` and a djust `ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"` to a desired value.
+Olefia schedule has same implementation as `cron` in Go, supported syntax described at [cron Documentation](https://pkg.go.dev/github.com/robfig/cron)
+
+To change schedule:
+
+1. Edit `docker-compose.override.yml` and a djust `ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"` to a desired value, for example to `"@midnight"`
 
 2. Run `docker-compose up -d`
 
@@ -116,6 +120,6 @@ To disable reporting:
 
 1. Set `enabled` to `false` in `data/conf/rspamd/local.d/dmarc.conf`
 
-2. Revert changes done to `docker-compose.override.yml`
+2. Revert changes done in `docker-compose.override.yml` to `rspamd-mailcow` and `ofelia-mailcow`
 
 3. Run `docker-compose up -d`
