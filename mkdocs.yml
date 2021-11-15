@@ -157,5 +157,7 @@ plugins:
   - search
   - redirects:
       redirect_maps:
+        # 'old': 'new'
         'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
         'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
+        'debug-reset-tls.md': 'debug-reset_tls.md'
