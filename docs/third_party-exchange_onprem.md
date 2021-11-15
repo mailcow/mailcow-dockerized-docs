@@ -10,13 +10,13 @@ This setup becomes very handy if you have enabled the [Office 365 security defau
     1. Log in to your [Exchange Admin Center](https://admin.exchange.microsoft.com)
     2. Select the `mail flow` pane and click on `accepted domains`
     3. Select the domain and switch it from `authorative` to `internal relay`
-    
-    
+
+
 ## Set up the mailcow
 Your mailcow needs to relay all mails to your personalized Exchange Host. It is the same host address we already looked up for the mx Record.
 
 1. Add the domain to your mailcow
-2. [Add your personalized Exchange Host address as relayhost](/mailcow-dockerized-docs/u_e-postfix-relayhost)
+2. [Add your personalized Exchange Host address as relayhost](../u_e-postfix-relayhost)
 3. Add your personalized Exchange Host address as forwarding host to unconditionally accepted all relayed mails from Exchange. (Admin > Configuration & Details > Configuration Dropdown > Forwarding Hosts)
 4. Go to the domain settings and select the newly added host on the `Sender-dependent transports` dropdown. Enable relaying by ticking the `Relay this domain`, `Relay all recipients` and the `Relay non-existing mailboxes only.` checkboxes
 
@@ -29,7 +29,7 @@ All mail traffic now goes through Exchange. At this point the Exchange Online Pr
 
 !!! warning
     For the connector that handles mails from your mailcow to Exchange Microsoft offers two ways of authenticating it. The recommended way is to use a tls certificate configured with a subject name that matches an accepted domain in Exchange. Otherwise you need to choose authentication with the static ip address of your mailcow.
-    
+
 ## Validating
 The easiest way to validate the hybrid setup is by sending a mail from the internet to a mailbox that only exists on the mailcow and vice versa.
 
