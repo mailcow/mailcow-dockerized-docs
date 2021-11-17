@@ -30,7 +30,7 @@ server {
   # Location: data/web
   root /web;
   # Location: data/web/mysite.com
-  #root /web/mysite.com
+  #root /web/mysite.com;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name mysite.example.org;
