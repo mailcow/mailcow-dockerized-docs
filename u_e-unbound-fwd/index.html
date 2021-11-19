@@ -2318,7 +2318,7 @@
                 
                 <p>If you want or have to use an external DNS service, you can either set a forwarder in Unbound or copy an override file to define external DNS servers:</p>
 <p>!!! warning
-   Please do not use a public resolver like we did in the example above. Many - if not all - blacklist lookups will fail with public resolvers.
+   Please do not use a public resolver like we did in the example above. Many - if not all - blacklist lookups will fail with public resolvers, because blacklist server has limits on how much requests can be done from one IP and public resolvers usually reach this limits.
    <strong>Important</strong>: Only DNSSEC validating DNS services will work.</p>
 <h2 id="method-a-unbound">Method A, Unbound<a class="headerlink" href="#method-a-unbound" title="Permanent link">&para;</a></h2>
 <p>Edit <code>data/conf/unbound/unbound.conf</code> and append the following parameters:</p>
