@@ -67,6 +67,8 @@ Initialize the database and leave the installer.
 
 Open `data/web/rc/plugins/managesieve/config.inc.php` and change the following parameters (or add them at the bottom of that file):
 ```
+//Make sure you have <?php at the beginning of the file or add just like below
+<?php 
 $config['managesieve_port'] = 4190;
 $config['managesieve_host'] = 'tls://dovecot';
 $config['managesieve_conn_options'] = array(
