@@ -20,4 +20,44 @@ postconf -e "default_transport = smtp"
 "172.22.1.1" is the mailcow created network gateway in Docker.
 Relaying over this interface is necessary (instead of - for example - relaying directly over ${MAILCOW_HOSTNAME}) to relay over a known internal network.
 
+Edit the Aliases File to point the (root)User to an exsisting Emailadress. 
+
+```
+sudo nano /etc/aliases
+```
+Go to the End of this File and add an Emailadress for the Root User
+```
+root:myemail@domain.tld
+```
+Save the Settings. 
+```
+sudo newaliases
+```
+
+Then we need to set the authentication credentials required 
+to convince your mail server that you are you!
+
+```
+sudo nano /etc/postfix/relay_password
+```
+add this line and save the file
+```
+smtp.example.org smtp@example.org:SomeObscurePassw0rd
+```
+
+Apply the changes
+```
+sudo postmap /etc/postfix/relay_password
+```
+
+Now finally open /etc/postfix/main.cf and add the following to the end of the file. 
+
+```
+# added to configure accessing the relay host via authenticating SMTP
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/relay_password
+smtp_sasl_security_options =
+smtp_tls_security_level = encrypt
+```
+
 Restart Postfix after applying your changes.
