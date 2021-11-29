@@ -1,8 +1,8 @@
-name: Build and deploy to gh-pages
+name: Check build for renovate
 on:
    push:
      branches:
-       - master
+       - 'renovate/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,12 +21,3 @@ jobs:
       - name: Build site 🔧
         run: |
           mkdocs build --verbose --clean
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.6
-        with:
-          token: '${{ secrets.GHPAGES_ACTION_DEPLOY_TOKEN_PAT }}'
-          git-config-name: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITNAME_PAT }}'
-          git-config-email: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITEMAIL_PAT }}'
-          branch: gh-pages # The branch the action should deploy to.
-          folder: site # The folder the action should deploy.
