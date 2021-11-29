@@ -11,6 +11,7 @@ theme:
   favicon: images/favicon.png
   features:
     - navigation.top
+    - navigation.tracking
 markdown_extensions:
   - codehilite:
       guess_lang: true
