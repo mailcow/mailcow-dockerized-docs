@@ -23,17 +23,23 @@ configuration:
 
 ```yaml
 version: '2.1'
+
 services:
   borgmatic-mailcow:
     image: b3vis/borgmatic
+    hostname: mailcow
     restart: always
     dns: ${IPV4_NETWORK:-172.22.1}.254
     volumes:
       - vmail-vol-1:/mnt/source/vmail:ro
       - crypt-vol-1:/mnt/source/crypt:ro
+      - redis-vol-1:/mnt/source/redis:ro,z
+      - rspamd-vol-1:/mnt/source/rspamd:ro,z
+      - postfix-vol-1:/mnt/source/postfix:ro,z
       - mysql-socket-vol-1:/var/run/mysqld/:z
+      - borg-config-vol-1:/root/.config/borg:Z
+      - borg-cache-vol-1:/root/.cache/borg:Z
       - ./data/conf/borgmatic/etc:/etc/borgmatic.d:Z
-      - ./data/conf/borgmatic/state:/root/.config/borg:Z
       - ./data/conf/borgmatic/ssh:/root/.ssh:Z
     environment:
       - TZ=${TZ}
@@ -42,6 +48,10 @@ services:
       mailcow-network:
         aliases:
           - borgmatic
+
+volumes:
+  borg-cache-vol-1:
+  borg-config-vol-1:
 ```
 
 Ensure that you change the `BORG_PASSPHRASE` to a secure passphrase of your choosing.
@@ -61,7 +71,10 @@ location:
         - /mnt/source
     repositories:
         - user@rsync.net:mailcow
-    remote_path: borg1
+    exclude_patterns:
+        - '/mnt/source/postfix/public/'
+        - '/mnt/source/postfix/private/'
+        - '/mnt/source/rspamd/rspamd.sock'
 
 retention:
     keep_hourly: 24
