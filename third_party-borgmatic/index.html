@@ -2587,17 +2587,23 @@ This guide only covers the basics.</p>
 <p>In the mailcow-dockerized root folder create or edit <code>docker-compose.override.yml</code> and insert the following
 configuration:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.1&#39;</span>
+
 <span class="nt">services</span><span class="p">:</span>
   <span class="nt">borgmatic-mailcow</span><span class="p">:</span>
     <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">b3vis/borgmatic</span>
+    <span class="nt">hostname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mailcow</span>
     <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
     <span class="nt">dns</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}.254</span>
     <span class="nt">volumes</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vmail-vol-1:/mnt/source/vmail:ro</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">crypt-vol-1:/mnt/source/crypt:ro</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">redis-vol-1:/mnt/source/redis:ro,z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">rspamd-vol-1:/mnt/source/rspamd:ro,z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postfix-vol-1:/mnt/source/postfix:ro,z</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql-socket-vol-1:/var/run/mysqld/:z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">borg-config-vol-1:/root/.config/borg:Z</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">borg-cache-vol-1:/root/.cache/borg:Z</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/etc:/etc/borgmatic.d:Z</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/state:/root/.config/borg:Z</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/ssh:/root/.ssh:Z</span>
     <span class="nt">environment</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">TZ=${TZ}</span>
@@ -2606,6 +2612,10 @@ configuration:</p>
       <span class="nt">mailcow-network</span><span class="p">:</span>
         <span class="nt">aliases</span><span class="p">:</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">borgmatic</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+  <span class="nt">borg-cache-vol-1</span><span class="p">:</span>
+  <span class="nt">borg-config-vol-1</span><span class="p">:</span>
 </code></pre></div>
 <p>Ensure that you change the <code>BORG_PASSPHRASE</code> to a secure passphrase of your choosing.</p>
 <p>For security reasons we mount the maildir as read-only. If you later want to restore data you will need to remove
@@ -2619,7 +2629,10 @@ cat <span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
 <span class="s">        - /mnt/source</span>
 <span class="s">    repositories:</span>
 <span class="s">        - user@rsync.net:mailcow</span>
-<span class="s">    remote_path: borg1</span>
+<span class="s">    exclude_patterns:</span>
+<span class="s">        - &#39;/mnt/source/postfix/public/&#39;</span>
+<span class="s">        - &#39;/mnt/source/postfix/private/&#39;</span>
+<span class="s">        - &#39;/mnt/source/rspamd/rspamd.sock&#39;</span>
 
 <span class="s">retention:</span>
 <span class="s">    keep_hourly: 24</span>
