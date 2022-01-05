@@ -2419,9 +2419,7 @@ Initialize the database and leave the installer.</p>
 <p><strong>Delete the directory <code>data/web/rc/installer</code> after a successful installation!</strong></p>
 <h3 id="configure-managesieve-filtering">Configure ManageSieve filtering<a class="headerlink" href="#configure-managesieve-filtering" title="Permanent link">&para;</a></h3>
 <p>Open <code>data/web/rc/plugins/managesieve/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):
-<div class="highlight"><pre><span></span><code>//Make sure you have &lt;?php at the beginning of the file or add just like below
-&lt;?php 
-$config[&#39;managesieve_port&#39;] = 4190;
+<div class="highlight"><pre><span></span><code>$config[&#39;managesieve_port&#39;] = 4190;
 $config[&#39;managesieve_host&#39;] = &#39;tls://dovecot&#39;;
 $config[&#39;managesieve_conn_options&#39;] = array(
   &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
