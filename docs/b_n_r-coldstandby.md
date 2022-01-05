@@ -69,3 +69,30 @@ bash /opt/mailcow-dockerized/create_cold_standby.sh
 
 It's the same command.
 
+## Automated backups with cron
+
+First make sure that the `cron` service is enabled and running:
+
+```
+systemctl enable cron.service && systemctl start cron.service
+```
+
+To automate the backups to the cold-standby server you can use a cron job. To edit the cron jobs for the root user run:
+
+```
+crontab -e
+```
+
+Add the following lines to synchronize the cold standby server daily at 03:00. In this example errors of the last execution are logged into a file.
+
+```
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2> /var/log/mailcow-coldstandby-sync.log
+```
+
+If saved correctly, the cron job should be shown by typing:
+
+```
+crontab -l
+```
