@@ -5,11 +5,15 @@ Download Roundcube 1.5.x to the web htdocs directory and extract it (here `rc/`)
 # Check for a newer release!
 cd data/web
 wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
+
 # Change folder name
 mv roundcubemail-1.5.2 rc
 
 # Change permissions
 chown -R root: rc/
+
+# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
+sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" rc/program/include/rcmail.php
 ```
 
 If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
@@ -176,7 +180,6 @@ Upgrading Roundcube is rather simple, go to the [Github releases](https://github
 docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
 
 # Install required upgrade dependency, then upgrade Roundcube to wanted release
-
 apk add rsync
 cd /tmp
 wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
@@ -185,9 +188,10 @@ bin/installto.sh /web/rc
 
 # Type 'Y' and press enter to upgrade your install of Roundcube
 
-
 # Remove leftover files
-
 cd /tmp
 rm -rf roundcube*
+
+# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
+sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" /web/rc/program/include/rcmail.php
 ```
