@@ -1,9 +1,9 @@
-So far three methods for _Two-Factor Authentication_ are implemented: U2F, Yubi OTP, and TOTP
+So far three methods for _Two-Factor Authentication_ are implemented: WebAuthn (replacing U2F since February 2022), Yubi OTP, and TOTP
 
--   For U2F to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
--   Both U2F and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).
--   While Yubi OTP needs an active internet connection and an API ID + key, U2F will work with any FIDO U2F USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
--   U2F and Yubi OTP support multiple keys per user.
+-   For WebAuthn to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
+-   Both WebAuthn and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).
+-   While Yubi OTP needs an active internet connection and an API ID + key, WebAuthn will work with any FIDO U2F/WebAuthn USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
+-   WebAuthn and Yubi OTP support multiple keys per user.
 -   As the third TFA method mailcow uses TOTP: time-based one-time passwords. Those passwords can be generated with apps like "Google Authenticator" after initially scanning a QR code or entering the given secret manually.
 
 As administrator you are able to temporary disable a domain administrators TFA login until they successfully logged in.
@@ -37,26 +37,44 @@ Finally, enter your current account password and, after selecting the `Touch Yub
 
 Congratulations! You can now log in to the mailcow UI using your YubiKey!
 
-## U2F
+## WebAuthn (U2F, replacement)
+> :warning: **Since February 2022 Google Chrome has discarded support for U2F and recommended the use of WebAuthn.<br>**
+> *The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the `update.sh` script.*
 
-To use U2F, the browser must support this standard.
+To use WebAuthn, the browser must support this standard.
 
 The following desktop browsers support this authentication type:
 
--   Edge (>=79)
--   Firefox (>=47, enabled by default since version 67)
--   Chrome (>=41)
+-   Edge (>=18)
+-   Firefox (>=60)
+-   Chrome (>=67)
 -   Safari (>=13)
--   Opera (40, >=42, not 41)
+-   Opera (>=54)
 
 The following mobile browsers support this authentication type:
 
--   Safari on iOS (>=13.3)
--   Firefox on Android (>=68)
+-   Safari on iOS (>=14.5)
+-   Android Browser (>=97)
+-   Opera Mobile (>=64)
+-   Chrome for Android (>=97)
 
-Sources: [caniuse.com](https://caniuse.com/u2f), [blog.mozilla.org](https://blog.mozilla.org/security/2019/08/05/web-authentication-in-firefox-for-android/)
+Sources: [caniuse.com](https://caniuse.com/webauthn), [blog.mozilla.org](https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/)
 
-U2F works without an internet connection.
+WebAuthn works without an internet connection.
+
+### What will happen to my registered U2F Key after the Update?
+> With this new U2F replacement (WebAuthn) you have to re-register your U2F Key, thankfully WebAuthn is backwards compatible with the most recent U2F Keys.
+
+Ideally, the next time you log in (with the key), you should get a text box saying that your U2F key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.
+
+But don't worry! You can simply re-register your existing key and use it as usual, you probably won't even notice a difference, except that your browser won't show the U2F deactivation message anymore.
+
+### Disable unofficial supported U2F keys
+With WebAuthn there is the possibility to use only official U2F keys (from the big brands, like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).
+
+This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used at their site.
+
+To enable this feature, change the value `WEBAUTHN_ONLY_CERTIFIED_KEYS` in mailcow.conf from `n` to `y` and restart the affected containers with `docker-compose up -d`.
 
 ### TOTP
 
