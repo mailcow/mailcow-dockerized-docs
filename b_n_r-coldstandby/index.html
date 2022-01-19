@@ -951,6 +951,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#automated-backups-with-cron" class="md-nav__link">
+    Automated backups with cron
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2308,6 +2315,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#automated-backups-with-cron" class="md-nav__link">
+    Automated backups with cron
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2362,6 +2376,21 @@ The destination must have Docker and docker-compose <strong>v1</strong> availabl
 <div class="highlight"><pre><span></span><code>bash /opt/mailcow-dockerized/create_cold_standby.sh
 </code></pre></div>
 <p>It's the same command.</p>
+<h2 id="automated-backups-with-cron">Automated backups with cron<a class="headerlink" href="#automated-backups-with-cron" title="Permanent link">&para;</a></h2>
+<p>First make sure that the <code>cron</code> service is enabled and running:</p>
+<div class="highlight"><pre><span></span><code>systemctl enable cron.service &amp;&amp; systemctl start cron.service
+</code></pre></div>
+<p>To automate the backups to the cold-standby server you can use a cron job. To edit the cron jobs for the root user run:</p>
+<div class="highlight"><pre><span></span><code>crontab -e
+</code></pre></div>
+<p>Add the following lines to synchronize the cold standby server daily at 03:00. In this example errors of the last execution are logged into a file.</p>
+<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2&gt; /var/log/mailcow-coldstandby-sync.log
+</code></pre></div>
+<p>If saved correctly, the cron job should be shown by typing:</p>
+<div class="highlight"><pre><span></span><code>crontab -l
+</code></pre></div>
 
               
             </article>
