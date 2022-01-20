@@ -2,7 +2,7 @@ So far three methods for _Two-Factor Authentication_ are implemented: WebAuthn (
 
 -   For WebAuthn to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
 -   Both WebAuthn and Yubi OTP work well with the fantastic [Yubikey](https://www.yubico.com).
--   While Yubi OTP needs an active internet connection and an API ID + key, WebAuthn will work with any FIDO U2F/WebAuthn USB key out of the box, but can only be used when mailcow is accessed over HTTPS.
+-   While Yubi OTP needs an active internet connection and an API ID + key, WebAuthn will work with any Fido Security Key out of the box, but can only be used when mailcow is accessed over HTTPS.
 -   WebAuthn and Yubi OTP support multiple keys per user.
 -   As the third TFA method mailcow uses TOTP: time-based one-time passwords. Those passwords can be generated with apps like "Google Authenticator" after initially scanning a QR code or entering the given secret manually.
 
@@ -62,15 +62,15 @@ Sources: [caniuse.com](https://caniuse.com/webauthn), [blog.mozilla.org](https:/
 
 WebAuthn works without an internet connection.
 
-### What will happen to my registered U2F Key after the Update?
-> :warning: With this new U2F replacement (WebAuthn) you have to re-register your U2F Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.
+### What will happen to my registered Fido Security Key after the Update from U2F to WebAuthn?
+> :warning: With this new U2F replacement (WebAuthn) you have to re-register your Fido Security Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.
 
-Ideally, the next time you log in (with the key), you should get a text box saying that your U2F key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.
+Ideally, the next time you log in (with the key), you should get a text box saying that your Fido Security Key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.
 
 But don't worry! You can simply re-register your existing key and use it as usual, you probably won't even notice a difference, except that your browser won't show the U2F deactivation message anymore.
 
-### Disable unofficial supported U2F keys
-With WebAuthn there is the possibility to use only official U2F keys (from the big brands like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).
+### Disable unofficial supported Fido Security Keys
+With WebAuthn there is the possibility to use only official Fido Security Keys (from the big brands like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).
 
 This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used in their environment.
 
@@ -89,7 +89,7 @@ If you have a valid certificate from the vendor of your key you can also add it 
 
 Just copy the certificate into the `data/web/inc/lib/WebAuthn/rootCertificates` folder and restart your mailcow.
 
-Now you should be able to register with this device as well, even though the verification for the vendor certificates is enabled, since you just added the certificate manually. 
+Now you should be able to register this device as well, even though the verification for the vendor certificates is enabled, since you just added the certificate manually. 
 
 ## TOTP
 
