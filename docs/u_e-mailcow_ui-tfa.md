@@ -80,17 +80,6 @@ To enable this feature, change the value `WEBAUTHN_ONLY_TRUSTED_VENDORS` in mail
 
 The mailcow will now use the Vendor Certificates located in your mailcow directory under `data/web/inc/lib/WebAuthn/rootCertificates`. 
 
-### Is it dangerous to keep the Vendor Check disabled?
-No, it isn´t!
-These vendor certificates are only used to verify original hardware, not to secure the registration process.
-
-As you can read in these articles, the deactivation is not software security related:
-- [https://developers.yubico.com/U2F/Attestation_and_Metadata/](https://developers.yubico.com/U2F/Attestation_and_Metadata/)
-- [https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651](https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651)
-- [https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01](https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01)
-
-In the end, however, it is of course your decision to leave this check disabled or enabled. 
-
 ##### Example:
 If you want to limit the official Vendor devices to Apple only you only need the Apple Vendor Certificate inside the `data/web/inc/lib/WebAuthn/rootCertificates`.
 After you deleted all other certs you now only can activate WebAuthn 2FA with Apple devices.
@@ -103,6 +92,17 @@ If you have a valid certificate from the vendor of your key you can also add it 
 Just copy the certificate into the `data/web/inc/lib/WebAuthn/rootCertificates` folder and restart your mailcow.
 
 Now you should be able to register this device as well, even though the verification for the vendor certificates is enabled, since you just added the certificate manually. 
+
+#### Is it dangerous to keep the Vendor Check disabled?
+No, it isn´t!
+These vendor certificates are only used to verify original hardware, not to secure the registration process.
+
+As you can read in these articles, the deactivation is not software security related:
+- [https://developers.yubico.com/U2F/Attestation_and_Metadata/](https://developers.yubico.com/U2F/Attestation_and_Metadata/)
+- [https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651](https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651)
+- [https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01](https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01)
+
+In the end, however, it is of course your decision to leave this check disabled or enabled. 
 
 ---
 
