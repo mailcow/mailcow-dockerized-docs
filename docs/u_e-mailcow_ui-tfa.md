@@ -38,7 +38,7 @@ Finally, enter your current account password and, after selecting the `Touch Yub
 Congratulations! You can now log in to the mailcow UI using your YubiKey!
 
 ## WebAuthn (U2F, replacement)
-> :warning: **Since February 2022 Google Chrome has discarded support for U2F and recommended the use of WebAuthn.<br>**
+> :warning: **Since February 2022 Google Chrome has discarded support for U2F and standardized the use of WebAuthn.<br>**
 > *The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the `update.sh` script.*
 
 To use WebAuthn, the browser must support this standard.
@@ -70,12 +70,30 @@ Ideally, the next time you log in (with the key), you should get a text box sayi
 But don't worry! You can simply re-register your existing key and use it as usual, you probably won't even notice a difference, except that your browser won't show the U2F deactivation message anymore.
 
 ### Disable unofficial supported U2F keys
-With WebAuthn there is the possibility to use only official U2F keys (from the big brands, like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).
+With WebAuthn there is the possibility to use only official U2F keys (from the big brands like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).
 
-This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used at their site.
+This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used in their environment.
 
-To enable this feature, change the value `WEBAUTHN_ONLY_CERTIFIED_KEYS` in mailcow.conf from `n` to `y` and restart the affected containers with `docker-compose up -d`.
+To enable this feature, change the value `WEBAUTHN_ONLY_TRUSTED_VENDORS` in mailcow.conf from `n` to `y` and restart the affected containers with `docker-compose up -d`.
 
-### TOTP
+The mailcow will now use the Vendor Certificates located in your mailcow directory under `data/web/inc/lib/WebAuthn/rootCertificates`. 
+
+##### Example:
+If you want to limit the official Vendor devices to Apple only you only need the Apple Vendor Certificate inside the `data/web/inc/lib/WebAuthn/rootCertificates`.
+After you deleted all other certs you now only can activate WebAuthn 2FA with Apple devices.
+
+That´s for every vendor the same, so choose what you like (if you want to)
+
+## TOTP
 
 The best known TFA method mostly used with a smartphone.
+
+To setup the TOTP method login to the Admin UI and select `Time-based OTP (TOTP)` from the list.
+
+Now a modal will open in which you have to type in a name for your 2FA "device" (example: John Deer´s Smartphone) and the password of the affected Admin account (you are currently logged in with).
+
+You have two seperate methods to register TOTP to your account:
+1. Scan the QR-Code with your Authenticator App on a Smartphone or Tablet.
+2. Use the TOTP Code (under the QR Code) in your TOTP Program or App (if you can´t scan a QR Code).
+
+After you have registered the QR or TOTP code in the TOTP app/program of your choice you only need to enter the now generated TOTP token (in the app/program) as confirmation in the mailcow UI to finally activate the TOTP 2FA, otherwise it will not be activated even though the TOTP token is already generated in your app/program.
