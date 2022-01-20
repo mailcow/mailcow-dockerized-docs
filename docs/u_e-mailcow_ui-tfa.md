@@ -63,7 +63,7 @@ Sources: [caniuse.com](https://caniuse.com/webauthn), [blog.mozilla.org](https:/
 WebAuthn works without an internet connection.
 
 ### What will happen to my registered U2F Key after the Update?
-> With this new U2F replacement (WebAuthn) you have to re-register your U2F Key, thankfully WebAuthn is backwards compatible with the most recent U2F Keys.
+> :warning: With this new U2F replacement (WebAuthn) you have to re-register your U2F Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.
 
 Ideally, the next time you log in (with the key), you should get a text box saying that your U2F key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.
 
@@ -82,7 +82,14 @@ The mailcow will now use the Vendor Certificates located in your mailcow directo
 If you want to limit the official Vendor devices to Apple only you only need the Apple Vendor Certificate inside the `data/web/inc/lib/WebAuthn/rootCertificates`.
 After you deleted all other certs you now only can activate WebAuthn 2FA with Apple devices.
 
-That´s for every vendor the same, so choose what you like (if you want to)
+That´s for every vendor the same, so choose what you like (if you want to).
+
+#### Use own certificates for WebAuthn
+If you have a valid certificate from the vendor of your key you can also add it to your mailcow!
+
+Just copy the certificate into the `data/web/inc/lib/WebAuthn/rootCertificates` folder and restart your mailcow.
+
+Now you should be able to register with this device as well, even though the verification for the vendor certificates is enabled, since you just added the certificate manually. 
 
 ## TOTP
 
