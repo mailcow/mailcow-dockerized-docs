@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "timezone": "Europe/Berlin",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "commitBody": "Signed-off-by: Peter <magic@kthx.at>",
+  "rebaseWhen": "auto",
+  "assignees": [
+    "@magiccc"
+  ]
+}

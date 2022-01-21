@@ -1,7 +1,7 @@
 If you want or have to use an external DNS service, you can either set a forwarder in Unbound or copy an override file to define external DNS servers:
 
    !!! warning
-   Please do not use a public resolver like we did in the example above. Many - if not all - blacklist lookups will fail with public resolvers.
+   Please do not use a public resolver like we did in the example above. Many - if not all - blacklist lookups will fail with public resolvers, because blacklist server has limits on how much requests can be done from one IP and public resolvers usually reach this limits.
    **Important**: Only DNSSEC validating DNS services will work.
 
 ## Method A, Unbound
@@ -11,8 +11,8 @@ Edit `data/conf/unbound/unbound.conf` and append the following parameters:
 ```
 forward-zone:
   name: "."
-  forward-addr: 8.8.8.8 # NO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
-  forward-addr: 8.8.4.4 # NO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
+  forward-addr: 8.8.8.8 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
+  forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
 ```
 
 Restart Unbound:

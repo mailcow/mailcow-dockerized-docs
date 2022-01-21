@@ -1,9 +1,4 @@
-!!! warning
-    Make sure you've read ["Prepare Your System"](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system) before proceeding!
-    **Do not** use CentOS 8 with Centos 7 Docker packages. You may create an open relay.
-
-
-You need Docker and Docker Compose.
+You need Docker (a version >= `20.10.2` is required) and Docker Compose (a version `<= 2.0` is required).
 
 **1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
@@ -13,14 +8,13 @@ Quick installation for most operation systems:
 ```
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable docker.service
-systemctl start docker.service
+systemctl enable --now docker
 ```
 
 - Docker-Compose
 
 !!! warning
-    **mailcow requires the latest version of docker-compose.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the latest version.
+    **mailcow requires the latest version of docker-compose v1.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the correct version.
     _Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
 
 ```
