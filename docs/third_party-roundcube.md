@@ -1,18 +1,32 @@
-Download Roundcube 1.4.x to the web htdocs directory and extract it (here `rc/`):
+## Installing Roundcube
+
+Download Roundcube 1.5.x to the web htdocs directory and extract it (here `rc/`):
 ```
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.4.9/roundcubemail-1.4.9-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
+
 # Change folder name
-mv roundcubemail-1.4.9 rc
+mv roundcubemail-1.5.2 rc
+
 # Change permissions
 chown -R root: rc/
+
+# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
+sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" rc/program/include/rcmail.php
+```
+
+If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
+```
+#!/bin/bash
+apk update
+apk add aspell-en # or any other language
 ```
 
 Create a file `data/web/rc/config/config.inc.php` with the following content.
-
-**Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password. The "db_prefix" is optional but recommended.
-
+   - **Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password.
+   - The `db_prefix` is optional but recommended.
+   - If you didn't install spell check in the above step, remove `spellcheck_engine` parameter and replace it with `$config['enable_spellcheck'] = false;`.
 ```
 <?php
 error_reporting(0);
@@ -36,6 +50,7 @@ $config['plugins'] = array(
   'archive',
   'managesieve'
 );
+$config['spellcheck_engine'] = 'aspell';
 $config['mime_types'] = '/tmp/mime.types';
 $config['imap_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
@@ -102,10 +117,10 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 
 ### Integrate CardDAV addressbooks in Roundcube
 
-Download the latest release of [RCMCardDAV](https://github.com/blind-coder/rcmcarddav/) to the Roundcube plugin directory and extract it (here `rc/plugins`):
+Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
 cd data/web/rc/plugins
-wget -O - https://github.com/blind-coder/rcmcarddav/releases/download/v3.0.3/carddav-3.0.3.tar.bz2 | tar xfvj -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.1.2/carddav-v4.1.2.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
@@ -153,6 +168,33 @@ $MAILCOW_APPS = array(
 ...
 ````
 
+## Upgrading Roundcube
+
+Upgrading Roundcube is rather simple, go to the [Github releases](https://github.com/roundcube/roundcubemail/releases) page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands and change the URL and Roundcube folder name if needed. 
+
+
+```
+# Enter a bash session of the mailcow PHP container
+docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
+
+# Install required upgrade dependency, then upgrade Roundcube to wanted release
+apk add rsync
+cd /tmp
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.5.2
+bin/installto.sh /web/rc
+
+# Type 'Y' and press enter to upgrade your install of Roundcube
+
+# Remove leftover files
+cd /tmp
+rm -rf roundcube*
+
+# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
+sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" /web/rc/program/include/rcmail.php
+```
+
+
 ### Let admins log into Roundcube without password
 
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
@@ -177,27 +219,24 @@ services:
 ```
 
 
-Edit `data/web/js/site/mailbox.js` and the following code after [`if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }`](https://github.com/mailcow/mailcow-dockerized/pull/3849/commits/1c873a83b5e6b1714512b2dc79ff81b26af3ef79#diff-aac7eb6ff52acc8698ff9bcc71c313cbc5bbbe501c3eb1b8bc658ef97fb9d4c1)
+Edit `data/web/js/site/mailbox.js` and the following code after [`if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }`](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487)
 
-```php
+```js
 if (ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE) {
-	item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-xs btn-primary" target="_blank"><span class="glyphicon glyphicon-envelope"></span> Roundcube</a>';
+  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-xs ' + btnSize + ' btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
 }
 ```
 
-Edit `data/web/mailbox.php` and add this code to the bottom of the [javascript section](https://github.com/mailcow/mailcow-dockerized/pull/3849/commits/1c873a83b5e6b1714512b2dc79ff81b26af3ef79#diff-312fb7af69e284eca2fd573cdf2e4c3d04b6cd93fc5eb0e4dcdc6c199afd0aba):
+Edit `data/web/mailbox.php` and add this line to array [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43):
 
 ```php
-<script type='text/javascript'>
-<?php
-// ...
-$ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE = (preg_match(
-  "/^(yes|y)+$/i",
-  $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"]
-)) ? "true" : "false";
-echo "var ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE = " . $ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE . ";\n";
-?>
-</script>
+  'allow_admin_email_login_roundcube' => (preg_match("/^(yes|y)+$/i", $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"])) ? 'true' : 'false',
+```
+
+Edit `data/web/templates/mailbox.twig` and add this code to the bottom of the [javascript section](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57):
+
+```js
+  var ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE = {{ allow_admin_email_login_roundcube }};
 ```
 
 Copy the contents of the following files from this [Snippet](https://gitlab.com/-/snippets/2038244):
