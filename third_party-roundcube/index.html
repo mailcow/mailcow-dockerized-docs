@@ -2226,38 +2226,39 @@
     Installing Roundcube
   </a>
   
-    <nav class="md-nav" aria-label="Installing Roundcube">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configure-managesieve-filtering" class="md-nav__link">
     Configure ManageSieve filtering
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#enable-change-password-function-in-roundcube" class="md-nav__link">
     Enable change password function in Roundcube
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#integrate-carddav-addressbooks-in-roundcube" class="md-nav__link">
     Integrate CardDAV addressbooks in Roundcube
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#upgrading-roundcube" class="md-nav__link">
     Upgrading Roundcube
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#let-admins-log-into-roundcube-without-password" class="md-nav__link">
+    Let admins log into Roundcube without password
   </a>
   
 </li>
@@ -2306,38 +2307,39 @@
     Installing Roundcube
   </a>
   
-    <nav class="md-nav" aria-label="Installing Roundcube">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configure-managesieve-filtering" class="md-nav__link">
     Configure ManageSieve filtering
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#enable-change-password-function-in-roundcube" class="md-nav__link">
     Enable change password function in Roundcube
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#integrate-carddav-addressbooks-in-roundcube" class="md-nav__link">
     Integrate CardDAV addressbooks in Roundcube
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#upgrading-roundcube" class="md-nav__link">
     Upgrading Roundcube
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#let-admins-log-into-roundcube-without-password" class="md-nav__link">
+    Let admins log into Roundcube without password
   </a>
   
 </li>
@@ -2421,7 +2423,7 @@ $config[&#39;db_prefix&#39;] = &#39;mailcow_rc1&#39;;
 <p>Point your browser to <code>https://myserver/rc/installer</code> and follow the instructions.
 Initialize the database and leave the installer.</p>
 <p><strong>Delete the directory <code>data/web/rc/installer</code> after a successful installation!</strong></p>
-<h3 id="configure-managesieve-filtering">Configure ManageSieve filtering<a class="headerlink" href="#configure-managesieve-filtering" title="Permanent link">&para;</a></h3>
+<h2 id="configure-managesieve-filtering">Configure ManageSieve filtering<a class="headerlink" href="#configure-managesieve-filtering" title="Permanent link">&para;</a></h2>
 <p>Open <code>data/web/rc/plugins/managesieve/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):
 <div class="highlight"><pre><span></span><code>$config[&#39;managesieve_port&#39;] = 4190;
 $config[&#39;managesieve_host&#39;] = &#39;tls://dovecot&#39;;
@@ -2434,7 +2436,7 @@ $config[&#39;managesieve_conn_options&#39;] = array(
 // 2 - add Vacation section, but hide Filters section
 $config[&#39;managesieve_vacation&#39;] = 1;
 </code></pre></div></p>
-<h3 id="enable-change-password-function-in-roundcube">Enable change password function in Roundcube<a class="headerlink" href="#enable-change-password-function-in-roundcube" title="Permanent link">&para;</a></h3>
+<h2 id="enable-change-password-function-in-roundcube">Enable change password function in Roundcube<a class="headerlink" href="#enable-change-password-function-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Open <code>data/web/rc/config/config.inc.php</code> and enable the password plugin:</p>
 <div class="highlight"><pre><span></span><code>...
 $config[&#39;plugins&#39;] = array(
@@ -2456,10 +2458,10 @@ $config[&#39;password_algorithm&#39;] = &#39;ssha256&#39;;
 $config[&#39;password_algorithm_prefix&#39;] = &#39;{SSHA256}&#39;;
 $config[&#39;password_query&#39;] = &quot;UPDATE mailbox SET password = %P WHERE username = %u&quot;;
 </code></pre></div>
-<h3 id="integrate-carddav-addressbooks-in-roundcube">Integrate CardDAV addressbooks in Roundcube<a class="headerlink" href="#integrate-carddav-addressbooks-in-roundcube" title="Permanent link">&para;</a></h3>
+<h2 id="integrate-carddav-addressbooks-in-roundcube">Integrate CardDAV addressbooks in Roundcube<a class="headerlink" href="#integrate-carddav-addressbooks-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Download the latest release of <a href="https://github.com/mstilkerich/rcmcarddav">RCMCardDAV</a> to the Roundcube plugin directory and extract it (here <code>rc/plugins</code>):
 <div class="highlight"><pre><span></span><code>cd data/web/rc/plugins
-wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.1.2/carddav-v4.1.2.tar.gz  | tar xfvz -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.3.0/carddav-v4.3.0.tar.gz  | tar xfvz -
 chown -R root: carddav/
 </code></pre></div></p>
 <p>Copy the file <code>config.inc.php.dist</code> to <code>config.inc.php</code> (here in <code>rc/plugins/carddav</code>) and append the following preset to the end of the file - don't forget to replace <code>mx.example.org</code> with your own hostname:
@@ -2517,6 +2519,41 @@ rm -rf roundcube*
 
 # Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
 sed -i &quot;s/\$prefix = &#39;\.\/&#39;;/\$prefix = preg_replace\(&#39;\/\[\?\&amp;]\.\*\$\/&#39;, &#39;&#39;, \$_SERVER\[&#39;REQUEST_URI&#39;] \?\? &#39;&#39;\) \?: &#39;\.\/&#39;;/g&quot; /web/rc/program/include/rcmail.php
+</code></pre></div>
+<h2 id="let-admins-log-into-roundcube-without-password">Let admins log into Roundcube without password<a class="headerlink" href="#let-admins-log-into-roundcube-without-password" title="Permanent link">&para;</a></h2>
+<p>First, install plugin <a href="https://github.com/corbosman/dovecot_impersonate/">dovecot_impersonate</a> and add Roundcube as an app (see above).</p>
+<p>Edit <code>mailcow.conf</code> and add the following:</p>
+<div class="highlight"><pre><span></span><code># Allow admins to log into Roundcube as email user (without any password)
+# Roundcube with plugin dovecot_impersonate must be installed first
+
+ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
+</code></pre></div>
+<p>Edit <code>docker-compose.override.yml</code> and crate/extend the section for <code>php-fpm-mailcow</code>:</p>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+services:
+  php-fpm-mailcow:
+    environment:
+      - ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}
+</code></pre></div>
+<p>Edit <code>data/web/js/site/mailbox.js</code> and the following code after <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487"><code>if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }</code></a></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">item</span><span class="p">.</span><span class="nx">action</span> <span class="o">+=</span> <span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span> <span class="o">+</span> <span class="nx">btnSize</span> <span class="o">+</span> <span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Edit <code>data/web/mailbox.php</code> and add this line to array <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43"><code>$template_data</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="x">  &#39;allow_admin_email_login_roundcube&#39; =&gt; (preg_match(&quot;/^(yes|y)+$/i&quot;, $_ENV[&quot;ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE&quot;])) ? &#39;true&#39; : &#39;false&#39;,</span>
+</code></pre></div>
+<p>Edit <code>data/web/templates/mailbox.twig</code> and add this code to the bottom of the <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57">javascript section</a>:</p>
+<div class="highlight"><pre><span></span><code>  <span class="kd">var</span> <span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span> <span class="o">=</span> <span class="p">{{</span> <span class="nx">allow_admin_email_login_roundcube</span> <span class="p">}};</span>
+</code></pre></div>
+<p>Copy the contents of the following files from this <a href="https://gitlab.com/-/snippets/2038244">Snippet</a>:</p>
+<ul>
+<li><code>data/web/inc/lib/RoundcubeAutoLogin.php</code></li>
+<li><code>data/web/rc-auth.php</code></li>
+</ul>
+<p>Finally, restart mailcow</p>
+<div class="highlight"><pre><span></span><code>docker-compose down
+docker-compose up -d
 </code></pre></div>
 
               
