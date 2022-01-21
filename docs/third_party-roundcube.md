@@ -67,7 +67,7 @@ Initialize the database and leave the installer.
 
 **Delete the directory `data/web/rc/installer` after a successful installation!**
 
-### Configure ManageSieve filtering
+## Configure ManageSieve filtering
 
 Open `data/web/rc/plugins/managesieve/config.inc.php` and change the following parameters (or add them at the bottom of that file):
 ```
@@ -83,7 +83,7 @@ $config['managesieve_conn_options'] = array(
 $config['managesieve_vacation'] = 1;
 ```
 
-### Enable change password function in Roundcube
+## Enable change password function in Roundcube
 
 Open `data/web/rc/config/config.inc.php` and enable the password plugin:
 
@@ -115,12 +115,12 @@ $config['password_algorithm_prefix'] = '{SSHA256}';
 $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
 
-### Integrate CardDAV addressbooks in Roundcube
+## Integrate CardDAV addressbooks in Roundcube
 
 Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
 cd data/web/rc/plugins
-wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.1.2/carddav-v4.1.2.tar.gz  | tar xfvz -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.3.0/carddav-v4.3.0.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
@@ -192,4 +192,60 @@ rm -rf roundcube*
 
 # Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
 sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" /web/rc/program/include/rcmail.php
+```
+
+## Let admins log into Roundcube without password
+
+First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
+
+Edit `mailcow.conf` and add the following:
+
+```
+# Allow admins to log into Roundcube as email user (without any password)
+# Roundcube with plugin dovecot_impersonate must be installed first
+
+ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
+```
+
+Edit `docker-compose.override.yml` and crate/extend the section for `php-fpm-mailcow`:
+
+```yml
+version: '2.1'
+services:
+  php-fpm-mailcow:
+    environment:
+      - ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}
+```
+
+
+Edit `data/web/js/site/mailbox.js` and the following code after [`if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }`](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487)
+
+```js
+if (ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE) {
+  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-xs ' + btnSize + ' btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
+}
+```
+
+Edit `data/web/mailbox.php` and add this line to array [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43):
+
+```php
+  'allow_admin_email_login_roundcube' => (preg_match("/^(yes|y)+$/i", $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"])) ? 'true' : 'false',
+```
+
+Edit `data/web/templates/mailbox.twig` and add this code to the bottom of the [javascript section](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57):
+
+```js
+  var ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE = {{ allow_admin_email_login_roundcube }};
+```
+
+Copy the contents of the following files from this [Snippet](https://gitlab.com/-/snippets/2038244):
+
+* `data/web/inc/lib/RoundcubeAutoLogin.php`
+* `data/web/rc-auth.php`
+
+Finally, restart mailcow
+
+```
+docker-compose down
+docker-compose up -d
 ```
