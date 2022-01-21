@@ -67,7 +67,7 @@ Initialize the database and leave the installer.
 
 **Delete the directory `data/web/rc/installer` after a successful installation!**
 
-### Configure ManageSieve filtering
+## Configure ManageSieve filtering
 
 Open `data/web/rc/plugins/managesieve/config.inc.php` and change the following parameters (or add them at the bottom of that file):
 ```
@@ -83,7 +83,7 @@ $config['managesieve_conn_options'] = array(
 $config['managesieve_vacation'] = 1;
 ```
 
-### Enable change password function in Roundcube
+## Enable change password function in Roundcube
 
 Open `data/web/rc/config/config.inc.php` and enable the password plugin:
 
@@ -115,7 +115,7 @@ $config['password_algorithm_prefix'] = '{SSHA256}';
 $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
 
-### Integrate CardDAV addressbooks in Roundcube
+## Integrate CardDAV addressbooks in Roundcube
 
 Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
@@ -194,7 +194,7 @@ rm -rf roundcube*
 sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" /web/rc/program/include/rcmail.php
 ```
 
-### Let admins log into Roundcube without password
+## Let admins log into Roundcube without password
 
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
 
