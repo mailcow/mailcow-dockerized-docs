@@ -1229,22 +1229,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#u2f" class="md-nav__link">
-    U2F
+  <a href="#webauthn-u2f-replacement" class="md-nav__link">
+    WebAuthn (U2F, replacement)
   </a>
   
-    <nav class="md-nav" aria-label="U2F">
+    <nav class="md-nav" aria-label="WebAuthn (U2F, replacement)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#totp" class="md-nav__link">
-    TOTP
+  <a href="#what-will-happen-to-my-registered-fido-security-key-after-the-update-from-u2f-to-webauthn" class="md-nav__link">
+    What will happen to my registered Fido Security Key after the Update from U2F to WebAuthn?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-unofficial-supported-fido-security-keys" class="md-nav__link">
+    Disable unofficial supported Fido Security Keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Disable unofficial supported Fido Security Keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-own-certificates-for-webauthn" class="md-nav__link">
+    Use own certificates for WebAuthn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-it-dangerous-to-keep-the-vendor-check-disabled" class="md-nav__link">
+    Is it dangerous to keep the Vendor Check disabled?
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#totp" class="md-nav__link">
+    TOTP
+  </a>
   
 </li>
       
@@ -2323,22 +2364,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#u2f" class="md-nav__link">
-    U2F
+  <a href="#webauthn-u2f-replacement" class="md-nav__link">
+    WebAuthn (U2F, replacement)
   </a>
   
-    <nav class="md-nav" aria-label="U2F">
+    <nav class="md-nav" aria-label="WebAuthn (U2F, replacement)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#totp" class="md-nav__link">
-    TOTP
+  <a href="#what-will-happen-to-my-registered-fido-security-key-after-the-update-from-u2f-to-webauthn" class="md-nav__link">
+    What will happen to my registered Fido Security Key after the Update from U2F to WebAuthn?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-unofficial-supported-fido-security-keys" class="md-nav__link">
+    Disable unofficial supported Fido Security Keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Disable unofficial supported Fido Security Keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-own-certificates-for-webauthn" class="md-nav__link">
+    Use own certificates for WebAuthn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is-it-dangerous-to-keep-the-vendor-check-disabled" class="md-nav__link">
+    Is it dangerous to keep the Vendor Check disabled?
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#totp" class="md-nav__link">
+    TOTP
+  </a>
   
 </li>
       
@@ -2361,12 +2443,12 @@
 
   <h1>Two-Factor Authentication</h1>
 
-<p>So far three methods for <em>Two-Factor Authentication</em> are implemented: U2F, Yubi OTP, and TOTP</p>
+<p>So far three methods for <em>Two-Factor Authentication</em> are implemented: WebAuthn (replacing U2F since February 2022), Yubi OTP, and TOTP</p>
 <ul>
-<li>For U2F to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.</li>
-<li>Both U2F and Yubi OTP work well with the fantastic <a href="https://www.yubico.com">Yubikey</a>.</li>
-<li>While Yubi OTP needs an active internet connection and an API ID + key, U2F will work with any FIDO U2F USB key out of the box, but can only be used when mailcow is accessed over HTTPS.</li>
-<li>U2F and Yubi OTP support multiple keys per user.</li>
+<li>For WebAuthn to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.</li>
+<li>Both WebAuthn and Yubi OTP work well with the fantastic <a href="https://www.yubico.com">Yubikey</a>.</li>
+<li>While Yubi OTP needs an active internet connection and an API ID + key, WebAuthn will work with any Fido Security Key out of the box, but can only be used when mailcow is accessed over HTTPS.</li>
+<li>WebAuthn and Yubi OTP support multiple keys per user.</li>
 <li>As the third TFA method mailcow uses TOTP: time-based one-time passwords. Those passwords can be generated with apps like "Google Authenticator" after initially scanning a QR code or entering the given secret manually.</li>
 </ul>
 <p>As administrator you are able to temporary disable a domain administrators TFA login until they successfully logged in.</p>
@@ -2387,25 +2469,66 @@ So that the YubiKey can be validated later, the checkmark in the <code>Upload</c
 In the dialog that opened now you can enter a name for this YubiKey and insert the <code>Client ID</code> you noted before as well as the <code>Secret key</code> into the fields provided.
 Finally, enter your current account password and, after selecting the <code>Touch Yubikey</code> field, touch your YubiKey button.</p>
 <p>Congratulations! You can now log in to the mailcow UI using your YubiKey!</p>
-<h2 id="u2f">U2F<a class="headerlink" href="#u2f" title="Permanent link">&para;</a></h2>
-<p>To use U2F, the browser must support this standard.</p>
+<hr />
+<h2 id="webauthn-u2f-replacement">WebAuthn (U2F, replacement)<a class="headerlink" href="#webauthn-u2f-replacement" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>:warning: <strong>Since February 2022 Google Chrome has discarded support for U2F and standardized the use of WebAuthn.<br></strong>
+<em>The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the <code>update.sh</code> script.</em></p>
+</blockquote>
+<p>To use WebAuthn, the browser must support this standard.</p>
 <p>The following desktop browsers support this authentication type:</p>
 <ul>
-<li>Edge (&gt;=79)</li>
-<li>Firefox (&gt;=47, enabled by default since version 67)</li>
-<li>Chrome (&gt;=41)</li>
+<li>Edge (&gt;=18)</li>
+<li>Firefox (&gt;=60)</li>
+<li>Chrome (&gt;=67)</li>
 <li>Safari (&gt;=13)</li>
-<li>Opera (40, &gt;=42, not 41)</li>
+<li>Opera (&gt;=54)</li>
 </ul>
 <p>The following mobile browsers support this authentication type:</p>
 <ul>
-<li>Safari on iOS (&gt;=13.3)</li>
-<li>Firefox on Android (&gt;=68)</li>
+<li>Safari on iOS (&gt;=14.5)</li>
+<li>Android Browser (&gt;=97)</li>
+<li>Opera Mobile (&gt;=64)</li>
+<li>Chrome for Android (&gt;=97)</li>
 </ul>
-<p>Sources: <a href="https://caniuse.com/u2f">caniuse.com</a>, <a href="https://blog.mozilla.org/security/2019/08/05/web-authentication-in-firefox-for-android/">blog.mozilla.org</a></p>
-<p>U2F works without an internet connection.</p>
-<h3 id="totp">TOTP<a class="headerlink" href="#totp" title="Permanent link">&para;</a></h3>
+<p>Sources: <a href="https://caniuse.com/webauthn">caniuse.com</a>, <a href="https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/">blog.mozilla.org</a></p>
+<p>WebAuthn works without an internet connection.</p>
+<h3 id="what-will-happen-to-my-registered-fido-security-key-after-the-update-from-u2f-to-webauthn">What will happen to my registered Fido Security Key after the Update from U2F to WebAuthn?<a class="headerlink" href="#what-will-happen-to-my-registered-fido-security-key-after-the-update-from-u2f-to-webauthn" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>:warning: With this new U2F replacement (WebAuthn) you have to re-register your Fido Security Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.</p>
+</blockquote>
+<p>Ideally, the next time you log in (with the key), you should get a text box saying that your Fido Security Key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.</p>
+<p>But don't worry! You can simply re-register your existing key and use it as usual, you probably won't even notice a difference, except that your browser won't show the U2F deactivation message anymore.</p>
+<h3 id="disable-unofficial-supported-fido-security-keys">Disable unofficial supported Fido Security Keys<a class="headerlink" href="#disable-unofficial-supported-fido-security-keys" title="Permanent link">&para;</a></h3>
+<p>With WebAuthn there is the possibility to use only official Fido Security Keys (from the big brands like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).</p>
+<p>This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used in their environment.</p>
+<p>To enable this feature, change the value <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf from <code>n</code> to <code>y</code> and restart the affected containers with <code>docker-compose up -d</code>.</p>
+<p>The mailcow will now use the Vendor Certificates located in your mailcow directory under <code>data/web/inc/lib/WebAuthn/rootCertificates</code>. </p>
+<h5 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
+<p>If you want to limit the official Vendor devices to Apple only you only need the Apple Vendor Certificate inside the <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
+After you deleted all other certs you now only can activate WebAuthn 2FA with Apple devices.</p>
+<p>That´s for every vendor the same, so choose what you like (if you want to).</p>
+<h4 id="use-own-certificates-for-webauthn">Use own certificates for WebAuthn<a class="headerlink" href="#use-own-certificates-for-webauthn" title="Permanent link">&para;</a></h4>
+<p>If you have a valid certificate from the vendor of your key you can also add it to your mailcow!</p>
+<p>Just copy the certificate into the <code>data/web/inc/lib/WebAuthn/rootCertificates</code> folder and restart your mailcow.</p>
+<p>Now you should be able to register this device as well, even though the verification for the vendor certificates is enabled, since you just added the certificate manually. </p>
+<h4 id="is-it-dangerous-to-keep-the-vendor-check-disabled">Is it dangerous to keep the Vendor Check disabled?<a class="headerlink" href="#is-it-dangerous-to-keep-the-vendor-check-disabled" title="Permanent link">&para;</a></h4>
+<p>No, it isn´t!
+These vendor certificates are only used to verify original hardware, not to secure the registration process.</p>
+<p>As you can read in these articles, the deactivation is not software security related:
+- <a href="https://developers.yubico.com/U2F/Attestation_and_Metadata/">https://developers.yubico.com/U2F/Attestation_and_Metadata/</a>
+- <a href="https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651">https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651</a>
+- <a href="https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01">https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01</a></p>
+<p>In the end, however, it is of course your decision to leave this check disabled or enabled. </p>
+<hr />
+<h2 id="totp">TOTP<a class="headerlink" href="#totp" title="Permanent link">&para;</a></h2>
 <p>The best known TFA method mostly used with a smartphone.</p>
+<p>To setup the TOTP method login to the Admin UI and select <code>Time-based OTP (TOTP)</code> from the list.</p>
+<p>Now a modal will open in which you have to type in a name for your 2FA "device" (example: John Deer´s Smartphone) and the password of the affected Admin account (you are currently logged in with).</p>
+<p>You have two seperate methods to register TOTP to your account:
+1. Scan the QR-Code with your Authenticator App on a Smartphone or Tablet.
+2. Use the TOTP Code (under the QR Code) in your TOTP Program or App (if you can´t scan a QR Code).</p>
+<p>After you have registered the QR or TOTP code in the TOTP app/program of your choice you only need to enter the now generated TOTP token (in the app/program) as confirmation in the mailcow UI to finally activate the TOTP 2FA, otherwise it will not be activated even though the TOTP token is already generated in your app/program.</p>
 
               
             </article>

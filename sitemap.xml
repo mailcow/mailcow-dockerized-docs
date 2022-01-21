@@ -2,497 +2,497 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/b_n_r-accidental_deletion/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/b_n_r-backup/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/b_n_r-coldstandby/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/b_n_r-restore/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-admin_login_sogo/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-asan_rspamd/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-attach_service/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-common_problems/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-logs/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-mysql_aria/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-mysql_upgrade/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_pw/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-reset_tls/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug-rm_volumes/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/debug/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-dmarc_reporting/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ip_bindings/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-local_mta/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-logging/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rp/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rspamd_ui/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-snat/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/firststeps-sync_jobs_migration/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_deinstall/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_migration/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_update/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/model-acl/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/model-passwd/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/model-sender_rcv/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-dns/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/restrictions_ip_accss/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-borgmatic/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-exchange_onprem/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-gitea/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-gogs/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-mailman3/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-mailpiler_integration/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-nextcloud/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-portainer/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party-roundcube/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-80_to_443/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-autodiscover_config/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-backup_restore-maildir/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-backup_restore-mysql/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-docker-cust_dockerfiles/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-docker-dc_bash_compl/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-any_acl/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-catchall_vacation/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-expunge/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-extra_conf/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-fts/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-idle_interval/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-mail-crypt/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-more/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-public_folder/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-static_master/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-dovecot-vmail-volume/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-fido2/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-bl_wl/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-config/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-css/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-pushover/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-spamalias/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-spamfilter/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-tagging/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-tfa/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-nginx/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-attachment_size/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-custom_transport/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-disable_sender_verification/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-extra_cf/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-pflogsumm/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-postscreen_whitelist/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-relayhost/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-postfix-trust_networks/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-redis/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-reeanble-weak-protocols/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-rspamd/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-sogo/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-unbound-fwd/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-update-hooks/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-watchdog-thresholds/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-webmail-site/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/u_e-why_unbound/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-android/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-apple/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-emclient/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-kontact/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-manual/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-outlook/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-thunderbird/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-windows/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/client/client-windowsphone/</loc>
-         <lastmod>2022-01-19</lastmod>
+         <lastmod>2022-01-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
