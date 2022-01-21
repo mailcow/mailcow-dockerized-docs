@@ -13,3 +13,6 @@ When calling the login process, the authenticator is not given any credential ID
 ## Who can use WebAuthn to login to mailcow?
 
 As of today, only administrators and domain administrators are able to setup WebAuthn/FIDO2.
+
+---
+**You want to use WebAuthn/Fido as 2FA? Check it out here: [Two-Factor Authentication](https://mailcow.github.io/mailcow-dockerized-docs/u_e-mailcow_ui-tfa/)**
