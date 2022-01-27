@@ -2471,10 +2471,11 @@ Finally, enter your current account password and, after selecting the <code>Touc
 <p>Congratulations! You can now log in to the mailcow UI using your YubiKey!</p>
 <hr />
 <h2 id="webauthn-u2f-replacement">WebAuthn (U2F, replacement)<a class="headerlink" href="#webauthn-u2f-replacement" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>:warning: <strong>Since February 2022 Google Chrome has discarded support for U2F and standardized the use of WebAuthn.<br></strong>
-<em>The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the <code>update.sh</code> script.</em></p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Since February 2022 Google Chrome has discarded support for U2F and standardized the use of WebAuthn.<br></strong>
+<em>The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the <code>update.sh</code></em> </p>
+</div>
 <p>To use WebAuthn, the browser must support this standard.</p>
 <p>The following desktop browsers support this authentication type:</p>
 <ul>
@@ -2494,9 +2495,10 @@ Finally, enter your current account password and, after selecting the <code>Touc
 <p>Sources: <a href="https://caniuse.com/webauthn">caniuse.com</a>, <a href="https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/">blog.mozilla.org</a></p>
 <p>WebAuthn works without an internet connection.</p>
 <h3 id="what-will-happen-to-my-registered-fido-security-key-after-the-update-from-u2f-to-webauthn">What will happen to my registered Fido Security Key after the Update from U2F to WebAuthn?<a class="headerlink" href="#what-will-happen-to-my-registered-fido-security-key-after-the-update-from-u2f-to-webauthn" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>:warning: With this new U2F replacement (WebAuthn) you have to re-register your Fido Security Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With this new U2F replacement (WebAuthn) you have to re-register your Fido Security Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.</p>
+</div>
 <p>Ideally, the next time you log in (with the key), you should get a text box saying that your Fido Security Key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.</p>
 <p>But don't worry! You can simply re-register your existing key and use it as usual, you probably won't even notice a difference, except that your browser won't show the U2F deactivation message anymore.</p>
 <h3 id="disable-unofficial-supported-fido-security-keys">Disable unofficial supported Fido Security Keys<a class="headerlink" href="#disable-unofficial-supported-fido-security-keys" title="Permanent link">&para;</a></h3>
