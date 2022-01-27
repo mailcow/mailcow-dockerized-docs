@@ -40,9 +40,10 @@ Congratulations! You can now log in to the mailcow UI using your YubiKey!
 ---
 
 ## WebAuthn (U2F, replacement)
-> :warning: **Since February 2022 Google Chrome has discarded support for U2F and standardized the use of WebAuthn.<br>**
-> *The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the `update.sh` script.*
-
+!!! warning
+    **Since February 2022 Google Chrome has discarded support for U2F and standardized the use of WebAuthn.<br>**
+    *The WebAuthn (U2F removal) is part of mailcow since 21th January 2022, so if you want to use the Key past February 2022 please consider a update with the `update.sh`* 
+    
 To use WebAuthn, the browser must support this standard.
 
 The following desktop browsers support this authentication type:
@@ -65,7 +66,8 @@ Sources: [caniuse.com](https://caniuse.com/webauthn), [blog.mozilla.org](https:/
 WebAuthn works without an internet connection.
 
 ### What will happen to my registered Fido Security Key after the Update from U2F to WebAuthn?
-> :warning: With this new U2F replacement (WebAuthn) you have to re-register your Fido Security Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.
+!!! warning
+    With this new U2F replacement (WebAuthn) you have to re-register your Fido Security Key, thankfully WebAuthn is backwards compatible and supports the U2F protocol.
 
 Ideally, the next time you log in (with the key), you should get a text box saying that your Fido Security Key has been removed due to the update to WebAuthn and deleted as a 2-factor authenticator.
 
