@@ -22,6 +22,7 @@ docker-compose up -d
 This might impact load-times of SOGo / EAS.
 In most cases, this should not be noticeable but should be kept in mind if you face any performance issues.
 - SOGo will not display a logout link for admin-logins, to login normally one has to logout from the mailcow UI so the PHP session is destroyed.
+- Subscribing to another user's calendar or address book while logged in as admin does not work. Neither does inviting other users to calendar events. The page will reload when these things are attempted.
 
 ## Technical details
 
