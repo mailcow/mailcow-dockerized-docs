@@ -74,6 +74,12 @@ plugins:
           'Statistics with pflogsumm': 'Statistik mit pflogsumm'
           'Whitelist IP in Postscreen': 'IP in Postscreen auf die Whitelist setzen'
 
+  - redirects:
+      redirect_maps:
+        # 'old': 'new'
+        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
+        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
+        'debug-reset-tls.md': 'debug-reset_tls.md'
 
 markdown_extensions:
   - attr_list
@@ -212,11 +218,3 @@ extra:
       link: https://twitter.com/mailcow_email    
 extra_css: [ assets/css/extra.css ]
 extra_javascript: [ assets/js/clients.js ]
-plugins:
-  - search
-  - redirects:
-      redirect_maps:
-        # 'old': 'new'
-        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
-        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
-        'debug-reset-tls.md': 'debug-reset_tls.md'
