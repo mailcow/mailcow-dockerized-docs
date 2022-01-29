@@ -4,7 +4,7 @@ Sync-Aufträge werden verwendet, um bestehende E-Mails von einem externen IMAP-S
     Abhängig von der ACL Ihrer Mailbox haben Sie möglicherweise nicht die Möglichkeit, einen Sync-Job hinzuzufügen. Bitte kontaktieren Sie in diesem Fall Ihren Domain-Administrator.
 
 ## Einrichten eines Sync-Jobs
-1. Erstellen Sie unter dem Punkt "Konfiguration --> E-Mail-Setup" oder "Benutzereinstellungen" einen neuen Synchronisierungsauftrag.
+1. Erstellen Sie unter dem Punkt "Konfiguration > E-Mail-Setup" oder "Benutzereinstellungen" einen neuen Synchronisierungsauftrag.
 
 2. Wenn Sie ein Administrator sind, wählen Sie den Benutzernamen der nachgelagerten mailcow-Mailbox im Dropdown-Menü "Benutzername".
 

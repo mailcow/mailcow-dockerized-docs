@@ -2,7 +2,7 @@ Sie müssen die Nginx-Seite, die mit mailcow: dockerized geliefert wird, nicht �
 mailcow: dockerized vertraut auf das Standard-Gateway IP 172.22.1.1 als Proxy.
 
 1\. Stellen Sie sicher, dass Sie HTTP_BIND und HTTPS_BIND in `mailcow.conf` auf eine lokale Adresse ändern und die Ports entsprechend einstellen, zum Beispiel:
-`` bash
+``` bash
 HTTP_BIND=127.0.0.1
 HTTP_PORT=8080
 HTTPS_BIND=127.0.0.1
@@ -274,7 +274,7 @@ Dieser Container überwacht die Datei `acme.json` auf Änderungen und generiert 
 
 Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker-compose verwenden (https://hub.docker.com/r/humenius/traefik-certs-dumper).
 
-Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#wie-sie-ihr-eigenes-zertifikat-verwenden).
+Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden).
 
 Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.
 

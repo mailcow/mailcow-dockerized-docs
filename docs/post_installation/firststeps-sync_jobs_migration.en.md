@@ -4,7 +4,7 @@ Sync jobs are used to copy or move existing emails from an external IMAP server 
     Depending on your mailbox's ACL you may not have the option to add a sync job. Please contact your domain administrator if so.
 
 ## Setup a Sync Job
-1. In the "Mail Setup" or "User Settings" interface, create a new sync job.
+1. In the "Configuration > Mail Setup" or "User Settings" interface, create a new sync job.
 
 2. If you are an administrator, select the username of the downstream mailcow mailbox in the "Username" dropdown.
 

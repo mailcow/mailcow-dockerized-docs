@@ -1,4 +1,4 @@
-## Let's Encrypt (sofort einsatzbereit)
+## Let's Encrypt (wird mitgeliefert)
 
 Der "acme-mailcow" Container wird versuchen, ein LE-Zertifikat für `${MAILCOW_HOSTNAME}`, `autodiscover.ADDED_MAIL_DOMAIN` und `autoconfig.ADDED_MAIL_DOMAIN` zu erhalten.
 
@@ -109,7 +109,7 @@ Die folgenden Zertifikate werden generiert:
 - `mail.domain1.tld, autoconfig.domain1.tld, autodiscover.domain1.tld` -> individuelles Zertifikat für domain1.tld, kann von Clients ohne SNI-Unterstützung nicht verwendet werden
 - `mail.domain2.tld, autoconfig.domain2.tld, autodiscover.domain2.tld` -> individuelles Zertifikat für domain2.tld, kann von Clients ohne SNI-Unterstützung nicht verwendet werden
 
-### Wie Sie Ihr eigenes Zertifikat verwenden
+### Ein eigenes Zertifikat verwenden
 
 Stellen Sie sicher, dass Sie mailcows internen LE-Client deaktivieren (siehe oben).
 
