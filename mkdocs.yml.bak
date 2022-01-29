@@ -1,5 +1,5 @@
 site_name: 'mailcow: dockerized documentation'
-site_url: https://systemtechie.de/mailcow-docs-2.0/
+site_url: https://mailcow.github.io/mailcow-dockerized-docs/
 copyright: "Copyright &copy; 2022 Servercow Team & Community<br>Based on the work from André Peters"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
