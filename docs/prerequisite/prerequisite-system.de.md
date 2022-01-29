@@ -1,8 +1,6 @@
-# Systemvorraussetzungen
-
 Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen überprüfen:
 
-!!! Warnung
+!!! warning
     Versuchen Sie **nicht**, mailcow auf einem Synology/QNAP-Gerät (jedes NAS), OpenVZ, LXC oder anderen Container-Plattformen zu installieren. KVM, ESX, Hyper-V und andere vollständige Virtualisierungsplattformen werden unterstützt.
 
 !!! info
