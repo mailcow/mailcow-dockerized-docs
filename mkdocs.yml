@@ -18,3 +18,9 @@ plugins:
       languages:
         en: English
         de: Deutsch
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - toc:
+      permalink: true
