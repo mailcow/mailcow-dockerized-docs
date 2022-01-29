@@ -120,6 +120,13 @@ markdown_extensions:
   - admonition
   - toc:
       permalink: true
+  - pymdownx.magiclink
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.extra
+  - footnotes    
 
 nav:
   - 'Information & Support': 'index.md'
