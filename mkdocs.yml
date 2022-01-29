@@ -124,8 +124,8 @@ markdown_extensions:
 nav:
   - 'Information & Support': 'index.md'
   - 'Prerequisites':
-    - 'Prepare your system': 'prerequisite-system.md'
-    - 'DNS setup': 'prerequisite-dns.md'
+    - 'Prepare your system': 'prerequisite/prerequisite-system.md'
+    - 'DNS setup': 'prerequisite/prerequisite-dns.md'
   - 'Installation, Update & Migration':
     - 'Installation': 'i_u_m_install.md'
     - 'Update': 'i_u_m_update.md'
