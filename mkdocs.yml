@@ -10,111 +10,9 @@ theme:
   name: material
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
-
-plugins:
-  - search
-  - i18n:
-      default_language: en
-      languages:
-        en: English
-        de: Deutsch
-      nav_translations:
-      #### Begin of german translation
-        de:
-          'Information & Support': 'Informationen & Support'
-          ### Prerequisites Section
-          'Prerequisites': 'Voraussetzungen'
-          'Prepare your system': 'Systemvoraussetzungen'
-          'DNS setup': 'DNS Einstellungen'
-          ### Installation Section
-          'Installation, Update & Migration': 'Installation, Update und Migration' 
-          ### Post Installation Tasks Section
-          'Post Installation Tasks': 'Post-Installationsaufgaben'
-          'Advanced SSL': 'Erweitertes SSL'
-          'Disable IPv6': 'IPv6 deaktivieren'
-          'IP bindings': 'IP-Verbindungen'
-          'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
-          'Sync job migration': 'Migration von Sync-Jobs'
-          ### Models Section
-          'Models': 'Modelle'
-          'Password hashing': 'Passwort-Hashing'
-          'Sender and receiver model': 'Sender- und Empfängermodell'
-          'General Troubleshooting': 'Allgemeine Fehlersuche'
-          'Introduction': 'Einführung'
-          'Admin login to SOGo': 'Admin-Anmeldung bei SOGo'
-          'Advanced: Find memory leaks in Rspamd': 'Fortgeschritten: Memory-Leaks in Rspamd finden'
-          'Attach a Container' : 'Einen Container anhängen'
-          'Common Problems': 'Häufig auftretende Probleme'
-          'Manual MySQL upgrade': 'Manuelles MySQL-Upgrade'
-          'Recover crashed Aria storage engine': 'Abgestürzte Aria-Speicher-Engine wiederherstellen'
-          'Remove Persistent Data': 'Persistente Daten löschen'
-          'Reset Passwords (incl. SQL)': 'Passwörter zurücksetzen (inkl. SQL)'
-          'Reset TLS certificates': 'TLS-Zertifikate zurücksetzen'
-          ### Backup & Restore Section
-          'Backup & Restore': 'Sichern & Wiederherstellen'
-          'Component backup & restore' : 'Sicherung und Wiederherstellung von Komponenten'
-          'Backup': 'Sicherung'
-          'Restore': 'Wiederherstellung'
-          'Cold-standby (rolling backup)' : 'Cold-standby (rollende Sicherung)'
-          'Manual backups' : 'Manuelle Sicherung'
-          'Maildir' : 'Mail-Verzeichnis'
-          'mailcow-internal backups' : 'Interne mailcow Sicherungen'
-          'Recover accidentally deleted data' : 'Versehentlich gelöschte Daten wiederherstellen'
-          ### Manual/Guides/Examples Section
-          'Manual/Guides/Examples': 'Anleitungen/Beispiele'
-            ### Mailcow UI Subsection
-          'Configuration' : 'Konfiguration'
-          'CSS overrides' : 'CSS-Überschreibungen'
-          'Tagging' : 'Tagging (Markierungen)'
-          'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
-          'Two-Factor Authentication' : 'Zwei-Faktoren-Authentifizierung'
-            ### Postfix Subsection
-          'Add trusted networks': 'Vertrauenswürdige Netzwerke hinzufügen'
-          'Custom transport maps': 'Benutzerdefinierte Transportmaps'
-          'Customize/Expand main.cf': 'main.cf anpassen/erweitern'
-          'Disable Sender Addresses Verification': 'Überprüfung der Absenderadressen deaktivieren'
-          'Max. message size (attachment size)': 'Maximale Nachrichtengröße (Größe des Anhangs)'
-          'Statistics with pflogsumm': 'Statistik mit pflogsumm'
-          'Whitelist IP in Postscreen': 'IP in Postscreen auf die Whitelist setzen'
-            ### Unbound Subsection
-          'Using an external DNS service': 'Verwendung eines externen DNS-Dienstes'
-            ### Dovecot Subsection
-          'Customize/Expand dovecot.conf': 'Anpassen/Erweitern von dovecot.conf'
-          'Enable "any" ACL settings': 'Aktivierung von "any" ACL-Einstellungen'
-          'Expunge a Users mails': 'Löschen der Mails eines Benutzers'
-          'IMAP IDLE interval': 'IMAP IDLE-Intervall'
-          'More Examples with DOVEADM': 'Weitere Beispiele mit DOVEADM'
-          'Move Maildir (vmail)': 'Maildir verschieben (vmail)'
-          'Public folders': 'Öffentliche Ordner'
-          'Static master user': 'Statischer Hauptbenutzer'
-          'Vacation replies for catchall addresses': 'Urlaubsantworten für Catchall-Adressen'
-            ### Nginx Subsection
-          'Create subdomain webmail.example.org': 'Subdomäne webmail.example.org erstellen'
-          'Custom sites': 'Benutzerdefinierte Seiten'
-            ### Watchdog Subsection
-          'Thresholds': 'Schwellenwert'
-            ### Docker Subsection
-          'Customize Dockerfiles': 'Dockerfiles anpassen'
-          'Why unbound?': 'Warum unbound?'
-          'Redirect HTTP to HTTPS': 'HTTP auf HTTPS umleiten'
-          'Re-enable TLS 1.0 and TLS 1.1': 'TLS 1.0 und TLS 1.1 wieder aktivieren'
-          'Run scripts before and after updates': 'Skripte vor und nach Aktualisierungen ausführen'
-          ### Client Configuration Section
-          'Client Configuration': 'Client-Konfiguration'
-          'Overview': 'Übersicht'
-          'Manual configuration': 'Manuelle Konfiguration'
-          ### Third party apps Section
-          'Third party apps': 'Anwendungen von Drittanbietern'
-          'Borgmatic Backup': 'Borgmatic-Sicherung'
-       #### End of german translation   
-
-  - redirects:
-      redirect_maps:
-        # 'old': 'new'
-        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
-        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
-        'debug-reset-tls.md': 'debug-reset_tls.md'
-
+  features:
+    - navigation.top
+    - navigation.tracking
 markdown_extensions:
   - attr_list
   - admonition
@@ -246,6 +144,110 @@ nav:
     - 'Nextcloud': 'third_party-nextcloud.md'
     - 'Portainer': 'third_party-portainer.md'
     - 'Roundcube': 'third_party-roundcube.md'
+    
+plugins:
+  - search
+  - redirects:
+      redirect_maps:
+        # 'old': 'new'
+        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
+        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
+        'debug-reset-tls.md': 'debug-reset_tls.md'  
+  - i18n: # <--- Translation plugin
+      default_language: en
+      languages:
+        en: English
+        de: Deutsch
+      nav_translations:
+      #### Begin of german translation
+        de:
+          'Information & Support': 'Informationen & Support'
+          ### Prerequisites Section
+          'Prerequisites': 'Voraussetzungen'
+          'Prepare your system': 'Systemvoraussetzungen'
+          'DNS setup': 'DNS Einstellungen'
+          ### Installation Section
+          'Installation, Update & Migration': 'Installation, Update und Migration' 
+          ### Post Installation Tasks Section
+          'Post Installation Tasks': 'Post-Installationsaufgaben'
+          'Advanced SSL': 'Erweitertes SSL'
+          'Disable IPv6': 'IPv6 deaktivieren'
+          'IP bindings': 'IP-Verbindungen'
+          'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
+          'Sync job migration': 'Migration von Sync-Jobs'
+          ### Models Section
+          'Models': 'Modelle'
+          'Password hashing': 'Passwort-Hashing'
+          'Sender and receiver model': 'Sender- und Empfängermodell'
+          'General Troubleshooting': 'Allgemeine Fehlersuche'
+          'Introduction': 'Einführung'
+          'Admin login to SOGo': 'Admin-Anmeldung bei SOGo'
+          'Advanced: Find memory leaks in Rspamd': 'Fortgeschritten: Memory-Leaks in Rspamd finden'
+          'Attach a Container' : 'Einen Container anhängen'
+          'Common Problems': 'Häufig auftretende Probleme'
+          'Manual MySQL upgrade': 'Manuelles MySQL-Upgrade'
+          'Recover crashed Aria storage engine': 'Abgestürzte Aria-Speicher-Engine wiederherstellen'
+          'Remove Persistent Data': 'Persistente Daten löschen'
+          'Reset Passwords (incl. SQL)': 'Passwörter zurücksetzen (inkl. SQL)'
+          'Reset TLS certificates': 'TLS-Zertifikate zurücksetzen'
+          ### Backup & Restore Section
+          'Backup & Restore': 'Sichern & Wiederherstellen'
+          'Component backup & restore' : 'Sicherung und Wiederherstellung von Komponenten'
+          'Backup': 'Sicherung'
+          'Restore': 'Wiederherstellung'
+          'Cold-standby (rolling backup)' : 'Cold-standby (rollende Sicherung)'
+          'Manual backups' : 'Manuelle Sicherung'
+          'Maildir' : 'Mail-Verzeichnis'
+          'mailcow-internal backups' : 'Interne mailcow Sicherungen'
+          'Recover accidentally deleted data' : 'Versehentlich gelöschte Daten wiederherstellen'
+          ### Manual/Guides/Examples Section
+          'Manual/Guides/Examples': 'Anleitungen/Beispiele'
+            ### Mailcow UI Subsection
+          'Configuration' : 'Konfiguration'
+          'CSS overrides' : 'CSS-Überschreibungen'
+          'Tagging' : 'Tagging (Markierungen)'
+          'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
+          'Two-Factor Authentication' : 'Zwei-Faktoren-Authentifizierung'
+            ### Postfix Subsection
+          'Add trusted networks': 'Vertrauenswürdige Netzwerke hinzufügen'
+          'Custom transport maps': 'Benutzerdefinierte Transportmaps'
+          'Customize/Expand main.cf': 'main.cf anpassen/erweitern'
+          'Disable Sender Addresses Verification': 'Überprüfung der Absenderadressen deaktivieren'
+          'Max. message size (attachment size)': 'Maximale Nachrichtengröße (Größe des Anhangs)'
+          'Statistics with pflogsumm': 'Statistik mit pflogsumm'
+          'Whitelist IP in Postscreen': 'IP in Postscreen auf die Whitelist setzen'
+            ### Unbound Subsection
+          'Using an external DNS service': 'Verwendung eines externen DNS-Dienstes'
+            ### Dovecot Subsection
+          'Customize/Expand dovecot.conf': 'Anpassen/Erweitern von dovecot.conf'
+          'Enable "any" ACL settings': 'Aktivierung von "any" ACL-Einstellungen'
+          'Expunge a Users mails': 'Löschen der Mails eines Benutzers'
+          'IMAP IDLE interval': 'IMAP IDLE-Intervall'
+          'More Examples with DOVEADM': 'Weitere Beispiele mit DOVEADM'
+          'Move Maildir (vmail)': 'Maildir verschieben (vmail)'
+          'Public folders': 'Öffentliche Ordner'
+          'Static master user': 'Statischer Hauptbenutzer'
+          'Vacation replies for catchall addresses': 'Urlaubsantworten für Catchall-Adressen'
+            ### Nginx Subsection
+          'Create subdomain webmail.example.org': 'Subdomäne webmail.example.org erstellen'
+          'Custom sites': 'Benutzerdefinierte Seiten'
+            ### Watchdog Subsection
+          'Thresholds': 'Schwellenwert'
+            ### Docker Subsection
+          'Customize Dockerfiles': 'Dockerfiles anpassen'
+          'Why unbound?': 'Warum unbound?'
+          'Redirect HTTP to HTTPS': 'HTTP auf HTTPS umleiten'
+          'Re-enable TLS 1.0 and TLS 1.1': 'TLS 1.0 und TLS 1.1 wieder aktivieren'
+          'Run scripts before and after updates': 'Skripte vor und nach Aktualisierungen ausführen'
+          ### Client Configuration Section
+          'Client Configuration': 'Client-Konfiguration'
+          'Overview': 'Übersicht'
+          'Manual configuration': 'Manuelle Konfiguration'
+          ### Third party apps Section
+          'Third party apps': 'Anwendungen von Drittanbietern'
+          'Borgmatic Backup': 'Borgmatic-Sicherung'
+       #### End of german translation
+
 extra:
   palette:
     primary: "indigo"
