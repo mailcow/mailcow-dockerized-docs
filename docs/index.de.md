@@ -2,9 +2,9 @@
 
 ## Hilf dem mailcow Projekt
 
-Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Du_ _uns_ unterstützt. :)
+Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow DE](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Du_ _uns_ unterstützt. :)
 
-Wenn du super toll bist und ohne Vertrag unterstützen möchtest, kannst du eine SAL-Lizenz bekommen, die deine Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow EN](https://www.servercow.de/mailcow?lang=en#sal)/[Servercow DE](https://www.servercow.de/mailcow#sal).
+Wenn du super toll bist und ohne Vertrag unterstützen möchtest, kannst du eine SAL-Lizenz bekommen, die deine Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow DE](https://www.servercow.de/mailcow#sal).
 
 ## Support erhalten
 
@@ -12,7 +12,7 @@ Es gibt zwei Möglichkeiten, Support für Ihre mailcow-Installation zu erhalten.
 
 ### Kommerzieller Support
 
-Für professionellen und priorisierten kommerziellen Support können Sie ein Basis-Support-Abonnement unter [Servercow EN](https://www.servercow.de/mailcow?lang=en#support)/[Servercow DE](https://www.servercow.de/mailcow#support) abschließen. Für kundenspezifische Anfragen oder Fragen kontaktieren Sie uns stattdessen bitte unter [info@servercow.de](mailto:info@servercow.de).
+Für professionellen und priorisierten kommerziellen Support können Sie ein Basis-Support-Abonnement unter [Servercow DE](https://www.servercow.de/mailcow#support) abschließen. Für kundenspezifische Anfragen oder Fragen kontaktieren Sie uns stattdessen bitte unter [info@servercow.de](mailto:info@servercow.de).
 
 Darüber hinaus bieten wir auch eine voll ausgestattete und verwaltete Mailcow [hier](https://www.servercow.de/mailcow#managed) an. Auf diese Weise kümmern wir uns um die technische Magie darunter und Sie können Ihr ganzes Mail-Erlebnis auf eine problemlose Weise genießen.
 
@@ -37,7 +37,7 @@ Nur für **Fehlerverfolgung, Feature Requests und Codebeiträge**:
 Sie können eine Demo unter [demo.mailcow.email](https://demo.mailcow.email) finden, benutzen Sie die folgenden Anmeldedaten zum Login:
 
 - **Administrator**: admin / moohoo
-- **Domänen-Administrator**: Abteilung / moohoo
+- **Domänen-Administrator**: department / moohoo
 - **Postfach**: demo@440044.xyz / moohoo
 
 ## Überblick

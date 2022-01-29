@@ -1,6 +1,6 @@
 site_name: 'mailcow: dockerized documentation'
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: "Copyright &copy; 2022 Servercow Team & Community<br>Based on the work from André Peters"
+copyright: "Copyright &copy; 2022 Servercow Team & Community<br>Based on the work from [@andryyy](https://github.com/andryyy)"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -37,16 +37,16 @@ nav:
     - 'Migration': 'i_u_m/i_u_m_migration.md'
     - 'Deinstallation': 'i_u_m/i_u_m_deinstall.md'
   - 'Post Installation Tasks':
-    - 'Advanced SSL': 'firststeps-ssl.md'
-    - 'Disable IPv6': 'firststeps-disable_ipv6.md'
-    - 'DMARC Reporting': 'firststeps-dmarc_reporting.md'
-    - 'IP bindings': 'firststeps-ip_bindings.md'
-    - 'Local MTA on Docker host': 'firststeps-local_mta.md'
-    - 'Logging': 'firststeps-logging.md'
-    - 'Reverse Proxy': 'firststeps-rp.md'
-    - 'Rspamd UI': 'firststeps-rspamd_ui.md'
-    - 'SNAT': 'firststeps-snat.md'
-    - 'Sync job migration': 'firststeps-sync_jobs_migration.md'
+    - 'Advanced SSL': 'post_installation/firststeps-ssl.md'
+    - 'Disable IPv6': 'post_installation/firststeps-disable_ipv6.md'
+    - 'DMARC Reporting': 'post_installation/firststeps-dmarc_reporting.md'
+    - 'IP bindings': 'post_installation/firststeps-ip_bindings.md'
+    - 'Local MTA on Docker host': 'post_installation/firststeps-local_mta.md'
+    - 'Logging': 'post_installation/firststeps-logging.md'
+    - 'Reverse Proxy': 'post_installation/firststeps-rp.md'
+    - 'Rspamd UI': 'post_installation/firststeps-rspamd_ui.md'
+    - 'SNAT': 'post_installation/firststeps-snat.md'
+    - 'Sync job migration': 'post_installation/firststeps-sync_jobs_migration.md'
   - 'Models':
     - 'ACL': 'model-acl.md'
     - 'Password hashing': 'model-passwd.md'
