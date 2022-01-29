@@ -1,6 +1,6 @@
 Sie benötigen Docker (eine Version >= `20.10.2` ist erforderlich) und Docker Compose (eine Version `<= 2.0` ist erforderlich).
 
-**1\.** Erfahren Sie, wie Sie [Docker] (https://docs.docker.com/install/) und [Docker Compose] (https://docs.docker.com/compose/install/) installieren.
+**1\.** Erfahren Sie, wie Sie [Docker](https://docs.docker.com/install/) und [Docker Compose](https://docs.docker.com/compose/install/) installieren.
 
 Schnelle Installation für die meisten Betriebssysteme:
 
@@ -13,7 +13,7 @@ systemctl enable --now docker
 
 - Docker-Zusammenstellung
 
-!!! Warnung
+!!! warning
     **mailcow benötigt die neueste Version von docker-compose v1.** Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um `docker-compose` zu installieren. Paket-Manager (z.B. `apt`, `yum`) werden **wahrscheinlich** nicht die richtige Version liefern.
     Hinweis: Dieser Befehl lädt docker-compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).
 
@@ -76,7 +76,7 @@ nano mailcow.conf
 ```
 Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.
 
-Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe [dieses Kapitel](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-local_mta/), um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow zu laufen.
+Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe [dieses Kapitel](/post_installation/firststeps-local_mta.md), um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow zu laufen.
 
 Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.
 
@@ -99,7 +99,7 @@ Netzwerke:
 
 **Einschalten von IPv6. Endlich.**
 
-Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (thehe), ist es empfehlenswert, [IPv6 zu deaktivieren](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-disable_ipv6/) für das mailcow-Netzwerk, um unvorhergesehene Probleme zu vermeiden.
+Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (thehe), ist es empfehlenswert, [IPv6 zu deaktivieren](/post_installation/firststeps-disable_ipv6.md) für das mailcow-Netzwerk, um unvorhergesehene Probleme zu vermeiden.
 
 
 **5\.** Ziehen Sie die Images und führen Sie die Compose-Datei aus. Der Parameter `-d` wird mailcow starten: dockerized detached:
@@ -113,7 +113,7 @@ Geschafft!
 Sie können nun auf **https://${MAILCOW_HOSTNAME}** mit den Standard-Zugangsdaten `admin` + Passwort `moohoo` zugreifen.
 
 !!! info
-    Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](https://mailcow.github.io/mailcow-dockerized-docs/u_e-80_to_443/).
+    Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](/u_e/80_to_443.md).
 
 Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zu MySQL hergestellt werden kann.
 
