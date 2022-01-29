@@ -66,6 +66,13 @@ plugins:
           'Tagging' : 'Tagging (Markierungen)'
           'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
           'Two-Factor Authentication' : 'Zwei-Faktoren-Authentifizierung'
+          'Add trusted networks': 'Vertrauenswürdige Netzwerke hinzufügen'
+          'Custom transport maps': 'Benutzerdefinierte Transportmaps'
+          'Customize/Expand main.cf': 'main.cf anpassen/erweitern'
+          'Disable Sender Addresses Verification': 'Überprüfung der Absenderadressen deaktivieren'
+          'Max. message size (attachment size)': 'Maximale Nachrichtengröße (Größe des Anhangs)'
+          'Statistics with pflogsumm': 'Statistik mit pflogsumm'
+          'Whitelist IP in Postscreen': 'IP in Postscreen auf die Whitelist setzen'
 
 
 markdown_extensions:
@@ -192,3 +199,24 @@ nav:
     - 'Nextcloud': 'third_party-nextcloud.md'
     - 'Portainer': 'third_party-portainer.md'
     - 'Roundcube': 'third_party-roundcube.md'
+extra:
+  palette:
+    primary: "indigo"
+    accent: "orange"
+  social:
+    - icon: fontawesome/solid/globe-americas
+      link: https://mailcow.email
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/mailcow
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/mailcow_email    
+extra_css: [ assets/css/extra.css ]
+extra_javascript: [ assets/js/clients.js ]
+plugins:
+  - search
+  - redirects:
+      redirect_maps:
+        # 'old': 'new'
+        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
+        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
+        'debug-reset-tls.md': 'debug-reset_tls.md'
