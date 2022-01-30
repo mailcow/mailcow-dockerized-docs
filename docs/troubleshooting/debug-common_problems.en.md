@@ -4,7 +4,7 @@ Here we list common problems and possible solutions:
 
 Please check in your mailcow UI if you made the domain a **backup MX**:
 
-![Check your MX Backup settings](assets/images/troubleshooting/mailcow-backupmx.png)
+![Check your MX Backup settings](../assets/images/troubleshooting/mailcow-backupmx.png)
 
 ## I can receive but not send mails
 
@@ -22,7 +22,7 @@ Escape character is '^]'.
 
 ## My mails are identified as Spam
 
-Please read our guide on [DNS configuration](prerequisites/prerequisite-dns.en.md).
+Please read our guide on [DNS configuration](../prerequisites/prerequisite-dns.en.md).
 
 ## docker-compose throws weird errors
 
@@ -51,7 +51,7 @@ If you get an error message like:
 ERROR: for postfix-mailcow  Cannot start service postfix-mailcow: driver failed programming external     connectivity on endpoint mailcowdockerized_postfix-mailcow_1: Error starting userland proxy: listen tcp 0.0.0.0:25: bind: address already in use
 ```
 
-while trying to start / install mailcow: dockerized, make sure you've followed our section on the [prerequisites](prerequisites/prerequisite-system.en.md/#firewall-ports).
+while trying to start / install mailcow: dockerized, make sure you've followed our section on the [prerequisites](../prerequisites/prerequisite-system.en.md/#firewall-ports).
 
 ## XYZ can't connect to ...
 
