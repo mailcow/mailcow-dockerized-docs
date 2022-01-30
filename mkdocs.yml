@@ -48,9 +48,9 @@ nav:
     - 'SNAT': 'post_installation/firststeps-snat.md'
     - 'Sync job migration': 'post_installation/firststeps-sync_jobs_migration.md'
   - 'Models':
-    - 'ACL': 'model-acl.md'
-    - 'Password hashing': 'model-passwd.md'
-    - 'Sender and receiver model': 'model-sender_rcv.md'
+    - 'ACL': 'models/model-acl.md'
+    - 'Password hashing': 'models/model-passwd.md'
+    - 'Sender and receiver model': 'models/model-sender_rcv.md'
   - 'General Troubleshooting':
     - 'Introduction': 'debug.md'
     - 'Admin login to SOGo': 'debug-admin_login_sogo.md'
