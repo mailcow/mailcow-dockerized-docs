@@ -76,7 +76,7 @@ nano mailcow.conf
 ```
 Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.
 
-Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe [dieses Kapitel](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-local_mta), um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow zu laufen.
+Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe [dieses Kapitel](../post_installation/firststeps-local_mta.de.md), um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow zu laufen.
 
 Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.
 
@@ -99,7 +99,7 @@ Netzwerke:
 
 **Einschalten von IPv6. Endlich.**
 
-Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, [IPv6 zu deaktivieren](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-disable_ipv6) für das mailcow-Netzwerk, um unvorhergesehene Probleme zu vermeiden.
+Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, [IPv6 zu deaktivieren](../post_installation/firststeps-disable_ipv6.de.md) für das mailcow-Netzwerk, um unvorhergesehene Probleme zu vermeiden.
 
 
 **5\.** Ziehen Sie die Images und führen Sie die Compose-Datei aus. Der Parameter `-d` wird mailcow starten: dockerized detached:
@@ -113,7 +113,7 @@ Geschafft!
 Sie können nun auf **https://${MAILCOW_HOSTNAME}** mit den Standard-Zugangsdaten `admin` + Passwort `moohoo` zugreifen.
 
 !!! info
-    Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](https://mailcow.github.io/mailcow-dockerized-docs/de/u_e/80_to_443).
+    Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](../u_e/80_to_443.de.md).
 
 Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zu MySQL hergestellt werden kann.
 

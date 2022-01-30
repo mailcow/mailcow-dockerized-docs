@@ -6,7 +6,7 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 !!! info
     - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
     - Make sure that no other application is interfering with mailcow's configuration, such as another mail service
-    - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the [basics](../prerequisite-dns#the-minimal-dns-configuration) covered before you begin!
+    - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the [basics](../prerequisite/prerequisite-dns.en.md#the-minimal-dns-configuration) covered before you begin!
     - Make sure that your system has a correct date and [time setup](#date-and-time). This is crucial for various components like two factor TOTP authentication.
 
 ## Minimum System Resources
@@ -169,4 +169,4 @@ You may want to [disable cloud-init network changes.](https://wiki.hetzner.de/in
 
 ## MTU
 
-Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See **4.1** in [our installation docs](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/).
+Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See **4.1** in [our installation docs](../i_u_m/i_u_m_install.en.md).

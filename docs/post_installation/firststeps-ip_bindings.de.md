@@ -1,5 +1,5 @@
 !!! warning
-    Das Ändern der Bindung hat keinen Einfluss auf Source-NAT. Siehe [SNAT](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-snat) für die erforderlichen Schritte.
+    Das Ändern der Bindung hat keinen Einfluss auf Source-NAT. Siehe [SNAT](../post_installation/firststeps-snat.de.md) für die erforderlichen Schritte.
 
 ## IPv4-Binding
 

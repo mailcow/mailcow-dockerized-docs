@@ -76,7 +76,7 @@ nano mailcow.conf
 ```
 If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.1 on port 8443 and HTTP to 127.0.0.1 on port 8080.
 
-You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](https://mailcow.github.io/mailcow-dockerized-docs/post_installation/firststeps-local-mta) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
+You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](../post_installation/firststeps-local-mta.en.md) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
 
 Some updates modify mailcow.conf and add new parameters. It is hard to keep track of them in the documentation. Please check their description and, if unsure, ask at the known channels for advise.
 
@@ -99,7 +99,7 @@ networks:
 
 **Enable IPv6. Finally.**
 
-If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](https://mailcow.github.io/mailcow-dockerized-docs/post_installation/firststeps-disable_ipv6) for the mailcow network to prevent unforeseen issues.
+If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](../post_installation/firststeps-disable_ipv6.en.md) for the mailcow network to prevent unforeseen issues.
 
 
 **5\.** Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
@@ -113,7 +113,7 @@ Done!
 You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials `admin` + password `moohoo`.
 
 !!! info
-    If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](https://mailcow.github.io/mailcow-dockerized-docs/u_e/80_to_443).
+    If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](../u_e/80_to_443.en.md).
 
 The database will be initialized right after a connection to MySQL can be established.
 

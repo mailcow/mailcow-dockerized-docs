@@ -80,7 +80,7 @@ Fügen Sie `ONLY_MAILCOW_HOSTNAME=y` zu "mailcow.conf" hinzu und erstellen Sie "
 Let's Encrypt hat derzeit [ein Limit von 100 Domainnamen pro Zertifikat](https://letsencrypt.org/docs/rate-limits/).
 
 Standardmäßig erstellt "acme-mailcow" ein einzelnes SAN-Zertifikat für alle validierten Domains
-(siehe den [ersten Abschnitt](#lets-encrypt-out-of-the-box) und [Zusätzliche Domainnamen](#additional-domain-names)).
+(siehe den [ersten Abschnitt](#lets-encrypt-wird-mitgeliefert) und [Zusätzliche Domainnamen](#zusatzliche-domain-namen)).
 Dies bietet beste Kompatibilität, bedeutet aber, dass das Let's Encrypt-Limit überschritten wird, wenn Sie zu viele Domains zu einer einzelnen Mailcow-Installation hinzufügen.
 
 Um dies zu lösen, können Sie `ENABLE_SSL_SNI` so konfigurieren, dass es generiert wird:
@@ -125,7 +125,7 @@ docker neu starten $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
-Siehe [Post-Hook-Skript für Nicht-Mailcow-ACME-Clients](../firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients) für ein vollständiges Beispielskript.
+Siehe [Post-Hook-Skript für Nicht-Mailcow-ACME-Clients](../post_installation/firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients) für ein vollständiges Beispielskript.
 
 ### Test gegen das ACME-Verzeichnis
 
