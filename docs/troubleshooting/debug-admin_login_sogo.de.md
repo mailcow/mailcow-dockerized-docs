@@ -1,4 +1,4 @@
-Dies ist eine experimentelle Funktion, die es Admins und Domänenadmins erlaubt, sich direkt als Mailbox-Benutzer direkt bei SOGo anzumelden, ohne das Passwort des Benutzers zu kennen.
+Dies ist eine experimentelle Funktion, die es Admins und Domänenadmins erlaubt, sich direkt als Mailbox-Benutzer bei SOGo anzumelden, ohne das Passwort des Benutzers zu kennen.
 Dazu wird ein zusätzlicher Link zu SOGo in der Mailbox-Liste (mailcow UI) angezeigt.
 
 Auch mehrere gleichzeitige Admin-Logins auf verschiedene Postfächer sind mit dieser Funktion möglich.

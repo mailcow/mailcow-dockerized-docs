@@ -65,14 +65,14 @@ nav:
     - 'Reset TLS certificates': 'troubleshooting/debug-reset_tls.md'
   - 'Backup & Restore':
     - 'Component backup & restore':
-      - 'Backup': 'b_n_r-backup.md'
-      - 'Restore': 'b_n_r-restore.md'
-    - 'Cold-standby (rolling backup)': 'b_n_r-coldstandby.md'
+      - 'Backup': 'backup_restore/b_n_r-backup.md'
+      - 'Restore': 'backup_restore/b_n_r-restore.md'
+    - 'Cold-standby (rolling backup)': 'backup_restore/b_n_r-coldstandby.md'
     - 'Manual backups':
-      - 'Maildir': 'u_e-backup_restore-maildir.md'
-      - 'MySQL (mysqldump)': 'u_e-backup_restore-mysql.md'
+      - 'Maildir': 'backup_restore/b_n_r-backup_restore-maildir.md'
+      - 'MySQL (mysqldump)': 'backup_restore/b_n_r-backup_restore-mysql.md'
     - 'mailcow-internal backups':
-      - 'Recover accidentally deleted data': 'b_n_r-accidental_deletion.md'
+      - 'Recover accidentally deleted data': 'backup_restore/b_n_r-accidental_deletion.md'
   - 'Manual/Guides/Examples':
     - 'mailcow UI':
       - 'Blacklist / Whitelist': 'u_e-mailcow_ui-bl_wl.md'
