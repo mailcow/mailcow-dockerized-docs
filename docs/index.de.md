@@ -2,9 +2,9 @@
 
 ## Hilf dem mailcow Projekt
 
-Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow DE](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Du_ _uns_ unterstützt. :)
+Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Du_ _uns_ unterstützt. :)
 
-Wenn du super toll bist und ohne Vertrag unterstützen möchtest, kannst du eine SAL-Lizenz bekommen, die deine Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow DE](https://www.servercow.de/mailcow#sal).
+Wenn du super toll bist und ohne Vertrag unterstützen möchtest, kannst du eine SAL-Lizenz bekommen, die deine Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow](https://www.servercow.de/mailcow#sal).
 
 ## Support erhalten
 
@@ -12,7 +12,7 @@ Es gibt zwei Möglichkeiten, Support für Ihre mailcow-Installation zu erhalten.
 
 ### Kommerzieller Support
 
-Für professionellen und priorisierten kommerziellen Support können Sie ein Basis-Support-Abonnement unter [Servercow DE](https://www.servercow.de/mailcow#support) abschließen. Für kundenspezifische Anfragen oder Fragen kontaktieren Sie uns stattdessen bitte unter [info@servercow.de](mailto:info@servercow.de).
+Für professionellen und priorisierten kommerziellen Support können Sie ein Basis-Support-Abonnement unter [Servercow](https://www.servercow.de/mailcow#support) abschließen. Für kundenspezifische Anfragen oder Fragen kontaktieren Sie uns stattdessen bitte unter [info@servercow.de](mailto:info@servercow.de).
 
 Darüber hinaus bieten wir auch eine voll ausgestattete und verwaltete Mailcow [hier](https://www.servercow.de/mailcow#managed) an. Auf diese Weise kümmern wir uns um die technische Magie darunter und Sie können Ihr ganzes Mail-Erlebnis auf eine problemlose Weise genießen.
 
@@ -25,6 +25,8 @@ Die andere Alternative ist unser kostenloser Community-Support auf unseren versc
 - Telegram @ [t.me/mailcow](https://t.me/mailcow).
 
 - Telegram @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
+
+- Twitter [@mailcow_email](https://twitter.com/mailcow_email)
 
 Telegram Desktop-Clients sind für [mehrere Plattformen](https://desktop.telegram.org) verfügbar. Sie können den Gruppenverlauf nach Stichworten durchsuchen.
 
