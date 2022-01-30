@@ -21,7 +21,7 @@ Escape-Zeichen ist '^]'.
 
 ## Meine Mails werden als Spam identifiziert
 
-Bitte lesen Sie unsere [DNS-Konfiguration](../prerequisites/prerequisite-dns.de.md) Anleitung.
+Bitte lesen Sie unsere [DNS-Konfiguration](../prerequisite/prerequisite-dns.de.md) Anleitung.
 
 ## docker-compose wirft seltsame Fehler aus.
 
@@ -50,7 +50,7 @@ Wenn Sie eine Fehlermeldung erhalten wie:
 ERROR: for postfix-mailcow Cannot start service postfix-mailcow: driver failed programming external connectivity on endpoint mailcowdockerized_postfix-mailcow_1: Error starting userland proxy: listen tcp 0.0.0:25: bind: address already in use
 ```
 
-während Sie versuchen, mailcow: dockerized zu starten / zu installieren, stellen Sie sicher, dass Sie unseren Abschnitt über [prerequisites](../prerequisites/prerequisite-system.de.md/#firewall-ports) befolgt haben.
+während Sie versuchen, mailcow: dockerized zu starten / zu installieren, stellen Sie sicher, dass Sie unseren Abschnitt über [prerequisites](../prerequisite/prerequisite-system.de.md/#firewall-ports) befolgt haben.
 
 
 ## XYZ kann keine Verbindung zu ...
