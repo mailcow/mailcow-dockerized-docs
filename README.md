@@ -113,3 +113,14 @@ docs <-- Root Folder
 │    ├── file.XX.md
 ```
 
+---
+
+### Testing
+
+To build and test it locally, you need the [Material theme for MkDocs](https://squidfunk.github.io/mkdocs-material/), [MkDocs](https://www.mkdocs.org/) itself and [Pygments](http://pygments.org/). To install these with [pip](https://pip.pypa.io/en/stable/) and get it up and running, fire up your terminal and enter
+
+```
+git clone https://github.com/mailcow/mailcow-dockerized-docs.git
+pip install -r requirements.txt
+mkdocs serve
+```
