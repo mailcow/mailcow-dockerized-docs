@@ -10,7 +10,7 @@ As administrator you are able to temporary disable a domain administrators TFA l
 
 The key used to login will be displayed in green, while other keys remain grey.
 
-Information on how to remove 2FA can be found [here](../troubleshooting/debug-reset_pw.en.md#remove-two-factor-authentication).
+Information on how to remove 2FA can be found [here](../../troubleshooting/debug-reset_pw.en.md#remove-two-factor-authentication).
 
 ## Yubi OTP
 

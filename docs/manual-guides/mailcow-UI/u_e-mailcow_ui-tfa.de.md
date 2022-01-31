@@ -10,7 +10,7 @@ Als Administrator können Sie den TFA-Login eines Domain-Administrators vorüber
 
 Der für die Anmeldung verwendete Schlüssel wird in grüner Farbe angezeigt, während andere Schlüssel grau bleiben.
 
-Informationen zum Entfernen von 2FA finden Sie [hier](../troubleshooting/debug-reset_pw.de.md#zwei-faktor-authentifizierung-entfernen).
+Informationen zum Entfernen von 2FA finden Sie [hier](../../troubleshooting/debug-reset_pw.de.md#zwei-faktor-authentifizierung-entfernen).
 
 ## Yubi OTP
 
