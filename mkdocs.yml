@@ -83,7 +83,7 @@ nav:
       - 'Tagging': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tagging.md'
       - 'Temporary email aliases': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias.md'
       - 'Two-Factor Authentication': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.md'
-      - 'WebAuthn / FIDO2': 'manual-guides/mailcow-UI/u_e-fido.md'
+      - 'WebAuthn / FIDO2': 'manual-guides/mailcow-UI/u_e-mailcow_ui-fido.md'
     - 'Postfix':
       - 'Add trusted networks': 'u_e-postfix-trust_networks.md'
       - 'Custom transport maps': 'u_e-postfix-custom_transport.md'
