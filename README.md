@@ -40,7 +40,7 @@ As a start for possible translations, the language must first be added to the la
         [...] <--- Add the languages here.
 [...]
 ```
-The new language will now appear in the language selector once the mkdocs are rebuilt (see [Tests](#Testing)).
+The new language will now appear in the language selector once the mkdocs are rebuilt (see [Testing](#Testing)).
 
 The i18n plugin for mkdocs (see [here](https://github.com/ultrabug/mkdocs-static-i18n) is used for our documentation, so the standard notations of the plugin apply (see [here](https://github.com/ultrabug/mkdocs-static-i18n#referencing-localized-content-in-your-markdown-pages)) i.e. each language of a page will be a separate `.md` file which is composed of the `filename.languagecode.md`.
 
