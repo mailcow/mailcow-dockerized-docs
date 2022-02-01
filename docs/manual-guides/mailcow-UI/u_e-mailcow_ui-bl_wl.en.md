@@ -5,6 +5,6 @@ To add or edit an entry to your **domain-wide** filter table, log in to your *ma
 
 
 !!! info
-    Be aware that a user can override this [setting](u_e-mailcow_ui-spamfilter.en.md) by setting their own blacklist and whitelist!
+    Be aware that a user can override this [setting](u_e-mailcow_ui-spamfilter.md) by setting their own blacklist and whitelist!
 
 There is also a global filter table in `Configuration > Configuration & Details > Global filter maps` to configure a **server wide** filter for multiple regex maps (todo: screenshots).
