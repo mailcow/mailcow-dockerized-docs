@@ -13,7 +13,7 @@ theme:
   favicon: assets/images/favicon.png
   features:
     - navigation.top
-    - navigation.tracking
+    - navigation.tracking  
 markdown_extensions:
   - attr_list
   - admonition
@@ -251,8 +251,16 @@ plugins:
 
 extra:
   palette:
-    primary: "indigo"
-    accent: "orange"
+   - scheme: default
+     toggle:
+     icon: material/toggle-switch-off-outline 
+     name: Dark Mode
+  - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Light Mode
+  primary: "indigo"
+  accent: "orange"
   social:
     - icon: fontawesome/solid/globe-americas
       link: https://mailcow.email
