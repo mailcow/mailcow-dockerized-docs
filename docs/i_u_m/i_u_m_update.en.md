@@ -68,7 +68,7 @@ docker-compose up -d
 
 ### Hooks
 
-You can hook into the update mechanism by adding scripts called `pre_commit_hook.sh` and `post_commit_hook.sh` to your mailcows root directory. See [this](../manual-guides/update-hooks.en.md) for more details.
+You can hook into the update mechanism by adding scripts called `pre_commit_hook.sh` and `post_commit_hook.sh` to your mailcows root directory. See [this](../manual-guides/u_e-update-hooks.md) for more details.
 
 ## Footnotes
 

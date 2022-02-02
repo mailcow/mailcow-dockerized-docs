@@ -68,7 +68,7 @@ docker-compose up -d
 
 ### Hooks
 
-Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens `pre_commit_hook.sh` und `post_commit_hook.sh` zu Ihrem mailcows-Root-Verzeichnis hinzufügen. Siehe [hier](../manual-guides/update-hooks.de.md) für weitere Details.
+Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens `pre_commit_hook.sh` und `post_commit_hook.sh` zu Ihrem mailcows-Root-Verzeichnis hinzufügen. Siehe [hier](../manual-guides/u_e-update-hooks.md) für weitere Details.
 
 ## Fußnoten
 

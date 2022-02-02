@@ -1,7 +1,7 @@
 ## Der "neue" Weg
 
 !!! warning
- Neuere Docker-Versionen scheinen sich über bestehende Volumes zu beschweren. Man kann dies vorübergehend beheben, indem man das bestehende Volume entfernt und mailcow mit der Override-Datei startet. Aber es scheint nach einem Neustart problematisch zu sein (muss bestätigt werden).
+    Neuere Docker-Versionen scheinen sich über bestehende Volumes zu beschweren. Man kann dies vorübergehend beheben, indem man das bestehende Volume entfernt und mailcow mit der Override-Datei startet. Aber es scheint nach einem Neustart problematisch zu sein (muss bestätigt werden).
 
 Ein einfacher, schmutziger, aber stabiler Workaround ist es, mailcow zu stoppen (`docker-compose down`), `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data` zu entfernen und einen neuen Link zu Ihrem entfernten Dateisystem zu erstellen, zum Beispiel:
 

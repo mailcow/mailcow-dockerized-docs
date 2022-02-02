@@ -1,6 +1,6 @@
 site_name: 'mailcow: dockerized documentation'
 site_url: https://mailcow.github.io/mailcow-dockerized-docs/
-copyright: "Copyright &copy; 2022 Servercow Team & Community"
+copyright: "Copyright &copy; 2022 Servercow Team & Community<br>Revision: 2"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -108,21 +108,21 @@ nav:
       - 'Static master user': 'manual-guides/Dovecot/u_e-dovecot-static_master.md'
       - 'Vacation replies for catchall addresses': 'manual-guides/Dovecot/u_e-dovecot-catchall_vacation.md'
     - 'Nginx':
-      - 'Create subdomain webmail.example.org': 'u_e-webmail-site.md'
-      - 'Custom sites': 'u_e-nginx.md'
+      - 'Create subdomain webmail.example.org': 'manual-guides/Nginx/u_e-nginx_webmail-site.md'
+      - 'Custom sites': 'manual-guides/Nginx/u_e-nginx_custom.md'
     - 'Watchdog':
-      - 'Thresholds': 'u_e-watchdog-thresholds.md'
-    - 'Redis': 'u_e-redis.md'
-    - 'Rspamd': 'u_e-rspamd.md'
-    - 'SOGo': 'u_e-sogo.md'
+      - 'Thresholds': 'manual-guides/Watchdog/u_e-watchdog-thresholds.md'
+    - 'Redis': 'manual-guides/Redis/u_e-redis.md'
+    - 'Rspamd': 'manual-guides/Rspamd/u_e-rspamd.md'
+    - 'SOGo': 'manual-guides/SOGo/u_e-sogo.md'
     - 'Docker':
-      - 'Customize Dockerfiles': 'u_e-docker-cust_dockerfiles.md'
-      - 'Docker Compose Bash Completion': 'u_e-docker-dc_bash_compl.md'
-    - 'Why unbound?': 'u_e-why_unbound.md'
-    - 'Autodiscover / Autoconfig': 'u_e-autodiscover_config.md'
-    - 'Redirect HTTP to HTTPS': 'u_e-80_to_443.md'
-    - 'Re-enable TLS 1.0 and TLS 1.1': 'u_e-reeanble-weak-protocols.md'
-    - "Run scripts before and after updates": "u_e-update-hooks.md"
+      - 'Customize Dockerfiles': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.md'
+      - 'Docker Compose Bash Completion': 'manual-guides/Docker/u_e-docker-dc_bash_compl.md'
+    - 'Why unbound?': 'manual-guides/u_e-why_unbound.md'
+    - 'Autodiscover / Autoconfig': 'manual-guides/u_e-autodiscover_config.md'
+    - 'Redirect HTTP to HTTPS': 'manual-guides/u_e-80_to_443.md'
+    - 'Re-enable TLS 1.0 and TLS 1.1': 'manual-guides/u_e-reeanble-weak-protocols.md'
+    - "Run scripts before and after updates": "manual-guides/u_e-update-hooks.md"
   - 'Client Configuration':
     - 'Overview': 'client.md'
     - 'Android': 'client/client-android.md'
