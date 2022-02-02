@@ -146,6 +146,7 @@ nav:
     
 plugins:
   - search
+  - git-revision-date
   - redirects:
       redirect_maps:
         # 'old': 'new'
