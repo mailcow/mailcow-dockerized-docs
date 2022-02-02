@@ -8,6 +8,7 @@ remote_branch: gh-pages
 
 theme:
   name: material
+  custom_dir: overrides
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
   features:
