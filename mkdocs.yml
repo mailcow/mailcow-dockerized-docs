@@ -11,12 +11,12 @@ theme:
   palette:
    - scheme: default
      toggle:
-     icon: material/toggle-switch-off-outline 
-     name: Dark Mode
+       icon: material/toggle-switch-off-outline 
+       name: Dark Mode
    - scheme: slate 
      toggle:
-     icon: material/toggle-switch
-     name: Light Mode
+       icon: material/toggle-switch
+       name: Light Mode
   custom_dir: overrides
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
