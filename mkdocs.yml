@@ -22,7 +22,7 @@ theme:
   favicon: assets/images/favicon.png
   features:
     - navigation.top
-    - navigation.tracking  
+    - navigation.tracking
 markdown_extensions:
   - attr_list
   - admonition

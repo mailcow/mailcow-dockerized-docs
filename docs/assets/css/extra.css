@@ -9,7 +9,7 @@
 }
 body, input {
     font-family: "Source Sans Pro", "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: black;
+    /* color: black; */
 }
 code {
     display: inline-block;
