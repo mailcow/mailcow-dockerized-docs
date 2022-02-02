@@ -255,12 +255,12 @@ extra:
      toggle:
      icon: material/toggle-switch-off-outline 
      name: Dark Mode
-  - scheme: slate 
-      toggle:
-        icon: material/toggle-switch
-        name: Light Mode
-  primary: "indigo"
-  accent: "orange"
+   - scheme: slate 
+     toggle:
+     icon: material/toggle-switch
+     name: Light Mode
+   primary: "indigo"
+   accent: "orange"
   social:
     - icon: fontawesome/solid/globe-americas
       link: https://mailcow.email
