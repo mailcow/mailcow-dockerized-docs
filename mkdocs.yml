@@ -155,8 +155,11 @@ nav:
     
 plugins:
   - search
-  - git-revision-date-localized
-  - git-authors
+  - git-revision-date-localized:
+      type: date
+      timezone: Europe/Berlin
+  - git-authors:
+      show_contributors: true
   - redirects:
       redirect_maps:
         # 'old': 'new'
