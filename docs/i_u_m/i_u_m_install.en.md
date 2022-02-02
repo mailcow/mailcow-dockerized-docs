@@ -113,7 +113,7 @@ Done!
 You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials `admin` + password `moohoo`.
 
 !!! info
-    If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](../manual-guides/80_to_443.en.md).
+    If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](../manual-guides/u_e-80_to_443.md).
 
 The database will be initialized right after a connection to MySQL can be established.
 

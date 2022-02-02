@@ -124,7 +124,7 @@ nav:
     - 'Re-enable TLS 1.0 and TLS 1.1': 'manual-guides/u_e-reeanble-weak-protocols.md'
     - "Run scripts before and after updates": "manual-guides/u_e-update-hooks.md"
   - 'Client Configuration':
-    - 'Overview': 'client.md'
+    - 'Overview': 'client/client.md'
     - 'Android': 'client/client-android.md'
     - 'Apple macOS / iOS': 'client/client-apple.md'
     - 'eM Client': 'client/client-emclient.md'
@@ -132,7 +132,6 @@ nav:
     - 'Microsoft Outlook': 'client/client-outlook.md'
     - 'Mozilla Thunderbird': 'client/client-thunderbird.md'
     - 'Windows Mail': 'client/client-windows.md'
-    - 'Windows Phone': 'client/client-windowsphone.md'
     - 'Manual configuration': 'client/client-manual.md'
   - 'Third party apps':
     - 'Borgmatic Backup': 'third_party-borgmatic.md'
@@ -232,7 +231,7 @@ plugins:
           'Create subdomain webmail.example.org': 'Subdomäne webmail.example.org erstellen'
           'Custom sites': 'Benutzerdefinierte Seiten'
             ### Watchdog Subsection
-          'Thresholds': 'Schwellenwert'
+          'Thresholds': 'Thresholds'
             ### Docker Subsection
           'Customize Dockerfiles': 'Dockerfiles anpassen'
           'Why unbound?': 'Warum unbound?'
@@ -260,4 +259,4 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/mailcow_email    
 extra_css: [ assets/css/extra.css ]
-extra_javascript: [ assets/js/clients.js ]
+extra_javascript: [ assets/javascript/clients.js ]
