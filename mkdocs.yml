@@ -156,10 +156,10 @@ nav:
 plugins:
   - search
   - git-revision-date-localized:
-      type: date
+      type: iso_datetime
       timezone: Europe/Berlin
   - git-authors:
-      show_contributors: true
+      show_contribution: true
   - redirects:
       redirect_maps:
         # 'old': 'new'
