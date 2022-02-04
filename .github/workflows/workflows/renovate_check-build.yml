@@ -1,0 +1,23 @@
+name: Check build for renovate
+on:
+   push:
+     branches:
+       - 'renovate/**'
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 📥
+        uses: actions/checkout@v2.4.0
+        with:
+          token: '${{ secrets.GHPAGES_ACTION_CHECKOUT_TOKEN_PAT }}'
+
+      - name: Install dependencies 🐄
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install python3-pip
+          pip install -r requirements.txt
+
+      - name: Build site 🔧
+        run: |
+          mkdocs build --verbose --clean
