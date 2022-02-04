@@ -5,6 +5,7 @@ E-Mail, Kontakte und Kalender können auf Apple-Geräten automatisch konfigurier
 ## Methode 1.1: IMAP, SMTP und Cal/CardDAV
 
 Diese Methode konfiguriert IMAP, CardDAV und CalDAV.
+
 1. Downloaden und öffnen <span class="client_variables_unavailable">die Datei von <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php">mailcow.mobileconfig</a></span>.
 2. Geben Sie den Entsperrungscode (iPhone) oder das Computerpasswort (Mac) ein.
 3. Geben Sie Ihr E-Mail-Passwort dreimal ein, wenn Sie dazu aufgefordert werden.
@@ -12,6 +13,7 @@ Diese Methode konfiguriert IMAP, CardDAV und CalDAV.
 ## Methode 1.2: IMAP, SMTP (kein DAV)
 
 Diese Methode konfiguriert nur IMAP und SMTP.
+
 1. Downloaden und öffnen Sie <span class="client_variables_unavailable">die Datei von <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email">mailcow.mobileconfig</a></span>.
 2. Geben Sie den Entsperrungscode (iPhone) oder das Computerpasswort (Mac) ein.
 3. Geben Sie Ihr E-Mail-Passwort dreimal ein, wenn Sie dazu aufgefordert werden.
