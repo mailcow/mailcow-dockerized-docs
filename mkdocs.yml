@@ -273,5 +273,5 @@ extra:
     palette:
       primary: indigo
       accent: orange
-extra_css: [ assets/extra.css ]
-extra_javascript: [ assets/clients.js ]
+extra_css: [ assets/stylesheets/extra.css ]
+extra_javascript: [ assets/javascripts/clients.js ]
