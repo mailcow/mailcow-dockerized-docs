@@ -81,6 +81,7 @@ retention:
     keep_daily: 7
     keep_weekly: 4
     keep_monthly: 6
+    prefix: ""
 
 hooks:
     mysql_databases:
