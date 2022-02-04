@@ -156,7 +156,7 @@ docker-compose exec borgmatic-mailcow borgmatic extract --path mnt/source --arch
 ```
 
 Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
-[Auflistung aller verfügbaren Archive](#auflistung-aller-verfügbaren-archive))
+[Auflistung aller verfügbaren Archive](#auflistung-aller-verfugbaren-archive))
 
 ### MySQL wiederherstellen
 
@@ -170,7 +170,7 @@ docker-compose exec borgmatic-mailcow borgmatic restore --archive latest
 ```
 
 Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
-[Auflistung aller verfügbaren Archive](#auflistung-aller-verfügbaren-archive))
+[Auflistung aller verfügbaren Archive](#auflistung-aller-verfugbaren-archive))
 
 ### Nach der Wiederherstellung
 
