@@ -19,6 +19,7 @@ theme:
        name: Light Mode
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
+  custom_dir: docs/overrides
   features:
     - navigation.top
     - navigation.tracking
@@ -273,5 +274,5 @@ extra:
     palette:
       primary: indigo
       accent: orange
-extra_css: [ assets/css/extra.css ]
-extra_javascript: [ assets/javascript/clients.js ]
+extra_css: [ extra.css ]
+extra_javascript: [ clients.js ]
