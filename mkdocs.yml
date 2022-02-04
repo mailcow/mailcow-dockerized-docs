@@ -157,15 +157,7 @@ plugins:
   - search
   - git-revision-date-localized:
       type: iso_datetime
-      timezone: Europe/Berlin
-  - git-authors:
-      show_contribution: true
-  - redirects:
-      redirect_maps:
-        # 'old': 'new'
-        'u_e-mailpiler-integration.md': 'third_party-mailpiler_integration.md'
-        'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
-        'debug-reset-tls.md': 'debug-reset_tls.md'  
+      timezone: Europe/Berlin 
   - i18n: # <--- Translation plugin
       default_language: en
       languages:
@@ -274,4 +266,5 @@ extra:
       primary: indigo
       accent: orange
 extra_css: [ assets/stylesheets/extra.css ]
-extra_javascript: [ assets/javascripts/clients.js ]
+extra_javascript:
+  - assets/javascripts/client.js
