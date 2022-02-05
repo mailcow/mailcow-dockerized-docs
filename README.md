@@ -1,4 +1,7 @@
-[![Build and deploy to gh-pages](https://img.shields.io/github/workflow/status/mailcow/mailcow-dockerized-docs/Build%20and%20deploy%20to%20gh-pages/master?label=Build%20and%20deploy%20to%20gh-pages)](https://github.com/mailcow/mailcow-dockerized-docs/actions/workflows/gh-pages.yml)
+> ⚠️: _**This branch of the mailcow docs is deprecated!**_<br>
+> All Old Pull requests have been closed in case of incompatibility.<br>
+> This Branch is for archiving purposes only!
+    
 
 # mailcow: dockerized documentation
 
