@@ -307,7 +307,7 @@ Für **Mailman** holen Sie sich einfach die neueste Version aus dem [github repo
 
 ## Sicherung
 
-**mailcow** hat ein eigenes Backup-Skript. [Lies die Docs](../backup_restore/b_n_r_backup.md) für weitere Informationen.
+**mailcow** hat ein eigenes Backup-Skript. [Lies die Docs](../backup_restore/b_n_r-backup.md) für weitere Informationen.
 
 **Mailman** gibt keine Backup-Anweisungen in der README.md an. Im [gitbucket von pgollor](https://gitbucket.pgollor.de/docker/mailman-mailcow-integration/blob/master/mailman-backup.sh) befindet sich ein Skript, das hilfreich sein könnte.
 
