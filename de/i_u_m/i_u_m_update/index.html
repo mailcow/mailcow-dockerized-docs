@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/i_u_m/i_u_m_update/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.10">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2b4465f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d6be258b.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -2444,13 +2444,13 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 # Dies wird **Konflikte** beim Zusammenführen zugunsten Ihrer lokalen Änderungen lösen und sollte vermieden werden. Lokale Änderungen werden immer beibehalten, es sei denn, wir haben auch die Datei XY geändert.
 ./update.sh --ours
 
-# - Nicht aktualisieren, sondern Bilder vorholen und beenden
+# - Nicht aktualisieren, nur holen von Docker Images
 ./update.sh --prefetch
 </code></pre></div>
 <h3 id="ich-habe-vergessen-was-ich-vor-dem-ausfuhren-von-updatesh-geandert-habe">Ich habe vergessen, was ich vor dem Ausführen von update.sh geändert habe.<a class="headerlink" href="#ich-habe-vergessen-was-ich-vor-dem-ausfuhren-von-updatesh-geandert-habe" title="Permanent link">&para;</a></h3>
 <p>Siehe <code>git log --pretty=oneline | grep -i "before update"</code>, Sie werden eine Ausgabe ähnlich dieser haben:</p>
-<div class="highlight"><pre><span></span><code>22cd00b5e28893ef9ddef3c2b5436453cc5223ab Vor der Aktualisierung am 2020-09-28_19_25_45
-dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Vor der Aktualisierung am 2020-08-07_13_31_31
+<div class="highlight"><pre><span></span><code>22cd00b5e28893ef9ddef3c2b5436453cc5223ab Before update on 2020-09-28_19_25_45
+dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
 </code></pre></div>
 <p>Führen Sie <code>git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab</code> aus, um zu sehen, was sich geändert hat.</p>
 <h3 id="kann-ich-ein-rollback-durchfuhren">Kann ich ein Rollback durchführen?<a class="headerlink" href="#kann-ich-ein-rollback-durchfuhren" title="Permanent link">&para;</a></h3>
@@ -2474,7 +2474,7 @@ docker-compose up -d
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 11:23:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-06 11:00:58</span>
       
     
   </small>
@@ -2584,10 +2584,10 @@ docker-compose up -d
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "translations": {"clipboard.copy": "In Zwischenablage kopieren", "clipboard.copied": "In Zwischenablage kopiert", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.placeholder": "Suchbegriff eingeben", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}, "search": "../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.960e086b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e3b2bf44.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       
