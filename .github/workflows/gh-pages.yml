@@ -3,6 +3,8 @@ on:
    push:
      branches:
        - master
+   workflow_dispatch: # Allow to run workflow manually
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -11,6 +13,7 @@ jobs:
         uses: actions/checkout@v2.4.0
         with:
           token: '${{ secrets.GHPAGES_ACTION_CHECKOUT_TOKEN_PAT }}'
+          fetch-depth: '0' # https://github.com/timvink/mkdocs-git-revision-date-localized-plugin#note-when-using-build-environments
 
       - name: Install dependencies 🐄
         run: |
