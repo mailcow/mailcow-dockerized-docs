@@ -37,7 +37,7 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 # Dies wird **Konflikte** beim Zusammenführen zugunsten Ihrer lokalen Änderungen lösen und sollte vermieden werden. Lokale Änderungen werden immer beibehalten, es sei denn, wir haben auch die Datei XY geändert.
 ./update.sh --ours
 
-# - Nicht aktualisieren, sondern Bilder vorholen und beenden
+# - Nicht aktualisieren, nur holen von Docker Images
 ./update.sh --prefetch
 ```
 
@@ -46,8 +46,8 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 Siehe `git log --pretty=oneline | grep -i "before update"`, Sie werden eine Ausgabe ähnlich dieser haben:
 
 ```
-22cd00b5e28893ef9ddef3c2b5436453cc5223ab Vor der Aktualisierung am 2020-09-28_19_25_45
-dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Vor der Aktualisierung am 2020-08-07_13_31_31
+22cd00b5e28893ef9ddef3c2b5436453cc5223ab Before update on 2020-09-28_19_25_45
+dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
 ```
 
 Führen Sie `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` aus, um zu sehen, was sich geändert hat.
