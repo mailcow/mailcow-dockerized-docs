@@ -1,4 +1,4 @@
-Sie haben also ein Postfach gelöscht und haben keine Sicherungskopien, was?
+Sie haben also ein Postfach gelöscht und haben keine Sicherungskopien?
 
 Wenn Sie Ihren Fehler innerhalb von ein paar Stunden bemerken, können Sie die Daten des Benutzers wahrscheinlich wiederherstellen.
 
@@ -6,7 +6,7 @@ Wenn Sie Ihren Fehler innerhalb von ein paar Stunden bemerken, können Sie die D
 
 Wir erstellen automatisch tägliche Backups (24 Stunden Intervall ab dem Hochfahren -d) in `/var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/`.
 
-**Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrer Mailcow** existiert. Legen Sie sie neu an, falls sie fehlen.
+**Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrem Mailcow-Backend** existiert. Legen Sie diesen neu an, falls nicht mehr existent.
 
 Kopieren Sie die Datei mit dem Namen des Benutzers, den Sie wiederherstellen wollen, nach `__MAILCOW_DIRECTORY__/data/conf/sogo`.
 
@@ -28,11 +28,11 @@ Eine gelöschte Mailbox wird in ihrer verschlüsselten Form nach `/var/lib/docke
 
 Der Ordner innerhalb von `_garbage` folgt der Struktur `[timestamp]_[domain_sanitized][user_sanitized]`, zum Beispiel `1629109708_exampleorgtest` im Falle von test@example.org, das am 1629109708 gelöscht wurde.
 
-Um wiederherzustellen, stellen Sie sicher, dass Sie tatsächlich auf die gleiche Mailcow wiederherstellen, von der sie gelöscht wurde, oder Sie verwenden die gleichen Verschlüsselungsschlüssel in `crypt-vol-1`.
+Um die Mailbox wiederherzustellen, stellen Sie sicher, dass Sie tatsächlich auf die gleiche Mailcow wiederherstellen, von der sie gelöscht wurde, oder Sie verwenden die gleichen Verschlüsselungsschlüssel in `crypt-vol-1`.
 
-**Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrer Mailcow existiert**. Legen Sie sie neu an, wenn sie fehlen.
+**Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrer Mailcow existiert**. Legen Sie diesen neu an, wenn der Benutzer fehlt.
 
-Kopieren Sie die Ordner von `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]` zurück nach `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]` und synchronisieren Sie die Ordner neu und berechnen Sie die Quote neu:
+Kopieren Sie die Ordner von `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]` zurück nach `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]` und synchronisieren Sie die Ordner neu und berechnen Sie die Quota (Speicherplatz) neu:
 
 ```
 docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
