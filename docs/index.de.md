@@ -2,9 +2,9 @@
 
 ## Hilf dem mailcow Projekt
 
-Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Du_ _uns_ unterstützt. :)
+Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Sie_ _uns_ unterstützen. :)
 
-Wenn du super toll bist und ohne Vertrag unterstützen möchtest, kannst du eine SAL-Lizenz bekommen, die deine Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow](https://www.servercow.de/mailcow#sal).
+Wenn Sie super toll sind und ohne Vertrag unterstützen möchten, können Sie eine SAL-Lizenz bekommen, die Ihre Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow](https://www.servercow.de/mailcow#sal).
 
 ## Support erhalten
 
@@ -80,18 +80,18 @@ Jeder Container repräsentiert eine einzelne Anwendung.
 - [Rspamd](https://www.rspamd.com/)
 - [SOGo](https://sogo.nu/)
 - [Solr](https://solr.apache.org/) (optional)
-- [Ungebunden](https://unbound.net/)
+- [Unbound](https://unbound.net/)
 - Ein Watchdog für die grundlegende Überwachung
 
 **Docker-Volumes** zur Aufbewahrung dynamischer Daten - kümmern Sie sich um sie!
 
-- krypt-vol-1
+- crypt-vol-1
 - mysql-socket-vol-1
 - mysql-vol-1
 - postfix-vol-1
 - redis-vol-1
 - rspamd-vol-1
-- sogo-benutzerdaten-backup-vol-1
+- sogo-userdata-backup-vol-1
 - sogo-web-vol-1
 - solr-vol-1
 - vmail-index-vol-1

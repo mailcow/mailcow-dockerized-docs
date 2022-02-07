@@ -30,7 +30,7 @@ autoconfig IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 
 ## DKIM, SPF und DMARC
 
-Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher **SPF** TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("`~all`"). Weitere Informationen finden Sie im [SPF-Projekt] (http://www.open-spf.org/).
+Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher **SPF** TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("`~all`"). Weitere Informationen finden Sie im [SPF-Projekt](http://www.open-spf.org/).
 
 ```
 # Name Typ Wert
@@ -53,7 +53,7 @@ _dmarc IN TXT "v=DMARC1; p=reject; rua=mailto:mailauth-reports@example.org"
 
 ## Die erweiterte DNS-Konfiguration
 
-**SRV**-Einträge geben den/die Server für ein bestimmtes Protokoll in Ihrer Domäne an. Wenn Sie einen Dienst explizit als nicht bereitgestellt ankündigen wollen, geben Sie "." als Zieladresse an (statt "mail.example.org."). Bitte beachten Sie [RFC 2782] (https://tools.ietf.org/html/rfc2782).
+**SRV**-Einträge geben den/die Server für ein bestimmtes Protokoll in Ihrer Domäne an. Wenn Sie einen Dienst explizit als nicht bereitgestellt ankündigen wollen, geben Sie "." als Zieladresse an (statt "mail.example.org."). Bitte beachten Sie [RFC 2782](https://tools.ietf.org/html/rfc2782).
 
 ```
 # Name Typ Priorität Gewicht Port Wert
@@ -88,7 +88,7 @@ Hier finden Sie einige Tools, mit denen Sie Ihre DNS-Konfiguration überprüfen 
 Wenn Sie an Statistiken interessiert sind, können Sie sich zusätzlich bei einem der vielen unten aufgeführten DMARC-Statistikdienste anmelden - oder Ihre eigene Statistik selbst hosten.
 
 !!! Tipp
-Es ist zu bedenken, dass wenn Sie DMARC-Statistik-Berichte an Ihren Mailcow-Server anfordern und Ihr Mailcow-Server nicht korrekt für den Empfang dieser Berichte konfiguriert ist, Sie möglicherweise keine genauen und vollständigen Ergebnisse erhalten. Bitte erwägen Sie die Verwendung einer alternativen E-Mail-Domain für den Empfang von DMARC-Berichten.
+Es ist zu bedenken, dass wenn Sie DMARC-Statistik-Berichte an Ihren mailcow-Server anfordern und Ihr mailcow-Server nicht korrekt für den Empfang dieser Berichte konfiguriert ist, Sie möglicherweise keine genauen und vollständigen Ergebnisse erhalten. Bitte erwägen Sie die Verwendung einer alternativen E-Mail-Domain für den Empfang von DMARC-Berichten.
 
 Es ist erwähnenswert, dass die folgenden Vorschläge keine umfassende Liste aller verfügbaren Dienste und Tools sind, sondern nur eine kleine Auswahl der vielen Möglichkeiten.
 

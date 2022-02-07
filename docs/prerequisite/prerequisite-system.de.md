@@ -24,7 +24,7 @@ Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressour
 
 Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe https://docs.docker.com/install/). Wir testen auf CentOS 7, Debian 10/11 und Ubuntu 18.04/20.04.
 
-ClamAV und Solr können gierig nach RAM sein. Du kannst sie in `mailcow.conf` durch die Einstellungen `SKIP_CLAMD=y` und `SKIP_SOLR=y` deaktivieren.
+ClamAV und Solr können gierig nach RAM sein. Sie können diese in der `mailcow.conf` durch die Einstellungen `SKIP_CLAMD=y` und `SKIP_SOLR=y` deaktivieren.
 
 **Info**: Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. mailcow kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.
 
@@ -62,7 +62,7 @@ Wenn Sie eine Firewall vor mailcow haben, stellen Sie bitte sicher, dass diese P
 | --------------------|:--------:|:-------|:------------------|----------------------------------|
 | Postfix SMTP | TCP | 25 | postfix-mailcow | `${SMTP_PORT}` |
 | Postfix SMTPS | TCP | 465 | postfix-mailcow | `${SMTPS_PORT}` |
-| Postfix Einreichung | TCP | 587 | postfix-mailcow | `${SUBMISSION_PORT}` |
+| Postfix Submission | TCP | 587 | postfix-mailcow | `${SUBMISSION_PORT}` |
 | Dovecot IMAP | TCP | 143 | dovecot-mailcow | `${IMAP_PORT}` |
 | Dovecot IMAPS | TCP | 993 | dovecot-mailcow | `${IMAPS_PORT}` |
 | Dovecot POP3 | TCP | 110 | dovecot-mailcow | `${POP_PORT}` |
