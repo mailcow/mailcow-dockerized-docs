@@ -1,4 +1,4 @@
-# mailcow-docs-2.0
+# mailcow-docs-2.0 | [![Build and deploy to gh-pages](https://github.com/mailcow/mailcow-dockerized-docs/actions/workflows/gh-pages.yml/badge.svg?branch=master)](https://github.com/mailcow/mailcow-dockerized-docs/actions/workflows/gh-pages.yml)
 The rework of the official mailcow docs
 
 ### Introduction:
