@@ -2310,7 +2310,7 @@ chmod +x /usr/local/bin/docker-compose
 <p>Restart the docker daemon and verify SELinux is now enabled.</p>
 <p>This step is required to make sure mailcows volumes are properly labeled as declared in the compose file.
 If you are interested in how this works, you can check out the readme of <a href="https://github.com/containers/container-selinux">https://github.com/containers/container-selinux</a> which links to a lot of useful information on that topic.</p>
-<p><strong>2.</strong> Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while boostrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. <strong>We drop permissions for every exposed application</strong> and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.</p>
+<p><strong>2.</strong> Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while bootstrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. <strong>We drop permissions for every exposed application</strong> and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.</p>
 <div class="highlight"><pre><span></span><code>$ su
 # umask
 0022 # &lt;- Verify it is 0022
@@ -2359,7 +2359,7 @@ docker-compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 15:31:51</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 16:48:42</span>
       
     
   </small>

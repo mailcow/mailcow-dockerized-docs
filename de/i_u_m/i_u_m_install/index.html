@@ -2278,7 +2278,7 @@ systemctl enable --now docker
 </code></pre></div></p>
 </li>
 <li>
-<p>Docker-Zusammenstellung</p>
+<p>Docker-Compose</p>
 </li>
 </ul>
 <div class="admonition warning">
@@ -2308,9 +2308,9 @@ chmod +x /usr/local/bin/docker-compose
 }
 </code></pre></div>
 <p>Starten Sie den Docker-Daemon neu und überprüfen Sie, ob SELinux nun aktiviert ist.</p>
-<p>Dieser Schritt ist erforderlich, um sicherzustellen, dass die Mailcows-Volumes richtig gekennzeichnet sind, wie in der Compose-Datei angegeben.
+<p>Dieser Schritt ist erforderlich, um sicherzustellen, dass die mailcows-Volumes richtig gekennzeichnet sind, wie in der Compose-Datei angegeben.
 Wenn Sie daran interessiert sind, wie das funktioniert, können Sie sich die Readme-Datei von <a href="https://github.com/containers/container-selinux">https://github.com/containers/container-selinux</a> ansehen, die auf viele nützliche Informationen zu diesem Thema verweist.</p>
-<p><strong>2.</strong> Klonen Sie den Master-Zweig des Repositorys und stellen Sie sicher, dass Ihre umask gleich 0022 ist. Bitte klonen Sie das Repository als root-Benutzer und kontrollieren Sie auch den Stack als root. Wir werden die Attribute - wenn nötig - ändern, während wir die Container automatisch boosten und sicherstellen, dass alles gesichert ist. Das update.sh-Skript muss daher ebenfalls als root ausgeführt werden. Es kann notwendig sein, den Besitz und andere Attribute von Dateien zu ändern, auf die Sie sonst keinen Zugriff haben. <strong>Wir geben die Berechtigungen für jede exponierte Anwendung</strong> auf und führen einen exponierten Dienst nicht als root aus! Wenn Sie den Docker-Daemon als Nicht-Root-Benutzer steuern, erhalten Sie keine zusätzliche Sicherheit. Der unprivilegierte Benutzer wird die Container ebenfalls als root spawnen. Das Verhalten des Stacks ist identisch.</p>
+<p><strong>2.</strong> Klonen Sie den Master-Zweig des Repositorys und stellen Sie sicher, dass Ihre umask gleich 0022 ist. Bitte klonen Sie das Repository als root-Benutzer und kontrollieren Sie auch den Stack als root. Wir werden die Attribute - wenn nötig - ändern, während wir die Container automatisch bereitstellen und sicherstellen, dass alles gesichert ist. Das update.sh-Skript muss daher ebenfalls als root ausgeführt werden. Es kann notwendig sein, den Besitzer und andere Attribute von Dateien zu ändern, auf die Sie sonst keinen Zugriff haben. <strong>Wir geben die Berechtigungen für jede exponierte Anwendung</strong> auf und führen einen exponierten Dienst nicht als root aus! Wenn Sie den Docker-Daemon als Nicht-Root-Benutzer steuern, erhalten Sie keine zusätzliche Sicherheit. Der unprivilegierte Benutzer wird die Container ebenfalls als root spawnen. Das Verhalten des Stacks ist identisch.</p>
 <div class="highlight"><pre><span></span><code>$ su
 # umask
 0022 # &lt;- Überprüfen, dass es 0022 ist
@@ -2318,20 +2318,20 @@ Wenn Sie daran interessiert sind, wie das funktioniert, können Sie sich die Rea
 # git clone https://github.com/mailcow/mailcow-dockerized
 # cd mailcow-dockerized
 </code></pre></div>
-<p><strong>3.</strong> Erzeugen Sie eine Konfigurationsdatei. Verwende einen FQDN (<code>host.domain.tld</code>) als Hostname, wenn du gefragt wirst.
+<p><strong>3.</strong> Erzeugen Sie eine Konfigurationsdatei. Verwenden Sie einen FQDN (<code>host.domain.tld</code>) als Hostname, wenn Sie gefragt werden.
 <div class="highlight"><pre><span></span><code>./generate_config.sh
 </code></pre></div></p>
 <p><strong>4.</strong> Ändern Sie die Konfiguration, wenn Sie das wollen oder müssen.
 <div class="highlight"><pre><span></span><code>nano mailcow.conf
 </code></pre></div>
 Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.</p>
-<p>Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe <a href="../../post_installation/firststeps-local_mta/">dieses Kapitel</a>, um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow zu laufen.</p>
+<p>Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe <a href="../../post_installation/firststeps-local_mta/">dieses Kapitel</a>, um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow laufen zu lassen.</p>
 <p>Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.</p>
 <p><strong>4.1.</strong> Benutzer mit einer MTU ungleich 1500 (z.B. OpenStack):</p>
 <p><strong>Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.</strong></p>
 <p>Bearbeiten Sie <code>docker-compose.yml</code> und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
 Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
-<div class="highlight"><pre><span></span><code>Netzwerke:
+<div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
     ...
     driver_opts:
@@ -2340,8 +2340,8 @@ Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
 </code></pre></div></p>
 <p><strong>4.2.</strong> Benutzer ohne ein IPv6-aktiviertes Netzwerk auf ihrem Hostsystem:</p>
 <p><strong>Einschalten von IPv6. Endlich.</strong></p>
-<p>Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, <a href="../../post_installation/firststeps-disable_ipv6/">IPv6 zu deaktivieren</a> für das mailcow-Netzwerk, um unvorhergesehene Probleme zu vermeiden.</p>
-<p><strong>5.</strong> Ziehen Sie die Images und führen Sie die Compose-Datei aus. Der Parameter <code>-d</code> wird mailcow starten: dockerized detached:
+<p>Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, IPv6 für das mailcow-Netzwerk zu <a href="../../post_installation/firststeps-disable_ipv6/">deaktivieren</a>, um unvorhergesehene Probleme zu vermeiden.</p>
+<p><strong>5.</strong> LAden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter <code>-d</code> wird mailcow: dockerized starten:
 <div class="highlight"><pre><span></span><code>docker-compose pull
 docker-compose up -d
 </code></pre></div></p>
@@ -2359,7 +2359,7 @@ docker-compose up -d
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 15:31:51</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 16:48:42</span>
       
     
   </small>

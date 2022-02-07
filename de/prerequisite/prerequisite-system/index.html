@@ -2497,7 +2497,7 @@
 </tbody>
 </table>
 <p>Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>). Wir testen auf CentOS 7, Debian 10/11 und Ubuntu 18.04/20.04.</p>
-<p>ClamAV und Solr können gierig nach RAM sein. Du kannst sie in <code>mailcow.conf</code> durch die Einstellungen <code>SKIP_CLAMD=y</code> und <code>SKIP_SOLR=y</code> deaktivieren.</p>
+<p>ClamAV und Solr können gierig nach RAM sein. Sie können diese in der <code>mailcow.conf</code> durch die Einstellungen <code>SKIP_CLAMD=y</code> und <code>SKIP_SOLR=y</code> deaktivieren.</p>
 <p><strong>Info</strong>: Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. mailcow kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.</p>
 <p>Ein einzelner SOGo-Worker <strong>kann</strong> ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 Arbeiter erzeugt.</p>
 <h4 id="beispiele-fur-die-verwendung">Beispiele für die Verwendung<a class="headerlink" href="#beispiele-fur-die-verwendung" title="Permanent link">&para;</a></h4>
@@ -2544,7 +2544,7 @@ Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Besc
 <td><code>${SMTPS_PORT}</code></td>
 </tr>
 <tr>
-<td>Postfix Einreichung</td>
+<td>Postfix Submission</td>
 <td align="center">TCP</td>
 <td align="left">587</td>
 <td align="left">postfix-mailcow</td>
@@ -2670,7 +2670,7 @@ Vielleicht möchten Sie <a href="https://wiki.hetzner.de/index.php/Cloud_IP_stat
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 14:54:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 16:48:42</span>
       
     
   </small>

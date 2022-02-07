@@ -2492,7 +2492,7 @@ autoconfig IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 @ IN MX 10 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 </code></pre></div>
 <h2 id="dkim-spf-und-dmarc">DKIM, SPF und DMARC<a class="headerlink" href="#dkim-spf-und-dmarc" title="Permanent link">&para;</a></h2>
-<p>Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher <strong>SPF</strong> TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("<code>~all</code>"). Weitere Informationen finden Sie im [SPF-Projekt] (<a href="http://www.open-spf.org/">http://www.open-spf.org/</a>).</p>
+<p>Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher <strong>SPF</strong> TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("<code>~all</code>"). Weitere Informationen finden Sie im <a href="http://www.open-spf.org/">SPF-Projekt</a>.</p>
 <div class="highlight"><pre><span></span><code># Name Typ Wert
 @ IN TXT &quot;v=spf1 mx a -all&quot;
 </code></pre></div>
@@ -2505,7 +2505,7 @@ dkim._domainkey IN TXT &quot;v=DKIM1; k=rsa; t=s; s=email; p=...&quot;
 _dmarc IN TXT &quot;v=DMARC1; p=reject; rua=mailto:mailauth-reports@example.org&quot;
 </code></pre></div>
 <h2 id="die-erweiterte-dns-konfiguration">Die erweiterte DNS-Konfiguration<a class="headerlink" href="#die-erweiterte-dns-konfiguration" title="Permanent link">&para;</a></h2>
-<p><strong>SRV</strong>-Einträge geben den/die Server für ein bestimmtes Protokoll in Ihrer Domäne an. Wenn Sie einen Dienst explizit als nicht bereitgestellt ankündigen wollen, geben Sie "." als Zieladresse an (statt "mail.example.org."). Bitte beachten Sie [RFC 2782] (<a href="https://tools.ietf.org/html/rfc2782">https://tools.ietf.org/html/rfc2782</a>).</p>
+<p><strong>SRV</strong>-Einträge geben den/die Server für ein bestimmtes Protokoll in Ihrer Domäne an. Wenn Sie einen Dienst explizit als nicht bereitgestellt ankündigen wollen, geben Sie "." als Zieladresse an (statt "mail.example.org."). Bitte beachten Sie <a href="https://tools.ietf.org/html/rfc2782">RFC 2782</a>.</p>
 <div class="highlight"><pre><span></span><code># Name Typ Priorität Gewicht Port Wert
 _autodiscover._tcp IN SRV 0 1 443 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 _caldavs._tcp IN SRV 0 1 443 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
@@ -2535,7 +2535,7 @@ _submission._tcp IN SRV 0 1 587 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 <div class="admonition tipp">
 <p class="admonition-title">Tipp</p>
 </div>
-<p>Es ist zu bedenken, dass wenn Sie DMARC-Statistik-Berichte an Ihren Mailcow-Server anfordern und Ihr Mailcow-Server nicht korrekt für den Empfang dieser Berichte konfiguriert ist, Sie möglicherweise keine genauen und vollständigen Ergebnisse erhalten. Bitte erwägen Sie die Verwendung einer alternativen E-Mail-Domain für den Empfang von DMARC-Berichten.</p>
+<p>Es ist zu bedenken, dass wenn Sie DMARC-Statistik-Berichte an Ihren mailcow-Server anfordern und Ihr mailcow-Server nicht korrekt für den Empfang dieser Berichte konfiguriert ist, Sie möglicherweise keine genauen und vollständigen Ergebnisse erhalten. Bitte erwägen Sie die Verwendung einer alternativen E-Mail-Domain für den Empfang von DMARC-Berichten.</p>
 <p>Es ist erwähnenswert, dass die folgenden Vorschläge keine umfassende Liste aller verfügbaren Dienste und Tools sind, sondern nur eine kleine Auswahl der vielen Möglichkeiten.</p>
 <ul>
 <li><a href="https://gmail.com/postmaster">Postmaster Tool</a></li>
@@ -2580,7 +2580,7 @@ Einzelheiten:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-29 18:47:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 16:48:42</span>
       
     
   </small>
