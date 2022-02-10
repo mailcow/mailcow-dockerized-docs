@@ -252,6 +252,14 @@ plugins:
           'Third party apps': 'Anwendungen von Drittanbietern'
           'Borgmatic Backup': 'Borgmatic-Sicherung'
        #### End of german translation
+  - redirects:
+      redirect_maps:
+        # 'old': 'new'
+        'u_e-mailpiler-integration.md': 'third_party/third_party-mailpiler_integration.en.md'
+        #'b_n_r_accidental_deletion.md': 'b_n_r-accidental_deletion.md'
+        #'debug-reset-tls.md': 'debug-reset_tls.md'
+        ##########
+        'third_party-roundcube.md': 'third_party/third_party-roundcube.en.md'
 
 extra:
   social:

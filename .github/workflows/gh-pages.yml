@@ -12,7 +12,7 @@ jobs:
       - name: Checkout 📥
         uses: actions/checkout@v2.4.0
         with:
-          token: '${{ secrets.GHPAGES_ACTION_CHECKOUT_TOKEN_PAT }}'
+          #token: '${{ secrets.GHPAGES_ACTION_CHECKOUT_TOKEN_PAT }}'
           fetch-depth: '0' # https://github.com/timvink/mkdocs-git-revision-date-localized-plugin#note-when-using-build-environments
 
       - name: Install dependencies 🐄
@@ -24,12 +24,13 @@ jobs:
       - name: Build site 🔧
         run: |
           mkdocs build --verbose --clean
+          bash script.sh
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
-          token: '${{ secrets.GHPAGES_ACTION_DEPLOY_TOKEN_PAT }}'
-          git-config-name: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITNAME_PAT }}'
-          git-config-email: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITEMAIL_PAT }}'
+          #token: '${{ secrets.GHPAGES_ACTION_DEPLOY_TOKEN_PAT }}'
+          #git-config-name: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITNAME_PAT }}'
+          #git-config-email: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITEMAIL_PAT }}'
           branch: gh-pages # The branch the action should deploy to.
           folder: site # The folder the action should deploy.
