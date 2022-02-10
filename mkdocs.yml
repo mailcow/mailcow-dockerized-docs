@@ -254,8 +254,8 @@ plugins:
        #### End of german translation
   - redirects:
       redirect_maps:
-	    # LEGACY
         # 'old': 'new'
+        # LEGACY
         'u_e-mailpiler-integration.md': 'third_party/third_party-mailpiler_integration.en.md'
         'b_n_r_accidental_deletion.md': 'backup_restore/b_n_r-accidental_deletion.en.md'
         'debug-reset-tls.md': 'troubleshooting/debug-reset_tls.en.md'
