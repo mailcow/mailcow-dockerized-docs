@@ -339,7 +339,7 @@ plugins:
         'u_e-reeanble-weak-protocols.md': 'manual-guides/u_e-reeanble-weak-protocols.en.md'
         'u_e-update-hooks.md': 'manual-guides/u_e-update-hooks.en.md'
         'client.md': 'client/client.en.md'
-        'client-android.m': 'client/client-android.en.md'
+        'client-android.md': 'client/client-android.en.md'
         'client-apple.md': 'client/client-apple.en.md'
         'client-emclient.md': 'client/client-emclient.en.md'
         'client-kontact.md': 'client/client-kontact.en.md'
