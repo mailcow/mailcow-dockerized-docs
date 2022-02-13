@@ -22,3 +22,7 @@ jobs:
       - name: Build site 🔧
         run: |
           mkdocs build --verbose --clean
+
+      - name: Fixing redirects 🚧
+        run: |
+          bash fix_redirects.sh

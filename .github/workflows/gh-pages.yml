@@ -24,7 +24,10 @@ jobs:
       - name: Build site 🔧
         run: |
           mkdocs build --verbose --clean
-          bash script.sh
+
+      - name: Fixing redirects 🚧
+        run: |
+          bash fix_redirects.sh
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
