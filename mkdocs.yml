@@ -11,9 +11,9 @@ theme:
   palette:
    - scheme: default
      toggle:
-       icon: material/toggle-switch-off-outline 
+       icon: material/toggle-switch-off-outline
        name: Dark Mode
-   - scheme: slate 
+   - scheme: slate
      toggle:
        icon: material/toggle-switch
        name: Light Mode
@@ -33,7 +33,7 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.extra
-  - footnotes    
+  - footnotes
 
 nav:
   - 'Information & Support': 'index.md'
@@ -131,7 +131,7 @@ nav:
     - 'Autodiscover / Autoconfig': 'manual-guides/u_e-autodiscover_config.md'
     - 'Redirect HTTP to HTTPS': 'manual-guides/u_e-80_to_443.md'
     - 'Re-enable TLS 1.0 and TLS 1.1': 'manual-guides/u_e-reeanble-weak-protocols.md'
-    - "Run scripts before and after updates": "manual-guides/u_e-update-hooks.md"
+    - "Run scripts before and after updates": 'manual-guides/u_e-update-hooks.md'
   - 'Client Configuration':
     - 'Overview': 'client/client.md'
     - 'Android': 'client/client-android.md'
@@ -152,12 +152,12 @@ nav:
     - 'Nextcloud': 'third_party/third_party-nextcloud.md'
     - 'Portainer': 'third_party/third_party-portainer.md'
     - 'Roundcube': 'third_party/third_party-roundcube.md'
-    
+
 plugins:
   - search
   - git-revision-date-localized:
       type: iso_datetime
-      timezone: Europe/Berlin 
+      timezone: Europe/Berlin
   - i18n: # <--- Translation plugin
       default_language: en
       languages:
@@ -172,7 +172,7 @@ plugins:
           'Prepare your system': 'Systemvoraussetzungen'
           'DNS setup': 'DNS Einstellungen'
           ### Installation Section
-          'Installation, Update & Migration': 'Installation, Update und Migration' 
+          'Installation, Update & Migration': 'Installation, Update und Migration'
           ### Post Installation Tasks Section
           'Post Installation Tasks': 'Post-Installationsaufgaben'
           'Advanced SSL': 'Erweitertes SSL'
@@ -252,10 +252,114 @@ plugins:
           'Third party apps': 'Anwendungen von Drittanbietern'
           'Borgmatic Backup': 'Borgmatic-Sicherung'
        #### End of german translation
+  - redirects:
+      redirect_maps:
+        # 'old': 'new'
+        # LEGACY
+        'u_e-mailpiler-integration.md': 'third_party/third_party-mailpiler_integration.en.md'
+        'b_n_r_accidental_deletion.md': 'backup_restore/b_n_r-accidental_deletion.en.md'
+        'debug-reset-tls.md': 'troubleshooting/debug-reset_tls.en.md'
+        # NEW DUE TO NEW LAYOUT
+        'prerequisite-system.md': 'prerequisite/prerequisite-system.en.md'
+        'prerequisite-dns.md': 'prerequisite/prerequisite-dns.en.md'
+        'i_u_m_install.md': 'i_u_m/i_u_m_install.en.md'
+        'i_u_m_update.md': 'i_u_m/i_u_m_update.en.md'
+        'i_u_m_migration.md': 'i_u_m/i_u_m_migration.en.md'
+        'i_u_m_deinstall.md': 'i_u_m/i_u_m_deinstall.en.md'
+        'firststeps-ssl.md': 'post_installation/firststeps-ssl.en.md'
+        'firststeps-disable_ipv6.md': 'post_installation/firststeps-disable_ipv6.en.md'
+        'firststeps-dmarc_reporting.md': 'post_installation/firststeps-dmarc_reporting.en.md'
+        'firststeps-ip_bindings.md': 'post_installation/firststeps-ip_bindings.en.md'
+        'firststeps-local_mta.md': 'post_installation/firststeps-local_mta.en.md'
+        'firststeps-logging.md': 'post_installation/firststeps-logging.en.md'
+        'firststeps-rp.md': 'post_installation/firststeps-rp.en.md'
+        'firststeps-rspamd_ui.md': 'post_installation/firststeps-rspamd_ui.en.md'
+        'firststeps-snat.md': 'post_installation/firststeps-snat.en.md'
+        'firststeps-sync_jobs_migration.md': 'post_installation/firststeps-sync_jobs_migration.en.md'
+        'model-acl.md': 'models/model-acl.en.md'
+        'model-passwd.md': 'models/model-passwd.en.md'
+        'model-sender_rcv.md': 'models/model-sender_rcv.en.md'
+        'debug.md': 'troubleshooting/debug.en.md'
+        'debug-admin_login_sogo.md': 'troubleshooting/debug-admin_login_sogo.en.md'
+        'debug-rspamd_memory_leaks.md': 'troubleshooting/debug-rspamd_memory_leaks.en.md'
+        'debug-attach_service.md': 'troubleshooting/debug-attach_service.en.md'
+        'debug-common_problems.md': 'troubleshooting/debug-common_problems.en.md'
+        'debug-logs.md': 'troubleshooting/debug-logs.en.md'
+        'debug-mysql_upgrade.md': 'troubleshooting/debug-mysql_upgrade.en.md'
+        'debug-mysql_aria.md': 'troubleshooting/debug-mysql_aria.en.md'
+        'debug-rm_volumes.md': 'troubleshooting/debug-rm_volumes.en.md'
+        'debug-reset_pw.md': 'troubleshooting/debug-reset_pw.en.md'
+        'debug-reset_tls.md': 'troubleshooting/debug-reset_tls.en.md'
+        'b_n_r-backup.md': 'backup_restore/b_n_r-backup.en.md'
+        'b_n_r-restore.md': 'backup_restore/b_n_r-restore.en.md'
+        'b_n_r-coldstandby.md': 'backup_restore/b_n_r-coldstandby.en.md'
+        'b_n_r-backup_restore-maildir.md': 'backup_restore/b_n_r-backup_restore-maildir.en.md'
+        'b_n_r-backup_restore-mysql.md': 'backup_restore/b_n_r-backup_restore-mysql.en.md'
+        'b_n_r-accidental_deletion.md': 'backup_restore/b_n_r-accidental_deletion.en.md'
+        'u_e-mailcow_ui-bl_wl.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl.en.md'
+        'u_e-mailcow_ui-config.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-config.en.md'
+        'u_e-mailcow_ui-css.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-css.en.md'
+        'u_e-mailcow_ui-pushover.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-pushover.en.md'
+        'u_e-mailcow_ui-spamfilter.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter.en.md'
+        'u_e-mailcow_ui-tagging.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tagging.en.md'
+        'u_e-mailcow_ui-spamalias.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias.en.md'
+        'u_e-mailcow_ui-tfa.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.en.md'
+        'u_e-mailcow_ui-fido.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-fido.en.md'
+        'u_e-postfix-trust_networks.md': 'manual-guides/Postfix/u_e-postfix-trust_networks.en.md'
+        'u_e-postfix-custom_transport.md': 'manual-guides/Postfix/u_e-postfix-custom_transport.en.md'
+        'u_e-postfix-extra_cf.md': 'manual-guides/Postfix/u_e-postfix-extra_cf.en.md'
+        'u_e-postfix-disable_sender_verification.md': 'manual-guides/Postfix/u_e-postfix-disable_sender_verification.en.md'
+        'u_e-postfix-attachment_size.md': 'manual-guides/Postfix/u_e-postfix-attachment_size.en.md'
+        'u_e-postfix-relayhost.md': 'manual-guides/Postfix/u_e-postfix-relayhost.en.md'
+        'u_e-postfix-pflogsumm.md': 'manual-guides/Postfix/u_e-postfix-pflogsumm.en.md'
+        'u_e-postfix-postscreen_whitelist.md': 'manual-guides/Postfix/u_e-postfix-postscreen_whitelist.en.md'
+        'u_e-unbound-fwd.md': 'manual-guides/Unbound/u_e-unbound-fwd.en.md'
+        'u_e-dovecot-extra_conf.md': 'manual-guides/Dovecot/u_e-dovecot-extra_conf.en.md'
+        'u_e-dovecot-any_acl.md': 'manual-guides/Dovecot/u_e-dovecot-any_acl.en.md'
+        'u_e-dovecot-expunge.md': 'manual-guides/Dovecot/u_e-dovecot-expunge.en.md'
+        'u_e-dovecot-fts.md': 'manual-guides/Dovecot/u_e-dovecot-fts.en.md'
+        'u_e-dovecot-idle_interval.md': 'manual-guides/Dovecot/u_e-dovecot-idle_interval.en.md'
+        'u_e-dovecot-mail-crypt.md': 'manual-guides/Dovecot/u_e-dovecot-mail-crypt.en.md'
+        'u_e-dovecot-more.md': 'manual-guides/Dovecot/u_e-dovecot-more.en.md'
+        'u_e-dovecot-vmail-volume.md': 'manual-guides/Dovecot/u_e-dovecot-vmail-volume.en.md'
+        'u_e-dovecot-public_folder.md': 'manual-guides/Dovecot/u_e-dovecot-public_folder.en.md'
+        'u_e-dovecot-static_master.md': 'manual-guides/Dovecot/u_e-dovecot-static_master.en.md'
+        'u_e-dovecot-catchall_vacation.md': 'manual-guides/Dovecot/u_e-dovecot-catchall_vacation.en.md'
+        'u_e-nginx_webmail-site.md': 'manual-guides/Nginx/u_e-nginx_webmail-site.en.md'
+        'u_e-nginx_custom.md': 'manual-guides/Nginx/u_e-nginx_custom.en.md'
+        'u_e-watchdog-thresholds.md': 'manual-guides/Watchdog/u_e-watchdog-thresholds.en.md'
+        'u_e-redis.md': 'manual-guides/Redis/u_e-redis.en.md'
+        'u_e-rspamd.md': 'manual-guides/Rspamd/u_e-rspamd.en.md'
+        'u_e-sogo.md': 'manual-guides/SOGo/u_e-sogo.en.md'
+        'u_e-docker-cust_dockerfiles.md': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.en.md'
+        'u_e-docker-dc_bash_compl.md': 'manual-guides/Docker/u_e-docker-dc_bash_compl.en.md'
+        'u_e-why_unbound.md': 'manual-guides/u_e-why_unbound.en.md'
+        'u_e-autodiscover_config.md': 'manual-guides/u_e-autodiscover_config.en.md'
+        'u_e-80_to_443.md': 'manual-guides/u_e-80_to_443.en.md'
+        'u_e-reeanble-weak-protocols.md': 'manual-guides/u_e-reeanble-weak-protocols.en.md'
+        'u_e-update-hooks.md': 'manual-guides/u_e-update-hooks.en.md'
+        'client.md': 'client/client.en.md'
+        'client-android.md': 'client/client-android.en.md'
+        'client-apple.md': 'client/client-apple.en.md'
+        'client-emclient.md': 'client/client-emclient.en.md'
+        'client-kontact.md': 'client/client-kontact.en.md'
+        'client-outlook.md': 'client/client-outlook.en.md'
+        'client-thunderbird.md': 'client/client-thunderbird.en.md'
+        'client-windows.md': 'client/client-windows.en.md'
+        'client-manual.md': 'client/client-manual.en.md'
+        'third_party-borgmatic.md': 'third_party/third_party-borgmatic.en.md'
+        'third_party-exchange_onprem.md': 'third_party/third_party-exchange_onprem.en.md'
+        'third_party-gitea.md': 'third_party/third_party-gitea.en.md'
+        'third_party-gogs.md': 'third_party/third_party-gogs.en.md'
+        'third_party-mailman3.md': 'third_party/third_party-mailman3.en.md'
+        'third_party-mailpiler_integration.md': 'third_party/third_party-mailpiler_integration.en.md'
+        'third_party-nextcloud.md': 'third_party/third_party-nextcloud.en.md'
+        'third_party-portainer.md': 'third_party/third_party-portainer.en.md'
+        'third_party-roundcube.md': 'third_party/third_party-roundcube.en.md'
 
 extra:
   social:
-    - icon: fontawesome/solid/globe-americas
+    - icon: fontawesome/solid/earth-americas
       link: https://mailcow.email
     - icon: fontawesome/brands/github-alt
       link: https://github.com/mailcow
