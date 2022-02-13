@@ -27,7 +27,7 @@ jobs:
 
       - name: Fixing redirects 🚧
         run: |
-          bash fix_redirects.sh
+          bash .github/workflows/fix_redirects.sh
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
