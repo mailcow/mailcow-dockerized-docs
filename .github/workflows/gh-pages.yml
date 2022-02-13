@@ -25,6 +25,10 @@ jobs:
         run: |
           mkdocs build --verbose --clean
 
+      - name: Fixing redirects 🚧
+        run: |
+          bash .github/workflows/fix_redirects.sh
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
