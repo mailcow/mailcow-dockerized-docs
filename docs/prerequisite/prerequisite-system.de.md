@@ -43,9 +43,9 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 Bitte überprüfen Sie, ob alle Standard-Ports von mailcow offen sind und nicht von anderen Anwendungen genutzt werden:
 
 ```
-ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190|5222|5269|5443'
+ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 # oder:
-netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190|5222|5269|5443'
+netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 ```
 
 !!! Warnung
