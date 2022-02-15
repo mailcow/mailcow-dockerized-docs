@@ -2742,11 +2742,11 @@ neue Operationen durchgeführt werden können:</p>
 <p>Wobei <code>user@rsync.net:mailcow</code> die URI zu Ihrem Repository ist.</p>
 <p>Jetzt wäre ein guter Zeitpunkt, einen manuellen Archivierungslauf durchzuführen, um sicherzustellen, dass er erfolgreich durchgeführt werden kann.</p>
 <h3 id="exportieren-von-schlusseln">Exportieren von Schlüsseln<a class="headerlink" href="#exportieren-von-schlusseln" title="Permanent link">&para;</a></h3>
-<p>Wenn Sie eine der <code>Schlüsseldatei'-Methoden zur Verschlüsselung verwenden, **MÜSSEN** Sie sich selbst um die Sicherung der Schlüsseldateien kümmern. Die
-Schlüsseldateien werden erzeugt, wenn Sie das Repository initialisieren. Die</code>repokey`-Methoden speichern die Schlüsseldatei innerhalb des
+<p>Wenn Sie eine der <code>keyfile</code>-Methoden zur Verschlüsselung verwenden, <strong>MÜSSEN</strong> Sie sich selbst um die Sicherung der Schlüsseldateien kümmern. Die
+Schlüsseldateien werden erzeugt, wenn Sie das Repository initialisieren. Die <code>repokey</code>-Methoden speichern die Schlüsseldatei innerhalb des
 Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
 <p>Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um die Archive zu entschlüsseln.</p>
-<p>Um die Schlüsseldatei zu holen, führen Sie aus:</p>
+<p>Um die <code>keyfile</code> zu holen, führen Sie aus:</p>
 <div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
 </code></pre></div>
 <p>Wobei <code>user@rsync.net:mailcow</code> die URI zu Ihrem Repository ist.</p>
@@ -2756,7 +2756,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-04 21:58:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-15 17:17:18</span>
       
     
   </small>
