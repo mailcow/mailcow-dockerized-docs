@@ -1,6 +1,6 @@
 # 🐮 + 🐋 = 💕
 
-## Hilf dem mailcow Projekt
+## Unterstützen Sie das mailcow Projekt
 
 Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Sie_, während _Sie_ _uns_ unterstützen. :)
 
@@ -24,7 +24,7 @@ Die andere Alternative ist unser kostenloser Community-Support auf unseren versc
 
 - Telegram (Support) @ [t.me/mailcow](https://t.me/mailcow).
 
-- Telegram (Off-Topic)@ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
+- Telegram (Off-Topic) @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
 
 - Twitter [@mailcow_email](https://twitter.com/mailcow_email)
 

@@ -39,19 +39,3 @@ Da die Neuindizierung sehr sinnvoll ist, haben wir sie nicht in die mailcow UI i
 
 mailcow wird die Indexdaten eines Benutzers löschen, wenn eine Mailbox gelöscht wird.
 
-# ---
-
-# FTS Xapian (Release 2022)
-
-# Der Solr-Ersatz Xapian befindet sich derzeit in der Entwicklungs-/Testphase.
-
-# Xapian ist viel effizienter als Solr, da es nicht auf Java basiert.
-
-# Xapian ist auch nicht so anfällig für Sicherheitslücken (die bei Java-Anwendungen häufig auftreten).
-
-# Der gravierendste Unterschied zwischen den beiden FTS ist, dass Xapian (im Gegensatz zu Solr) keinen extra Container mehr benötigt, sondern fortan direkt in Dovecot (als Plugin) läuft.
-
-# Sollten Sie mehr über das Xapian Plugin wissen wollen schauen Sie [hier](https://github.com/grosjo/fts-xapian).
-
-# **Alle Einstellungen der mailcow.conf, die Solr betreffen, werden auf Xapian umgestellt**.
-

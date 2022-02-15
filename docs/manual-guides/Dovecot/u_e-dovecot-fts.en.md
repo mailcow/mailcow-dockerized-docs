@@ -39,19 +39,3 @@ Because re-indexing is very sensible, we did not include it to mailcow UI. You w
 ### Delete mailbox data
 
 mailcow will purge index data of a user when deleting a mailbox.
-
-#---
-
-# FTS Xapian (Release 2022)
-
-# The Solr replacement Xapian is currently in the development/testing phase.
-
-# Xapian is much more efficient than Solr because it is not based on Java.
-
-# Xapian is also not as vulnerable to security vulnerabilities (which often occur in Java applications).
-
-# The most serious difference between the two FTS is that Xapian (unlike Solr) no longer needs an extra container but from then on runs directly in Dovecot (as a plugin).
-
-# If you want to know more about the Xapian plugin look [here](https://github.com/grosjo/fts-xapian).
-
-# **All settings of the mailcow.conf which concern Solr are converted to Xapian**.
