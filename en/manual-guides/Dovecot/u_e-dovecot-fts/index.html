@@ -1582,62 +1582,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#-" class="md-nav__link">
-    ---
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fts-xapian-release-2022" class="md-nav__link">
-    FTS Xapian (Release 2022)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-solr-replacement-xapian-is-currently-in-the-developmenttesting-phase" class="md-nav__link">
-    The Solr replacement Xapian is currently in the development/testing phase.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#xapian-is-much-more-efficient-than-solr-because-it-is-not-based-on-java" class="md-nav__link">
-    Xapian is much more efficient than Solr because it is not based on Java.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#xapian-is-also-not-as-vulnerable-to-security-vulnerabilities-which-often-occur-in-java-applications" class="md-nav__link">
-    Xapian is also not as vulnerable to security vulnerabilities (which often occur in Java applications).
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-most-serious-difference-between-the-two-fts-is-that-xapian-unlike-solr-no-longer-needs-an-extra-container-but-from-then-on-runs-directly-in-dovecot-as-a-plugin" class="md-nav__link">
-    The most serious difference between the two FTS is that Xapian (unlike Solr) no longer needs an extra container but from then on runs directly in Dovecot (as a plugin).
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-you-want-to-know-more-about-the-xapian-plugin-look-here" class="md-nav__link">
-    If you want to know more about the Xapian plugin look here.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#all-settings-of-the-mailcowconf-which-concern-solr-are-converted-to-xapian" class="md-nav__link">
-    All settings of the mailcow.conf which concern Solr are converted to Xapian.
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2410,62 +2354,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#-" class="md-nav__link">
-    ---
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fts-xapian-release-2022" class="md-nav__link">
-    FTS Xapian (Release 2022)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-solr-replacement-xapian-is-currently-in-the-developmenttesting-phase" class="md-nav__link">
-    The Solr replacement Xapian is currently in the development/testing phase.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#xapian-is-much-more-efficient-than-solr-because-it-is-not-based-on-java" class="md-nav__link">
-    Xapian is much more efficient than Solr because it is not based on Java.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#xapian-is-also-not-as-vulnerable-to-security-vulnerabilities-which-often-occur-in-java-applications" class="md-nav__link">
-    Xapian is also not as vulnerable to security vulnerabilities (which often occur in Java applications).
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-most-serious-difference-between-the-two-fts-is-that-xapian-unlike-solr-no-longer-needs-an-extra-container-but-from-then-on-runs-directly-in-dovecot-as-a-plugin" class="md-nav__link">
-    The most serious difference between the two FTS is that Xapian (unlike Solr) no longer needs an extra container but from then on runs directly in Dovecot (as a plugin).
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-you-want-to-know-more-about-the-xapian-plugin-look-here" class="md-nav__link">
-    If you want to know more about the Xapian plugin look here.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#all-settings-of-the-mailcowconf-which-concern-solr-are-converted-to-xapian" class="md-nav__link">
-    All settings of the mailcow.conf which concern Solr are converted to Xapian.
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2482,6 +2370,8 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
+
+  <h1>FTS (Solr)</h1>
 
 <h2 id="fts-solr">FTS Solr<a class="headerlink" href="#fts-solr" title="Permanent link">&para;</a></h2>
 <p>Solr is used for setups with memory &gt;= 3.5 GiB to provide full-text search in Dovecot.</p>
@@ -2507,21 +2397,13 @@ docker-compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
 <p>Because re-indexing is very sensible, we did not include it to mailcow UI. You will need to take care of any errors while re-indexing a mailbox.</p>
 <h3 id="delete-mailbox-data">Delete mailbox data<a class="headerlink" href="#delete-mailbox-data" title="Permanent link">&para;</a></h3>
 <p>mailcow will purge index data of a user when deleting a mailbox.</p>
-<h1 id="-">---<a class="headerlink" href="#-" title="Permanent link">&para;</a></h1>
-<h1 id="fts-xapian-release-2022">FTS Xapian (Release 2022)<a class="headerlink" href="#fts-xapian-release-2022" title="Permanent link">&para;</a></h1>
-<h1 id="the-solr-replacement-xapian-is-currently-in-the-developmenttesting-phase">The Solr replacement Xapian is currently in the development/testing phase.<a class="headerlink" href="#the-solr-replacement-xapian-is-currently-in-the-developmenttesting-phase" title="Permanent link">&para;</a></h1>
-<h1 id="xapian-is-much-more-efficient-than-solr-because-it-is-not-based-on-java">Xapian is much more efficient than Solr because it is not based on Java.<a class="headerlink" href="#xapian-is-much-more-efficient-than-solr-because-it-is-not-based-on-java" title="Permanent link">&para;</a></h1>
-<h1 id="xapian-is-also-not-as-vulnerable-to-security-vulnerabilities-which-often-occur-in-java-applications">Xapian is also not as vulnerable to security vulnerabilities (which often occur in Java applications).<a class="headerlink" href="#xapian-is-also-not-as-vulnerable-to-security-vulnerabilities-which-often-occur-in-java-applications" title="Permanent link">&para;</a></h1>
-<h1 id="the-most-serious-difference-between-the-two-fts-is-that-xapian-unlike-solr-no-longer-needs-an-extra-container-but-from-then-on-runs-directly-in-dovecot-as-a-plugin">The most serious difference between the two FTS is that Xapian (unlike Solr) no longer needs an extra container but from then on runs directly in Dovecot (as a plugin).<a class="headerlink" href="#the-most-serious-difference-between-the-two-fts-is-that-xapian-unlike-solr-no-longer-needs-an-extra-container-but-from-then-on-runs-directly-in-dovecot-as-a-plugin" title="Permanent link">&para;</a></h1>
-<h1 id="if-you-want-to-know-more-about-the-xapian-plugin-look-here">If you want to know more about the Xapian plugin look <a href="https://github.com/grosjo/fts-xapian">here</a>.<a class="headerlink" href="#if-you-want-to-know-more-about-the-xapian-plugin-look-here" title="Permanent link">&para;</a></h1>
-<h1 id="all-settings-of-the-mailcowconf-which-concern-solr-are-converted-to-xapian"><strong>All settings of the mailcow.conf which concern Solr are converted to Xapian</strong>.<a class="headerlink" href="#all-settings-of-the-mailcowconf-which-concern-solr-are-converted-to-xapian" title="Permanent link">&para;</a></h1>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-15 14:26:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-15 14:29:32</span>
       
     
   </small>
