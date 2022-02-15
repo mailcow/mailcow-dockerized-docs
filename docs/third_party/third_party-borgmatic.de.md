@@ -216,13 +216,13 @@ Jetzt wäre ein guter Zeitpunkt, einen manuellen Archivierungslauf durchzuführe
 
 ### Exportieren von Schlüsseln
 
-Wenn Sie eine der `Schlüsseldatei'-Methoden zur Verschlüsselung verwenden, **MÜSSEN** Sie sich selbst um die Sicherung der Schlüsseldateien kümmern. Die
+Wenn Sie eine der `keyfile`-Methoden zur Verschlüsselung verwenden, **MÜSSEN** Sie sich selbst um die Sicherung der Schlüsseldateien kümmern. Die
 Schlüsseldateien werden erzeugt, wenn Sie das Repository initialisieren. Die `repokey`-Methoden speichern die Schlüsseldatei innerhalb des
 Repository, so dass eine manuelle Sicherung nicht so wichtig ist.
 
 Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um die Archive zu entschlüsseln.
 
-Um die Schlüsseldatei zu holen, führen Sie aus:
+Um die `keyfile` zu holen, führen Sie aus:
 
 ```shell
 docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
