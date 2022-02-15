@@ -22,9 +22,9 @@ The other alternative is our free community-support on our various channels belo
 
 - Our mailcow community @ [community.mailcow.email](https://community.mailcow.email)
 
-- Telegram @ [t.me/mailcow](https://t.me/mailcow).
+- Telegram (Support) @ [t.me/mailcow](https://t.me/mailcow).
 
-- Telegram @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
+- Telegram (Off-Topic) @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
 
 - Twitter [@mailcow_email](https://twitter.com/mailcow_email)
 
@@ -41,6 +41,9 @@ You can find a demo at [demo.mailcow.email](https://demo.mailcow.email), use the
 - **Administrator**: admin / moohoo
 - **Domain administrator**: department / moohoo
 - **Mailbox**:  demo@440044.xyz / moohoo
+
+!!! info
+	The demo instance contains the latest updates directly after release from GitHub. Fully automatic!
 
 ## Overview
 

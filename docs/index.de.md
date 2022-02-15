@@ -2,9 +2,9 @@
 
 ## Hilf dem mailcow Projekt
 
-Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Dich_, während _Sie_ _uns_ unterstützen. :)
+Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support), um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Sie_, während _Sie_ _uns_ unterstützen. :)
 
-Wenn Sie super toll sind und ohne Vertrag unterstützen möchten, können Sie eine SAL-Lizenz bekommen, die Ihre Tollheit bestätigt (eine flexible Einmalzahlung) bei [Servercow](https://www.servercow.de/mailcow#sal).
+Wenn Sie super toll sind und uns ohne Vertrag unterstützen möchten, können Sie eine SAL-Lizenz erhalten, die Ihre Unterstützung bestätigt (kaufbar als flexible Einmalzahlung) bei [Servercow](https://www.servercow.de/mailcow#sal).
 
 ## Support erhalten
 
@@ -14,23 +14,23 @@ Es gibt zwei Möglichkeiten, Support für Ihre mailcow-Installation zu erhalten.
 
 Für professionellen und priorisierten kommerziellen Support können Sie ein Basis-Support-Abonnement unter [Servercow](https://www.servercow.de/mailcow#support) abschließen. Für kundenspezifische Anfragen oder Fragen kontaktieren Sie uns stattdessen bitte unter [info@servercow.de](mailto:info@servercow.de).
 
-Darüber hinaus bieten wir auch eine voll ausgestattete und verwaltete Mailcow [hier](https://www.servercow.de/mailcow#managed) an. Auf diese Weise kümmern wir uns um die technische Magie darunter und Sie können Ihr ganzes Mail-Erlebnis auf eine problemlose Weise genießen.
+Darüber hinaus bieten wir auch eine voll ausgestattete und verwaltete [managed mailcow](https://www.servercow.de/mailcow#managed) an. Auf diese Weise kümmern wir uns um alles technische und Sie können Ihr ganzes Mail-Erlebnis auf eine problemlose Weise genießen.
 
 ### Community-Unterstützung und Chat
 
 Die andere Alternative ist unser kostenloser Community-Support auf unseren verschiedenen Kanälen unten. Bitte beachten Sie, dass dieser Support von unserer großartigen Community rund um mailcow betrieben wird. Diese Art von Support ist best-effort, freiwillig und es gibt keine Garantie für irgendetwas.
 
-- Unsere mailcow Gemeinschaft @ [community.mailcow.email](https://community.mailcow.email)
+- Unsere mailcow Community @ [community.mailcow.email](https://community.mailcow.email)
 
-- Telegram @ [t.me/mailcow](https://t.me/mailcow).
+- Telegram (Support) @ [t.me/mailcow](https://t.me/mailcow).
 
-- Telegram @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
+- Telegram (Off-Topic)@ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
 
 - Twitter [@mailcow_email](https://twitter.com/mailcow_email)
 
 Telegram Desktop-Clients sind für [mehrere Plattformen](https://desktop.telegram.org) verfügbar. Sie können den Gruppenverlauf nach Stichworten durchsuchen.
 
-Nur für **Fehlerverfolgung, Feature Requests und Codebeiträge**:
+Nur für **Bug Tracking, Feature Requests und Codebeiträge**:
 
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
@@ -40,7 +40,10 @@ Sie können eine Demo unter [demo.mailcow.email](https://demo.mailcow.email) fin
 
 - **Administrator**: admin / moohoo
 - **Domänen-Administrator**: department / moohoo
-- **Postfach**: demo@440044.xyz / moohoo
+- **Mailbox**: demo@440044.xyz / moohoo
+
+!!! info
+	Die Demo Instanz enthält die neusten Updates direkt nach Release von GitHub. Vollautomatisch!
 
 ## Überblick
 
