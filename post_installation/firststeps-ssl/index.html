@@ -2594,7 +2594,7 @@ You should make sure these clients use the <code>MAILCOW_HOSTNAME</code> for sec
 docker restart $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 </code></pre></div>
-<p>See <a href="../post_installation/firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients">Post-hook script for non-mailcow ACME clients</a> for a full example script.</p>
+<p>See <a href="../firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients">Post-hook script for non-mailcow ACME clients</a> for a full example script.</p>
 <h3 id="test-against-staging-acme-directory">Test against staging ACME directory<a class="headerlink" href="#test-against-staging-acme-directory" title="Permanent link">&para;</a></h3>
 <p>Edit <code>mailcow.conf</code> and add <code>LE_STAGING=y</code>.</p>
 <p>Run <code>docker-compose up -d</code> to activate your changes.</p>
@@ -2625,7 +2625,7 @@ bash helper-scripts/expiry-dates.sh
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 15:54:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-16 12:41:22</span>
       
     
   </small>
