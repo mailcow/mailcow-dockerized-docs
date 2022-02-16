@@ -125,7 +125,7 @@ docker neu starten $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
-Siehe [Post-Hook-Skript für Nicht-Mailcow-ACME-Clients](../post_installation/firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients) für ein vollständiges Beispielskript.
+Siehe [Post-Hook-Skript für Nicht-Mailcow-ACME-Clients](../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients) für ein vollständiges Beispielskript.
 
 ### Test gegen das ACME-Verzeichnis
 
