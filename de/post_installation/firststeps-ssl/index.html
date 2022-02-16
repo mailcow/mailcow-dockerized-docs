@@ -2594,7 +2594,7 @@ Sie sollten sicherstellen, dass diese Clients den <code>MAILCOW_HOSTNAME</code> 
 docker neu starten $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 </code></pre></div>
-<p>Siehe <a href="../post_installation/firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Post-Hook-Skript für Nicht-Mailcow-ACME-Clients</a> für ein vollständiges Beispielskript.</p>
+<p>Siehe <a href="../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Post-Hook-Skript für Nicht-Mailcow-ACME-Clients</a> für ein vollständiges Beispielskript.</p>
 <h3 id="test-gegen-das-acme-verzeichnis">Test gegen das ACME-Verzeichnis<a class="headerlink" href="#test-gegen-das-acme-verzeichnis" title="Permanent link">&para;</a></h3>
 <p>Bearbeiten Sie <code>mailcow.conf</code> und fügen Sie <code>LE_STAGING=y</code> hinzu.</p>
 <p>Führen Sie <code>docker-compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
@@ -2625,7 +2625,7 @@ bash helper-scripts/expiry-dates.sh
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 15:54:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-16 12:42:15</span>
       
     
   </small>
