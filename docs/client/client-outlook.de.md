@@ -11,21 +11,7 @@ Für EAS müssen Sie den alten Assistenten verwenden, indem Sie `C:\Program File
 
 Wenn die Anwendung nicht geöffnet wird, können Sie den [Assistenten zum Erstellen eines neuen Kontos vollständig deaktivieren](https://support.microsoft.com/en-us/help/3189194/how-to-disable-simplified-account-creation-in-outlook) und die nachstehende Anleitung für Outlook 2013 befolgen.
 
-## Outlook 2013 oder höher unter Windows
-
-<div class="client_variables_unavailable" markdown="1">
-  Dies gilt nur, wenn Ihr Serveradministrator EAS für Outlook nicht deaktiviert hat. Wenn es deaktiviert ist, folgen Sie bitte stattdessen der Anleitung für Outlook 2007.
-</div>
-
-1. Starten Sie Outlook.
-2. Wenn Sie Outlook zum ersten Mal gestartet haben, werden Sie aufgefordert, Ihr Konto einzurichten. Fahren Sie mit Schritt 4 fort.
-3. Öffnen Sie das Menü *Datei* und klicken Sie auf *Konto hinzufügen*.
-4. Geben Sie Ihren Namen<span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span>, Ihre E-Mail Adresse<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> und Ihr Passwort ein. Klicken Sie auf *Weiter*.
-5. Wenn Sie dazu aufgefordert werden, geben Sie Ihr Passwort erneut ein, markieren Sie *Meine Anmeldedaten speichern* und klicken Sie auf *OK*.
-6. Klicken Sie auf die Schaltfläche *Zulassen*.
-7. Klicken Sie auf *Fertigstellen*.
-
-## Outlook 2007 or higher on Windows
+## Outlook 2007 oder höher auf Windows (Kalender/Kontakte via CalDav Synchronizer)
 
 </div>
 
@@ -41,6 +27,20 @@ Wenn die Anwendung nicht geöffnet wird, können Sie den [Assistenten zum Erstel
 10. Klicken Sie auf *Ressourcen erkennen und Outlook-Ordnern zuweisen*.
 11. Wählen Sie im Fenster *Ressource auswählen* Ihren Hauptkalender (in der Regel *Persönlicher Kalender*), klicken Sie auf die Schaltfläche *...*, weisen Sie ihn dem Ordner *Kalender* zu, und klicken Sie auf *OK*. Gehen Sie zu den Registerkarten *Adressbücher* und *Aufgaben* und wiederholen Sie den Vorgang entsprechend. Weisen Sie nicht mehreren Kalendern, Adressbüchern oder Aufgabenlisten zu!
 12. Schließen Sie alle Fenster mit den Tasten *OK*.
+
+## Outlook 2013 oder höher unter Windows (Active Sync - nicht empfohlen)
+
+<div class="client_variables_unavailable" markdown="1">
+  Dies gilt nur, wenn Ihr Serveradministrator EAS für Outlook nicht deaktiviert hat. Wenn es deaktiviert ist, folgen Sie bitte stattdessen der Anleitung für Outlook 2007.
+</div>
+
+1. Starten Sie Outlook.
+2. Wenn Sie Outlook zum ersten Mal gestartet haben, werden Sie aufgefordert, Ihr Konto einzurichten. Fahren Sie mit Schritt 4 fort.
+3. Öffnen Sie das Menü *Datei* und klicken Sie auf *Konto hinzufügen*.
+4. Geben Sie Ihren Namen<span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span>, Ihre E-Mail Adresse<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> und Ihr Passwort ein. Klicken Sie auf *Weiter*.
+5. Wenn Sie dazu aufgefordert werden, geben Sie Ihr Passwort erneut ein, markieren Sie *Meine Anmeldedaten speichern* und klicken Sie auf *OK*.
+6. Klicken Sie auf die Schaltfläche *Zulassen*.
+7. Klicken Sie auf *Fertigstellen*.
 
 ## Outlook 2011 oder höher unter macOS
 
