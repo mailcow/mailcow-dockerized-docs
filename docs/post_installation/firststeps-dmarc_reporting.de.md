@@ -43,7 +43,7 @@ services:
   rspamd-mailcow:
     environment:
       - MASTER=${MASTER:-y}
-    Labels:
+    labels:
       ofelia.enabled: "true"
       ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"
       ofelia.job-exec.rspamd_dmarc_reporting.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
