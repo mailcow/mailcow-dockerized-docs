@@ -78,5 +78,4 @@ Benachrichtigt Administratoren, wenn watchdog keine Verbindung zu olefy auf Port
 
 #### MAILQ_CRIT und MAILQ_THRESHOLD
 Benachrichtigt Administratoren, wenn die Anzahl der E-Mails in der Postfix-Warteschlange größer ist als `MAILQ_CRIT` für einen Zeitraum von `MAILQ_THRESHOLD * (60±30)` Sekunden.
-*** Übersetzt mit www.DeepL.com/Translator (kostenlose Version) ***
 
