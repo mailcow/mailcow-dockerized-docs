@@ -7,6 +7,28 @@ Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [
 
 In case you have forgotten the password (e.g. for admin) and can't request a new one [via the password reset link on the login screen](https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset) calling the helper script with `-r` as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.
 
+## Background jobs
+
+To use the recommended setting (cron) to execute the background jobs following lines need to be added to the `docker-compose.override.yml`:
+
+```
+version: '2.1'
+services:
+  php-fpm-mailcow:
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.nextcloud-cron.schedule: "@every 5m"
+      ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""
+```
+
+After adding these lines the `docker-compose up -d` command must be executed to update the docker image and also the docker scheduler image must be restarted to
+ pick up the new job definition by executing `docker-compose restart ofelia-mailcow`. To check if the job was successfully picked up by `ofelia` the command
+ `docker-compose logs ofelia-mailcow` will contain a line similar to `New job registered "nextcloud-cron" - ...`.
+
+By adding these lines the background jobs will be executed every 5 minutes. To verify that the execution works correctly, the only way is to see it in the basic
+ settings when logged in as an admin in Nextcloud. If everything is correct the first scheduled execution will change the background jobs processing setting to
+ `(X) Cron` and the timestamp after `Last job ran` will be updated every 5 minutes.
+
 ## Configure Nextcloud to use mailcow for authentication
 
 The following describes how set up authentication via mailcow using the OAuth2 protocol. We will only assume that you have already set up Nextcloud at _cloud.example.com_ and that your mailcow is running at _mail.example.com_. It does not matter if your Nextcloud is running on a different server, you can still use mailcow for authentication.
