@@ -4,7 +4,7 @@ Nextcloud kann mit dem [helper script](https://github.com/mailcow/mailcow-docker
 
 `./helper-scripts/nextcloud.sh -i`
 
-Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset), können Sie durch den Aufruf des Helper-Skripts mit `-r` als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.
+Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset), können Sie durch den Aufruf des Helper-Skripts mit `-r` als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.
 
 ## Hintergrund-Aufgaben
 
@@ -21,7 +21,7 @@ services:
       ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""
 ```
 
-Nachdem diese Zeilen hinzugefügt wurden muss `docker-compose up -d` ausgeführt werden um das Docker image bit den entsprechenden Labels zu versehen. Danach muss
+Nachdem diese Zeilen hinzugefügt wurden muss `docker-compose up -d` ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
  zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird `docker-compose restart ofelia-mailcow` ausgeführt. Zur
  Überprüfung, ob die `ofelia` Konfiguration korrekt ist geladen wurde, kann mittels `docker-compose logs ofelia-mailcow` nach einer Zeile mit dem Inhalt
  `New job registered "nextcloud-cron" - ...` gesucht werden.
