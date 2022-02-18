@@ -25,5 +25,3 @@ docker-compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
 ```
 
 Starten Sie den Postfix-Container neu.
-
-Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
