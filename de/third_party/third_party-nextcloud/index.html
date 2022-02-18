@@ -2239,6 +2239,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hintergrund-aufgaben" class="md-nav__link">
+    Hintergrund-Aufgaben
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#konfigurieren-sie-nextcloud-um-mailcow-fur-die-authentifizierung-zu-verwenden" class="md-nav__link">
     Konfigurieren Sie Nextcloud, um mailcow für die Authentifizierung zu verwenden
   </a>
@@ -2334,6 +2341,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hintergrund-aufgaben" class="md-nav__link">
+    Hintergrund-Aufgaben
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#konfigurieren-sie-nextcloud-um-mailcow-fur-die-authentifizierung-zu-verwenden" class="md-nav__link">
     Konfigurieren Sie Nextcloud, um mailcow für die Authentifizierung zu verwenden
   </a>
@@ -2377,7 +2391,25 @@
 <h2 id="nextcloud-mit-dem-helper-skript-verwalten">Nextcloud mit dem Helper-Skript verwalten<a class="headerlink" href="#nextcloud-mit-dem-helper-skript-verwalten" title="Permanent link">&para;</a></h2>
 <p>Nextcloud kann mit dem <a href="https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh">helper script</a>, das in mailcow enthalten ist, eingerichtet (Parameter <code>-i</code>) und entfernt (Parameter <code>-p</code>) werden. Um Nextcloud zu installieren, navigieren Sie einfach zu Ihrem mailcow-dockerized Root-Ordner und führen Sie das Helper-Skript wie folgt aus:</p>
 <p><code>./helper-scripts/nextcloud.sh -i</code></p>
-<p>Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (<a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset</a>), können Sie durch den Aufruf des Helper-Skripts mit <code>-r</code> als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.</p>
+<p>Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (<a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset</a>), können Sie durch den Aufruf des Helper-Skripts mit <code>-r</code> als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.</p>
+<h2 id="hintergrund-aufgaben">Hintergrund-Aufgaben<a class="headerlink" href="#hintergrund-aufgaben" title="Permanent link">&para;</a></h2>
+<p>Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der <code>docker-compose.override.yml</code> folgende Zeilen
+ hinzugefügt werden:</p>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+services:
+  php-fpm-mailcow:
+    labels:
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.nextcloud-cron.schedule: &quot;@every 5m&quot;
+      ofelia.job-exec.nextcloud-cron.command: &quot;su www-data -s /bin/bash -c \&quot;/usr/local/bin/php -f /web/nextcloud/cron.php\&quot;&quot;
+</code></pre></div>
+<p>Nachdem diese Zeilen hinzugefügt wurden muss <code>docker-compose up -d</code> ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
+ zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird <code>docker-compose restart ofelia-mailcow</code> ausgeführt. Zur
+ Überprüfung, ob die <code>ofelia</code> Konfiguration korrekt ist geladen wurde, kann mittels <code>docker-compose logs ofelia-mailcow</code> nach einer Zeile mit dem Inhalt
+ <code>New job registered "nextcloud-cron" - ...</code> gesucht werden.</p>
+<p>Hierdurch wird alle 5 Minuten die Hintergrundverarbeitung gestartet. Da die Ausführung selbst keine Ausgabe liefert, kann die korrekte Funktionsweise in den
+ Grundeinstellungen von Nextcloud überprüft werden. Hier wird automatisch mit der ersten Ausführung die Hintergrund-Aufgaben Verarbeitung auf <code>(X) Cron</code> gesetzt
+ und der Zeitstempel <code>Letzte Aufgabe ausgeführt</code> aktualisiert.</p>
 <h2 id="konfigurieren-sie-nextcloud-um-mailcow-fur-die-authentifizierung-zu-verwenden">Konfigurieren Sie Nextcloud, um mailcow für die Authentifizierung zu verwenden<a class="headerlink" href="#konfigurieren-sie-nextcloud-um-mailcow-fur-die-authentifizierung-zu-verwenden" title="Permanent link">&para;</a></h2>
 <p>Im Folgenden wird beschrieben, wie die Authentifizierung über mailcow unter Verwendung des OAuth2-Protokolls eingerichtet wird. Wir nehmen nur an, dass Sie Nextcloud bereits unter <em>cloud.example.com</em> eingerichtet haben und dass Ihre mailcow unter <em>mail.example.com</em> läuft. Es spielt keine Rolle, wenn Ihre Nextcloud auf einem anderen Server läuft, Sie können immer noch mailcow für die Authentifizierung verwenden.</p>
 <p>1. Melden Sie sich bei mailcow als Administrator an.</p>
@@ -2455,7 +2487,7 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-04 12:16:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-18 18:03:43</span>
       
     
   </small>

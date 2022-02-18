@@ -2239,6 +2239,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#background-jobs" class="md-nav__link">
+    Background jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configure-nextcloud-to-use-mailcow-for-authentication" class="md-nav__link">
     Configure Nextcloud to use mailcow for authentication
   </a>
@@ -2334,6 +2341,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#background-jobs" class="md-nav__link">
+    Background jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configure-nextcloud-to-use-mailcow-for-authentication" class="md-nav__link">
     Configure Nextcloud to use mailcow for authentication
   </a>
@@ -2378,6 +2392,22 @@
 <p>Nextcloud can be set up (parameter <code>-i</code>) and removed (parameter <code>-p</code>) with the <a href="https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh">helper script</a> included with mailcow. In order to install Nextcloud simply navigate to your mailcow-dockerized root folder and run the helper script as follows:</p>
 <p><code>./helper-scripts/nextcloud.sh -i</code></p>
 <p>In case you have forgotten the password (e.g. for admin) and can't request a new one <a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">via the password reset link on the login screen</a> calling the helper script with <code>-r</code> as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.</p>
+<h2 id="background-jobs">Background jobs<a class="headerlink" href="#background-jobs" title="Permanent link">&para;</a></h2>
+<p>To use the recommended setting (cron) to execute the background jobs following lines need to be added to the <code>docker-compose.override.yml</code>:</p>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+services:
+  php-fpm-mailcow:
+    labels:
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.nextcloud-cron.schedule: &quot;@every 5m&quot;
+      ofelia.job-exec.nextcloud-cron.command: &quot;su www-data -s /bin/bash -c \&quot;/usr/local/bin/php -f /web/nextcloud/cron.php\&quot;&quot;
+</code></pre></div>
+<p>After adding these lines the <code>docker-compose up -d</code> command must be executed to update the docker image and also the docker scheduler image must be restarted to
+ pick up the new job definition by executing <code>docker-compose restart ofelia-mailcow</code>. To check if the job was successfully picked up by <code>ofelia</code> the command
+ <code>docker-compose logs ofelia-mailcow</code> will contain a line similar to <code>New job registered "nextcloud-cron" - ...</code>.</p>
+<p>By adding these lines the background jobs will be executed every 5 minutes. To verify that the execution works correctly, the only way is to see it in the basic
+ settings when logged in as an admin in Nextcloud. If everything is correct the first scheduled execution will change the background jobs processing setting to
+ <code>(X) Cron</code> and the timestamp after <code>Last job ran</code> will be updated every 5 minutes.</p>
 <h2 id="configure-nextcloud-to-use-mailcow-for-authentication">Configure Nextcloud to use mailcow for authentication<a class="headerlink" href="#configure-nextcloud-to-use-mailcow-for-authentication" title="Permanent link">&para;</a></h2>
 <p>The following describes how set up authentication via mailcow using the OAuth2 protocol. We will only assume that you have already set up Nextcloud at <em>cloud.example.com</em> and that your mailcow is running at <em>mail.example.com</em>. It does not matter if your Nextcloud is running on a different server, you can still use mailcow for authentication.</p>
 <p>1. Log into mailcow as administrator.</p>
@@ -2455,7 +2485,7 @@ It shows which commands have to be executed, these have to be placed in the php-
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-04 12:16:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-18 18:03:43</span>
       
     
   </small>
