@@ -217,6 +217,7 @@ services:
           - ../traefik/data:/traefik:ro
           # mount mailcow's SSL folder
           - ./data/assets/ssl/:/output:rw
+        restart: always
         environment:
           # only change this, if you're using another domain for mailcow's web frontend compared to the standard config
           - DOMAIN=${MAILCOW_HOSTNAME}
