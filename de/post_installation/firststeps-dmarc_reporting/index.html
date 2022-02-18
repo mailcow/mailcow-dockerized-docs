@@ -2432,7 +2432,7 @@ services:
   rspamd-mailcow:
     environment:
       - MASTER=${MASTER:-y}
-    Labels:
+    labels:
       ofelia.enabled: &quot;true&quot;
       ofelia.job-exec.rspamd_dmarc_reporting.schedule: &quot;@every 24h&quot;
       ofelia.job-exec.rspamd_dmarc_reporting.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
@@ -2503,7 +2503,7 @@ docker-compose exec redis-mailcow redis-cli HGETALL &quot;dmarc;example.com;2021
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-29 23:04:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-18 18:04:03</span>
       
     
   </small>
