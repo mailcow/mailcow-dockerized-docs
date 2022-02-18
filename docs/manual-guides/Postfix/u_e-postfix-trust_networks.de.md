@@ -37,5 +37,3 @@ Führen Sie `docker-compose restart postfix-mailcow` aus, um Ihre neuen Einstell
 
 !!! Info
     Weitere Informationen über mynetworks finden Sie in der [Postfix-Dokumentation](http://www.postfix.org/postconf.5.html#mynetworks).
-
-Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
