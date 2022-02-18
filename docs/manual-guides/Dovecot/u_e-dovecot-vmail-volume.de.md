@@ -55,5 +55,4 @@ volumes:
 - Erstellen Sie die Datei `docker-compose.override.yml`, bearbeiten Sie den Gerätepfad entsprechend
 - Löschen Sie den aktuellen vmail-Ordner: `docker volume rm mailcowdockerized_vmail-vol-1`
 - Starten Sie mailcow durch Ausführen von `docker-compose up -d` aus Ihrem mailcow-Stammverzeichnis (z.B. `/opt/mailcow-dockerized`)
-*** Übersetzt mit www.DeepL.com/Translator (kostenlose Version) ***
 
