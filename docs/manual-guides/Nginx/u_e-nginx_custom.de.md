@@ -116,5 +116,3 @@ docker-compose restart nginx-mailcow
 docker-compose restart php-fpm-mailcow
 ```
 
-*** Übersetzt mit www.DeepL.com/Translator (kostenlose Version) ***
-
