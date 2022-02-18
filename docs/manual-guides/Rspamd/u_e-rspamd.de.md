@@ -239,7 +239,5 @@ nrows = 1000; # Ändern Sie diesen Wert
 
 Starten Sie anschließend Rspamd neu: `docker-compose restart rspamd-mailcow`
 
-*** Übersetzt mit www.DeepL.com/Translator (kostenlose Version) ***
-
 
 
