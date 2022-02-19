@@ -2425,7 +2425,7 @@ Das Skript <code>generate_config.sh</code> kopiert die Snake-oil Zertifikate an 
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Wenn du TLS SNI aktivierst (<code>ENABLE_TLS_SNI</code> in mailcow.conf), <strong>müssen</strong> die Zertifikatspfade in deinem Reverse-Proxy mit den korrekten Pfaden in data/assets/ssl/{hostname} übereinstimmen. Die Zertifikate werden in <code>data/assets/ssl/{hostname1,hostname2,etc}</code> aufgeteilt und werden daher nicht funktionieren, wenn Sie die Beispiele von unten kopieren, die auf <code>data/assets/ssl/cert.pem</code> etc. zeigen.</p>
+<p>Wenn Sie TLS SNI aktivieren (<code>ENABLE_TLS_SNI</code> in mailcow.conf), <strong>müssen</strong> die Zertifikatspfade in Ihrem Reverse-Proxy mit den korrekten Pfaden in data/assets/ssl/{hostname} übereinstimmen. Die Zertifikate werden in <code>data/assets/ssl/{hostname1,hostname2,etc}</code> aufgeteilt und werden daher nicht funktionieren, wenn Sie die Beispiele von unten kopieren, die auf <code>data/assets/ssl/cert.pem</code> etc. zeigen.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2632,7 +2632,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-19 11:23:29</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-20 00:05:40</span>
       
     
   </small>
