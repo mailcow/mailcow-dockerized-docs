@@ -25,7 +25,7 @@ Erzeugen Sie die betroffenen Container neu, indem Sie `docker-compose up -d` aus
     Das Skript `generate_config.sh` kopiert die Snake-oil Zertifikate an den richtigen Ort, so dass die Dienste nicht aufgrund fehlender Dateien nicht starten können.
 
 !!! warning
-    Wenn du TLS SNI aktivierst (`ENABLE_TLS_SNI` in mailcow.conf), **müssen** die Zertifikatspfade in deinem Reverse-Proxy mit den korrekten Pfaden in data/assets/ssl/{hostname} übereinstimmen. Die Zertifikate werden in `data/assets/ssl/{hostname1,hostname2,etc}` aufgeteilt und werden daher nicht funktionieren, wenn Sie die Beispiele von unten kopieren, die auf `data/assets/ssl/cert.pem` etc. zeigen.
+    Wenn Sie TLS SNI aktivieren (`ENABLE_TLS_SNI` in mailcow.conf), **müssen** die Zertifikatspfade in Ihrem Reverse-Proxy mit den korrekten Pfaden in data/assets/ssl/{hostname} übereinstimmen. Die Zertifikate werden in `data/assets/ssl/{hostname1,hostname2,etc}` aufgeteilt und werden daher nicht funktionieren, wenn Sie die Beispiele von unten kopieren, die auf `data/assets/ssl/cert.pem` etc. zeigen.
 
 !!! info
     Die Verwendung der untenstehenden Site-Konfigurationen wird **acme-Anfragen an mailcow** weiterleiten und es die Zertifikate selbst verwalten lassen.
