@@ -185,49 +185,6 @@ version: '2.1'
 services:
     nginx-mailcow:
       networks:
-        # add Traefik's network
-        web:
-      labels:
-        - traefik.enable=true
-        # Creates a router called "moo" for the container, and sets up a rule to link the container to certain rule,
-        #   in this case, a Host rule with our MAILCOW_HOSTNAME var.
-        - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
-        # Enables tls over the router we created before.
-        - traefik.http.routers.moo.tls=true
-        # Specifies which kind of cert resolver we'll use, in this case le (Lets Encrypt).
-        - traefik.http.routers.moo.tls.certresolver=le
-        # Creates a service called "moo" for the container, and specifies which internal port of the container
-        #   should traefik route the incoming data to.
-        - traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}
-        # Specifies which entrypoint (external port) should traefik listen to, for this container.
-        #   websecure being port 443, check the traefik.toml file liked above.
-        - traefik.http.routers.moo.entrypoints=websecure
-        # Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network
-        - traefik.docker.network=web
-
-    certdumper:
-        image: humenius/traefik-certs-dumper
-        container_name: traefik_certdumper
-        network_mode: none
-        volumes:
-          # mount the folder which contains Traefik's `acme.json' file
-          #   in this case Traefik is started from its own docker-compose in ../traefik
-          - ../traefik/data:/traefik:ro
-          # mount mailcow's SSL folder
-          - ./data/assets/ssl/:/output:rw
-        restart: always
-        environment:
-          # only change this, if you're using another domain for mailcow's web frontend compared to the standard config
-          - DOMAIN=${MAILCOW_HOSTNAME}
-
-networks:
-  web:
-    external: true
-Version: '2.1'
-
-Dienste:
-    nginx-mailcow:
-      Netzwerke:
         # Traefiks Netzwerk hinzufügen
         web:
       labels:
@@ -251,20 +208,21 @@ Dienste:
     certdumper:
         image: humenius/traefik-certs-dumper
         container_name: traefik_certdumper
-        network_mode: keine
+        network_mode: none
         volumes:
           # mounten Sie den Ordner, der Traefiks `acme.json' Datei enthält
           # in diesem Fall wird Traefik von seinem eigenen docker-compose in ../traefik gestartet
           - ../traefik/data:/traefik:ro
           # SSL-Ordner von mailcow einhängen
           - ./data/assets/ssl/:/output:rw
-        Umgebung:
+        restart: always
+        environment:
           # Ändern Sie dies nur, wenn Sie eine andere Domain für Mailcows Web-Frontend verwenden als in der Standard-Konfiguration
           - DOMAIN=${MAILCOW_HOSTNAME}
 
-Netzwerke:
+networks:
   web:
-    extern: true
+    external: true
 ```
 
 Starten Sie die neuen Container mit `docker-compose up -d`.
