@@ -155,9 +155,6 @@ nav:
 
 plugins:
   - search
-  - git-revision-date-localized:
-      type: iso_datetime
-      timezone: Europe/Berlin
   - i18n: # <--- Translation plugin
       default_language: en
       languages:
@@ -252,6 +249,9 @@ plugins:
           'Third party apps': 'Anwendungen von Drittanbietern'
           'Borgmatic Backup': 'Borgmatic-Sicherung'
        #### End of german translation
+  - git-revision-date-localized:
+      type: iso_datetime
+      timezone: Europe/Berlin
   - redirects:
       redirect_maps:
         # 'old': 'new'
