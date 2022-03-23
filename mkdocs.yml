@@ -290,6 +290,7 @@ plugins:
         'debug-rm_volumes.md': 'troubleshooting/debug-rm_volumes.en.md'
         'debug-reset_pw.md': 'troubleshooting/debug-reset_pw.en.md'
         'debug-reset_tls.md': 'troubleshooting/debug-reset_tls.en.md'
+        'b_n_r_backup.md': 'backup_restore/b_n_r-backup.en.md'
         'b_n_r-backup.md': 'backup_restore/b_n_r-backup.en.md'
         'b_n_r-restore.md': 'backup_restore/b_n_r-restore.en.md'
         'b_n_r-coldstandby.md': 'backup_restore/b_n_r-coldstandby.en.md'
