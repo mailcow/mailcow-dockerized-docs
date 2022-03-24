@@ -13,4 +13,8 @@ SHELL=/bin/bash
 59 23 * * * root docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | /usr/sbin/pflogsumm -d today | mail -s "Postfix Report of $(date)" postmaster@example.net
 ```
 
-Basierend auf den Postfix-Logs der letzten 24 Stunden sendet dieses Beispiel jeden Tag um 23:59:00 Uhr einen pflogsumm-Bericht an postmaster@example.net.
+Um zu funktionieren muss ein lokaler Postfix auf dem Server installiert werden, welcher an den Postfix der mailcow relayed.
+
+Genauere Informationen lassen sich finden unter Sektion [Post-Installationsaufgaben -> Lokaler MTA auf Dockerhost](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-local_mta/) finden.
+
+Basierend auf den Postfix-Logs der letzten 24 Stunden sendet dieses Beispiel dann jeden Tag um 23:59:00 Uhr einen pflogsumm-Bericht an postmaster@example.net.
