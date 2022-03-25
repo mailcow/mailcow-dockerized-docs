@@ -2294,7 +2294,7 @@ services:
 
     ipv6nat-mailcow:
       image: bash:latest
-      neustart: &quot;no&quot;
+      restart: &quot;no&quot;
       entrypoint: [&quot;echo&quot;, &quot;ipv6nat disabled in compose.override.yml&quot;]
 </code></pre></div>
 <p>Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stoppen und dann neu starten, damit Container und Netzwerke neu erstellt werden:</p>
@@ -2325,7 +2325,7 @@ inet_protocols = ipv4
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-29 23:04:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-03-25 12:26:49</span>
       
     
   </small>
