@@ -95,7 +95,7 @@ Let's Encrypt wird unserem Rewrite folgen, Zertifikatsanfragen in mailcow werden
 
 Let's Encrypt folgt unserem Rewrite, Zertifikatsanfragen funktionieren problemlos.
 
-**Kümmern Sie sich um die hervorgehobenen Zeilen**.
+**Achten Sie auf die hervorgehobenen Zeilen**.
 
 ``` hl_lines="4 10 12 13 25 39"
 server {
@@ -130,7 +130,7 @@ server {
     proxy_connect_timeout 75;
     proxy_send_timeout 3650;
     proxy_read_timeout 3650;
-    proxy_buffers 64 256k;
+    proxy_buffers 64 512k; # Seit dem 2022-04 Update nötig für SOGo
     client_body_buffer_size 512k;
     client_max_body_size 0;
   }
@@ -142,6 +142,11 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     client_max_body_size 0;
+  # Die folgenden Proxy-Buffer müssen gesetzt werden, wenn Sie SOGo nach dem Update 2022-04 (April 2022) verwenden wollen
+  # Andernfalls wird ein Login wie folgt fehlschlagen: https://github.com/mailcow/mailcow-dockerized/issues/4537
+	proxy_buffer_size 128k;
+    proxy_buffers 64 512k;
+    proxy_busy_buffers_size 512k;
   }
 }
 ```

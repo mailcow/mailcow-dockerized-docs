@@ -131,7 +131,7 @@ server {
     proxy_connect_timeout 75;
     proxy_send_timeout 3650;
     proxy_read_timeout 3650;
-    proxy_buffers 64 256k;
+    proxy_buffers 64 512k; # Needed since the 2022-04 Update for SOGo
     client_body_buffer_size 512k;
     client_max_body_size 0;
   }
@@ -143,6 +143,11 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     client_max_body_size 0;
+  # The following Proxy Buffers has to be set if you want to use SOGo after the 2022-04 (April 2022) Update
+  # Otherwise a Login will fail like this: https://github.com/mailcow/mailcow-dockerized/issues/4537
+	proxy_buffer_size 128k;
+    proxy_buffers 64 512k;
+    proxy_busy_buffers_size 512k;
   }
 }
 ```
