@@ -2487,7 +2487,7 @@ Auf vielen Servern wird logrotate den Webserver sowieso täglich neu laden.</p>
 </code></pre></div>
 <h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <p>Let's Encrypt folgt unserem Rewrite, Zertifikatsanfragen funktionieren problemlos.</p>
-<p><strong>Kümmern Sie sich um die hervorgehobenen Zeilen</strong>.</p>
+<p><strong>Achten Sie auf die hervorgehobenen Zeilen</strong>.</p>
 <div class="highlight"><pre><span></span><code>server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -2520,7 +2520,7 @@ server {
     proxy_connect_timeout 75;
     proxy_send_timeout 3650;
     proxy_read_timeout 3650;
-    proxy_buffers 64 256k;
+    proxy_buffers 64 512k; # Seit dem 2022-04 Update nötig für SOGo
     client_body_buffer_size 512k;
     client_max_body_size 0;
   }
@@ -2532,6 +2532,11 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     client_max_body_size 0;
+  # Die folgenden Proxy-Buffer müssen gesetzt werden, wenn Sie SOGo nach dem Update 2022-04 (April 2022) verwenden wollen
+  # Andernfalls wird ein Login wie folgt fehlschlagen: https://github.com/mailcow/mailcow-dockerized/issues/4537
+    proxy_buffer_size 128k;
+    proxy_buffers 64 512k;
+    proxy_busy_buffers_size 512k;
   }
 }
 </code></pre></div>
@@ -2633,7 +2638,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-20 00:05:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-06 18:55:48</span>
       
     
   </small>
