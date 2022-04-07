@@ -88,6 +88,7 @@ Jeder Container repräsentiert eine einzelne Anwendung.
 
 **Docker-Volumes** zur Aufbewahrung dynamischer Daten - kümmern Sie sich um sie!
 
+- clamd-db-vol-1
 - crypt-vol-1
 - mysql-socket-vol-1
 - mysql-vol-1

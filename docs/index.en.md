@@ -88,6 +88,7 @@ Each container represents a single application.
 
 **Docker volumes** to keep dynamic data - take care of them!
 
+- clamd-db-vol-1
 - crypt-vol-1
 - mysql-socket-vol-1
 - mysql-vol-1
