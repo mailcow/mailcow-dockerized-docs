@@ -2,7 +2,7 @@
 
 Default ClamAV databases has not great detection level, but it could be enhanced with free or paid signature databases.
 
-### List of known free databases
+### List of known free databases | As of April 2022
 
 - [SecurityInfo](https://www.securiteinfo.com/) - free ClamAV DBs for testing purposes, required registration after which you can use them from 1 IP
 - [InterServer](http://rbluri.interserver.net/) - free to use ClamAV DBs, but they do not fit well for email scanning
