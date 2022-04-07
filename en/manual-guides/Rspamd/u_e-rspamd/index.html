@@ -1851,13 +1851,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#whitelist-specific-clamav-signatures" class="md-nav__link">
-    Whitelist specific ClamAV signatures
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#discard-instead-of-reject" class="md-nav__link">
     Discard instead of reject
   </a>
@@ -1899,6 +1892,67 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_9" type="checkbox" id="__nav_8_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_9">
+          ClamAV
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="ClamAV" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_9">
+          <span class="md-nav__icon md-icon"></span>
+          ClamAV
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ClamAV/u_e-clamav-whitelist/" class="md-nav__link">
+        Whitelist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
+        Additional Databases
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../SOGo/u_e-sogo/" class="md-nav__link">
         SOGo
@@ -1917,18 +1971,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_10" type="checkbox" id="__nav_8_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_11" type="checkbox" id="__nav_8_11" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_8_10">
+        <label class="md-nav__link" for="__nav_8_11">
           Docker
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Docker" data-md-level="2">
-        <label class="md-nav__title" for="__nav_8_10">
+        <label class="md-nav__title" for="__nav_8_11">
           <span class="md-nav__icon md-icon"></span>
           Docker
         </label>
@@ -2445,13 +2499,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#whitelist-specific-clamav-signatures" class="md-nav__link">
-    Whitelist specific ClamAV signatures
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#discard-instead-of-reject" class="md-nav__link">
     Discard instead of reject
   </a>
@@ -2593,24 +2640,6 @@ docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;del
 <ol>
 <li>Save the file and restart Rspamd: <code>docker-compose restart rspamd-mailcow</code>.</li>
 </ol>
-<h2 id="whitelist-specific-clamav-signatures">Whitelist specific ClamAV signatures<a class="headerlink" href="#whitelist-specific-clamav-signatures" title="Permanent link">&para;</a></h2>
-<p>You may find that legitimate (clean) mail is being blocked by ClamAV (Rspamd will flag the mail with <code>VIRUS_FOUND</code>). For instance, interactive PDF form attachments are blocked by default because the embedded Javascript code may be used for nefarious purposes. Confirm by looking at the clamd logs, e.g.:</p>
-<div class="highlight"><pre><span></span><code>docker-compose logs clamd-mailcow <span class="p">|</span> grep <span class="s2">&quot;FOUND&quot;</span>
-</code></pre></div>
-<p>This line confirms that such was identified:</p>
-<div class="highlight"><pre><span></span><code>clamd-mailcow_1      | Sat Sep 28 07:43:24 2019 -&gt; instream(local): PUA.Pdf.Trojan.EmbeddedJavaScript-1(e887d2ac324ce90750768b86b63d0749:363325) FOUND
-</code></pre></div>
-<p>To whitelist this particular signature (and enable sending this type of file attached), add it to the ClamAV signature whitelist file:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;PUA.Pdf.Trojan.EmbeddedJavaScript-1&#39;</span> &gt;&gt; data/conf/clamav/whitelist.ign2
-</code></pre></div>
-<p>Then restart the clamd-mailcow service container in the mailcow UI or using docker-compose:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart clamd-mailcow
-</code></pre></div>
-<p>Cleanup cached ClamAV results in Redis:</p>
-<div class="highlight"><pre><span></span><code># docker-compose exec redis-mailcow  /bin/sh
-/data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
-/data # exit
-</code></pre></div>
 <h2 id="discard-instead-of-reject">Discard instead of reject<a class="headerlink" href="#discard-instead-of-reject" title="Permanent link">&para;</a></h2>
 <p>If you want to silently drop a message, create or edit the file <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> and add the following content:</p>
 <div class="highlight"><pre><span></span><code>discard_on_reject = true;
@@ -2648,7 +2677,7 @@ quarantine_notify.py
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 12:23:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-07 18:53:14</span>
       
     
   </small>
@@ -2687,13 +2716,13 @@ quarantine_notify.py
       
       
         
-        <a href="../../SOGo/u_e-sogo/" class="md-footer__link md-footer__link--next" aria-label="Next: SOGo" rel="next">
+        <a href="../../ClamAV/u_e-clamav-whitelist/" class="md-footer__link md-footer__link--next" aria-label="Next: Whitelist" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SOGo
+              Whitelist
             </div>
           </div>
           <div class="md-footer__button md-icon">
