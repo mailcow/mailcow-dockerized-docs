@@ -123,6 +123,9 @@ nav:
       - 'Thresholds': 'manual-guides/Watchdog/u_e-watchdog-thresholds.md'
     - 'Redis': 'manual-guides/Redis/u_e-redis.md'
     - 'Rspamd': 'manual-guides/Rspamd/u_e-rspamd.md'
+    - 'ClamAV':
+      - 'Whitelist': 'manual-guides/ClamAV/u_e-clamav-whitelist.md'
+      - 'Additional Databases': 'manual-guides/ClamAV/u_e-clamav-additional_dbs.md'
     - 'SOGo': 'manual-guides/SOGo/u_e-sogo.md'
     - 'Docker':
       - 'Customize Dockerfiles': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.md'
