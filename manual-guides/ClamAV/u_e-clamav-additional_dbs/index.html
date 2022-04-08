@@ -2451,7 +2451,7 @@
   <h1>Additional Databases</h1>
 
 <h2 id="additional-databases-for-clamav">Additional Databases for ClamAV<a class="headerlink" href="#additional-databases-for-clamav" title="Permanent link">&para;</a></h2>
-<p>Default ClamAV databases has not great detection level, but it could be enhanced with free or paid signature databases.</p>
+<p>Default ClamAV databases do not have great detection levels, but it can be enhanced with free or paid signature databases.</p>
 <h3 id="list-of-known-free-databases-as-of-april-2022">List of known free databases | As of April 2022<a class="headerlink" href="#list-of-known-free-databases-as-of-april-2022" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.securiteinfo.com/">SecurityInfo</a> - free ClamAV DBs for testing purposes, required registration after which you can use them from 1 IP</li>
@@ -2474,6 +2474,9 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoascii.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
 </code></pre></div></p>
+</li>
+<li>
+<p>For free SecuriteInfo databases, download speed is limited to 300 kB/s. In <code>data/conf/clamav/freshclam.conf</code>, increase the default <code>ReceiveTimeout 20</code> value to <code>ReceiveTimeout 90</code> (time in seconds), otherwise some of the database downloads could fail because of their size.</p>
 </li>
 <li>
 <p>Adjust <code>data/conf/clamav/clamd.conf</code> to align with next settings:
@@ -2521,7 +2524,7 @@ DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-07 21:27:39</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-08 17:42:18</span>
       
     
   </small>

@@ -2461,7 +2461,7 @@
 <ol>
 <li>Kostenfreien Account auf <a href="https://www.securiteinfo.com/clients/customers/signup">https://www.securiteinfo.com/clients/customers/signup</a> erstellen.</li>
 <li>Sie erhalten eine E-Mail um Ihren Account zu aktivieren gefolgt von einer E-Mail mit Ihrem Login Namen.</li>
-<li>Loggen Sie sich ein und navigieren Sie zu ihrem Account <a href="https://www.securiteinfo.com/clients/customers/account">https://www.securiteinfo.com/clients/customers/account</a></li>
+<li>Loggen Sie sich ein und navigieren Sie zu Ihrem Account <a href="https://www.securiteinfo.com/clients/customers/account">https://www.securiteinfo.com/clients/customers/account</a></li>
 <li>Klicken Sie auf den 'Setup' Reiter.</li>
 <li>Sie brauchen <code>your_id</code> von den Downloadlinks. <strong>Diese sind pro User individuell</strong>.</li>
 <li>
@@ -2474,6 +2474,9 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoascii.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
 </code></pre></div></p>
+</li>
+<li>
+<p>Bei den kostenlosen SecuriteInfo Datenbanken ist die Download-Geschwindigkeit auf 300 kB/s begrenzt. Ändern Sie in <code>data/conf/clamav/freshclam.conf</code> den Standardwert <code>ReceiveTimeout 20</code> auf <code>ReceiveTimeout 90</code> (Zeitangabe in Sekunden), da ansonsten einige der Datenbank-Downloads aufgrund ihrer Größe abbrechen können.</p>
 </li>
 <li>
 <p>Passen Sie <code>data/conf/clamav/clamd.conf</code> mit den folgenden Einstellungen an:
@@ -2521,7 +2524,7 @@ DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-07 21:27:39</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-08 17:42:18</span>
       
     
   </small>
