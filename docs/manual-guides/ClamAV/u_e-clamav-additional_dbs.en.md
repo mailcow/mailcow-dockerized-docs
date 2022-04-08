@@ -1,6 +1,6 @@
 ## Additional Databases for ClamAV
 
-Default ClamAV databases has not great detection level, but it could be enhanced with free or paid signature databases.
+Default ClamAV databases do not have great detection levels, but it can be enhanced with free or paid signature databases.
 
 ### List of known free databases | As of April 2022
 
@@ -25,7 +25,9 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
 ```
 
-8. Adjust `data/conf/clamav/clamd.conf` to align with next settings:
+8. For free SecuriteInfo databases, download speed is limited to 300 kB/s. In `data/conf/clamav/freshclam.conf`, increase the default `ReceiveTimeout 20` value to `ReceiveTimeout 90` (time in seconds), otherwise some of the database downloads could fail because of their size.
+
+9. Adjust `data/conf/clamav/clamd.conf` to align with next settings:
 ```
 DetectPUA yes
 ExcludePUA PUA.Win.Packer
@@ -41,7 +43,7 @@ MaxHTMLNormalize 50M
 MaxScriptNormalize 50M
 MaxZipTypeRcg 50M
 ```
-9. Restart ClamAV container:
+10. Restart ClamAV container:
 ```bash
 docker-compose restart clamd-mailcow
 ```

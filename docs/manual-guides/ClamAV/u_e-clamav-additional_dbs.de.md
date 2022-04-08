@@ -11,7 +11,7 @@ Die Standard ClamAV Datenbanken haben keine hohe Trefferquote, können aber durc
 
 1. Kostenfreien Account auf https://www.securiteinfo.com/clients/customers/signup erstellen.
 2. Sie erhalten eine E-Mail um Ihren Account zu aktivieren gefolgt von einer E-Mail mit Ihrem Login Namen.
-3. Loggen Sie sich ein und navigieren Sie zu ihrem Account https://www.securiteinfo.com/clients/customers/account
+3. Loggen Sie sich ein und navigieren Sie zu Ihrem Account https://www.securiteinfo.com/clients/customers/account
 4. Klicken Sie auf den 'Setup' Reiter.
 5. Sie brauchen `your_id` von den Downloadlinks. **Diese sind pro User individuell**.
 7. Fügen Sie diese wie folgt in die `data/conf/clamav/freshclam.conf` ein und ersetzen Sie den `your_id` Teil mit Ihrer ID:
@@ -25,7 +25,9 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
 ```
 
-8. Passen Sie `data/conf/clamav/clamd.conf` mit den folgenden Einstellungen an:
+8. Bei den kostenlosen SecuriteInfo Datenbanken ist die Download-Geschwindigkeit auf 300 kB/s begrenzt. Ändern Sie in `data/conf/clamav/freshclam.conf` den Standardwert `ReceiveTimeout 20` auf `ReceiveTimeout 90` (Zeitangabe in Sekunden), da ansonsten einige der Datenbank-Downloads aufgrund ihrer Größe abbrechen können.
+
+9. Passen Sie `data/conf/clamav/clamd.conf` mit den folgenden Einstellungen an:
 ```
 DetectPUA yes
 ExcludePUA PUA.Win.Packer
@@ -41,7 +43,7 @@ MaxHTMLNormalize 50M
 MaxScriptNormalize 50M
 MaxZipTypeRcg 50M
 ```
-9. Starten Sie den ClamAV Container neu:
+10. Starten Sie den ClamAV Container neu:
 ```bash
 docker-compose restart clamd-mailcow
 ```
