@@ -107,4 +107,4 @@ Run `docker-compose restart memcached-mailcow sogo-mailcow` to activate the chan
 
 ## Reset TOTP / Disable TOTP
 
-Run `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@domain.tld SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` from within the mailcow directory.
+Run `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` from within the mailcow directory.
