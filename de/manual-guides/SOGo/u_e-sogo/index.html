@@ -2568,14 +2568,14 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
 <p>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> Sie <code>SOGoPasswordChangeEnabled</code> auf <code>NO</code>. Bitte fügen Sie keinen neuen Parameter hinzu.</p>
 <p>Führen Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> aus, um die Änderungen zu aktivieren.</p>
 <h2 id="totp-zurucksetzen-totp-deaktivieren">TOTP zurücksetzen / TOTP deaktivieren<a class="headerlink" href="#totp-zurucksetzen-totp-deaktivieren" title="Permanent link">&para;</a></h2>
-<p>Führen Sie <code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@domain.tld SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
+<p>Führen Sie <code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 12:23:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-16 13:06:09</span>
       
     
   </small>
