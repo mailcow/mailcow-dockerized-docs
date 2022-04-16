@@ -107,5 +107,5 @@ Führen Sie `docker-compose restart memcached-mailcow sogo-mailcow` aus, um die 
 
 ## TOTP zurücksetzen / TOTP deaktivieren
 
-Führen Sie `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@domain.tld SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` aus dem mailcow Verzeichnis aus.
+Führen Sie `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` aus dem mailcow Verzeichnis aus.
 
