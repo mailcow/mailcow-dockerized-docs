@@ -2454,6 +2454,7 @@
 <p>Nextcloud kann mit dem <a href="https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh">helper script</a>, das in mailcow enthalten ist, eingerichtet (Parameter <code>-i</code>) und entfernt (Parameter <code>-p</code>) werden. Um Nextcloud zu installieren, navigieren Sie einfach zu Ihrem mailcow-dockerized Root-Ordner und führen Sie das Helper-Skript wie folgt aus:</p>
 <p><code>./helper-scripts/nextcloud.sh -i</code></p>
 <p>Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (<a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset</a>), können Sie durch den Aufruf des Helper-Skripts mit <code>-r</code> als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.</p>
+<p>Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und <code>docker-compose up -d</code> zur Übernahme ausgeführt werden. Für weitere Informationen siehe: <a href="../../post_installation/firststeps-ssl/">Erweitertes SSL</a>.</p>
 <h2 id="hintergrund-aufgaben">Hintergrund-Aufgaben<a class="headerlink" href="#hintergrund-aufgaben" title="Permanent link">&para;</a></h2>
 <p>Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der <code>docker-compose.override.yml</code> folgende Zeilen
  hinzugefügt werden:</p>
@@ -2549,7 +2550,7 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-18 18:03:43</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-18 21:31:31</span>
       
     
   </small>
