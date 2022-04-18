@@ -1,4 +1,3 @@
-
 ## Manage Nextcloud using the helper script
 
 Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [helper script](https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh) included with mailcow. In order to install Nextcloud simply navigate to your mailcow-dockerized root folder and run the helper script as follows:
@@ -7,8 +6,7 @@ Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [
 
 In case you have forgotten the password (e.g. for admin) and can't request a new one [via the password reset link on the login screen](https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset) calling the helper script with `-r` as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.
 
-In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run `docker-compose up -d` to apply. For more informaton refer to: [Advanced SSL](https://mailcow.github.io/mailcow-dockerized-docs/post_installation/firststeps-ssl/).
-
+In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run `docker-compose up -d` to apply. For more informaton refer to: [Advanced SSL](../post_installation/firststeps-ssl.md).
 
 ## Background jobs
 
