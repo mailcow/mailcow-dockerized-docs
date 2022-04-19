@@ -2721,10 +2721,10 @@ auto eth0:0
 iface eth0:0 inet6 static
 # Richtig:
 auto eth0
-iface eth0 inet6 statisch
+iface eth0 inet6 static
 </code></pre></div>
-<p>Starten Sie die Schnittstelle neu oder starten Sie sie neu.
-Vielleicht möchten Sie <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes">cloud-init Netzwerkänderungen deaktivieren.</a></p>
+<p>Starten Sie die Schnittstelle neu, um die Einstellungen zu übernehmen
+Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes">cloud-init Netzwerkänderungen deaktivieren.</a></p>
 <h2 id="mtu">MTU<a class="headerlink" href="#mtu" title="Permanent link">&para;</a></h2>
 <p>Besonders relevant für OpenStack-Benutzer: Überprüfen Sie Ihre MTU und setzen Sie sie entsprechend in docker-compose.yml. Siehe <strong>4.1</strong> in <a href="../../i_u_m/i_u_m_install/">unseren Installationsanleitungen</a>.</p>
 
@@ -2733,7 +2733,7 @@ Vielleicht möchten Sie <a href="https://wiki.hetzner.de/index.php/Cloud_IP_stat
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-14 16:28:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-19 19:31:37</span>
       
     
   </small>
