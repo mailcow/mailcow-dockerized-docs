@@ -161,11 +161,11 @@ auto eth0:0
 iface eth0:0 inet6 static
 # Richtig:
 auto eth0
-iface eth0 inet6 statisch
+iface eth0 inet6 static
 ```
 
-Starten Sie die Schnittstelle neu oder starten Sie sie neu.
-Vielleicht möchten Sie [cloud-init Netzwerkänderungen deaktivieren.](https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes)
+Starten Sie die Schnittstelle neu, um die Einstellungen zu übernehmen
+Sie können außerdem die [cloud-init Netzwerkänderungen deaktivieren.](https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes)
 
 ## MTU
 
