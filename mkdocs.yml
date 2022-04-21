@@ -332,6 +332,7 @@ plugins:
         'u_e-dovecot-static_master.md': 'manual-guides/Dovecot/u_e-dovecot-static_master.en.md'
         'u_e-dovecot-catchall_vacation.md': 'manual-guides/Dovecot/u_e-dovecot-catchall_vacation.en.md'
         'u_e-nginx_webmail-site.md': 'manual-guides/Nginx/u_e-nginx_webmail-site.en.md'
+        'u_e-webmail-site.md': 'manual-guides/Nginx/u_e-nginx_webmail-site.en.md'
         'u_e-nginx_custom.md': 'manual-guides/Nginx/u_e-nginx_custom.en.md'
         'u_e-watchdog-thresholds.md': 'manual-guides/Watchdog/u_e-watchdog-thresholds.en.md'
         'u_e-redis.md': 'manual-guides/Redis/u_e-redis.en.md'
