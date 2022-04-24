@@ -5,6 +5,7 @@ You need Docker (a version >= `20.10.2` is required) and Docker Compose (a versi
 Quick installation for most operation systems:
 
 - Docker
+
 ```
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
@@ -66,14 +67,17 @@ $ su
 ```
 
 **3\.** Generate a configuration file. Use a FQDN (`host.domain.tld`) as hostname when asked.
+
 ```
 ./generate_config.sh
 ```
 
 **4\.** Change configuration if you want or need to.
+
 ```
 nano mailcow.conf
 ```
+
 If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.1 on port 8443 and HTTP to 127.0.0.1 on port 8080.
 
 You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](../post_installation/firststeps-local_mta.en.md) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
@@ -86,6 +90,7 @@ Some updates modify mailcow.conf and add new parameters. It is hard to keep trac
 
 Edit `docker-compose.yml` and change the network settings according to your MTU.
 Add the new driver_opts parameter like this:
+
 ```
 networks:
   mailcow-network:
@@ -103,6 +108,7 @@ If you do not have an IPv6 enabled network on your host and you don't care for a
 
 
 **5\.** Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
+
 ```
 docker-compose pull
 docker-compose up -d
