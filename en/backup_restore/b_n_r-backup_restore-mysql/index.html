@@ -2411,20 +2411,18 @@
   <h1>MySQL (mysqldump)</h1>
 
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cd /path/to/mailcow-dockerized
+<p><code>cd /path/to/mailcow-dockerized
 source mailcow.conf
-DATE=$(date +&quot;%Y%m%d_%H%M%S&quot;)
-docker-compose exec -T mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} &gt; backup_${DBNAME}_${DATE}.sql
-</code></pre></div>
+DATE=$(date +"%Y%m%d_%H%M%S")
+docker-compose exec -T mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} &gt; backup_${DBNAME}_${DATE}.sql</code></p>
 <h2 id="restore">Restore<a class="headerlink" href="#restore" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You should redirect the SQL dump without <code>docker-compose</code> to prevent parsing errors.</p>
 </div>
-<div class="highlight"><pre><span></span><code>cd /path/to/mailcow-dockerized
+<p><code>cd /path/to/mailcow-dockerized
 source mailcow.conf
-docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} &lt; backup_file.sql
-</code></pre></div>
+docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} &lt; backup_file.sql</code></p>
 
   <hr>
 <div class="md-source-file">

@@ -1564,6 +1564,33 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binbash" class="md-nav__link">
+    !/bin/bash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-to-mailcow-dockerized-eg-optmailcow-dockerized" class="md-nav__link">
+    Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-everyday-at-0400-am" class="md-nav__link">
+    Execute everyday at 04:00 A.M.
+  </a>
+  
+    <nav class="md-nav" aria-label="Execute everyday at 04:00 A.M.">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#via-docker-job-scheduler" class="md-nav__link">
     via Docker job scheduler
@@ -2418,6 +2445,33 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binbash" class="md-nav__link">
+    !/bin/bash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-to-mailcow-dockerized-eg-optmailcow-dockerized" class="md-nav__link">
+    Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-everyday-at-0400-am" class="md-nav__link">
+    Execute everyday at 04:00 A.M.
+  </a>
+  
+    <nav class="md-nav" aria-label="Execute everyday at 04:00 A.M.">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#via-docker-job-scheduler" class="md-nav__link">
     via Docker job scheduler
@@ -2448,23 +2502,17 @@
 
 
 
-  <h1>Expunge a Users mails</h1>
-
 <p>If you want to delete old mails out of the <code>.Junk</code> or <code>.Trash</code> folders or maybe delete all read mails that are older than a certain amount of time you may use dovecot's tool doveadm <a href="https://wiki.dovecot.org/Tools/Doveadm/Expunge">man doveadm-expunge</a>.</p>
 <h2 id="the-manual-way">The manual way<a class="headerlink" href="#the-manual-way" title="Permanent link">&para;</a></h2>
 <p>That said, let's dive in:</p>
 <p>Delete a user's mails inside the junk folder that <strong>are read</strong> and <strong>older</strong> than 4 hours</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'Junk' SEEN not SINCE 4h</code></p>
 <p>Delete <strong>all</strong> user's mails in the junk folder that are <strong>older</strong> than 7 days</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 7d</code></p>
 <p>Delete <strong>all</strong> mails (of all users) in <strong>all</strong> folders that are <strong>older</strong> than 52 weeks (internal date of the mail, not the date it was saved on the system =&gt; <code>before</code> instead of <code>savedbefore</code>). Useful for deleting very old mails on all users and folders (thus especially useful for GDPR-compliance).</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w</code></p>
 <p>Delete mails inside a custom folder <strong>inside</strong> a user's inbox that are <strong>not</strong> flagged and <strong>older</strong> than 2 weeks</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'INBOX/custom-folder' not FLAGGED not SINCE 2w</code></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>For possible <a href="https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_date_specification">time spans</a> or <a href="https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_search_keys">search keys</a> have a look at <a href="https://wiki.dovecot.org/Tools/Doveadm/SearchQuery">man doveadm-search-query</a></p>
@@ -2472,44 +2520,42 @@
 <h2 id="job-scheduler">Job scheduler<a class="headerlink" href="#job-scheduler" title="Permanent link">&para;</a></h2>
 <h3 id="via-the-host-system-cron">via the host system cron<a class="headerlink" href="#via-the-host-system-cron" title="Permanent link">&para;</a></h3>
 <p>If you want to automate such a task you can create a cron job on your host that calls a script like the one below:</p>
-<div class="highlight"><pre><span></span><code>#!/bin/bash
-# Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
-cd /path/to/your/mailcow-dockerized
-
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
+<p>```</p>
+<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
+<h1 id="path-to-mailcow-dockerized-eg-optmailcow-dockerized">Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized<a class="headerlink" href="#path-to-mailcow-dockerized-eg-optmailcow-dockerized" title="Permanent link">&para;</a></h1>
+<p>cd /path/to/your/mailcow-dockerized</p>
+<p>/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
+/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
 [...]
-</code></pre></div>
+```</p>
 <p>To create a cron job you may execute <code>crontab -e</code> and insert something like the following to execute a script:</p>
-<div class="highlight"><pre><span></span><code># Execute everyday at 04:00 A.M.
-0 4 * * * /path/to/your/expunge_mailboxes.sh
-</code></pre></div>
+<p>```</p>
+<h1 id="execute-everyday-at-0400-am">Execute everyday at 04:00 A.M.<a class="headerlink" href="#execute-everyday-at-0400-am" title="Permanent link">&para;</a></h1>
+<p>0 4 * * * /path/to/your/expunge_mailboxes.sh
+```</p>
 <h3 id="via-docker-job-scheduler">via Docker job scheduler<a class="headerlink" href="#via-docker-job-scheduler" title="Permanent link">&para;</a></h3>
 <p>To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: </p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-
-services:
-
-  ofelia:
+<p>```
+version: '2.1'</p>
+<p>services:</p>
+<p>ofelia:
     image: mcuadros/ofelia:latest
     restart: always
     command: daemon --docker
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro   
-    network_mode: none
-
-  dovecot-mailcow:
+      - /var/run/docker.sock:/var/run/docker.sock:ro <br />
+    network_mode: none</p>
+<p>dovecot-mailcow:
     labels:
-      - &quot;ofelia.enabled=true&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.tty=false&quot;
-</code></pre></div>
+      - "ofelia.enabled=true"
+      - "ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *"
+      - "ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox 'Junk' savedbefore 2w"
+      - "ofelia.job-exec.dovecot-expunge-trash.tty=false"</p>
+<p>```</p>
 <p>The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use <a href="https://crontab.guru/">crontab guru</a>. 
 This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
-<div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
-common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
-</code></pre></div>
+<p><code>common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
+common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Finished in "285.032291ms", failed: false, skipped: false, error: none,</code></p>
 <p>If it failed it will say so and give you the output of the doveadm in the log to make it easy on you to debug.</p>
 <p>In case you want to add more jobs, ensure you change the "dovecot-expunge-trash" part after "ofelia.job-exec." to something else, it defines the name of the job. Syntax of the labels you find at <a href="https://github.com/mcuadros/ofelia">mcuadros/ofelia</a>.</p>
 

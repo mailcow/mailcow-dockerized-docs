@@ -2428,9 +2428,8 @@
 <p>Um die Mailbox wiederherzustellen, stellen Sie sicher, dass Sie tatsächlich auf die gleiche Mailcow wiederherstellen, von der sie gelöscht wurde, oder Sie verwenden die gleichen Verschlüsselungsschlüssel in <code>crypt-vol-1</code>.</p>
 <p><strong>Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrer Mailcow existiert</strong>. Legen Sie diesen neu an, wenn der Benutzer fehlt.</p>
 <p>Kopieren Sie die Ordner von <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]</code> zurück nach <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]</code> und synchronisieren Sie die Ordner neu und berechnen Sie die Quota (Speicherplatz) neu:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net &#39;*&#39;
-docker-compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
+docker-compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net</code></p>
 
   <hr>
 <div class="md-source-file">

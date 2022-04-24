@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#regeln-werden-in-der-angegebenen-reihenfolge-ausgewertet" class="md-skip">
+          Zum Inhalt
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1392,6 +1397,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         IP in Postscreen auf die Whitelist setzen
@@ -2328,6 +2335,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2345,19 +2354,18 @@
 
 
 
-  <h1>IP in Postscreen auf die Whitelist setzen</h1>
-
 <p>IPs können in der Datei <code>data/conf/postfix/custom_postscreen_whitelist.cidr</code> aus dem Postscreen und damit <em>auch</em> aus den RBL-Prüfungen entfernt werden.</p>
 <p>Postscreen führt mehrere Prüfungen durch, um bösartige Absender zu identifizieren. In den meisten Fällen möchten Sie eine IP-Adresse auf die Whitelist setzen, um sie von der Suche nach einer schwarzen Liste auszuschließen.</p>
 <p>Das Format der Datei ist wie folgt</p>
 <p><code>CIDR ACTION</code></p>
 <p>Dabei steht CIDR für eine einzelne IP-Adresse oder einen IP-Bereich in CIDR-Notation und action entweder für "permit" oder "reject".</p>
 <p>Beispiel:</p>
-<div class="highlight"><pre><span></span><code># Regeln werden in der angegebenen Reihenfolge ausgewertet.
-# Schwarze Liste 192.168.* außer 192.168.0.1.
-192.168.0.1 permit
+<p>```</p>
+<h1 id="regeln-werden-in-der-angegebenen-reihenfolge-ausgewertet">Regeln werden in der angegebenen Reihenfolge ausgewertet.<a class="headerlink" href="#regeln-werden-in-der-angegebenen-reihenfolge-ausgewertet" title="Permanent link">&para;</a></h1>
+<h1 id="schwarze-liste-192168-auer-19216801">Schwarze Liste 192.168.* außer 192.168.0.1.<a class="headerlink" href="#schwarze-liste-192168-auer-19216801" title="Permanent link">&para;</a></h1>
+<p>192.168.0.1 permit
 192.168.0.0/16 reject
-</code></pre></div>
+```</p>
 <p>Die Datei wird spontan neu geladen, ein Neustart von Postfix ist nicht erforderlich.</p>
 
   <hr>

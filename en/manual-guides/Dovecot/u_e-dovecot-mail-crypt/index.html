@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#decrypt-varvmail" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1556,6 +1561,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Mail crypt
@@ -2328,6 +2335,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2345,36 +2354,34 @@
 
 
 
-  <h1>Mail crypt</h1>
-
 <p>Mails are stored compressed (lz4) and encrypted. The key pair can be found in crypt-vol-1.</p>
 <p>If you want to decode/encode existing maildir files, you can use the following script at your own risk:</p>
 <p>Enter Dovecot by running <code>docker-compose exec dovecot-mailcow /bin/bash</code> in the mailcow-dockerized location.</p>
-<div class="highlight"><pre><span></span><code># Decrypt /var/vmail
-find /var/vmail/ -type f -regextype egrep -regex &#39;.*S=.*W=.*&#39; | while read -r file; do
-if [[ $(head -c7 &quot;$file&quot;) == &quot;CRYPTED&quot; ]]; then
+<p>```</p>
+<h1 id="decrypt-varvmail">Decrypt /var/vmail<a class="headerlink" href="#decrypt-varvmail" title="Permanent link">&para;</a></h1>
+<p>find /var/vmail/ -type f -regextype egrep -regex '.<em>S=.</em>W=.*' | while read -r file; do
+if [[ $(head -c7 "$file") == "CRYPTED" ]]; then
 doveadm fs get compress lz4:0:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
-  &quot;$file&quot; &gt; &quot;/tmp/$(basename &quot;$file&quot;)&quot;
-  if [[ -s &quot;/tmp/$(basename &quot;$file&quot;)&quot; ]]; then
-    chmod 600 &quot;/tmp/$(basename &quot;$file&quot;)&quot;
-    chown 5000:5000 &quot;/tmp/$(basename &quot;$file&quot;)&quot;
-    mv &quot;/tmp/$(basename &quot;$file&quot;)&quot; &quot;$file&quot;
+  "$file" &gt; "/tmp/$(basename "$file")"
+  if [[ -s "/tmp/$(basename "$file")" ]]; then
+    chmod 600 "/tmp/$(basename "$file")"
+    chown 5000:5000 "/tmp/$(basename "$file")"
+    mv "/tmp/$(basename "$file")" "$file"
   else
-    rm &quot;/tmp/$(basename &quot;$file&quot;)&quot;
+    rm "/tmp/$(basename "$file")"
   fi
 fi
-done
-
-# Encrypt /var/vmail
-find /var/vmail/ -type f -regextype egrep -regex &#39;.*S=.*W=.*&#39; | while read -r file; do
-if [[ $(head -c7 &quot;$file&quot;) != &quot;CRYPTED&quot; ]]; then
+done</p>
+<h1 id="encrypt-varvmail">Encrypt /var/vmail<a class="headerlink" href="#encrypt-varvmail" title="Permanent link">&para;</a></h1>
+<p>find /var/vmail/ -type f -regextype egrep -regex '.<em>S=.</em>W=.*' | while read -r file; do
+if [[ $(head -c7 "$file") != "CRYPTED" ]]; then
 doveadm fs put crypt private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
-  &quot;$file&quot; &quot;$file&quot;
-  chmod 600 &quot;$file&quot;
-  chown 5000:5000 &quot;$file&quot;
+  "$file" "$file"
+  chmod 600 "$file"
+  chown 5000:5000 "$file"
 fi
 done
-</code></pre></div>
+```</p>
 
   <hr>
 <div class="md-source-file">

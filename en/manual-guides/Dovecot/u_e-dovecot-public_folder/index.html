@@ -2398,28 +2398,25 @@
 
 <p>Create a new public namespace "Public" and a mailbox "Develcow" inside that namespace:</p>
 <p>Edit or create <code>data/conf/dovecot/extra.conf</code>, add:</p>
-<div class="highlight"><pre><span></span><code>namespace {
+<p><code>namespace {
   type = public
   separator = /
   prefix = Public/
   location = maildir:/var/vmail/public:INDEXPVT=~/public
   subscriptions = yes
-  mailbox &quot;Develcow&quot; {
+  mailbox "Develcow" {
     auto = subscribe
   }
-}
-</code></pre></div>
+}</code></p>
 <p><code>:INDEXPVT=~/public</code> can be omitted if per-user seen flags are not wanted.</p>
 <p>The new mailbox in the public namespace will be auto-subscribed by users.</p>
 <p>To allow all authenticated users access full to that new mailbox (not the whole namespace), run:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm acl set -A &quot;Public/Develcow&quot; &quot;authenticated&quot; lookup read write write-seen write-deleted insert post delete expunge create
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create</code></p>
 <p>Adjust the command to your needs if you like to assign more granular rights per user (use <code>-u user@domain</code> instead of <code>-A</code> for example).</p>
 <h2 id="allow-authenticated-users-access-to-the-whole-public-namespace">Allow authenticated users access to the whole public namespace<a class="headerlink" href="#allow-authenticated-users-access-to-the-whole-public-namespace" title="Permanent link">&para;</a></h2>
 <p>To allow all authenticated users access full access to the whole public namespace and its subfolders, create a new <code>dovecot-acl</code> file in the namespace root directory:</p>
 <p>Open/edit/create <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/public/dovecot-acl</code> (adjust the path accordingly) to create the global ACL file with the following content:</p>
-<div class="highlight"><pre><span></span><code>authenticated kxeilprwts
-</code></pre></div>
+<p><code>authenticated kxeilprwts</code></p>
 <p><code>kxeilprwts</code> equals to <code>lookup read write write-seen write-deleted insert post delete expunge create</code>.</p>
 <p>You can use <code>doveadm acl set -u user@domain "Public/Develcow" user=user@domain lookup read</code> to limit access for a single user. You may also turn it around to limit access for all users to "lr" and grant only some users full access.</p>
 <p>See <a href="https://doc.dovecot.org/settings/plugin/acl/">Dovecot ACL</a> for further information about ACL.</p>

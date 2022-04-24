@@ -2649,7 +2649,7 @@
 <p>Watchdog verwendet Standardwerte für alle in <code>docker-compose.yml</code> definierten Thresholde.</p>
 <p>Die Standardwerte sind für die meisten Konfigurationen geeignet.
 Beispiel:
-<div class="highlight"><pre><span></span><code>- NGINX_THRESHOLD=${NGINX_THRESHOLD:-5}
+<code>- NGINX_THRESHOLD=${NGINX_THRESHOLD:-5}
 - UNBOUND_THRESHOLD=${UNBOUND_THRESHOLD:-5}
 - REDIS_THRESHOLD=${REDIS_THRESHOLD:-5}
 - MYSQL_THRESHOLD=${MYSQL_THRESHOLD:-5}
@@ -2666,8 +2666,7 @@ Beispiel:
 - RSPAMD_THRESHOLD=${RSPAMD_THRESHOLD:-5}
 - OLEFY_THRESHOLD=${OLEFY_THRESHOLD:-5}
 - MAILQ_THRESHOLD=${MAILQ_THRESHOLD:-20}
-- MAILQ_CRIT=${MAILQ_CRIT:-30}
-</code></pre></div></p>
+- MAILQ_CRIT=${MAILQ_CRIT:-30}</code></p>
 <p>Um sie anzupassen, fügen Sie einfach die notwendigen Threshold Variablen (z.B. <code>MAILQ_THRESHOLD=10</code>) zu <code>mailcow.conf</code> hinzu und führen <code>docker-compose up -d</code> aus.</p>
 <h3 id="threshold-beschreibungen">Threshold Beschreibungen<a class="headerlink" href="#threshold-beschreibungen" title="Permanent link">&para;</a></h3>
 <h4 id="nginx_threshold">NGINX_THRESHOLD<a class="headerlink" href="#nginx_threshold" title="Permanent link">&para;</a></h4>

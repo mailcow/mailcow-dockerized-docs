@@ -353,7 +353,14 @@
     Firewall &amp; Ports
   </a>
   
-    <nav class="md-nav" aria-label="Firewall &amp; Ports">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    or:
+  </a>
+  
+    <nav class="md-nav" aria-label="or:">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -370,29 +377,62 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#date-and-time" class="md-nav__link">
+    Date and Time
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#date-and-time" class="md-nav__link">
-    Date and Time
+  <a href="#vim-etcsystemdtimesyncdconf" class="md-nav__link">
+    vim /etc/systemd/timesyncd.conf
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="vim /etc/systemd/timesyncd.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#hetzner-cloud-and-probably-others" class="md-nav__link">
     Hetzner Cloud (and probably others)
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#wrong" class="md-nav__link">
+    Wrong:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#right" class="md-nav__link">
+    Right:
+  </a>
+  
+    <nav class="md-nav" aria-label="Right:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#mtu" class="md-nav__link">
     MTU
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2453,7 +2493,14 @@
     Firewall &amp; Ports
   </a>
   
-    <nav class="md-nav" aria-label="Firewall &amp; Ports">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#or" class="md-nav__link">
+    or:
+  </a>
+  
+    <nav class="md-nav" aria-label="or:">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2470,29 +2517,62 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#date-and-time" class="md-nav__link">
+    Date and Time
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#date-and-time" class="md-nav__link">
-    Date and Time
+  <a href="#vim-etcsystemdtimesyncdconf" class="md-nav__link">
+    vim /etc/systemd/timesyncd.conf
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="vim /etc/systemd/timesyncd.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#hetzner-cloud-and-probably-others" class="md-nav__link">
     Hetzner Cloud (and probably others)
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#wrong" class="md-nav__link">
+    Wrong:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#right" class="md-nav__link">
+    Right:
+  </a>
+  
+    <nav class="md-nav" aria-label="Right:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#mtu" class="md-nav__link">
     MTU
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2513,8 +2593,6 @@
   </a>
 
 
-
-  <h1>Prepare your system</h1>
 
 <p>Before you run <strong>mailcow: dockerized</strong>, there are a few requirements that you should check:</p>
 <div class="admonition warning">
@@ -2569,10 +2647,11 @@
 <p>We can help to correctly plan your setup as part of our support.</p>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Please check if any of mailcow's standard ports are open and not in use by other applications:</p>
-<div class="highlight"><pre><span></span><code>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
-# or:
-netstat -tulpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
-</code></pre></div>
+<p>```
+ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'</p>
+<h1 id="or">or:<a class="headerlink" href="#or" title="Permanent link">&para;</a></h1>
+<p>netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
+```</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See <a href="https://blog.donnex.net/docker-and-iptables-filtering/">this (blog.donnex.net)</a> or <a href="https://unrouted.io/2017/08/15/docker-firewall/">this (unrouted.io)</a> guide for information about how to use iptables-persistent with the DOCKER-USER chain.
@@ -2665,34 +2744,30 @@ As mailcow runs dockerized, INPUT rules have no effect on restricting access to 
 <p>Port 53 unimportant for the firewall configuration in this case. According to the documentation unbound uses the port range 1024-65535 for outgoing requests.
 Since the Hetzner Robot Firewall is a static firewall (each incoming packet is checked isolated) - the following rules must be applied:</p>
 <p><strong>For TCP</strong>
-<div class="highlight"><pre><span></span><code>SRC-IP:       ---
+<code>SRC-IP:       ---
 DST IP:       ---
 SRC Port:    ---
 DST Port:    1024-65535
 Protocol:    tcp
 TCP flags:   ack
-Action:      Accept
-</code></pre></div></p>
+Action:      Accept</code></p>
 <p><strong>For UDP</strong>
-<div class="highlight"><pre><span></span><code>SRC-IP:       ---
+<code>SRC-IP:       ---
 DST IP:       ---
 SRC Port:    ---
 DST Port:    1024-65535
 Protocol:    udp
-Action:      Accept
-</code></pre></div></p>
+Action:      Accept</code></p>
 <p>If you want to apply a more restrictive port range you have to change the config of unbound first (after installation):</p>
 <p>{mailcow-dockerized}/data/conf/unbound/unbound.conf:
-<div class="highlight"><pre><span></span><code>outgoing-port-avoid: 0-32767
-</code></pre></div></p>
+<code>outgoing-port-avoid: 0-32767</code></p>
 <p>Now the firewall rules can be adjusted as follows:</p>
-<div class="highlight"><pre><span></span><code>[...]
+<p><code>[...]
 DST Port:  32768-65535
-[...]
-</code></pre></div>
+[...]</code></p>
 <h2 id="date-and-time">Date and Time<a class="headerlink" href="#date-and-time" title="Permanent link">&para;</a></h2>
 <p>To ensure that you have the correct date and time setup on your system, please check the output of <code>timedatectl status</code>:</p>
-<div class="highlight"><pre><span></span><code>$ timedatectl status
+<p><code>$ timedatectl status
       Local time: Sat 2017-05-06 02:12:33 CEST
   Universal time: Sat 2017-05-06 00:12:33 UTC
         RTC time: Sat 2017-05-06 00:12:32
@@ -2706,23 +2781,24 @@ NTP synchronized: yes
                   Sun 2017-03-26 03:00:00 CEST
  Next DST change: DST ends (the clock jumps one hour backwards) at
                   Sun 2017-10-29 02:59:59 CEST
-                  Sun 2017-10-29 02:00:00 CET
-</code></pre></div>
+                  Sun 2017-10-29 02:00:00 CET</code></p>
 <p>The lines <code>NTP enabled: yes</code> and <code>NTP synchronized: yes</code> indicate whether you have NTP enabled and if it's synchronized.</p>
 <p>To enable NTP you need to run the command <code>timedatectl set-ntp true</code>. You also need to edit your <code>/etc/systemd/timesyncd.conf</code>:</p>
-<div class="highlight"><pre><span></span><code># vim /etc/systemd/timesyncd.conf
-[Time]
+<p>```</p>
+<h1 id="vim-etcsystemdtimesyncdconf">vim /etc/systemd/timesyncd.conf<a class="headerlink" href="#vim-etcsystemdtimesyncdconf" title="Permanent link">&para;</a></h1>
+<p>[Time]
 NTP=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
-</code></pre></div>
+```</p>
 <h2 id="hetzner-cloud-and-probably-others">Hetzner Cloud (and probably others)<a class="headerlink" href="#hetzner-cloud-and-probably-others" title="Permanent link">&para;</a></h2>
 <p>Check <code>/etc/network/interfaces.d/50-cloud-init.cfg</code> and change the IPv6 interface from eth0:0 to eth0:</p>
-<div class="highlight"><pre><span></span><code># Wrong:
-auto eth0:0
-iface eth0:0 inet6 static
-# Right:
-auto eth0
+<p>```</p>
+<h1 id="wrong">Wrong:<a class="headerlink" href="#wrong" title="Permanent link">&para;</a></h1>
+<p>auto eth0:0
+iface eth0:0 inet6 static</p>
+<h1 id="right">Right:<a class="headerlink" href="#right" title="Permanent link">&para;</a></h1>
+<p>auto eth0
 iface eth0 inet6 static
-</code></pre></div>
+```</p>
 <p>Reboot or restart the interface.
 You may want to <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes">disable cloud-init network changes.</a></p>
 <h2 id="mtu">MTU<a class="headerlink" href="#mtu" title="Permanent link">&para;</a></h2>

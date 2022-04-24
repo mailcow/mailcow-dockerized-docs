@@ -2491,53 +2491,51 @@ Nachdem Sie <code>data/conf/sogo/custom-theme.js</code> modifiziert und Änderun
 <li>öffnen Sie die Entwicklerkonsole des Browsers, normalerweise ist die Tastenkombination F12</li>
 <li>nur wenn Sie Firefox benutzen: schreiben Sie mit der Hand in die Entwicklerkonsole <code>allow pasting</code> und drücken Sie Enter</li>
 <li>fügen Sie den Java-Script-Schnipsel in die Entwicklungskonsole ein:
-<div class="highlight"><pre><span></span><code>copy([].slice.call(document.styleSheets)
+<code>copy([].slice.call(document.styleSheets)
   .map(e =&gt; e.ownerNode)
-  .filter(e =&gt; e.hasAttribute(&#39;md-theme-style&#39;))
+  .filter(e =&gt; e.hasAttribute('md-theme-style'))
   .map(e =&gt; e.textInhalt)
-  .join(&#39;\n&#39;)
-)
-</code></pre></div></li>
+  .join('\n')
+)</code></li>
 <li>Öffnen Sie den Texteditor und fügen Sie die Daten aus der Zwischenablage ein (Strg+V), Sie sollten ein minimiertes CSS erhalten, speichern Sie es</li>
 <li>kopieren Sie die CSS-Datei auf den Mailcow-Server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>editiere <code>data/conf/sogo/sogo.conf</code> und setze <code>SOGoUIxDebugEnabled = NO;</code></li>
 <li>Anhängen/Erstellen von <code>docker-compose.override.yml</code> mit:
-<div class="highlight"><pre><span></span><code>Version: &#39;2.1&#39;
-
-Dienste:
+```
+Version: '2.1'</li>
+</ol>
+<p>Dienste:
   sogo-mailcow:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
-</code></pre></div></li>
-<li>führen Sie <code>docker-compose up -d</code> aus</li>
-<li>Ausführen von <code>docker-compose restart memcached-mailcow</code></li>
-</ol>
+<code>``
+11. führen Sie</code>docker-compose up -d<code>aus
+12. Ausführen von</code>docker-compose restart memcached-mailcow`</p>
 <h2 id="zurucksetzen-auf-das-sogo-standardthema">Zurücksetzen auf das SOGo Standardthema<a class="headerlink" href="#zurucksetzen-auf-das-sogo-standardthema" title="Permanent link">&para;</a></h2>
 <ol>
 <li>checken Sie <code>data/conf/sogo/custom-theme.js</code> aus, indem Sie <code>git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js</code> ausführen</li>
 <li>Suchen Sie in <code>data/conf/sogo/custom-theme.js</code>:
-<div class="highlight"><pre><span></span><code>// Neue Paletten auf das Standardthema anwenden, einige Farbtöne neu zuordnen
-    $mdThemingProvider.theme(&#39;default&#39;)
-      .primaryPalette(&#39;green-cow&#39;, {
-        &#39;default&#39;: &#39;400&#39;, // Hintergrundfarbe der oberen Symbolleisten
-        hue-1&#39;: &#39;400&#39;,
-        &#39;hue-2&#39;: &#39;600&#39;, // Hintergrundfarbe der Seitenleiste
-        &#39;hue-3&#39;: &#39;A700&#39;
+<code>// Neue Paletten auf das Standardthema anwenden, einige Farbtöne neu zuordnen
+    $mdThemingProvider.theme('default')
+      .primaryPalette('green-cow', {
+        'default': '400', // Hintergrundfarbe der oberen Symbolleisten
+        hue-1': '400',
+        'hue-2': '600', // Hintergrundfarbe der Seitenleiste
+        'hue-3': 'A700'
       })
-      .accentPalette(&#39;green&#39;, {
-        &#39;default&#39;: &#39;600&#39;, // Hintergrundfarbe der Fab-Schaltflächen und des Anmeldebildschirms
-        hue-1&#39;: &#39;300&#39;, // Hintergrundfarbe der Symbolleiste der mittleren Liste
-        hue-2&#39;: &#39;300&#39;, // Hervorhebungsfarbe für ausgewählte Nachrichten und den aktuellen Tageskalender
-        hue-3&#39;: &#39;A700&#39;
+      .accentPalette('green', {
+        'default': '600', // Hintergrundfarbe der Fab-Schaltflächen und des Anmeldebildschirms
+        hue-1': '300', // Hintergrundfarbe der Symbolleiste der mittleren Liste
+        hue-2': '300', // Hervorhebungsfarbe für ausgewählte Nachrichten und den aktuellen Tageskalender
+        hue-3': 'A700'
       })
-      .backgroundPalette(&#39;frost-grey&#39;);
-</code></pre></div>
+      .backgroundPalette('frost-grey');</code>
 und ersetzen Sie es durch:
-<div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
-</code></pre></div></li>
+<code>$mdThemingProvider.theme('default');</code></li>
 <li>Entfernen Sie aus <code>docker-compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
-<div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
-</code></pre></div></li>
+```</li>
+<li>./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+```</li>
 <li>führen Sie <code>docker-compose up -d</code> aus</li>
 <li>Starten Sie <code>docker-compose restart memcached-mailcow</code>.</li>
 </ol>
@@ -2553,16 +2551,14 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
 <p>Domains sind normalerweise voneinander isoliert.</p>
 <p>Sie können das ändern, indem Sie <code>data/conf/sogo/sogo.conf</code> modifizieren:</p>
 <p>Suche...
-<div class="highlight"><pre><span></span><code>   // SOGoDomainsVisibility = (
+<code>// SOGoDomainsVisibility = (
     // (domain1.tld, domain5.tld),
     // (domain3.tld, domain2.tld)
-    // );
-</code></pre></div>
+    // );</code>
 ...und ersetzen Sie diese durch - zum Beispiel:</p>
-<div class="highlight"><pre><span></span><code>    SOGoDomainsVisibility = (
+<p><code>SOGoDomainsVisibility = (
       (beispiel.org, beispiel.com, beispiel.net)
-    );
-</code></pre></div>
+    );</code></p>
 <p>SOGo neu starten: <code>docker-compose restart sogo-mailcow</code></p>
 <h2 id="deaktivieren-sie-die-passwortanderung">Deaktivieren Sie die Passwortänderung<a class="headerlink" href="#deaktivieren-sie-die-passwortanderung" title="Permanent link">&para;</a></h2>
 <p>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> Sie <code>SOGoPasswordChangeEnabled</code> auf <code>NO</code>. Bitte fügen Sie keinen neuen Parameter hinzu.</p>

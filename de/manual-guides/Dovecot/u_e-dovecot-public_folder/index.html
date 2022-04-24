@@ -2398,28 +2398,25 @@
 
 <p>Erstellen Sie einen neuen öffentlichen Namespace "Public" und eine Mailbox "Develcow" innerhalb dieses Namespaces:</p>
 <p>Bearbeiten oder erstellen Sie <code>data/conf/dovecot/extra.conf</code>, fügen Sie hinzu:</p>
-<div class="highlight"><pre><span></span><code>namespace {
+<p><code>namespace {
   type = public
   separator = /
   prefix = Public/
   location = maildir:/var/vmail/public:INDEXPVT=~/public
   subscriptions = yes
-  mailbox &quot;Develcow&quot; {
+  mailbox "Develcow" {
     auto = subscribe
   }
-}
-</code></pre></div>
+}</code></p>
 <p><code>:INDEXPVT=~/public</code> kann weggelassen werden, wenn die Flags, die pro Benutzer gesehen werden, nicht gewünscht sind.</p>
 <p>Die neue Mailbox im öffentlichen Namensraum wird von den Benutzern automatisch abonniert.</p>
 <p>Um allen authentifizierten Benutzern vollen Zugriff auf das neue Postfach (nicht auf den gesamten Namespace) zu gewähren, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm acl set -A &quot;Public/Develcow&quot; &quot;authenticated&quot; lookup read write write-seen write-deleted insert post delete expunge create
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create</code></p>
 <p>Passen Sie den Befehl an Ihre Bedürfnisse an, wenn Sie detailliertere Rechte pro Benutzer vergeben möchten (verwenden Sie z.B. <code>-u user@domain</code> anstelle von <code>-A</code>).</p>
 <h2 id="erlaube-authentifizierten-benutzern-den-zugriff-auf-den-gesamten-offentlichen-namespace">Erlaube authentifizierten Benutzern den Zugriff auf den gesamten öffentlichen Namespace<a class="headerlink" href="#erlaube-authentifizierten-benutzern-den-zugriff-auf-den-gesamten-offentlichen-namespace" title="Permanent link">&para;</a></h2>
 <p>Um allen authentifizierten Benutzern vollen Zugriff auf den gesamten öffentlichen Namespace und seine Unterordner zu gewähren, erstellen Sie eine neue Datei <code>dovecot-acl</code> im Namespace-Stammverzeichnis:</p>
 <p>Öffnen/bearbeiten/erstellen Sie <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/public/dovecot-acl</code> (passen Sie den Pfad entsprechend an), um die globale ACL-Datei mit dem folgenden Inhalt zu erstellen:</p>
-<div class="highlight"><pre><span></span><code>authenticated kxeilprwts
-</code></pre></div>
+<p><code>authenticated kxeilprwts</code></p>
 <p>kxeilprwts" ist gleichbedeutend mit "lookup read write write-seen write-deleted insert post delete expunge create".</p>
 <p>Sie können <code>doveadm acl set -u user@domain "Public/Develcow" user=user@domain lookup read</code> verwenden, um den Zugriff für einen einzelnen Benutzer zu beschränken. Sie können es auch umdrehen und den Zugriff für alle Benutzer auf "lr" beschränken und nur einigen Benutzern vollen Zugriff gewähren.</p>
 <p>Siehe <a href="https://doc.dovecot.org/settings/plugin/acl/">Dovecot ACL</a> für weitere Informationen über ACL.</p>

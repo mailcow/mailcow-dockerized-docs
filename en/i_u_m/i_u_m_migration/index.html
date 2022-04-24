@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#after-the-installation-process-is-finished-you-may-need-to-enable-the-service-and-make-sure-it-is-started-eg-centos-7" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -389,6 +394,8 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
+        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2326,6 +2333,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2343,8 +2352,6 @@
 
 
 
-  <h1>Migration</h1>
-
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This guide assumes you intend to migrate an existing mailcow server (source) over to a brand new, empty server (target). It takes no care about preserving any existing data on your target server and will erase anything within <code>/var/lib/docker/volumes</code> and thus any Docker volumes you may have already set up.</p>
@@ -2357,45 +2364,37 @@
 Install <a href="https://docs.docker.com/engine/installation/linux/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a> on your new server.</p>
 <p>Quick installation for most operation systems:</p>
 <ul>
-<li>
-<p>Docker
-<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable docker.service
-</code></pre></div></p>
-</li>
-<li>
-<p>docker-compose
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-</code></pre></div></p>
-</li>
+<li>Docker
+```
+curl -sSL <a href="https://get.docker.com/">https://get.docker.com/</a> | CHANNEL=stable sh</li>
+</ul>
+<h1 id="after-the-installation-process-is-finished-you-may-need-to-enable-the-service-and-make-sure-it-is-started-eg-centos-7">After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)<a class="headerlink" href="#after-the-installation-process-is-finished-you-may-need-to-enable-the-service-and-make-sure-it-is-started-eg-centos-7" title="Permanent link">&para;</a></h1>
+<p>systemctl enable docker.service
+```</p>
+<ul>
+<li>docker-compose
+<code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose</code></li>
 </ul>
 <p>Please use the latest Docker engine available and do not use the engine that ships with your distros repository.</p>
 <p><strong>2.</strong> Stop Docker and assure Docker has stopped:
-<div class="highlight"><pre><span></span><code>systemctl stop docker.service
-systemctl status docker.service
-</code></pre></div></p>
+<code>systemctl stop docker.service
+systemctl status docker.service</code></p>
 <p><strong>3.</strong> Run the following commands on the source machine (take care of adding the trailing slashes in the first path parameter as shown below!) - <strong>WARNING: This command will erase anything that may already exist under <code>/var/lib/docker/volumes</code> on the target machine</strong>:
-<div class="highlight"><pre><span></span><code>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
-rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.example.com:/var/lib/docker/volumes
-</code></pre></div></p>
+<code>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
+rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.example.com:/var/lib/docker/volumes</code></p>
 <p><strong>4.</strong> Shut down mailcow and stop Docker on the source machine.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
+<code>cd /opt/mailcow-dockerized
 docker-compose down
-systemctl stop docker.service
-</code></pre></div></p>
+systemctl stop docker.service</code></p>
 <p><strong>5.</strong> Repeat step 3 with the same commands. This will be much quicker than the first time.</p>
 <p><strong>6.</strong> Switch over to the target machine and start Docker.
-<div class="highlight"><pre><span></span><code>systemctl start docker.service
-</code></pre></div></p>
+<code>systemctl start docker.service</code></p>
 <p><strong>7.</strong> Now pull the mailcow Docker images on the target machine.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose pull
-</code></pre></div></p>
+<code>cd /opt/mailcow-dockerized
+docker-compose pull</code></p>
 <p><strong>8.</strong> Start the whole mailcow stack and everything should be done!
-<div class="highlight"><pre><span></span><code>docker-compose up -d
-</code></pre></div></p>
+<code>docker-compose up -d</code></p>
 <p><strong>9.</strong> Finally, change your DNS settings to point to the target server.</p>
 
   <hr>

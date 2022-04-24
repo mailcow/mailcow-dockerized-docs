@@ -2349,27 +2349,24 @@
 <p><strong>Do not use the config below for reverse proxy setups</strong>, please see our <a href="../../post_installation/firststeps-rp/">reverse proxy guide</a> for this, which includes a redirect from HTTP to HTTPS.</p>
 <p>Open <code>mailcow.conf</code> and set <code>HTTP_BIND=</code> - if not already set.</p>
 <p>Create a new file <code>data/conf/nginx/redirect.conf</code> and add the following server config to the file:</p>
-<div class="highlight"><pre><span></span><code>server {
+<p><code>server {
   root /web;
   listen 80 default_server;
   listen [::]:80 default_server;
   include /etc/nginx/conf.d/server_name.active;
-  if ( $request_uri ~* &quot;%0A|%0D&quot; ) { return 403; }
+  if ( $request_uri ~* "%0A|%0D" ) { return 403; }
   location ^~ /.well-known/acme-challenge/ {
     allow all;
-    default_type &quot;text/plain&quot;;
+    default_type "text/plain";
   }
   location / {
     return 301 https://$host$uri$is_args$args;
   }
-}
-</code></pre></div>
+}</code></p>
 <p>In case you changed the HTTP_BIND parameter, recreate the container:</p>
-<div class="highlight"><pre><span></span><code>docker-compose up -d
-</code></pre></div>
+<p><code>docker-compose up -d</code></p>
 <p>Otherwise restart Nginx:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart nginx-mailcow
-</code></pre></div>
+<p><code>docker-compose restart nginx-mailcow</code></p>
 
   <hr>
 <div class="md-source-file">

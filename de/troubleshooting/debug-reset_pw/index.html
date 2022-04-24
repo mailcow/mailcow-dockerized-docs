@@ -878,6 +878,26 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-mailcowconf" class="md-nav__link">
+    source mailcow.conf
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-exec-mysql-mailcow-mysql-udbuser-pdbpass-dbname" class="md-nav__link">
+    docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+  </a>
+  
+    <nav class="md-nav" aria-label="docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#2-einen-oder-mehrere-benutzer-zurucksetzen" class="md-nav__link">
     2. Einen oder mehrere Benutzer zurücksetzen
@@ -905,12 +925,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#zwei-faktor-authentifizierung-entfernen" class="md-nav__link">
     Zwei-Faktor-Authentifizierung entfernen
   </a>
@@ -929,6 +944,11 @@
   <a href="#fur-sogo" class="md-nav__link">
     Für SOGo:
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2463,6 +2483,26 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-mailcowconf" class="md-nav__link">
+    source mailcow.conf
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-exec-mysql-mailcow-mysql-udbuser-pdbpass-dbname" class="md-nav__link">
+    docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+  </a>
+  
+    <nav class="md-nav" aria-label="docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#2-einen-oder-mehrere-benutzer-zurucksetzen" class="md-nav__link">
     2. Einen oder mehrere Benutzer zurücksetzen
@@ -2490,12 +2530,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#zwei-faktor-authentifizierung-entfernen" class="md-nav__link">
     Zwei-Faktor-Authentifizierung entfernen
   </a>
@@ -2514,6 +2549,11 @@
   <a href="#fur-sogo" class="md-nav__link">
     Für SOGo:
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2540,22 +2580,19 @@
 
 
 
-  <h1>Passwörter zurücksetzen (inkl. SQL)</h1>
-
 <h2 id="mailcow-admin-konto">mailcow Admin-Konto<a class="headerlink" href="#mailcow-admin-konto" title="Permanent link">&para;</a></h2>
 <p>Setzt den mailcow Admin Account auf ein zufälliges Passwort zurück. Ältere mailcow: dockerisierte Installationen können das <code>mailcow-reset-admin.sh</code> Skript in ihrem mailcow Stammverzeichnis (mailcow_path) finden.</p>
-<div class="highlight"><pre><span></span><code>cd mailcow_pfad
-./helper-scripts/mailcow-reset-admin.sh
-</code></pre></div>
+<p><code>cd mailcow_pfad
+./helper-scripts/mailcow-reset-admin.sh</code></p>
 <h2 id="mysql-passworter-zurucksetzen">MySQL-Passwörter zurücksetzen<a class="headerlink" href="#mysql-passworter-zurucksetzen" title="Permanent link">&para;</a></h2>
 <p>Stoppen Sie den Stack, indem Sie <code>docker-compose stop</code> ausführen.</p>
 <p>Wenn die Container heruntergefahren sind, führen Sie diesen Befehl aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0&quot;&#39; mysql-mailcow
-</code></pre></div>
+<p><code>docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0"' mysql-mailcow</code></p>
 <h3 id="1-datenbank-name-finden">1. Datenbank-Name finden<a class="headerlink" href="#1-datenbank-name-finden" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code># source mailcow.conf
-# docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
-MariaDB [(none)]&gt; show databases;
+<p>```</p>
+<h1 id="source-mailcowconf">source mailcow.conf<a class="headerlink" href="#source-mailcowconf" title="Permanent link">&para;</a></h1>
+<h1 id="docker-compose-exec-mysql-mailcow-mysql-udbuser-pdbpass-dbname">docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}<a class="headerlink" href="#docker-compose-exec-mysql-mailcow-mysql-udbuser-pdbpass-dbname" title="Permanent link">&para;</a></h1>
+<p>MariaDB [(none)]&gt; show databases;
 +--------------------+
 | Database |
 +--------------------+
@@ -2565,49 +2602,47 @@ MariaDB [(none)]&gt; show databases;
 | performance_schema |
 +--------------------+
 4 rows in set (0.00 sec)
-</code></pre></div>
+```</p>
 <h3 id="2-einen-oder-mehrere-benutzer-zurucksetzen">2. Einen oder mehrere Benutzer zurücksetzen<a class="headerlink" href="#2-einen-oder-mehrere-benutzer-zurucksetzen" title="Permanent link">&para;</a></h3>
 <h4 id="21-maria-db-104-altere-mailcow-installationen">2.1 Maria DB &lt; 10.4 (ältere mailcow-Installationen)<a class="headerlink" href="#21-maria-db-104-altere-mailcow-installationen" title="Permanent link">&para;</a></h4>
 <p>Sowohl "password" als auch "authentication_string" existieren. Derzeit wird "password" verwendet, aber besser ist es, beide zu setzen.</p>
-<div class="highlight"><pre><span></span><code>MariaDB [(none)]&gt; SELECT user FROM mysql.user;
+<p>```
+MariaDB [(none)]&gt; SELECT user FROM mysql.user;
 +--------------+
 | user |
 +--------------+
 | mailcow | &lt;=====
 | root |
 +--------------+
-2 rows in set (0.00 sec)
-
+2 rows in set (0.00 sec)</p>
+<p>MariaDB [(none)]&gt; FLUSH PRIVILEGES;
+MariaDB [(none)]&gt; UPDATE mysql.user SET authentication_string = PASSWORD('gotr00t'), password = PASSWORD('gotr00t') WHERE User = 'root';
+MariaDB [(none)]&gt; UPDATE mysql.user SET authentication_string = PASSWORD('mookuh'), password = PASSWORD('mookuh') WHERE User = 'mailcow' AND Host = '%';
 MariaDB [(none)]&gt; FLUSH PRIVILEGES;
-MariaDB [(none)]&gt; UPDATE mysql.user SET authentication_string = PASSWORD(&#39;gotr00t&#39;), password = PASSWORD(&#39;gotr00t&#39;) WHERE User = &#39;root&#39;;
-MariaDB [(none)]&gt; UPDATE mysql.user SET authentication_string = PASSWORD(&#39;mookuh&#39;), password = PASSWORD(&#39;mookuh&#39;) WHERE User = &#39;mailcow&#39; AND Host = &#39;%&#39;;
-MariaDB [(none)]&gt; FLUSH PRIVILEGES;
-</code></pre></div>
+```</p>
 <h4 id="22-maria-db-104-aktuelle-mailcows">2.2 Maria DB &gt;= 10.4 (aktuelle mailcows)<a class="headerlink" href="#22-maria-db-104-aktuelle-mailcows" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>MariaDB [(none)]&gt; SELECT user FROM mysql.user;
+<p>```
+MariaDB [(none)]&gt; SELECT user FROM mysql.user;
 +--------------+
 | user |
 +--------------+
 | mailcow | &lt;=====
 | root |
 +--------------+
-2 rows in set (0.00 sec)
-
+2 rows in set (0.00 sec)</p>
+<p>MariaDB [(none)]&gt; FLUSH PRIVILEGES;
+MariaDB [(none)]&gt; ALTER USER 'mailcow'@'%' IDENTIFIED BY 'mookuh';
+MariaDB [(none)]&gt; ALTER USER 'root'@'%' IDENTIFIED BY 'gotr00t'; MariaDB [(none)]&gt; ALTER USER 'root'@'%' IDENTIFIED BY 'gotr00t';
+MariaDB [(none)]&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'gotr00t'; MariaDB [(none)]&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'gotr00t';
 MariaDB [(none)]&gt; FLUSH PRIVILEGES;
-MariaDB [(none)]&gt; ALTER USER &#39;mailcow&#39;@&#39;%&#39; IDENTIFIED BY &#39;mookuh&#39;;
-MariaDB [(none)]&gt; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;gotr00t&#39;; MariaDB [(none)]&gt; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;gotr00t&#39;;
-MariaDB [(none)]&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;gotr00t&#39;; MariaDB [(none)]&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;gotr00t&#39;;
-MariaDB [(none)]&gt; FLUSH PRIVILEGES;
-</code></pre></div>
+```</p>
 <h2 id="zwei-faktor-authentifizierung-entfernen">Zwei-Faktor-Authentifizierung entfernen<a class="headerlink" href="#zwei-faktor-authentifizierung-entfernen" title="Permanent link">&para;</a></h2>
 <h3 id="fur-mailcow-webui">Für mailcow WebUI:<a class="headerlink" href="#fur-mailcow-webui" title="Permanent link">&para;</a></h3>
 <p>Dies funktioniert ähnlich wie das Zurücksetzen eines MySQL-Passworts, jetzt machen wir es vom Host aus, ohne uns mit dem MySQL CLI zu verbinden:</p>
-<div class="highlight"><pre><span></span><code>Quelle mailcow.conf
-docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &quot;DELETE FROM tfa WHERE username=&#39;YOUR_USERNAME&#39;;&quot;
-</code></pre></div>
+<p><code>Quelle mailcow.conf
+docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e "DELETE FROM tfa WHERE username='YOUR_USERNAME';"</code></p>
 <h3 id="fur-sogo">Für SOGo:<a class="headerlink" href="#fur-sogo" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled &#39;{&quot;SOGoGoogleAuthenticatorEnabled&quot;:0}&#39;
-</code></pre></div>
+<p><code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled '{"SOGoGoogleAuthenticatorEnabled":0}'</code></p>
 
   <hr>
 <div class="md-source-file">
