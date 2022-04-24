@@ -5,6 +5,7 @@ Sie benötigen Docker (eine Version >= `20.10.2` ist erforderlich) und Docker Co
 Schnelle Installation für die meisten Betriebssysteme:
 
 - Docker
+
 ```
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # Nachdem der Installationsprozess abgeschlossen ist, müssen Sie eventuell den Dienst aktivieren und sicherstellen, dass er gestartet ist (z. B. CentOS 7)
@@ -66,14 +67,17 @@ $ su
 ```
 
 **3\.** Erzeugen Sie eine Konfigurationsdatei. Verwenden Sie einen FQDN (`host.domain.tld`) als Hostname, wenn Sie gefragt werden.
+
 ```
 ./generate_config.sh
 ```
 
 **4\.** Ändern Sie die Konfiguration, wenn Sie das wollen oder müssen.
+
 ```
 nano mailcow.conf
 ```
+
 Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.
 
 Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe [dieses Kapitel](../post_installation/firststeps-local_mta.de.md), um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow laufen zu lassen.
@@ -86,6 +90,7 @@ Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist
 
 Bearbeiten Sie `docker-compose.yml` und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
 Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
+
 ```
 networks:
   mailcow-network:
@@ -103,6 +108,7 @@ Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um 
 
 
 **5\.** LAden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird mailcow: dockerized starten:
+
 ```
 docker-compose pull
 docker-compose up -d
