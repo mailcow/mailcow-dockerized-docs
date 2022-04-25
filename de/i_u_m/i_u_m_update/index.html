@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/i_u_m/i_u_m_update/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2480,13 +2480,13 @@
 <p>Ein Update-Skript in Ihrem mailcow-dockerized Verzeichnis kümmert sich um Updates.</p>
 <p>Aber benutzen Sie es mit Bedacht! Wenn Sie denken, dass Sie viele Änderungen am mailcow-Code vorgenommen haben, sollten Sie die manuelle Update-Anleitung unten verwenden.</p>
 <p>Führen sie das Update-Skript aus:
-<div class="highlight"><pre><span></span><code>./update.sh
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>./update.sh
+</pre></div></p>
 <p>Wenn es nötig ist, wird es Sie fragen, wie Sie fortfahren möchten.
 Merge-Fehler werden gemeldet.
 Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: dockerized repository code).</p>
 <h3 id="optionen">Optionen<a class="headerlink" href="#optionen" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code># Optionen können kombiniert werden
+<div class="highlight"><pre><span></span># Optionen können kombiniert werden
 
 # - Prüft auf Updates und zeigt Änderungen an
 ./update.sh --check
@@ -2509,22 +2509,22 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 
 # - Nicht aktualisieren, nur holen von Docker Images
 ./update.sh --prefetch
-</code></pre></div>
+</pre></div>
 <h3 id="ich-habe-vergessen-was-ich-vor-dem-ausfuhren-von-updatesh-geandert-habe">Ich habe vergessen, was ich vor dem Ausführen von update.sh geändert habe.<a class="headerlink" href="#ich-habe-vergessen-was-ich-vor-dem-ausfuhren-von-updatesh-geandert-habe" title="Permanent link">&para;</a></h3>
 <p>Siehe <code>git log --pretty=oneline | grep -i "before update"</code>, Sie werden eine Ausgabe ähnlich dieser haben:</p>
-<div class="highlight"><pre><span></span><code>22cd00b5e28893ef9ddef3c2b5436453cc5223ab Before update on 2020-09-28_19_25_45
+<div class="highlight"><pre><span></span>22cd00b5e28893ef9ddef3c2b5436453cc5223ab Before update on 2020-09-28_19_25_45
 dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
-</code></pre></div>
+</pre></div>
 <p>Führen Sie <code>git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab</code> aus, um zu sehen, was sich geändert hat.</p>
 <h3 id="kann-ich-ein-rollback-durchfuhren">Kann ich ein Rollback durchführen?<a class="headerlink" href="#kann-ich-ein-rollback-durchfuhren" title="Permanent link">&para;</a></h3>
 <p>Ja.</p>
 <p>Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
+<div class="highlight"><pre><span></span>docker-compose down
 # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
 docker-compose pull
 docker-compose up -d
-</code></pre></div>
+</pre></div>
 <h3 id="hooks">Hooks<a class="headerlink" href="#hooks" title="Permanent link">&para;</a></h3>
 <p>Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens <code>pre_commit_hook.sh</code> und <code>post_commit_hook.sh</code> zu Ihrem mailcows-Root-Verzeichnis hinzufügen. Siehe <a href="../../manual-guides/u_e-update-hooks/">hier</a> für weitere Details.</p>
 <h2 id="funoten">Fußnoten<a class="headerlink" href="#funoten" title="Permanent link">&para;</a></h2>

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-rp/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2467,11 +2467,11 @@
 <p>Sie müssen die Nginx-Seite, die mit mailcow: dockerized geliefert wird, nicht ändern.
 mailcow: dockerized vertraut auf das Standard-Gateway IP 172.22.1.1 als Proxy.</p>
 <p>1. Stellen Sie sicher, dass Sie HTTP_BIND und HTTPS_BIND in <code>mailcow.conf</code> auf eine lokale Adresse ändern und die Ports entsprechend einstellen, zum Beispiel:
-<div class="highlight"><pre><span></span><code><span class="nv">HTTP_BIND</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<div class="highlight"><pre><span></span><span class="nv">HTTP_BIND</span><span class="o">=</span><span class="m">127</span>.0.0.1
 <span class="nv">HTTP_PORT</span><span class="o">=</span><span class="m">8080</span>
 <span class="nv">HTTPS_BIND</span><span class="o">=</span><span class="m">127</span>.0.0.1
 <span class="nv">HTTPS_PORT</span><span class="o">=</span><span class="m">8443</span>
-</code></pre></div></p>
+</pre></div></p>
 <p>Dadurch werden auch die Bindungen innerhalb des Nginx-Containers geändert! Dies ist wichtig, wenn Sie sich entscheiden, einen Proxy innerhalb von Docker zu verwenden.</p>
 <p><strong>WICHTIG:</strong> Verwenden Sie nicht Port 8081, 9081 oder 65510!</p>
 <p>Erzeugen Sie die betroffenen Container neu, indem Sie <code>docker-compose up -d</code> ausführen.</p>
@@ -2500,56 +2500,56 @@ Auf vielen Servern wird logrotate den Webserver sowieso täglich neu laden.</p>
 <p>2. Konfigurieren Sie Ihren lokalen Webserver als Reverse Proxy:</p>
 <h3 id="apache-24">Apache 2.4<a class="headerlink" href="#apache-24" title="Permanent link">&para;</a></h3>
 <p>Erforderliche Module:
-<div class="highlight"><pre><span></span><code>a2enmod rewrite proxy proxy_http headers ssl
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>a2enmod rewrite proxy proxy_http headers ssl
+</pre></div></p>
 <p>Let's Encrypt wird unserem Rewrite folgen, Zertifikatsanfragen in mailcow werden problemlos funktionieren.</p>
 <p><strong>Die hervorgehobenen Zeilen müssen beachtet werden</strong>.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="hll"><span class="w">  </span><span class="nb">ServerName</span><span class="w"> </span>ZU<span class="w"> </span>MAILCOW<span class="w"> </span>HOSTNAMEN<span class="w"> </span>ÄNDERN<span class="w"></span>
-</span><span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autodiscover.*<span class="w"></span>
-<span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autoconfig.*<span class="w"></span>
-<span class="w">  </span><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+<span class="hll">  <span class="nb">ServerName</span> ZU MAILCOW HOSTNAMEN ÄNDERN
+</span>  <span class="nb">ServerAlias</span> autodiscover.*
+  <span class="nb">ServerAlias</span> autoconfig.*
+  <span class="nb">RewriteEngine</span> <span class="k">on</span>
 
-<span class="w">  </span><span class="nb">RewriteCond</span><span class="w"> </span>%{HTTPS}<span class="w"> </span><span class="k">off</span><span class="w"></span>
-<span class="w">  </span><span class="nb">RewriteRule</span><span class="w"> </span>^/?(.*)<span class="w"> </span>https://%{HTTP_HOST}/$1<span class="w"> </span>[R=301,L]<span class="w"></span>
+  <span class="nb">RewriteCond</span> %{HTTPS} <span class="k">off</span>
+  <span class="nb">RewriteRule</span> ^/?(.*) https://%{HTTP_HOST}/$1 [R=301,L]
 
-<span class="hll"><span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/<span class="w"></span>
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/<span class="w"></span>
-</span><span class="w">  </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span><span class="w"></span>
-<span class="w">  </span><span class="nb">ProxyAddHeaders</span><span class="w"> </span><span class="k">On</span><span class="w"></span>
-<span class="w">  </span><span class="nb">RequestHeader</span><span class="w"> </span>set<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span><span class="s2">&quot;http&quot;</span><span class="w"></span>
-<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
-<span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="hll"><span class="w">  </span><span class="nb">ServerName</span><span class="w"> </span>ZU<span class="w"> </span>MAILCOW<span class="w"> </span>HOSTNAMEN<span class="w"> </span>ÄNDERN<span class="w"></span>
-</span><span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autodiscover.*<span class="w"></span>
-<span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autoconfig.*<span class="w"></span>
+<span class="hll">  <span class="nb">ProxyPass</span> / http://127.0.0.1:8080/
+</span><span class="hll">  <span class="nb">ProxyPassReverse</span> / http://127.0.0.1:8080/
+</span>  <span class="nb">ProxyPreserveHost</span> <span class="k">On</span>
+  <span class="nb">ProxyAddHeaders</span> <span class="k">On</span>
+  <span class="nb">RequestHeader</span> set X-Forwarded-Proto <span class="s2">&quot;http&quot;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+<span class="nt">&lt;VirtualHost</span> <span class="s">*:443</span><span class="nt">&gt;</span>
+<span class="hll">  <span class="nb">ServerName</span> ZU MAILCOW HOSTNAMEN ÄNDERN
+</span>  <span class="nb">ServerAlias</span> autodiscover.*
+  <span class="nb">ServerAlias</span> autoconfig.*
 
-<span class="w">  </span><span class="c"># You should proxy to a plain HTTP session to offload SSL processing</span><span class="w"></span>
-<span class="hll"><span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/Microsoft-Server-ActiveSync</span><span class="w"> </span>http://127.0.0.1:8080/Microsoft-Server-ActiveSync<span class="w"> </span>connectiontimeout=4000<span class="w"></span>
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span><span class="sx">/Microsoft-Server-ActiveSync</span><span class="w"> </span>http://127.0.0.1:8080/Microsoft-Server-ActiveSync<span class="w"></span>
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/<span class="w"></span>
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/<span class="w"></span>
-</span><span class="w">  </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span><span class="w"></span>
-<span class="w">  </span><span class="nb">ProxyAddHeaders</span><span class="w"> </span><span class="k">On</span><span class="w"></span>
-<span class="w">  </span><span class="nb">RequestHeader</span><span class="w"> </span>set<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span><span class="s2">&quot;https&quot;</span><span class="w"></span>
+  <span class="c"># You should proxy to a plain HTTP session to offload SSL processing</span>
+<span class="hll">  <span class="nb">ProxyPass</span> <span class="sx">/Microsoft-Server-ActiveSync</span> http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=4000
+</span><span class="hll">  <span class="nb">ProxyPassReverse</span> <span class="sx">/Microsoft-Server-ActiveSync</span> http://127.0.0.1:8080/Microsoft-Server-ActiveSync
+</span><span class="hll">  <span class="nb">ProxyPass</span> / http://127.0.0.1:8080/
+</span><span class="hll">  <span class="nb">ProxyPassReverse</span> / http://127.0.0.1:8080/
+</span>  <span class="nb">ProxyPreserveHost</span> <span class="k">On</span>
+  <span class="nb">ProxyAddHeaders</span> <span class="k">On</span>
+  <span class="nb">RequestHeader</span> set X-Forwarded-Proto <span class="s2">&quot;https&quot;</span>
 
-<span class="hll"><span class="w">  </span><span class="nb">SSLCertificateFile</span><span class="w"> </span>MAILCOW_ORDNER/data/assets/ssl/cert.pem<span class="w"></span>
-</span><span class="hll"><span class="w">  </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span>MAILCOW_ORDNER/data/assets/ssl/key.pem<span class="w"></span>
+<span class="hll">  <span class="nb">SSLCertificateFile</span> MAILCOW_ORDNER/data/assets/ssl/cert.pem
+</span><span class="hll">  <span class="nb">SSLCertificateKeyFile</span> MAILCOW_ORDNER/data/assets/ssl/key.pem
 </span>
-<span class="w">  </span><span class="c"># Wenn Sie einen HTTPS-Host als Proxy verwenden möchten:</span><span class="w"></span>
-<span class="w">  </span><span class="c">#SSLProxyEngine On</span><span class="w"></span>
+  <span class="c"># Wenn Sie einen HTTPS-Host als Proxy verwenden möchten:</span>
+  <span class="c">#SSLProxyEngine On</span>
 
-<span class="w">  </span><span class="c"># Wenn Sie einen Proxy für einen nicht vertrauenswürdigen HTTPS-Host einrichten wollen:</span><span class="w"></span>
-<span class="w">  </span><span class="c">#SSLProxyVerify none</span><span class="w"></span>
-<span class="w">  </span><span class="c">#SSLProxyCheckPeerCN off</span><span class="w"></span>
-<span class="w">  </span><span class="c">#SSLProxyCheckPeerName off</span><span class="w"></span>
-<span class="w">  </span><span class="c">#SSLProxyCheckPeerExpire off</span><span class="w"></span>
-<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
-</code></pre></div>
+  <span class="c"># Wenn Sie einen Proxy für einen nicht vertrauenswürdigen HTTPS-Host einrichten wollen:</span>
+  <span class="c">#SSLProxyVerify none</span>
+  <span class="c">#SSLProxyCheckPeerCN off</span>
+  <span class="c">#SSLProxyCheckPeerName off</span>
+  <span class="c">#SSLProxyCheckPeerExpire off</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
 <h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <p>Let's Encrypt folgt unserem Rewrite, Zertifikatsanfragen funktionieren problemlos.</p>
 <p><strong>Achten Sie auf die hervorgehobenen Zeilen</strong>.</p>
-<div class="highlight"><pre><span></span><code>server {
+<div class="highlight"><pre><span></span>server {
   listen 80 default_server;
   listen [::]:80 default_server;
 <span class="hll">  server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.*;
@@ -2600,14 +2600,14 @@ server {
     proxy_busy_buffers_size 512k;
   }
 }
-</code></pre></div>
+</pre></div>
 <h3 id="haproxy-von-der-community-unterstutzt">HAProxy (von der Community unterstützt)<a class="headerlink" href="#haproxy-von-der-community-unterstutzt" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Dies ist ein nicht unterstützter Community Beitrag. Sie können gerne Korrekturen bereitstellen.</p>
 </div>
 <p><strong>Wichtig/Fix erwünscht</strong>: Dieses Beispiel leitet nur HTTPS-Verkehr weiter und benutzt nicht den in mailcow eingebauten ACME-Client.</p>
-<div class="highlight"><pre><span></span><code>frontend https-in
+<div class="highlight"><pre><span></span>frontend https-in
   bind :::443 v4v6 ssl crt mailcow.pem
   default_backend mailcow
 
@@ -2616,7 +2616,7 @@ backend mailcow
   http-request set-header X-Forwarded-Proto https if { ssl_fc }
   http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
   server mailcow 127.0.0.1:8080 check
-</code></pre></div>
+</pre></div>
 <h3 id="traefik-v2-von-der-community-unterstutzt">Traefik v2 (von der Community unterstützt)<a class="headerlink" href="#traefik-v2-von-der-community-unterstutzt" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2627,50 +2627,50 @@ backend mailcow
 <p>Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
 Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf</code> setzen und <code>docker-compose up -d</code> ausführen, um die Änderungen zu übernehmen.</p>
 <p>Dann erstellen wir eine <code>docker-compose.override.yml</code> Datei, um die Hauptdatei <code>docker-compose.yml</code> zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. </p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.1&#39;</span>
 
-<span class="nt">services</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">nginx-mailcow</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">networks</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Traefiks Netzwerk hinzufügen</span><span class="w"></span>
-<span class="w">        </span><span class="nt">web</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.enable=true</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Erstellt einen Router namens &quot;moo&quot; für den Container und richtet eine Regel ein, um den Container mit einer bestimmten Regel zu verknüpfen,</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># in diesem Fall eine Host-Regel mit unserer MAILCOW_HOSTNAME-Variable.</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Aktiviert tls über den zuvor erstellten Router.</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls=true</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Gibt an, welche Art von Cert-Resolver wir verwenden werden, in diesem Fall le (Lets Encrypt).</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls.certresolver=le</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Erzeugt einen Dienst namens &quot;moo&quot; für den Container und gibt an, welchen internen Port des Containers</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Traefik die eingehenden Daten weiterleiten soll.</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Gibt an, welchen Eingangspunkt (externer Port) traefik für diesen Container abhören soll.</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Websecure ist Port 443, siehe die Datei traefik.toml wie oben.</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.entrypoints=websecure</span><span class="w"></span>
-<span class="w">        </span><span class="c1"># Stellen Sie sicher, dass traefik das Web-Netzwerk verwendet, nicht das mailcowdockerized_mailcow-network</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.docker.network=web</span><span class="w"></span>
+<span class="nt">services</span><span class="p">:</span>
+    <span class="nt">nginx-mailcow</span><span class="p">:</span>
+      <span class="nt">networks</span><span class="p">:</span>
+        <span class="c1"># Traefiks Netzwerk hinzufügen</span>
+        <span class="nt">web</span><span class="p">:</span>
+      <span class="nt">labels</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.enable=true</span>
+        <span class="c1"># Erstellt einen Router namens &quot;moo&quot; für den Container und richtet eine Regel ein, um den Container mit einer bestimmten Regel zu verknüpfen,</span>
+        <span class="c1"># in diesem Fall eine Host-Regel mit unserer MAILCOW_HOSTNAME-Variable.</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)</span>
+        <span class="c1"># Aktiviert tls über den zuvor erstellten Router.</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls=true</span>
+        <span class="c1"># Gibt an, welche Art von Cert-Resolver wir verwenden werden, in diesem Fall le (Lets Encrypt).</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls.certresolver=le</span>
+        <span class="c1"># Erzeugt einen Dienst namens &quot;moo&quot; für den Container und gibt an, welchen internen Port des Containers</span>
+        <span class="c1"># Traefik die eingehenden Daten weiterleiten soll.</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}</span>
+        <span class="c1"># Gibt an, welchen Eingangspunkt (externer Port) traefik für diesen Container abhören soll.</span>
+        <span class="c1"># Websecure ist Port 443, siehe die Datei traefik.toml wie oben.</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.entrypoints=websecure</span>
+        <span class="c1"># Stellen Sie sicher, dass traefik das Web-Netzwerk verwendet, nicht das mailcowdockerized_mailcow-network</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">traefik.docker.network=web</span>
 
-<span class="w">    </span><span class="nt">certdumper</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humenius/traefik-certs-dumper</span><span class="w"></span>
-<span class="w">        </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik_certdumper</span><span class="w"></span>
-<span class="w">        </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"></span>
-<span class="w">        </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># mounten Sie den Ordner, der Traefiks `acme.json&#39; Datei enthält</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># in diesem Fall wird Traefik von seinem eigenen docker-compose in ../traefik gestartet</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../traefik/data:/traefik:ro</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># SSL-Ordner von mailcow einhängen</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/:/output:rw</span><span class="w"></span>
-<span class="w">        </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
-<span class="w">        </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># Ändern Sie dies nur, wenn Sie eine andere Domain für Mailcows Web-Frontend verwenden als in der Standard-Konfiguration</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOMAIN=${MAILCOW_HOSTNAME}</span><span class="w"></span>
+    <span class="nt">certdumper</span><span class="p">:</span>
+        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">humenius/traefik-certs-dumper</span>
+        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">traefik_certdumper</span>
+        <span class="nt">network_mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">none</span>
+        <span class="nt">volumes</span><span class="p">:</span>
+          <span class="c1"># mounten Sie den Ordner, der Traefiks `acme.json&#39; Datei enthält</span>
+          <span class="c1"># in diesem Fall wird Traefik von seinem eigenen docker-compose in ../traefik gestartet</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">../traefik/data:/traefik:ro</span>
+          <span class="c1"># SSL-Ordner von mailcow einhängen</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/:/output:rw</span>
+        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+        <span class="nt">environment</span><span class="p">:</span>
+          <span class="c1"># Ändern Sie dies nur, wenn Sie eine andere Domain für Mailcows Web-Frontend verwenden als in der Standard-Konfiguration</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">DOMAIN=${MAILCOW_HOSTNAME}</span>
 
-<span class="nt">networks</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-</code></pre></div>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">web</span><span class="p">:</span>
+    <span class="nt">external</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
 <p>Starten Sie die neuen Container mit <code>docker-compose up -d</code>.</p>
 <p>Da Traefik 2 ein acme v2 Format verwendet, um ALLE Lizenzen von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>), der die Datei <code>acme.json</code> über ein Volume und eine Variable <code>DOMAIN=example. org</code>, und damit wird der Container die <code>cert.pem</code> und <code>key.pem</code> Dateien ausgeben, dafür lassen wir einfach den <code>traefik-certs-dumper</code> Container laufen, binden das <code>/traefik</code> Volume an den Ordner, in dem unsere <code>acme.json</code> gespeichert ist, binden das <code>/output</code> Volume an unseren mailcow <code>data/assets/ssl/</code> Ordner, und setzen die <code>DOMAIN=example.org</code> Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. </p>
 <p>Dieser Container überwacht die Datei <code>acme.json</code> auf Änderungen und generiert die Dateien <code>cert.pem</code> und <code>key.pem</code> direkt in <code>data/assets/ssl/</code>, wobei der Pfad mit dem <code>/output</code>-Pfad des Containers verbunden ist.</p>
@@ -2680,18 +2680,18 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <h3 id="optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Optional: Post-Hook-Skript für nicht-mailcow ACME-Clients<a class="headerlink" href="#optional-post-hook-skript-fur-nicht-mailcow-acme-clients" title="Permanent link">&para;</a></h3>
 <p>Die Verwendung eines lokalen Certbots (oder eines anderen ACME-Clients) erfordert den Neustart einiger Container, was Sie mit einem Post-Hook-Skript erledigen können.
 Stellen Sie sicher, dass Sie die Pfade entsprechend ändern:
-<div class="highlight"><pre><span></span><code>#!/bin/bash
+<div class="highlight"><pre><span></span>#!/bin/bash
 cp /etc/letsencrypt/live/my.domain.tld/fullchain.pem /opt/mailcow-dockerized/data/assets/ssl/cert.pem
 cp /etc/letsencrypt/live/my.domain.tld/privkey.pem /opt/mailcow-dockerized/data/assets/ssl/key.pem
 postfix_c=$(docker ps -qaf name=postfix-mailcow)
 dovecot_c=$(docker ps -qaf name=dovecot-mailcow)
 nginx_c=$(docker ps -qaf name=nginx-mailcow)
 docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
-</code></pre></div></p>
+</pre></div></p>
 <h3 id="hinzufugen-weiterer-servernamen-fur-mailcow-ui">Hinzufügen weiterer Servernamen für mailcow UI<a class="headerlink" href="#hinzufugen-weiterer-servernamen-fur-mailcow-ui" title="Permanent link">&para;</a></h3>
 <p>Wenn Sie vorhaben, einen Servernamen zu verwenden, der nicht <code>MAILCOW_HOSTNAME</code> in Ihrem Reverse-Proxy ist, stellen Sie sicher, dass Sie diesen Namen zuerst in mailcow.conf über <code>ADDITIONAL_SERVER_NAMES</code> einpflegen. Die Namen müssen durch Kommas getrennt werden und <strong>dürfen</strong> keine Leerzeichen enthalten. Wenn Sie diesen Schritt überspringen, kann es sein, dass mailcow auf Ihren Reverse-Proxy mit einer falschen Seite antwortet.</p>
-<div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
-</code></pre></div>
+<div class="highlight"><pre><span></span>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
+</pre></div>
 <p>Führen Sie <code>docker-compose up -d</code> zum Anwenden aus.</p>
 
   <hr>

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/ClamAV/u_e-clamav-additional_dbs/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2466,21 +2466,21 @@
 <li>You will need to get <code>your_id</code> from one of the download links, they are individual for every user</li>
 <li>
 <p>Add to <code>data/conf/clamav/freshclam.conf</code> with replaced <code>your_id</code> part:
-<div class="highlight"><pre><span></span><code>DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.hdb
+<div class="highlight"><pre><span></span>DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.ign2
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/javascript.ndb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/spam_marketing.ndb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfohtml.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoascii.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
-</code></pre></div></p>
+</pre></div></p>
 </li>
 <li>
 <p>For free SecuriteInfo databases, download speed is limited to 300 kB/s. In <code>data/conf/clamav/freshclam.conf</code>, increase the default <code>ReceiveTimeout 20</code> value to <code>ReceiveTimeout 90</code> (time in seconds), otherwise some of the database downloads could fail because of their size.</p>
 </li>
 <li>
 <p>Adjust <code>data/conf/clamav/clamd.conf</code> to align with next settings:
-<div class="highlight"><pre><span></span><code>DetectPUA yes
+<div class="highlight"><pre><span></span>DetectPUA yes
 ExcludePUA PUA.Win.Packer
 ExcludePUA PUA.Win.Trojan.Packed
 ExcludePUA PUA.Win.Trojan.Molebox
@@ -2493,11 +2493,11 @@ MaxEmbeddedPE 100M
 MaxHTMLNormalize 50M
 MaxScriptNormalize 50M
 MaxZipTypeRcg 50M
-</code></pre></div></p>
+</pre></div></p>
 </li>
 <li>Restart ClamAV container:
-<div class="highlight"><pre><span></span><code>docker-compose restart clamd-mailcow
-</code></pre></div></li>
+<div class="highlight"><pre><span></span>docker-compose restart clamd-mailcow
+</pre></div></li>
 </ol>
 <p>Please note:</p>
 <ul>
@@ -2509,14 +2509,14 @@ MaxZipTypeRcg 50M
 <h3 id="enable-interserver-databases">Enable InterServer databases<a class="headerlink" href="#enable-interserver-databases" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Add to <code>data/conf/clamav/freshclam.conf</code>:
-<div class="highlight"><pre><span></span><code>DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb
+<div class="highlight"><pre><span></span>DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb
 DatabaseCustomURL http://sigs.interserver.net/interservertopline.db
 DatabaseCustomURL http://sigs.interserver.net/shell.ldb
 DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
-</code></pre></div></li>
+</pre></div></li>
 <li>Restart ClamAV container:
-<div class="highlight"><pre><span></span><code>docker-compose restart clamd-mailcow
-</code></pre></div></li>
+<div class="highlight"><pre><span></span>docker-compose restart clamd-mailcow
+</pre></div></li>
 </ol>
 
   <hr>

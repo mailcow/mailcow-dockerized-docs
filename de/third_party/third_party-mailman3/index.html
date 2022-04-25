@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-mailman3/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2780,15 +2780,15 @@
 </ol>
 <h3 id="dns-einrichtung">DNS-Einrichtung<a class="headerlink" href="#dns-einrichtung" title="Permanent link">&para;</a></h3>
 <p>Der größte Teil der Konfiguration ist in <em>mailcow</em>s <a href="../../prerequisite/prerequisite-dns/">DNS Konfiguration</a> enthalten. Nachdem diese Einrichtung abgeschlossen ist, fügen Sie eine weitere Subdomain für <em>Mailman</em> hinzu, z.B. <code>lists.example.org</code>, die auf denselben Server zeigt:</p>
-<div class="highlight"><pre><span></span><code># Name Typ Wert
+<div class="highlight"><pre><span></span># Name Typ Wert
 lists IN A 1.2.3.4
 lists IN AAAA dead:beef
-</code></pre></div>
+</pre></div>
 <h3 id="installieren-sie-apache-als-reverse-proxy">Installieren Sie <em>Apache</em> als Reverse Proxy<a class="headerlink" href="#installieren-sie-apache-als-reverse-proxy" title="Permanent link">&para;</a></h3>
 <p>Installieren Sie <em>Apache</em>, z.B. mit dieser Anleitung von <em>Digital Ocean</em>: <a href="https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04">How To Install the Apache Web Server on Ubuntu 20.04 (Englisch)</a>.</p>
 <p>Aktivieren Sie bestimmte <em>Apache</em> Module (als <em>root</em> oder <em>sudo</em>):</p>
-<div class="highlight"><pre><span></span><code>a2enmod rewrite proxy proxy_http headers ssl wsgi proxy_uwsgi http2
-</code></pre></div>
+<div class="highlight"><pre><span></span>a2enmod rewrite proxy proxy_http headers ssl wsgi proxy_uwsgi http2
+</pre></div>
 <p>Möglicherweise müssen Sie weitere Pakete installieren, um diese Module zu erhalten. Dieses <a href="https://launchpad.net/~ondrej/+archive/ubuntu/apache2">PPA</a> von <em>Ondřej Surý</em> könnte Ihnen helfen.</p>
 <h4 id="vhost-konfiguration">vHost-Konfiguration<a class="headerlink" href="#vhost-konfiguration" title="Permanent link">&para;</a></h4>
 <p>Kopieren Sie die <a href="https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailcow.conf">mailcow.conf</a> und die <a href="https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/apache/mailman.conf">mailman.conf</a> in den <em>Apache</em> conf Ordner <code>sites-available</code> (z.B. unter <code>/etc/apache2/sites-available</code>).</p>
@@ -2806,18 +2806,18 @@ lists IN AAAA dead:beef
 <li><a href="https://mxtoolbox.com/SuperTool.aspx?action=aaaa%3aMAILMAN_DOMAIN">https://mxtoolbox.com/SuperTool.aspx?action=aaaa%3aMAILMAN_DOMAIN</a></li>
 </ul>
 <p>Installieren Sie <a href="https://certbot.eff.org/">certbot</a> (als <em>root</em> oder <em>sudo</em>):</p>
-<div class="highlight"><pre><span></span><code>apt install certbot
-</code></pre></div>
+<div class="highlight"><pre><span></span>apt install certbot
+</pre></div>
 <p>Holen Sie sich die gewünschten Zertifikate (als <em>root</em> oder <em>sudo</em>):</p>
-<div class="highlight"><pre><span></span><code>certbot certonly -d mailcow_HOSTNAME
+<div class="highlight"><pre><span></span>certbot certonly -d mailcow_HOSTNAME
 certbot certonly -d MAILMAN_DOMAIN
-</code></pre></div>
+</pre></div>
 <h3 id="installieren-sie-mailcow-mit-mailman-integration">Installieren Sie <em>mailcow</em> mit <em>Mailman</em> Integration<a class="headerlink" href="#installieren-sie-mailcow-mit-mailman-integration" title="Permanent link">&para;</a></h3>
 <h4 id="installieren-sie-mailcow">Installieren Sie mailcow<a class="headerlink" href="#installieren-sie-mailcow" title="Permanent link">&para;</a></h4>
 <p>Folgen Sie der <a href="../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Schritt 5 auslassen und nicht mit <code>docker-compose</code> starten!</strong></p>
 <h4 id="mailcow-konfigurieren">Mailcow konfigurieren<a class="headerlink" href="#mailcow-konfigurieren" title="Permanent link">&para;</a></h4>
 <p>Dies ist auch <strong>Schritt 4</strong> in der offiziellen <em>mailcow-Installation</em> (<code>nano mailcow.conf</code>). Passen Sie also Ihre Bedürfnisse an und ändern Sie die folgenden Variablen:</p>
-<div class="highlight"><pre><span></span><code>HTTP_PORT=18080 # verwenden Sie nicht 8080, da mailman es braucht
+<div class="highlight"><pre><span></span>HTTP_PORT=18080 # verwenden Sie nicht 8080, da mailman es braucht
 HTTP_BIND=127.0.0.1 #
 HTTPS_PORT=18443 # Sie können 8443 verwenden
 HTTPS_BIND=127.0.0.1 # # HTTPS_BIND=127.0.0.1
@@ -2826,10 +2826,10 @@ SKIP_LETS_ENCRYPT=y # Der Reverse Proxy wird die SSL-Verifizierung durchführen
 
 SNAT_TO_SOURCE=1.2.3.4 # ändern Sie dies in Ihre IPv4
 SNAT6_TO_SOURCE=dead:beef # Ändern Sie dies in Ihre globale IPv6
-</code></pre></div>
+</pre></div>
 <h4 id="mailman-integration-hinzufugen">Mailman-Integration hinzufügen<a class="headerlink" href="#mailman-integration-hinzufugen" title="Permanent link">&para;</a></h4>
 <p>Erstelle die Datei <code>/opt/mailcow-dockerized/docker-compose.override.yml</code> (z.B. mit <code>nano</code>) und füge die folgenden Zeilen hinzu:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+<div class="highlight"><pre><span></span>version: &#39;2.1&#39;
 
 services:
   postfix-mailcow:
@@ -2841,10 +2841,10 @@ services:
 networks:
   docker-mailman_mailman:
     external: true
-</code></pre></div>
+</pre></div>
 <p>Das zusätzliche Volume wird von <em>Mailman</em> verwendet, um zusätzliche Konfigurationsdateien für <em>mailcow postfix</em> zu generieren. Das externe Netzwerk wird von <em>Mailman</em> erstellt und verwendet. <em>mailcow</em> benötigt es, um eingehende Listenmails an <em>Mailman</em> zu liefern.</p>
 <p>Erstellen Sie die Datei <code>/opt/mailcow-dockerized/data/conf/postfix/extra.cf</code> (z.B. mit <code>nano</code>) und fügen Sie die folgenden Zeilen hinzu:</p>
-<div class="highlight"><pre><span></span><code># mailman
+<div class="highlight"><pre><span></span># mailman
 
 recipient_delimiter = +
 unknown_local_recipient_reject_code = 550
@@ -2869,7 +2869,7 @@ relay_domains =
 relay_recipient_maps =
   proxy:mysql:/opt/postfix/conf/sql/mysql_relay_recipient_maps.cf,
   regexp:/opt/mailman/core/var/data/postfix_lmtp
-</code></pre></div>
+</pre></div>
 <p>Da wir hier die <em>mailcow postfix</em> Konfiguration überschreiben, kann dieser Schritt Ihre normalen Mailtransporte unterbrechen. Überprüfen Sie die <a href="https://github.com/mailcow/mailcow-dockerized/tree/master/data/conf/postfix">originalen Konfigurationsdateien</a>, wenn sich etwas geändert hat.</p>
 <h4 id="ssl-zertifikate">SSL-Zertifikate<a class="headerlink" href="#ssl-zertifikate" title="Permanent link">&para;</a></h4>
 <p>Da wir <em>mailcow</em> als Proxy verwenden, müssen wir die SSL-Zertifikate in die <em>mailcow</em>-Dateistruktur kopieren. Diese Aufgabe wird das Skript <a href="https://github.com/g4rf/dockerized-mailcow-mailman/tree/master/scripts/renew-ssl.sh">renew-ssl.sh</a> für uns erledigen:</p>
@@ -2880,26 +2880,26 @@ relay_recipient_maps =
 <li><strong>Noch nicht ausführen, da wir zuerst Mailman benötigen</strong></li>
 </ul>
 <p>Sie müssen einen <em>cronjob</em> erstellen, so dass neue Zertifikate kopiert werden. Führen Sie ihn als <em>root</em> oder <em>sudo</em> aus:</p>
-<div class="highlight"><pre><span></span><code>crontab -e
-</code></pre></div>
+<div class="highlight"><pre><span></span>crontab -e
+</pre></div>
 <p>Um das Skript jeden Tag um 5 Uhr morgens laufen zu lassen, fügen Sie hinzu:</p>
-<div class="highlight"><pre><span></span><code>0 5 * * * /opt/mailcow-dockerized/renew-ssl.sh
-</code></pre></div>
+<div class="highlight"><pre><span></span>0 5 * * * /opt/mailcow-dockerized/renew-ssl.sh
+</pre></div>
 <h3 id="installieren-sie-mailman">Installieren Sie <em>Mailman</em>.<a class="headerlink" href="#installieren-sie-mailman" title="Permanent link">&para;</a></h3>
 <p>Befolgen Sie im Wesentlichen die Anweisungen unter <a href="https://github.com/maxking/docker-mailman">docker-mailman</a>. Da sie sehr umfangreich sind, ist hier in aller Kürze beschrieben, was zu tun ist:</p>
 <p>Als <em>root</em> oder <em>sudo</em>:</p>
-<div class="highlight"><pre><span></span><code>cd /opt
+<div class="highlight"><pre><span></span>cd /opt
 mkdir -p mailman/core
 mkdir -p mailman/web
 git clone https://github.com/maxking/docker-mailman
 cd docker-mailman
-</code></pre></div>
+</pre></div>
 <h4 id="mailman-konfigurieren">Mailman konfigurieren<a class="headerlink" href="#mailman-konfigurieren" title="Permanent link">&para;</a></h4>
 <p>Erstellen Sie einen langen Schlüssel für <em>Hyperkitty</em>, z.B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie diesen Schlüssel vorerst als HYPERKITTY_KEY.</p>
 <p>Erstellen Sie ein langes Passwort für die Datenbank, z. B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie dieses Passwort zunächst als DBPASS.</p>
 <p>Erstellen Sie einen langen Schlüssel für <em>Django</em>, z. B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie diesen Schlüssel für einen Moment als DJANGO_KEY.</p>
 <p>Erstellen Sie die Datei <code>/opt/docker-mailman/docker-compose.override.yaml</code> und ersetzen Sie <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> und <code>DJANGO_KEY</code> durch die generierten Werte:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2&#39;
+<div class="highlight"><pre><span></span>version: &#39;2&#39;
 
 services:
   mailman-core:
@@ -2928,17 +2928,17 @@ services:
     environment:
     - POSTGRES_PASSWORD=DBPASS
     restart: always
-</code></pre></div>
+</pre></div>
 <p>Bei <code>mailman-web</code> geben Sie die korrekten Werte für <code>SERVE_FROM_DOMAIN</code> (z.B. <code>lists.example.org</code>), <code>MAILMAN_ADMIN_USER</code> und <code>MAILMAN_ADMIN_EMAIL</code> ein. Sie benötigen die Admin-Zugangsdaten, um sich in der Web-Oberfläche (<em>Pistorius</em>) anzumelden. Um <strong>das Passwort zum ersten Mal</strong> zu setzen, verwenden Sie die Funktion <em>Passwort vergessen</em> im Webinterface.</p>
 <p>Über andere Konfigurationsoptionen lesen Sie die Dokumentationen <a href="https://github.com/maxking/docker-mailman#mailman-web-1">Mailman-web</a> und <a href="https://github.com/maxking/docker-mailman#mailman-core-1">Mailman-core</a>.</p>
 <h4 id="konfigurieren-sie-mailman-core-und-mailman-web">Konfigurieren Sie Mailman core und Mailman web<a class="headerlink" href="#konfigurieren-sie-mailman-core-und-mailman-web" title="Permanent link">&para;</a></h4>
 <p>Erstellen Sie die Datei <code>/opt/mailman/core/mailman-extra.cfg</code> mit dem folgenden Inhalt. <code>mailman@example.org</code> sollte auf ein gültiges Postfach oder eine Umleitung verweisen.</p>
-<div class="highlight"><pre><span></span><code>[mailman]
+<div class="highlight"><pre><span></span>[mailman]
 default_language: de
 site_owner: mailman@example.org
-</code></pre></div>
+</pre></div>
 <p>Erstellen Sie die Datei <code>/opt/mailman/web/settings_local.py</code> mit dem folgenden Inhalt. <code>mailman@example.org</code> sollte auf ein gültiges Postfach oder eine Umleitung verweisen.</p>
-<p><div class="highlight"><pre><span></span><code># Gebietsschema
+<p><div class="highlight"><pre><span></span># Gebietsschema
 LANGUAGE_CODE = &#39;de-de&#39;
 
 # soziale Authentifizierung deaktivieren
@@ -2948,11 +2948,11 @@ SOCIALACCOUNT_PROVIDERS = {}
 DEFAULT_FROM_EMAIL = &#39;mailman@example.org&#39;
 
 DEBUG = False
-</code></pre></div>
+</pre></div>
 Sie können <code>LANGUAGE_CODE</code> und <code>SOCIALACCOUNT_PROVIDERS</code> an Ihre Bedürfnisse anpassen. Im Moment hat <code>SOCIALACCOUNT_PROVIDERS</code> keinen Effekt, siehe <a href="https://github.com/g4rf/dockerized-mailcow-mailman/issues/2">issue #2</a>.</p>
 <h3 id="ausfuhren">🏃 Ausführen<a class="headerlink" href="#ausfuhren" title="Permanent link">&para;</a></h3>
 <p>Ausführen (als <em>root</em> oder <em>sudo</em>)</p>
-<div class="highlight"><pre><span></span><code>a2ensite mailcow.conf
+<div class="highlight"><pre><span></span>a2ensite mailcow.conf
 a2ensite mailman.conf
 systemctl restart apache2
 
@@ -2963,14 +2963,14 @@ docker-compose up -d
 cd /opt/mailcow-dockerized/
 docker-compose pull
 ./renew-ssl.sh
-</code></pre></div>
+</pre></div>
 <p><strong>Warten Sie ein paar Minuten!</strong> Die Container müssen ihre Datenbanken und Konfigurationsdateien erstellen. Dies kann bis zu 1 Minute und mehr dauern.</p>
 <h2 id="bemerkungen">Bemerkungen<a class="headerlink" href="#bemerkungen" title="Permanent link">&para;</a></h2>
 <h3 id="neue-listen-werden-von-postfix-nicht-sofort-erkannt">Neue Listen werden von Postfix nicht sofort erkannt<a class="headerlink" href="#neue-listen-werden-von-postfix-nicht-sofort-erkannt" title="Permanent link">&para;</a></h3>
 <p>Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, antwortet <em>postfix</em> mit <code>Benutzer existiert nicht</code>, weil <em>postfix</em> die Liste noch nicht an <em>Mailman</em> übergeben hat. Die Konfiguration unter <code>/opt/mailman/core/var/data/postfix_lmtp</code> wird nicht sofort aktualisiert. Wenn Sie die Liste sofort benötigen, starten Sie <em>postifx</em> manuell neu:</p>
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
 docker-compose restart postfix-mailcow
-</code></pre></div>
+</pre></div>
 <h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
 <p><strong>mailcow</strong> hat sein eigenes Update-Skript in <code>/opt/mailcow-dockerized/update.sh</code>, <a href="../../i_u_m/i_u_m_update/">siehe die Dokumentation</a>.</p>
 <p>Für <strong>Mailman</strong> holen Sie sich einfach die neueste Version aus dem <a href="https://github.com/maxking/docker-mailman">github repository</a>.</p>

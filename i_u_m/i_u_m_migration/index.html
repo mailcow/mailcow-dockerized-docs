@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/i_u_m/i_u_m_migration/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
@@ -2359,43 +2359,43 @@ Install <a href="https://docs.docker.com/engine/installation/linux/">Docker</a> 
 <ul>
 <li>
 <p>Docker
-<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
+<div class="highlight"><pre><span></span>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
 systemctl enable docker.service
-</code></pre></div></p>
+</pre></div></p>
 </li>
 <li>
 <p>docker-compose
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
+<div class="highlight"><pre><span></span>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-</code></pre></div></p>
+</pre></div></p>
 </li>
 </ul>
 <p>Please use the latest Docker engine available and do not use the engine that ships with your distros repository.</p>
 <p><strong>2.</strong> Stop Docker and assure Docker has stopped:
-<div class="highlight"><pre><span></span><code>systemctl stop docker.service
+<div class="highlight"><pre><span></span>systemctl stop docker.service
 systemctl status docker.service
-</code></pre></div></p>
+</pre></div></p>
 <p><strong>3.</strong> Run the following commands on the source machine (take care of adding the trailing slashes in the first path parameter as shown below!) - <strong>WARNING: This command will erase anything that may already exist under <code>/var/lib/docker/volumes</code> on the target machine</strong>:
-<div class="highlight"><pre><span></span><code>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
+<div class="highlight"><pre><span></span>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
 rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.example.com:/var/lib/docker/volumes
-</code></pre></div></p>
+</pre></div></p>
 <p><strong>4.</strong> Shut down mailcow and stop Docker on the source machine.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
 docker-compose down
 systemctl stop docker.service
-</code></pre></div></p>
+</pre></div></p>
 <p><strong>5.</strong> Repeat step 3 with the same commands. This will be much quicker than the first time.</p>
 <p><strong>6.</strong> Switch over to the target machine and start Docker.
-<div class="highlight"><pre><span></span><code>systemctl start docker.service
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>systemctl start docker.service
+</pre></div></p>
 <p><strong>7.</strong> Now pull the mailcow Docker images on the target machine.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
 docker-compose pull
-</code></pre></div></p>
+</pre></div></p>
 <p><strong>8.</strong> Start the whole mailcow stack and everything should be done!
-<div class="highlight"><pre><span></span><code>docker-compose up -d
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>docker-compose up -d
+</pre></div></p>
 <p><strong>9.</strong> Finally, change your DNS settings to point to the target server.</p>
 
   <hr>

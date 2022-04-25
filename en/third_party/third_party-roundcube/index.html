@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-roundcube/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2466,7 +2466,7 @@
 
 <h2 id="installing-roundcube">Installing Roundcube<a class="headerlink" href="#installing-roundcube" title="Permanent link">&para;</a></h2>
 <p>Download Roundcube 1.5.x to the web htdocs directory and extract it (here <code>rc/</code>):
-<div class="highlight"><pre><span></span><code># Check for a newer release!
+<div class="highlight"><pre><span></span># Check for a newer release!
 cd data/web
 wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
 
@@ -2478,17 +2478,17 @@ chown -R root: rc/
 
 # Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
 sed -i &quot;s/\$prefix = &#39;\.\/&#39;;/\$prefix = preg_replace\(&#39;\/\[\?\&amp;]\.\*\$\/&#39;, &#39;&#39;, \$_SERVER\[&#39;REQUEST_URI&#39;] \?\? &#39;&#39;\) \?: &#39;\.\/&#39;;/g&quot; rc/program/include/rcmail.php
-</code></pre></div></p>
+</pre></div></p>
 <p>If you need spell check features, create a file <code>data/hooks/phpfpm/aspell.sh</code> with the following content, then <code>chmod +x data/hooks/phpfpm/aspell.sh</code>. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
-<div class="highlight"><pre><span></span><code>#!/bin/bash
+<div class="highlight"><pre><span></span>#!/bin/bash
 apk update
 apk add aspell-en # or any other language
-</code></pre></div></p>
+</pre></div></p>
 <p>Create a file <code>data/web/rc/config/config.inc.php</code> with the following content.
    - <strong>Change the <code>des_key</code> parameter to a random value.</strong> It is used to temporarily store your IMAP password.
    - The <code>db_prefix</code> is optional but recommended.
    - If you didn't install spell check in the above step, remove <code>spellcheck_engine</code> parameter and replace it with <code>$config['enable_spellcheck'] = false;</code>.
-<div class="highlight"><pre><span></span><code>&lt;?php
+<div class="highlight"><pre><span></span>&lt;?php
 error_reporting(0);
 if (!file_exists(&#39;/tmp/mime.types&#39;)) {
 file_put_contents(&quot;/tmp/mime.types&quot;, fopen(&quot;http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types&quot;, &#39;r&#39;));
@@ -2520,13 +2520,13 @@ $config[&#39;smtp_conn_options&#39;] = array(
   &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
 );
 $config[&#39;db_prefix&#39;] = &#39;mailcow_rc1&#39;;
-</code></pre></div></p>
+</pre></div></p>
 <p>Point your browser to <code>https://myserver/rc/installer</code> and follow the instructions.
 Initialize the database and leave the installer.</p>
 <p><strong>Delete the directory <code>data/web/rc/installer</code> after a successful installation!</strong></p>
 <h2 id="configure-managesieve-filtering">Configure ManageSieve filtering<a class="headerlink" href="#configure-managesieve-filtering" title="Permanent link">&para;</a></h2>
 <p>Open <code>data/web/rc/plugins/managesieve/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):
-<div class="highlight"><pre><span></span><code>$config[&#39;managesieve_port&#39;] = 4190;
+<div class="highlight"><pre><span></span>$config[&#39;managesieve_port&#39;] = 4190;
 $config[&#39;managesieve_host&#39;] = &#39;tls://dovecot&#39;;
 $config[&#39;managesieve_conn_options&#39;] = array(
   &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
@@ -2536,37 +2536,37 @@ $config[&#39;managesieve_conn_options&#39;] = array(
 // 1 - add Vacation section,
 // 2 - add Vacation section, but hide Filters section
 $config[&#39;managesieve_vacation&#39;] = 1;
-</code></pre></div></p>
+</pre></div></p>
 <h2 id="enable-change-password-function-in-roundcube">Enable change password function in Roundcube<a class="headerlink" href="#enable-change-password-function-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Open <code>data/web/rc/config/config.inc.php</code> and enable the password plugin:</p>
-<div class="highlight"><pre><span></span><code>...
+<div class="highlight"><pre><span></span>...
 $config[&#39;plugins&#39;] = array(
     &#39;archive&#39;,
     &#39;password&#39;,
 );
 ...
-</code></pre></div>
+</pre></div>
 <p>Open <code>data/web/rc/plugins/password/password.php</code>, search for <code>case 'ssha':</code> and add above:</p>
-<div class="highlight"><pre><span></span><code>        case &#39;ssha256&#39;:
+<div class="highlight"><pre><span></span>        case &#39;ssha256&#39;:
             $salt = rcube_utils::random_bytes(8);
             $crypted = base64_encode( hash(&#39;sha256&#39;, $password . $salt, TRUE ) . $salt );
             $prefix  = &#39;{SSHA256}&#39;;
             break;
-</code></pre></div>
+</pre></div>
 <p>Open <code>data/web/rc/plugins/password/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):</p>
-<div class="highlight"><pre><span></span><code>$config[&#39;password_driver&#39;] = &#39;sql&#39;;
+<div class="highlight"><pre><span></span>$config[&#39;password_driver&#39;] = &#39;sql&#39;;
 $config[&#39;password_algorithm&#39;] = &#39;ssha256&#39;;
 $config[&#39;password_algorithm_prefix&#39;] = &#39;{SSHA256}&#39;;
 $config[&#39;password_query&#39;] = &quot;UPDATE mailbox SET password = %P WHERE username = %u&quot;;
-</code></pre></div>
+</pre></div>
 <h2 id="integrate-carddav-addressbooks-in-roundcube">Integrate CardDAV addressbooks in Roundcube<a class="headerlink" href="#integrate-carddav-addressbooks-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Download the latest release of <a href="https://github.com/mstilkerich/rcmcarddav">RCMCardDAV</a> to the Roundcube plugin directory and extract it (here <code>rc/plugins</code>):
-<div class="highlight"><pre><span></span><code>cd data/web/rc/plugins
+<div class="highlight"><pre><span></span>cd data/web/rc/plugins
 wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.3.0/carddav-v4.3.0.tar.gz  | tar xfvz -
 chown -R root: carddav/
-</code></pre></div></p>
+</pre></div></p>
 <p>Copy the file <code>config.inc.php.dist</code> to <code>config.inc.php</code> (here in <code>rc/plugins/carddav</code>) and append the following preset to the end of the file - don't forget to replace <code>mx.example.org</code> with your own hostname:
-<div class="highlight"><pre><span></span><code>$prefs[&#39;SOGo&#39;] = array(
+<div class="highlight"><pre><span></span>$prefs[&#39;SOGo&#39;] = array(
     &#39;name&#39;         =&gt;  &#39;SOGo&#39;,
     &#39;username&#39;     =&gt;  &#39;%u&#39;,
     &#39;password&#39;     =&gt;  &#39;%p&#39;,
@@ -2579,7 +2579,7 @@ chown -R root: carddav/
     &#39;fixed&#39;        =&gt;  array( &#39;active&#39;, &#39;name&#39;, &#39;username&#39;, &#39;password&#39;, &#39;refresh_time&#39; ),
     &#39;hide&#39;        =&gt;  false,
 );
-</code></pre></div>
+</pre></div>
 Please note, that this preset only integrates the default addressbook (the one that's named "Personal Address Book" and can't be deleted). Additional addressbooks are currently not automatically detected but can be manually added within the roundecube settings.</p>
 <p>Enable the plugin by adding <code>carddav</code> to <code>$config['plugins']</code> in <code>rc/config/config.inc.php</code>.</p>
 <p>If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks are accessible, append <code>$config['address_book_type'] = '';</code> to the config file <code>data/web/rc/config/config.inc.php</code>.</p>
@@ -2587,7 +2587,7 @@ Please note, that this preset only integrates the default addressbook (the one t
 <p>Optionally, you can add Roundcube's link to the mailcow Apps list.
 To do this, open or create <code>data/web/inc/vars.local.inc.php</code> and add the following code-block:</p>
 <p><em>NOTE: Don't forget to add the <code>&lt;?php</code> delimiter on the first line</em></p>
-<div class="highlight"><pre><span></span><code>...
+<div class="highlight"><pre><span></span>...
 $MAILCOW_APPS = array(
   array(
     &#39;name&#39; =&gt; &#39;SOGo&#39;,
@@ -2599,10 +2599,10 @@ $MAILCOW_APPS = array(
    )
 );
 ...
-</code></pre></div>
+</pre></div>
 <h2 id="upgrading-roundcube">Upgrading Roundcube<a class="headerlink" href="#upgrading-roundcube" title="Permanent link">&para;</a></h2>
 <p>Upgrading Roundcube is rather simple, go to the <a href="https://github.com/roundcube/roundcubemail/releases">Github releases</a> page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands and change the URL and Roundcube folder name if needed. </p>
-<div class="highlight"><pre><span></span><code># Enter a bash session of the mailcow PHP container
+<div class="highlight"><pre><span></span># Enter a bash session of the mailcow PHP container
 docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
 
 # Install required upgrade dependency, then upgrade Roundcube to wanted release
@@ -2620,42 +2620,42 @@ rm -rf roundcube*
 
 # Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
 sed -i &quot;s/\$prefix = &#39;\.\/&#39;;/\$prefix = preg_replace\(&#39;\/\[\?\&amp;]\.\*\$\/&#39;, &#39;&#39;, \$_SERVER\[&#39;REQUEST_URI&#39;] \?\? &#39;&#39;\) \?: &#39;\.\/&#39;;/g&quot; /web/rc/program/include/rcmail.php
-</code></pre></div>
+</pre></div>
 <h2 id="let-admins-log-into-roundcube-without-password">Let admins log into Roundcube without password<a class="headerlink" href="#let-admins-log-into-roundcube-without-password" title="Permanent link">&para;</a></h2>
 <p>First, install plugin <a href="https://github.com/corbosman/dovecot_impersonate/">dovecot_impersonate</a> and add Roundcube as an app (see above).</p>
 <p>Edit <code>mailcow.conf</code> and add the following:</p>
-<div class="highlight"><pre><span></span><code># Allow admins to log into Roundcube as email user (without any password)
+<div class="highlight"><pre><span></span># Allow admins to log into Roundcube as email user (without any password)
 # Roundcube with plugin dovecot_impersonate must be installed first
 
 ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
-</code></pre></div>
+</pre></div>
 <p>Edit <code>docker-compose.override.yml</code> and crate/extend the section for <code>php-fpm-mailcow</code>:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+<div class="highlight"><pre><span></span>version: &#39;2.1&#39;
 services:
   php-fpm-mailcow:
     environment:
       - ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}
-</code></pre></div>
+</pre></div>
 <p>Edit <code>data/web/js/site/mailbox.js</code> and the following code after <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487"><code>if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }</code></a></p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">btnSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">item</span><span class="p">.</span><span class="nx">action</span> <span class="o">+=</span> <span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span> <span class="o">+</span> <span class="nx">btnSize</span> <span class="o">+</span> <span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 <p>Edit <code>data/web/mailbox.php</code> and add this line to array <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43"><code>$template_data</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="x">  &#39;allow_admin_email_login_roundcube&#39; =&gt; (preg_match(&quot;/^(yes|y)+$/i&quot;, $_ENV[&quot;ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE&quot;])) ? &#39;true&#39; : &#39;false&#39;,</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><span class="x">  &#39;allow_admin_email_login_roundcube&#39; =&gt; (preg_match(&quot;/^(yes|y)+$/i&quot;, $_ENV[&quot;ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE&quot;])) ? &#39;true&#39; : &#39;false&#39;,</span>
+</pre></div>
 <p>Edit <code>data/web/templates/mailbox.twig</code> and add this code to the bottom of the <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57">javascript section</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">allow_admin_email_login_roundcube</span><span class="w"> </span><span class="p">}};</span><span class="w"></span>
-</code></pre></div>
+<div class="highlight"><pre><span></span>  <span class="kd">var</span> <span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span> <span class="o">=</span> <span class="p">{{</span> <span class="nx">allow_admin_email_login_roundcube</span> <span class="p">}};</span>
+</pre></div>
 <p>Copy the contents of the following files from this <a href="https://gitlab.com/-/snippets/2038244">Snippet</a>:</p>
 <ul>
 <li><code>data/web/inc/lib/RoundcubeAutoLogin.php</code></li>
 <li><code>data/web/rc-auth.php</code></li>
 </ul>
 <p>Finally, restart mailcow</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
+<div class="highlight"><pre><span></span>docker-compose down
 docker-compose up -d
-</code></pre></div>
+</pre></div>
 
   <hr>
 <div class="md-source-file">

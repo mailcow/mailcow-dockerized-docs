@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-mailpiler_integration/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
@@ -2456,11 +2456,11 @@
 </div>
 <h2 id="the-problem-to-solve">The problem to solve<a class="headerlink" href="#the-problem-to-solve" title="Permanent link">&para;</a></h2>
 <p>mailpiler offers the authentication based on IMAP, for example:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;ENABLE_IMAP_AUTH&#39;] = 1;</span>
+<div class="highlight"><pre><span></span><span class="x">$config[&#39;ENABLE_IMAP_AUTH&#39;] = 1;</span>
 <span class="x">$config[&#39;IMAP_HOST&#39;] = &#39;mail.example.com&#39;;</span>
 <span class="x">$config[&#39;IMAP_PORT&#39;] =  993;</span>
 <span class="x">$config[&#39;IMAP_SSL&#39;] = true;</span>
-</code></pre></div>
+</pre></div>
 <ul>
 <li>So when you log in using <code>patrik@example.com</code>, you will only see delivered emails sent from or to this specific email address.</li>
 <li>When additional aliases are defined in mailcow, like <code>team@example.com</code>, you won't see emails sent to or from this email address even the fact you're a recipient of mails sent to this alias address.</li>
@@ -2487,19 +2487,19 @@
 <ol>
 <li>
 <p>Set the custom query function of mailpiler and append this to <code>/usr/local/etc/piler/config-site.php</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_API_KEY&#39;] = &#39;YOUR_READONLY_API_KEY&#39;;</span>
+<div class="highlight"><pre><span></span><span class="x">$config[&#39;MAILCOW_API_KEY&#39;] = &#39;YOUR_READONLY_API_KEY&#39;;</span>
 <span class="x">$config[&#39;MAILCOW_SET_REALNAME&#39;] = true; // when not specified, then default is false</span>
 <span class="x">$config[&#39;CUSTOM_EMAIL_QUERY_FUNCTION&#39;] = &#39;query_mailcow_for_email_access&#39;;</span>
 <span class="x">include(&#39;auth-mailcow.php&#39;);</span>
-</code></pre></div>
+</pre></div>
 <p>You can also change the mailcow hostname, if required:
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_HOST&#39;] = &#39;mail.domain.tld&#39;; // defaults to $config[&#39;IMAP_HOST&#39;]</span>
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><span class="x">$config[&#39;MAILCOW_HOST&#39;] = &#39;mail.domain.tld&#39;; // defaults to $config[&#39;IMAP_HOST&#39;]</span>
+</pre></div></p>
 </li>
 <li>
 <p>Download the PHP file with the functions from the <a href="https://github.com/patschi/mailpiler-mailcow-integration">GitHub repo</a>:</p>
-<div class="highlight"><pre><span></span><code>curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
-</code></pre></div>
+<div class="highlight"><pre><span></span>curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
+</pre></div>
 </li>
 <li>
 <p>Done!</p>

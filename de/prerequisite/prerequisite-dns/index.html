@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/prerequisite/prerequisite-dns/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2548,28 +2548,28 @@
 <p>Stellen Sie sicher, dass der PTR-Eintrag Ihrer IP-Adresse mit dem FQDN Ihres mailcow-Hosts übereinstimmt: <code>${MAILCOW_HOSTNAME}</code> <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Dieser Eintrag wird normalerweise bei dem Provider gesetzt, von dem Sie die IP-Adresse (Server) gemietet haben.</p>
 <h2 id="die-minimale-dns-konfiguration">Die minimale DNS-Konfiguration<a class="headerlink" href="#die-minimale-dns-konfiguration" title="Permanent link">&para;</a></h2>
 <p>Dieses Beispiel zeigt Ihnen eine Reihe von Einträgen für eine von mailcow verwaltete Domain. Jede Domain, die zu mailcow hinzugefügt wird, benötigt mindestens diesen Satz an Einträgen, um korrekt zu funktionieren.</p>
-<div class="highlight"><pre><span></span><code># Name Typ Wert
+<div class="highlight"><pre><span></span># Name Typ Wert
 mail IN A 1.2.3.4
 autodiscover IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 autoconfig IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 @ IN MX 10 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
-</code></pre></div>
+</pre></div>
 <h2 id="dkim-spf-und-dmarc">DKIM, SPF und DMARC<a class="headerlink" href="#dkim-spf-und-dmarc" title="Permanent link">&para;</a></h2>
 <p>Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher <strong>SPF</strong> TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("<code>~all</code>"). Weitere Informationen finden Sie im <a href="http://www.open-spf.org/">SPF-Projekt</a>.</p>
-<div class="highlight"><pre><span></span><code># Name Typ Wert
+<div class="highlight"><pre><span></span># Name Typ Wert
 @ IN TXT &quot;v=spf1 mx a -all&quot;
-</code></pre></div>
+</pre></div>
 <p>Es wird dringend empfohlen, einen <strong>DKIM</strong> TXT-Eintrag in Ihrer mailcow UI zu erstellen und den entsprechenden TXT-Eintrag in Ihren DNS-Einträgen zu setzen. Bitte lesen Sie <a href="http://www.opendkim.org">OpenDKIM</a> für weitere Informationen.</p>
-<div class="highlight"><pre><span></span><code># Name Typ Wert
+<div class="highlight"><pre><span></span># Name Typ Wert
 dkim._domainkey IN TXT &quot;v=DKIM1; k=rsa; t=s; s=email; p=...&quot;
-</code></pre></div>
+</pre></div>
 <p>Der letzte Schritt, um sich selbst und andere zu schützen, ist die Implementierung eines <strong>DMARC</strong> TXT-Datensatzes, zum Beispiel mit Hilfe des <a href="http://www.kitterman.com/dmarc/assistant.html">DMARC-Assistenten</a> (<a href="https://dmarcian.com/dmarc-inspector/google.com">check</a>).</p>
-<div class="highlight"><pre><span></span><code># Name Typ Wert
+<div class="highlight"><pre><span></span># Name Typ Wert
 _dmarc IN TXT &quot;v=DMARC1; p=reject; rua=mailto:mailauth-reports@example.org&quot;
-</code></pre></div>
+</pre></div>
 <h2 id="die-erweiterte-dns-konfiguration">Die erweiterte DNS-Konfiguration<a class="headerlink" href="#die-erweiterte-dns-konfiguration" title="Permanent link">&para;</a></h2>
 <p><strong>SRV</strong>-Einträge geben den/die Server für ein bestimmtes Protokoll in Ihrer Domäne an. Wenn Sie einen Dienst explizit als nicht bereitgestellt ankündigen wollen, geben Sie "." als Zieladresse an (statt "mail.example.org."). Bitte beachten Sie <a href="https://tools.ietf.org/html/rfc2782">RFC 2782</a>.</p>
-<div class="highlight"><pre><span></span><code># Name Typ Priorität Gewicht Port Wert
+<div class="highlight"><pre><span></span># Name Typ Priorität Gewicht Port Wert
 _autodiscover._tcp IN SRV 0 1 443 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 _caldavs._tcp IN SRV 0 1 443 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 _caldavs._tcp IN TXT &quot;path=/SOGo/dav/&quot;
@@ -2582,7 +2582,7 @@ _pop3s._tcp IN SRV 0 1 995 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 _sieve._tcp IN SRV 0 1 4190 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 _smtps._tcp IN SRV 0 1 465 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 _submission._tcp IN SRV 0 1 587 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
-</code></pre></div>
+</pre></div>
 <h2 id="testen">Testen<a class="headerlink" href="#testen" title="Permanent link">&para;</a></h2>
 <p>Hier finden Sie einige Tools, mit denen Sie Ihre DNS-Konfiguration überprüfen können:</p>
 <ul>
@@ -2613,7 +2613,7 @@ _submission._tcp IN SRV 0 1 587 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 <p>Diese Dienste stellen Ihnen möglicherweise einen TXT-Eintrag zur Verfügung, den Sie in Ihre DNS-Einträge einfügen müssen, so wie es der Anbieter vorschreibt. Bitte stellen Sie sicher, dass Sie die Dokumentation des Anbieters des von Ihnen gewählten Dienstes lesen, da dieser Prozess variieren kann.</p>
 <h3 id="e-mail-test-fur-spf-dkim-und-dmarc">E-Mail-Test für SPF, DKIM und DMARC:<a class="headerlink" href="#e-mail-test-fur-spf-dkim-und-dmarc" title="Permanent link">&para;</a></h3>
 <p>Um eine rudimentäre E-Mail-Authentifizierungsprüfung durchzuführen, senden Sie eine E-Mail an <code>check-auth at verifier.port25.com</code> und warten Sie auf eine Antwort. Sie werden einen Bericht ähnlich dem folgenden finden:</p>
-<div class="highlight"><pre><span></span><code>==========================================================
+<div class="highlight"><pre><span></span>==========================================================
 Zusammenfassung der Ergebnisse
 ==========================================================
 SPF-Prüfung: bestanden
@@ -2626,7 +2626,7 @@ SpamAssassin-Prüfung: ham
 Einzelheiten:
 ==========================================================
 ....
-</code></pre></div>
+</pre></div>
 <p>Der vollständige Bericht enthält weitere technische Details.</p>
 <h3 id="fully-qualified-domain-name-fqdn">Fully Qualified Domain Name (FQDN)<a class="headerlink" href="#fully-qualified-domain-name-fqdn" title="Permanent link">&para;</a></h3>
 <div class="footnote">

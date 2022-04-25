@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Dovecot/u_e-dovecot-more/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
@@ -2414,25 +2414,25 @@
 <h2 id="doveadm-quota">doveadm quota<a class="headerlink" href="#doveadm-quota" title="Permanent link">&para;</a></h2>
 <p>Die Befehle <code>quota get</code> und <code>quota recalc</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> werden verwendet, um die Quota-Nutzung des aktuellen Benutzers anzuzeigen oder neu zu berechnen. Die angezeigten Werte sind in <em>Kilobytes</em>.</p>
 <p>Um den aktuellen Quota-Status für einen Benutzer / eine Mailbox aufzulisten, tun Sie folgendes:</p>
-<div class="highlight"><pre><span></span><code>doveadm quota get -u &#39;mailbox@example.org&#39;
-</code></pre></div>
+<div class="highlight"><pre><span></span>doveadm quota get -u &#39;mailbox@example.org&#39;
+</pre></div>
 <p>Um den Quota-Speicherwert für <strong>alle</strong> Benutzer aufzulisten, tun Sie folgendes:</p>
-<div class="highlight"><pre><span></span><code>doveadm quota get -A |grep &quot;STORAGE&quot;
-</code></pre></div>
+<div class="highlight"><pre><span></span>doveadm quota get -A |grep &quot;STORAGE&quot;
+</pre></div>
 <p>Berechnen Sie die Quota-Nutzung eines einzelnen Benutzers neu:</p>
-<div class="highlight"><pre><span></span><code>doveadm quota recalc -u &#39;mailbox@example.org&#39;
-</code></pre></div>
+<div class="highlight"><pre><span></span>doveadm quota recalc -u &#39;mailbox@example.org&#39;
+</pre></div>
 <h2 id="doveadm-search">doveadm search<a class="headerlink" href="#doveadm-search" title="Permanent link">&para;</a></h2>
 <p>Der Befehl <code>doveadm search</code><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> wird verwendet, um Nachrichten zu finden, die Ihrer Anfrage entsprechen. Er kann den Benutzernamen, die Mailbox-GUID / -UID und die Nachrichten-GUIDs / -UIDs zurückgeben.</p>
 <p>Um die Anzahl der Nachrichten im <strong>.Trash</strong> Ordner eines Benutzers zu sehen:</p>
-<div class="highlight"><pre><span></span><code>doveadm search -A mailbox &#39;Trash&#39; | awk &#39;{print $1}&#39; | sort | uniq -c
-</code></pre></div>
+<div class="highlight"><pre><span></span>doveadm search -A mailbox &#39;Trash&#39; | awk &#39;{print $1}&#39; | sort | uniq -c
+</pre></div>
 <p>Alle Nachrichten im <strong>Postfach</strong> eines Benutzers anzeigen, die älter als 90 Tage sind:</p>
-<div class="highlight"><pre><span></span><code>doveadm search -u &#39;mailbox@example.org&#39; mailbox &#39;INBOX&#39; savedbefore 90d
-</code></pre></div>
+<div class="highlight"><pre><span></span>doveadm search -u &#39;mailbox@example.org&#39; mailbox &#39;INBOX&#39; savedbefore 90d
+</pre></div>
 <p>Zeige <strong>alle Nachrichten</strong> in <strong>beliebigen Ordnern</strong>, die <strong>älter</strong> sind als 30 Tage für <code>mailbox@example.org</code>:</p>
-<div class="highlight"><pre><span></span><code>doveadm search -u &#39;mailbox@example.org&#39; mailbox &quot;*&quot; savedbefore 30d
-</code></pre></div>
+<div class="highlight"><pre><span></span>doveadm search -u &#39;mailbox@example.org&#39; mailbox &quot;*&quot; savedbefore 30d
+</pre></div>
 <div class="footnote">
 <hr />
 <ol>

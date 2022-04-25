@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/troubleshooting/debug-rm_volumes/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.10">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.df45aa19.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
@@ -2348,8 +2348,8 @@
 <p>You may want to remove a set of persistent data to resolve a conflict or to start over.</p>
 <p><code>mailcowdockerized</code> can vary and depends on your compose project name (if it's unchanged, <code>mailcowdockerized</code> is the correct value). If you are unsure about volume names, run <code>docker volume ls</code> for a full list.</p>
 <p>Delete a single volume:</p>
-<div class="highlight"><pre><span></span><code>docker volume rm mailcowdockerized_${VOLUME_NAME}
-</code></pre></div>
+<div class="highlight"><pre><span></span>docker volume rm mailcowdockerized_${VOLUME_NAME}
+</pre></div>
 <ul>
 <li>Remove volume <code>mysql-vol-1</code> to remove all MySQL data.</li>
 <li>Remove volume <code>redis-vol-1</code> to remove all Redis data.</li>
