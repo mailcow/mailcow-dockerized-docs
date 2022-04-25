@@ -2428,9 +2428,11 @@ log into SOGo as a mailbox user, without knowing the users password.</p>
 <p>Multiple concurrent admin-logins to different mailboxes are also possible when using this feature.</p>
 <h2 id="enabling-the-feature">Enabling the feature<a class="headerlink" href="#enabling-the-feature" title="Permanent link">&para;</a></h2>
 <p>The feature is disabled by default. It can be enabled in the <code>mailcow.conf</code> by setting:
-<code>ALLOW_ADMIN_EMAIL_LOGIN=y</code>
+<div class="highlight"><pre><span></span><code>ALLOW_ADMIN_EMAIL_LOGIN=y
+</code></pre></div>
 and recreating the affected containers with
-<code>docker-compose up -d</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div></p>
 <h2 id="drawbacks-when-enabled">Drawbacks when enabled<a class="headerlink" href="#drawbacks-when-enabled" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Each SOGo page-load and each Active-Sync request will cause an additional execution of an internal PHP script.

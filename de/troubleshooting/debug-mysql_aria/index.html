@@ -835,41 +835,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#stoppe-den-stack-fuhre-nicht-down-aus" class="md-nav__link">
-    Stoppe den Stack, führe nicht "down" aus
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus" class="md-nav__link">
-    Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cd-in-das-sql-datenverzeichnis" class="md-nav__link">
-    cd in das SQL-Datenverzeichnis
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aria_chk-ausfuhren" class="md-nav__link">
-    aria_chk ausführen
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loschen-der-aria-logdateien" class="md-nav__link">
-    Löschen der aria-Logdateien
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2409,41 +2374,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#stoppe-den-stack-fuhre-nicht-down-aus" class="md-nav__link">
-    Stoppe den Stack, führe nicht "down" aus
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus" class="md-nav__link">
-    Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cd-in-das-sql-datenverzeichnis" class="md-nav__link">
-    cd in das SQL-Datenverzeichnis
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#aria_chk-ausfuhren" class="md-nav__link">
-    aria_chk ausführen
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loschen-der-aria-logdateien" class="md-nav__link">
-    Löschen der aria-Logdateien
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2462,22 +2392,23 @@
 
 
 
+  <h1>Abgestürzte Aria-Speicher-Engine wiederherstellen</h1>
+
 <h2 id="mariadb-aria-wiederherstellung-nach-absturz">MariaDB: Aria-Wiederherstellung nach Absturz<a class="headerlink" href="#mariadb-aria-wiederherstellung-nach-absturz" title="Permanent link">&para;</a></h2>
 <p>Wenn Ihr Server abgestürzt ist und MariaDB eine Fehlermeldung ähnlich <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code>, können Sie Folgendes versuchen, um die Datenbank in einen gesunden Zustand zu bringen:</p>
 <p>Starten Sie den Stack und warten Sie, bis mysql-mailcow beginnt, einen Neustart zu melden. Überprüfen Sie dies, indem Sie <code>docker-compose ps</code> ausführen.</p>
 <p>Führen Sie nun die folgenden Befehle aus:</p>
-<p>```</p>
-<h1 id="stoppe-den-stack-fuhre-nicht-down-aus">Stoppe den Stack, führe nicht "down" aus<a class="headerlink" href="#stoppe-den-stack-fuhre-nicht-down-aus" title="Permanent link">&para;</a></h1>
-<p>docker-compose stop</p>
-<h1 id="fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus">Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus<a class="headerlink" href="#fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus" title="Permanent link">&para;</a></h1>
-<p>docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql bash"' mysql-mailcow</p>
-<h1 id="cd-in-das-sql-datenverzeichnis">cd in das SQL-Datenverzeichnis<a class="headerlink" href="#cd-in-das-sql-datenverzeichnis" title="Permanent link">&para;</a></h1>
-<p>cd /var/lib/mysql</p>
-<h1 id="aria_chk-ausfuhren">aria_chk ausführen<a class="headerlink" href="#aria_chk-ausfuhren" title="Permanent link">&para;</a></h1>
-<p>aria_chk --check --force <em>/</em>.MAI</p>
-<h1 id="loschen-der-aria-logdateien">Löschen der aria-Logdateien<a class="headerlink" href="#loschen-der-aria-logdateien" title="Permanent link">&para;</a></h1>
-<p>rm aria_log.*
-```</p>
+<div class="highlight"><pre><span></span><code># Stoppe den Stack, führe nicht &quot;down&quot; aus
+docker-compose stop
+# Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
+docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
+# cd in das SQL-Datenverzeichnis
+cd /var/lib/mysql
+# aria_chk ausführen
+aria_chk --check --force */*.MAI
+# Löschen der aria-Logdateien
+rm aria_log.*
+</code></pre></div>
 <p>Führen Sie nun <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
 
   <hr>

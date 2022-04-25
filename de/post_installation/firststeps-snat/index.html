@@ -66,11 +66,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#benutze-diese-ipv4-fur-ausgehende-verbindungen-snat" class="md-skip">
-          Zum Inhalt
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -568,8 +563,6 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
-      
-        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2333,8 +2326,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2352,15 +2343,17 @@
 
 
 
+  <h1>SNAT</h1>
+
 <p>SNAT wird verwendet, um die Quelladresse der von mailcow gesendeten Pakete zu ändern.
 Es kann verwendet werden, um die ausgehende IP-Adresse auf Systemen mit mehreren IP-Adressen zu ändern.</p>
 <p>Öffnen Sie <code>mailcow.conf</code>, setzen Sie einen oder beide der folgenden Parameter:</p>
-<p>```</p>
-<h1 id="benutze-diese-ipv4-fur-ausgehende-verbindungen-snat">Benutze diese IPv4 für ausgehende Verbindungen (SNAT)<a class="headerlink" href="#benutze-diese-ipv4-fur-ausgehende-verbindungen-snat" title="Permanent link">&para;</a></h1>
-<p>SNAT_TO_SOURCE=1.2.3.4</p>
-<h1 id="benutze-dieses-ipv6-fur-ausgehende-verbindungen-snat">Benutze dieses IPv6 für ausgehende Verbindungen (SNAT)<a class="headerlink" href="#benutze-dieses-ipv6-fur-ausgehende-verbindungen-snat" title="Permanent link">&para;</a></h1>
-<p>SNAT6_TO_SOURCE=dead:beef
-```</p>
+<div class="highlight"><pre><span></span><code># Benutze diese IPv4 für ausgehende Verbindungen (SNAT)
+SNAT_TO_SOURCE=1.2.3.4
+
+# Benutze dieses IPv6 für ausgehende Verbindungen (SNAT)
+SNAT6_TO_SOURCE=dead:beef
+</code></pre></div>
 <p>Führen Sie <code>docker-compose up -d</code> aus.</p>
 <p>Die Werte werden von netfilter-mailcow gelesen. netfilter-mailcow stellt sicher, dass die Post-Routing-Regeln auf Position 1 in der Netfilter-Tabelle stehen. Es löscht sie automatisch und legt sie neu an, wenn sie an einer anderen Position als 1 gefunden werden.</p>
 <p>Überprüfen Sie die Ausgabe von <code>docker-compose logs --tail=200 netfilter-mailcow</code>, um sicherzustellen, dass die SNAT-Einstellungen angewendet wurden.</p>

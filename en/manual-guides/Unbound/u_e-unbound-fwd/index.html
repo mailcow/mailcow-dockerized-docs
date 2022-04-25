@@ -2416,15 +2416,18 @@
    <strong>Important</strong>: Only DNSSEC validating DNS services will work.</p>
 <h2 id="method-a-unbound">Method A, Unbound<a class="headerlink" href="#method-a-unbound" title="Permanent link">&para;</a></h2>
 <p>Edit <code>data/conf/unbound/unbound.conf</code> and append the following parameters:</p>
-<p><code>forward-zone:
-  name: "."
+<div class="highlight"><pre><span></span><code>forward-zone:
+  name: &quot;.&quot;
   forward-addr: 8.8.8.8 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
-  forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE</code></p>
+  forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
+</code></pre></div>
 <p>Restart Unbound:</p>
-<p><code>docker-compose restart unbound-mailcow</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
+</code></pre></div>
 <h2 id="method-b-override-file">Method B, Override file<a class="headerlink" href="#method-b-override-file" title="Permanent link">&para;</a></h2>
-<p><code>cd /opt/mailcow-dockerized
-cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .</code></p>
+<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
+cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .
+</code></pre></div>
 <p>Edit <code>docker-compose.override.yml</code> and adjust the IP.</p>
 <p>Run <code>docker-compose down ; docker-compose up -d</code>.</p>
 

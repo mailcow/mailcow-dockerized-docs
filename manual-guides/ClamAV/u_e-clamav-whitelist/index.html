@@ -1844,13 +1844,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#docker-compose-exec-redis-mailcow-binsh" class="md-nav__link">
-    docker-compose exec redis-mailcow  /bin/sh
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2383,13 +2376,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#docker-compose-exec-redis-mailcow-binsh" class="md-nav__link">
-    docker-compose exec redis-mailcow  /bin/sh
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2408,25 +2394,26 @@
 
 
 
+  <h1>Whitelist</h1>
+
 <h2 id="whitelist-specific-clamav-signatures">Whitelist specific ClamAV signatures<a class="headerlink" href="#whitelist-specific-clamav-signatures" title="Permanent link">&para;</a></h2>
 <p>You may find that legitimate (clean) mail is being blocked by ClamAV (Rspamd will flag the mail with <code>VIRUS_FOUND</code>). For instance, interactive PDF form attachments are blocked by default because the embedded Javascript code may be used for nefarious purposes. Confirm by looking at the clamd logs, e.g.:</p>
-<p><code>bash
-docker-compose logs clamd-mailcow | grep "FOUND"</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose logs clamd-mailcow <span class="p">|</span> grep <span class="s2">&quot;FOUND&quot;</span>
+</code></pre></div>
 <p>This line confirms that such was identified:</p>
-<p><code>text
-clamd-mailcow_1      | Sat Sep 28 07:43:24 2019 -&gt; instream(local): PUA.Pdf.Trojan.EmbeddedJavaScript-1(e887d2ac324ce90750768b86b63d0749:363325) FOUND</code></p>
+<div class="highlight"><pre><span></span><code>clamd-mailcow_1      | Sat Sep 28 07:43:24 2019 -&gt; instream(local): PUA.Pdf.Trojan.EmbeddedJavaScript-1(e887d2ac324ce90750768b86b63d0749:363325) FOUND
+</code></pre></div>
 <p>To whitelist this particular signature (and enable sending this type of file attached), add it to the ClamAV signature whitelist file:</p>
-<p><code>bash
-echo 'PUA.Pdf.Trojan.EmbeddedJavaScript-1' &gt;&gt; data/conf/clamav/whitelist.ign2</code></p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;PUA.Pdf.Trojan.EmbeddedJavaScript-1&#39;</span> &gt;&gt; data/conf/clamav/whitelist.ign2
+</code></pre></div>
 <p>Then restart the clamd-mailcow service container in the mailcow UI or using docker-compose:</p>
-<p><code>bash
-docker-compose restart clamd-mailcow</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose restart clamd-mailcow
+</code></pre></div>
 <p>Cleanup cached ClamAV results in Redis:</p>
-<p>```</p>
-<h1 id="docker-compose-exec-redis-mailcow-binsh">docker-compose exec redis-mailcow  /bin/sh<a class="headerlink" href="#docker-compose-exec-redis-mailcow-binsh" title="Permanent link">&para;</a></h1>
-<p>/data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
+<div class="highlight"><pre><span></span><code># docker-compose exec redis-mailcow  /bin/sh
+/data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
 /data # exit
-```</p>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

@@ -2457,13 +2457,14 @@
 <p>In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run <code>docker-compose up -d</code> to apply. For more informaton refer to: <a href="../../post_installation/firststeps-ssl/">Advanced SSL</a>.</p>
 <h2 id="background-jobs">Background jobs<a class="headerlink" href="#background-jobs" title="Permanent link">&para;</a></h2>
 <p>To use the recommended setting (cron) to execute the background jobs following lines need to be added to the <code>docker-compose.override.yml</code>:</p>
-<p><code>version: '2.1'
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   php-fpm-mailcow:
     labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.nextcloud-cron.schedule: "@every 5m"
-      ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""</code></p>
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.nextcloud-cron.schedule: &quot;@every 5m&quot;
+      ofelia.job-exec.nextcloud-cron.command: &quot;su www-data -s /bin/bash -c \&quot;/usr/local/bin/php -f /web/nextcloud/cron.php\&quot;&quot;
+</code></pre></div>
 <p>After adding these lines the <code>docker-compose up -d</code> command must be executed to update the docker image and also the docker scheduler image must be restarted to
  pick up the new job definition by executing <code>docker-compose restart ofelia-mailcow</code>. To check if the job was successfully picked up by <code>ofelia</code> the command
  <code>docker-compose logs ofelia-mailcow</code> will contain a line similar to <code>New job registered "nextcloud-cron" - ...</code>.</p>
@@ -2515,12 +2516,14 @@ services:
 <p>If you have previously used Nextcloud with mailcow authentication via user_external/IMAP, you need to perform some additional steps to link your existing user accounts with OAuth2.</p>
 <p>1. Click the button in the top right corner and select <em>Apps</em>. Scroll down to the <em>External user authentication</em> app and click <em>Remove</em> next to it.
 2. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run <code>source mailcow.conf &amp;&amp; docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code>):
-<code>INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
-INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users_external;</code></p>
+<div class="highlight"><pre><span></span><code>INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
+INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users_external;
+</code></pre></div></p>
 <hr />
 <p>If you have previously used Nextcloud without mailcow authentication, but with the same usernames as mailcow, you can also link your existing user accounts with OAuth2.</p>
 <p>1. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run <code>source mailcow.conf &amp;&amp; docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code>):
-<code>INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users;</code></p>
+<div class="highlight"><pre><span></span><code>INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users;
+</code></pre></div></p>
 <hr />
 <h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
 <p>The Nextcloud instance can be updated easily with the web update mechanism. In the case of larger updates, there may be further changes to be made after the update. After the Nextcloud instance has been checked, problems are shown. This can be e.g. missing indices in the DB or similar.
@@ -2530,12 +2533,13 @@ It shows which commands have to be executed, these have to be placed in the php-
 <hr />
 <h2 id="debugging-troubleshooting">Debugging &amp; Troubleshooting<a class="headerlink" href="#debugging-troubleshooting" title="Permanent link">&para;</a></h2>
 <p>It may happen that you cannot reach the Nextcloud instance from your network. This may be due to the fact that the entry of your subnet in the array 'trusted_proxies' is missing. You can make changes in the Nextcloud config.php in <code>data/web/nextcloud/config/*</code>.</p>
-<p><code>'trusted_proxies' =&gt;
+<div class="highlight"><pre><span></span><code>&#39;trusted_proxies&#39; =&gt;
   array (
-    0 =&gt; 'fd4d:6169:6c63:6f77::/64',
-    1 =&gt; '172.22.1.0/24',
-    2 =&gt; 'NewSubnet/24',
-  ),</code></p>
+    0 =&gt; &#39;fd4d:6169:6c63:6f77::/64&#39;,
+    1 =&gt; &#39;172.22.1.0/24&#39;,
+    2 =&gt; &#39;NewSubnet/24&#39;,
+  ),
+</code></pre></div>
 <p>After the changes have been made, the nginx container must be restarted.
 <code>docker-compose restart nginx-mailcow</code></p>
 

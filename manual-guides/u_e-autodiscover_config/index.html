@@ -2350,44 +2350,45 @@
 Keep in mind, that <strong>ActiveSync should NOT be used with a desktop client</strong>.</p>
 <p>Open/create <code>data/web/inc/vars.local.inc.php</code> and add your changes to the configuration array.</p>
 <p>Changes will be merged with "$autodiscover_config" in <code>data/web/inc/vars.inc.php</code>):</p>
-<p><code>&lt;?php
+<div class="highlight"><pre><span></span><code>&lt;?php
 $autodiscover_config = array(
-  // General autodiscover service type: "activesync" or "imap"
+  // General autodiscover service type: &quot;activesync&quot; or &quot;imap&quot;
   // emClient uses autodiscover, but does not support ActiveSync. mailcow excludes emClient from ActiveSync.
-  'autodiscoverType' =&gt; 'activesync',
+  &#39;autodiscoverType&#39; =&gt; &#39;activesync&#39;,
   // If autodiscoverType =&gt; activesync, also use ActiveSync (EAS) for Outlook desktop clients (&gt;= Outlook 2013 on Windows)
   // Outlook for Mac does not support ActiveSync
-  'useEASforOutlook' =&gt; 'yes',
-  // Please don't use STARTTLS-enabled service ports in the "port" variable.
+  &#39;useEASforOutlook&#39; =&gt; &#39;yes&#39;,
+  // Please don&#39;t use STARTTLS-enabled service ports in the &quot;port&quot; variable.
   // The autodiscover service will always point to SMTPS and IMAPS (TLS-wrapped services).
-  // The autoconfig service will additionally announce the STARTTLS-enabled ports, specified in the "tlsport" variable.
-  'imap' =&gt; array(
-    'server' =&gt; $mailcow_hostname,
-    'port' =&gt; array_pop(explode(':', getenv('IMAPS_PORT'))),
-    'tlsport' =&gt; array_pop(explode(':', getenv('IMAP_PORT'))),
+  // The autoconfig service will additionally announce the STARTTLS-enabled ports, specified in the &quot;tlsport&quot; variable.
+  &#39;imap&#39; =&gt; array(
+    &#39;server&#39; =&gt; $mailcow_hostname,
+    &#39;port&#39; =&gt; array_pop(explode(&#39;:&#39;, getenv(&#39;IMAPS_PORT&#39;))),
+    &#39;tlsport&#39; =&gt; array_pop(explode(&#39;:&#39;, getenv(&#39;IMAP_PORT&#39;))),
   ),
-  'pop3' =&gt; array(
-    'server' =&gt; $mailcow_hostname,
-    'port' =&gt; array_pop(explode(':', getenv('POPS_PORT'))),
-    'tlsport' =&gt; array_pop(explode(':', getenv('POP_PORT'))),
+  &#39;pop3&#39; =&gt; array(
+    &#39;server&#39; =&gt; $mailcow_hostname,
+    &#39;port&#39; =&gt; array_pop(explode(&#39;:&#39;, getenv(&#39;POPS_PORT&#39;))),
+    &#39;tlsport&#39; =&gt; array_pop(explode(&#39;:&#39;, getenv(&#39;POP_PORT&#39;))),
   ),
-  'smtp' =&gt; array(
-    'server' =&gt; $mailcow_hostname,
-    'port' =&gt; array_pop(explode(':', getenv('SMTPS_PORT'))),
-    'tlsport' =&gt; array_pop(explode(':', getenv('SUBMISSION_PORT'))),
+  &#39;smtp&#39; =&gt; array(
+    &#39;server&#39; =&gt; $mailcow_hostname,
+    &#39;port&#39; =&gt; array_pop(explode(&#39;:&#39;, getenv(&#39;SMTPS_PORT&#39;))),
+    &#39;tlsport&#39; =&gt; array_pop(explode(&#39;:&#39;, getenv(&#39;SUBMISSION_PORT&#39;))),
   ),
-  'activesync' =&gt; array(
-    'url' =&gt; 'https://'.$mailcow_hostname.($https_port == 443 ? '' : ':'.$https_port).'/Microsoft-Server-ActiveSync',
+  &#39;activesync&#39; =&gt; array(
+    &#39;url&#39; =&gt; &#39;https://&#39;.$mailcow_hostname.($https_port == 443 ? &#39;&#39; : &#39;:&#39;.$https_port).&#39;/Microsoft-Server-ActiveSync&#39;,
   ),
-  'caldav' =&gt; array(
-    'server' =&gt; $mailcow_hostname,
-    'port' =&gt; $https_port,
+  &#39;caldav&#39; =&gt; array(
+    &#39;server&#39; =&gt; $mailcow_hostname,
+    &#39;port&#39; =&gt; $https_port,
   ),
-  'carddav' =&gt; array(
-    'server' =&gt; $mailcow_hostname,
-    'port' =&gt; $https_port,
+  &#39;carddav&#39; =&gt; array(
+    &#39;server&#39; =&gt; $mailcow_hostname,
+    &#39;port&#39; =&gt; $https_port,
   ),
-);</code></p>
+);
+</code></pre></div>
 <p>To always use IMAP and SMTP instead of EAS, set <code>'autodiscoverType' =&gt; 'imap'</code>.</p>
 <p>Disable ActiveSync for Outlook desktop clients by setting "useEASforOutlook" to "no".</p>
 

@@ -66,11 +66,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#for-gogs_ssh_port1270014000-in-mailcowconf-set" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -2228,8 +2223,6 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Gogs
@@ -2333,8 +2326,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2352,42 +2343,44 @@
 
 
 
+  <h1>Gogs</h1>
+
 <p>With Gogs' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:</p>
 <p>1. Open <code>docker-compose.override.yml</code> and add Gogs:</p>
-<p>```
-version: '2.1'
-services:</p>
-<pre><code>gogs-mailcow:
-  image: gogs/gogs
-  volumes:
-    - ./data/gogs:/data
-  networks:
-    mailcow-network:
-      aliases:
-        - gogs
-  ports:
-    - "${GOGS_SSH_PORT:-127.0.0.1:4000}:22"
-</code></pre>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+services:
+
+    gogs-mailcow:
+      image: gogs/gogs
+      volumes:
+        - ./data/gogs:/data
+      networks:
+        mailcow-network:
+          aliases:
+            - gogs
+      ports:
+        - &quot;${GOGS_SSH_PORT:-127.0.0.1:4000}:22&quot;
+</code></pre></div>
 <p>2. Create <code>data/conf/nginx/site.gogs.custom</code>, add:
-<code>location /gogs/ {
+<div class="highlight"><pre><span></span><code>location /gogs/ {
     proxy_pass http://gogs:3000/;
-}</code></p>
+}
+</code></pre></div></p>
 <p>3. Open <code>mailcow.conf</code> and define the binding you want Gogs to use for SSH. Example:</p>
-<p><code>GOGS_SSH_PORT=127.0.0.1:4000</code></p>
+<div class="highlight"><pre><span></span><code>GOGS_SSH_PORT=127.0.0.1:4000
+</code></pre></div>
 <p>5. Run <code>docker-compose up -d</code> to bring up the Gogs container and run <code>docker-compose restart nginx-mailcow</code> afterwards.</p>
 <p>6. Open <code>http://${MAILCOW_HOSTNAME}/gogs/</code>, for example <code>http://mx.example.org/gogs/</code>. For database details set <code>mysql</code> as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.</p>
 <p>7. Once the installation is complete, login as admin and set "settings" -&gt; "authorization" -&gt; "enable SMTP". SMTP Host should be <code>postfix</code> with port <code>587</code>, set <code>Skip TLS Verify</code> as we are using an unlisted SAN ("postfix" is most likely not part of your certificate).</p>
 <p>8. Create <code>data/gogs/gogs/conf/app.ini</code> and set following values. You can consult <a href="https://gogs.io/docs/advanced/configuration_cheat_sheet">Gogs cheat sheet</a> for their meaning and other possible values.</p>
-<p>```
-[server]
-SSH_LISTEN_PORT = 22</p>
-<h1 id="for-gogs_ssh_port1270014000-in-mailcowconf-set">For GOGS_SSH_PORT=127.0.0.1:4000 in mailcow.conf, set:<a class="headerlink" href="#for-gogs_ssh_port1270014000-in-mailcowconf-set" title="Permanent link">&para;</a></h1>
-<p>SSH_DOMAIN = 127.0.0.1
-SSH_PORT = 4000</p>
-<h1 id="for-mailcow_hostnamemxexampleorg-in-mailcowconf-and-default-ports-for-https-set">For MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (and default ports for HTTPS), set:<a class="headerlink" href="#for-mailcow_hostnamemxexampleorg-in-mailcowconf-and-default-ports-for-https-set" title="Permanent link">&para;</a></h1>
-<p>ROOT_URL = <a href="https://mx.example.org/gogs/">https://mx.example.org/gogs/</a>
-```</p>
+<div class="highlight"><pre><span></span><code>[server]
+SSH_LISTEN_PORT = 22
+# For GOGS_SSH_PORT=127.0.0.1:4000 in mailcow.conf, set:
+SSH_DOMAIN = 127.0.0.1
+SSH_PORT = 4000
+# For MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (and default ports for HTTPS), set:
+ROOT_URL = https://mx.example.org/gogs/
+</code></pre></div>
 <p>9. Restart Gogs with <code>docker-compose restart gogs-mailcow</code>. Your users should be able to login with mailcow managed accounts.</p>
 
   <hr>

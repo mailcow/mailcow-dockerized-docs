@@ -2412,13 +2412,15 @@
 
 <h3 id="sicherung">Sicherung<a class="headerlink" href="#sicherung" title="Permanent link">&para;</a></h3>
 <p>Diese Zeile sichert das vmail-Verzeichnis in eine Datei backup_vmail.tar.gz im mailcow-Root-Verzeichnis:
-<code>cd /pfad/zu/mailcow-dockerized
-docker run --rm -i -v $(docker inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail" }}{{ .Name }}{{ end }}{{{ end }}' $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar cvfz /backup/backup_vmail.tar.gz /vmail</code></p>
+<div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
+docker run --rm -i -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if eq .Destination &quot;/var/vmail&quot; }}{{ .Name }}{{ end }}{{{ end }}&#39; $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar cvfz /backup/backup_vmail.tar.gz /vmail
+</code></pre></div></p>
 <p>Sie können den Pfad ändern, indem Sie ${PWD} (das dem aktuellen Verzeichnis entspricht) an einen beliebigen Pfad anpassen, auf den Sie Schreibzugriff haben.
 Setzen Sie den Dateinamen <code>backup_vmail.tar.gz</code> auf einen beliebigen Namen, aber lassen Sie den Pfad so wie er ist. Beispiel: <code>[...] tar cvfz /backup/mein_eigener_filename_.tar.gz</code></p>
 <h3 id="wiederherstellen">Wiederherstellen<a class="headerlink" href="#wiederherstellen" title="Permanent link">&para;</a></h3>
-<p><code>cd /pfad/zu/mailcow-dockerized
-docker run --rm -it -v $(docker inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/vmail" }}{{ .Name }}{{ end }}{{ end }}' $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar xvfz /backup/backup_vmail.tar.gz</code></p>
+<div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
+docker run --rm -it -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if eq .Destination &quot;/var/vmail&quot; }}{{ .Name }}{{ end }}{{ end }}&#39; $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar xvfz /backup/backup_vmail.tar.gz
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

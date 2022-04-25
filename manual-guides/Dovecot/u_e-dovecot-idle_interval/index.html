@@ -2462,7 +2462,8 @@
 <h3 id="change-configuration">Change configuration<a class="headerlink" href="#change-configuration" title="Permanent link">&para;</a></h3>
 <p>Create a new file <code>data/conf/dovecot/extra.conf</code> (or edit it if it already exists).
 Insert the setting followed by the new value. For example, to set the interval to 5 minutes you could type:</p>
-<p><code>imap_idle_notify_interval = 5 mins</code></p>
+<div class="highlight"><pre><span></span><code>imap_idle_notify_interval = 5 mins
+</code></pre></div>
 <p>29 minutes is the maximum value allowed by the <a href="https://tools.ietf.org/html/rfc2177">corresponding RFC</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2470,11 +2471,13 @@ Insert the setting followed by the new value. For example, to set the interval t
 </div>
 <h3 id="reload-dovecot">Reload Dovecot<a class="headerlink" href="#reload-dovecot" title="Permanent link">&para;</a></h3>
 <p>Now reload Dovecot:
-<code>docker-compose exec dovecot-mailcow dovecot reload</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot reload
+</code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>You can check the value of this setting with 
-<code>docker-compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"</code>
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
+</code></pre></div>
 If you didn't change it, it should be at 2m. If you did change it, you should see your new value.</p>
 </div>
 

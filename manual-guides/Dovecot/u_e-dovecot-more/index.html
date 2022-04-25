@@ -2414,19 +2414,25 @@
 <h2 id="doveadm-quota">doveadm quota<a class="headerlink" href="#doveadm-quota" title="Permanent link">&para;</a></h2>
 <p>The <code>quota get</code> and <code>quota recalc</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> commands are used to display or recalculate the current user's quota usage. The reported values are in <em>kilobytes</em>.</p>
 <p>To list the current quota status for a user / mailbox, do:</p>
-<p><code>doveadm quota get -u 'mailbox@example.org'</code></p>
+<div class="highlight"><pre><span></span><code>doveadm quota get -u &#39;mailbox@example.org&#39;
+</code></pre></div>
 <p>To list the quota storage value for <strong>all</strong> users, do:</p>
-<p><code>doveadm quota get -A |grep "STORAGE"</code></p>
+<div class="highlight"><pre><span></span><code>doveadm quota get -A |grep &quot;STORAGE&quot;
+</code></pre></div>
 <p>Recalculate a single user's quota usage:</p>
-<p><code>doveadm quota recalc -u 'mailbox@example.org'</code></p>
+<div class="highlight"><pre><span></span><code>doveadm quota recalc -u &#39;mailbox@example.org&#39;
+</code></pre></div>
 <h2 id="doveadm-search">doveadm search<a class="headerlink" href="#doveadm-search" title="Permanent link">&para;</a></h2>
 <p>The <code>doveadm search</code><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> command is used to find messages matching your query. It can return the username, mailbox-GUID / -UID and message-GUIDs / -UIDs.</p>
 <p>To view the number of messages, by user, in their <strong>.Trash</strong> folder:</p>
-<p><code>doveadm search -A mailbox 'Trash' | awk '{print $1}' | sort | uniq -c</code></p>
+<div class="highlight"><pre><span></span><code>doveadm search -A mailbox &#39;Trash&#39; | awk &#39;{print $1}&#39; | sort | uniq -c
+</code></pre></div>
 <p>Show all messages in a user's <strong>inbox</strong> older then 90 days:</p>
-<p><code>doveadm search -u 'mailbox@example.org' mailbox 'INBOX' savedbefore 90d</code></p>
+<div class="highlight"><pre><span></span><code>doveadm search -u &#39;mailbox@example.org&#39; mailbox &#39;INBOX&#39; savedbefore 90d
+</code></pre></div>
 <p>Show <strong>all messages</strong> in <strong>any folder</strong> that are <strong>older</strong> then 30 days for <code>mailbox@example.org</code>:</p>
-<p><code>doveadm search -u 'mailbox@example.org' mailbox "*" savedbefore 30d</code></p>
+<div class="highlight"><pre><span></span><code>doveadm search -u &#39;mailbox@example.org&#39; mailbox &quot;*&quot; savedbefore 30d
+</code></pre></div>
 <div class="footnote">
 <hr />
 <ol>

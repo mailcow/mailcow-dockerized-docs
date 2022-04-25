@@ -2466,20 +2466,21 @@
 <li>Sie brauchen <code>your_id</code> von den Downloadlinks. <strong>Diese sind pro User individuell</strong>.</li>
 <li>
 <p>Fügen Sie diese wie folgt in die <code>data/conf/clamav/freshclam.conf</code> ein und ersetzen Sie den <code>your_id</code> Teil mit Ihrer ID:
-<code>DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.hdb
+<div class="highlight"><pre><span></span><code>DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.ign2
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/javascript.ndb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/spam_marketing.ndb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfohtml.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoascii.hdb
-DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb</code></p>
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
+</code></pre></div></p>
 </li>
 <li>
 <p>Bei den kostenlosen SecuriteInfo Datenbanken ist die Download-Geschwindigkeit auf 300 kB/s begrenzt. Ändern Sie in <code>data/conf/clamav/freshclam.conf</code> den Standardwert <code>ReceiveTimeout 20</code> auf <code>ReceiveTimeout 90</code> (Zeitangabe in Sekunden), da ansonsten einige der Datenbank-Downloads aufgrund ihrer Größe abbrechen können.</p>
 </li>
 <li>
 <p>Passen Sie <code>data/conf/clamav/clamd.conf</code> mit den folgenden Einstellungen an:
-<code>DetectPUA yes
+<div class="highlight"><pre><span></span><code>DetectPUA yes
 ExcludePUA PUA.Win.Packer
 ExcludePUA PUA.Win.Trojan.Packed
 ExcludePUA PUA.Win.Trojan.Molebox
@@ -2491,11 +2492,12 @@ MaxRecursion 40
 MaxEmbeddedPE 100M
 MaxHTMLNormalize 50M
 MaxScriptNormalize 50M
-MaxZipTypeRcg 50M</code></p>
+MaxZipTypeRcg 50M
+</code></pre></div></p>
 </li>
 <li>Starten Sie den ClamAV Container neu:
-<code>bash
-docker-compose restart clamd-mailcow</code></li>
+<div class="highlight"><pre><span></span><code>docker-compose restart clamd-mailcow
+</code></pre></div></li>
 </ol>
 <p><strong>Bitte beachten Sie</strong>:</p>
 <ul>
@@ -2507,13 +2509,14 @@ docker-compose restart clamd-mailcow</code></li>
 <h3 id="interserver-datenbanken-aktivieren">InterServer Datenbanken aktivieren<a class="headerlink" href="#interserver-datenbanken-aktivieren" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Fügen Sie folgendes in <code>data/conf/clamav/freshclam.conf</code> ein:
-<code>DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb
+<div class="highlight"><pre><span></span><code>DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb
 DatabaseCustomURL http://sigs.interserver.net/interservertopline.db
 DatabaseCustomURL http://sigs.interserver.net/shell.ldb
-DatabaseCustomURL http://sigs.interserver.net/whitelist.fp</code></li>
+DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
+</code></pre></div></li>
 <li>Starten Sie den ClamAV Container neu:
-<code>bash
-docker-compose restart clamd-mailcow</code></li>
+<div class="highlight"><pre><span></span><code>docker-compose restart clamd-mailcow
+</code></pre></div></li>
 </ol>
 
   <hr>

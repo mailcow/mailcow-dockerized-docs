@@ -2347,7 +2347,7 @@
 
 <p>Um Portainer zu aktivieren, müssen die docker-compose.yml und site.conf für Nginx geändert werden.</p>
 <p>1. Erstellen Sie eine neue Datei <code>docker-compose.override.yml</code> im mailcow-dockerized Stammverzeichnis und fügen Sie die folgende Konfiguration ein
-<code>version: '2.1'
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
     portainer-mailcow:
       image: portainer/portainer-ce
@@ -2361,40 +2361,42 @@ services:
       networks:
         mailcow-network:
           aliases:
-            - portainer</code>
+            - portainer
+</code></pre></div>
 2a. Erstelle <code>data/conf/nginx/portainer.conf</code>:
-```
-upstream portainer {
+<div class="highlight"><pre><span></span><code>upstream portainer {
   server portainer-mailcow:9000;
-}</p>
-<p>map $http_upgrade $connection_upgrade {
-  default upgrade;
-  '' close;
 }
-```</p>
+
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  &#39;&#39; close;
+}
+</code></pre></div></p>
 <p>2b. Fügen Sie einen neuen Standort für die Standard-Mailcow-Site ein, indem Sie die Datei <code>data/conf/nginx/site.portainer.custom</code> erstellen:
-```
-  location /portainer/ {
+<div class="highlight"><pre><span></span><code>  location /portainer/ {
     proxy_http_version 1.1;
-    proxy_set_header Host              $http_host;   # required for docker client's sake
-    proxy_set_header X-Real-IP         $remote_addr; # pass on real client's IP
+    proxy_set_header Host              $http_host;   # required for docker client&#39;s sake
+    proxy_set_header X-Real-IP         $remote_addr; # pass on real client&#39;s IP
     proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_read_timeout                 900;</p>
-<pre><code>proxy_set_header Connection "";
-proxy_buffers 32 4k;
-proxy_pass http://portainer/;
-</code></pre>
-<p>}</p>
-<p>location /portainer/api/websocket/ {
+    proxy_read_timeout                 900;
+
+    proxy_set_header Connection &quot;&quot;;
+    proxy_buffers 32 4k;
+    proxy_pass http://portainer/;
+  }
+
+  location /portainer/api/websocket/ {
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
-    proxy_pass <a href="http://portainer/api/websocket/">http://portainer/api/websocket/</a>;
+    proxy_pass http://portainer/api/websocket/;
   }
-```</p>
+</code></pre></div></p>
 <p>3. Übernehmen Sie Ihre Änderungen:
-<code>docker-compose up -d &amp;&amp; docker-compose restart nginx-mailcow</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d &amp;&amp; docker-compose restart nginx-mailcow
+</code></pre></div></p>
 <p>Nun können Sie einfach zu https://${MAILCOW_HOSTNAME}/portainer/ navigieren, um Ihre Portainer-Container-Überwachungsseite anzuzeigen. Sie werden dann aufgefordert, ein neues Passwort für den <strong>admin</strong> Account anzugeben. Nachdem Sie Ihr Passwort eingegeben haben, können Sie sich mit der Portainer UI verbinden.</p>
 
   <hr>

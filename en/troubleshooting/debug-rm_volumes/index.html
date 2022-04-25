@@ -2348,7 +2348,8 @@
 <p>You may want to remove a set of persistent data to resolve a conflict or to start over.</p>
 <p><code>mailcowdockerized</code> can vary and depends on your compose project name (if it's unchanged, <code>mailcowdockerized</code> is the correct value). If you are unsure about volume names, run <code>docker volume ls</code> for a full list.</p>
 <p>Delete a single volume:</p>
-<p><code>docker volume rm mailcowdockerized_${VOLUME_NAME}</code></p>
+<div class="highlight"><pre><span></span><code>docker volume rm mailcowdockerized_${VOLUME_NAME}
+</code></pre></div>
 <ul>
 <li>Remove volume <code>mysql-vol-1</code> to remove all MySQL data.</li>
 <li>Remove volume <code>redis-vol-1</code> to remove all Redis data.</li>

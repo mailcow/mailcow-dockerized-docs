@@ -2444,9 +2444,9 @@
 <h2 id="new-site">New site<a class="headerlink" href="#new-site" title="Permanent link">&para;</a></h2>
 <p>To create persistent (over updates) sites hosted by mailcow: dockerized, a new site configuration must be placed inside <code>data/conf/nginx/</code>:</p>
 <p>A good template to begin with:</p>
-<p><code>nano data/conf/nginx/my_custom_site.conf</code></p>
-<p>``` hl_lines="16"
-server {
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -2461,27 +2461,29 @@ server {
   # Location: data/web
   root /web;
   # Location: data/web/mysite.com
-  #root /web/mysite.com
-  include /etc/nginx/conf.d/listen_plain.active;
+<span class="hll">  #root /web/mysite.com
+</span>  include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name mysite.example.org;
-  server_tokens off;</p>
-<p># This allows acme to be validated even with a different web root
+  server_tokens off;
+
+  # This allows acme to be validated even with a different web root
   location ^~ /.well-known/acme-challenge/ {
-    default_type "text/plain";
+    default_type &quot;text/plain&quot;;
     rewrite /.well-known/acme-challenge/(.*) /$1 break;
     root /web/.well-known/acme-challenge/;
-  }</p>
-<p>if ($scheme = http) {
+  }
+
+  if ($scheme = http) {
     return 301 https://$server_name$request_uri;
   }
 }
-```</p>
+</code></pre></div>
 <h2 id="new-site-with-proxy-to-a-remote-location">New site with proxy to a remote location<a class="headerlink" href="#new-site-with-proxy-to-a-remote-location" title="Permanent link">&para;</a></h2>
 <p>Another example with a reverse proxy configuration:</p>
-<p><code>nano data/conf/nginx/my_custom_site.conf</code></p>
-<p>``` hl_lines="16 28"
-server {
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -2496,17 +2498,20 @@ server {
   root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
-  server_name example.domain.tld;
-  server_tokens off;</p>
-<p>location ^~ /.well-known/acme-challenge/ {
+<span class="hll">  server_name example.domain.tld;
+</span>  server_tokens off;
+
+  location ^~ /.well-known/acme-challenge/ {
     allow all;
-    default_type "text/plain";
-  }</p>
-<p>if ($scheme = http) {
+    default_type &quot;text/plain&quot;;
+  }
+
+  if ($scheme = http) {
     return 301 https://$host$request_uri;
-  }</p>
-<p>location / {
-    proxy_pass <a href="http://service:3000/">http://service:3000/</a>;
+  }
+
+<span class="hll">  location / {
+</span>    proxy_pass http://service:3000/;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -2514,16 +2519,18 @@ server {
     client_max_body_size 0;
   }
 }
-```</p>
+</code></pre></div>
 <h2 id="config-expansion-in-mailcows-nginx">Config expansion in mailcows Nginx<a class="headerlink" href="#config-expansion-in-mailcows-nginx" title="Permanent link">&para;</a></h2>
 <p>The filename used for a new site is not important, as long as the filename carries a .conf extension.</p>
 <p>It is also possible to extend the configuration of the default file <code>site.conf</code> file:</p>
-<p><code>nano data/conf/nginx/site.my_content.custom</code></p>
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/site.my_content.custom
+</code></pre></div>
 <p>This filename does not need to have a ".conf" extension but follows the pattern <code>site.*.custom</code>, where <code>*</code> is a custom name.</p>
 <p>If PHP is to be included in a custom site, please use the PHP-FPM listener on phpfpm:9002 or create a new listener in <code>data/conf/phpfpm/php-fpm.d/pools.conf</code>.</p>
 <p>Restart Nginx (and PHP-FPM, if a new listener was created):</p>
-<p><code>docker-compose restart nginx-mailcow
-docker-compose restart php-fpm-mailcow</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose restart nginx-mailcow
+docker-compose restart php-fpm-mailcow
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

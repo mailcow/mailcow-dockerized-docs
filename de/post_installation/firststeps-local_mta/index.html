@@ -66,11 +66,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#smtp-inet-n-smtpd" class="md-skip">
-          Zum Inhalt
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -512,8 +507,6 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
-      
-        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2333,8 +2326,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2352,17 +2343,19 @@
 
 
 
+  <h1>Lokaler MTA auf Docker-Host</h1>
+
 <p>Die einfachste Möglichkeit wäre, den Listener an Port 25/tcp zu deaktivieren.</p>
 <p><strong>Postfix</strong>-Benutzer deaktivieren den Listener, indem sie die folgende Zeile (beginnend mit <code>smtp</code> oder <code>25</code>) in <code>/etc/postfix/master.cf</code> auskommentieren:
-```</p>
-<h1 id="smtp-inet-n-smtpd">smtp      inet  n       -       -       -       -       smtpd<a class="headerlink" href="#smtp-inet-n-smtpd" title="Permanent link">&para;</a></h1>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>#smtp      inet  n       -       -       -       -       smtpd
+</code></pre></div></p>
 <p>Außerdem, um über eine Dockerized mailcow weiterzuleiten, sollten Sie <code>172.22.1.1</code> als Relayhost hinzufügen und das Docker-Interface aus "inet_interfaces" entfernen:</p>
-<p><code>postconf -e 'relayhost = 172.22.1.1'
-postconf -e "mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
-postconf -e "inet_interfaces = loopback-only"
-postconf -e "relay_transport = relay"
-postconf -e "default_transport = smtp"</code></p>
+<div class="highlight"><pre><span></span><code>postconf -e &#39;relayhost = 172.22.1.1&#39;
+postconf -e &quot;mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128&quot;
+postconf -e &quot;inet_interfaces = loopback-only&quot;
+postconf -e &quot;relay_transport = relay&quot;
+postconf -e &quot;default_transport = smtp&quot;
+</code></pre></div>
 <p><strong>Jetzt ist es wichtig</strong>, dass Sie nicht denselben FQDN in <code>myhostname</code> haben, den Sie für Ihre mailcow verwenden. Prüfen Sie Ihre lokale (nicht-Docker) Postfix' main.cf auf <code>myhostname</code> und setzen Sie ihn auf etwas anderes, zum Beispiel <code>local.my.fqdn.tld</code>.</p>
 <p>"172.22.1.1" ist das von mailcow erstellte Netzwerk-Gateway in Docker.
 Das Relaying über diese Schnittstelle ist notwendig (anstatt - zum Beispiel - direkt über ${MAILCOW_HOSTNAME}), um über ein bekanntes internes Netzwerk weiterzuleiten.</p>

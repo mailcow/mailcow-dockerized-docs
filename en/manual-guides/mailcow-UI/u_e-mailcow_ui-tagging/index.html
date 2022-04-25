@@ -2403,19 +2403,20 @@
 <p>1. Move this message to a sub folder "facebook" (will be created lower case if not existing)</p>
 <p>2. Prepend the tag to the subject: "[facebook] Subject"</p>
 <p>Please note: Uppercase tags are converted to lowercase except for the first letter. If you want to keep the tag as it is, please apply the following diff and restart mailcow:
-<code>diff --git a/data/conf/dovecot/global_sieve_after b/data/conf/dovecot/global_sieve_after
+<div class="highlight"><pre><span></span><code>diff --git a/data/conf/dovecot/global_sieve_after b/data/conf/dovecot/global_sieve_after
 index e047136e..933c4137 100644
 --- a/data/conf/dovecot/global_sieve_after
 +++ b/data/conf/dovecot/global_sieve_after
 @@ -15,7 +15,7 @@ if allof (
-   envelope :detail :matches "to" "*",
-   header :contains "X-Moo-Tag" "YES"
+   envelope :detail :matches &quot;to&quot; &quot;*&quot;,
+   header :contains &quot;X-Moo-Tag&quot; &quot;YES&quot;
    ) {
--  set :lower :upperfirst "tag" "${1}";
-+  set "tag" "${1}";
-   if mailboxexists "INBOX/${1}" {
-     fileinto "INBOX/${1}";
-   } else {</code></p>
+-  set :lower :upperfirst &quot;tag&quot; &quot;${1}&quot;;
++  set &quot;tag&quot; &quot;${1}&quot;;
+   if mailboxexists &quot;INBOX/${1}&quot; {
+     fileinto &quot;INBOX/${1}&quot;;
+   } else {
+</code></pre></div></p>
 
   <hr>
 <div class="md-source-file">

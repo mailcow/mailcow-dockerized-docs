@@ -2350,8 +2350,7 @@
 <p><strong>IMPORTANT</strong>: This guide only applies to non SNI enabled configurations. The certificate path needs to be adjusted if SNI is enabled. Something like <code>ssl_certificate,key /etc/ssl/mail/webmail.example.org/cert.pem,key.pem;</code> will do. <strong>But</strong>: The certificate should be acquired <strong>first</strong> and only after the certificate exists a site config should be created. Nginx will fail to start if it cannot find the certificate and key.</p>
 <p>To create a subdomain <code>webmail.example.org</code> and redirect it to SOGo, you need to create a <strong>new</strong> Nginx site. Take care of "CHANGE_TO_MAILCOW_HOSTNAME"!</p>
 <p><strong>nano data/conf/nginx/webmail.conf</strong></p>
-<p>``` hl_lines="9 17"
-server {
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   index index.php index.html;
@@ -2359,21 +2358,23 @@ server {
   root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
-  server_name webmail.example.org;
-  server_tokens off;
+<span class="hll">  server_name webmail.example.org;
+</span>  server_tokens off;
   location ^~ /.well-known/acme-challenge/ {
     allow all;
-    default_type "text/plain";
-  }</p>
-<p>location / {
-    return 301 <a href="https://CHANGE_TO_MAILCOW_HOSTNAME/SOGo">https://CHANGE_TO_MAILCOW_HOSTNAME/SOGo</a>;
+    default_type &quot;text/plain&quot;;
   }
+
+  location / {
+<span class="hll">    return 301 https://CHANGE_TO_MAILCOW_HOSTNAME/SOGo;
+</span>  }
 }
-```</p>
+</code></pre></div>
 <p>Save and restart Nginx: <code>docker-compose restart nginx-mailcow</code>.</p>
 <p>Now open <code>mailcow.conf</code> and find <code>ADDITIONAL_SAN</code>.
 Add <code>webmail.example.org</code> to this array, don't use quotes!</p>
-<p><code>ADDITIONAL_SAN=webmail.example.org</code></p>
+<div class="highlight"><pre><span></span><code>ADDITIONAL_SAN=webmail.example.org
+</code></pre></div>
 <p>Run <code>docker-compose up -d</code>. See "acme-mailcow" and "nginx-mailcow" logs if anything fails.</p>
 
   <hr>

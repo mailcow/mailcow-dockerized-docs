@@ -2447,13 +2447,15 @@
 <h3 id="ipv4-hostssubnets">IPv4 hosts/subnets<a class="headerlink" href="#ipv4-hostssubnets" title="Permanent link">&para;</a></h3>
 <p>To add the subnet <code>192.168.2.0/24</code> to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:</p>
 <p>Edit <code>data/conf/postfix/extra.cf</code>:</p>
-<p><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24</code></p>
+<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
+</code></pre></div>
 <p>Run <code>docker-compose restart postfix-mailcow</code> to apply your new settings.</p>
 <h3 id="ipv6-hostssubnets">IPv6 hosts/subnets<a class="headerlink" href="#ipv6-hostssubnets" title="Permanent link">&para;</a></h3>
 <p>Adding IPv6 hosts is done the same as IPv4, however the subnet needs to be placed in brackets <code>[]</code> with the netmask appended.</p>
 <p>To add the subnet 2001:db8::/32 to the trusted networks you may use the following configuration, depending on your IPV4_NETWORK and IPV6_NETWORK scopes:</p>
 <p>Edit <code>data/conf/postfix/extra.cf</code>:</p>
-<p><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32</code></p>
+<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
+</code></pre></div>
 <p>Run <code>docker-compose restart postfix-mailcow</code> to apply your new settings.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
