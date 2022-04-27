@@ -1,6 +1,6 @@
 Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen überprüfen:
 
-!!! warning
+!!! warning "Achtung"
     Versuchen Sie **nicht**, mailcow auf einem Synology/QNAP-Gerät (jedes NAS), OpenVZ, LXC oder anderen Container-Plattformen zu installieren. KVM, ESX, Hyper-V und andere vollständige Virtualisierungsplattformen werden unterstützt.
 
 !!! info
@@ -11,7 +11,8 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 
 ## Minimale Systemressourcen
 
-**OpenVZ, Virtuozzo und LXC werden nicht unterstützt**.
+!!! failure "Nicht unterstützt"
+	**OpenVZ, Virtuozzo und LXC**
 
 Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:
 
@@ -22,21 +23,36 @@ Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressour
 | Festplatte | 20 GiB (ohne Emails) |
 | Systemtyp | x86_64 |
 
-Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe https://docs.docker.com/install/). Wir testen auf CentOS 7, Debian 10/11 und Ubuntu 18.04/20.04.
+ClamAV und Solr können sehr viel Arbeitspeicher verbrauchen. Sie können diese in der `mailcow.conf` durch die Einstellungen `SKIP_CLAMD=y` und `SKIP_SOLR=y` jedoch auch deaktivieren.
 
-ClamAV und Solr können gierig nach RAM sein. Sie können diese in der `mailcow.conf` durch die Einstellungen `SKIP_CLAMD=y` und `SKIP_SOLR=y` deaktivieren.
-
-**Info**: Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. mailcow kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.
+!!! info 
+	Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. 
+	mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. 
+	Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.
 
 Ein einzelner SOGo-Worker **kann** ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 Arbeiter erzeugt.
 
-#### Beispiele für die Verwendung
+#### Beispiele für die RAM Planung
 
-Ein Unternehmen mit 15 Telefonen (EAS aktiviert) und etwa 50 gleichzeitigen IMAP-Verbindungen sollte 16 GiB RAM einplanen.
+Ein Unternehmen mit 15 Smartphones (EAS aktiviert) und etwa 50 gleichzeitigen IMAP-Verbindungen sollte 16 GiB RAM einplanen.
 
 6 GiB RAM + 1 GiB Swap sind für die meisten privaten Installationen ausreichend, während 8 GiB RAM für ~5 bis 10 Benutzer empfohlen werden.
 
 Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Setups helfen.
+
+### Unterstützte Betriebssysteme
+Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe https://docs.docker.com/install/).
+
+Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme:
+
+| Betriebssystem                | Status                              |
+| ----------------------- | ------------------------------------------------ |
+| Centos 7              | ✅                                            |
+| Debian 10, 11              | ✅                                            |
+| Ubuntu 18.04, 20.04, 22.04                   | ✅                          |
+
+**Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.**
+
 
 ## Firewall & Ports
 
@@ -48,9 +64,12 @@ ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 ```
 
-!!! Warnung
-    Es gibt einige Probleme mit dem Betrieb von mailcow auf einem Firewalld/ufw aktivierten System. Sie sollten es deaktivieren (wenn möglich) und stattdessen Ihren Regelsatz in die DOCKER-USER-Kette verschieben, die nicht durch einen Neustart des Docker-Dienstes gelöscht wird. Siehe [diese (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) oder [diese (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) Anleitung für Informationen darüber, wie man iptables-persistent mit der DOCKER-USER Kette benutzt.
-    Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Beschränkung des Zugriffs auf mailcow. Verwenden Sie stattdessen die FORWARD-Kette.
+!!! danger "Vorsicht"
+    Es gibt einige Probleme mit dem Betrieb von mailcow auf einem Firewalld/ufw aktivierten System. <br>
+	Sie sollten es deaktivieren (wenn möglich) und stattdessen Ihren Regelsatz in die DOCKER-USER-Kette verschieben, die nicht durch einen Neustart des Docker-Dienstes gelöscht wird. <br>
+	Siehe [diese (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) oder [diese (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) Anleitung für Informationen darüber, wie man iptables-persistent mit der DOCKER-USER Kette benutzt. <br>
+    Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Beschränkung des Zugriffs auf mailcow. <br>
+	Verwenden Sie stattdessen die FORWARD-Kette.
 
 Wenn dieser Befehl irgendwelche Ergebnisse liefert, entfernen oder stoppen Sie bitte die Anwendung, die auf diesem Port läuft. Sie können mailcows Ports auch über die Konfigurationsdatei `mailcow.conf` anpassen.
 

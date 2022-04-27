@@ -11,7 +11,8 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 ## Minimum System Resources
 
-**OpenVZ, Virtuozzo and LXC are not supported**.
+!!! failure "Not supported"
+	**OpenVZ, Virtuozzo and LXC**
 
 Please make sure that your system has at least the following resources:
 
@@ -22,21 +23,33 @@ Please make sure that your system has at least the following resources:
 | Disk                    | 20 GiB (without emails)                          |
 | System Type             | x86_64                                           |
 
-We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/). We test on CentOS 7, Debian 10/11 and Ubuntu 18.04/20.04.
-
 ClamAV and Solr can be greedy with RAM. You may disable them in `mailcow.conf` by settings `SKIP_CLAMD=y` and `SKIP_SOLR=y`.
 
-**Info**: We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.
+!!! info 
+	We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.
 
 A single SOGo worker **can** acquire ~350 MiB RAM before it gets purged. The more ActiveSync connections you plan to use, the more RAM you will need. A default configuration spawns 20 workers.
 
-#### Usage examples
+#### RAM usage examples
 
 A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections should plan 16 GiB RAM.
 
 6 GiB RAM + 1 GiB swap are fine for most private installations while 8 GiB RAM are recommended for ~5 to 10 users.
 
 We can help to correctly plan your setup as part of our support.
+
+### Supported OS
+We recommend using any distribution listed as supported by Docker CE (check https://docs.docker.com/install/).
+
+See the following table for the official supported and tested destributions:
+
+| OS                | Status                              |
+| ----------------------- | ------------------------------------------------ |
+| Centos 7              | ✅                                            |
+| Debian 10, 11              | ✅                                            |
+| Ubuntu 18.04, 20.04, 22.04                   | ✅                          |
+
+**Other Distributions may work as well but weren´t tested by us!**
 
 ## Firewall & Ports
 
@@ -48,9 +61,12 @@ ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 ```
 
-!!! warning
-    There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See [this (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) or [this (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) guide for information about how to use iptables-persistent with the DOCKER-USER chain.
-    As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.
+!!! danger
+    There are several problems with running mailcow on a firewalld/ufw enabled system. <br>
+	You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. <br>
+	See [this (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) or [this (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) guide for information about how to use iptables-persistent with the DOCKER-USER chain.<br>
+    As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. <br>
+	Use the FORWARD chain instead.<br>
 
 If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the `mailcow.conf` configuration file.
 

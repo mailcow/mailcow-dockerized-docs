@@ -22,6 +22,7 @@ theme:
   features:
     - navigation.top
     - navigation.tracking
+    
 markdown_extensions:
   - attr_list
   - admonition
@@ -30,6 +31,9 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg      
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.extra
