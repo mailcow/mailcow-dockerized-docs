@@ -337,8 +337,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage-examples" class="md-nav__link">
-    Usage examples
+  <a href="#ram-usage-examples" class="md-nav__link">
+    RAM usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-os" class="md-nav__link">
+    Supported OS
   </a>
   
 </li>
@@ -2437,8 +2444,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage-examples" class="md-nav__link">
-    Usage examples
+  <a href="#ram-usage-examples" class="md-nav__link">
+    RAM usage examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-os" class="md-nav__link">
+    Supported OS
   </a>
   
 </li>
@@ -2531,7 +2545,10 @@
 </ul>
 </div>
 <h2 id="minimum-system-resources">Minimum System Resources<a class="headerlink" href="#minimum-system-resources" title="Permanent link">&para;</a></h2>
-<p><strong>OpenVZ, Virtuozzo and LXC are not supported</strong>.</p>
+<div class="admonition failure">
+<p class="admonition-title">Not supported</p>
+<p><strong>OpenVZ, Virtuozzo and LXC</strong></p>
+</div>
 <p>Please make sure that your system has at least the following resources:</p>
 <table>
 <thead>
@@ -2559,24 +2576,55 @@
 </tr>
 </tbody>
 </table>
-<p>We recommend using any distribution listed as supported by Docker CE (check <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>). We test on CentOS 7, Debian 10/11 and Ubuntu 18.04/20.04.</p>
 <p>ClamAV and Solr can be greedy with RAM. You may disable them in <code>mailcow.conf</code> by settings <code>SKIP_CLAMD=y</code> and <code>SKIP_SOLR=y</code>.</p>
-<p><strong>Info</strong>: We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We are aware that a pure MTA can run on 128 MiB RAM. mailcow is a full-grown and ready-to-use groupware with many extras making life easier. mailcow comes with a webserver, webmailer, ActiveSync (MS), antivirus, antispam, indexing (Solr), document scanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, various web services etc.</p>
+</div>
 <p>A single SOGo worker <strong>can</strong> acquire ~350 MiB RAM before it gets purged. The more ActiveSync connections you plan to use, the more RAM you will need. A default configuration spawns 20 workers.</p>
-<h4 id="usage-examples">Usage examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h4>
+<h4 id="ram-usage-examples">RAM usage examples<a class="headerlink" href="#ram-usage-examples" title="Permanent link">&para;</a></h4>
 <p>A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections should plan 16 GiB RAM.</p>
 <p>6 GiB RAM + 1 GiB swap are fine for most private installations while 8 GiB RAM are recommended for ~5 to 10 users.</p>
 <p>We can help to correctly plan your setup as part of our support.</p>
+<h3 id="supported-os">Supported OS<a class="headerlink" href="#supported-os" title="Permanent link">&para;</a></h3>
+<p>We recommend using any distribution listed as supported by Docker CE (check <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).</p>
+<p>See the following table for the official supported and tested destributions:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centos 7</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Debian 10, 11</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Ubuntu 18.04, 20.04, 22.04</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Other Distributions may work as well but weren´t tested by us!</strong></p>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Please check if any of mailcow's standard ports are open and not in use by other applications:</p>
 <div class="highlight"><pre><span></span>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
 # or:
 netstat -tulpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
 </pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>There are several problems with running mailcow on a firewalld/ufw enabled system. You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. See <a href="https://blog.donnex.net/docker-and-iptables-filtering/">this (blog.donnex.net)</a> or <a href="https://unrouted.io/2017/08/15/docker-firewall/">this (unrouted.io)</a> guide for information about how to use iptables-persistent with the DOCKER-USER chain.
-As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. Use the FORWARD chain instead.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>There are several problems with running mailcow on a firewalld/ufw enabled system. <br>
+You should disable it (if possible) and move your ruleset to the DOCKER-USER chain, which is not cleared by a Docker service restart, instead. <br>
+See <a href="https://blog.donnex.net/docker-and-iptables-filtering/">this (blog.donnex.net)</a> or <a href="https://unrouted.io/2017/08/15/docker-firewall/">this (unrouted.io)</a> guide for information about how to use iptables-persistent with the DOCKER-USER chain.<br>
+As mailcow runs dockerized, INPUT rules have no effect on restricting access to mailcow. <br>
+Use the FORWARD chain instead.<br></p>
 </div>
 <p>If this command returns any results please remove or stop the application running on that port. You may also adjust mailcows ports via the <code>mailcow.conf</code> configuration file.</p>
 <h3 id="default-ports">Default Ports<a class="headerlink" href="#default-ports" title="Permanent link">&para;</a></h3>
@@ -2733,7 +2781,7 @@ You may want to <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#di
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-14 16:28:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-27 15:41:08</span>
       
     
   </small>

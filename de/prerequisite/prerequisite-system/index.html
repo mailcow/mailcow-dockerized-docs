@@ -337,8 +337,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#beispiele-fur-die-verwendung" class="md-nav__link">
-    Beispiele für die Verwendung
+  <a href="#beispiele-fur-die-ram-planung" class="md-nav__link">
+    Beispiele für die RAM Planung
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unterstutzte-betriebssysteme" class="md-nav__link">
+    Unterstützte Betriebssysteme
   </a>
   
 </li>
@@ -2437,8 +2444,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#beispiele-fur-die-verwendung" class="md-nav__link">
-    Beispiele für die Verwendung
+  <a href="#beispiele-fur-die-ram-planung" class="md-nav__link">
+    Beispiele für die RAM Planung
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unterstutzte-betriebssysteme" class="md-nav__link">
+    Unterstützte Betriebssysteme
   </a>
   
 </li>
@@ -2518,7 +2532,7 @@
 
 <p>Bevor Sie <strong>mailcow: dockerized</strong> ausführen, sollten Sie einige Voraussetzungen überprüfen:</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Achtung</p>
 <p>Versuchen Sie <strong>nicht</strong>, mailcow auf einem Synology/QNAP-Gerät (jedes NAS), OpenVZ, LXC oder anderen Container-Plattformen zu installieren. KVM, ESX, Hyper-V und andere vollständige Virtualisierungsplattformen werden unterstützt.</p>
 </div>
 <div class="admonition info">
@@ -2531,7 +2545,10 @@
 </ul>
 </div>
 <h2 id="minimale-systemressourcen">Minimale Systemressourcen<a class="headerlink" href="#minimale-systemressourcen" title="Permanent link">&para;</a></h2>
-<p><strong>OpenVZ, Virtuozzo und LXC werden nicht unterstützt</strong>.</p>
+<div class="admonition failure">
+<p class="admonition-title">Nicht unterstützt</p>
+<p><strong>OpenVZ, Virtuozzo und LXC</strong></p>
+</div>
 <p>Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:</p>
 <table>
 <thead>
@@ -2559,24 +2576,57 @@
 </tr>
 </tbody>
 </table>
-<p>Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>). Wir testen auf CentOS 7, Debian 10/11 und Ubuntu 18.04/20.04.</p>
-<p>ClamAV und Solr können gierig nach RAM sein. Sie können diese in der <code>mailcow.conf</code> durch die Einstellungen <code>SKIP_CLAMD=y</code> und <code>SKIP_SOLR=y</code> deaktivieren.</p>
-<p><strong>Info</strong>: Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. mailcow kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.</p>
+<p>ClamAV und Solr können sehr viel Arbeitspeicher verbrauchen. Sie können diese in der <code>mailcow.conf</code> durch die Einstellungen <code>SKIP_CLAMD=y</code> und <code>SKIP_SOLR=y</code> jedoch auch deaktivieren.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. 
+mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. 
+Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.</p>
+</div>
 <p>Ein einzelner SOGo-Worker <strong>kann</strong> ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 Arbeiter erzeugt.</p>
-<h4 id="beispiele-fur-die-verwendung">Beispiele für die Verwendung<a class="headerlink" href="#beispiele-fur-die-verwendung" title="Permanent link">&para;</a></h4>
-<p>Ein Unternehmen mit 15 Telefonen (EAS aktiviert) und etwa 50 gleichzeitigen IMAP-Verbindungen sollte 16 GiB RAM einplanen.</p>
+<h4 id="beispiele-fur-die-ram-planung">Beispiele für die RAM Planung<a class="headerlink" href="#beispiele-fur-die-ram-planung" title="Permanent link">&para;</a></h4>
+<p>Ein Unternehmen mit 15 Smartphones (EAS aktiviert) und etwa 50 gleichzeitigen IMAP-Verbindungen sollte 16 GiB RAM einplanen.</p>
 <p>6 GiB RAM + 1 GiB Swap sind für die meisten privaten Installationen ausreichend, während 8 GiB RAM für ~5 bis 10 Benutzer empfohlen werden.</p>
 <p>Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Setups helfen.</p>
+<h3 id="unterstutzte-betriebssysteme">Unterstützte Betriebssysteme<a class="headerlink" href="#unterstutzte-betriebssysteme" title="Permanent link">&para;</a></h3>
+<p>Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).</p>
+<p>Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme:</p>
+<table>
+<thead>
+<tr>
+<th>Betriebssystem</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centos 7</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Debian 10, 11</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Ubuntu 18.04, 20.04, 22.04</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Bitte überprüfen Sie, ob alle Standard-Ports von mailcow offen sind und nicht von anderen Anwendungen genutzt werden:</p>
 <div class="highlight"><pre><span></span>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
 # oder:
 netstat -tulpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
 </pre></div>
-<div class="admonition warnung">
-<p class="admonition-title">Warnung</p>
-<p>Es gibt einige Probleme mit dem Betrieb von mailcow auf einem Firewalld/ufw aktivierten System. Sie sollten es deaktivieren (wenn möglich) und stattdessen Ihren Regelsatz in die DOCKER-USER-Kette verschieben, die nicht durch einen Neustart des Docker-Dienstes gelöscht wird. Siehe <a href="https://blog.donnex.net/docker-and-iptables-filtering/">diese (blog.donnex.net)</a> oder <a href="https://unrouted.io/2017/08/15/docker-firewall/">diese (unrouted.io)</a> Anleitung für Informationen darüber, wie man iptables-persistent mit der DOCKER-USER Kette benutzt.
-Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Beschränkung des Zugriffs auf mailcow. Verwenden Sie stattdessen die FORWARD-Kette.</p>
+<div class="admonition danger">
+<p class="admonition-title">Vorsicht</p>
+<p>Es gibt einige Probleme mit dem Betrieb von mailcow auf einem Firewalld/ufw aktivierten System. <br>
+Sie sollten es deaktivieren (wenn möglich) und stattdessen Ihren Regelsatz in die DOCKER-USER-Kette verschieben, die nicht durch einen Neustart des Docker-Dienstes gelöscht wird. <br>
+Siehe <a href="https://blog.donnex.net/docker-and-iptables-filtering/">diese (blog.donnex.net)</a> oder <a href="https://unrouted.io/2017/08/15/docker-firewall/">diese (unrouted.io)</a> Anleitung für Informationen darüber, wie man iptables-persistent mit der DOCKER-USER Kette benutzt. <br>
+Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Beschränkung des Zugriffs auf mailcow. <br>
+Verwenden Sie stattdessen die FORWARD-Kette.</p>
 </div>
 <p>Wenn dieser Befehl irgendwelche Ergebnisse liefert, entfernen oder stoppen Sie bitte die Anwendung, die auf diesem Port läuft. Sie können mailcows Ports auch über die Konfigurationsdatei <code>mailcow.conf</code> anpassen.</p>
 <h3 id="standard-ports">Standard Ports<a class="headerlink" href="#standard-ports" title="Permanent link">&para;</a></h3>
@@ -2733,7 +2783,7 @@ Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_st
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-19 19:36:04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-27 15:41:08</span>
       
     
   </small>
