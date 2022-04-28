@@ -2466,16 +2466,16 @@ ohne die Fähigkeit zu verlieren, Logs von der UI zu lesen oder verdächtige Cli
 <h4 id="uber-docker-composeoverrideyml">Über docker-compose.override.yml<a class="headerlink" href="#uber-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Hier ist die gute Nachricht: Da Docker einige großartige Logging-Treiber hat, können Sie mailcow: dockerized mit Leichtigkeit in Ihre bestehende Logging-Umgebung integrieren.</p>
 <p>Erstellen Sie eine <code>docker-compose.override.yml</code> und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für <code>postfix-mailcow</code> zu verwenden:</p>
-<div class="highlight"><pre><span></span>version: &#39;2.1&#39;
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   postfix-mailcow: # oder ein anderer
     logging:
       driver: &quot;gelf&quot;
       options:
         gelf-address: &quot;udp://graylog:12201&quot;
-</pre></div>
+</code></pre></div>
 <p>Ein weiteres Beispiel für <strong>Syslog</strong>:</p>
-<div class="highlight"><pre><span></span>version: &#39;2.1&#39;
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
 
   postfix-mailcow: # oder ein anderer
@@ -2506,10 +2506,10 @@ local3.* /var/log/mailcow.logs
 &amp; ~
 
 # Danach rsyslog neu starten.
-</pre></div>
+</code></pre></div>
 <h4 id="uber-daemonjson-global">Über daemon.json (global)<a class="headerlink" href="#uber-daemonjson-global" title="Permanent link">&para;</a></h4>
 <p>Wenn Sie den Logging-Treiber <strong>global</strong> ändern wollen, editieren Sie die Konfigurationsdatei des Docker-Daemons <code>/etc/docker/daemon.json</code> und starten Sie den Docker-Dienst neu:</p>
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre><span></span><code>{
 ...
   &quot;log-driver&quot;: &quot;gelf&quot;,
   &quot;log-opts&quot;: {
@@ -2517,9 +2517,9 @@ local3.* /var/log/mailcow.logs
   }
 ...
 }
-</pre></div>
+</code></pre></div>
 <p>Für Syslog:</p>
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre><span></span><code>{
 ...
   &quot;log-driver&quot;: &quot;syslog&quot;,
   &quot;log-opts&quot;: {
@@ -2527,7 +2527,7 @@ local3.* /var/log/mailcow.logs
   }
 ...
 }
-</pre></div>
+</code></pre></div>
 <p>Starten Sie den Docker-Daemon neu und führen Sie <code>docker-compose down &amp;&amp; docker-compose up -d</code> aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.</p>
 
   <hr>

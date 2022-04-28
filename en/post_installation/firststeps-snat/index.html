@@ -2348,12 +2348,12 @@
 <p>SNAT is used to change the source address of the packets sent by mailcow.
 It can be used to change the outgoing IP address on systems with multiple IP addresses.</p>
 <p>Open <code>mailcow.conf</code>, set either or both of the following parameters:</p>
-<div class="highlight"><pre><span></span># Use this IPv4 for outgoing connections (SNAT)
+<div class="highlight"><pre><span></span><code># Use this IPv4 for outgoing connections (SNAT)
 SNAT_TO_SOURCE=1.2.3.4
 
 # Use this IPv6 for outgoing connections (SNAT)
 SNAT6_TO_SOURCE=dead:beef
-</pre></div>
+</code></pre></div>
 <p>Run <code>docker-compose up -d</code>.</p>
 <p>The values are read by netfilter-mailcow. netfilter-mailcow will make sure, the post-routing rules are on position 1 in the netfilter table. It does automatically delete and re-create them if they are found on another position than 1.</p>
 <p>Check the output of <code>docker-compose logs --tail=200 netfilter-mailcow</code> to ensure the SNAT settings have been applied.</p>

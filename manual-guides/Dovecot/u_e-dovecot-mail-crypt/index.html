@@ -2350,7 +2350,7 @@
 <p>Mails are stored compressed (lz4) and encrypted. The key pair can be found in crypt-vol-1.</p>
 <p>If you want to decode/encode existing maildir files, you can use the following script at your own risk:</p>
 <p>Enter Dovecot by running <code>docker-compose exec dovecot-mailcow /bin/bash</code> in the mailcow-dockerized location.</p>
-<div class="highlight"><pre><span></span># Decrypt /var/vmail
+<div class="highlight"><pre><span></span><code># Decrypt /var/vmail
 find /var/vmail/ -type f -regextype egrep -regex &#39;.*S=.*W=.*&#39; | while read -r file; do
 if [[ $(head -c7 &quot;$file&quot;) == &quot;CRYPTED&quot; ]]; then
 doveadm fs get compress lz4:0:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
@@ -2374,7 +2374,7 @@ doveadm fs put crypt private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=
   chown 5000:5000 &quot;$file&quot;
 fi
 done
-</pre></div>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

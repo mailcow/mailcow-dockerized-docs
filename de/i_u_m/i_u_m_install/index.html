@@ -2351,10 +2351,10 @@
 <ul>
 <li>
 <p>Docker
-<div class="highlight"><pre><span></span>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
+<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # Nachdem der Installationsprozess abgeschlossen ist, müssen Sie eventuell den Dienst aktivieren und sicherstellen, dass er gestartet ist (z. B. CentOS 7)
 systemctl enable --now docker
-</pre></div></p>
+</code></pre></div></p>
 </li>
 <li>
 <p>Docker-Compose</p>
@@ -2365,44 +2365,44 @@ systemctl enable --now docker
 <p><strong>mailcow benötigt die neueste Version von docker-compose v1.</strong> Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um <code>docker-compose</code> zu installieren. Paket-Manager (z.B. <code>apt</code>, <code>yum</code>) werden <strong>wahrscheinlich</strong> nicht die richtige Version liefern.
 Hinweis: Dieser Befehl lädt docker-compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).</p>
 </div>
-<div class="highlight"><pre><span></span>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
+<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-</pre></div>
+</code></pre></div>
 <p>Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.</p>
 <p><strong>1.1.1.</strong> Auf SELinux-aktivierten Systemen, z.B. CentOS 7:</p>
 <ul>
 <li>Prüfen Sie, ob das Paket "container-selinux" auf Ihrem System vorhanden ist:</li>
 </ul>
-<div class="highlight"><pre><span></span>rpm -qa | grep container-selinux
-</pre></div>
+<div class="highlight"><pre><span></span><code>rpm -qa | grep container-selinux
+</code></pre></div>
 <p>Wenn der obige Befehl eine leere oder keine Ausgabe liefert, sollten Sie es über Ihren Paketmanager installieren.</p>
 <ul>
 <li>Prüfen Sie, ob Docker SELinux-Unterstützung aktiviert hat:</li>
 </ul>
-<div class="highlight"><pre><span></span>docker info | grep selinux
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker info | grep selinux
+</code></pre></div>
 <p>Wenn der obige Befehl eine leere oder keine Ausgabe liefert, erstellen oder bearbeiten Sie <code>/etc/docker/daemon.json</code> und fügen Sie <code>"selinux-enabled": true</code> hinzu. Beispielhafter Inhalt der Datei:</p>
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre><span></span><code>{
   &quot;selinux-enabled&quot;: true
 }
-</pre></div>
+</code></pre></div>
 <p>Starten Sie den Docker-Daemon neu und überprüfen Sie, ob SELinux nun aktiviert ist.</p>
 <p>Dieser Schritt ist erforderlich, um sicherzustellen, dass die mailcows-Volumes richtig gekennzeichnet sind, wie in der Compose-Datei angegeben.
 Wenn Sie daran interessiert sind, wie das funktioniert, können Sie sich die Readme-Datei von <a href="https://github.com/containers/container-selinux">https://github.com/containers/container-selinux</a> ansehen, die auf viele nützliche Informationen zu diesem Thema verweist.</p>
 <p><strong>2.</strong> Klonen Sie den Master-Zweig des Repositorys und stellen Sie sicher, dass Ihre umask gleich 0022 ist. Bitte klonen Sie das Repository als root-Benutzer und kontrollieren Sie auch den Stack als root. Wir werden die Attribute - wenn nötig - ändern, während wir die Container automatisch bereitstellen und sicherstellen, dass alles gesichert ist. Das update.sh-Skript muss daher ebenfalls als root ausgeführt werden. Es kann notwendig sein, den Besitzer und andere Attribute von Dateien zu ändern, auf die Sie sonst keinen Zugriff haben. <strong>Wir geben die Berechtigungen für jede exponierte Anwendung</strong> auf und führen einen exponierten Dienst nicht als root aus! Wenn Sie den Docker-Daemon als Nicht-Root-Benutzer steuern, erhalten Sie keine zusätzliche Sicherheit. Der unprivilegierte Benutzer wird die Container ebenfalls als root spawnen. Das Verhalten des Stacks ist identisch.</p>
-<div class="highlight"><pre><span></span>$ su
+<div class="highlight"><pre><span></span><code>$ su
 # umask
 0022 # &lt;- Überprüfen, dass es 0022 ist
 # cd /opt
 # git clone https://github.com/mailcow/mailcow-dockerized
 # cd mailcow-dockerized
-</pre></div>
+</code></pre></div>
 <p><strong>3.</strong> Erzeugen Sie eine Konfigurationsdatei. Verwenden Sie einen FQDN (<code>host.domain.tld</code>) als Hostname, wenn Sie gefragt werden.
-<div class="highlight"><pre><span></span>./generate_config.sh
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>./generate_config.sh
+</code></pre></div></p>
 <p><strong>4.</strong> Ändern Sie die Konfiguration, wenn Sie das wollen oder müssen.
-<div class="highlight"><pre><span></span>nano mailcow.conf
-</pre></div>
+<div class="highlight"><pre><span></span><code>nano mailcow.conf
+</code></pre></div>
 Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.</p>
 <p>Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe <a href="../../post_installation/firststeps-local_mta/">dieses Kapitel</a>, um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow laufen zu lassen.</p>
 <p>Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.</p>
@@ -2410,20 +2410,20 @@ Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTP
 <p><strong>Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.</strong></p>
 <p>Bearbeiten Sie <code>docker-compose.yml</code> und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
 Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
-<div class="highlight"><pre><span></span>networks:
+<div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
     ...
     driver_opts:
       com.docker.network.driver.mtu: 1450
     ...
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>4.2.</strong> Benutzer ohne ein IPv6-aktiviertes Netzwerk auf ihrem Hostsystem:</p>
 <p><strong>Einschalten von IPv6. Endlich.</strong></p>
 <p>Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, IPv6 für das mailcow-Netzwerk zu <a href="../../post_installation/firststeps-disable_ipv6/">deaktivieren</a>, um unvorhergesehene Probleme zu vermeiden.</p>
 <p><strong>5.</strong> LAden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter <code>-d</code> wird mailcow: dockerized starten:
-<div class="highlight"><pre><span></span>docker-compose pull
+<div class="highlight"><pre><span></span><code>docker-compose pull
 docker-compose up -d
-</pre></div></p>
+</code></pre></div></p>
 <p>Geschafft!</p>
 <p>Sie können nun auf <strong>https://${MAILCOW_HOSTNAME}</strong> mit den Standard-Zugangsdaten <code>admin</code> + Passwort <code>moohoo</code> zugreifen.</p>
 <div class="admonition info">

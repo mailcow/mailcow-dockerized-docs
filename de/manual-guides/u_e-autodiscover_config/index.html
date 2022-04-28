@@ -2350,7 +2350,7 @@
 Denken Sie daran, dass <strong>ActiveSync NICHT mit einem Desktop-Client</strong> verwendet werden sollte.</p>
 <p>Öffnen/erstellen Sie <code>data/web/inc/vars.local.inc.php</code> und fügen Sie Ihre Änderungen in das Konfigurationsfeld ein.</p>
 <p>Die Änderungen werden mit "$autodiscover_config" in <code>data/web/inc/vars.inc.php</code> zusammengeführt):</p>
-<div class="highlight"><pre><span></span>&lt;?php
+<div class="highlight"><pre><span></span><code>&lt;?php
 $autodiscover_config = array(
   // General autodiscover service type: &quot;activesync&quot; or &quot;imap&quot;
   // emClient uses autodiscover, but does not support ActiveSync. mailcow excludes emClient from ActiveSync.
@@ -2388,7 +2388,7 @@ $autodiscover_config = array(
     &#39;port&#39; =&gt; $https_port,
   ),
 );
-</pre></div>
+</code></pre></div>
 <p>Um immer IMAP und SMTP anstelle von EAS zu verwenden, setzen Sie <code>'autodiscoverType' =&gt; 'imap'</code>.</p>
 <p>Deaktivieren Sie ActiveSync für Outlook-Desktop-Clients, indem Sie "useEASforOutlook" auf "no" setzen.</p>
 

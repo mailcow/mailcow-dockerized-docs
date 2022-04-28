@@ -2349,7 +2349,7 @@
 <p><strong>Do not use the config below for reverse proxy setups</strong>, please see our <a href="../../post_installation/firststeps-rp/">reverse proxy guide</a> for this, which includes a redirect from HTTP to HTTPS.</p>
 <p>Open <code>mailcow.conf</code> and set <code>HTTP_BIND=</code> - if not already set.</p>
 <p>Create a new file <code>data/conf/nginx/redirect.conf</code> and add the following server config to the file:</p>
-<div class="highlight"><pre><span></span>server {
+<div class="highlight"><pre><span></span><code>server {
   root /web;
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -2363,13 +2363,13 @@
     return 301 https://$host$uri$is_args$args;
   }
 }
-</pre></div>
+</code></pre></div>
 <p>In case you changed the HTTP_BIND parameter, recreate the container:</p>
-<div class="highlight"><pre><span></span>docker-compose up -d
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
 <p>Otherwise restart Nginx:</p>
-<div class="highlight"><pre><span></span>docker-compose restart nginx-mailcow
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose restart nginx-mailcow
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

@@ -2616,10 +2616,10 @@ Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam
 <p><strong>Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Bitte überprüfen Sie, ob alle Standard-Ports von mailcow offen sind und nicht von anderen Anwendungen genutzt werden:</p>
-<div class="highlight"><pre><span></span>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
+<div class="highlight"><pre><span></span><code>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
 # oder:
 netstat -tulpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
-</pre></div>
+</code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Vorsicht</p>
 <p>Es gibt einige Probleme mit dem Betrieb von mailcow auf einem Firewalld/ufw aktivierten System. <br>
@@ -2715,34 +2715,34 @@ Verwenden Sie stattdessen die FORWARD-Kette.</p>
 <p>Port 53 ist in diesem Fall für die Firewall-Konfiguration unwichtig. Laut Dokumentation verwendet unbound den Portbereich 1024-65535 für ausgehende Anfragen.
 Da es sich bei der Hetzner Robot Firewall um eine statische Firewall handelt (jedes eingehende Paket wird isoliert geprüft) - müssen die folgenden Regeln angewendet werden:</p>
 <p><strong>Für TCP</strong>
-<div class="highlight"><pre><span></span>SRC-IP: ---
+<div class="highlight"><pre><span></span><code>SRC-IP: ---
 DST-IP: ---
 SRC-Port: ---
 DST-Port: 1024-65535
 Protokoll: tcp
 TCP-Flags: ack
 Aktion:      Akzeptieren
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>Für UDP</strong>
-<div class="highlight"><pre><span></span>SRC-IP: ---
+<div class="highlight"><pre><span></span><code>SRC-IP: ---
 DST-IP: ---
 SRC-Port: ---
 DST-Port: 1024-65535
 Protokoll: udp
 Aktion:      Akzeptieren
-</pre></div></p>
+</code></pre></div></p>
 <p>Wenn man einen restriktiveren Portbereich anwenden will, muss man zuerst die Konfiguration von unbound ändern (nach der Installation):</p>
 <p>{mailcow-dockerized}/data/conf/unbound/unbound.conf:
-<div class="highlight"><pre><span></span>ausgehender-Port-vermeiden: 0-32767
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>ausgehender-Port-vermeiden: 0-32767
+</code></pre></div></p>
 <p>Nun können die Firewall-Regeln wie folgt angepasst werden:</p>
-<div class="highlight"><pre><span></span>[...]
+<div class="highlight"><pre><span></span><code>[...]
 DST Port: 32768-65535
 [...]
-</pre></div>
+</code></pre></div>
 <h2 id="datum-und-uhrzeit">Datum und Uhrzeit<a class="headerlink" href="#datum-und-uhrzeit" title="Permanent link">&para;</a></h2>
 <p>Um sicherzustellen, dass Sie das richtige Datum und die richtige Zeit auf Ihrem System eingestellt haben, überprüfen Sie bitte die Ausgabe von <code>timedatectl status</code>:</p>
-<div class="highlight"><pre><span></span>$ timedatectl status
+<div class="highlight"><pre><span></span><code>$ timedatectl status
       Lokale Zeit: Sat 2017-05-06 02:12:33 CEST
   Weltzeit: Sa 2017-05-06 00:12:33 UTC
         RTC-Zeit: Sa 2017-05-06 00:12:32
@@ -2757,22 +2757,22 @@ NTP synchronisiert: ja
  Nächste Sommerzeitänderung: Die Sommerzeit endet (die Uhr springt eine Stunde rückwärts) am
                   Sun 2017-10-29 02:59:59 MESZ
                   Sun 2017-10-29 02:00:00 MEZ
-</pre></div>
+</code></pre></div>
 <p>Die Zeilen <code>NTP aktiviert: ja</code> und <code>NTP synchronisiert: ja</code> zeigen an, ob Sie NTP aktiviert haben und ob es synchronisiert ist.</p>
 <p>Um NTP zu aktivieren, müssen Sie den Befehl <code>timedatectl set-ntp true</code> ausführen. Sie müssen auch Ihre <code>/etc/systemd/timesyncd.conf</code> bearbeiten:</p>
-<div class="highlight"><pre><span></span># vim /etc/systemd/timesyncd.conf
+<div class="highlight"><pre><span></span><code># vim /etc/systemd/timesyncd.conf
 [Zeit]
 NTP=0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org
-</pre></div>
+</code></pre></div>
 <h2 id="hetzner-cloud-und-wahrscheinlich-andere">Hetzner Cloud (und wahrscheinlich andere)<a class="headerlink" href="#hetzner-cloud-und-wahrscheinlich-andere" title="Permanent link">&para;</a></h2>
 <p>Prüfen Sie <code>/etc/network/interfaces.d/50-cloud-init.cfg</code> und ändern Sie die IPv6-Schnittstelle von eth0:0 auf eth0:</p>
-<div class="highlight"><pre><span></span># Falsch:
+<div class="highlight"><pre><span></span><code># Falsch:
 auto eth0:0
 iface eth0:0 inet6 static
 # Richtig:
 auto eth0
 iface eth0 inet6 static
-</pre></div>
+</code></pre></div>
 <p>Starten Sie die Schnittstelle neu, um die Einstellungen zu übernehmen.
 Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes">cloud-init Netzwerkänderungen deaktivieren.</a></p>
 <h2 id="mtu">MTU<a class="headerlink" href="#mtu" title="Permanent link">&para;</a></h2>

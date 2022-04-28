@@ -2466,16 +2466,16 @@ the ability to read logs from the UI or ban suspicious clients with netfilter-ma
 <h4 id="via-docker-composeoverrideyml">Via docker-compose.override.yml<a class="headerlink" href="#via-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Here is the good news: Since Docker has some great logging drivers, you can integrate mailcow: dockerized into your existing logging environment with ease.</p>
 <p>Create a <code>docker-compose.override.yml</code> and add, for example, this block to use the "gelf" logging plugin for <code>postfix-mailcow</code>:</p>
-<div class="highlight"><pre><span></span>version: &#39;2.1&#39;
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   postfix-mailcow: # or any other
     logging:
       driver: &quot;gelf&quot;
       options:
         gelf-address: &quot;udp://graylog:12201&quot;
-</pre></div>
+</code></pre></div>
 <p>Another example for <strong>Syslog</strong>:</p>
-<div class="highlight"><pre><span></span>version: &#39;2.1&#39;
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
 
   postfix-mailcow: # or any other
@@ -2506,10 +2506,10 @@ local3.*        /var/log/mailcow.logs
 &amp; ~
 
 # Restart rsyslog afterwards.
-</pre></div>
+</code></pre></div>
 <h4 id="via-daemonjson-globally">via daemon.json (globally)<a class="headerlink" href="#via-daemonjson-globally" title="Permanent link">&para;</a></h4>
 <p>If you want to <strong>change the logging driver globally</strong>, edit Dockers daemon configuration file <code>/etc/docker/daemon.json</code> and restart the Docker service:</p>
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre><span></span><code>{
 ...
   &quot;log-driver&quot;: &quot;gelf&quot;,
   &quot;log-opts&quot;: {
@@ -2517,9 +2517,9 @@ local3.*        /var/log/mailcow.logs
   }
 ...
 }
-</pre></div>
+</code></pre></div>
 <p>For Syslog:</p>
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre><span></span><code>{
 ...
   &quot;log-driver&quot;: &quot;syslog&quot;,
   &quot;log-opts&quot;: {
@@ -2527,7 +2527,7 @@ local3.*        /var/log/mailcow.logs
   }
 ...
 }
-</pre></div>
+</code></pre></div>
 <p>Restart the Docker daemon and run <code>docker-compose down &amp;&amp; docker-compose up -d</code> to recreate the containers with the new logging driver.</p>
 
   <hr>

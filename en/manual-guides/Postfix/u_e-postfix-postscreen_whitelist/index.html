@@ -2353,11 +2353,11 @@
 <p><code>CIDR   ACTION</code></p>
 <p>Where CIDR is a single IP address or IP range in CIDR notation, and action is either "permit" or "reject".</p>
 <p>Example:</p>
-<div class="highlight"><pre><span></span># Rules are evaluated in the order as specified.
+<div class="highlight"><pre><span></span><code># Rules are evaluated in the order as specified.
 # Blacklist 192.168.* except 192.168.0.1.
 192.168.0.1          permit
 192.168.0.0/16       reject
-</pre></div>
+</code></pre></div>
 <p>The file is reloaded on the fly, postfix restart is not required.</p>
 
   <hr>

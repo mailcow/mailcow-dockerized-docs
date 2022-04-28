@@ -2359,43 +2359,43 @@ Installieren Sie <a href="https://docs.docker.com/engine/installation/linux/">Do
 <ul>
 <li>
 <p>Docker
-<div class="highlight"><pre><span></span>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
+<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # Nachdem der Installationsprozess abgeschlossen ist, müssen Sie den Dienst aktivieren und sicherstellen, dass er gestartet ist (z. B. CentOS 7)
 systemctl enable docker.service
-</pre></div></p>
+</code></pre></div></p>
 </li>
 <li>
 <p>docker-compose
-<div class="highlight"><pre><span></span>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
+<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-</pre></div></p>
+</code></pre></div></p>
 </li>
 </ul>
 <p>Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.</p>
 <p><strong>2.</strong> Stoppen Sie Docker und stellen Sie sicher, dass Docker gestoppt wurde:
-<div class="highlight"><pre><span></span>systemctl stop docker.service
+<div class="highlight"><pre><span></span><code>systemctl stop docker.service
 systemctl status docker.service
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>3.</strong> Führen Sie die folgenden Befehle auf dem Quellcomputer aus (achten Sie darauf, die abschließenden Schrägstriche im ersten Pfadparameter wie unten gezeigt hinzuzufügen!) - <strong>WARNUNG: Dieser Befehl löscht alles, was bereits unter <code>/var/lib/docker/volumes</code> auf dem Zielrechner existiert</strong>:
-<div class="highlight"><pre><span></span>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
 rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.example.com:/var/lib/docker/volumes
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>4.</strong> Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
-<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 docker-compose herunterfahren
 systemctl stop docker.service
-</pre></div></p>
+</code></pre></div></p>
 <p>**Wiederholen Sie Schritt 3 mit denselben Befehlen. Dies wird viel schneller gehen als beim ersten Mal.</p>
 <p><strong>6.</strong> Wechseln Sie auf den Zielrechner und starten Sie Docker.
-<div class="highlight"><pre><span></span>systemctl start docker.service
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>systemctl start docker.service
+</code></pre></div></p>
 <p><strong>7.</strong> Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.
-<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 docker-compose pull
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>8.</strong> Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
-<div class="highlight"><pre><span></span>docker-compose up -d
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div></p>
 <p><strong>9.</strong> Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen.</p>
 
   <hr>

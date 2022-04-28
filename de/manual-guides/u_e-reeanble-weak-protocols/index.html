@@ -2349,15 +2349,15 @@
 <p>Unauthentifizierte Mails über SMTP an Port 25/tcp akzeptieren weiterhin &gt;= TLS 1.0 . Es ist besser, eine schwache Verschlüsselung zu akzeptieren als gar keine.</p>
 <p><strong>Wie kann man schwache Protokolle wieder aktivieren?</strong></p>
 <p>Bearbeiten Sie <code>data/conf/postfix/extra.cf</code>:</p>
-<div class="highlight"><pre><span></span>submission_smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3
+<div class="highlight"><pre><span></span><code>submission_smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3
 smtps_smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3
-</pre></div>
+</code></pre></div>
 <p>Bearbeiten Sie <code>data/conf/dovecot/extra.conf</code>:</p>
-<div class="highlight"><pre><span></span>ssl_min_protocol = TLSv1
-</pre></div>
+<div class="highlight"><pre><span></span><code>ssl_min_protocol = TLSv1
+</code></pre></div>
 <p>Starten Sie die betroffenen Dienste neu:</p>
-<div class="highlight"><pre><span></span>docker-compose restart postfix-mailcow dovecot-mailcow
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose restart postfix-mailcow dovecot-mailcow
+</code></pre></div>
 <p>Tipp: Sie können TLS 1.2 in Windows 7 aktivieren.</p>
 
   <hr>

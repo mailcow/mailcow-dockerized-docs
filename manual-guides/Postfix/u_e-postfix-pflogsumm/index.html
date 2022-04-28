@@ -2348,13 +2348,13 @@
   <h1>Statistics with pflogsumm</h1>
 
 <p>To use pflogsumm with the default logging driver, we need to query postfix-mailcow via docker logs and direct the output to pflogsumm:</p>
-<div class="highlight"><pre><span></span>docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | pflogsumm
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | pflogsumm
+</code></pre></div>
 <p>The above log output is limited to the last 24 hours.</p>
 <p>It is also possible to create a daily pflogsumm report via cron. Create the /etc/cron.d/pflogsumm file with the following content:</p>
-<div class="highlight"><pre><span></span>SHELL=/bin/bash
+<div class="highlight"><pre><span></span><code>SHELL=/bin/bash
 59 23 * * root docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | /usr/sbin/pflogsumm -d today | mail -s &quot;Postfix Report of $(date)&quot; postmaster@example.net
-</pre></div>
+</code></pre></div>
 <p>To work, a local postfix must be installed on the server, which relays to the mailcow postfix.</p>
 <p>More detailed information can be found in section <a href="https://mailcow.github.io/mailcow-dockerized-docs/post_installation/firststeps-local_mta/">Post installation tasks -&gt; Local MTA on Dockerhost</a>.</p>
 <p>Based on the postfix logs of the last 24 hours, this example then sends a pflogsumm report to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#111;&#115;&#116;&#109;&#97;&#115;&#116;&#101;&#114;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#110;&#101;&#116;">&#112;&#111;&#115;&#116;&#109;&#97;&#115;&#116;&#101;&#114;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#110;&#101;&#116;</a> every day at 23:59:00.</p>

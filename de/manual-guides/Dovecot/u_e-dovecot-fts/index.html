@@ -2443,19 +2443,19 @@
 <p>Die Standard-Heap-Größe (1024 M) ist in mailcow.conf definiert.</p>
 <p>Da wir in Docker laufen und unsere Container mit dem "restart: always" Flag erstellen, wird eine oom Situation zumindest nur einen Neustart des Containers auslösen.</p>
 <h3 id="fts-bezogene-dovecot-befehle">FTS-bezogene Dovecot-Befehle<a class="headerlink" href="#fts-bezogene-dovecot-befehle" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span># Einzelbenutzer
+<p><div class="highlight"><pre><span></span><code># Einzelbenutzer
 docker-compose exec dovecot-mailcow doveadm fts rescan -u user@domain
 # alle Benutzer
 docker-compose exec dovecot-mailcow doveadm fts rescan -A
-</pre></div>
+</code></pre></div>
 Dovecot Wiki: "Scannt, welche Mails im Volltextsuchindex vorhanden sind und vergleicht diese mit den tatsächlich in den Postfächern vorhandenen Mails. Dies entfernt Mails aus dem Index, die bereits gelöscht wurden und stellt sicher, dass der nächste doveadm-Index alle fehlenden Mails (falls vorhanden) indiziert."</p>
 <p>Dies indiziert <strong>nicht</strong> eine Mailbox neu. Es repariert im Grunde einen gegebenen Index.</p>
 <p>Wenn Sie die Daten sofort neu indizieren wollen, können Sie den folgenden Befehl ausführen, wobei '*' auch eine Postfachmaske wie 'Sent' sein kann. Sie müssen diese Befehle nicht ausführen, aber es wird die Dinge ein wenig beschleunigen:</p>
-<div class="highlight"><pre><span></span># einzelner Benutzer
+<div class="highlight"><pre><span></span><code># einzelner Benutzer
 docker-compose exec dovecot-mailcow doveadm index -u user@domain &#39;*&#39;
 # alle Benutzer, aber offensichtlich langsamer und gefährlicher
 docker-compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
-</pre></div>
+</code></pre></div>
 <p>Dies <strong>wird</strong> einige Zeit in Anspruch nehmen, abhängig von Ihrer Maschine und Solr kann oom ausführen, überwachen Sie es!</p>
 <p>Da die Neuindizierung sehr sinnvoll ist, haben wir sie nicht in die mailcow UI integriert. Sie müssen sich um eventuelle Fehler beim Re-Indizieren einer Mailbox kümmern.</p>
 <h3 id="loschen-der-mailbox-daten">Löschen der Mailbox-Daten<a class="headerlink" href="#loschen-der-mailbox-daten" title="Permanent link">&para;</a></h3>

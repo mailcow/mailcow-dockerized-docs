@@ -2348,8 +2348,8 @@
 <p>Es kann sein, dass Sie einen Satz persistenter Daten entfernen wollen, um einen Konflikt zu lösen oder um neu zu beginnen.</p>
 <p><code>mailcowdockerized</code> kann variieren und hängt von Ihrem Compose-Projektnamen ab (wenn er unverändert ist, ist <code>mailcowdockerized</code> der richtige Wert). Wenn Sie sich unsicher sind, führen Sie <code>docker volume ls</code> aus, um eine vollständige Liste zu erhalten.</p>
 <p>Löschen Sie ein einzelnes Volume:</p>
-<div class="highlight"><pre><span></span>docker volume rm mailcowdockerized_${VOLUME_NAME}
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker volume rm mailcowdockerized_${VOLUME_NAME}
+</code></pre></div>
 <ul>
 <li>Entfernen Sie Volume <code>mysql-vol-1</code>, um alle MySQL-Daten zu entfernen.</li>
 <li>Entfernen Sie Volume <code>redis-vol-1</code> um alle Redis Daten zu entfernen.</li>

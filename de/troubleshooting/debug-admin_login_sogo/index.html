@@ -2427,11 +2427,11 @@ Dazu wird ein zusätzlicher Link zu SOGo in der Mailbox-Liste (mailcow UI) angez
 <p>Auch mehrere gleichzeitige Admin-Logins auf verschiedene Postfächer sind mit dieser Funktion möglich.</p>
 <h2 id="aktivieren-der-funktion">Aktivieren der Funktion<a class="headerlink" href="#aktivieren-der-funktion" title="Permanent link">&para;</a></h2>
 <p>Die Funktion ist standardmäßig deaktiviert. Es kann in der <code>mailcow.conf</code> durch Setzen aktiviert werden:
-<div class="highlight"><pre><span></span>ALLOW_ADMIN_EMAIL_LOGIN=y
-</pre></div>
+<div class="highlight"><pre><span></span><code>ALLOW_ADMIN_EMAIL_LOGIN=y
+</code></pre></div>
 und die betroffenen Container neu erstellen mit
-<div class="highlight"><pre><span></span>docker-compose up -d
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div></p>
 <h2 id="nachteile-bei-aktivierung">Nachteile bei Aktivierung<a class="headerlink" href="#nachteile-bei-aktivierung" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Jeder SOGo-Seiten-Load und jede Active-Sync-Anfrage verursacht eine zusätzliche Ausführung eines internen PHP-Skripts.

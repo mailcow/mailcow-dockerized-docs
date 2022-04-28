@@ -2403,7 +2403,7 @@
 <p>1. Diese Nachricht in einen Unterordner "facebook" verschieben (wird in Kleinbuchstaben erstellt, falls nicht vorhanden)</p>
 <p>2. Den Tag dem Betreff voranstellen: "[facebook] Betreff"</p>
 <p>Bitte beachten Sie: Großgeschriebene Tags werden in Kleinbuchstaben umgewandelt, mit Ausnahme des ersten Buchstabens. Wenn Sie den Tag so lassen wollen, wie er ist, wenden Sie bitte den folgenden Diff an und starten Sie mailcow neu:
-<div class="highlight"><pre><span></span>diff --git a/data/conf/dovecot/global_sieve_after b/data/conf/dovecot/global_sieve_after
+<div class="highlight"><pre><span></span><code>diff --git a/data/conf/dovecot/global_sieve_after b/data/conf/dovecot/global_sieve_after
 index e047136e..933c4137 100644
 --- a/data/conf/dovecot/global_sieve_after
 +++ b/data/conf/dovecot/global_sieve_after
@@ -2416,7 +2416,7 @@ index e047136e..933c4137 100644
    if mailboxexists &quot;INBOX/${1}&quot; {
      fileinto &quot;INBOX/${1}&quot;;
    } else {
-</pre></div></p>
+</code></pre></div></p>
 
   <hr>
 <div class="md-source-file">

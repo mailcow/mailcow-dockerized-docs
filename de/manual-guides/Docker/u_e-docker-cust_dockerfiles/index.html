@@ -2348,14 +2348,14 @@
   <h1>Dockerfiles anpassen</h1>
 
 <p>Sie müssen die Override-Datei mit den entsprechenden Build-Tags in den mailcow: dockerized Root-Ordner (d.h. <code>/opt/mailcow-dockerized</code>) kopieren:</p>
-<div class="highlight"><pre><span></span>cp helper-scripts/docker-compose.override.yml.d/BUILD_FLAGS/docker-compose.override.yml docker-compose.override.yml
-</pre></div>
+<div class="highlight"><pre><span></span><code>cp helper-scripts/docker-compose.override.yml.d/BUILD_FLAGS/docker-compose.override.yml docker-compose.override.yml
+</code></pre></div>
 <p>Nehmen Sie Ihre Änderungen in <code>data/Dockerfiles/$service</code> vor und erstellen Sie das Image lokal:</p>
-<div class="highlight"><pre><span></span>docker build data/Dockerfiles/service -t mailcow/$service
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker build data/Dockerfiles/service -t mailcow/$service
+</code></pre></div>
 <p>Nun werden die geänderten Container automatisch neu erstellt:</p>
-<div class="highlight"><pre><span></span>docker-compose up -d
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

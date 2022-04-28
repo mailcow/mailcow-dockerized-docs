@@ -2476,17 +2476,17 @@
 
 <h2 id="anhangen-eines-containers-an-ihre-shell">Anhängen eines Containers an Ihre Shell<a class="headerlink" href="#anhangen-eines-containers-an-ihre-shell" title="Permanent link">&para;</a></h2>
 <p>Um einen Container an Ihre Shell anzuhängen, können Sie einfach folgendes ausführen</p>
-<div class="highlight"><pre><span></span>docker-compose exec $Dienst_Name /bin/bash
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose exec $Dienst_Name /bin/bash
+</code></pre></div>
 <h3 id="verbindung-zu-diensten-herstellen">Verbindung zu Diensten herstellen<a class="headerlink" href="#verbindung-zu-diensten-herstellen" title="Permanent link">&para;</a></h3>
 <p>Wenn Sie sich direkt mit einem Dienst / einer Anwendung verbinden wollen, ist es immer eine gute Idee, <code>source mailcow.conf</code> zu benutzen, um alle relevanten Variablen in Ihre Umgebung zu bekommen.</p>
 <h4 id="mysql">MySQL<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span>Quelle mailcow.conf
+<div class="highlight"><pre><span></span><code>Quelle mailcow.conf
 docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
-</pre></div>
+</code></pre></div>
 <h4 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span>docker-compose exec redis-mailcow redis-cli
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli
+</code></pre></div>
 <h2 id="dienstbeschreibungen">Dienstbeschreibungen<a class="headerlink" href="#dienstbeschreibungen" title="Permanent link">&para;</a></h2>
 <p>Hier ist eine kurze Übersicht, welcher Container / Dienst was macht:</p>
 <table>

@@ -2444,9 +2444,9 @@
 <h2 id="neue-website">Neue Website<a class="headerlink" href="#neue-website" title="Permanent link">&para;</a></h2>
 <p>Um persistente (über Updates) Sites zu erstellen, die von mailcow: dockerized gehostet werden, muss eine neue Site-Konfiguration in <code>data/conf/nginx/</code> platziert werden:</p>
 <p>Eine gute Vorlage, um damit zu beginnen:</p>
-<div class="highlight"><pre><span></span>nano data/conf/nginx/my_custom_site.conf
-</pre></div>
-<div class="highlight"><pre><span></span>server {
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -2478,12 +2478,12 @@
     return 301 https://$server_name$request_uri;
   }
 }
-</pre></div>
+</code></pre></div>
 <h2 id="neue-website-mit-proxy-zu-einem-entfernten-location">Neue Website mit Proxy zu einem entfernten Location<a class="headerlink" href="#neue-website-mit-proxy-zu-einem-entfernten-location" title="Permanent link">&para;</a></h2>
 <p>Ein weiteres Beispiel mit einer Reverse-Proxy-Konfiguration:</p>
-<div class="highlight"><pre><span></span>nano data/conf/nginx/my_custom_site.conf
-</pre></div>
-<div class="highlight"><pre><span></span>server {
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -2519,18 +2519,18 @@
     client_max_body_size 0;
   }
 }
-</pre></div>
+</code></pre></div>
 <h2 id="konfig-erweiterung-in-mailcows-nginx">Konfig-Erweiterung in mailcows Nginx<a class="headerlink" href="#konfig-erweiterung-in-mailcows-nginx" title="Permanent link">&para;</a></h2>
 <p>Der Dateiname, der für eine neue Site verwendet wird, ist nicht wichtig, solange der Dateiname eine .conf-Erweiterung trägt.</p>
 <p>Es ist auch möglich, die Konfiguration der Standarddatei <code>site.conf</code> Datei zu erweitern:</p>
-<div class="highlight"><pre><span></span>nano data/conf/nginx/site.my_content.custom
-</pre></div>
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/site.my_content.custom
+</code></pre></div>
 <p>Dieser Dateiname muss keine ".conf"-Erweiterung haben, sondern folgt dem Muster <code>site.*.custom</code>, wobei <code>*</code> ein eigener Name ist.</p>
 <p>Wenn PHP in eine benutzerdefinierte Site eingebunden werden soll, verwenden Sie bitte den PHP-FPM-Listener auf phpfpm:9002 oder erstellen Sie einen neuen Listener in <code>data/conf/phpfpm/php-fpm.d/pools.conf</code>.</p>
 <p>Starten Sie Nginx neu (und PHP-FPM, falls ein neuer Listener erstellt wurde):</p>
-<div class="highlight"><pre><span></span>docker-compose restart nginx-mailcow
+<div class="highlight"><pre><span></span><code>docker-compose restart nginx-mailcow
 docker-compose restart php-fpm-mailcow
-</pre></div>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

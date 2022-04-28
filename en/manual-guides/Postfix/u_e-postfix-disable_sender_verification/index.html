@@ -2416,14 +2416,14 @@
 <h2 id="deprecated-guide-do-not-use-on-newer-mailcows">Deprecated guide (DO NOT USE ON NEWER MAILCOWS!)<a class="headerlink" href="#deprecated-guide-do-not-use-on-newer-mailcows" title="Permanent link">&para;</a></h2>
 <p>This option is not best-practice and should only be implemented when there is no other option available to achieve whatever you are trying to do.</p>
 <p>Simply create a file <code>data/conf/postfix/check_sasl_access</code> and enter the following content. This user must exist in your installation and needs to authenticate before sending mail.
-<div class="highlight"><pre><span></span>user-to-allow-everything@example.com OK
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>user-to-allow-everything@example.com OK
+</code></pre></div></p>
 <p>Open <code>data/conf/postfix/main.cf</code> and find <code>smtpd_sender_restrictions</code>. Prepend <code>check_sasl_access hash:/opt/postfix/conf/check_sasl_access</code> like this:
-<div class="highlight"><pre><span></span>smtpd_sender_restrictions = check_sasl_access hash:/opt/postfix/conf/check_sasl_access reject_authenticated_sender_login_mismatch [...]
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>smtpd_sender_restrictions = check_sasl_access hash:/opt/postfix/conf/check_sasl_access reject_authenticated_sender_login_mismatch [...]
+</code></pre></div></p>
 <p>Run postmap on check_sasl_access:</p>
-<div class="highlight"><pre><span></span>docker-compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
+</code></pre></div>
 <p>Restart the Postfix container.</p>
 
   <hr>

@@ -2528,15 +2528,15 @@ Dies wird durch die Verwendung des Sieve-Plugins "sieve_imapsieve" und Parser-Sk
 <p>Sie können auch die Web-UI von Rspamd verwenden, um Ham und/oder Spam zu lernen oder bestimmte Einstellungen von Rspamd anzupassen.</p>
 <h3 id="spam-oder-ham-aus-bestehendem-verzeichnis-lernen">Spam oder Ham aus bestehendem Verzeichnis lernen<a class="headerlink" href="#spam-oder-ham-aus-bestehendem-verzeichnis-lernen" title="Permanent link">&para;</a></h3>
 <p>Sie können einen Einzeiler verwenden, um Mails im Klartextformat (unkomprimiert) zu lernen:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Ham</span>
-<span class="k">for</span> file in /my/folder/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker-compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_ham &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ham</span>
+<span class="k">for</span> file <span class="k">in</span> /my/folder/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker-compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_ham &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 <span class="c1"># Spam</span>
-<span class="k">for</span> file in /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker-compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
-</pre></div>
+<span class="k">for</span> file <span class="k">in</span> /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker-compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></div>
 <p>Erwägen Sie, einen lokalen Ordner als neues Volume an <code>rspamd-mailcow</code> in <code>docker-compose.yml</code> anzuhängen und die gegebenen Dateien innerhalb des Containers zu lernen. Dies kann als Workaround verwendet werden, um komprimierte Daten mit zcat zu parsen. Beispiel:</p>
 <p>``bash
 for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam &lt; zcat $file; done
-<div class="highlight"><pre><span></span>### Gelernte Daten zurücksetzen (Bayes, Neural)
+<div class="highlight"><pre><span></span><code>### Gelernte Daten zurücksetzen (Bayes, Neural)
 
 Sie müssen die Schlüssel in Redis löschen, um die gelernten Daten zurückzusetzen, also erstellen Sie jetzt eine Kopie Ihrer Redis-Datenbank:
 
@@ -2545,30 +2545,30 @@ Sie müssen die Schlüssel in Redis löschen, um die gelernten Daten zurückzuse
 ```bash
 # Es ist besser, Redis zu stoppen, bevor Sie die Datei kopieren.
 cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>Bayes-Daten zurücksetzen</strong></p>
-<div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern BAYES_* | xargs redis-cli del&#39;</span>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern BAYES_* | xargs redis-cli del&#39;</span>
 docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern RS* | xargs redis-cli del&#39;</span>
-</pre></div>
+</code></pre></div>
 <p><strong>Neurale Daten zurücksetzen</strong></p>
-<div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern rn_* | xargs redis-cli del&#39;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern rn_* | xargs redis-cli del&#39;</span>
+</code></pre></div>
 <p><strong>Fuzzy-Daten zurücksetzen</strong></p>
-<div class="highlight"><pre><span></span><span class="c1"># Wir müssen zuerst das redis-cli eingeben:</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wir müssen zuerst das redis-cli eingeben:</span>
 docker-compose <span class="nb">exec</span> redis-mailcow redis-cli
 <span class="c1"># In redis-cli:</span>
 <span class="m">127</span>.0.0.1:6379&gt; EVAL <span class="s2">&quot;for i, name in ipairs(redis.call(&#39;KEYS&#39;, ARGV[1])) do redis.call(&#39;DEL&#39;, name); end&quot;</span> <span class="m">0</span> fuzzy*
-</pre></div>
+</code></pre></div>
 <p><strong>Info</strong></p>
 <p>Wenn redis-cli sich beschwert über...</p>
-<div class="highlight"><pre><span></span>(error) ERR wrong number of arguments for &#39;del&#39; command
-</pre></div>
+<div class="highlight"><pre><span></span><code>(error) ERR wrong number of arguments for &#39;del&#39; command
+</code></pre></div>
 <p>...das Schlüsselmuster nicht gefunden wurde und somit keine Daten zum Löschen vorhanden sind - ist es in Ordnung.</p>
 <h2 id="cli-werkzeuge">CLI-Werkzeuge<a class="headerlink" href="#cli-werkzeuge" title="Permanent link">&para;</a></h2>
 <p>``bash
 docker-compose exec rspamd-mailcow rspamc --help
 docker-compose exec rspamd-mailcow rspamadm --help
-<div class="highlight"><pre><span></span>## Greylisting deaktivieren
+<div class="highlight"><pre><span></span><code>## Greylisting deaktivieren
 
 Nur Nachrichten mit einer höheren Punktzahl werden als Greylisting betrachtet (soft rejected). Es ist schlechte Praxis, Greylisting zu deaktivieren.
 
@@ -2580,26 +2580,26 @@ Fügen Sie die Zeile hinzu:
 
 ```cpp
 enabled = false;
-</pre></div></p>
+</code></pre></div></p>
 <p>Speichern Sie die Datei und starten Sie "rspamd-mailcow" neu: <code>docker-compose restart rspamd-mailcow</code></p>
 <h2 id="spamfilter-schwellenwerte-global">Spamfilter-Schwellenwerte (global)<a class="headerlink" href="#spamfilter-schwellenwerte-global" title="Permanent link">&para;</a></h2>
 <p>Jeder Benutzer kann <a href="../../mailcow-UI/u_e-mailcow_ui-spamfilter/">seine Spam-Bewertung</a> individuell ändern. Um eine neue <strong>serverweite</strong> Grenze zu definieren, editieren Sie <code>data/conf/rspamd/local.d/actions.conf</code>:</p>
-<div class="highlight"><pre><span></span><span class="n">reject</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
-<span class="n">add_header</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-<span class="n">greylist</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">reject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span><span class="w"></span>
+<span class="n">add_header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="n">greylist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
 <p>Speichern Sie die Datei und starten Sie "rspamd-mailcow" neu: <code>docker-compose restart rspamd-mailcow</code></p>
 <p>Bestehende Einstellungen der Benutzer werden nicht überschrieben!</p>
 <p>Um benutzerdefinierte Schwellenwerte zurückzusetzen, führen Sie aus:</p>
-<div class="highlight"><pre><span></span>source mailcow.conf
+<div class="highlight"><pre><span></span><code>source mailcow.conf
 docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39;;&quot;
 # oder:
 # docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39; and object = &#39;only-this-mailbox@example.org&#39;;&quot;
-</pre></div>
+</code></pre></div>
 <h2 id="benutzerdefinierte-ablehnungsnachrichten">Benutzerdefinierte Ablehnungsnachrichten<a class="headerlink" href="#benutzerdefinierte-ablehnungsnachrichten" title="Permanent link">&para;</a></h2>
 <p>Die Standard-Spam-Reject-Meldung kann durch Hinzufügen einer neuen Datei <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> mit dem folgenden Inhalt geändert werden:</p>
-<div class="highlight"><pre><span></span>reject_message = &quot;Meine eigene Ablehnungsnachricht&quot;;
-</pre></div>
+<div class="highlight"><pre><span></span><code>reject_message = &quot;Meine eigene Ablehnungsnachricht&quot;;
+</code></pre></div>
 <p>Speichern Sie die Datei und starten Sie Rspamd neu: <code>docker-compose restart rspamd-mailcow</code>.</p>
 <p>Waehrend das oben genannte fuer abgelehnte Mails mit einem hohen Spam-Score funktioniert, ignorieren Prefilter-Aktionen diese Einstellung. Für diese Karten muss das Multimap-Modul in Rspamd angepasst werden:</p>
 <ol>
@@ -2610,7 +2610,7 @@ docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;del
 <p>Fügen Sie Ihre eigene Nachricht als neue Zeile hinzu:</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span>GLOBAL_RCPT_BL {
+<div class="highlight"><pre><span></span><code>GLOBAL_RCPT_BL {
   Typ = &quot;rcpt&quot;;
   map = &quot;${LOCAL_CONFDIR}/custom/global_rcpt_blacklist.map&quot;;
   regexp = true;
@@ -2618,40 +2618,40 @@ docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;del
   action = &quot;reject&quot;;
   message = &quot;Der Versand von E-Mails an diesen Empfänger ist durch postmaster@your.domain verboten&quot;;
 }
-</pre></div>
+</code></pre></div>
 <ol>
 <li>Speichern Sie die Datei und starten Sie Rspamd neu: <code>docker-compose restart rspamd-mailcow</code>.</li>
 </ol>
 <h2 id="verwerfen-statt-zuruckweisen">Verwerfen statt zurückweisen<a class="headerlink" href="#verwerfen-statt-zuruckweisen" title="Permanent link">&para;</a></h2>
 <p>Wenn Sie eine Nachricht stillschweigend verwerfen wollen, erstellen oder bearbeiten Sie die Datei <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> und fügen Sie den folgenden Inhalt hinzu:</p>
-<div class="highlight"><pre><span></span>discard_on_reject = true;
-</pre></div>
+<div class="highlight"><pre><span></span><code>discard_on_reject = true;
+</code></pre></div>
 <p>Starten Sie Rspamd neu:</p>
-<div class="highlight"><pre><span></span>docker-compose restart rspamd-mailcow
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose restart rspamd-mailcow
+</code></pre></div>
 <h2 id="losche-alle-ratelimit-schlussel">Lösche alle Ratelimit-Schlüssel<a class="headerlink" href="#losche-alle-ratelimit-schlussel" title="Permanent link">&para;</a></h2>
 <p>Wenn Sie das UI nicht verwenden wollen und stattdessen alle Schlüssel in der Redis-Datenbank löschen wollen, können Sie redis-cli für diese Aufgabe verwenden:</p>
-<div class="highlight"><pre><span></span>docker-compose exec redis-mailcow sh
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow sh
 # Unlink (verfügbar in Redis &gt;=4.) löscht im Hintergrund
 redis-cli --scan --pattern RL* | xargs redis-cli unlink
-</pre></div>
+</code></pre></div>
 <p>Starten Sie Rspamd neu:</p>
-<div class="highlight"><pre><span></span>docker-compose <span class="nb">exec</span> redis-mailcow sh
-</pre></div>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh
+</code></pre></div>
 <h2 id="erneutes-senden-von-quarantane-benachrichtigungen-auslosen">Erneutes Senden von Quarantäne-Benachrichtigungen auslösen<a class="headerlink" href="#erneutes-senden-von-quarantane-benachrichtigungen-auslosen" title="Permanent link">&para;</a></h2>
 <p>Sollte nur zur Fehlersuche verwendet werden!</p>
-<div class="highlight"><pre><span></span>docker-compose exec dovecot-mailcow bash
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow bash
 mysql -umailcow -p$DBPASS mailcow -e &quot;update quarantine set notified = 0;&quot;
 redis-cli -h redis DEL Q_LAST_NOTIFIED
 quarantine_notify.py
-</pre></div>
+</code></pre></div>
 <h2 id="speicherung-der-historie-erhohen">Speicherung der Historie erhöhen<a class="headerlink" href="#speicherung-der-historie-erhohen" title="Permanent link">&para;</a></h2>
 <p>Standardmäßig speichert Rspamd 1000 Elemente in der Historie.</p>
 <p>Die Historie wird komprimiert gespeichert.</p>
 <p>Es wird empfohlen, hier keinen unverhältnismäßig hohen Wert zu verwenden, probieren Sie etwas in der Größenordnung von 5000 oder 10000 und sehen Sie, wie Ihr Server damit umgeht:</p>
 <p>Bearbeiten Sie <code>data/conf/rspamd/local.d/history_redis.conf</code>:</p>
-<div class="highlight"><pre><span></span>nrows = 1000; # Ändern Sie diesen Wert
-</pre></div>
+<div class="highlight"><pre><span></span><code>nrows = 1000; # Ändern Sie diesen Wert
+</code></pre></div>
 <p>Starten Sie anschließend Rspamd neu: <code>docker-compose restart rspamd-mailcow</code></p>
 
   <hr>

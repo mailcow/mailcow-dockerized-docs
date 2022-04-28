@@ -2398,7 +2398,7 @@
 <p>Wenn Ihr Server abgestürzt ist und MariaDB eine Fehlermeldung ähnlich <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code>, können Sie Folgendes versuchen, um die Datenbank in einen gesunden Zustand zu bringen:</p>
 <p>Starten Sie den Stack und warten Sie, bis mysql-mailcow beginnt, einen Neustart zu melden. Überprüfen Sie dies, indem Sie <code>docker-compose ps</code> ausführen.</p>
 <p>Führen Sie nun die folgenden Befehle aus:</p>
-<div class="highlight"><pre><span></span># Stoppe den Stack, führe nicht &quot;down&quot; aus
+<div class="highlight"><pre><span></span><code># Stoppe den Stack, führe nicht &quot;down&quot; aus
 docker-compose stop
 # Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
 docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
@@ -2408,7 +2408,7 @@ cd /var/lib/mysql
 aria_chk --check --force */*.MAI
 # Löschen der aria-Logdateien
 rm aria_log.*
-</pre></div>
+</code></pre></div>
 <p>Führen Sie nun <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
 
   <hr>

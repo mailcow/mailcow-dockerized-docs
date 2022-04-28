@@ -2586,8 +2586,8 @@
 <h3 id="zusatzliche-domain-namen">Zusätzliche Domain-Namen<a class="headerlink" href="#zusatzliche-domain-namen" title="Permanent link">&para;</a></h3>
 <p>Bearbeiten Sie "mailcow.conf" und fügen Sie einen Parameter <code>ADDITIONAL_SAN</code> wie folgt hinzu:</p>
 <p>Verwenden Sie keine Anführungszeichen (<code>"</code>) und keine Leerzeichen zwischen den Namen!</p>
-<div class="highlight"><pre><span></span>ADDITIONAL_SAN=smtp.*,cert1.example.com,cert2.example.org,whatever.*
-</pre></div>
+<div class="highlight"><pre><span></span><code>ADDITIONAL_SAN=smtp.*,cert1.example.com,cert2.example.org,whatever.*
+</code></pre></div>
 <p>Jeder Name wird anhand seiner IPv6-Adresse oder - wenn IPv6 in Ihrer Domäne nicht konfiguriert ist - anhand seiner IPv4-Adresse überprüft.</p>
 <p>Ein Wildcard-Name wie <code>smtp.*</code> wird versuchen, ein smtp.DOMAIN_NAME SAN für jede zu mailcow hinzugefügte Domain zu erhalten.</p>
 <p>Führen Sie <code>docker-compose up -d</code> aus, um betroffene Container automatisch neu zu erstellen.</p>
@@ -2596,17 +2596,17 @@
 <p>Die Verwendung anderer Namen als <code>MAILCOW_HOSTNAME</code> für den Zugriff auf das mailcow UI kann weitere Konfiguration erfordern.</p>
 </div>
 <p>Wenn Sie planen, einen anderen Servernamen als <code>MAILCOW_HOSTNAME</code> für den Zugriff auf die mailcow UI zu verwenden (z.B. durch Hinzufügen von <code>mail.*</code> zu <code>ADDITIONAL_SAN</code>), stellen Sie sicher, dass Sie diesen Namen in mailcow.conf über <code>ADDITIONAL_SERVER_NAMES</code> eintragen. Die Namen müssen durch Kommas getrennt sein und <strong>dürfen</strong> keine Leerzeichen enthalten. Wenn Sie diesen Schritt auslassen, kann mailcow mit einer falschen Seite antworten.</p>
-<div class="highlight"><pre><span></span>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
-</pre></div>
+<div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
+</code></pre></div>
 <p>Führen Sie <code>docker-compose up -d</code> aus, um es anzuwenden.</p>
 <h3 id="erneuerung-erzwingen">Erneuerung erzwingen<a class="headerlink" href="#erneuerung-erzwingen" title="Permanent link">&para;</a></h3>
 <p>Um eine Erneuerung zu erzwingen, müssen Sie eine Datei namens <code>force_renew</code> erstellen und den <code>acme-mailcow</code> Container neu starten:</p>
-<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 touch data/assets/ssl/force_renew
 docker-compose restart acme-mailcow
 # Prüfen Sie nun die Logs auf eine Erneuerung
 docker-compose logs --tail=200 -f acme-mailcow
-</pre></div>
+</code></pre></div>
 <p>Die Datei wird automatisch gelöscht.</p>
 <h3 id="validierungsfehler-und-wie-man-die-validierung-uberspringt">Validierungsfehler und wie man die Validierung überspringt<a class="headerlink" href="#validierungsfehler-und-wie-man-die-validierung-uberspringt" title="Permanent link">&para;</a></h3>
 <p>Sie können die <strong>IP-Überprüfung</strong> überspringen, indem Sie <code>SKIP_IP_CHECK=y</code> in mailcow.conf setzen (keine Anführungszeichen). Seien Sie gewarnt, dass eine Fehlkonfiguration dazu führt, dass Sie von Let's Encrypt eingeschränkt werden! Dies ist vor allem für Multi-IP-Setups nützlich, bei denen der IP-Check die falsche Quell-IP-Adresse zurückgeben würde. Aufgrund der Verwendung von dynamischen IPs für acme-mailcow ist Source-NAT bei Neustarts nicht konsistent.</p>
@@ -2653,35 +2653,35 @@ Sie sollten sicherstellen, dass diese Clients den <code>MAILCOW_HOSTNAME</code> 
 <p>Um Ihre eigenen Zertifikate zu verwenden, speichern Sie einfach das kombinierte Zertifikat (mit dem Zertifikat und der zwischengeschalteten CA/CA, falls vorhanden) unter <code>data/assets/ssl/cert.pem</code> und den entsprechenden Schlüssel unter <code>data/assets/ssl/key.pem</code>.</p>
 <p><strong>WICHTIG:</strong> Verwenden Sie keine symbolischen Links! Stellen Sie sicher, dass Sie die Zertifikate kopieren und sie nicht mit <code>data/assets/ssl</code> verknüpfen.</p>
 <p>Starten Sie die betroffenen Dienste anschließend neu:</p>
-<div class="highlight"><pre><span></span>docker restart $(docker ps -qaf name=postfix-mailcow)
+<div class="highlight"><pre><span></span><code>docker restart $(docker ps -qaf name=postfix-mailcow)
 docker neu starten $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
-</pre></div>
+</code></pre></div>
 <p>Siehe <a href="../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Post-Hook-Skript für Nicht-Mailcow-ACME-Clients</a> für ein vollständiges Beispielskript.</p>
 <h3 id="test-gegen-das-acme-verzeichnis">Test gegen das ACME-Verzeichnis<a class="headerlink" href="#test-gegen-das-acme-verzeichnis" title="Permanent link">&para;</a></h3>
 <p>Bearbeiten Sie <code>mailcow.conf</code> und fügen Sie <code>LE_STAGING=y</code> hinzu.</p>
 <p>Führen Sie <code>docker-compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
 <h3 id="benutzerdefinierte-verzeichnis-url">Benutzerdefinierte Verzeichnis-URL<a class="headerlink" href="#benutzerdefinierte-verzeichnis-url" title="Permanent link">&para;</a></h3>
 <p>Editieren Sie <code>mailcow.conf</code> und fügen Sie die entsprechende Verzeichnis-URL in die neue Variable <code>DIRECTORY_URL</code> ein:</p>
-<div class="highlight"><pre><span></span>DIRECTORY_URL=https://acme-custom-v9000.api.letsencrypt.org/directory
-</pre></div>
+<div class="highlight"><pre><span></span><code>DIRECTORY_URL=https://acme-custom-v9000.api.letsencrypt.org/directory
+</code></pre></div>
 <p>Sie können <code>LE_STAGING</code> nicht mit <code>DIRECTORY_URL</code> verwenden. Wenn beide gesetzt sind, wird nur <code>LE_STAGING</code> verwendet.</p>
 <p>Führen Sie <code>docker-compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
 <h3 id="uberprufen-sie-ihre-konfiguration">Überprüfen Sie Ihre Konfiguration<a class="headerlink" href="#uberprufen-sie-ihre-konfiguration" title="Permanent link">&para;</a></h3>
 <p>Führen Sie <code>docker-compose logs acme-mailcow</code> aus, um herauszufinden, warum eine Validierung fehlschlägt.</p>
 <p>Um zu überprüfen, ob nginx das richtige Zertifikat verwendet, benutzen Sie einfach einen Browser Ihrer Wahl und überprüfen Sie das angezeigte Zertifikat.</p>
 <p>Um das von Postfix, Dovecot und Nginx verwendete Zertifikat zu überprüfen, verwenden wir <code>openssl</code>:</p>
-<div class="highlight"><pre><span></span># Verbindung über SMTP (587)
+<div class="highlight"><pre><span></span><code># Verbindung über SMTP (587)
 echo &quot;Q&quot; | openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
 # Verbindung über IMAP (143)
 echo &quot;Q&quot; | openssl s_client -starttls imap -showcerts -connect mx.mailcow.email:143
 # Verbindung über HTTPS (443)
 echo &quot;Q&quot; | openssl s_client -connect mx.mailcow.email:443
-</pre></div>
+</code></pre></div>
 <p>Um die von openssl zurückgegebenen Verfallsdaten gegen MAILCOW_HOSTNAME zu validieren, können Sie unser Hilfsskript verwenden:</p>
-<div class="highlight"><pre><span></span>cd /opt/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 bash helper-scripts/expiry-dates.sh
-</pre></div>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
