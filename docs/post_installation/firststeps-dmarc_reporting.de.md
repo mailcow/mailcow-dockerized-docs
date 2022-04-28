@@ -94,11 +94,18 @@ docker-compose exec rspamd-mailcow rspamadm dmarc_report
 ```
 
 Bestätigen Sie, dass Rspamd Daten in Redis aufgezeichnet hat:
+Ändern Sie `20220428` in ein anderes interessantes Datum zum schauen.
 
 ```
-docker-compose exec redis-mailcow redis-cli KEYS 'dmarc;*'
-docker-compose exec redis-mailcow redis-cli HGETALL "dmarc;example.com;20211231"
+docker-compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"
 ```
+
+Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Sie sie an, z. B.:
+
+```
+docker-compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
+```
+
 
 ## Ändern Sie die Häufigkeit der DMARC-Berichte
 
