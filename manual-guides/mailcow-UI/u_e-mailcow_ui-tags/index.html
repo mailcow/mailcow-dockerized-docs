@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/manual-guides/mailcow-UI/u_e-mailcow_ui-tagging/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
-        <title>Tagging - mailcow: dockerized documentation</title>
+        <title>Tags (for Domains and Mailboxes) - mailcow: dockerized documentation</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#available-actions" class="md-skip">
+        <a href="#what-are-tags-designed-for" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tagging
+              Tags (for Domains and Mailboxes)
             
           </span>
         </div>
@@ -145,7 +145,7 @@
                 </li>
                 
                 <li class="md-select__item">
-                  <a href="../../../de/manual-guides/mailcow-UI/u_e-mailcow_ui-tagging/" hreflang="de" class="md-select__link">
+                  <a href="../../../de/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/" hreflang="de" class="md-select__link">
                     Deutsch
                   </a>
                 </li>
@@ -1176,6 +1176,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-netfilter/" class="md-nav__link">
+        Netfilter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-pushover/" class="md-nav__link">
         Pushover
       </a>
@@ -1202,6 +1216,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
+        Sub-addressing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -1212,12 +1240,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Tagging
+          Tags (for Domains and Mailboxes)
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Tagging
+        Tags (for Domains and Mailboxes)
       </a>
       
         
@@ -1234,8 +1262,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-actions" class="md-nav__link">
-    Available Actions
+  <a href="#what-are-tags-designed-for" class="md-nav__link">
+    What are Tags designed for?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-are-the-tags-located" class="md-nav__link">
+    Where are the Tags located?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-addremove-a-tag" class="md-nav__link">
+    How can i add/remove a Tag?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-search-for-a-tag" class="md-nav__link">
+    How can i search for a tag?
   </a>
   
 </li>
@@ -2370,8 +2419,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-actions" class="md-nav__link">
-    Available Actions
+  <a href="#what-are-tags-designed-for" class="md-nav__link">
+    What are Tags designed for?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-are-the-tags-located" class="md-nav__link">
+    Where are the Tags located?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-addremove-a-tag" class="md-nav__link">
+    How can i add/remove a Tag?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-can-i-search-for-a-tag" class="md-nav__link">
+    How can i search for a tag?
   </a>
   
 </li>
@@ -2388,42 +2458,40 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/manual-guides/mailcow-UI/u_e-mailcow_ui-tagging.en.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/manual-guides/mailcow-UI/u_e-mailcow_ui-tags.en.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-  <h1>Tagging</h1>
+  <h1>Tags (for Domains and Mailboxes)</h1>
 
-<p>Mailbox users can tag their mail address like in <code>me+facebook@example.org</code>. They can control the tag handling in the users <strong>mailcow UI</strong> panel under <code>Mailbox &gt; Settings</code>.
-<img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></p>
-<p><em>Tagging is also known as 'sub-addressing' (RFC 5233) or 'plus addressing'</em></p>
-<h3 id="available-actions">Available Actions<a class="headerlink" href="#available-actions" title="Permanent link">&para;</a></h3>
-<p>1. Move this message to a sub folder "facebook" (will be created lower case if not existing)</p>
-<p>2. Prepend the tag to the subject: "[facebook] Subject"</p>
-<p>Please note: Uppercase tags are converted to lowercase except for the first letter. If you want to keep the tag as it is, please apply the following diff and restart mailcow:
-<div class="highlight"><pre><span></span><code>diff --git a/data/conf/dovecot/global_sieve_after b/data/conf/dovecot/global_sieve_after
-index e047136e..933c4137 100644
---- a/data/conf/dovecot/global_sieve_after
-+++ b/data/conf/dovecot/global_sieve_after
-@@ -15,7 +15,7 @@ if allof (
-   envelope :detail :matches &quot;to&quot; &quot;*&quot;,
-   header :contains &quot;X-Moo-Tag&quot; &quot;YES&quot;
-   ) {
--  set :lower :upperfirst &quot;tag&quot; &quot;${1}&quot;;
-+  set &quot;tag&quot; &quot;${1}&quot;;
-   if mailboxexists &quot;INBOX/${1}&quot; {
-     fileinto &quot;INBOX/${1}&quot;;
-   } else {
-</code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You need the mailcow Version 2022-05 at least for this feature.<br>
+If you don´t have the Version installed please consider a update.<br>
+For more informations about a mailcow update please take a look at the <a href="../../../i_u_m/i_u_m_update/">Update</a> section here in the docs.</p>
+</div>
+<h3 id="what-are-tags-designed-for">What are Tags designed for?<a class="headerlink" href="#what-are-tags-designed-for" title="Permanent link">&para;</a></h3>
+<p>With the Tags you can easily sort your Domains and Mailboxes by the tags instead of their name.</p>
+<h3 id="where-are-the-tags-located">Where are the Tags located?<a class="headerlink" href="#where-are-the-tags-located" title="Permanent link">&para;</a></h3>
+<p>The Tags are located in the Domain/Mailbox section of the mailcow UI.
+To view them simply click on the small plus symbol on the left of your Domain/Mailbox (following picture is showing the domain ribbon menu):
+<img alt="Domain/Mailbox Tags Ribbon" src="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" /></p>
+<h3 id="how-can-i-addremove-a-tag">How can i add/remove a Tag?<a class="headerlink" href="#how-can-i-addremove-a-tag" title="Permanent link">&para;</a></h3>
+<p>You can simply add/remove a Tag during the creation of a new Domain/Mailbox. You also can add/remove them if you edit your desired Domain/Mailbox.</p>
+<p>It looks similar to this (following picture showing the domain edit section):</p>
+<p><img alt="Domain/Mailbox Tags" src="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" /></p>
+<h3 id="how-can-i-search-for-a-tag">How can i search for a tag?<a class="headerlink" href="#how-can-i-search-for-a-tag" title="Permanent link">&para;</a></h3>
+<p>Simply type the Tag Name in the search bar in the Domain/Mailbox Section and wait for it to complete.</p>
+<p>You can even specify if you want to search for tags only.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-01 11:25:58</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-05 21:41:23</span>
       
     
   </small>
@@ -2446,7 +2514,7 @@ index e047136e..933c4137 100644
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../u_e-mailcow_ui-spamfilter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Spamfilter" rel="prev">
+        <a href="../u_e-mailcow_ui-sub_addressing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Sub-addressing" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2455,7 +2523,7 @@ index e047136e..933c4137 100644
               <span class="md-footer__direction">
                 Previous
               </span>
-              Spamfilter
+              Sub-addressing
             </div>
           </div>
         </a>

@@ -446,8 +446,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#funoten" class="md-nav__link">
-    Fußnoten
+  <a href="#update-zyklus" class="md-nav__link">
+    Update-Zyklus
   </a>
   
 </li>
@@ -1252,6 +1252,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/" class="md-nav__link">
+        Netfilter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/" class="md-nav__link">
         Pushover
       </a>
@@ -1280,8 +1294,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tagging/" class="md-nav__link">
-        Tagging (Markierungen)
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
+        Sub-Adressierung
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tags/" class="md-nav__link">
+        Tags (für Domains und Mailboxen)
       </a>
     </li>
   
@@ -2450,8 +2478,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#funoten" class="md-nav__link">
-    Fußnoten
+  <a href="#update-zyklus" class="md-nav__link">
+    Update-Zyklus
   </a>
   
 </li>
@@ -2497,6 +2525,9 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 # - Starten Sie mailcow nicht, nachdem Sie ein Update durchgeführt haben
 ./update.sh --skip-start
 
+# - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
+./update.sh --skip-ping-check
+
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
 ./update.sh --force
 
@@ -2527,9 +2558,11 @@ docker-compose up -d
 </code></pre></div>
 <h3 id="hooks">Hooks<a class="headerlink" href="#hooks" title="Permanent link">&para;</a></h3>
 <p>Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens <code>pre_commit_hook.sh</code> und <code>post_commit_hook.sh</code> zu Ihrem mailcows-Root-Verzeichnis hinzufügen. Siehe <a href="../../manual-guides/u_e-update-hooks/">hier</a> für weitere Details.</p>
-<h2 id="funoten">Fußnoten<a class="headerlink" href="#funoten" title="Permanent link">&para;</a></h2>
+<h2 id="update-zyklus">Update-Zyklus<a class="headerlink" href="#update-zyklus" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Wir planen einen monatlichen Release-Zyklus für Updates ein.</li>
+<li>Wir planen an jedem ersten Dienstag eines Monats ein neues Hauptupdate zu veröffentlichen.</li>
+<li>Die Updates sind wie folgt nummeriert: <code>JJJJ-MM</code> (Beispiel: <code>2022-05</code>).</li>
+<li>Fehlerkorrekturen eines Hauptupdates werden bei uns als "Revisionen" wie a,b,c (Beispiele: <code>2022-05a</code>, <code>2022-05b</code> usw.) erscheinen.</li>
 </ul>
 
   <hr>
@@ -2537,7 +2570,7 @@ docker-compose up -d
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-06 12:00:58</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-05 21:41:23</span>
       
     
   </small>

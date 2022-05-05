@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="de" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -8,21 +8,21 @@
       
       
       
-        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tagging/">
+        <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/">
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
     
     
       
-        <title>Tagging (Markierungen) - mailcow: dockerized documentation</title>
+        <title>Netfilter - mailcow: dockerized documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
         
       
     
@@ -37,9 +37,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,8 +67,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#verfugbare-aktionen" class="md-skip">
-          Zum Inhalt
+        <a href="#change-netfilter-ban-settings" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -81,9 +81,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
+    <a href="../../.." title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
-  <img src="../../../../assets/images/logo.svg" alt="logo">
+  <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tagging (Markierungen)
+              Netfilter
             
           </span>
         </div>
@@ -132,20 +132,20 @@
       <div class="md-header__option">
         <div class="md-select">
           
-          <button class="md-header__button md-icon" aria-label="Sprache wechseln">
+          <button class="md-header__button md-icon" aria-label="Select language">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
           </button>
           <div class="md-select__inner">
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="../../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tagging/" hreflang="en" class="md-select__link">
+                  <a href="./" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
                 
                 <li class="md-select__item">
-                  <a href="./" hreflang="de" class="md-select__link">
+                  <a href="../../../de/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/" hreflang="de" class="md-select__link">
                     Deutsch
                   </a>
                 </li>
@@ -163,14 +163,14 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Suche">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Zurücksetzen" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -180,7 +180,7 @@
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Suche wird initialisiert
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -191,7 +191,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/mailcow/mailcow-dockerized" title="Quellcode" class="md-source" data-md-component="source">
+        <a href="https://github.com/mailcow/mailcow-dockerized" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -226,16 +226,16 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
+    <a href="../../.." title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
-  <img src="../../../../assets/images/logo.svg" alt="logo">
+  <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
     mailcow: dockerized documentation
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/mailcow/mailcow-dockerized" title="Quellcode" class="md-source" data-md-component="source">
+      <a href="https://github.com/mailcow/mailcow-dockerized" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -256,8 +256,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../" class="md-nav__link">
-        Informationen & Support
+      <a href="../../.." class="md-nav__link">
+        Information & Support
       </a>
     </li>
   
@@ -280,14 +280,14 @@
       
       
         <label class="md-nav__link" for="__nav_2">
-          Voraussetzungen
+          Prerequisites
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Voraussetzungen" data-md-level="1">
+      <nav class="md-nav" aria-label="Prerequisites" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          Voraussetzungen
+          Prerequisites
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -298,7 +298,7 @@
   
     <li class="md-nav__item">
       <a href="../../../prerequisite/prerequisite-system/" class="md-nav__link">
-        Systemvoraussetzungen
+        Prepare your system
       </a>
     </li>
   
@@ -312,7 +312,7 @@
   
     <li class="md-nav__item">
       <a href="../../../prerequisite/prerequisite-dns/" class="md-nav__link">
-        DNS Einstellungen
+        DNS setup
       </a>
     </li>
   
@@ -342,14 +342,14 @@
       
       
         <label class="md-nav__link" for="__nav_3">
-          Installation, Update und Migration
+          Installation, Update & Migration
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Installation, Update und Migration" data-md-level="1">
+      <nav class="md-nav" aria-label="Installation, Update & Migration" data-md-level="1">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
-          Installation, Update und Migration
+          Installation, Update & Migration
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -432,14 +432,14 @@
       
       
         <label class="md-nav__link" for="__nav_4">
-          Post-Installationsaufgaben
+          Post Installation Tasks
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Post-Installationsaufgaben" data-md-level="1">
+      <nav class="md-nav" aria-label="Post Installation Tasks" data-md-level="1">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
-          Post-Installationsaufgaben
+          Post Installation Tasks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -450,7 +450,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-ssl/" class="md-nav__link">
-        Erweitertes SSL
+        Advanced SSL
       </a>
     </li>
   
@@ -464,7 +464,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-disable_ipv6/" class="md-nav__link">
-        IPv6 deaktivieren
+        Disable IPv6
       </a>
     </li>
   
@@ -492,7 +492,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-ip_bindings/" class="md-nav__link">
-        IP-Verbindungen
+        IP bindings
       </a>
     </li>
   
@@ -506,7 +506,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-local_mta/" class="md-nav__link">
-        Lokaler MTA auf Docker-Host
+        Local MTA on Docker host
       </a>
     </li>
   
@@ -576,7 +576,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Sync job migration
       </a>
     </li>
   
@@ -606,14 +606,14 @@
       
       
         <label class="md-nav__link" for="__nav_5">
-          Modelle
+          Models
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Modelle" data-md-level="1">
+      <nav class="md-nav" aria-label="Models" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Modelle
+          Models
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -638,7 +638,7 @@
   
     <li class="md-nav__item">
       <a href="../../../models/model-passwd/" class="md-nav__link">
-        Passwort-Hashing
+        Password hashing
       </a>
     </li>
   
@@ -652,7 +652,7 @@
   
     <li class="md-nav__item">
       <a href="../../../models/model-sender_rcv/" class="md-nav__link">
-        Sender- und Empfängermodell
+        Sender and receiver model
       </a>
     </li>
   
@@ -682,14 +682,14 @@
       
       
         <label class="md-nav__link" for="__nav_6">
-          Allgemeine Fehlersuche
+          General Troubleshooting
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Allgemeine Fehlersuche" data-md-level="1">
+      <nav class="md-nav" aria-label="General Troubleshooting" data-md-level="1">
         <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          Allgemeine Fehlersuche
+          General Troubleshooting
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -700,7 +700,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug/" class="md-nav__link">
-        Einführung
+        Introduction
       </a>
     </li>
   
@@ -714,7 +714,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-admin_login_sogo/" class="md-nav__link">
-        Admin-Anmeldung bei SOGo
+        Admin login to SOGo
       </a>
     </li>
   
@@ -728,7 +728,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-rspamd_memory_leaks/" class="md-nav__link">
-        Fortgeschritten: Memory-Leaks in Rspamd finden
+        Advanced: Find memory leaks in Rspamd
       </a>
     </li>
   
@@ -742,7 +742,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-attach_service/" class="md-nav__link">
-        In einen Container wechseln (CLI)
+        Attach to a Container
       </a>
     </li>
   
@@ -756,7 +756,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-common_problems/" class="md-nav__link">
-        Häufig auftretende Probleme
+        Common Problems
       </a>
     </li>
   
@@ -784,7 +784,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-mysql_upgrade/" class="md-nav__link">
-        Manuelles MySQL-Upgrade
+        Manual MySQL upgrade
       </a>
     </li>
   
@@ -798,7 +798,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-mysql_aria/" class="md-nav__link">
-        Abgestürzte Aria-Speicher-Engine wiederherstellen
+        Recover crashed Aria storage engine
       </a>
     </li>
   
@@ -812,7 +812,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-rm_volumes/" class="md-nav__link">
-        Persistente Daten löschen
+        Remove Persistent Data
       </a>
     </li>
   
@@ -826,7 +826,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-reset_pw/" class="md-nav__link">
-        Passwörter zurücksetzen (inkl. SQL)
+        Reset Passwords (incl. SQL)
       </a>
     </li>
   
@@ -840,7 +840,7 @@
   
     <li class="md-nav__item">
       <a href="../../../troubleshooting/debug-reset_tls/" class="md-nav__link">
-        TLS-Zertifikate zurücksetzen
+        Reset TLS certificates
       </a>
     </li>
   
@@ -870,14 +870,14 @@
       
       
         <label class="md-nav__link" for="__nav_7">
-          Sichern & Wiederherstellen
+          Backup & Restore
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Sichern & Wiederherstellen" data-md-level="1">
+      <nav class="md-nav" aria-label="Backup & Restore" data-md-level="1">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
-          Sichern & Wiederherstellen
+          Backup & Restore
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -896,14 +896,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_1">
-          Sicherung und Wiederherstellung von Komponenten
+          Component backup & restore
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Sicherung und Wiederherstellung von Komponenten" data-md-level="2">
+      <nav class="md-nav" aria-label="Component backup & restore" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_1">
           <span class="md-nav__icon md-icon"></span>
-          Sicherung und Wiederherstellung von Komponenten
+          Component backup & restore
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -914,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="../../../backup_restore/b_n_r-backup/" class="md-nav__link">
-        Sicherung
+        Backup
       </a>
     </li>
   
@@ -928,7 +928,7 @@
   
     <li class="md-nav__item">
       <a href="../../../backup_restore/b_n_r-restore/" class="md-nav__link">
-        Wiederherstellung
+        Restore
       </a>
     </li>
   
@@ -949,7 +949,7 @@
   
     <li class="md-nav__item">
       <a href="../../../backup_restore/b_n_r-coldstandby/" class="md-nav__link">
-        Cold-standby (rollende Sicherung)
+        Cold-standby (rolling backup)
       </a>
     </li>
   
@@ -971,14 +971,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_3">
-          Manuelle Sicherung
+          Manual backups
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Manuelle Sicherung" data-md-level="2">
+      <nav class="md-nav" aria-label="Manual backups" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_3">
           <span class="md-nav__icon md-icon"></span>
-          Manuelle Sicherung
+          Manual backups
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -989,7 +989,7 @@
   
     <li class="md-nav__item">
       <a href="../../../backup_restore/b_n_r-backup_restore-maildir/" class="md-nav__link">
-        Mail-Verzeichnis
+        Maildir
       </a>
     </li>
   
@@ -1032,14 +1032,14 @@
       
       
         <label class="md-nav__link" for="__nav_7_4">
-          Interne mailcow Sicherungen
+          mailcow-internal backups
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Interne mailcow Sicherungen" data-md-level="2">
+      <nav class="md-nav" aria-label="mailcow-internal backups" data-md-level="2">
         <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
-          Interne mailcow Sicherungen
+          mailcow-internal backups
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1050,7 +1050,7 @@
   
     <li class="md-nav__item">
       <a href="../../../backup_restore/b_n_r-accidental_deletion/" class="md-nav__link">
-        Versehentlich gelöschte Daten wiederherstellen
+        Recover accidentally deleted data
       </a>
     </li>
   
@@ -1089,14 +1089,14 @@
       
       
         <label class="md-nav__link" for="__nav_8">
-          Anleitungen/Beispiele
+          Manual/Guides/Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Anleitungen/Beispiele" data-md-level="1">
+      <nav class="md-nav" aria-label="Manual/Guides/Examples" data-md-level="1">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
-          Anleitungen/Beispiele
+          Manual/Guides/Examples
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1149,7 +1149,7 @@
   
     <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-config/" class="md-nav__link">
-        Konfiguration
+        Configuration
       </a>
     </li>
   
@@ -1163,8 +1163,66 @@
   
     <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
-        CSS-Überschreibungen
+        CSS overrides
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Netfilter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Netfilter
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#change-netfilter-ban-settings" class="md-nav__link">
+    Change Netfilter Ban Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-netfilter-regex" class="md-nav__link">
+    Change Netfilter Regex
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1202,48 +1260,25 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Tagging (Markierungen)
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Tagging (Markierungen)
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
+        Sub-addressing
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+            
+          
+            
+              
   
   
   
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#verfugbare-aktionen" class="md-nav__link">
-    Verfügbare Aktionen
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-tags/" class="md-nav__link">
+        Tags (for Domains and Mailboxes)
+      </a>
     </li>
   
 
@@ -1256,7 +1291,7 @@
   
     <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-spamalias/" class="md-nav__link">
-        Temporäre E-Mail-Aliase
+        Temporary email aliases
       </a>
     </li>
   
@@ -1270,7 +1305,7 @@
   
     <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Two-Factor Authentication
       </a>
     </li>
   
@@ -1331,7 +1366,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-trust_networks/" class="md-nav__link">
-        Vertrauenswürdige Netzwerke hinzufügen
+        Add trusted networks
       </a>
     </li>
   
@@ -1345,7 +1380,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-custom_transport/" class="md-nav__link">
-        Benutzerdefinierte Transportmaps
+        Custom transport maps
       </a>
     </li>
   
@@ -1359,7 +1394,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-extra_cf/" class="md-nav__link">
-        main.cf anpassen/erweitern
+        Customize/Expand main.cf
       </a>
     </li>
   
@@ -1373,7 +1408,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-disable_sender_verification/" class="md-nav__link">
-        Überprüfung der Absenderadressen deaktivieren
+        Disable Sender Addresses Verification
       </a>
     </li>
   
@@ -1387,7 +1422,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-attachment_size/" class="md-nav__link">
-        Maximale Nachrichtengröße (Größe des Anhangs)
+        Max. message size (attachment size)
       </a>
     </li>
   
@@ -1415,7 +1450,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-pflogsumm/" class="md-nav__link">
-        Statistik mit pflogsumm
+        Statistics with pflogsumm
       </a>
     </li>
   
@@ -1429,7 +1464,7 @@
   
     <li class="md-nav__item">
       <a href="../../Postfix/u_e-postfix-postscreen_whitelist/" class="md-nav__link">
-        IP in Postscreen auf die Whitelist setzen
+        Whitelist IP in Postscreen
       </a>
     </li>
   
@@ -1476,7 +1511,7 @@
   
     <li class="md-nav__item">
       <a href="../../Unbound/u_e-unbound-fwd/" class="md-nav__link">
-        Verwendung eines externen DNS-Dienstes
+        Using an external DNS service
       </a>
     </li>
   
@@ -1523,7 +1558,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-extra_conf/" class="md-nav__link">
-        Anpassen/Erweitern von dovecot.conf
+        Customize/Expand dovecot.conf
       </a>
     </li>
   
@@ -1537,7 +1572,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-any_acl/" class="md-nav__link">
-        Aktivierung von "any" ACL-Einstellungen
+        Enable "any" ACL settings
       </a>
     </li>
   
@@ -1551,7 +1586,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-expunge/" class="md-nav__link">
-        Löschen der Mails eines Benutzers
+        Expunge a Users mails
       </a>
     </li>
   
@@ -1579,7 +1614,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-idle_interval/" class="md-nav__link">
-        IMAP IDLE-Intervall
+        IMAP IDLE interval
       </a>
     </li>
   
@@ -1607,7 +1642,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-more/" class="md-nav__link">
-        Weitere Beispiele mit DOVEADM
+        More Examples with DOVEADM
       </a>
     </li>
   
@@ -1621,7 +1656,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-vmail-volume/" class="md-nav__link">
-        Maildir verschieben (vmail)
+        Move Maildir (vmail)
       </a>
     </li>
   
@@ -1635,7 +1670,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-public_folder/" class="md-nav__link">
-        Öffentliche Ordner
+        Public folders
       </a>
     </li>
   
@@ -1649,7 +1684,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-static_master/" class="md-nav__link">
-        Statischer Hauptbenutzer
+        Static master user
       </a>
     </li>
   
@@ -1663,7 +1698,7 @@
   
     <li class="md-nav__item">
       <a href="../../Dovecot/u_e-dovecot-catchall_vacation/" class="md-nav__link">
-        Urlaubsantworten für Catchall-Adressen
+        Vacation replies for catchall addresses
       </a>
     </li>
   
@@ -1710,7 +1745,7 @@
   
     <li class="md-nav__item">
       <a href="../../Nginx/u_e-nginx_webmail-site/" class="md-nav__link">
-        Subdomäne webmail.example.org erstellen
+        Create subdomain webmail.example.org
       </a>
     </li>
   
@@ -1724,7 +1759,7 @@
   
     <li class="md-nav__item">
       <a href="../../Nginx/u_e-nginx_custom/" class="md-nav__link">
-        Benutzerdefinierte Seiten
+        Custom sites
       </a>
     </li>
   
@@ -1860,7 +1895,7 @@
   
     <li class="md-nav__item">
       <a href="../../ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
-        Weitere Datenbanken
+        Additional Databases
       </a>
     </li>
   
@@ -1921,7 +1956,7 @@
   
     <li class="md-nav__item">
       <a href="../../Docker/u_e-docker-cust_dockerfiles/" class="md-nav__link">
-        Dockerfiles anpassen
+        Customize Dockerfiles
       </a>
     </li>
   
@@ -1956,7 +1991,7 @@
   
     <li class="md-nav__item">
       <a href="../../u_e-why_unbound/" class="md-nav__link">
-        Warum unbound?
+        Why unbound?
       </a>
     </li>
   
@@ -1984,7 +2019,7 @@
   
     <li class="md-nav__item">
       <a href="../../u_e-80_to_443/" class="md-nav__link">
-        HTTP auf HTTPS umleiten
+        Redirect HTTP to HTTPS
       </a>
     </li>
   
@@ -1998,7 +2033,7 @@
   
     <li class="md-nav__item">
       <a href="../../u_e-reeanble-weak-protocols/" class="md-nav__link">
-        TLS 1.0 und TLS 1.1 wieder aktivieren
+        Re-enable TLS 1.0 and TLS 1.1
       </a>
     </li>
   
@@ -2012,7 +2047,7 @@
   
     <li class="md-nav__item">
       <a href="../../u_e-update-hooks/" class="md-nav__link">
-        Skripte vor und nach Aktualisierungen ausführen
+        Run scripts before and after updates
       </a>
     </li>
   
@@ -2042,14 +2077,14 @@
       
       
         <label class="md-nav__link" for="__nav_9">
-          Client-Konfiguration
+          Client Configuration
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Client-Konfiguration" data-md-level="1">
+      <nav class="md-nav" aria-label="Client Configuration" data-md-level="1">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
-          Client-Konfiguration
+          Client Configuration
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -2060,7 +2095,7 @@
   
     <li class="md-nav__item">
       <a href="../../../client/client/" class="md-nav__link">
-        Übersicht
+        Overview
       </a>
     </li>
   
@@ -2172,7 +2207,7 @@
   
     <li class="md-nav__item">
       <a href="../../../client/client-manual/" class="md-nav__link">
-        Manuelle Konfiguration
+        Manual configuration
       </a>
     </li>
   
@@ -2202,14 +2237,14 @@
       
       
         <label class="md-nav__link" for="__nav_10">
-          Anwendungen von Drittanbietern
+          Third party apps
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Anwendungen von Drittanbietern" data-md-level="1">
+      <nav class="md-nav" aria-label="Third party apps" data-md-level="1">
         <label class="md-nav__title" for="__nav_10">
           <span class="md-nav__icon md-icon"></span>
-          Anwendungen von Drittanbietern
+          Third party apps
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -2220,7 +2255,7 @@
   
     <li class="md-nav__item">
       <a href="../../../third_party/third_party-borgmatic/" class="md-nav__link">
-        Borgmatic-Sicherung
+        Borgmatic Backup
       </a>
     </li>
   
@@ -2358,20 +2393,27 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#verfugbare-aktionen" class="md-nav__link">
-    Verfügbare Aktionen
+  <a href="#change-netfilter-ban-settings" class="md-nav__link">
+    Change Netfilter Ban Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-netfilter-regex" class="md-nav__link">
+    Change Netfilter Regex
   </a>
   
 </li>
@@ -2388,42 +2430,42 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/manual-guides/mailcow-UI/u_e-mailcow_ui-tagging.de.md" title="Seite editieren" class="md-content__button md-icon">
+  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter.en.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-  <h1>Tagging (Markierungen)</h1>
+  <h1>Netfilter</h1>
 
-<p>Mailbox-Nutzer können ihre Mailadresse wie in "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#101;&#43;&#102;&#97;&#99;&#101;&#98;&#111;&#111;&#107;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;">&#109;&#101;&#43;&#102;&#97;&#99;&#101;&#98;&#111;&#111;&#107;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;</a>" markieren. Sie können die Tag-Behandlung im <strong>mailcow UI</strong> Panel (für den Benutzer) unter <code>Mailbox &gt; Einstellungen</code> kontrollieren.
-<img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></p>
-<p><em>Tagging ist auch bekannt als 'Sub-Adressierung' (RFC 5233) oder 'Plus-Adressierung'</em></p>
-<h3 id="verfugbare-aktionen">Verfügbare Aktionen<a class="headerlink" href="#verfugbare-aktionen" title="Permanent link">&para;</a></h3>
-<p>1. Diese Nachricht in einen Unterordner "facebook" verschieben (wird in Kleinbuchstaben erstellt, falls nicht vorhanden)</p>
-<p>2. Den Tag dem Betreff voranstellen: "[facebook] Betreff"</p>
-<p>Bitte beachten Sie: Großgeschriebene Tags werden in Kleinbuchstaben umgewandelt, mit Ausnahme des ersten Buchstabens. Wenn Sie den Tag so lassen wollen, wie er ist, wenden Sie bitte den folgenden Diff an und starten Sie mailcow neu:
-<div class="highlight"><pre><span></span><code>diff --git a/data/conf/dovecot/global_sieve_after b/data/conf/dovecot/global_sieve_after
-index e047136e..933c4137 100644
---- a/data/conf/dovecot/global_sieve_after
-+++ b/data/conf/dovecot/global_sieve_after
-@@ -15,7 +15,7 @@ if allof (
-   envelope :detail :matches &quot;to&quot; &quot;*&quot;,
-   header :contains &quot;X-Moo-Tag&quot; &quot;YES&quot;
-   ) {
--  set :lower :upperfirst &quot;tag&quot; &quot;${1}&quot;;
-+  set &quot;tag&quot; &quot;${1}&quot;;
-   if mailboxexists &quot;INBOX/${1}&quot; {
-     fileinto &quot;INBOX/${1}&quot;;
-   } else {
-</code></pre></div></p>
+<h2 id="change-netfilter-ban-settings">Change Netfilter Ban Settings<a class="headerlink" href="#change-netfilter-ban-settings" title="Permanent link">&para;</a></h2>
+<p>To change the Netfilter settings in general please navigate to: <code>Configuration -&gt; Configuration &amp; Details -&gt; Configuration -&gt; Fail2ban parameters</code>.</p>
+<p>You should now see a familar interface:</p>
+<p><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" /></p>
+<p>Here you can set several options regarding the bans itself. 
+For example the max. Ban time or the max. attempts before a ban is executed.</p>
+<h2 id="change-netfilter-regex">Change Netfilter Regex<a class="headerlink" href="#change-netfilter-regex" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The following area requires at least basic regex knowledge. <br>
+If you are not sure what you are doing there, we can only advise you not to attempt a reconfiguration.</p>
+</div>
+<p>In addition to the ban settings, you can also define what exactly should be used from the mailcow container logs to ban a possible attacker.</p>
+<p>To do this, you must first expand the regex field, which will look something like this:</p>
+<p><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" /></p>
+<p>There you can now create various new filter rules.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>As updates progress, it is possible that new Netfilter regex rules will be added or removed. <br>
+If this is the case, it is recommended to reset the Netfilter regex rules by clicking on <code>Reset to default</code>.</p>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
-      Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-01 11:25:58</span>
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-05 21:41:23</span>
       
     
   </small>
@@ -2436,7 +2478,7 @@ index e047136e..933c4137 100644
         
           <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Zurück zum Seitenanfang
+            Back to top
           </a>
         
       </main>
@@ -2446,29 +2488,29 @@ index e047136e..933c4137 100644
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../u_e-mailcow_ui-spamfilter/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Spamfilter" rel="prev">
+        <a href="../u_e-mailcow_ui-css/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CSS overrides" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
-                Zurück
+                Previous
               </span>
-              Spamfilter
+              CSS overrides
             </div>
           </div>
         </a>
       
       
         
-        <a href="../u_e-mailcow_ui-spamalias/" class="md-footer__link md-footer__link--next" aria-label="Weiter: Temporäre E-Mail-Aliase" rel="next">
+        <a href="../u_e-mailcow_ui-pushover/" class="md-footer__link md-footer__link--next" aria-label="Next: Pushover" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
-                Weiter
+                Next
               </span>
-              Temporäre E-Mail-Aliase
+              Pushover
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -2533,12 +2575,12 @@ index e047136e..933c4137 100644
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
       
-        <script src="../../../../assets/javascripts/client.js"></script>
+        <script src="../../../assets/javascripts/client.js"></script>
       
     
   </body>
