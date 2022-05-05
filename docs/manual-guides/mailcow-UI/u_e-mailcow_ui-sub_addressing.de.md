@@ -1,7 +1,7 @@
 Mailbox-Nutzer können ihre Mailadresse wie in "me+facebook@example.org" markieren. Sie können die Tag-Behandlung im **mailcow UI** Panel (für den Benutzer) unter `Mailbox > Einstellungen` kontrollieren.
 ![mailcow mail tagging settings](../../assets/images/manual-guides/mailcow-tagging.png)
 
-*`Sub-Adressierung` (RFC 5233) oder `Plus-Adressierung` auch als Tagging bekannt (nicht zu verwechseln mit [Tags](../u_e-mailcow_ui-tags.md))*
+*`Sub-Adressierung` (RFC 5233) oder `Plus-Adressierung` auch als Tagging bekannt (nicht zu verwechseln mit [Tags](../mailcow-UI/u_e-mailcow_ui-tags.md))*
 
 
 ### Verfügbare Aktionen

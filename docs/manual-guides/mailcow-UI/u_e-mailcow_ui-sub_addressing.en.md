@@ -1,7 +1,7 @@
 Mailbox users can tag their mail address like in `me+facebook@example.org`. They can control the tag handling in the users **mailcow UI** panel under `Mailbox > Settings`.
 ![mailcow mail tagging settings](../../assets/images/manual-guides/mailcow-tagging.png)
 
-*`sub-addressing` (RFC 5233) or `plus addressing` also known as tagging (do not mix with [Tags](../u_e-mailcow_ui-tags.md))*
+*`sub-addressing` (RFC 5233) or `plus addressing` also known as tagging (do not mix with [Tags](../mailcow-UI/u_e-mailcow_ui-tags.md))*
 
 
 ### Available Actions
