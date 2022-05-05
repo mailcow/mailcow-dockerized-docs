@@ -27,6 +27,9 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 # - Starten Sie mailcow nicht, nachdem Sie ein Update durchgeführt haben
 ./update.sh --skip-start
 
+# - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
+./update.sh --skip-ping-check
+
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
 ./update.sh --force
 
@@ -70,6 +73,8 @@ docker-compose up -d
 
 Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens `pre_commit_hook.sh` und `post_commit_hook.sh` zu Ihrem mailcows-Root-Verzeichnis hinzufügen. Siehe [hier](../manual-guides/u_e-update-hooks.md) für weitere Details.
 
-## Fußnoten
+## Update-Zyklus
 
-- Wir planen einen monatlichen Release-Zyklus für Updates ein.
+- Wir planen an jedem ersten Dienstag eines Monats ein neues Hauptupdate zu veröffentlichen.
+- Die Updates sind wie folgt nummeriert: `JJJJ-MM` (Beispiel: `2022-05`).
+- Fehlerkorrekturen eines Hauptupdates werden bei uns als "Revisionen" wie a,b,c (Beispiele: `2022-05a`, `2022-05b` usw.) erscheinen.

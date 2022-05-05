@@ -27,6 +27,9 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 # - Do not start mailcow after applying an update
 ./update.sh --skip-start
 
+# - Skip ICMP Check to public DNS resolvers (Use it only if you´ve blocked any ICMP Connections to your mailcow machine)
+./update.sh --skip-ping-check
+
 # - Force update (unattended, but unsupported, use at own risk)
 ./update.sh --force
 
@@ -70,6 +73,8 @@ docker-compose up -d
 
 You can hook into the update mechanism by adding scripts called `pre_commit_hook.sh` and `post_commit_hook.sh` to your mailcows root directory. See [this](../manual-guides/u_e-update-hooks.md) for more details.
 
-## Footnotes
+## Update Cycle
 
-- We schedule a monthly release cycle for updates.
+- We schedule a monthly release cycle for a major update at the first tuesday of the month.
+- The releases are numbered like this: `YYYY-MM` (e.g. `2022-05`)
+- Fixes for a main Update will be stated as "Revisions" like a,b,c (e.g. `2022-05a`, `2022-05b` etc.)
