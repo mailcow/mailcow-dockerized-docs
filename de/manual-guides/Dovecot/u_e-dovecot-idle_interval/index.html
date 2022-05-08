@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2490,8 +2490,7 @@
 <h3 id="konfiguration-andern">Konfiguration ändern<a class="headerlink" href="#konfiguration-andern" title="Permanent link">&para;</a></h3>
 <p>Erstellen Sie eine neue Datei <code>data/conf/dovecot/extra.conf</code> (oder bearbeiten Sie sie, falls sie bereits existiert).
 Fügen Sie die Einstellung ein, gefolgt von dem neuen Wert. Um zum Beispiel das Intervall auf 5 Minuten zu setzen, können Sie Folgendes eingeben:</p>
-<div class="highlight"><pre><span></span><code>imap_idle_notify_interval = 5 mins
-</code></pre></div>
+<p><code>imap_idle_notify_interval = 5 mins</code></p>
 <p>29 Minuten ist der maximale Wert, den der <a href="https://tools.ietf.org/html/rfc2177">entsprechende RFC</a> erlaubt.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2499,13 +2498,11 @@ Fügen Sie die Einstellung ein, gefolgt von dem neuen Wert. Um zum Beispiel das 
 </div>
 <h3 id="dovecot-neu-laden">Dovecot neu laden<a class="headerlink" href="#dovecot-neu-laden" title="Permanent link">&para;</a></h3>
 <p>Nun laden Sie Dovecot neu:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot reload
-</code></pre></div>
+<p><code>docker-compose exec dovecot-mailcow dovecot reload</code></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Sie können den Wert dieser Einstellung überprüfen mit 
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
-</code></pre></div>
+<code>docker-compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"</code>
 Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn geändert haben, sollten Sie den neuen Wert sehen.</p>
 </div>
 
@@ -2627,7 +2624,7 @@ Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn g
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

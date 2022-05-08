@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/post_installation/firststeps-logging/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -571,6 +571,33 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-rsyslog-only" class="md-nav__link">
+    For Rsyslog only:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-move-local3-input-to-varlogmailcowlog-and-stop-processing-create-a-file-etcrsyslogddockerconf" class="md-nav__link">
+    To move local3 input to /var/log/mailcow.log and stop processing, create a file "/etc/rsyslog.d/docker.conf":
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-rsyslog-afterwards" class="md-nav__link">
+    Restart rsyslog afterwards.
+  </a>
+  
+    <nav class="md-nav" aria-label="Restart rsyslog afterwards.">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#via-daemonjson-globally" class="md-nav__link">
@@ -2444,6 +2471,33 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-rsyslog-only" class="md-nav__link">
+    For Rsyslog only:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-move-local3-input-to-varlogmailcowlog-and-stop-processing-create-a-file-etcrsyslogddockerconf" class="md-nav__link">
+    To move local3 input to /var/log/mailcow.log and stop processing, create a file "/etc/rsyslog.d/docker.conf":
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-rsyslog-afterwards" class="md-nav__link">
+    Restart rsyslog afterwards.
+  </a>
+  
+    <nav class="md-nav" aria-label="Restart rsyslog afterwards.">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#via-daemonjson-globally" class="md-nav__link">
     via daemon.json (globally)
@@ -2474,8 +2528,6 @@
 
 
 
-  <h1>Logging</h1>
-
 <p>Logging in mailcow: dockerized consists of multiple stages, but is, after all, much more flexible and easier to integrate into a logging daemon than before.</p>
 <p>In Docker the containerized application (PID 1) writes its output to stdout. For real one-application containers this works just fine.
 Run <code>docker-compose logs --help</code> to learn more. </p>
@@ -2494,68 +2546,60 @@ the ability to read logs from the UI or ban suspicious clients with netfilter-ma
 <h4 id="via-docker-composeoverrideyml">Via docker-compose.override.yml<a class="headerlink" href="#via-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Here is the good news: Since Docker has some great logging drivers, you can integrate mailcow: dockerized into your existing logging environment with ease.</p>
 <p>Create a <code>docker-compose.override.yml</code> and add, for example, this block to use the "gelf" logging plugin for <code>postfix-mailcow</code>:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+<p><code>version: '2.1'
 services:
   postfix-mailcow: # or any other
     logging:
-      driver: &quot;gelf&quot;
+      driver: "gelf"
       options:
-        gelf-address: &quot;udp://graylog:12201&quot;
-</code></pre></div>
+        gelf-address: "udp://graylog:12201"</code></p>
 <p>Another example for <strong>Syslog</strong>:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-services:
-
-  postfix-mailcow: # or any other
+<p>```
+version: '2.1'
+services:</p>
+<p>postfix-mailcow: # or any other
     logging:
-      driver: &quot;syslog&quot;
+      driver: "syslog"
       options:
-        syslog-address: &quot;udp://127.0.0.1:514&quot;
-        syslog-facility: &quot;local3&quot;
-
-  dovecot-mailcow: # or any other
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-facility: "local3"</p>
+<p>dovecot-mailcow: # or any other
     logging:
-      driver: &quot;syslog&quot;
+      driver: "syslog"
       options:
-        syslog-address: &quot;udp://127.0.0.1:514&quot;
-        syslog-facility: &quot;local3&quot;
-
-  rspamd-mailcow: # or any other
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-facility: "local3"</p>
+<p>rspamd-mailcow: # or any other
     logging:
-      driver: &quot;syslog&quot;
+      driver: "syslog"
       options:
-        syslog-address: &quot;udp://127.0.0.1:514&quot;
-        syslog-facility: &quot;local3&quot;
-
-# For Rsyslog only:
-# To move local3 input to /var/log/mailcow.log and stop processing, create a file &quot;/etc/rsyslog.d/docker.conf&quot;:
-
-local3.*        /var/log/mailcow.logs
-&amp; ~
-
-# Restart rsyslog afterwards.
-</code></pre></div>
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-facility: "local3"</p>
+<h1 id="for-rsyslog-only">For Rsyslog only:<a class="headerlink" href="#for-rsyslog-only" title="Permanent link">&para;</a></h1>
+<h1 id="to-move-local3-input-to-varlogmailcowlog-and-stop-processing-create-a-file-etcrsyslogddockerconf">To move local3 input to /var/log/mailcow.log and stop processing, create a file "/etc/rsyslog.d/docker.conf":<a class="headerlink" href="#to-move-local3-input-to-varlogmailcowlog-and-stop-processing-create-a-file-etcrsyslogddockerconf" title="Permanent link">&para;</a></h1>
+<p>local3.*        /var/log/mailcow.logs
+&amp; ~</p>
+<h1 id="restart-rsyslog-afterwards">Restart rsyslog afterwards.<a class="headerlink" href="#restart-rsyslog-afterwards" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <h4 id="via-daemonjson-globally">via daemon.json (globally)<a class="headerlink" href="#via-daemonjson-globally" title="Permanent link">&para;</a></h4>
 <p>If you want to <strong>change the logging driver globally</strong>, edit Dockers daemon configuration file <code>/etc/docker/daemon.json</code> and restart the Docker service:</p>
-<div class="highlight"><pre><span></span><code>{
+<p><code>{
 ...
-  &quot;log-driver&quot;: &quot;gelf&quot;,
-  &quot;log-opts&quot;: {
-    &quot;gelf-address&quot;: &quot;udp://graylog:12201&quot;
+  "log-driver": "gelf",
+  "log-opts": {
+    "gelf-address": "udp://graylog:12201"
   }
 ...
-}
-</code></pre></div>
+}</code></p>
 <p>For Syslog:</p>
-<div class="highlight"><pre><span></span><code>{
+<p><code>{
 ...
-  &quot;log-driver&quot;: &quot;syslog&quot;,
-  &quot;log-opts&quot;: {
-    &quot;syslog-address&quot;: &quot;udp://1.2.3.4:514&quot;
+  "log-driver": "syslog",
+  "log-opts": {
+    "syslog-address": "udp://1.2.3.4:514"
   }
 ...
-}
-</code></pre></div>
+}</code></p>
 <p>Restart the Docker daemon and run <code>docker-compose down &amp;&amp; docker-compose up -d</code> to recreate the containers with the new logging driver.</p>
 
   <hr>
@@ -2676,7 +2720,7 @@ local3.*        /var/log/mailcow.logs
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../assets/javascripts/client.js"></script>
       

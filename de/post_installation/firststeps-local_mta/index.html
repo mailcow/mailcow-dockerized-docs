@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-local_mta/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#smtp-inet-n-smtpd" class="md-skip">
+          Zum Inhalt
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -507,6 +512,8 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
+        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2354,6 +2361,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2371,19 +2380,17 @@
 
 
 
-  <h1>Lokaler MTA auf Docker-Host</h1>
-
 <p>Die einfachste Möglichkeit wäre, den Listener an Port 25/tcp zu deaktivieren.</p>
 <p><strong>Postfix</strong>-Benutzer deaktivieren den Listener, indem sie die folgende Zeile (beginnend mit <code>smtp</code> oder <code>25</code>) in <code>/etc/postfix/master.cf</code> auskommentieren:
-<div class="highlight"><pre><span></span><code>#smtp      inet  n       -       -       -       -       smtpd
-</code></pre></div></p>
+```</p>
+<h1 id="smtp-inet-n-smtpd">smtp      inet  n       -       -       -       -       smtpd<a class="headerlink" href="#smtp-inet-n-smtpd" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <p>Außerdem, um über eine Dockerized mailcow weiterzuleiten, sollten Sie <code>172.22.1.1</code> als Relayhost hinzufügen und das Docker-Interface aus "inet_interfaces" entfernen:</p>
-<div class="highlight"><pre><span></span><code>postconf -e &#39;relayhost = 172.22.1.1&#39;
-postconf -e &quot;mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128&quot;
-postconf -e &quot;inet_interfaces = loopback-only&quot;
-postconf -e &quot;relay_transport = relay&quot;
-postconf -e &quot;default_transport = smtp&quot;
-</code></pre></div>
+<p><code>postconf -e 'relayhost = 172.22.1.1'
+postconf -e "mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
+postconf -e "inet_interfaces = loopback-only"
+postconf -e "relay_transport = relay"
+postconf -e "default_transport = smtp"</code></p>
 <p><strong>Jetzt ist es wichtig</strong>, dass Sie nicht denselben FQDN in <code>myhostname</code> haben, den Sie für Ihre mailcow verwenden. Prüfen Sie Ihre lokale (nicht-Docker) Postfix' main.cf auf <code>myhostname</code> und setzen Sie ihn auf etwas anderes, zum Beispiel <code>local.my.fqdn.tld</code>.</p>
 <p>"172.22.1.1" ist das von mailcow erstellte Netzwerk-Gateway in Docker.
 Das Relaying über diese Schnittstelle ist notwendig (anstatt - zum Beispiel - direkt über ${MAILCOW_HOSTNAME}), um über ein bekanntes internes Netzwerk weiterzuleiten.</p>
@@ -2507,7 +2514,7 @@ Das Relaying über diese Schnittstelle ist notwendig (anstatt - zum Beispiel - d
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/post_installation/firststeps-ip_bindings/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -530,9 +530,64 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#for-technical-reasons-http-bindings-are-a-bit-different-from-other-service-bindings" class="md-nav__link">
+    For technical reasons, http bindings are a bit different from other service bindings.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#you-will-find-the-following-variables-separated-by-a-bind-address-and-its-port" class="md-nav__link">
+    You will find the following variables, separated by a bind address and its port:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-http_bind1234" class="md-nav__link">
+    Example: HTTP_BIND=1.2.3.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-services-are-bound-by-using-the-following-format" class="md-nav__link">
+    Other services are bound by using the following format:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smtp_port123425-will-bind-smtp-to-the-ip-1234-on-port-25" class="md-nav__link">
+    SMTP_PORT=1.2.3.4:25 will bind SMTP to the IP 1.2.3.4 on port 25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-specifying-an-ipv4-address-will-skip-all-ipv6-bindings-since-docker-20x" class="md-nav__link">
+    Important! Specifying an IPv4 address will skip all IPv6 bindings since Docker 20.x.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#doveadm-sql-as-well-as-solr-are-bound-to-local-ports-only-please-do-not-change-that-unless-you-know-what-you-are-doing" class="md-nav__link">
+    doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.
+  </a>
+  
+    <nav class="md-nav" aria-label="doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ipv6-binding" class="md-nav__link">
     IPv6 binding
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2410,9 +2465,64 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#for-technical-reasons-http-bindings-are-a-bit-different-from-other-service-bindings" class="md-nav__link">
+    For technical reasons, http bindings are a bit different from other service bindings.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#you-will-find-the-following-variables-separated-by-a-bind-address-and-its-port" class="md-nav__link">
+    You will find the following variables, separated by a bind address and its port:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-http_bind1234" class="md-nav__link">
+    Example: HTTP_BIND=1.2.3.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-services-are-bound-by-using-the-following-format" class="md-nav__link">
+    Other services are bound by using the following format:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smtp_port123425-will-bind-smtp-to-the-ip-1234-on-port-25" class="md-nav__link">
+    SMTP_PORT=1.2.3.4:25 will bind SMTP to the IP 1.2.3.4 on port 25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-specifying-an-ipv4-address-will-skip-all-ipv6-bindings-since-docker-20x" class="md-nav__link">
+    Important! Specifying an IPv4 address will skip all IPv6 bindings since Docker 20.x.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#doveadm-sql-as-well-as-solr-are-bound-to-local-ports-only-please-do-not-change-that-unless-you-know-what-you-are-doing" class="md-nav__link">
+    doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.
+  </a>
+  
+    <nav class="md-nav" aria-label="doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ipv6-binding" class="md-nav__link">
     IPv6 binding
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2434,29 +2544,25 @@
 
 
 
-  <h1>IP bindings</h1>
-
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Changing the binding does not affect source NAT. See <a href="../firststeps-snat/">SNAT</a> for required steps.</p>
 </div>
 <h2 id="ipv4-binding">IPv4 binding<a class="headerlink" href="#ipv4-binding" title="Permanent link">&para;</a></h2>
 <p>To adjust one or multiple IPv4 bindings, open <code>mailcow.conf</code> and edit one, multiple or all variables as per your needs:</p>
-<div class="highlight"><pre><span></span><code># For technical reasons, http bindings are a bit different from other service bindings.
-# You will find the following variables, separated by a bind address and its port:
-# Example: HTTP_BIND=1.2.3.4
-
-HTTP_PORT=80
+<p>```</p>
+<h1 id="for-technical-reasons-http-bindings-are-a-bit-different-from-other-service-bindings">For technical reasons, http bindings are a bit different from other service bindings.<a class="headerlink" href="#for-technical-reasons-http-bindings-are-a-bit-different-from-other-service-bindings" title="Permanent link">&para;</a></h1>
+<h1 id="you-will-find-the-following-variables-separated-by-a-bind-address-and-its-port">You will find the following variables, separated by a bind address and its port:<a class="headerlink" href="#you-will-find-the-following-variables-separated-by-a-bind-address-and-its-port" title="Permanent link">&para;</a></h1>
+<h1 id="example-http_bind1234">Example: HTTP_BIND=1.2.3.4<a class="headerlink" href="#example-http_bind1234" title="Permanent link">&para;</a></h1>
+<p>HTTP_PORT=80
 HTTP_BIND=
 HTTPS_PORT=443
-HTTPS_BIND=
-
-# Other services are bound by using the following format:
-# SMTP_PORT=1.2.3.4:25 will bind SMTP to the IP 1.2.3.4 on port 25
-# Important! Specifying an IPv4 address will skip all IPv6 bindings since Docker 20.x.
-# doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.
-
-SMTP_PORT=25
+HTTPS_BIND=</p>
+<h1 id="other-services-are-bound-by-using-the-following-format">Other services are bound by using the following format:<a class="headerlink" href="#other-services-are-bound-by-using-the-following-format" title="Permanent link">&para;</a></h1>
+<h1 id="smtp_port123425-will-bind-smtp-to-the-ip-1234-on-port-25">SMTP_PORT=1.2.3.4:25 will bind SMTP to the IP 1.2.3.4 on port 25<a class="headerlink" href="#smtp_port123425-will-bind-smtp-to-the-ip-1234-on-port-25" title="Permanent link">&para;</a></h1>
+<h1 id="important-specifying-an-ipv4-address-will-skip-all-ipv6-bindings-since-docker-20x">Important! Specifying an IPv4 address will skip all IPv6 bindings since Docker 20.x.<a class="headerlink" href="#important-specifying-an-ipv4-address-will-skip-all-ipv6-bindings-since-docker-20x" title="Permanent link">&para;</a></h1>
+<h1 id="doveadm-sql-as-well-as-solr-are-bound-to-local-ports-only-please-do-not-change-that-unless-you-know-what-you-are-doing">doveadm, SQL as well as Solr are bound to local ports only, please do not change that, unless you know what you are doing.<a class="headerlink" href="#doveadm-sql-as-well-as-solr-are-bound-to-local-ports-only-please-do-not-change-that-unless-you-know-what-you-are-doing" title="Permanent link">&para;</a></h1>
+<p>SMTP_PORT=25
 SMTPS_PORT=465
 SUBMISSION_PORT=587
 IMAP_PORT=143
@@ -2467,35 +2573,36 @@ SIEVE_PORT=4190
 DOVEADM_PORT=127.0.0.1:19991
 SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
-</code></pre></div>
+```</p>
 <p>To apply your changes, run <code>docker-compose down</code> followed by <code>docker-compose up -d</code>.</p>
 <h2 id="ipv6-binding">IPv6 binding<a class="headerlink" href="#ipv6-binding" title="Permanent link">&para;</a></h2>
 <p>Changing IPv6 bindings is different from IPv4. Again, this has a technical background.</p>
 <p>A <code>docker-compose.override.yml</code> file will be used instead of editing the <code>docker-compose.yml</code> file directly. This is to maintain updatability, as the <code>docker-compose.yml</code> file gets updated regularly and your changes will most likely be overwritten.</p>
 <p>Edit to create a file  <code>docker-compose.override.yml</code> with the following content. Its content will be merged with the productive <code>docker-compose.yml</code> file.</p>
 <p>An imaginary IPv6 <strong>2a00:dead:beef::abc</strong> is given. The first suffix <code>:PORT1</code> defines the external port, while the second suffix <code>:PORT2</code> routes to the corresponding port inside the container and must not be changed.</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-services:
+<p>```
+version: '2.1'
+services:</p>
+<pre><code>dovecot-mailcow:
+  ports:
+    - '2a00:dead:beef::abc:143:143'
+    - '2a00:dead:beef::abc:993:993'
+    - '2a00:dead:beef::abc:110:110'
+    - '2a00:dead:beef::abc:995:995'
+    - '2a00:dead:beef::abc:4190:4190'
 
-    dovecot-mailcow:
-      ports:
-        - &#39;2a00:dead:beef::abc:143:143&#39;
-        - &#39;2a00:dead:beef::abc:993:993&#39;
-        - &#39;2a00:dead:beef::abc:110:110&#39;
-        - &#39;2a00:dead:beef::abc:995:995&#39;
-        - &#39;2a00:dead:beef::abc:4190:4190&#39;
+postfix-mailcow:
+  ports:
+    - '2a00:dead:beef::abc:25:25'
+    - '2a00:dead:beef::abc:465:465'
+    - '2a00:dead:beef::abc:587:587'
 
-    postfix-mailcow:
-      ports:
-        - &#39;2a00:dead:beef::abc:25:25&#39;
-        - &#39;2a00:dead:beef::abc:465:465&#39;
-        - &#39;2a00:dead:beef::abc:587:587&#39;
-
-    nginx-mailcow:
-      ports:
-        - &#39;2a00:dead:beef::abc:80:80&#39;
-        - &#39;2a00:dead:beef::abc:443:443&#39;
-</code></pre></div>
+nginx-mailcow:
+  ports:
+    - '2a00:dead:beef::abc:80:80'
+    - '2a00:dead:beef::abc:443:443'
+</code></pre>
+<p>```</p>
 <p>To apply your changes, run <code>docker-compose down</code> followed by <code>docker-compose up -d</code>.</p>
 
   <hr>
@@ -2616,7 +2723,7 @@ services:
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/troubleshooting/debug-mysql_aria/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -831,6 +831,41 @@
         <li class="md-nav__item">
   <a href="#mariadb-aria-recovery-after-crash" class="md-nav__link">
     MariaDB: Aria recovery after crash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stop-the-stack-dont-run-down" class="md-nav__link">
+    Stop the stack, don't run "down"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-a-bash-in-the-stopped-container-as-user-mysql" class="md-nav__link">
+    Run a bash in the stopped container as user mysql
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cd-to-the-sql-data-directory" class="md-nav__link">
+    cd to the SQL data directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-aria_chk" class="md-nav__link">
+    Run aria_chk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-aria-log-files" class="md-nav__link">
+    Delete aria log files
   </a>
   
 </li>
@@ -2402,6 +2437,41 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#stop-the-stack-dont-run-down" class="md-nav__link">
+    Stop the stack, don't run "down"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-a-bash-in-the-stopped-container-as-user-mysql" class="md-nav__link">
+    Run a bash in the stopped container as user mysql
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cd-to-the-sql-data-directory" class="md-nav__link">
+    cd to the SQL data directory
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-aria_chk" class="md-nav__link">
+    Run aria_chk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-aria-log-files" class="md-nav__link">
+    Delete aria log files
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2420,23 +2490,22 @@
 
 
 
-  <h1>Recover crashed Aria storage engine</h1>
-
 <h2 id="mariadb-aria-recovery-after-crash">MariaDB: Aria recovery after crash<a class="headerlink" href="#mariadb-aria-recovery-after-crash" title="Permanent link">&para;</a></h2>
 <p>If your server crashed and MariaDB logs an error similar to <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code> you may want to try the following to recover the database to a healthy state:</p>
 <p>Start the stack and wait until mysql-mailcow begins to report a restarting state. Check by running <code>docker-compose ps</code>.</p>
 <p>Now run the following commands:</p>
-<div class="highlight"><pre><span></span><code># Stop the stack, don&#39;t run &quot;down&quot;
-docker-compose stop
-# Run a bash in the stopped container as user mysql
-docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
-# cd to the SQL data directory
-cd /var/lib/mysql
-# Run aria_chk
-aria_chk --check --force */*.MAI
-# Delete aria log files
-rm aria_log.*
-</code></pre></div>
+<p>```</p>
+<h1 id="stop-the-stack-dont-run-down">Stop the stack, don't run "down"<a class="headerlink" href="#stop-the-stack-dont-run-down" title="Permanent link">&para;</a></h1>
+<p>docker-compose stop</p>
+<h1 id="run-a-bash-in-the-stopped-container-as-user-mysql">Run a bash in the stopped container as user mysql<a class="headerlink" href="#run-a-bash-in-the-stopped-container-as-user-mysql" title="Permanent link">&para;</a></h1>
+<p>docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql bash"' mysql-mailcow</p>
+<h1 id="cd-to-the-sql-data-directory">cd to the SQL data directory<a class="headerlink" href="#cd-to-the-sql-data-directory" title="Permanent link">&para;</a></h1>
+<p>cd /var/lib/mysql</p>
+<h1 id="run-aria_chk">Run aria_chk<a class="headerlink" href="#run-aria_chk" title="Permanent link">&para;</a></h1>
+<p>aria_chk --check --force <em>/</em>.MAI</p>
+<h1 id="delete-aria-log-files">Delete aria log files<a class="headerlink" href="#delete-aria-log-files" title="Permanent link">&para;</a></h1>
+<p>rm aria_log.*
+```</p>
 <p>Now run <code>docker-compose down</code> followed by <code>docker-compose up -d</code>.</p>
 
   <hr>
@@ -2557,7 +2626,7 @@ rm aria_log.*
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Nginx/u_e-nginx_custom/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2472,9 +2472,9 @@
 <h2 id="neue-website">Neue Website<a class="headerlink" href="#neue-website" title="Permanent link">&para;</a></h2>
 <p>Um persistente (über Updates) Sites zu erstellen, die von mailcow: dockerized gehostet werden, muss eine neue Site-Konfiguration in <code>data/conf/nginx/</code> platziert werden:</p>
 <p>Eine gute Vorlage, um damit zu beginnen:</p>
-<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>server {
+<p><code>nano data/conf/nginx/my_custom_site.conf</code></p>
+<p>``` hl_lines="16"
+server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -2489,29 +2489,27 @@
   # Location: data/web
   root /web;
   # Location: data/web/mysite.com
-<span class="hll">  #root /web/mysite.com
-</span>  include /etc/nginx/conf.d/listen_plain.active;
+  #root /web/mysite.com
+  include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name mysite.example.org;
-  server_tokens off;
-
-  # This allows acme to be validated even with a different web root
+  server_tokens off;</p>
+<p># This allows acme to be validated even with a different web root
   location ^~ /.well-known/acme-challenge/ {
-    default_type &quot;text/plain&quot;;
+    default_type "text/plain";
     rewrite /.well-known/acme-challenge/(.*) /$1 break;
     root /web/.well-known/acme-challenge/;
-  }
-
-  if ($scheme = http) {
+  }</p>
+<p>if ($scheme = http) {
     return 301 https://$server_name$request_uri;
   }
 }
-</code></pre></div>
+```</p>
 <h2 id="neue-website-mit-proxy-zu-einem-entfernten-location">Neue Website mit Proxy zu einem entfernten Location<a class="headerlink" href="#neue-website-mit-proxy-zu-einem-entfernten-location" title="Permanent link">&para;</a></h2>
 <p>Ein weiteres Beispiel mit einer Reverse-Proxy-Konfiguration:</p>
-<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>server {
+<p><code>nano data/conf/nginx/my_custom_site.conf</code></p>
+<p>``` hl_lines="16 28"
+server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -2526,20 +2524,17 @@
   root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
-<span class="hll">  server_name example.domain.tld;
-</span>  server_tokens off;
-
-  location ^~ /.well-known/acme-challenge/ {
+  server_name example.domain.tld;
+  server_tokens off;</p>
+<p>location ^~ /.well-known/acme-challenge/ {
     allow all;
-    default_type &quot;text/plain&quot;;
-  }
-
-  if ($scheme = http) {
+    default_type "text/plain";
+  }</p>
+<p>if ($scheme = http) {
     return 301 https://$host$request_uri;
-  }
-
-<span class="hll">  location / {
-</span>    proxy_pass http://service:3000/;
+  }</p>
+<p>location / {
+    proxy_pass <a href="http://service:3000/">http://service:3000/</a>;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -2547,18 +2542,16 @@
     client_max_body_size 0;
   }
 }
-</code></pre></div>
+```</p>
 <h2 id="konfig-erweiterung-in-mailcows-nginx">Konfig-Erweiterung in mailcows Nginx<a class="headerlink" href="#konfig-erweiterung-in-mailcows-nginx" title="Permanent link">&para;</a></h2>
 <p>Der Dateiname, der für eine neue Site verwendet wird, ist nicht wichtig, solange der Dateiname eine .conf-Erweiterung trägt.</p>
 <p>Es ist auch möglich, die Konfiguration der Standarddatei <code>site.conf</code> Datei zu erweitern:</p>
-<div class="highlight"><pre><span></span><code>nano data/conf/nginx/site.my_content.custom
-</code></pre></div>
+<p><code>nano data/conf/nginx/site.my_content.custom</code></p>
 <p>Dieser Dateiname muss keine ".conf"-Erweiterung haben, sondern folgt dem Muster <code>site.*.custom</code>, wobei <code>*</code> ein eigener Name ist.</p>
 <p>Wenn PHP in eine benutzerdefinierte Site eingebunden werden soll, verwenden Sie bitte den PHP-FPM-Listener auf phpfpm:9002 oder erstellen Sie einen neuen Listener in <code>data/conf/phpfpm/php-fpm.d/pools.conf</code>.</p>
 <p>Starten Sie Nginx neu (und PHP-FPM, falls ein neuer Listener erstellt wurde):</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart nginx-mailcow
-docker-compose restart php-fpm-mailcow
-</code></pre></div>
+<p><code>docker-compose restart nginx-mailcow
+docker-compose restart php-fpm-mailcow</code></p>
 
   <hr>
 <div class="md-source-file">
@@ -2678,7 +2671,7 @@ docker-compose restart php-fpm-mailcow
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

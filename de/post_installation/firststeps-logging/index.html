@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-logging/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -571,6 +571,33 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nur-fur-rsyslog" class="md-nav__link">
+    Nur für Rsyslog:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-die-local3-eingabe-nach-varlogmailcowlog-zu-verschieben-und-die-verarbeitung-zu-beenden-erstellen-sie-eine-datei-etcrsyslogddockerconf" class="md-nav__link">
+    Um die local3-Eingabe nach /var/log/mailcow.log zu verschieben und die Verarbeitung zu beenden, erstellen Sie eine Datei "/etc/rsyslog.d/docker.conf":
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#danach-rsyslog-neu-starten" class="md-nav__link">
+    Danach rsyslog neu starten.
+  </a>
+  
+    <nav class="md-nav" aria-label="Danach rsyslog neu starten.">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#uber-daemonjson-global" class="md-nav__link">
@@ -2444,6 +2471,33 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nur-fur-rsyslog" class="md-nav__link">
+    Nur für Rsyslog:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-die-local3-eingabe-nach-varlogmailcowlog-zu-verschieben-und-die-verarbeitung-zu-beenden-erstellen-sie-eine-datei-etcrsyslogddockerconf" class="md-nav__link">
+    Um die local3-Eingabe nach /var/log/mailcow.log zu verschieben und die Verarbeitung zu beenden, erstellen Sie eine Datei "/etc/rsyslog.d/docker.conf":
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#danach-rsyslog-neu-starten" class="md-nav__link">
+    Danach rsyslog neu starten.
+  </a>
+  
+    <nav class="md-nav" aria-label="Danach rsyslog neu starten.">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#uber-daemonjson-global" class="md-nav__link">
     Über daemon.json (global)
@@ -2474,8 +2528,6 @@
 
 
 
-  <h1>Logging</h1>
-
 <p>Das Logging in mailcow: dockerized besteht aus mehreren Stufen, ist aber immerhin wesentlich flexibler und einfacher in einen Logging-Daemon zu integrieren als bisher.</p>
 <p>In Docker schreibt die containerisierte Anwendung (PID 1) ihre Ausgabe auf stdout. Für echte Ein-Anwendungs-Container funktioniert das sehr gut.
 Führen Sie <code>docker-compose logs --help</code> aus, um mehr zu erfahren. </p>
@@ -2494,68 +2546,60 @@ ohne die Fähigkeit zu verlieren, Logs von der UI zu lesen oder verdächtige Cli
 <h4 id="uber-docker-composeoverrideyml">Über docker-compose.override.yml<a class="headerlink" href="#uber-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Hier ist die gute Nachricht: Da Docker einige großartige Logging-Treiber hat, können Sie mailcow: dockerized mit Leichtigkeit in Ihre bestehende Logging-Umgebung integrieren.</p>
 <p>Erstellen Sie eine <code>docker-compose.override.yml</code> und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für <code>postfix-mailcow</code> zu verwenden:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+<p><code>version: '2.1'
 services:
   postfix-mailcow: # oder ein anderer
     logging:
-      driver: &quot;gelf&quot;
+      driver: "gelf"
       options:
-        gelf-address: &quot;udp://graylog:12201&quot;
-</code></pre></div>
+        gelf-address: "udp://graylog:12201"</code></p>
 <p>Ein weiteres Beispiel für <strong>Syslog</strong>:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-services:
-
-  postfix-mailcow: # oder ein anderer
+<p>```
+version: '2.1'
+services:</p>
+<p>postfix-mailcow: # oder ein anderer
     logging:
-      driver: &quot;syslog&quot;
+      driver: "syslog"
       options:
-        syslog-address: &quot;udp://127.0.0.1:514&quot;
-        syslog-facility: &quot;local3&quot;
-
-  dovecot-mailcow: # oder ein anderer
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-facility: "local3"</p>
+<p>dovecot-mailcow: # oder ein anderer
     logging:
-      driver: &quot;syslog&quot;
+      driver: "syslog"
       options:
-        syslog-address: &quot;udp://127.0.0.1:514&quot;
-        syslog-facility: &quot;local3&quot;
-
-  rspamd-mailcow: # oder ein anderer
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-facility: "local3"</p>
+<p>rspamd-mailcow: # oder ein anderer
     logging:
-      driver: &quot;syslog&quot;
+      driver: "syslog"
       options:
-        syslog-address: &quot;udp://127.0.0.1:514&quot;
-        syslog-facility: &quot;local3&quot;
-
-# Nur für Rsyslog:
-# Um die local3-Eingabe nach /var/log/mailcow.log zu verschieben und die Verarbeitung zu beenden, erstellen Sie eine Datei &quot;/etc/rsyslog.d/docker.conf&quot;:
-
-local3.* /var/log/mailcow.logs
-&amp; ~
-
-# Danach rsyslog neu starten.
-</code></pre></div>
+        syslog-address: "udp://127.0.0.1:514"
+        syslog-facility: "local3"</p>
+<h1 id="nur-fur-rsyslog">Nur für Rsyslog:<a class="headerlink" href="#nur-fur-rsyslog" title="Permanent link">&para;</a></h1>
+<h1 id="um-die-local3-eingabe-nach-varlogmailcowlog-zu-verschieben-und-die-verarbeitung-zu-beenden-erstellen-sie-eine-datei-etcrsyslogddockerconf">Um die local3-Eingabe nach /var/log/mailcow.log zu verschieben und die Verarbeitung zu beenden, erstellen Sie eine Datei "/etc/rsyslog.d/docker.conf":<a class="headerlink" href="#um-die-local3-eingabe-nach-varlogmailcowlog-zu-verschieben-und-die-verarbeitung-zu-beenden-erstellen-sie-eine-datei-etcrsyslogddockerconf" title="Permanent link">&para;</a></h1>
+<p>local3.* /var/log/mailcow.logs
+&amp; ~</p>
+<h1 id="danach-rsyslog-neu-starten">Danach rsyslog neu starten.<a class="headerlink" href="#danach-rsyslog-neu-starten" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <h4 id="uber-daemonjson-global">Über daemon.json (global)<a class="headerlink" href="#uber-daemonjson-global" title="Permanent link">&para;</a></h4>
 <p>Wenn Sie den Logging-Treiber <strong>global</strong> ändern wollen, editieren Sie die Konfigurationsdatei des Docker-Daemons <code>/etc/docker/daemon.json</code> und starten Sie den Docker-Dienst neu:</p>
-<div class="highlight"><pre><span></span><code>{
+<p><code>{
 ...
-  &quot;log-driver&quot;: &quot;gelf&quot;,
-  &quot;log-opts&quot;: {
-    &quot;gelf-address&quot;: &quot;udp://graylog:12201&quot;
+  "log-driver": "gelf",
+  "log-opts": {
+    "gelf-address": "udp://graylog:12201"
   }
 ...
-}
-</code></pre></div>
+}</code></p>
 <p>Für Syslog:</p>
-<div class="highlight"><pre><span></span><code>{
+<p><code>{
 ...
-  &quot;log-driver&quot;: &quot;syslog&quot;,
-  &quot;log-opts&quot;: {
-    &quot;syslog-address&quot;: &quot;udp://1.2.3.4:514&quot;
+  "log-driver": "syslog",
+  "log-opts": {
+    "syslog-address": "udp://1.2.3.4:514"
   }
 ...
-}
-</code></pre></div>
+}</code></p>
 <p>Starten Sie den Docker-Daemon neu und führen Sie <code>docker-compose down &amp;&amp; docker-compose up -d</code> aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.</p>
 
   <hr>
@@ -2676,7 +2720,7 @@ local3.* /var/log/mailcow.logs
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

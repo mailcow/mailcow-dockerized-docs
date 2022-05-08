@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-mailpiler_integration/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2484,11 +2484,11 @@
 </div>
 <h2 id="the-problem-to-solve">The problem to solve<a class="headerlink" href="#the-problem-to-solve" title="Permanent link">&para;</a></h2>
 <p>mailpiler offers the authentication based on IMAP, for example:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;ENABLE_IMAP_AUTH&#39;] = 1;</span>
-<span class="x">$config[&#39;IMAP_HOST&#39;] = &#39;mail.example.com&#39;;</span>
-<span class="x">$config[&#39;IMAP_PORT&#39;] =  993;</span>
-<span class="x">$config[&#39;IMAP_SSL&#39;] = true;</span>
-</code></pre></div>
+<p><code>php
+$config['ENABLE_IMAP_AUTH'] = 1;
+$config['IMAP_HOST'] = 'mail.example.com';
+$config['IMAP_PORT'] =  993;
+$config['IMAP_SSL'] = true;</code></p>
 <ul>
 <li>So when you log in using <code>patrik@example.com</code>, you will only see delivered emails sent from or to this specific email address.</li>
 <li>When additional aliases are defined in mailcow, like <code>team@example.com</code>, you won't see emails sent to or from this email address even the fact you're a recipient of mails sent to this alias address.</li>
@@ -2515,19 +2515,19 @@
 <ol>
 <li>
 <p>Set the custom query function of mailpiler and append this to <code>/usr/local/etc/piler/config-site.php</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_API_KEY&#39;] = &#39;YOUR_READONLY_API_KEY&#39;;</span>
-<span class="x">$config[&#39;MAILCOW_SET_REALNAME&#39;] = true; // when not specified, then default is false</span>
-<span class="x">$config[&#39;CUSTOM_EMAIL_QUERY_FUNCTION&#39;] = &#39;query_mailcow_for_email_access&#39;;</span>
-<span class="x">include(&#39;auth-mailcow.php&#39;);</span>
-</code></pre></div>
+<p><code>php
+$config['MAILCOW_API_KEY'] = 'YOUR_READONLY_API_KEY';
+$config['MAILCOW_SET_REALNAME'] = true; // when not specified, then default is false
+$config['CUSTOM_EMAIL_QUERY_FUNCTION'] = 'query_mailcow_for_email_access';
+include('auth-mailcow.php');</code></p>
 <p>You can also change the mailcow hostname, if required:
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_HOST&#39;] = &#39;mail.domain.tld&#39;; // defaults to $config[&#39;IMAP_HOST&#39;]</span>
-</code></pre></div></p>
+<code>php
+$config['MAILCOW_HOST'] = 'mail.domain.tld'; // defaults to $config['IMAP_HOST']</code></p>
 </li>
 <li>
 <p>Download the PHP file with the functions from the <a href="https://github.com/patschi/mailpiler-mailcow-integration">GitHub repo</a>:</p>
-<div class="highlight"><pre><span></span><code>curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
-</code></pre></div>
+<p><code>sh
+curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php</code></p>
 </li>
 <li>
 <p>Done!</p>
@@ -2654,7 +2654,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

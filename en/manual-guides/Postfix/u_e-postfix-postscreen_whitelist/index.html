@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#rules-are-evaluated-in-the-order-as-specified" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1420,6 +1425,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Whitelist IP in Postscreen
@@ -2356,6 +2363,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2373,19 +2382,18 @@
 
 
 
-  <h1>Whitelist IP in Postscreen</h1>
-
 <p>IPs can be removed from Postscreen and therefore <em>also</em> from RBL checks in <code>data/conf/postfix/custom_postscreen_whitelist.cidr</code>.</p>
 <p>Postscreen does multiple checks to identify malicious senders. In most cases you want to whitelist an IP to exclude it from blacklist lookups.</p>
 <p>The format of the file is as follows:</p>
 <p><code>CIDR   ACTION</code></p>
 <p>Where CIDR is a single IP address or IP range in CIDR notation, and action is either "permit" or "reject".</p>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code># Rules are evaluated in the order as specified.
-# Blacklist 192.168.* except 192.168.0.1.
-192.168.0.1          permit
+<p>```</p>
+<h1 id="rules-are-evaluated-in-the-order-as-specified">Rules are evaluated in the order as specified.<a class="headerlink" href="#rules-are-evaluated-in-the-order-as-specified" title="Permanent link">&para;</a></h1>
+<h1 id="blacklist-192168-except-19216801">Blacklist 192.168.* except 192.168.0.1.<a class="headerlink" href="#blacklist-192168-except-19216801" title="Permanent link">&para;</a></h1>
+<p>192.168.0.1          permit
 192.168.0.0/16       reject
-</code></pre></div>
+```</p>
 <p>The file is reloaded on the fly, postfix restart is not required.</p>
 
   <hr>
@@ -2506,7 +2514,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/Unbound/u_e-unbound-fwd/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2444,18 +2444,15 @@
    <strong>Important</strong>: Only DNSSEC validating DNS services will work.</p>
 <h2 id="method-a-unbound">Method A, Unbound<a class="headerlink" href="#method-a-unbound" title="Permanent link">&para;</a></h2>
 <p>Edit <code>data/conf/unbound/unbound.conf</code> and append the following parameters:</p>
-<div class="highlight"><pre><span></span><code>forward-zone:
-  name: &quot;.&quot;
+<p><code>forward-zone:
+  name: "."
   forward-addr: 8.8.8.8 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
-  forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
-</code></pre></div>
+  forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE</code></p>
 <p>Restart Unbound:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
-</code></pre></div>
+<p><code>docker-compose restart unbound-mailcow</code></p>
 <h2 id="method-b-override-file">Method B, Override file<a class="headerlink" href="#method-b-override-file" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .
-</code></pre></div>
+<p><code>cd /opt/mailcow-dockerized
+cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .</code></p>
 <p>Edit <code>docker-compose.override.yml</code> and adjust the IP.</p>
 <p>Run <code>docker-compose down ; docker-compose up -d</code>.</p>
 
@@ -2577,7 +2574,7 @@ cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.over
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

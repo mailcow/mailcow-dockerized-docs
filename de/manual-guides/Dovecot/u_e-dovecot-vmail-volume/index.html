@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Dovecot/u_e-dovecot-vmail-volume/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2470,41 +2470,39 @@
 <p>Neuere Docker-Versionen scheinen sich über bestehende Volumes zu beschweren. Man kann dies vorübergehend beheben, indem man das bestehende Volume entfernt und mailcow mit der Override-Datei startet. Aber es scheint nach einem Neustart problematisch zu sein (muss bestätigt werden).</p>
 </div>
 <p>Ein einfacher, schmutziger, aber stabiler Workaround ist es, mailcow zu stoppen (<code>docker-compose down</code>), <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data</code> zu entfernen und einen neuen Link zu Ihrem entfernten Dateisystem zu erstellen, zum Beispiel:</p>
-<div class="highlight"><pre><span></span><code>mv /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data_backup
-ln -s /mnt/volume-xy/vmail_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data
-</code></pre></div>
+<p><code>mv /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data_backup
+ln -s /mnt/volume-xy/vmail_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data</code></p>
 <p>Starten Sie anschließend mailcow.</p>
 <hr />
 <h2 id="der-alte-weg">Der "alte" Weg<a class="headerlink" href="#der-alte-weg" title="Permanent link">&para;</a></h2>
 <p>Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine <code>docker-compose.override.yml</code> Datei erstellen und den folgenden Inhalt hinzufügen:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+<p><code>version: '2.1'
 volumes:
   vmail-vol-1:
     driver_opts:
       type: none
       device: /data/mailcow/vmail   
-      o: bind
-</code></pre></div>
+      o: bind</code></p>
 <h3 id="verschieben-eines-bestehenden-vmail-ordners">Verschieben eines bestehenden vmail-Ordners:<a class="headerlink" href="#verschieben-eines-bestehenden-vmail-ordners" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Finden Sie den aktuellen vmail-Ordner anhand seines "Mountpoint"-Attributs: <code>docker volume inspect mailcowdockerized_vmail-vol-1</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code>[
+<p><code>hl_lines="10"
+[
     {
-        &quot;CreatedAt&quot;: &quot;2019-06-16T22:08:34+02:00&quot;,
-        &quot;Driver&quot;: &quot;local&quot;,
-        &quot;Labels&quot;: {
-            &quot;com.docker.compose.project&quot;: &quot;mailcowdockerized&quot;,
-            &quot;com.docker.compose.version&quot;: &quot;1.23.2&quot;,
-            &quot;com.docker.compose.volume&quot;: &quot;vmail-vol-1&quot;
+        "CreatedAt": "2019-06-16T22:08:34+02:00",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.project": "mailcowdockerized",
+            "com.docker.compose.version": "1.23.2",
+            "com.docker.compose.volume": "vmail-vol-1"
         },
-<span class="hll">        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data&quot;,
-</span>        &quot;Name&quot;: &quot;mailcowdockerized_vmail-vol-1&quot;,
-        &quot;Options&quot;: null,
-        &quot;Scope&quot;: &quot;local&quot;
+        "Mountpoint": "/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data",
+        "Name": "mailcowdockerized_vmail-vol-1",
+        "Options": null,
+        "Scope": "local"
     }
-]
-</code></pre></div>
+]</code></p>
 <ul>
 <li>Kopieren Sie den Inhalt des <code>Mountpoint</code>-Ordners an den neuen Speicherort (z.B. <code>/data/mailcow/vmail</code>) mit <code>cp -a</code>, <code>rsync -a</code> oder einem ähnlichen, nicht strikten Kopierbefehl</li>
 <li>Stoppen Sie mailcow durch Ausführen von <code>docker-compose down</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
@@ -2631,7 +2629,7 @@ volumes:
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

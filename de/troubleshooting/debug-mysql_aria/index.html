@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/troubleshooting/debug-mysql_aria/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -831,6 +831,41 @@
         <li class="md-nav__item">
   <a href="#mariadb-aria-wiederherstellung-nach-absturz" class="md-nav__link">
     MariaDB: Aria-Wiederherstellung nach Absturz
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stoppe-den-stack-fuhre-nicht-down-aus" class="md-nav__link">
+    Stoppe den Stack, führe nicht "down" aus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus" class="md-nav__link">
+    Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cd-in-das-sql-datenverzeichnis" class="md-nav__link">
+    cd in das SQL-Datenverzeichnis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aria_chk-ausfuhren" class="md-nav__link">
+    aria_chk ausführen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loschen-der-aria-logdateien" class="md-nav__link">
+    Löschen der aria-Logdateien
   </a>
   
 </li>
@@ -2402,6 +2437,41 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#stoppe-den-stack-fuhre-nicht-down-aus" class="md-nav__link">
+    Stoppe den Stack, führe nicht "down" aus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus" class="md-nav__link">
+    Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cd-in-das-sql-datenverzeichnis" class="md-nav__link">
+    cd in das SQL-Datenverzeichnis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aria_chk-ausfuhren" class="md-nav__link">
+    aria_chk ausführen
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loschen-der-aria-logdateien" class="md-nav__link">
+    Löschen der aria-Logdateien
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2420,23 +2490,22 @@
 
 
 
-  <h1>Abgestürzte Aria-Speicher-Engine wiederherstellen</h1>
-
 <h2 id="mariadb-aria-wiederherstellung-nach-absturz">MariaDB: Aria-Wiederherstellung nach Absturz<a class="headerlink" href="#mariadb-aria-wiederherstellung-nach-absturz" title="Permanent link">&para;</a></h2>
 <p>Wenn Ihr Server abgestürzt ist und MariaDB eine Fehlermeldung ähnlich <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code>, können Sie Folgendes versuchen, um die Datenbank in einen gesunden Zustand zu bringen:</p>
 <p>Starten Sie den Stack und warten Sie, bis mysql-mailcow beginnt, einen Neustart zu melden. Überprüfen Sie dies, indem Sie <code>docker-compose ps</code> ausführen.</p>
 <p>Führen Sie nun die folgenden Befehle aus:</p>
-<div class="highlight"><pre><span></span><code># Stoppe den Stack, führe nicht &quot;down&quot; aus
-docker-compose stop
-# Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
-docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
-# cd in das SQL-Datenverzeichnis
-cd /var/lib/mysql
-# aria_chk ausführen
-aria_chk --check --force */*.MAI
-# Löschen der aria-Logdateien
-rm aria_log.*
-</code></pre></div>
+<p>```</p>
+<h1 id="stoppe-den-stack-fuhre-nicht-down-aus">Stoppe den Stack, führe nicht "down" aus<a class="headerlink" href="#stoppe-den-stack-fuhre-nicht-down-aus" title="Permanent link">&para;</a></h1>
+<p>docker-compose stop</p>
+<h1 id="fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus">Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus<a class="headerlink" href="#fuhren-sie-eine-bash-in-dem-gestoppten-container-als-benutzer-mysql-aus" title="Permanent link">&para;</a></h1>
+<p>docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql bash"' mysql-mailcow</p>
+<h1 id="cd-in-das-sql-datenverzeichnis">cd in das SQL-Datenverzeichnis<a class="headerlink" href="#cd-in-das-sql-datenverzeichnis" title="Permanent link">&para;</a></h1>
+<p>cd /var/lib/mysql</p>
+<h1 id="aria_chk-ausfuhren">aria_chk ausführen<a class="headerlink" href="#aria_chk-ausfuhren" title="Permanent link">&para;</a></h1>
+<p>aria_chk --check --force <em>/</em>.MAI</p>
+<h1 id="loschen-der-aria-logdateien">Löschen der aria-Logdateien<a class="headerlink" href="#loschen-der-aria-logdateien" title="Permanent link">&para;</a></h1>
+<p>rm aria_log.*
+```</p>
 <p>Führen Sie nun <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
 
   <hr>
@@ -2557,7 +2626,7 @@ rm aria_log.*
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/Dovecot/u_e-dovecot-fts/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -1599,6 +1599,40 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-user" class="md-nav__link">
+    single user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-users" class="md-nav__link">
+    all users
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-user_1" class="md-nav__link">
+    single user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-users-but-obviously-slower-and-more-dangerous" class="md-nav__link">
+    all users, but obviously slower and more dangerous
+  </a>
+  
+    <nav class="md-nav" aria-label="all users, but obviously slower and more dangerous">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#delete-mailbox-data" class="md-nav__link">
     Delete mailbox data
@@ -2432,6 +2466,40 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-user" class="md-nav__link">
+    single user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-users" class="md-nav__link">
+    all users
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-user_1" class="md-nav__link">
+    single user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-users-but-obviously-slower-and-more-dangerous" class="md-nav__link">
+    all users, but obviously slower and more dangerous
+  </a>
+  
+    <nav class="md-nav" aria-label="all users, but obviously slower and more dangerous">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#delete-mailbox-data" class="md-nav__link">
     Delete mailbox data
@@ -2462,8 +2530,6 @@
 
 
 
-  <h1>FTS (Solr)</h1>
-
 <h2 id="fts-solr">FTS Solr<a class="headerlink" href="#fts-solr" title="Permanent link">&para;</a></h2>
 <p>Solr is used for setups with memory &gt;= 3.5 GiB to provide full-text search in Dovecot.</p>
 <p>Please be aware that applications like Solr <em>may</em> need maintenance from time to time.</p>
@@ -2471,19 +2537,21 @@
 <p>The default heap size (1024 M) is defined in mailcow.conf.</p>
 <p>Since we run in Docker and create our containers with the "restart: always" flag, a oom situation will at least only trigger a restart of the container.</p>
 <h3 id="fts-related-dovecot-commands">FTS related Dovecot commands<a class="headerlink" href="#fts-related-dovecot-commands" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code># single user
-docker-compose exec dovecot-mailcow doveadm fts rescan -u user@domain
-# all users
-docker-compose exec dovecot-mailcow doveadm fts rescan -A
-</code></pre></div>
+<p>```</p>
+<h1 id="single-user">single user<a class="headerlink" href="#single-user" title="Permanent link">&para;</a></h1>
+<p>docker-compose exec dovecot-mailcow doveadm fts rescan -u user@domain</p>
+<h1 id="all-users">all users<a class="headerlink" href="#all-users" title="Permanent link">&para;</a></h1>
+<p>docker-compose exec dovecot-mailcow doveadm fts rescan -A
+```</p>
 <p>Dovecot Wiki: "Scan what mails exist in the full text search index and compare those to what actually exist in mailboxes. This removes mails from the index that have already been expunged and makes sure that the next doveadm index will index all the missing mails (if any)."</p>
 <p>This does <strong>not</strong> re-index a mailbox. It basically repairs a given index.</p>
 <p>If you want to re-index data immediately, you can run the followig command, where '*' can also be a mailbox mask like 'Sent'. You do not need to run these commands, but it will speed things up a bit:</p>
-<div class="highlight"><pre><span></span><code># single user
-docker-compose exec dovecot-mailcow doveadm index -u user@domain &#39;*&#39;
-# all users, but obviously slower and more dangerous
-docker-compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
-</code></pre></div>
+<p>```</p>
+<h1 id="single-user_1">single user<a class="headerlink" href="#single-user_1" title="Permanent link">&para;</a></h1>
+<p>docker-compose exec dovecot-mailcow doveadm index -u user@domain '*'</p>
+<h1 id="all-users-but-obviously-slower-and-more-dangerous">all users, but obviously slower and more dangerous<a class="headerlink" href="#all-users-but-obviously-slower-and-more-dangerous" title="Permanent link">&para;</a></h1>
+<p>docker-compose exec dovecot-mailcow doveadm index -A '*'
+```</p>
 <p>This <strong>will</strong> take some time depending on your machine and Solr can run oom, monitor it!</p>
 <p>Because re-indexing is very sensible, we did not include it to mailcow UI. You will need to take care of any errors while re-indexing a mailbox.</p>
 <h3 id="delete-mailbox-data">Delete mailbox data<a class="headerlink" href="#delete-mailbox-data" title="Permanent link">&para;</a></h3>
@@ -2607,7 +2675,7 @@ docker-compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

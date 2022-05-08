@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-mailpiler_integration/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2484,11 +2484,11 @@
 </div>
 <h2 id="das-zu-losende-problem">Das zu lösende Problem<a class="headerlink" href="#das-zu-losende-problem" title="Permanent link">&para;</a></h2>
 <p>mailpiler bietet die Authentifizierung auf Basis von IMAP an, zum Beispiel:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;ENABLE_IMAP_AUTH&#39;] = 1;</span>
-<span class="x">$config[&#39;IMAP_HOST&#39;] = &#39;mail.example.com&#39;;</span>
-<span class="x">$config[&#39;IMAP_PORT&#39;] = 993;</span>
-<span class="x">$config[&#39;IMAP_SSL&#39;] = true;</span>
-</code></pre></div>
+<p><code>php
+$config['ENABLE_IMAP_AUTH'] = 1;
+$config['IMAP_HOST'] = 'mail.example.com';
+$config['IMAP_PORT'] = 993;
+$config['IMAP_SSL'] = true;</code></p>
 <ul>
 <li>Wenn Sie sich also mit <code>patrik@example.com</code> anmelden, sehen Sie nur zugestellte E-Mails, die von oder an diese spezielle E-Mail-Adresse gesendet wurden.</li>
 <li>Wenn zusätzliche Aliase in mailcow definiert werden, wie z.B. <code>team@example.com</code>, werden Sie keine Emails sehen, die an oder von dieser Email-Adresse gesendet wurden, auch wenn Sie ein Empfänger von Emails sind, die an diese Alias-Adresse gesendet wurden.</li>
@@ -2515,19 +2515,19 @@
 <ol>
 <li>
 <p>Setzen Sie die benutzerdefinierte Abfragefunktion von mailpiler und fügen Sie diese an <code>/usr/local/etc/piler/config-site.php</code> an:</p>
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_API_KEY&#39;] = &#39;YOUR_READONLY_API_KEY&#39;;</span>
-<span class="x">$config[&#39;MAILCOW_SET_REALNAME&#39;] = true; // wenn nicht angegeben, dann ist der Standardwert false</span>
-<span class="x">$config[&#39;CUSTOM_EMAIL_QUERY_FUNCTION&#39;] = &#39;query_mailcow_for_email_access&#39;;</span>
-<span class="x">include(&#39;auth-mailcow.php&#39;);</span>
-</code></pre></div>
+<p><code>php
+$config['MAILCOW_API_KEY'] = 'YOUR_READONLY_API_KEY';
+$config['MAILCOW_SET_REALNAME'] = true; // wenn nicht angegeben, dann ist der Standardwert false
+$config['CUSTOM_EMAIL_QUERY_FUNCTION'] = 'query_mailcow_for_email_access';
+include('auth-mailcow.php');</code></p>
 <p>Sie können auch den mailcow-Hostnamen ändern, falls erforderlich:
-<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_HOST&#39;] = &#39;mail.domain.tld&#39;; // standardmäßig $config[&#39;IMAP_HOST&#39;]</span>
-</code></pre></div></p>
+<code>php
+$config['MAILCOW_HOST'] = 'mail.domain.tld'; // standardmäßig $config['IMAP_HOST']</code></p>
 </li>
 <li>
 <p>Laden Sie die PHP-Datei mit den Funktionen aus dem <a href="https://github.com/patschi/mailpiler-mailcow-integration">GitHub Repo</a> herunter:</p>
-<div class="highlight"><pre><span></span><code>curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
-</code></pre></div>
+<p><code>sh
+curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php</code></p>
 </li>
 <li>
 <p>Erledigt!</p>
@@ -2654,7 +2654,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/troubleshooting/debug-admin_login_sogo/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2456,11 +2456,9 @@ log into SOGo as a mailbox user, without knowing the users password.</p>
 <p>Multiple concurrent admin-logins to different mailboxes are also possible when using this feature.</p>
 <h2 id="enabling-the-feature">Enabling the feature<a class="headerlink" href="#enabling-the-feature" title="Permanent link">&para;</a></h2>
 <p>The feature is disabled by default. It can be enabled in the <code>mailcow.conf</code> by setting:
-<div class="highlight"><pre><span></span><code>ALLOW_ADMIN_EMAIL_LOGIN=y
-</code></pre></div>
+<code>ALLOW_ADMIN_EMAIL_LOGIN=y</code>
 and recreating the affected containers with
-<div class="highlight"><pre><span></span><code>docker-compose up -d
-</code></pre></div></p>
+<code>docker-compose up -d</code></p>
 <h2 id="drawbacks-when-enabled">Drawbacks when enabled<a class="headerlink" href="#drawbacks-when-enabled" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Each SOGo page-load and each Active-Sync request will cause an additional execution of an internal PHP script.
@@ -2606,7 +2604,7 @@ In most cases, this should not be noticeable but should be kept in mind if you f
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../assets/javascripts/client.js"></script>
       

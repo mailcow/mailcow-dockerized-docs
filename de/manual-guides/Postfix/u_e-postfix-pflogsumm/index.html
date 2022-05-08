@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Postfix/u_e-postfix-pflogsumm/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2376,13 +2376,11 @@
   <h1>Statistik mit pflogsumm</h1>
 
 <p>Um pflogsumm mit dem Standard-Logging-Treiber zu verwenden, müssen wir postfix-mailcow über docker logs abfragen und die Ausgabe zu pflogsumm leiten:</p>
-<div class="highlight"><pre><span></span><code>docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | pflogsumm
-</code></pre></div>
+<p><code>docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | pflogsumm</code></p>
 <p>Die obige Log-Ausgabe ist auf die letzten 24 Stunden beschränkt.</p>
 <p>Es ist auch möglich, einen täglichen pflogsumm-Bericht über cron zu erstellen. Erstellen Sie die Datei /etc/cron.d/pflogsumm mit dem folgenden Inhalt:</p>
-<div class="highlight"><pre><span></span><code>SHELL=/bin/bash
-59 23 * * * root docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | /usr/sbin/pflogsumm -d today | mail -s &quot;Postfix Report of $(date)&quot; postmaster@example.net
-</code></pre></div>
+<p><code>SHELL=/bin/bash
+59 23 * * * root docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | /usr/sbin/pflogsumm -d today | mail -s "Postfix Report of $(date)" postmaster@example.net</code></p>
 <p>Um zu funktionieren muss ein lokaler Postfix auf dem Server installiert werden, welcher an den Postfix der mailcow relayed.</p>
 <p>Genauere Informationen lassen sich unter Sektion <a href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-local_mta/">Post-Installationsaufgaben -&gt; Lokaler MTA auf Dockerhost</a> finden.</p>
 <p>Basierend auf den Postfix-Logs der letzten 24 Stunden sendet dieses Beispiel dann jeden Tag um 23:59:00 Uhr einen pflogsumm-Bericht an <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#111;&#115;&#116;&#109;&#97;&#115;&#116;&#101;&#114;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#110;&#101;&#116;">&#112;&#111;&#115;&#116;&#109;&#97;&#115;&#116;&#101;&#114;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#110;&#101;&#116;</a>.</p>
@@ -2505,7 +2503,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

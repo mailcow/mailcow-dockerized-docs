@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/backup_restore/b_n_r-coldstandby/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2487,10 +2487,9 @@
 <p>Sie benötigen ein SSH-fähiges Ziel und eine Schlüsseldatei, um sich mit diesem Ziel zu verbinden. Der Schlüssel sollte nicht durch ein Passwort geschützt sein, damit das Skript unbeaufsichtigt arbeiten kann.</p>
 <p>In Ihrem mailcow-Basisverzeichnis, z.B. <code>/opt/mailcow-dockerized</code>, finden Sie eine Datei <code>create_cold_standby.sh</code>.</p>
 <p>Bearbeiten Sie diese Datei und ändern Sie die exportierten Variablen:</p>
-<div class="highlight"><pre><span></span><code>export REMOTE_SSH_KEY=/pfad/zur/keyfile
+<p><code>export REMOTE_SSH_KEY=/pfad/zur/keyfile
 export REMOTE_SSH_PORT=22
-export REMOTE_SSH_HOST=mailcow-backup.host.name
-</code></pre></div>
+export REMOTE_SSH_HOST=mailcow-backup.host.name</code></p>
 <p>Der Schlüssel muss im Besitz von root sein und darf nur von diesem gelesen werden können.</p>
 <p>Sowohl die Quelle als auch das Ziel benötigen <code>rsync</code> &gt;= v3.1.0.
 Das Ziel muss über Docker und docker-compose <strong>v1</strong> verfügen.</p>
@@ -2498,28 +2497,23 @@ Das Ziel muss über Docker und docker-compose <strong>v1</strong> verfügen.</p>
 <p>Sie können die Verbindung testen, indem Sie <code>ssh mailcow-backup.host.name -p22 -i /path/to/keyfile</code> ausführen.</p>
 <h2 id="backup-und-aktualisierung-des-cold-standby">Backup und Aktualisierung des Cold-Standby<a class="headerlink" href="#backup-und-aktualisierung-des-cold-standby" title="Permanent link">&para;</a></h2>
 <p>Starten Sie das erste Backup, dies kann je nach Verbindung eine Weile dauern:</p>
-<div class="highlight"><pre><span></span><code>bash /opt/mailcow-dockerized/create_cold_standby.sh
-</code></pre></div>
+<p><code>bash /opt/mailcow-dockerized/create_cold_standby.sh</code></p>
 <p>Das war einfach, nicht wahr?</p>
 <p>Das Aktualisieren des Cold-Standby ist genauso einfach:</p>
-<div class="highlight"><pre><span></span><code>bash /opt/mailcow-dockerized/create_cold_standby.sh
-</code></pre></div>
+<p><code>bash /opt/mailcow-dockerized/create_cold_standby.sh</code></p>
 <p>Es ist derselbe Befehl.</p>
 <h2 id="automatisierte-backups-mit-cron">Automatisierte Backups mit cron<a class="headerlink" href="#automatisierte-backups-mit-cron" title="Permanent link">&para;</a></h2>
 <p>Stellen Sie zunächst sicher, dass der <code>cron</code> Dienst aktiviert ist und läuft:</p>
-<div class="highlight"><pre><span></span><code>systemctl enable cron.service &amp;&amp; systemctl start cron.service
-</code></pre></div>
+<p><code>systemctl enable cron.service &amp;&amp; systemctl start cron.service</code></p>
 <p>Um die Backups auf dem Cold-Standby-Server zu automatisieren, können Sie einen Cron-Job verwenden. Um die Cron-Jobs für den Root-Benutzer zu bearbeiten, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>crontab -e
-</code></pre></div>
+<p><code>crontab -e</code></p>
 <p>Fügen Sie die folgenden Zeilen hinzu, um den Cold-Standby-Server täglich um 03:00 Uhr zu synchronisieren. In diesem Beispiel werden Fehler der letzten Ausführung in einer Datei protokolliert.</p>
-<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2&gt; /var/log/mailcow-coldstandby-sync.log
-</code></pre></div>
+<p>```
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</p>
+<p>0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2&gt; /var/log/mailcow-coldstandby-sync.log
+```</p>
 <p>Wenn korrekt gespeichert, sollte der Cron-Job durch Eingabe angezeigt werden:</p>
-<div class="highlight"><pre><span></span><code>crontab -l
-</code></pre></div>
+<p><code>crontab -l</code></p>
 
   <hr>
 <div class="md-source-file">
@@ -2639,7 +2633,7 @@ Das Ziel muss über Docker und docker-compose <strong>v1</strong> verfügen.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-snat/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#benutze-diese-ipv4-fur-ausgehende-verbindungen-snat" class="md-skip">
+          Zum Inhalt
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -563,6 +568,8 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
+        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2354,6 +2361,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2371,17 +2380,15 @@
 
 
 
-  <h1>SNAT</h1>
-
 <p>SNAT wird verwendet, um die Quelladresse der von mailcow gesendeten Pakete zu ändern.
 Es kann verwendet werden, um die ausgehende IP-Adresse auf Systemen mit mehreren IP-Adressen zu ändern.</p>
 <p>Öffnen Sie <code>mailcow.conf</code>, setzen Sie einen oder beide der folgenden Parameter:</p>
-<div class="highlight"><pre><span></span><code># Benutze diese IPv4 für ausgehende Verbindungen (SNAT)
-SNAT_TO_SOURCE=1.2.3.4
-
-# Benutze dieses IPv6 für ausgehende Verbindungen (SNAT)
-SNAT6_TO_SOURCE=dead:beef
-</code></pre></div>
+<p>```</p>
+<h1 id="benutze-diese-ipv4-fur-ausgehende-verbindungen-snat">Benutze diese IPv4 für ausgehende Verbindungen (SNAT)<a class="headerlink" href="#benutze-diese-ipv4-fur-ausgehende-verbindungen-snat" title="Permanent link">&para;</a></h1>
+<p>SNAT_TO_SOURCE=1.2.3.4</p>
+<h1 id="benutze-dieses-ipv6-fur-ausgehende-verbindungen-snat">Benutze dieses IPv6 für ausgehende Verbindungen (SNAT)<a class="headerlink" href="#benutze-dieses-ipv6-fur-ausgehende-verbindungen-snat" title="Permanent link">&para;</a></h1>
+<p>SNAT6_TO_SOURCE=dead:beef
+```</p>
 <p>Führen Sie <code>docker-compose up -d</code> aus.</p>
 <p>Die Werte werden von netfilter-mailcow gelesen. netfilter-mailcow stellt sicher, dass die Post-Routing-Regeln auf Position 1 in der Netfilter-Tabelle stehen. Es löscht sie automatisch und legt sie neu an, wenn sie an einer anderen Position als 1 gefunden werden.</p>
 <p>Überprüfen Sie die Ausgabe von <code>docker-compose logs --tail=200 netfilter-mailcow</code>, um sicherzustellen, dass die SNAT-Einstellungen angewendet wurden.</p>
@@ -2504,7 +2511,7 @@ SNAT6_TO_SOURCE=dead:beef
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

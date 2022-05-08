@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-borgmatic/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -2715,69 +2715,67 @@ This guide only covers the basics.</p>
 <h3 id="create-or-amend-docker-composeoverrideyml">Create or amend <code>docker-compose.override.yml</code><a class="headerlink" href="#create-or-amend-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
 <p>In the mailcow-dockerized root folder create or edit <code>docker-compose.override.yml</code> and insert the following
 configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
-
-<span class="nt">services</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">borgmatic-mailcow</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b3vis/borgmatic</span><span class="w"></span>
-<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow</span><span class="w"></span>
-<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
-<span class="w">    </span><span class="nt">dns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}.254</span><span class="w"></span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vmail-vol-1:/mnt/source/vmail:ro</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crypt-vol-1:/mnt/source/crypt:ro</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis-vol-1:/mnt/source/redis:ro,z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rspamd-vol-1:/mnt/source/rspamd:ro,z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postfix-vol-1:/mnt/source/postfix:ro,z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-socket-vol-1:/var/run/mysqld/:z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">borg-config-vol-1:/root/.config/borg:Z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">borg-cache-vol-1:/root/.cache/borg:Z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/etc:/etc/borgmatic.d:Z</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/ssh:/root/.ssh:Z</span><span class="w"></span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TZ=${TZ}</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere</span><span class="w"></span>
-<span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">mailcow-network</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">aliases</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">borgmatic</span><span class="w"></span>
-
-<span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">borg-cache-vol-1</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">borg-config-vol-1</span><span class="p">:</span><span class="w"></span>
-</code></pre></div>
+<p>```yaml
+version: '2.1'</p>
+<p>services:
+  borgmatic-mailcow:
+    image: b3vis/borgmatic
+    hostname: mailcow
+    restart: always
+    dns: ${IPV4_NETWORK:-172.22.1}.254
+    volumes:
+      - vmail-vol-1:/mnt/source/vmail:ro
+      - crypt-vol-1:/mnt/source/crypt:ro
+      - redis-vol-1:/mnt/source/redis:ro,z
+      - rspamd-vol-1:/mnt/source/rspamd:ro,z
+      - postfix-vol-1:/mnt/source/postfix:ro,z
+      - mysql-socket-vol-1:/var/run/mysqld/:z
+      - borg-config-vol-1:/root/.config/borg:Z
+      - borg-cache-vol-1:/root/.cache/borg:Z
+      - ./data/conf/borgmatic/etc:/etc/borgmatic.d:Z
+      - ./data/conf/borgmatic/ssh:/root/.ssh:Z
+    environment:
+      - TZ=${TZ}
+      - BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere
+    networks:
+      mailcow-network:
+        aliases:
+          - borgmatic</p>
+<p>volumes:
+  borg-cache-vol-1:
+  borg-config-vol-1:
+```</p>
 <p>Ensure that you change the <code>BORG_PASSPHRASE</code> to a secure passphrase of your choosing.</p>
 <p>For security reasons we mount the maildir as read-only. If you later want to restore data you will need to remove
 the <code>ro</code> flag prior to restoring the data. This is described in the section on restoring backups.</p>
 <h3 id="create-dataconfborgmaticetcconfigyaml">Create <code>data/conf/borgmatic/etc/config.yaml</code><a class="headerlink" href="#create-dataconfborgmaticetcconfigyaml" title="Permanent link">&para;</a></h3>
 <p>Next, we need to create the borgmatic configuration.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">source</span> mailcow.conf
-cat <span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
-<span class="s">location:</span>
-<span class="s">    source_directories:</span>
-<span class="s">        - /mnt/source</span>
-<span class="s">    repositories:</span>
-<span class="s">        - user@rsync.net:mailcow</span>
-<span class="s">    exclude_patterns:</span>
-<span class="s">        - &#39;/mnt/source/postfix/public/&#39;</span>
-<span class="s">        - &#39;/mnt/source/postfix/private/&#39;</span>
-<span class="s">        - &#39;/mnt/source/rspamd/rspamd.sock&#39;</span>
-
-<span class="s">retention:</span>
-<span class="s">    keep_hourly: 24</span>
-<span class="s">    keep_daily: 7</span>
-<span class="s">    keep_weekly: 4</span>
-<span class="s">    keep_monthly: 6</span>
-<span class="s">    prefix: &quot;&quot;</span>
-
-<span class="s">hooks:</span>
-<span class="s">    mysql_databases:</span>
-<span class="s">        - name: ${DBNAME}</span>
-<span class="s">          username: ${DBUSER}</span>
-<span class="s">          password: ${DBPASS}</span>
-<span class="s">          options: --default-character-set=utf8mb4</span>
-<span class="s">EOF</span>
-</code></pre></div>
+<p>```shell
+source mailcow.conf
+cat &lt;<EOF > data/conf/borgmatic/etc/config.yaml
+location:
+    source_directories:
+        - /mnt/source
+    repositories:
+        - <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#117;&#115;&#101;&#114;&#64;&#114;&#115;&#121;&#110;&#99;&#46;&#110;&#101;&#116;">&#117;&#115;&#101;&#114;&#64;&#114;&#115;&#121;&#110;&#99;&#46;&#110;&#101;&#116;</a>:mailcow
+    exclude_patterns:
+        - '/mnt/source/postfix/public/'
+        - '/mnt/source/postfix/private/'
+        - '/mnt/source/rspamd/rspamd.sock'</p>
+<p>retention:
+    keep_hourly: 24
+    keep_daily: 7
+    keep_weekly: 4
+    keep_monthly: 6
+    prefix: ""</p>
+<p>hooks:
+    mysql_databases:
+        - name: ${DBNAME}
+          username: ${DBUSER}
+          password: ${DBPASS}
+          options: --default-character-set=utf8mb4
+EOF
+```</p>
 <p>Creating the file in this way ensures the correct MySQL credentials are pulled in from <code>mailcow.conf</code>.</p>
 <p>This file is a minimal example for using borgmatic with an account <code>user</code> on the cloud storage provider <code>rsync.net</code> for
 a repository called <code>mailcow</code> (see <code>repositories</code> setting). It will backup both the maildir and MySQL database, which is
@@ -2793,8 +2791,7 @@ container. The container defines a volume called <code>/mnt/borg-repository</cod
 </div>
 <h3 id="create-a-crontab">Create a crontab<a class="headerlink" href="#create-a-crontab" title="Permanent link">&para;</a></h3>
 <p>Create a new text file in <code>data/conf/borgmatic/etc/crontab.txt</code> with the following content:</p>
-<div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2&gt;&amp;1
-</code></pre></div>
+<p><code>14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2&gt;&amp;1</code></p>
 <p>This file expects crontab syntax. The example shown here will trigger the backup to run every hour at 14 minutes past
 the hour and log some nice stats at the end.</p>
 <h3 id="place-ssh-keys-in-folder">Place SSH keys in folder<a class="headerlink" href="#place-ssh-keys-in-folder" title="Permanent link">&para;</a></h3>
@@ -2803,14 +2800,14 @@ usual <code>id_rsa</code>, <code>id_ed25519</code> or similar to be in this dire
 or OpenSSH will refuse to use the SSH key.</p>
 <h3 id="bring-up-the-container">Bring up the container<a class="headerlink" href="#bring-up-the-container" title="Permanent link">&para;</a></h3>
 <p>For the next step we need the container to be up and running in a configured state. To do that run:</p>
-<div class="highlight"><pre><span></span><code>docker-compose up -d
-</code></pre></div>
+<p><code>shell
+docker-compose up -d</code></p>
 <h3 id="initialize-the-repository">Initialize the repository<a class="headerlink" href="#initialize-the-repository" title="Permanent link">&para;</a></h3>
 <p>By now your borgmatic container is up and running, but the backups will currently fail due to the repository not being
 initialized.</p>
 <p>To initialize the repository run:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic init --encryption repokey-blake2
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borgmatic init --encryption repokey-blake2</code></p>
 <p>You will be asked you to authenticate the SSH host key of your remote repository server. See if it matches and confirm
 the prompt by entering <code>yes</code>. The repository will be initialized with the passphrase you set in the <code>BORG_PASSPHRASE</code>
 environment variable earlier.</p>
@@ -2821,8 +2818,8 @@ for how to retrieve the key.</p>
 <h3 id="restart-container">Restart container<a class="headerlink" href="#restart-container" title="Permanent link">&para;</a></h3>
 <p>Now that we finished configuring and initializing the repository restart the container to ensure it is in a defined
 state:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart borgmatic-mailcow
-</code></pre></div>
+<p><code>shell
+docker-compose restart borgmatic-mailcow</code></p>
 <h2 id="restoring-from-a-backup">Restoring from a backup<a class="headerlink" href="#restoring-from-a-backup" title="Permanent link">&para;</a></h2>
 <p>Restoring a backup assumes you are starting off with a fresh installation of mailcow, and you currently do not have
 any custom data in your maildir or your mailcow database.</p>
@@ -2842,8 +2839,8 @@ this volume.</p>
 <p>Before running a restore you must make the vmail volume writeable in <code>docker-compose.override.yml</code> by removing
 the <code>ro</code> flag from the volume.
 Then you can use the following command to restore the maildir from a backup:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest</code></p>
 <p>Alternatively you can specify any archive name from the list of archives (see
 <a href="#listing-all-available-archives">Listing all available archives</a>)</p>
 <h3 id="restore-mysql">Restore MySQL<a class="headerlink" href="#restore-mysql" title="Permanent link">&para;</a></h3>
@@ -2853,30 +2850,30 @@ Then you can use the following command to restore the maildir from a backup:</p>
 intend to recover the mailcow database from a backup.</p>
 </div>
 <p>To restore the MySQL database from the latest archive use this command:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic restore --archive latest
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borgmatic restore --archive latest</code></p>
 <p>Alternatively you can specify any archive name from the list of archives (see
 <a href="#listing-all-available-archives">Listing all available archives</a>)</p>
 <h3 id="after-restoring">After restoring<a class="headerlink" href="#after-restoring" title="Permanent link">&para;</a></h3>
 <p>After restoring you need to restart mailcow. If you disabled SELinux enforcing mode now would be a good time to
 re-enable it.</p>
 <p>To restart mailcow use the follwing command:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down <span class="o">&amp;&amp;</span> docker-compose up -d
-</code></pre></div>
+<p><code>shell
+docker-compose down &amp;&amp; docker-compose up -d</code></p>
 <p>If you use SELinux this will also trigger the re-labeling of all files in your vmail volume. Be patient, as this may
 take a while if you have lots of files.</p>
 <h2 id="useful-commands">Useful commands<a class="headerlink" href="#useful-commands" title="Permanent link">&para;</a></h2>
 <h3 id="manual-archiving-run-with-debugging-output">Manual archiving run (with debugging output)<a class="headerlink" href="#manual-archiving-run-with-debugging-output" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic -v <span class="m">2</span>
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borgmatic -v 2</code></p>
 <h3 id="listing-all-available-archives">Listing all available archives<a class="headerlink" href="#listing-all-available-archives" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic list
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borgmatic list</code></p>
 <h3 id="break-lock">Break lock<a class="headerlink" href="#break-lock" title="Permanent link">&para;</a></h3>
 <p>When borg is interrupted during an archiving run it will leave behind a stale lock that needs to be cleared before any
 new operations can be performed:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg break-lock user@rsync.net:mailcow
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow</code></p>
 <p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
 <p>Now would be a good time to do a manual archiving run to ensure it can be successfully performed.</p>
 <h3 id="exporting-keys">Exporting keys<a class="headerlink" href="#exporting-keys" title="Permanent link">&para;</a></h3>
@@ -2885,8 +2882,8 @@ key files are generated when you initialize the repository. The <code>repokey</c
 repository, so a manual backup isn't as essential.</p>
 <p>Note that in either case you also must have the passphrase to decrypt any archives.</p>
 <p>To fetch the keyfile run:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
-</code></pre></div>
+<p><code>shell
+docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow</code></p>
 <p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
 
   <hr>
@@ -3007,7 +3004,7 @@ repository, so a manual backup isn't as essential.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../assets/javascripts/client.js"></script>
       

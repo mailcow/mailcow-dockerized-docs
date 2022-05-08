@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/i_u_m/i_u_m_install/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#after-the-installation-process-is-finished-you-may-need-to-enable-the-service-and-make-sure-it-is-started-eg-centos-7" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -361,6 +366,8 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
+        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2354,6 +2361,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2371,66 +2380,58 @@
 
 
 
-  <h1>Installation</h1>
-
 <p>You need Docker (a version &gt;= <code>20.10.2</code> is required) and Docker Compose (a version <code>&lt;= 2.0</code> is required).</p>
 <p><strong>1.</strong> Learn how to install <a href="https://docs.docker.com/install/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p>
 <p>Quick installation for most operation systems:</p>
 <ul>
-<li>
-<p>Docker
-<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable --now docker
-</code></pre></div></p>
-</li>
-<li>
-<p>Docker-Compose</p>
-</li>
+<li>Docker
+```
+curl -sSL <a href="https://get.docker.com/">https://get.docker.com/</a> | CHANNEL=stable sh</li>
+</ul>
+<h1 id="after-the-installation-process-is-finished-you-may-need-to-enable-the-service-and-make-sure-it-is-started-eg-centos-7">After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)<a class="headerlink" href="#after-the-installation-process-is-finished-you-may-need-to-enable-the-service-and-make-sure-it-is-started-eg-centos-7" title="Permanent link">&para;</a></h1>
+<p>systemctl enable --now docker
+```</p>
+<ul>
+<li>Docker-Compose</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>mailcow requires the latest version of docker-compose v1.</strong> It is highly recommended to use the commands below to install <code>docker-compose</code>. Package managers (e.g. <code>apt</code>, <code>yum</code>) <strong>likely won't</strong> give you the correct version.
 <em>Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow).</em></p>
 </div>
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-</code></pre></div>
+<p><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose</code></p>
 <p>Please use the latest Docker engine available and do not use the engine that ships with your distros repository.</p>
 <p><strong>1.1.</strong> On SELinux enabled systems, e.g. CentOS 7:</p>
 <ul>
 <li>Check if "container-selinux" package is present on your system:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>rpm -qa | grep container-selinux
-</code></pre></div>
+<p><code>rpm -qa | grep container-selinux</code></p>
 <p>If the above command returns an empty or no output, you should install it via your package manager.</p>
 <ul>
 <li>Check if docker has SELinux support enabled:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>docker info | grep selinux
-</code></pre></div>
+<p><code>docker info | grep selinux</code></p>
 <p>If the above command returns an empty or no output, create or edit <code>/etc/docker/daemon.json</code> and add <code>"selinux-enabled": true</code>. Example file content:</p>
-<div class="highlight"><pre><span></span><code>{
-  &quot;selinux-enabled&quot;: true
-}
-</code></pre></div>
+<p><code>{
+  "selinux-enabled": true
+}</code></p>
 <p>Restart the docker daemon and verify SELinux is now enabled.</p>
 <p>This step is required to make sure mailcows volumes are properly labeled as declared in the compose file.
 If you are interested in how this works, you can check out the readme of <a href="https://github.com/containers/container-selinux">https://github.com/containers/container-selinux</a> which links to a lot of useful information on that topic.</p>
 <p><strong>2.</strong> Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while bootstrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. <strong>We drop permissions for every exposed application</strong> and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.</p>
-<div class="highlight"><pre><span></span><code>$ su
-# umask
-0022 # &lt;- Verify it is 0022
-# cd /opt
-# git clone https://github.com/mailcow/mailcow-dockerized
-# cd mailcow-dockerized
-</code></pre></div>
+<p>```
+$ su</p>
+<h1 id="umask">umask<a class="headerlink" href="#umask" title="Permanent link">&para;</a></h1>
+<p>0022 # &lt;- Verify it is 0022</p>
+<h1 id="cd-opt">cd /opt<a class="headerlink" href="#cd-opt" title="Permanent link">&para;</a></h1>
+<h1 id="git-clone-httpsgithubcommailcowmailcow-dockerized">git clone <a href="https://github.com/mailcow/mailcow-dockerized">https://github.com/mailcow/mailcow-dockerized</a><a class="headerlink" href="#git-clone-httpsgithubcommailcowmailcow-dockerized" title="Permanent link">&para;</a></h1>
+<h1 id="cd-mailcow-dockerized">cd mailcow-dockerized<a class="headerlink" href="#cd-mailcow-dockerized" title="Permanent link">&para;</a></h1>
+<p>```</p>
 <p><strong>3.</strong> Generate a configuration file. Use a FQDN (<code>host.domain.tld</code>) as hostname when asked.
-<div class="highlight"><pre><span></span><code>./generate_config.sh
-</code></pre></div></p>
+<code>./generate_config.sh</code></p>
 <p><strong>4.</strong> Change configuration if you want or need to.
-<div class="highlight"><pre><span></span><code>nano mailcow.conf
-</code></pre></div>
+<code>nano mailcow.conf</code>
 If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.1 on port 8443 and HTTP to 127.0.0.1 on port 8080.</p>
 <p>You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See <a href="../../post_installation/firststeps-local_mta/">this chapter</a> to learn how to reconfigure Postfix to run besides mailcow after a successful installation.</p>
 <p>Some updates modify mailcow.conf and add new parameters. It is hard to keep track of them in the documentation. Please check their description and, if unsure, ask at the known channels for advise.</p>
@@ -2438,20 +2439,18 @@ If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.
 <p><strong>Whenever you run into trouble and strange phenomena, please check your MTU.</strong></p>
 <p>Edit <code>docker-compose.yml</code> and change the network settings according to your MTU.
 Add the new driver_opts parameter like this:
-<div class="highlight"><pre><span></span><code>networks:
+<code>networks:
   mailcow-network:
     ...
     driver_opts:
       com.docker.network.driver.mtu: 1450
-    ...
-</code></pre></div></p>
+    ...</code></p>
 <p><strong>4.2.</strong> Users without an IPv6 enabled network on their host system:</p>
 <p><strong>Enable IPv6. Finally.</strong></p>
 <p>If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to <a href="../../post_installation/firststeps-disable_ipv6/">disable IPv6</a> for the mailcow network to prevent unforeseen issues.</p>
 <p><strong>5.</strong> Pull the images and run the compose file. The parameter <code>-d</code> will start mailcow: dockerized detached:
-<div class="highlight"><pre><span></span><code>docker-compose pull
-docker-compose up -d
-</code></pre></div></p>
+<code>docker-compose pull
+docker-compose up -d</code></p>
 <p>Done!</p>
 <p>You can now access <strong>https://${MAILCOW_HOSTNAME}</strong> with the default credentials <code>admin</code> + password <code>moohoo</code>.</p>
 <div class="admonition info">
@@ -2579,7 +2578,7 @@ docker-compose up -d
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       

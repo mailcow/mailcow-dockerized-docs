@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Dovecot/u_e-dovecot-mail-crypt/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#entschlusseln-sie-varvmail" class="md-skip">
+          Zum Inhalt
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1584,6 +1589,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Mail crypt
@@ -2356,6 +2363,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2373,37 +2382,34 @@
 
 
 
-  <h1>Mail crypt</h1>
-
 <p>Die Mails werden komprimiert (lz4) und verschlüsselt gespeichert. Das Schlüsselpaar ist in crypt-vol-1 zu finden.</p>
 <p>Wenn Sie vorhandene maildir-Dateien entschlüsseln/verschlüsseln wollen, können Sie das folgende Skript auf eigene Gefahr verwenden:</p>
 <p>Rufen Sie Dovecot auf, indem Sie <code>docker-compose exec dovecot-mailcow /bin/bash</code> im mailcow-dockerisierten Verzeichnis ausführen.</p>
-<div class="highlight"><pre><span></span><code># Entschlüsseln Sie /var/vmail
-find /var/vmail/ -type f -regextype egrep -regex &#39;.*S=.*W=.*&#39; | while read -r file; do
-if [[ $(head -c7 &quot;$file&quot;) == &quot;CRYPTED&quot; ]]; then
+<p>```</p>
+<h1 id="entschlusseln-sie-varvmail">Entschlüsseln Sie /var/vmail<a class="headerlink" href="#entschlusseln-sie-varvmail" title="Permanent link">&para;</a></h1>
+<p>find /var/vmail/ -type f -regextype egrep -regex '.<em>S=.</em>W=.*' | while read -r file; do
+if [[ $(head -c7 "$file") == "CRYPTED" ]]; then
 doveadm fs get compress lz4:0:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
-  &quot;$file&quot; &gt; &quot;/tmp/$(basename &quot;$file&quot;)&quot;
-  if [[ -s &quot;/tmp/$(basename &quot;$file&quot;)&quot; ]]; then
-    chmod 600 &quot;/tmp/$(basename &quot;$file&quot;)&quot;
-    chown 5000:5000 &quot;/tmp/$(basename &quot;$file&quot;)&quot;
-    mv &quot;/tmp/$(basename &quot;$file&quot;)&quot; &quot;$file&quot;
+  "$file" &gt; "/tmp/$(basename "$file")"
+  if [[ -s "/tmp/$(basename "$file")" ]]; then
+    chmod 600 "/tmp/$(basename "$file")"
+    chown 5000:5000 "/tmp/$(basename "$file")"
+    mv "/tmp/$(basename "$file")" "$file"
   else
-    rm &quot;/tmp/$(basename &quot;$file&quot;)&quot;
+    rm "/tmp/$(basename "$file")"
   fi
 fi
-done
-
-
-# Verschlüsseln von /var/vmail
-find /var/vmail/ -type f -regextype egrep -regex &#39;.*S=.*W=.*&#39; | while read -r file; do
-if [[ $(head -c7 &quot;$file&quot;) != &quot;CRYPTED&quot; ]]; then
+done</p>
+<h1 id="verschlusseln-von-varvmail">Verschlüsseln von /var/vmail<a class="headerlink" href="#verschlusseln-von-varvmail" title="Permanent link">&para;</a></h1>
+<p>find /var/vmail/ -type f -regextype egrep -regex '.<em>S=.</em>W=.*' | while read -r file; do
+if [[ $(head -c7 "$file") != "CRYPTED" ]]; then
 doveadm fs put crypt private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
-  &quot;$file&quot; &quot;$file&quot;
-  chmod 600 &quot;$file&quot;
-  chown 5000:5000 &quot;$file&quot;
+  "$file" "$file"
+  chmod 600 "$file"
+  chown 5000:5000 "$file"
 fi
 done
-</code></pre></div>
+```</p>
 
   <hr>
 <div class="md-source-file">
@@ -2523,7 +2529,7 @@ done
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../../assets/javascripts/client.js"></script>
       

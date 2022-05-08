@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-gitea/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#for-gitea_ssh_port1270014000-in-mailcowconf-set" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -2237,6 +2242,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Gitea
@@ -2354,6 +2361,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -2371,45 +2380,43 @@
 
 
 
-  <h1>Gitea</h1>
-
 <p>With Gitea' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:</p>
 <p>1. Open <code>docker-compose.override.yml</code> and add gitea:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-services:
-
-        gitea-mailcow:
-            image: gitea/gitea:1
-            volumes:
-                - ./data/gitea:/data
-            networks:
-                mailcow-network:
-                    aliases:
-                        - gitea
-            ports:
-                - &quot;${GITEA_SSH_PORT:-127.0.0.1:4000}:22&quot;
-</code></pre></div>
+<p>```
+version: '2.1'
+services:</p>
+<pre><code>    gitea-mailcow:
+        image: gitea/gitea:1
+        volumes:
+            - ./data/gitea:/data
+        networks:
+            mailcow-network:
+                aliases:
+                    - gitea
+        ports:
+            - "${GITEA_SSH_PORT:-127.0.0.1:4000}:22"
+</code></pre>
+<p>```</p>
 <p>2. Create <code>data/conf/nginx/site.gitea.custom</code>, add:
-<div class="highlight"><pre><span></span><code>location /gitea/ {
+<code>location /gitea/ {
         proxy_pass http://gitea:3000/;
-}
-</code></pre></div></p>
+}</code></p>
 <p>3. Open <code>mailcow.conf</code> and define the binding you want gitea to use for SSH. Example:</p>
-<div class="highlight"><pre><span></span><code>GITEA_SSH_PORT=127.0.0.1:4000
-</code></pre></div>
+<p><code>GITEA_SSH_PORT=127.0.0.1:4000</code></p>
 <p>5. Run <code>docker-compose up -d</code> to bring up the gitea container and run <code>docker-compose restart nginx-mailcow</code> afterwards.</p>
 <p>6. If you forced mailcow to https, execute step 9 and restart gitea with <code>docker-compose restart gitea-mailcow</code> . Go head with step 7 (Remember to use https instead of http, <code>https://mx.example.org/gitea/</code> </p>
 <p>7. Open <code>http://${MAILCOW_HOSTNAME}/gitea/</code>, for example <code>http://mx.example.org/gitea/</code>. For database details set <code>mysql</code> as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.</p>
 <p>8. Once the installation is complete, login as admin and set "settings" -&gt; "authorization" -&gt; "enable SMTP". SMTP Host should be <code>postfix</code> with port <code>587</code>, set <code>Skip TLS Verify</code> as we are using an unlisted SAN ("postfix" is most likely not part of your certificate).</p>
 <p>9. Create <code>data/gitea/gitea/conf/app.ini</code> and set following values. You can consult <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">gitea cheat sheet</a> for their meaning and other possible values.</p>
-<div class="highlight"><pre><span></span><code>[server]
-SSH_LISTEN_PORT = 22
-# For GITEA_SSH_PORT=127.0.0.1:4000 in mailcow.conf, set:
-SSH_DOMAIN = 127.0.0.1
-SSH_PORT = 4000
-# For MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (and default ports for HTTPS), set:
-ROOT_URL = https://mx.example.org/gitea/
-</code></pre></div>
+<p>```
+[server]
+SSH_LISTEN_PORT = 22</p>
+<h1 id="for-gitea_ssh_port1270014000-in-mailcowconf-set">For GITEA_SSH_PORT=127.0.0.1:4000 in mailcow.conf, set:<a class="headerlink" href="#for-gitea_ssh_port1270014000-in-mailcowconf-set" title="Permanent link">&para;</a></h1>
+<p>SSH_DOMAIN = 127.0.0.1
+SSH_PORT = 4000</p>
+<h1 id="for-mailcow_hostnamemxexampleorg-in-mailcowconf-and-default-ports-for-https-set">For MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (and default ports for HTTPS), set:<a class="headerlink" href="#for-mailcow_hostnamemxexampleorg-in-mailcowconf-and-default-ports-for-https-set" title="Permanent link">&para;</a></h1>
+<p>ROOT_URL = <a href="https://mx.example.org/gitea/">https://mx.example.org/gitea/</a>
+```</p>
 <p>10. Restart gitea with <code>docker-compose restart gitea-mailcow</code>. Your users should be able to login with mailcow managed accounts.</p>
 
   <hr>
@@ -2530,7 +2537,7 @@ ROOT_URL = https://mx.example.org/gitea/
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       
