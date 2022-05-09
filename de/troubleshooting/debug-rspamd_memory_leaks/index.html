@@ -66,11 +66,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#fugen-sie-vor-exec-die-folgenden-zeilen-ein" class="md-skip">
-          Zum Inhalt
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -734,8 +729,6 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
-      
-        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -2361,8 +2354,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2380,18 +2371,24 @@
 
 
 
+  <h1>Fortgeschritten: Memory-Leaks in Rspamd finden</h1>
+
 <p>Eine kurze Anleitung, um einen schlecht funktionierenden Rspamd tiefgehend zu analysieren.</p>
-<p>```
-docker-compose exec rspamd-mailcow bash</p>
-<p>if ! grep -qi 'apt-stable-asan' /etc/apt/sources.list.d/rspamd.list; then
-  sed -i 's/apt-stabil/apt-stabil-asan/i' /etc/apt/sources.list.d/rspamd.list
-fi</p>
-<p>apt-get update ; apt-get upgrade rspamd</p>
-<p>nano /docker-entrypoint.sh</p>
-<h1 id="fugen-sie-vor-exec-die-folgenden-zeilen-ein">Fügen Sie vor "exec "$@"" die folgenden Zeilen ein:<a class="headerlink" href="#fugen-sie-vor-exec-die-folgenden-zeilen-ein" title="Permanent link">&para;</a></h1>
-<p>export G_SLICE=always-malloc
-export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violation=0:log_path=/tmp/rspamd-asan:quarantine_size_mb=2048:malloc_context_size=8:fast_unwind_on_malloc=0</p>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow bash
+
+if ! grep -qi &#39;apt-stable-asan&#39; /etc/apt/sources.list.d/rspamd.list; then
+  sed -i &#39;s/apt-stabil/apt-stabil-asan/i&#39; /etc/apt/sources.list.d/rspamd.list
+fi
+
+apt-get update ; apt-get upgrade rspamd
+
+nano /docker-entrypoint.sh
+
+# Fügen Sie vor &quot;exec &quot;$@&quot;&quot; die folgenden Zeilen ein:
+
+export G_SLICE=always-malloc
+export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violation=0:log_path=/tmp/rspamd-asan:quarantine_size_mb=2048:malloc_context_size=8:fast_unwind_on_malloc=0
+</code></pre></div>
 <p>Starten Sie Rspamd neu: <code>docker-compose restart rspamd-mailcow</code></p>
 <p>Ihr Speicherverbrauch wird stark ansteigen, er wird auch stetig wachsen, was nicht mit einem möglichen Memory Leak zusammenhängt, nach dem Sie suchen.</p>
 <p>Lassen Sie den Container für ein paar Minuten, Stunden oder Tage laufen (es sollte die Zeit sein, die Sie normalerweise warten, bis der Memory Leak "passiert") und starten Sie ihn neu: <code>docker-compose restart rspamd-mailcow</code>.</p>

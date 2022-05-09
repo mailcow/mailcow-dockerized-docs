@@ -2456,8 +2456,9 @@
 <p>To restore make sure you are actually restoring to the same mailcow it was deleted from or you use the same encryption keys in <code>crypt-vol-1</code>.</p>
 <p><strong>Make sure the user you want to restore exists in your mailcow</strong>. Re-create them if they are missing.</p>
 <p>Copy the folders from <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]</code> back to <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]</code> and resync the folder and recalc the quota:</p>
-<p><code>docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
-docker-compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net &#39;*&#39;
+docker-compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

@@ -2376,11 +2376,14 @@
   <h1>Customize Dockerfiles</h1>
 
 <p>You need to copy the override file with corresponding build tags to the mailcow: dockerized root folder (i.e. <code>/opt/mailcow-dockerized</code>):</p>
-<p><code>cp helper-scripts/docker-compose.override.yml.d/BUILD_FLAGS/docker-compose.override.yml docker-compose.override.yml</code></p>
+<div class="highlight"><pre><span></span><code>cp helper-scripts/docker-compose.override.yml.d/BUILD_FLAGS/docker-compose.override.yml docker-compose.override.yml
+</code></pre></div>
 <p>Make your changes in <code>data/Dockerfiles/$service</code> and build the image locally:</p>
-<p><code>docker build data/Dockerfiles/service -t mailcow/$service</code></p>
+<div class="highlight"><pre><span></span><code>docker build data/Dockerfiles/service -t mailcow/$service
+</code></pre></div>
 <p>Now auto-recreate modified containers:</p>
-<p><code>docker-compose up -d</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

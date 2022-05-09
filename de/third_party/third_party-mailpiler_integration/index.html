@@ -2484,11 +2484,11 @@
 </div>
 <h2 id="das-zu-losende-problem">Das zu lösende Problem<a class="headerlink" href="#das-zu-losende-problem" title="Permanent link">&para;</a></h2>
 <p>mailpiler bietet die Authentifizierung auf Basis von IMAP an, zum Beispiel:</p>
-<p><code>php
-$config['ENABLE_IMAP_AUTH'] = 1;
-$config['IMAP_HOST'] = 'mail.example.com';
-$config['IMAP_PORT'] = 993;
-$config['IMAP_SSL'] = true;</code></p>
+<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;ENABLE_IMAP_AUTH&#39;] = 1;</span>
+<span class="x">$config[&#39;IMAP_HOST&#39;] = &#39;mail.example.com&#39;;</span>
+<span class="x">$config[&#39;IMAP_PORT&#39;] = 993;</span>
+<span class="x">$config[&#39;IMAP_SSL&#39;] = true;</span>
+</code></pre></div>
 <ul>
 <li>Wenn Sie sich also mit <code>patrik@example.com</code> anmelden, sehen Sie nur zugestellte E-Mails, die von oder an diese spezielle E-Mail-Adresse gesendet wurden.</li>
 <li>Wenn zusätzliche Aliase in mailcow definiert werden, wie z.B. <code>team@example.com</code>, werden Sie keine Emails sehen, die an oder von dieser Email-Adresse gesendet wurden, auch wenn Sie ein Empfänger von Emails sind, die an diese Alias-Adresse gesendet wurden.</li>
@@ -2515,19 +2515,19 @@ $config['IMAP_SSL'] = true;</code></p>
 <ol>
 <li>
 <p>Setzen Sie die benutzerdefinierte Abfragefunktion von mailpiler und fügen Sie diese an <code>/usr/local/etc/piler/config-site.php</code> an:</p>
-<p><code>php
-$config['MAILCOW_API_KEY'] = 'YOUR_READONLY_API_KEY';
-$config['MAILCOW_SET_REALNAME'] = true; // wenn nicht angegeben, dann ist der Standardwert false
-$config['CUSTOM_EMAIL_QUERY_FUNCTION'] = 'query_mailcow_for_email_access';
-include('auth-mailcow.php');</code></p>
+<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_API_KEY&#39;] = &#39;YOUR_READONLY_API_KEY&#39;;</span>
+<span class="x">$config[&#39;MAILCOW_SET_REALNAME&#39;] = true; // wenn nicht angegeben, dann ist der Standardwert false</span>
+<span class="x">$config[&#39;CUSTOM_EMAIL_QUERY_FUNCTION&#39;] = &#39;query_mailcow_for_email_access&#39;;</span>
+<span class="x">include(&#39;auth-mailcow.php&#39;);</span>
+</code></pre></div>
 <p>Sie können auch den mailcow-Hostnamen ändern, falls erforderlich:
-<code>php
-$config['MAILCOW_HOST'] = 'mail.domain.tld'; // standardmäßig $config['IMAP_HOST']</code></p>
+<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;MAILCOW_HOST&#39;] = &#39;mail.domain.tld&#39;; // standardmäßig $config[&#39;IMAP_HOST&#39;]</span>
+</code></pre></div></p>
 </li>
 <li>
 <p>Laden Sie die PHP-Datei mit den Funktionen aus dem <a href="https://github.com/patschi/mailpiler-mailcow-integration">GitHub Repo</a> herunter:</p>
-<p><code>sh
-curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php</code></p>
+<div class="highlight"><pre><span></span><code>curl -o /usr/local/etc/piler/auth-mailcow.php https://raw.githubusercontent.com/patschi/mailpiler-mailcow-integration/master/auth-mailcow.php
+</code></pre></div>
 </li>
 <li>
 <p>Erledigt!</p>

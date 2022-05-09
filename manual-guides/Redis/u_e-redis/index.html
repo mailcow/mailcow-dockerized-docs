@@ -1832,24 +1832,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-compose-exec-redis-mailcow-redis-cli" class="md-nav__link">
-    docker-compose exec redis-mailcow redis-cli
-  </a>
-  
-    <nav class="md-nav" aria-label="docker-compose exec redis-mailcow redis-cli">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#keys" class="md-nav__link">
     KEYS
@@ -1861,6 +1843,11 @@
   <a href="#ping" class="md-nav__link">
     PING
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2471,24 +2458,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-compose-exec-redis-mailcow-redis-cli" class="md-nav__link">
-    docker-compose exec redis-mailcow redis-cli
-  </a>
-  
-    <nav class="md-nav" aria-label="docker-compose exec redis-mailcow redis-cli">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#keys" class="md-nav__link">
     KEYS
@@ -2500,6 +2469,11 @@
   <a href="#ping" class="md-nav__link">
     PING
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2526,29 +2500,33 @@
 
 
 
+  <h1>Redis</h1>
+
 <p>Redis is used as a key-value store for rspamd's and (some of) mailcow's settings and data. If you are unfamiliar with redis please read the <a href="https://redis.io/topics/introduction">introduction to redis</a> and maybe visit this <a href="http://try.redis.io/">wonderful guide</a> on how to use it.</p>
 <h2 id="client">Client<a class="headerlink" href="#client" title="Permanent link">&para;</a></h2>
 <p>To connect to the redis cli execute:</p>
-<p><code>docker-compose exec redis-mailcow redis-cli</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli
+</code></pre></div>
 <h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
 <p>Here are some useful commands for the redis-cli for debugging:</p>
 <h5 id="monitor">MONITOR<a class="headerlink" href="#monitor" title="Permanent link">&para;</a></h5>
 <p>Listens for all requests received by the server in real time:</p>
-<p>```</p>
-<h1 id="docker-compose-exec-redis-mailcow-redis-cli">docker-compose exec redis-mailcow redis-cli<a class="headerlink" href="#docker-compose-exec-redis-mailcow-redis-cli" title="Permanent link">&para;</a></h1>
-<p>127.0.0.1:6379&gt; monitor
+<div class="highlight"><pre><span></span><code># docker-compose exec redis-mailcow redis-cli
+127.0.0.1:6379&gt; monitor
 OK
-1494077286.401963 [0 172.22.1.253:41228] "SMEMBERS" "BAYES_SPAM_keys"
-1494077288.292970 [0 172.22.1.253:41229] "SMEMBERS" "BAYES_SPAM_keys"
+1494077286.401963 [0 172.22.1.253:41228] &quot;SMEMBERS&quot; &quot;BAYES_SPAM_keys&quot;
+1494077288.292970 [0 172.22.1.253:41229] &quot;SMEMBERS&quot; &quot;BAYES_SPAM_keys&quot;
 [...]
-```</p>
+</code></pre></div>
 <h5 id="keys">KEYS<a class="headerlink" href="#keys" title="Permanent link">&para;</a></h5>
 <p>Get all keys matching your pattern:</p>
-<p><code>KEYS *</code></p>
+<div class="highlight"><pre><span></span><code>KEYS *
+</code></pre></div>
 <h5 id="ping">PING<a class="headerlink" href="#ping" title="Permanent link">&para;</a></h5>
 <p>Test a connection:</p>
-<p><code>127.0.0.1:6379&gt; PING
-PONG</code></p>
+<div class="highlight"><pre><span></span><code>127.0.0.1:6379&gt; PING
+PONG
+</code></pre></div>
 <p>If you want to know more, here is a <a href="https://www.cheatography.com/tasjaevan/cheat-sheets/redis/">cheat sheet</a>.</p>
 
   <hr>

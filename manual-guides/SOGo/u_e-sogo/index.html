@@ -2519,50 +2519,53 @@ After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes 
 <li>open browser developer console, usually shortcut is F12</li>
 <li>only if you use Firefox: write by hands in dev console <code>allow pasting</code> and press enter</li>
 <li>paste java script snipet in dev console:
-<code>copy([].slice.call(document.styleSheets)
+<div class="highlight"><pre><span></span><code>copy([].slice.call(document.styleSheets)
   .map(e =&gt; e.ownerNode)
-  .filter(e =&gt; e.hasAttribute('md-theme-style'))
+  .filter(e =&gt; e.hasAttribute(&#39;md-theme-style&#39;))
   .map(e =&gt; e.textContent)
-  .join('\n')
-)</code></li>
+  .join(&#39;\n&#39;)
+)
+</code></pre></div></li>
 <li>open text editor and paste data from clipboard (Ctrl+V), you should get minified CSS, save it</li>
 <li>copy CSS file to mailcow server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>edit <code>data/conf/sogo/sogo.conf</code> and set <code>SOGoUIxDebugEnabled = NO;</code></li>
 <li>append/create <code>docker-compose.override.yml</code> with:
-```
-version: '2.1'</li>
-</ol>
-<p>services:
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+
+services:
   sogo-mailcow:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
-<code>``
-11. run</code>docker-compose up -d<code>12. run</code>docker-compose restart memcached-mailcow`</p>
+</code></pre></div></li>
+<li>run <code>docker-compose up -d</code></li>
+<li>run <code>docker-compose restart memcached-mailcow</code></li>
+</ol>
 <h2 id="reset-to-sogo-default-theme">Reset to SOGo default theme<a class="headerlink" href="#reset-to-sogo-default-theme" title="Permanent link">&para;</a></h2>
 <ol>
 <li>checkout <code>data/conf/sogo/custom-theme.js</code> by executing <code>git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js</code></li>
 <li>find in <code>data/conf/sogo/custom-theme.js</code>:
-<code>// Apply new palettes to the default theme, remap some of the hues
-    $mdThemingProvider.theme('default')
-      .primaryPalette('green-cow', {
-        'default': '400',  // background color of top toolbars
-        'hue-1': '400',
-        'hue-2': '600',    // background color of sidebar toolbar
-        'hue-3': 'A700'
+<div class="highlight"><pre><span></span><code>// Apply new palettes to the default theme, remap some of the hues
+    $mdThemingProvider.theme(&#39;default&#39;)
+      .primaryPalette(&#39;green-cow&#39;, {
+        &#39;default&#39;: &#39;400&#39;,  // background color of top toolbars
+        &#39;hue-1&#39;: &#39;400&#39;,
+        &#39;hue-2&#39;: &#39;600&#39;,    // background color of sidebar toolbar
+        &#39;hue-3&#39;: &#39;A700&#39;
       })
-      .accentPalette('green', {
-        'default': '600',  // background color of fab buttons and login screen
-        'hue-1': '300',    // background color of center list toolbar
-        'hue-2': '300',    // highlight color for selected mail and current day calendar
-        'hue-3': 'A700'
+      .accentPalette(&#39;green&#39;, {
+        &#39;default&#39;: &#39;600&#39;,  // background color of fab buttons and login screen
+        &#39;hue-1&#39;: &#39;300&#39;,    // background color of center list toolbar
+        &#39;hue-2&#39;: &#39;300&#39;,    // highlight color for selected mail and current day calendar
+        &#39;hue-3&#39;: &#39;A700&#39;
       })
-      .backgroundPalette('frost-grey');</code>
+      .backgroundPalette(&#39;frost-grey&#39;);
+</code></pre></div>
 and replace it with:
-<code>$mdThemingProvider.theme('default');</code></li>
+<div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
+</code></pre></div></li>
 <li>remove from <code>docker-compose.override.yml</code> volume mount in <code>sogo-mailcow</code>:
-```</li>
-<li>./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
-```</li>
+<div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+</code></pre></div></li>
 <li>run <code>docker-compose up -d</code></li>
 <li>run <code>docker-compose restart memcached-mailcow</code></li>
 </ol>
@@ -2578,14 +2581,16 @@ After you replaced said file you need to restart SOGo and Memcached containers b
 <p>Domains are usually isolated from eachother.</p>
 <p>You can change that by modifying <code>data/conf/sogo/sogo.conf</code>:</p>
 <p>Search...
-<code>// SOGoDomainsVisibility = (
+<div class="highlight"><pre><span></span><code>   // SOGoDomainsVisibility = (
     //  (domain1.tld, domain5.tld),
     //  (domain3.tld, domain2.tld)
-    // );</code>
+    // );
+</code></pre></div>
 ...and replace it by - for example:</p>
-<p><code>SOGoDomainsVisibility = (
+<div class="highlight"><pre><span></span><code>    SOGoDomainsVisibility = (
       (example.org, example.com, example.net)
-    );</code></p>
+    );
+</code></pre></div>
 <p>Restart SOGo: <code>docker-compose restart sogo-mailcow</code></p>
 <h2 id="disable-password-changing">Disable password changing<a class="headerlink" href="#disable-password-changing" title="Permanent link">&para;</a></h2>
 <p>Edit <code>data/conf/sogo/sogo.conf</code> and <strong>change</strong> <code>SOGoPasswordChangeEnabled</code> to <code>NO</code>. Please do not add a new parameter.</p>

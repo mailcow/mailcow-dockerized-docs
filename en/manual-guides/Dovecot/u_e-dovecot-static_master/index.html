@@ -2379,8 +2379,9 @@
 <p><strong>That's recommended and should not be changed.</strong></p>
 <p>If you need the user to be static anyway, please specify two variables in <code>mailcow.conf</code>.</p>
 <p><strong>Both</strong> parameters must not be empty!</p>
-<p><code>DOVECOT_MASTER_USER=mymasteruser
-DOVECOT_MASTER_PASS=mysecretpass</code></p>
+<div class="highlight"><pre><span></span><code>DOVECOT_MASTER_USER=mymasteruser
+DOVECOT_MASTER_PASS=mysecretpass
+</code></pre></div>
 <p>Run <code>docker-compose up -d</code> to apply your changes.</p>
 <p>The static master username will be expanded to <code>DOVECOT_MASTER_USER@mailcow.local</code>.</p>
 <p>To login as <code>test@example.org</code> this would equal to <code>test@example.org*mymasteruser@mailcow.local</code> with the specified password above.</p>

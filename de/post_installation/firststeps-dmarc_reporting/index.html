@@ -2501,42 +2501,44 @@
 </ol>
 <h2 id="aktivieren-sie-dmarc-berichterstattung">Aktivieren Sie DMARC-Berichterstattung<a class="headerlink" href="#aktivieren-sie-dmarc-berichterstattung" title="Permanent link">&para;</a></h2>
 <p>Erstellen Sie die Datei <code>data/conf/rspamd/local.d/dmarc.conf</code> und setzen Sie den folgenden Inhalt:</p>
-<p><code>reporting {
+<div class="highlight"><pre><span></span><code>reporting {
     enabled = true;
-    email = 'noreply-dmarc@example.com';
-    domain = 'example.com';
-    org_name = 'Example';
-    helo = 'rspamd';
-    smtp = 'postfix';
+    email = &#39;noreply-dmarc@example.com&#39;;
+    domain = &#39;example.com&#39;;
+    org_name = &#39;Example&#39;;
+    helo = &#39;rspamd&#39;;
+    smtp = &#39;postfix&#39;;
     smtp_port = 25;
-    from_name = 'Example DMARC Report';
-    msgid_from = 'rspamd.mail.example.com';
+    from_name = &#39;Example DMARC Report&#39;;
+    msgid_from = &#39;rspamd.mail.example.com&#39;;
     max_entries = 2k;
     keys_expire = 2d;
-}</code></p>
+}
+</code></pre></div>
 <p>Erstellen oder ändern Sie <code>docker-compose.override.yml</code> im mailcow-dockerized Basisverzeichnis:</p>
-<p>```
-version: '2.1'</p>
-<p>services:
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+
+services:
   rspamd-mailcow:
     environment:
       - MASTER=${MASTER:-y}
     labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"
-      ofelia.job-exec.rspamd_dmarc_reporting.command: "/bin/bash -c \"[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\""
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting.schedule: &quot;@every 24h&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
   ofelia-mailcow:
     depends_on:
       - rspamd-mailcow
-```</p>
+</code></pre></div>
 <p>Starte <code>docker-compose up -d</code></p>
 <h2 id="senden-sie-eine-kopie-der-berichte-an-sich-selbst">Senden Sie eine Kopie der Berichte an sich selbst<a class="headerlink" href="#senden-sie-eine-kopie-der-berichte-an-sich-selbst" title="Permanent link">&para;</a></h2>
 <p>Um eine versteckte Kopie der von Rspamd erzeugten Berichte zu erhalten, können Sie eine <code>bcc_addrs</code> Liste im <code>reporting</code> Konfigurationsabschnitt von <code>data/conf/rspamd/local.d/dmarc.conf</code> setzen:</p>
-<p><code>reporting {
+<div class="highlight"><pre><span></span><code>reporting {
     enabled = true;
-    email = 'noreply-dmarc@example.com';
-    bcc_addrs = ["noreply-dmarc@example.com", "parsedmarc@example.com"];
-[...]</code></p>
+    email = &#39;noreply-dmarc@example.com&#39;;
+    bcc_addrs = [&quot;noreply-dmarc@example.com&quot;, &quot;parsedmarc@example.com&quot;];
+[...]
+</code></pre></div>
 <p>Rspamd lädt Änderungen in Echtzeit, so dass Sie den Container zu diesem Zeitpunkt nicht neu starten müssen.</p>
 <p>Dies kann nützlich sein, wenn Sie...</p>
 <ul>
@@ -2545,16 +2547,21 @@ version: '2.1'</p>
 </ul>
 <h2 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h2>
 <p>Prüfen Sie, wann der Berichtsplan zuletzt ausgeführt wurde:</p>
-<p><code>docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+</code></pre></div>
 <p>Sehen Sie sich die letzte Berichtsausgabe an:</p>
-<p><code>docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+</code></pre></div>
 <p>Manuelles Auslösen eines DMARC-Berichts:</p>
-<p><code>docker-compose exec rspamd-mailcow rspamadm dmarc_report</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow rspamadm dmarc_report
+</code></pre></div>
 <p>Bestätigen Sie, dass Rspamd Daten in Redis aufgezeichnet hat:
 Ändern Sie <code>20220428</code> in ein anderes interessantes Datum zum schauen.</p>
-<p><code>docker-compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli SMEMBERS &quot;dmarc_idx;20220428&quot;
+</code></pre></div>
 <p>Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Sie sie an, z. B.:</p>
-<p><code>docker-compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli ZRANGE &quot;dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428&quot; 0 49
+</code></pre></div>
 <h2 id="andern-sie-die-haufigkeit-der-dmarc-berichte">Ändern Sie die Häufigkeit der DMARC-Berichte<a class="headerlink" href="#andern-sie-die-haufigkeit-der-dmarc-berichte" title="Permanent link">&para;</a></h2>
 <p>Im obigen Beispiel werden die Berichte einmal alle 24 Stunden gesendet.</p>
 <p>Der Olefia-Zeitplan hat die gleiche Implementierung wie <code>cron</code> in Go, die unterstützte Syntax ist beschrieben in <a href="https://pkg.go.dev/github.com/robfig/cron">cron Documentation</a></p>

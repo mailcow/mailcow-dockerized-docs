@@ -801,64 +801,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#telnet-7412513327-465" class="md-nav__link">
-    telnet 74.125.133.27 465
-  </a>
-  
-    <nav class="md-nav" aria-label="telnet 74.125.133.27 465">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#my-mails-are-identified-as-spam" class="md-nav__link">
     My mails are identified as Spam
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#docker-compose-throws-weird-errors" class="md-nav__link">
     docker-compose throws weird errors
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#container-xy-is-unhealthy" class="md-nav__link">
     Container XY is unhealthy
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#address-already-in-use" class="md-nav__link">
     Address already in use
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#xyz-cant-connect-to" class="md-nav__link">
     XYZ can't connect to ...
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#inotify-instance-limit-for-user-5000-uid-vmail-exceeded-see-453" class="md-nav__link">
     Inotify instance limit for user 5000 (UID vmail) exceeded (see #453)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#dovecot-keeps-restarting-see-2672" class="md-nav__link">
     Dovecot keeps restarting (see #2672)
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2479,64 +2466,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#telnet-7412513327-465" class="md-nav__link">
-    telnet 74.125.133.27 465
-  </a>
-  
-    <nav class="md-nav" aria-label="telnet 74.125.133.27 465">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#my-mails-are-identified-as-spam" class="md-nav__link">
     My mails are identified as Spam
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#docker-compose-throws-weird-errors" class="md-nav__link">
     docker-compose throws weird errors
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#container-xy-is-unhealthy" class="md-nav__link">
     Container XY is unhealthy
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#address-already-in-use" class="md-nav__link">
     Address already in use
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#xyz-cant-connect-to" class="md-nav__link">
     XYZ can't connect to ...
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#inotify-instance-limit-for-user-5000-uid-vmail-exceeded-see-453" class="md-nav__link">
     Inotify instance limit for user 5000 (UID vmail) exceeded (see #453)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#dovecot-keeps-restarting-see-2672" class="md-nav__link">
     Dovecot keeps restarting (see #2672)
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2558,6 +2532,8 @@
 
 
 
+  <h1>Common Problems</h1>
+
 <p>Here we list common problems and possible solutions:</p>
 <h2 id="mail-loops-back-to-myself">Mail loops back to myself<a class="headerlink" href="#mail-loops-back-to-myself" title="Permanent link">&para;</a></h2>
 <p>Please check in your mailcow UI if you made the domain a <strong>backup MX</strong>:</p>
@@ -2568,12 +2544,11 @@
 <li>Check if your IP address is on any blacklists. You could use <a href="http://www.dnsbl.info/">dnsbl.info</a> or any other similar service to check for your IP address.</li>
 <li>There are some consumer ISP routers out there, that block mail ports for non whitelisted domains. Please check if you can reach your server on the ports <code>465</code> or <code>587</code>:</li>
 </ul>
-<p>```</p>
-<h1 id="telnet-7412513327-465">telnet 74.125.133.27 465<a class="headerlink" href="#telnet-7412513327-465" title="Permanent link">&para;</a></h1>
-<p>Trying 74.125.133.27...
+<div class="highlight"><pre><span></span><code># telnet 74.125.133.27 465
+Trying 74.125.133.27...
 Connected to 74.125.133.27.
-Escape character is '^]'.
-```</p>
+Escape character is &#39;^]&#39;.
+</code></pre></div>
 <h2 id="my-mails-are-identified-as-spam">My mails are identified as Spam<a class="headerlink" href="#my-mails-are-identified-as-spam" title="Permanent link">&para;</a></h2>
 <p>Please read our guide on <a href="../../prerequisite/prerequisite-dns/">DNS configuration</a>.</p>
 <h2 id="docker-compose-throws-weird-errors">docker-compose throws weird errors<a class="headerlink" href="#docker-compose-throws-weird-errors" title="Permanent link">&para;</a></h2>
@@ -2590,7 +2565,8 @@ Escape character is '^]'.
 <p>It might also be wrongly linked file (i.e. SSL certificate) that prevents a crucial container (nginx) from starting, so always check your logs to get an idea where your problem is coming from.</p>
 <h2 id="address-already-in-use">Address already in use<a class="headerlink" href="#address-already-in-use" title="Permanent link">&para;</a></h2>
 <p>If you get an error message like:</p>
-<p><code>ERROR: for postfix-mailcow  Cannot start service postfix-mailcow: driver failed programming external     connectivity on endpoint mailcowdockerized_postfix-mailcow_1: Error starting userland proxy: listen tcp 0.0.0.0:25: bind: address already in use</code></p>
+<div class="highlight"><pre><span></span><code>ERROR: for postfix-mailcow  Cannot start service postfix-mailcow: driver failed programming external     connectivity on endpoint mailcowdockerized_postfix-mailcow_1: Error starting userland proxy: listen tcp 0.0.0.0:25: bind: address already in use
+</code></pre></div>
 <p>while trying to start / install mailcow: dockerized, make sure you've followed our section on the <a href="../prerequisite/prerequisite-system.en.md/#firewall-ports">prerequisites</a>.</p>
 <h2 id="xyz-cant-connect-to">XYZ can't connect to ...<a class="headerlink" href="#xyz-cant-connect-to" title="Permanent link">&para;</a></h2>
 <p>Please check your local firewall!
@@ -2598,17 +2574,19 @@ Docker and iptables-based firewalls sometimes create conflicting rules, so disab
 <p>If you experience connection problems from home, please check your ISP router's firewall too, some of them block mail traffic on the <em>SMTP</em> (587) or <em>SMTPS</em> (465) ports. It could also be, that your ISP is blocking the ports for <em>SUBMISSION</em> (25).</p>
 <p>While Linux users can chose from a variety of tools<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> to check if a port is open, the Windows user has only the PowerShell command <code>Test-NetConnection -ComputerName host -Port port</code> available by default.</p>
 <p>To enable telnet on a Windows after Vista please check this <a href="https://social.technet.microsoft.com/wiki/contents/articles/910.windows-7-enabling-telnet-client.aspx">guide</a> or enter the following command in an terminal <strong>with administrator privileges</strong>:</p>
-<p><code>dism /online /Enable-Feature /FeatureName:TelnetClient</code></p>
+<div class="highlight"><pre><span></span><code>dism /online /Enable-Feature /FeatureName:TelnetClient
+</code></pre></div>
 <h2 id="inotify-instance-limit-for-user-5000-uid-vmail-exceeded-see-453">Inotify instance limit for user 5000 (UID vmail) exceeded (<a href="https://github.com/mailcow/mailcow-dockerized/issues/453#issuecomment-314711232">see #453</a>)<a class="headerlink" href="#inotify-instance-limit-for-user-5000-uid-vmail-exceeded-see-453" title="Permanent link">&para;</a></h2>
 <p>Docker containers use the Docker hosts inotify limits. Setting them on your Docker host will pass them to the container.</p>
 <h2 id="dovecot-keeps-restarting-see-2672">Dovecot keeps restarting (see <a href="https://github.com/mailcow/mailcow-dockerized/issues/2672">#2672</a>)<a class="headerlink" href="#dovecot-keeps-restarting-see-2672" title="Permanent link">&para;</a></h2>
 <p>Check that you have at least the following files in <code>data/assets/ssl</code>:</p>
-<p><code>cert.pem
+<div class="highlight"><pre><span></span><code>cert.pem
 dhparams.pem
-key.pem</code></p>
+key.pem
+</code></pre></div>
 <p>If <code>dhparams.pem</code> is missing, you can generate it with</p>
-<p><code>bash
-openssl dhparam -out data/assets/ssl/dhparams.pem 4096</code></p>
+<div class="highlight"><pre><span></span><code>openssl dhparam -out data/assets/ssl/dhparams.pem <span class="m">4096</span>
+</code></pre></div>
 <div class="footnote">
 <hr />
 <ol>

@@ -2424,11 +2424,13 @@
 
 <h2 id="run-a-manual-mysql_upgrade">Run a manual mysql_upgrade<a class="headerlink" href="#run-a-manual-mysql_upgrade" title="Permanent link">&para;</a></h2>
 <p>This step is usually not necessary. </p>
-<p><code>docker-compose stop mysql-mailcow watchdog-mailcow
-docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; bash &amp;&amp; exit 0"' mysql-mailcow</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose stop mysql-mailcow watchdog-mailcow
+docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; bash &amp;&amp; exit 0&quot;&#39; mysql-mailcow
+</code></pre></div>
 <p>As soon as the SQL shell spawned, run <code>mysql_upgrade</code> and exit the container:</p>
-<p><code>mysql_upgrade
-exit</code></p>
+<div class="highlight"><pre><span></span><code>mysql_upgrade
+exit
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

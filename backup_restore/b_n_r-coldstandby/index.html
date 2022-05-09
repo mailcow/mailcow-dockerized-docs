@@ -2487,9 +2487,10 @@
 <p>You will need a SSH-enabled destination and a keyfile to connect to said destination. The key should not be protected by a password for the script to work unattended.</p>
 <p>In your mailcow base directory, e.g. <code>/opt/mailcow-dockerized</code> you will find a file <code>create_cold_standby.sh</code>.</p>
 <p>Edit this file and change the exported variables:</p>
-<p><code>export REMOTE_SSH_KEY=/path/to/keyfile
+<div class="highlight"><pre><span></span><code>export REMOTE_SSH_KEY=/path/to/keyfile
 export REMOTE_SSH_PORT=22
-export REMOTE_SSH_HOST=mailcow-backup.host.name</code></p>
+export REMOTE_SSH_HOST=mailcow-backup.host.name
+</code></pre></div>
 <p>The key must be owned and readable by root only.</p>
 <p>Both the source and destination require <code>rsync</code> &gt;= v3.1.0.
 The destination must have Docker and docker-compose <strong>v1</strong> available.</p>
@@ -2497,23 +2498,28 @@ The destination must have Docker and docker-compose <strong>v1</strong> availabl
 <p>You may want to test the connection by running <code>ssh mailcow-backup.host.name -p22 -i /path/to/keyfile</code>.</p>
 <h2 id="backup-and-refresh-the-cold-standby">Backup and refresh the cold-standby<a class="headerlink" href="#backup-and-refresh-the-cold-standby" title="Permanent link">&para;</a></h2>
 <p>Run the first backup, this may take a while depending on the connection:</p>
-<p><code>bash /opt/mailcow-dockerized/create_cold_standby.sh</code></p>
+<div class="highlight"><pre><span></span><code>bash /opt/mailcow-dockerized/create_cold_standby.sh
+</code></pre></div>
 <p>That was easy, wasn't it?</p>
 <p>Updating your cold-standby is just as easy:</p>
-<p><code>bash /opt/mailcow-dockerized/create_cold_standby.sh</code></p>
+<div class="highlight"><pre><span></span><code>bash /opt/mailcow-dockerized/create_cold_standby.sh
+</code></pre></div>
 <p>It's the same command.</p>
 <h2 id="automated-backups-with-cron">Automated backups with cron<a class="headerlink" href="#automated-backups-with-cron" title="Permanent link">&para;</a></h2>
 <p>First make sure that the <code>cron</code> service is enabled and running:</p>
-<p><code>systemctl enable cron.service &amp;&amp; systemctl start cron.service</code></p>
+<div class="highlight"><pre><span></span><code>systemctl enable cron.service &amp;&amp; systemctl start cron.service
+</code></pre></div>
 <p>To automate the backups to the cold-standby server you can use a cron job. To edit the cron jobs for the root user run:</p>
-<p><code>crontab -e</code></p>
+<div class="highlight"><pre><span></span><code>crontab -e
+</code></pre></div>
 <p>Add the following lines to synchronize the cold standby server daily at 03:00. In this example errors of the last execution are logged into a file.</p>
-<p>```
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</p>
-<p>0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2&gt; /var/log/mailcow-coldstandby-sync.log
-```</p>
+<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2&gt; /var/log/mailcow-coldstandby-sync.log
+</code></pre></div>
 <p>If saved correctly, the cron job should be shown by typing:</p>
-<p><code>crontab -l</code></p>
+<div class="highlight"><pre><span></span><code>crontab -l
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">

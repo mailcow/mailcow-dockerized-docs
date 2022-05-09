@@ -66,11 +66,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#fur-gitea_ssh_port1270014000-in-mailcowconf-setzen" class="md-skip">
-          Zum Inhalt
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -2242,8 +2237,6 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Gitea
@@ -2361,8 +2354,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -2380,43 +2371,45 @@
 
 
 
+  <h1>Gitea</h1>
+
 <p>Mit der Fähigkeit von Gitea, sich über SMTP zu authentifizieren, ist es trivial, es mit mailcow zu integrieren. Es sind nur wenige Änderungen erforderlich:</p>
 <p>1. Öffnen Sie <code>docker-compose.override.yml</code> und fügen Sie Gitea hinzu:</p>
-<p>```
-version: '2.1'
-services:</p>
-<pre><code>    gitea-mailcow:
-        image: gitea/gitea:1
-        volumes:
-            - ./data/gitea:/data
-        networks:
-            mailcow-network:
-                aliases:
-                    - gitea
-        ports:
-            - "${GITEA_SSH_PORT:-127.0.0.1:4000}:22"
-</code></pre>
-<p>```</p>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+services:
+
+        gitea-mailcow:
+            image: gitea/gitea:1
+            volumes:
+                - ./data/gitea:/data
+            networks:
+                mailcow-network:
+                    aliases:
+                        - gitea
+            ports:
+                - &quot;${GITEA_SSH_PORT:-127.0.0.1:4000}:22&quot;
+</code></pre></div>
 <p>2. Erstellen Sie <code>data/conf/nginx/site.gitea.custom</code>, fügen Sie folgendes hinzu:
-<code>location /gitea/ {
+<div class="highlight"><pre><span></span><code>location /gitea/ {
         proxy_pass http://gitea:3000/;
-}</code></p>
+}
+</code></pre></div></p>
 <p>3. Öffne <code>mailcow.conf</code> und definiere den Port Bind, den Gitea für SSH verwenden soll. Beispiel:</p>
-<p><code>GITEA_SSH_PORT=127.0.0.1:4000</code></p>
+<div class="highlight"><pre><span></span><code>GITEA_SSH_PORT=127.0.0.1:4000
+</code></pre></div>
 <p>5. Führen Sie <code>docker-compose up -d</code> aus, um den Gitea-Container hochzufahren und führen Sie anschließend <code>docker-compose restart nginx-mailcow</code> aus.</p>
 <p>6. Wenn Sie mailcow zu https gezwungen haben, führen Sie Schritt 9 aus und starten Sie gitea mit <code>docker-compose restart gitea-mailcow</code> neu. Fahren Sie mit Schritt 7 fort (Denken Sie daran, https anstelle von http zu verwenden, <code>https://mx.example.org/gitea/</code> </p>
 <p>7. Öffnen Sie <code>http://${MAILCOW_HOSTNAME}/gitea/</code>, zum Beispiel <code>http://mx.example.org/gitea/</code>. Für die Datenbankdetails stellen Sie <code>mysql</code> als Datenbankhost ein. Verwenden Sie den in mailcow.conf gefundenen Wert von DBNAME als Datenbankname, DBUSER als Datenbankbenutzer und DBPASS als Datenbankpasswort.</p>
 <p>8. Sobald die Installation abgeschlossen ist, loggen Sie sich als Administrator ein und setzen Sie "Einstellungen" -&gt; "Autorisierung" -&gt; "SMTP aktivieren". SMTP-Host sollte <code>postfix</code> mit Port <code>587</code> sein, setzen Sie <code>Skip TLS Verify</code>, da wir ein nicht gelistetes SAN verwenden ("postfix" ist höchstwahrscheinlich nicht Teil Ihres Zertifikats).</p>
 <p>9. Erstellen Sie <code>data/gitea/gitea/conf/app.ini</code> und setzen Sie die folgenden Werte. Sie können <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">gitea cheat sheet, leider bisher nur in Englisch verfügbar</a> für deren Bedeutung und andere mögliche Werte konsultieren.</p>
-<p>```
-[server]
-SSH_LISTEN_PORT = 22</p>
-<h1 id="fur-gitea_ssh_port1270014000-in-mailcowconf-setzen">Für GITEA_SSH_PORT=127.0.0.1:4000 in mailcow.conf, setzen:<a class="headerlink" href="#fur-gitea_ssh_port1270014000-in-mailcowconf-setzen" title="Permanent link">&para;</a></h1>
-<p>SSH_DOMAIN = 127.0.0.1
-SSH_PORT = 4000</p>
-<h1 id="fur-mailcow_hostnamemxexampleorg-in-mailcowconf-und-standard-ports-fur-https-setzen">Für MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (und Standard-Ports für HTTPS), setzen:<a class="headerlink" href="#fur-mailcow_hostnamemxexampleorg-in-mailcowconf-und-standard-ports-fur-https-setzen" title="Permanent link">&para;</a></h1>
-<p>ROOT_URL = <a href="https://mx.example.org/gitea/">https://mx.example.org/gitea/</a>
-```</p>
+<div class="highlight"><pre><span></span><code>[server]
+SSH_LISTEN_PORT = 22
+# Für GITEA_SSH_PORT=127.0.0.1:4000 in mailcow.conf, setzen:
+SSH_DOMAIN = 127.0.0.1
+SSH_PORT = 4000
+# Für MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (und Standard-Ports für HTTPS), setzen:
+ROOT_URL = https://mx.example.org/gitea/
+</code></pre></div>
 <p>10. Starten Sie gitea neu mit <code>docker-compose restart gitea-mailcow</code>. Ihre Nutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten anzumelden.</p>
 
   <hr>
