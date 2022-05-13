@@ -2439,9 +2439,11 @@
   <h1>Verwendung eines externen DNS-Dienstes</h1>
 
 <p>Wenn Sie einen externen DNS-Dienst verwenden wollen oder müssen, können Sie entweder einen Forwarder in Unbound einstellen oder eine Override-Datei kopieren, um externe DNS-Server zu definieren:</p>
-<p>!!! warning
-   Bitte verwenden Sie keinen öffentlichen Resolver, wie wir es im obigen Beispiel getan haben. Viele - wenn nicht sogar alle - Blacklist-Lookups werden mit öffentlichen Resolvern fehlschlagen, da der Blacklist-Server Grenzen hat, wie viele Anfragen von einer IP gestellt werden können und öffentliche Resolver diese Grenzen normalerweise erreichen.
-   <strong>Wichtig</strong>: Nur DNSSEC-validierende DNS-Dienste werden funktionieren.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Bitte verwenden Sie keinen öffentlichen Resolver, wie wir es im obigen Beispiel getan haben. Viele - wenn nicht sogar alle - Blacklist-Lookups werden mit öffentlichen Resolvern fehlschlagen, da der Blacklist-Server Grenzen hat, wie viele Anfragen von einer IP gestellt werden können und öffentliche Resolver diese Grenzen normalerweise erreichen. <br>
+<strong>Wichtig</strong>: Nur DNSSEC-validierende DNS-Dienste werden funktionieren.</p>
+</div>
 <h2 id="methode-a-unbound">Methode A, Unbound<a class="headerlink" href="#methode-a-unbound" title="Permanent link">&para;</a></h2>
 <p>Bearbeiten Sie <code>data/conf/unbound/unbound.conf</code> und fügen Sie die folgenden Parameter hinzu:</p>
 <div class="highlight"><pre><span></span><code>forward-zone:
@@ -2464,7 +2466,7 @@ cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.over
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 11:37:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-13 11:29:19</span>
       
     
   </small>
