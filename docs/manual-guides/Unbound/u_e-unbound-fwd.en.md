@@ -1,8 +1,8 @@
 If you want or have to use an external DNS service, you can either set a forwarder in Unbound or copy an override file to define external DNS servers:
 
-   !!! warning
-   Please do not use a public resolver like we did in the example above. Many - if not all - blacklist lookups will fail with public resolvers, because blacklist server has limits on how much requests can be done from one IP and public resolvers usually reach this limits.
-   **Important**: Only DNSSEC validating DNS services will work.
+!!! warning
+    Please do not use a public resolver like we did in the example above. Many - if not all - blacklist lookups will fail with public resolvers, because blacklist server has limits on how much requests can be done from one IP and public resolvers usually reach this limits. <br>
+    **Important**: Only DNSSEC validating DNS services will work.
 
 ## Method A, Unbound
 

@@ -1,8 +1,8 @@
 Wenn Sie einen externen DNS-Dienst verwenden wollen oder müssen, können Sie entweder einen Forwarder in Unbound einstellen oder eine Override-Datei kopieren, um externe DNS-Server zu definieren:
 
-   !!! warning
-   Bitte verwenden Sie keinen öffentlichen Resolver, wie wir es im obigen Beispiel getan haben. Viele - wenn nicht sogar alle - Blacklist-Lookups werden mit öffentlichen Resolvern fehlschlagen, da der Blacklist-Server Grenzen hat, wie viele Anfragen von einer IP gestellt werden können und öffentliche Resolver diese Grenzen normalerweise erreichen.
-   **Wichtig**: Nur DNSSEC-validierende DNS-Dienste werden funktionieren.
+!!! warning "Warnung"
+    Bitte verwenden Sie keinen öffentlichen Resolver, wie wir es im obigen Beispiel getan haben. Viele - wenn nicht sogar alle - Blacklist-Lookups werden mit öffentlichen Resolvern fehlschlagen, da der Blacklist-Server Grenzen hat, wie viele Anfragen von einer IP gestellt werden können und öffentliche Resolver diese Grenzen normalerweise erreichen. <br>
+    **Wichtig**: Nur DNSSEC-validierende DNS-Dienste werden funktionieren.
 
 ## Methode A, Unbound
 
