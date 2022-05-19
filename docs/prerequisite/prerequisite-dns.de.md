@@ -28,6 +28,8 @@ autoconfig IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 @ IN MX 10 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 ```
 
+**Hinweis:** Der `mail` DNS-Eintrag, der die Subdomain an die angegebene IP-Adresse bindet, muss nur für die Domain gesetzt werden, auf der mailcow läuft und die für den Zugriff auf das Webinterface verwendet wird. Für jede andere von mailcow verwaltete Domain leitet der `MX`-Eintrag den Datenverkehr entsprechend weiter.
+
 ## DKIM, SPF und DMARC
 
 Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher **SPF** TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("`~all`"). Weitere Informationen finden Sie im [SPF-Projekt](http://www.open-spf.org/).
