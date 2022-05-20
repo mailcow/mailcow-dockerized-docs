@@ -89,8 +89,8 @@ Hier finden Sie einige Tools, mit denen Sie Ihre DNS-Konfiguration überprüfen 
 
 Wenn Sie an Statistiken interessiert sind, können Sie sich zusätzlich bei einem der vielen unten aufgeführten DMARC-Statistikdienste anmelden - oder Ihre eigene Statistik selbst hosten.
 
-!!! Tipp
-Es ist zu bedenken, dass wenn Sie DMARC-Statistik-Berichte an Ihren mailcow-Server anfordern und Ihr mailcow-Server nicht korrekt für den Empfang dieser Berichte konfiguriert ist, Sie möglicherweise keine genauen und vollständigen Ergebnisse erhalten. Bitte erwägen Sie die Verwendung einer alternativen E-Mail-Domain für den Empfang von DMARC-Berichten.
+!!! tip "Tipp"
+    Es ist zu bedenken, dass wenn Sie DMARC-Statistik-Berichte an Ihren mailcow-Server anfordern und Ihr mailcow-Server nicht korrekt für den Empfang dieser Berichte konfiguriert ist, Sie möglicherweise keine genauen und vollständigen Ergebnisse erhalten. Bitte erwägen Sie die Verwendung einer alternativen E-Mail-Domain für den Empfang von DMARC-Berichten.
 
 Es ist erwähnenswert, dass die folgenden Vorschläge keine umfassende Liste aller verfügbaren Dienste und Tools sind, sondern nur eine kleine Auswahl der vielen Möglichkeiten.
 
@@ -100,9 +100,8 @@ Es ist erwähnenswert, dass die folgenden Vorschläge keine umfassende Liste all
 - [Postmark](https://dmarc.postmarkapp.com)
 - [Dmarcian](https://dmarcian.com/)
 
-!!! Tipp
-
-Diese Dienste stellen Ihnen möglicherweise einen TXT-Eintrag zur Verfügung, den Sie in Ihre DNS-Einträge einfügen müssen, so wie es der Anbieter vorschreibt. Bitte stellen Sie sicher, dass Sie die Dokumentation des Anbieters des von Ihnen gewählten Dienstes lesen, da dieser Prozess variieren kann.
+!!! tip "Tipp"
+    Diese Dienste stellen Ihnen möglicherweise einen TXT-Eintrag zur Verfügung, den Sie in Ihre DNS-Einträge einfügen müssen, so wie es der Anbieter vorschreibt. Bitte stellen Sie sicher, dass Sie die Dokumentation des Anbieters des von Ihnen gewählten Dienstes lesen, da dieser Prozess variieren kann.
 
 ### E-Mail-Test für SPF, DKIM und DMARC:
 

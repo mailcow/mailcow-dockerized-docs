@@ -89,8 +89,8 @@ Here are some tools you can use to verify your DNS configuration:
 
 If you are interested in statistics, you can additionally register with some of the many below DMARC statistic services - or self-host your own.
 
-!!! Tip
-It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.
+!!! tip
+    It is worth considering that if you request DMARC statistic reports to your mailcow server and your mailcow server is not configured correctly to receive these reports, you may not get accurate and complete results. Please consider using an alternative email domain for receiving DMARC reports.
 
 It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools available, but only a small few of the many choices.
 
@@ -100,9 +100,8 @@ It is worth mentioning, that the following suggestions are not a comprehensive l
 - [Postmark](https://dmarc.postmarkapp.com)
 - [Dmarcian](https://dmarcian.com/)
 
-!!! Tip
-
-These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure you read the provider's documentation from the service you choose as this process may vary.
+!!! tip
+    These services may provide you with a TXT record you need to insert into your DNS records as the provider specifies. Please ensure you read the provider's documentation from the service you choose as this process may vary.
 
 ### Email test for SPF, DKIM and DMARC:
 
