@@ -2582,6 +2582,7 @@ autodiscover IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 autoconfig IN CNAME mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 @ IN MX 10 mail.example.org. (Ihr ${MAILCOW_HOSTNAME})
 </code></pre></div>
+<p><strong>Hinweis:</strong> Der <code>mail</code> DNS-Eintrag, der die Subdomain an die angegebene IP-Adresse bindet, muss nur für die Domain gesetzt werden, auf der mailcow läuft und die für den Zugriff auf das Webinterface verwendet wird. Für jede andere von mailcow verwaltete Domain leitet der <code>MX</code>-Eintrag den Datenverkehr entsprechend weiter.</p>
 <h2 id="dkim-spf-und-dmarc">DKIM, SPF und DMARC<a class="headerlink" href="#dkim-spf-und-dmarc" title="Permanent link">&para;</a></h2>
 <p>Im folgenden Beispiel für eine DNS-Zonendatei wird ein einfacher <strong>SPF</strong> TXT-Eintrag verwendet, um nur DIESEM Server (dem MX) zu erlauben, E-Mails für Ihre Domäne zu senden. Jeder andere Server ist nicht zugelassen, kann es aber tun ("<code>~all</code>"). Weitere Informationen finden Sie im <a href="http://www.open-spf.org/">SPF-Projekt</a>.</p>
 <div class="highlight"><pre><span></span><code># Name Typ Wert
@@ -2671,7 +2672,7 @@ Einzelheiten:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 17:48:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-19 19:56:01</span>
       
     
   </small>
