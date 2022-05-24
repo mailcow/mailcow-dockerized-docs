@@ -68,16 +68,27 @@ services:
       options:
         syslog-address: "udp://127.0.0.1:514"
         syslog-facility: "local3"
+```
 
-# Nur für Rsyslog:
-# Um die local3-Eingabe nach /var/log/mailcow.log zu verschieben und die Verarbeitung zu beenden, erstellen Sie eine Datei "/etc/rsyslog.d/docker.conf":
-
-local3.* /var/log/mailcow.logs
-& stop
-
-# Danach rsyslog neu starten.
+##### Nur für rsyslog:
+ 
+Stellen Sie sicher, dass folgende Zeilen in `/etc/rsyslog.conf` nicht auskommentiert sind:
 
 ```
+# provides UDP syslog reception
+module(load="imudp")
+input(type="imudp" port="514")
+```
+
+Um Eingänge von `local3` in `/var/log/mailcow.log` zu leiten und danach die Verarbeitung zu stoppen,
+erstellen Sie die Datei `/etc/rsyslog.d/docker.conf`:
+
+```
+local3.*        /var/log/mailcow.log
+& stop
+```
+
+Starten Sie rsyslog danach neu.
 
 #### Über daemon.json (global)
 
