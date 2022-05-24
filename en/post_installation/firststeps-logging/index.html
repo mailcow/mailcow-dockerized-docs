@@ -570,6 +570,19 @@
     Via docker-compose.override.yml
   </a>
   
+    <nav class="md-nav" aria-label="Via docker-compose.override.yml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-rsyslog-only" class="md-nav__link">
+    For Rsyslog only:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2442,6 +2455,19 @@
     Via docker-compose.override.yml
   </a>
   
+    <nav class="md-nav" aria-label="Via docker-compose.override.yml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-rsyslog-only" class="md-nav__link">
+    For Rsyslog only:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2526,15 +2552,18 @@ services:
       options:
         syslog-address: &quot;udp://127.0.0.1:514&quot;
         syslog-facility: &quot;local3&quot;
-
-# For Rsyslog only:
-# To move local3 input to /var/log/mailcow.log and stop processing, create a file &quot;/etc/rsyslog.d/docker.conf&quot;:
-
-local3.*        /var/log/mailcow.logs
-&amp; stop
-
-# Restart rsyslog afterwards.
 </code></pre></div>
+<h5 id="for-rsyslog-only">For Rsyslog only:<a class="headerlink" href="#for-rsyslog-only" title="Permanent link">&para;</a></h5>
+<p>Make sure the following lines aren't commented out in <code>/etc/rsyslog.conf</code>:</p>
+<div class="highlight"><pre><span></span><code># provides UDP syslog reception
+module(load=&quot;imudp&quot;)
+input(type=&quot;imudp&quot; port=&quot;514&quot;)
+</code></pre></div>
+<p>To move <code>local3</code> input to <code>/var/log/mailcow.log</code> and stop processing, create a file <code>/etc/rsyslog.d/docker.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>local3.*        /var/log/mailcow.log
+&amp; stop
+</code></pre></div>
+<p>Restart rsyslog afterwards.</p>
 <h4 id="via-daemonjson-globally">via daemon.json (globally)<a class="headerlink" href="#via-daemonjson-globally" title="Permanent link">&para;</a></h4>
 <p>If you want to <strong>change the logging driver globally</strong>, edit Dockers daemon configuration file <code>/etc/docker/daemon.json</code> and restart the Docker service:</p>
 <div class="highlight"><pre><span></span><code>{
@@ -2563,7 +2592,7 @@ local3.*        /var/log/mailcow.logs
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-24 08:11:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-24 16:35:59</span>
       
     
   </small>
