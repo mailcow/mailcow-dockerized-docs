@@ -118,3 +118,27 @@ For Syslog:
 ```
 
 Restart the Docker daemon and run `docker-compose down && docker-compose up -d` to recreate the containers with the new logging driver.
+
+### Log rotation
+
+As those logs can get quite big, it is a good idea to use logrotate to compress and delete them after a certain time period.
+
+Create `/etc/logrotate.d/mailcow` with the following content:
+
+```
+/var/log/mailcow.log {
+        rotate 7
+        daily
+        compress
+        delaycompress
+        missingok
+        notifempty
+        create 660 root root
+}
+```
+
+With this configuration, logrotate will run daily and keep a maximum of 7 archives.
+
+To rotate the logfile weekly or monthly replace `daily` with `weekly` or `monthly` respectively.
+
+To keep more archives, set the desired number of `rotate`.
