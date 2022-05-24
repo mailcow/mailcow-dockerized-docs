@@ -73,7 +73,7 @@ services:
 # Um die local3-Eingabe nach /var/log/mailcow.log zu verschieben und die Verarbeitung zu beenden, erstellen Sie eine Datei "/etc/rsyslog.d/docker.conf":
 
 local3.* /var/log/mailcow.logs
-& ~
+& stop
 
 # Danach rsyslog neu starten.
 
