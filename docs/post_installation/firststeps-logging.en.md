@@ -73,7 +73,7 @@ services:
 # To move local3 input to /var/log/mailcow.log and stop processing, create a file "/etc/rsyslog.d/docker.conf":
 
 local3.*        /var/log/mailcow.logs
-& ~
+& stop
 
 # Restart rsyslog afterwards.
 
