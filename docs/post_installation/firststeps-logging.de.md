@@ -144,3 +144,6 @@ Mit dieser Konfiguration wird logrotate täglich ausgeführt und es werden maxim
 Um die Logdatei wöchentlich oder monatlich zu rotieren, muss `daily` durch `wekkly` oder respektive `monthly` ersetzt werden.
 
 Um mehr Archive zu speichern, muss die Nummer hinter `rotate` angepasst werden.
+
+Danach kann logrotate neu gestartet werden.
+

@@ -142,3 +142,5 @@ With this configuration, logrotate will run daily and keep a maximum of 7 archiv
 To rotate the logfile weekly or monthly replace `daily` with `weekly` or `monthly` respectively.
 
 To keep more archives, set the desired number of `rotate`.
+
+Afterwards, logrotate can be restarted.
