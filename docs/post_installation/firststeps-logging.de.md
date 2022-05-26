@@ -141,7 +141,7 @@ Erstellen Sie die Datei `/etc/logrotate.d/mailcow` mit folgendem Inhalt:
 
 Mit dieser Konfiguration wird logrotate täglich ausgeführt und es werden maximal 7 Archive gespeichert.
 
-Um die Logdatei wöchentlich oder monatlich zu rotieren, muss `daily` durch `wekkly` oder respektive `monthly` ersetzt werden.
+Um die Logdatei wöchentlich oder monatlich zu rotieren, muss `daily` durch `weekly` oder respektive `monthly` ersetzt werden.
 
 Um mehr Archive zu speichern, muss die Nummer hinter `rotate` angepasst werden.
 
