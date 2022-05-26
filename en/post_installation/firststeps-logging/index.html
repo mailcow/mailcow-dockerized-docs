@@ -597,6 +597,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#log-rotation" class="md-nav__link">
+    Log rotation
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2482,6 +2489,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#log-rotation" class="md-nav__link">
+    Log rotation
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2586,13 +2600,30 @@ input(type=&quot;imudp&quot; port=&quot;514&quot;)
 }
 </code></pre></div>
 <p>Restart the Docker daemon and run <code>docker-compose down &amp;&amp; docker-compose up -d</code> to recreate the containers with the new logging driver.</p>
+<h3 id="log-rotation">Log rotation<a class="headerlink" href="#log-rotation" title="Permanent link">&para;</a></h3>
+<p>As those logs can get quite big, it is a good idea to use logrotate to compress and delete them after a certain time period.</p>
+<p>Create <code>/etc/logrotate.d/mailcow</code> with the following content:</p>
+<div class="highlight"><pre><span></span><code>/var/log/mailcow.log {
+        rotate 7
+        daily
+        compress
+        delaycompress
+        missingok
+        notifempty
+        create 660 root root
+}
+</code></pre></div>
+<p>With this configuration, logrotate will run daily and keep a maximum of 7 archives.</p>
+<p>To rotate the logfile weekly or monthly replace <code>daily</code> with <code>weekly</code> or <code>monthly</code> respectively.</p>
+<p>To keep more archives, set the desired number of <code>rotate</code>.</p>
+<p>Afterwards, logrotate can be restarted.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-24 16:35:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-25 13:37:13</span>
       
     
   </small>
