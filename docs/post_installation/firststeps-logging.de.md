@@ -119,3 +119,31 @@ Für Syslog:
 ```
 
 Starten Sie den Docker-Daemon neu und führen Sie `docker-compose down && docker-compose up -d` aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.
+
+### Log rotation
+
+Da diese Logs sehr groß werden können, ist es eine gute Idee logrotate zu nutzen, um Logs nach einer gewissen Zeit zu
+komprimieren und zu löschen.
+
+Erstellen Sie die Datei `/etc/logrotate.d/mailcow` mit folgendem Inhalt:
+
+```
+/var/log/mailcow.log {
+        rotate 7
+        daily
+        compress
+        delaycompress
+        missingok
+        notifempty
+        create 660 root root
+}
+```
+
+Mit dieser Konfiguration wird logrotate täglich ausgeführt und es werden maximal 7 Archive gespeichert.
+
+Um die Logdatei wöchentlich oder monatlich zu rotieren, muss `daily` durch `weekly` oder respektive `monthly` ersetzt werden.
+
+Um mehr Archive zu speichern, muss die Nummer hinter `rotate` angepasst werden.
+
+Danach kann logrotate neu gestartet werden.
+
