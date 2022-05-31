@@ -2049,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2610,7 +2610,7 @@
 <p>For each domain you add, it will try to resolve <code>autodiscover.ADDED_MAIL_DOMAIN</code> and <code>autoconfig.ADDED_MAIL_DOMAIN</code> to its IPv6 address or - if IPv6 is not configured in your domain - IPv4 address. If it succeeds, a name will be added as SAN to the certificate request.</p>
 <p>Only names that can be validated, will be added as SAN.</p>
 <p>For every domain you remove, the certificate will be moved and a new certificate will be requested. It is not possible to keep domains in a certificate, when we are not able validate the challenge for those.</p>
-<p>If you want to re-run the ACME client, use <code>docker-compose restart acme-mailcow</code> and monitor its logs with <code>docker-compose logs --tail=200 -f acme-mailcow</code>.</p>
+<p>If you want to re-run the ACME client, use <code>docker compose restart acme-mailcow</code> and monitor its logs with <code>docker compose logs --tail=200 -f acme-mailcow</code>.</p>
 <h3 id="additional-domain-names">Additional domain names<a class="headerlink" href="#additional-domain-names" title="Permanent link">&para;</a></h3>
 <p>Edit "mailcow.conf" and add a parameter <code>ADDITIONAL_SAN</code> like this:</p>
 <p>Do not use quotes (<code>"</code>) and do not use spaces between the names!</p>
@@ -2618,7 +2618,7 @@
 </code></pre></div>
 <p>Each name will be validated against its IPv6 address or - if IPv6 is not configured in your domain - IPv4 address.</p>
 <p>A wildcard name like <code>smtp.*</code> will try to obtain a smtp.DOMAIN_NAME SAN for each domain added to mailcow.</p>
-<p>Run <code>docker-compose up -d</code> to recreate affected containers automatically.</p>
+<p>Run <code>docker compose up -d</code> to recreate affected containers automatically.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Using names other name <code>MAILCOW_HOSTNAME</code> to access the mailcow UI may need further configuration.</p>
@@ -2626,26 +2626,26 @@
 <p>If you plan to use a server name that is not <code>MAILCOW_HOSTNAME</code> to access the mailcow UI (for example by adding <code>mail.*</code> to <code>ADDITIONAL_SAN</code> make sure to populate that name in mailcow.conf via <code>ADDITIONAL_SERVER_NAMES</code>. Names must be separated by commas and <strong>must not</strong> contain spaces. If you skip this step, mailcow may respond with an incorrect site.</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 </code></pre></div>
-<p>Run <code>docker-compose up -d</code> to apply.</p>
+<p>Run <code>docker compose up -d</code> to apply.</p>
 <h3 id="force-renewal">Force renewal<a class="headerlink" href="#force-renewal" title="Permanent link">&para;</a></h3>
 <p>To force a renewal, you need to create a file named <code>force_renew</code> and restart the <code>acme-mailcow</code> container:</p>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 touch data/assets/ssl/force_renew
-docker-compose restart acme-mailcow
+docker compose restart acme-mailcow
 # Now check the logs for a renewal
-docker-compose logs --tail=200 -f acme-mailcow
+docker compose logs --tail=200 -f acme-mailcow
 </code></pre></div>
 <p>The file will be deleted automatically.</p>
 <h3 id="validation-errors-and-how-to-skip-validation">Validation errors and how to skip validation<a class="headerlink" href="#validation-errors-and-how-to-skip-validation" title="Permanent link">&para;</a></h3>
 <p>You can skip the <strong>IP verification</strong> by setting <code>SKIP_IP_CHECK=y</code> in mailcow.conf (no quotes). Be warned that a misconfiguration will get you ratelimited by Let's Encrypt! This is primarily useful for multi-IP setups where the IP check would return the incorrect source IP address. Due to using dynamic IPs for acme-mailcow, source NAT is not consistent over restarts.</p>
-<p>If you encounter problems with "HTTP validation", but your IP address confirmation succeeds, you are most likely using firewalld, ufw or any other firewall, that disallows connections from <code>br-mailcow</code> to your external interface. Both firewalld and ufw disallow this by default. It is often not enough to just stop these firewall services. You'd need to stop mailcow (<code>docker-compose down</code>), stop the firewall service, flush the chains and restart Docker.</p>
+<p>If you encounter problems with "HTTP validation", but your IP address confirmation succeeds, you are most likely using firewalld, ufw or any other firewall, that disallows connections from <code>br-mailcow</code> to your external interface. Both firewalld and ufw disallow this by default. It is often not enough to just stop these firewall services. You'd need to stop mailcow (<code>docker compose down</code>), stop the firewall service, flush the chains and restart Docker.</p>
 <p>You can also skip this validation method by setting <code>SKIP_HTTP_VERIFICATION=y</code> in "mailcow.conf". Be warned that this is discouraged. In most cases, the HTTP verification is skipped to workaround unknown NAT reflection issues, which are not resolved by ignoring this specific network misconfiguration. If you encounter problems generating TLSA records in the DNS overview within mailcow, you are most likely having issues with NAT reflection you should fix.</p>
-<p>If you changed a SKIP_* parameter, run <code>docker-compose up -d</code> to apply your changes.</p>
+<p>If you changed a SKIP_* parameter, run <code>docker compose up -d</code> to apply your changes.</p>
 <h3 id="disable-lets-encrypt">Disable Let's Encrypt<a class="headerlink" href="#disable-lets-encrypt" title="Permanent link">&para;</a></h3>
 <h4 id="disable-lets-encrypt-completely">Disable Let's Encrypt completely<a class="headerlink" href="#disable-lets-encrypt-completely" title="Permanent link">&para;</a></h4>
-<p>Set <code>SKIP_LETS_ENCRYPT=y</code> in "mailcow.conf" and recreate "acme-mailcow" by running <code>docker-compose up -d</code>.</p>
+<p>Set <code>SKIP_LETS_ENCRYPT=y</code> in "mailcow.conf" and recreate "acme-mailcow" by running <code>docker compose up -d</code>.</p>
 <h4 id="skip-all-names-but-mailcow_hostname">Skip all names but ${MAILCOW_HOSTNAME}<a class="headerlink" href="#skip-all-names-but-mailcow_hostname" title="Permanent link">&para;</a></h4>
-<p>Add <code>ONLY_MAILCOW_HOSTNAME=y</code> to "mailcow.conf" and recreate "acme-mailcow" by running <code>docker-compose up -d</code>.</p>
+<p>Add <code>ONLY_MAILCOW_HOSTNAME=y</code> to "mailcow.conf" and recreate "acme-mailcow" by running <code>docker compose up -d</code>.</p>
 <h3 id="the-lets-encrypt-subjectaltname-limit-of-100-domains">The Let's Encrypt subjectAltName limit of 100 domains<a class="headerlink" href="#the-lets-encrypt-subjectaltname-limit-of-100-domains" title="Permanent link">&para;</a></h3>
 <p>Let's Encrypt currently has <a href="https://letsencrypt.org/docs/rate-limits/">a limit of 100 Domain Names per Certificate</a>.</p>
 <p>By default, "acme-mailcow" will create a single SAN certificate for all validated domains
@@ -2658,7 +2658,7 @@ This provides best compatibility but means the Let's Encrypt limit exceeds if yo
 <li>Limitations: A certificate name <code>ADDITIONAL_SAN=test.example.com</code> will be added as SAN to the main certificate. A separate certificate/key pair will <strong>not</strong> be generated for this format.</li>
 </ul>
 <p>Postfix, Dovecot and Nginx will then serve these certificates with SNI.</p>
-<p>Set <code>ENABLE_SSL_SNI=y</code> in "mailcow.conf" and recreate "acme-mailcow" by running <code>docker-compose up -d</code>.</p>
+<p>Set <code>ENABLE_SSL_SNI=y</code> in "mailcow.conf" and recreate "acme-mailcow" by running <code>docker compose up -d</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Not all clients support SNI, <a href="https://wiki.dovecot.org/SSL/SNIClientSupport">see Dovecot documentation</a> or <a href="https://en.wikipedia.org/wiki/Server_Name_Indication#Support">Wikipedia</a>.
@@ -2688,15 +2688,15 @@ docker restart $(docker ps -qaf name=dovecot-mailcow)
 <p>See <a href="../firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients">Post-hook script for non-mailcow ACME clients</a> for a full example script.</p>
 <h3 id="test-against-staging-acme-directory">Test against staging ACME directory<a class="headerlink" href="#test-against-staging-acme-directory" title="Permanent link">&para;</a></h3>
 <p>Edit <code>mailcow.conf</code> and add <code>LE_STAGING=y</code>.</p>
-<p>Run <code>docker-compose up -d</code> to activate your changes.</p>
+<p>Run <code>docker compose up -d</code> to activate your changes.</p>
 <h3 id="custom-directory-url">Custom directory URL<a class="headerlink" href="#custom-directory-url" title="Permanent link">&para;</a></h3>
 <p>Edit <code>mailcow.conf</code> and add the corresponding directory URL to the new variable <code>DIRECTORY_URL</code>:</p>
 <div class="highlight"><pre><span></span><code>DIRECTORY_URL=https://acme-custom-v9000.api.letsencrypt.org/directory
 </code></pre></div>
 <p>You cannot use <code>LE_STAGING</code> with <code>DIRECTORY_URL</code>. If both are set, only <code>LE_STAGING</code> is used.</p>
-<p>Run <code>docker-compose up -d</code> to activate your changes.</p>
+<p>Run <code>docker compose up -d</code> to activate your changes.</p>
 <h3 id="check-your-configuration">Check your configuration<a class="headerlink" href="#check-your-configuration" title="Permanent link">&para;</a></h3>
-<p>Run <code>docker-compose logs acme-mailcow</code> to find out why a validation fails.</p>
+<p>Run <code>docker compose logs acme-mailcow</code> to find out why a validation fails.</p>
 <p>To check if nginx serves the correct certificate, simply use a browser of your choice and check the displayed certificate.</p>
 <p>To check the certificate served by Postfix, Dovecot and Nginx we will use <code>openssl</code>:</p>
 <div class="highlight"><pre><span></span><code># Connect via SMTP (587)
@@ -2716,7 +2716,7 @@ bash helper-scripts/expiry-dates.sh
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-16 12:41:22</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

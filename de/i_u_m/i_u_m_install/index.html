@@ -1926,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2390,11 +2390,11 @@ systemctl enable --now docker
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>mailcow benötigt die neueste Version von docker-compose v1.</strong> Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um <code>docker-compose</code> zu installieren. Paket-Manager (z.B. <code>apt</code>, <code>yum</code>) werden <strong>wahrscheinlich</strong> nicht die richtige Version liefern.
-Hinweis: Dieser Befehl lädt docker-compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).</p>
+<p><strong>mailcow benötigt die neueste Version von docker compose v1.</strong> Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um <code>docker compose</code> zu installieren. Paket-Manager (z.B. <code>apt</code>, <code>yum</code>) werden <strong>wahrscheinlich</strong> nicht die richtige Version liefern.
+Hinweis: Dieser Befehl lädt docker compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).</p>
 </div>
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker compose
+chmod +x /usr/local/bin/docker compose
 </code></pre></div>
 <p>Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.</p>
 <p><strong>1.1.1.</strong> Auf SELinux-aktivierten Systemen, z.B. CentOS 7:</p>
@@ -2436,7 +2436,7 @@ Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTP
 <p>Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.</p>
 <p><strong>4.1.</strong> Benutzer mit einer MTU ungleich 1500 (z.B. OpenStack):</p>
 <p><strong>Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.</strong></p>
-<p>Bearbeiten Sie <code>docker-compose.yml</code> und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
+<p>Bearbeiten Sie <code>docker compose.yml</code> und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
 Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
@@ -2449,8 +2449,8 @@ Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
 <p><strong>Einschalten von IPv6. Endlich.</strong></p>
 <p>Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, IPv6 für das mailcow-Netzwerk zu <a href="../../post_installation/firststeps-disable_ipv6/">deaktivieren</a>, um unvorhergesehene Probleme zu vermeiden.</p>
 <p><strong>5.</strong> LAden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter <code>-d</code> wird mailcow: dockerized starten:
-<div class="highlight"><pre><span></span><code>docker-compose pull
-docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose pull
+docker compose up -d
 </code></pre></div></p>
 <p>Geschafft!</p>
 <p>Sie können nun auf <strong>https://${MAILCOW_HOSTNAME}</strong> mit den Standard-Zugangsdaten <code>admin</code> + Passwort <code>moohoo</code> zugreifen.</p>
@@ -2459,14 +2459,14 @@ docker-compose up -d
 <p>Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie <a href="../../manual-guides/u_e-80_to_443/">alle HTTP-Anfragen auf HTTPS umleiten</a>.</p>
 </div>
 <p>Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zu MySQL hergestellt werden kann.</p>
-<p>Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie <code>docker volume ls</code> aus, um eine Liste aller Volumes zu sehen. Sie können <code>docker-compose down</code> sicher ausführen, ohne persistente Daten zu entfernen.</p>
+<p>Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie <code>docker volume ls</code> aus, um eine Liste aller Volumes zu sehen. Sie können <code>docker compose down</code> sicher ausführen, ohne persistente Daten zu entfernen.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 17:48:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

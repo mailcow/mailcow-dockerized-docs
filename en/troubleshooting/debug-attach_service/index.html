@@ -2000,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2504,16 +2504,16 @@
 
 <h2 id="attaching-a-container-to-your-shell">Attaching a Container to your Shell<a class="headerlink" href="#attaching-a-container-to-your-shell" title="Permanent link">&para;</a></h2>
 <p>To attach a container to your shell you can simply run</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec $Service_Name /bin/bash
+<div class="highlight"><pre><span></span><code>docker compose exec $Service_Name /bin/bash
 </code></pre></div>
 <h3 id="connecting-to-services">Connecting to Services<a class="headerlink" href="#connecting-to-services" title="Permanent link">&para;</a></h3>
 <p>If you want to connect to a service / application directly it is always a good idea to <code>source mailcow.conf</code> to get all relevant variables into your environment.</p>
 <h4 id="mysql">MySQL<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>source mailcow.conf
-docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 </code></pre></div>
 <h4 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli
+<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli
 </code></pre></div>
 <h2 id="service-descriptions">Service Descriptions<a class="headerlink" href="#service-descriptions" title="Permanent link">&para;</a></h2>
 <p>Here is a brief overview of what container / service does what:</p>
@@ -2597,7 +2597,7 @@ docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 15:28:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

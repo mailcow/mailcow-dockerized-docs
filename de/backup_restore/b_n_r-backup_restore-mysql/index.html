@@ -1969,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2442,16 +2442,16 @@
 <div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
 source mailcow.conf
 DATE=$(Datum +&quot;%Y%m%d_%H%M%S&quot;)
-docker-compose exec -T mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} &gt; backup_${DBNAME}_${DATE}.sql
+docker compose exec -T mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} &gt; backup_${DBNAME}_${DATE}.sql
 </code></pre></div>
 <h2 id="wiederherstellen">Wiederherstellen<a class="headerlink" href="#wiederherstellen" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Sie sollten den SQL-Dump ohne <code>docker-compose</code> umleiten, um Parsing-Fehler zu vermeiden.</p>
+<p>Sie sollten den SQL-Dump ohne <code>docker compose</code> umleiten, um Parsing-Fehler zu vermeiden.</p>
 </div>
 <div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
 source mailcow.conf
-docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} &lt; backup_file.sql
+docker exec -i $(docker compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} &lt; backup_file.sql
 </code></pre></div>
 
   <hr>
@@ -2459,7 +2459,7 @@ docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPAS
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 16:20:34</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

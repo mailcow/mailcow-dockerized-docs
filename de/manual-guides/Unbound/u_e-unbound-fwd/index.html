@@ -1969,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2452,21 +2452,21 @@
   forward-addr: 8.8.4.4 # VERWENDET KEINE ÖFFENTLICHEN DNS-SERVER - NUR EIN BEISPIEL
 </code></pre></div>
 <p>Unbound neu starten:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart unbound-mailcow
 </code></pre></div>
 <h2 id="methode-b-uberschreiben-der-datei">Methode B, Überschreiben der Datei<a class="headerlink" href="#methode-b-uberschreiben-der-datei" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .
+cp helper-scripts/docker compose.override.yml.d/EXTERNAL_DNS/docker compose.override.yml .
 </code></pre></div>
-<p>Bearbeiten Sie <code>docker-compose.override.yml</code> und passen Sie die IP an.</p>
-<p>Führen Sie <code>docker-compose down ; docker-compose up -d</code> aus.</p>
+<p>Bearbeiten Sie <code>docker compose.override.yml</code> und passen Sie die IP an.</p>
+<p>Führen Sie <code>docker compose down ; docker compose up -d</code> aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-13 11:29:19</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

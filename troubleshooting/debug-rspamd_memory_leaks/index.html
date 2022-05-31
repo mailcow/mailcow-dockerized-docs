@@ -1926,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2374,7 +2374,7 @@
   <h1>Advanced: Find memory leaks in Rspamd</h1>
 
 <p>A quick guide to deeply analyze a malfunctioning Rspamd.</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow bash
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow bash
 
 if ! grep -qi &#39;apt-stable-asan&#39; /etc/apt/sources.list.d/rspamd.list; then
   sed -i &#39;s/apt-stable/apt-stable-asan/i&#39; /etc/apt/sources.list.d/rspamd.list
@@ -2389,17 +2389,17 @@ nano /docker-entrypoint.sh
 export G_SLICE=always-malloc
 export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violation=0:log_path=/tmp/rspamd-asan:quarantine_size_mb=2048:malloc_context_size=8:fast_unwind_on_malloc=0
 </code></pre></div>
-<p>Restart Rspamd: <code>docker-compose restart rspamd-mailcow</code></p>
+<p>Restart Rspamd: <code>docker compose restart rspamd-mailcow</code></p>
 <p>Your memory consumption will increase by a lot, it will also steadily grow, which is not related to a possible memory leak you are looking for.</p>
-<p>Leave the container running for a few minutes, hours or days (it should match the time you usually wait for the leak to "happen") and restart it: <code>docker-compose restart rspamd-mailcow</code>.</p>
-<p>Now enter the container by running <code>docker-compose exec rspamd-mailcow bash</code>, change the directory to /tmp and copy the asan Files to your desired location or upload them via termbin.com (<code>cat /tmp/rspamd-asan.* | nc termbin.com 9999</code>).</p>
+<p>Leave the container running for a few minutes, hours or days (it should match the time you usually wait for the leak to "happen") and restart it: <code>docker compose restart rspamd-mailcow</code>.</p>
+<p>Now enter the container by running <code>docker compose exec rspamd-mailcow bash</code>, change the directory to /tmp and copy the asan Files to your desired location or upload them via termbin.com (<code>cat /tmp/rspamd-asan.* | nc termbin.com 9999</code>).</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 15:28:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

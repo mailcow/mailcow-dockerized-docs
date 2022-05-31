@@ -1960,7 +1960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2424,12 +2424,12 @@
 
 <h2 id="mariadb-aria-wiederherstellung-nach-absturz">MariaDB: Aria-Wiederherstellung nach Absturz<a class="headerlink" href="#mariadb-aria-wiederherstellung-nach-absturz" title="Permanent link">&para;</a></h2>
 <p>Wenn Ihr Server abgestürzt ist und MariaDB eine Fehlermeldung ähnlich <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code>, können Sie Folgendes versuchen, um die Datenbank in einen gesunden Zustand zu bringen:</p>
-<p>Starten Sie den Stack und warten Sie, bis mysql-mailcow beginnt, einen Neustart zu melden. Überprüfen Sie dies, indem Sie <code>docker-compose ps</code> ausführen.</p>
+<p>Starten Sie den Stack und warten Sie, bis mysql-mailcow beginnt, einen Neustart zu melden. Überprüfen Sie dies, indem Sie <code>docker compose ps</code> ausführen.</p>
 <p>Führen Sie nun die folgenden Befehle aus:</p>
 <div class="highlight"><pre><span></span><code># Stoppe den Stack, führe nicht &quot;down&quot; aus
-docker-compose stop
+docker compose stop
 # Führen Sie eine Bash in dem gestoppten Container als Benutzer mysql aus
-docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
+docker compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
 # cd in das SQL-Datenverzeichnis
 cd /var/lib/mysql
 # aria_chk ausführen
@@ -2437,14 +2437,14 @@ aria_chk --check --force */*.MAI
 # Löschen der aria-Logdateien
 rm aria_log.*
 </code></pre></div>
-<p>Führen Sie nun <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
+<p>Führen Sie nun <code>docker compose down</code> gefolgt von <code>docker compose up -d</code> aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-30 15:28:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

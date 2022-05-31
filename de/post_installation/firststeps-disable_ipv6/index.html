@@ -1926,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2376,10 +2376,10 @@
 <p>Dies wird <strong>NUR</strong> empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben!</p>
 <p>Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
 Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivieren, da er nicht benötigt wird, wenn Sie IPv6 nicht verwenden.</p>
-<p>Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
+<p>Anstatt die Datei docker compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
 zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.</p>
-<p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). </p>
-<p><strong>1.</strong> Ändern Sie docker-compose.yml</p>
+<p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). </p>
+<p><strong>1.</strong> Ändern Sie docker compose.yml</p>
 <p>Ändern Sie <code>enable_ipv6: true</code> in <code>enable_ipv6: false</code>:</p>
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
@@ -2388,10 +2388,10 @@ zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider schei
     [...]
 </code></pre></div>
 <p><strong>2.</strong> ipv6nat-mailcow deaktivieren</p>
-<p>Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml": </p>
+<p>Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker compose.override.yml": </p>
 <p><strong>HINWEIS:</strong> Wenn Sie bereits eine Override-Datei haben, erstellen Sie diese natürlich nicht neu, sondern fügen Sie die untenstehenden Zeilen entsprechend in Ihre bestehende Datei ein!</p>
 <div class="highlight"><pre><span></span><code># cd /opt/mailcow-dockerized
-# touch docker-compose.override.yml
+# touch docker compose.override.yml
 </code></pre></div>
 <p>Öffnen Sie die Datei in Ihrem bevorzugten Texteditor und tragen Sie folgendes ein:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
@@ -2403,8 +2403,8 @@ services:
       entrypoint: [&quot;echo&quot;, &quot;ipv6nat disabled in compose.override.yml&quot;]
 </code></pre></div>
 <p>Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stoppen und dann neu starten, damit Container und Netzwerke neu erstellt werden:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
-docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose down
+docker compose up -d
 </code></pre></div>
 <p><strong>3.</strong> Deaktivieren Sie IPv6 in unbound-mailcow</p>
 <p>Bearbeiten Sie <code>data/conf/unbound/unbound.conf</code> und setzen Sie <code>do-ip6</code> auf "no":</p>
@@ -2414,7 +2414,7 @@ docker-compose up -d
   [...]
 </code></pre></div>
 <p>unbound neu starten:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart unbound-mailcow
 </code></pre></div>
 <p><strong>4.</strong> Deaktivieren Sie IPv6 in postfix-mailcow</p>
 <p>Erstellen Sie <code>data/conf/postfix/extra.cf</code> und setzen Sie <code>smtp_address_preference</code> auf <code>ipv4</code>:</p>
@@ -2422,7 +2422,7 @@ docker-compose up -d
 inet_protocols = ipv4
 </code></pre></div>
 <p>Starten Sie Postfix neu:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart postfix-mailcow
 </code></pre></div>
 
   <hr>
@@ -2430,7 +2430,7 @@ inet_protocols = ipv4
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-03-25 12:26:49</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

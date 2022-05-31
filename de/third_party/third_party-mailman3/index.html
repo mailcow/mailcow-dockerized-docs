@@ -1921,7 +1921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2842,7 +2842,7 @@ certbot certonly -d MAILMAN_DOMAIN
 </code></pre></div>
 <h3 id="installieren-sie-mailcow-mit-mailman-integration">Installieren Sie <em>mailcow</em> mit <em>Mailman</em> Integration<a class="headerlink" href="#installieren-sie-mailcow-mit-mailman-integration" title="Permanent link">&para;</a></h3>
 <h4 id="installieren-sie-mailcow">Installieren Sie mailcow<a class="headerlink" href="#installieren-sie-mailcow" title="Permanent link">&para;</a></h4>
-<p>Folgen Sie der <a href="../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Schritt 5 auslassen und nicht mit <code>docker-compose</code> starten!</strong></p>
+<p>Folgen Sie der <a href="../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Schritt 5 auslassen und nicht mit <code>docker compose</code> starten!</strong></p>
 <h4 id="mailcow-konfigurieren">Mailcow konfigurieren<a class="headerlink" href="#mailcow-konfigurieren" title="Permanent link">&para;</a></h4>
 <p>Dies ist auch <strong>Schritt 4</strong> in der offiziellen <em>mailcow-Installation</em> (<code>nano mailcow.conf</code>). Passen Sie also Ihre Bedürfnisse an und ändern Sie die folgenden Variablen:</p>
 <div class="highlight"><pre><span></span><code>HTTP_PORT=18080 # verwenden Sie nicht 8080, da mailman es braucht
@@ -2856,7 +2856,7 @@ SNAT_TO_SOURCE=1.2.3.4 # ändern Sie dies in Ihre IPv4
 SNAT6_TO_SOURCE=dead:beef # Ändern Sie dies in Ihre globale IPv6
 </code></pre></div>
 <h4 id="mailman-integration-hinzufugen">Mailman-Integration hinzufügen<a class="headerlink" href="#mailman-integration-hinzufugen" title="Permanent link">&para;</a></h4>
-<p>Erstelle die Datei <code>/opt/mailcow-dockerized/docker-compose.override.yml</code> (z.B. mit <code>nano</code>) und füge die folgenden Zeilen hinzu:</p>
+<p>Erstelle die Datei <code>/opt/mailcow-dockerized/docker compose.override.yml</code> (z.B. mit <code>nano</code>) und füge die folgenden Zeilen hinzu:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2926,7 +2926,7 @@ cd docker-mailman
 <p>Erstellen Sie einen langen Schlüssel für <em>Hyperkitty</em>, z.B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie diesen Schlüssel vorerst als HYPERKITTY_KEY.</p>
 <p>Erstellen Sie ein langes Passwort für die Datenbank, z. B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie dieses Passwort zunächst als DBPASS.</p>
 <p>Erstellen Sie einen langen Schlüssel für <em>Django</em>, z. B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie diesen Schlüssel für einen Moment als DJANGO_KEY.</p>
-<p>Erstellen Sie die Datei <code>/opt/docker-mailman/docker-compose.override.yaml</code> und ersetzen Sie <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> und <code>DJANGO_KEY</code> durch die generierten Werte:</p>
+<p>Erstellen Sie die Datei <code>/opt/docker-mailman/docker compose.override.yaml</code> und ersetzen Sie <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> und <code>DJANGO_KEY</code> durch die generierten Werte:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2&#39;
 
 services:
@@ -2985,11 +2985,11 @@ a2ensite mailman.conf
 systemctl restart apache2
 
 cd /opt/docker-mailman
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 
 cd /opt/mailcow-dockerized/
-docker-compose pull
+docker compose pull
 ./renew-ssl.sh
 </code></pre></div>
 <p><strong>Warten Sie ein paar Minuten!</strong> Die Container müssen ihre Datenbanken und Konfigurationsdateien erstellen. Dies kann bis zu 1 Minute und mehr dauern.</p>
@@ -2997,7 +2997,7 @@ docker-compose pull
 <h3 id="neue-listen-werden-von-postfix-nicht-sofort-erkannt">Neue Listen werden von Postfix nicht sofort erkannt<a class="headerlink" href="#neue-listen-werden-von-postfix-nicht-sofort-erkannt" title="Permanent link">&para;</a></h3>
 <p>Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, antwortet <em>postfix</em> mit <code>Benutzer existiert nicht</code>, weil <em>postfix</em> die Liste noch nicht an <em>Mailman</em> übergeben hat. Die Konfiguration unter <code>/opt/mailman/core/var/data/postfix_lmtp</code> wird nicht sofort aktualisiert. Wenn Sie die Liste sofort benötigen, starten Sie <em>postifx</em> manuell neu:</p>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 </code></pre></div>
 <h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
 <p><strong>mailcow</strong> hat sein eigenes Update-Skript in <code>/opt/mailcow-dockerized/update.sh</code>, <a href="../../i_u_m/i_u_m_update/">siehe die Dokumentation</a>.</p>
@@ -3019,7 +3019,7 @@ docker-compose restart postfix-mailcow
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-05 23:48:11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

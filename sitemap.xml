@@ -9,6 +9,14 @@
          
     </url>
     <url>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/model-protocol_access/</loc>
+         <lastmod>2022-05-31</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/model-protocol_access/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/model-protocol_access/"/>
+         
+    </url>
+    <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/backup_restore/b_n_r-accidental_deletion/</loc>
          <lastmod>2022-05-31</lastmod>
          <changefreq>daily</changefreq>
@@ -222,14 +230,6 @@
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/Docker/u_e-docker-cust_dockerfiles/"/>
          <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Docker/u_e-docker-cust_dockerfiles/"/>
-         
-    </url>
-    <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/manual-guides/Docker/u_e-docker-dc_bash_compl/</loc>
-         <lastmod>2022-05-31</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/Docker/u_e-docker-dc_bash_compl/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/Docker/u_e-docker-dc_bash_compl/"/>
          
     </url>
     <url>

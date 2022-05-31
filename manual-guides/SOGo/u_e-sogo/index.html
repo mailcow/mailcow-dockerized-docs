@@ -2002,7 +2002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2514,7 +2514,7 @@ Please check the AngularJS Material <a href="https://material.angularjs.org/late
 After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes to your new SOGo theme you need to </p>
 <ol>
 <li>edit <code>data/conf/sogo/sogo.conf</code> and append/set <code>SOGoUIxDebugEnabled = YES;</code></li>
-<li>restart SOGo and Memcached containers by executing <code>docker-compose restart memcached-mailcow sogo-mailcow</code>.</li>
+<li>restart SOGo and Memcached containers by executing <code>docker compose restart memcached-mailcow sogo-mailcow</code>.</li>
 <li>open SOGo in browser</li>
 <li>open browser developer console, usually shortcut is F12</li>
 <li>only if you use Firefox: write by hands in dev console <code>allow pasting</code> and press enter</li>
@@ -2529,7 +2529,7 @@ After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes 
 <li>open text editor and paste data from clipboard (Ctrl+V), you should get minified CSS, save it</li>
 <li>copy CSS file to mailcow server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>edit <code>data/conf/sogo/sogo.conf</code> and set <code>SOGoUIxDebugEnabled = NO;</code></li>
-<li>append/create <code>docker-compose.override.yml</code> with:
+<li>append/create <code>docker compose.override.yml</code> with:
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2537,8 +2537,8 @@ services:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>run <code>docker-compose up -d</code></li>
-<li>run <code>docker-compose restart memcached-mailcow</code></li>
+<li>run <code>docker compose up -d</code></li>
+<li>run <code>docker compose restart memcached-mailcow</code></li>
 </ol>
 <h2 id="reset-to-sogo-default-theme">Reset to SOGo default theme<a class="headerlink" href="#reset-to-sogo-default-theme" title="Permanent link">&para;</a></h2>
 <ol>
@@ -2563,20 +2563,20 @@ services:
 and replace it with:
 <div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
 </code></pre></div></li>
-<li>remove from <code>docker-compose.override.yml</code> volume mount in <code>sogo-mailcow</code>:
+<li>remove from <code>docker compose.override.yml</code> volume mount in <code>sogo-mailcow</code>:
 <div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>run <code>docker-compose up -d</code></li>
-<li>run <code>docker-compose restart memcached-mailcow</code></li>
+<li>run <code>docker compose up -d</code></li>
+<li>run <code>docker compose restart memcached-mailcow</code></li>
 </ol>
 <h2 id="change-favicon">Change favicon<a class="headerlink" href="#change-favicon" title="Permanent link">&para;</a></h2>
 <p>mailcow builds after 31 January 2021 can change SOGo's favicon by replacing <code>data/conf/sogo/custom-favicon.ico</code> for SOGo and <code>data/web/favicon.png</code> for mailcow UI.
 <strong>Note</strong>: You can use <code>.png</code> favicons for SOGo by renaming them to <code>custom-favicon.ico</code>.
 For both SOGo and mailcow UI favicons you need use one of the standard dimensions: 16x16, 32x32, 64x64, 128x128 and 256x256.
-After you replaced said file you need to restart SOGo and Memcached containers by executing <code>docker-compose restart memcached-mailcow sogo-mailcow</code>.</p>
+After you replaced said file you need to restart SOGo and Memcached containers by executing <code>docker compose restart memcached-mailcow sogo-mailcow</code>.</p>
 <h2 id="change-logo">Change logo<a class="headerlink" href="#change-logo" title="Permanent link">&para;</a></h2>
 <p>mailcow builds after 21 December 2018 can change SOGo's logo by replacing or creating (if missing) <code>data/conf/sogo/sogo-full.svg</code>.
-After you replaced said file you need to restart SOGo and Memcached containers by executing <code>docker-compose restart memcached-mailcow sogo-mailcow</code>.</p>
+After you replaced said file you need to restart SOGo and Memcached containers by executing <code>docker compose restart memcached-mailcow sogo-mailcow</code>.</p>
 <h2 id="connect-domains">Connect domains<a class="headerlink" href="#connect-domains" title="Permanent link">&para;</a></h2>
 <p>Domains are usually isolated from eachother.</p>
 <p>You can change that by modifying <code>data/conf/sogo/sogo.conf</code>:</p>
@@ -2591,19 +2591,19 @@ After you replaced said file you need to restart SOGo and Memcached containers b
       (example.org, example.com, example.net)
     );
 </code></pre></div>
-<p>Restart SOGo: <code>docker-compose restart sogo-mailcow</code></p>
+<p>Restart SOGo: <code>docker compose restart sogo-mailcow</code></p>
 <h2 id="disable-password-changing">Disable password changing<a class="headerlink" href="#disable-password-changing" title="Permanent link">&para;</a></h2>
 <p>Edit <code>data/conf/sogo/sogo.conf</code> and <strong>change</strong> <code>SOGoPasswordChangeEnabled</code> to <code>NO</code>. Please do not add a new parameter.</p>
-<p>Run <code>docker-compose restart memcached-mailcow sogo-mailcow</code> to activate the changes.</p>
+<p>Run <code>docker compose restart memcached-mailcow sogo-mailcow</code> to activate the changes.</p>
 <h2 id="reset-totp-disable-totp">Reset TOTP / Disable TOTP<a class="headerlink" href="#reset-totp-disable-totp" title="Permanent link">&para;</a></h2>
-<p>Run <code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> from within the mailcow directory.</p>
+<p>Run <code>docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> from within the mailcow directory.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-04-16 13:05:49</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>

@@ -1962,7 +1962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
+      <a href="../../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2440,7 +2440,7 @@
 <p><code>:INDEXPVT=~/public</code> kann weggelassen werden, wenn die Flags, die pro Benutzer gesehen werden, nicht gewünscht sind.</p>
 <p>Die neue Mailbox im öffentlichen Namensraum wird von den Benutzern automatisch abonniert.</p>
 <p>Um allen authentifizierten Benutzern vollen Zugriff auf das neue Postfach (nicht auf den gesamten Namespace) zu gewähren, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm acl set -A &quot;Public/Develcow&quot; &quot;authenticated&quot; lookup read write write-seen write-deleted insert post delete expunge create
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm acl set -A &quot;Public/Develcow&quot; &quot;authenticated&quot; lookup read write write-seen write-deleted insert post delete expunge create
 </code></pre></div>
 <p>Passen Sie den Befehl an Ihre Bedürfnisse an, wenn Sie detailliertere Rechte pro Benutzer vergeben möchten (verwenden Sie z.B. <code>-u user@domain</code> anstelle von <code>-A</code>).</p>
 <h2 id="erlaube-authentifizierten-benutzern-den-zugriff-auf-den-gesamten-offentlichen-namespace">Erlaube authentifizierten Benutzern den Zugriff auf den gesamten öffentlichen Namespace<a class="headerlink" href="#erlaube-authentifizierten-benutzern-den-zugriff-auf-den-gesamten-offentlichen-namespace" title="Permanent link">&para;</a></h2>
@@ -2457,7 +2457,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-02 11:37:12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
       
     
   </small>
