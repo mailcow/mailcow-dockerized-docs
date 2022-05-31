@@ -22,13 +22,13 @@ imap_idle_notify_interval = 5 mins
 Nun laden Sie Dovecot neu:
 
 ```
-docker-compose exec dovecot-mailcow dovecot reload
+docker compose exec dovecot-mailcow dovecot reload
 ```
 
 !!! info
 	Sie können den Wert dieser Einstellung überprüfen mit 
 	```
-	docker-compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"
+	docker compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"
 	```
 	Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn geändert haben, sollten Sie den neuen Wert sehen.
 

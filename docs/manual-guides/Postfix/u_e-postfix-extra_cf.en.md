@@ -7,5 +7,5 @@ Syslog-ng was configured to hide those warnings while Postfix is running, to not
 Restart `postfix-mailcow` to apply your changes:
 
 ```
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```

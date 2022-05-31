@@ -23,15 +23,15 @@ Escape-Zeichen ist '^]'.
 
 Bitte lesen Sie unsere [DNS-Konfiguration](../prerequisite/prerequisite-dns.de.md) Anleitung.
 
-## docker-compose wirft seltsame Fehler aus.
+## docker compose wirft seltsame Fehler aus.
 
 ... wie:
 
 - `ERROR: Ungültiges Interpolationsformat ...`
 - `AttributeError: 'NoneType' Objekt hat kein Attribut 'keys'`.
-- ERROR: In der Datei './docker-compose.yml' hat der Dienst 'version' keine Konfigurationsoptionen.
+- ERROR: In der Datei './docker compose.yml' hat der Dienst 'version' keine Konfigurationsoptionen.
 
-Wenn Sie eine oder ähnliche Meldungen erhalten, während Sie versuchen, mailcow: dockerized auszuführen, überprüfen Sie bitte, ob Sie die **aktuellste** Version von **Docker** und **docker-compose** haben.
+Wenn Sie eine oder ähnliche Meldungen erhalten, während Sie versuchen, mailcow: dockerized auszuführen, überprüfen Sie bitte, ob Sie die **aktuellste** Version von **Docker** und **docker compose** haben.
 
 ## Container XY ist ungesund
 

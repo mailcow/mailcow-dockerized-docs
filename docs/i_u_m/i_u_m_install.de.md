@@ -14,12 +14,12 @@ systemctl enable --now docker
 - Docker-Compose
 
 !!! warning
-    **mailcow benötigt die neueste Version von docker-compose v1.** Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um `docker-compose` zu installieren. Paket-Manager (z.B. `apt`, `yum`) werden **wahrscheinlich** nicht die richtige Version liefern.
-    Hinweis: Dieser Befehl lädt docker-compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).
+    **mailcow benötigt die neueste Version von docker compose v1.** Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um `docker compose` zu installieren. Paket-Manager (z.B. `apt`, `yum`) werden **wahrscheinlich** nicht die richtige Version liefern.
+    Hinweis: Dieser Befehl lädt docker compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).
 
 ```
-curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker compose
+chmod +x /usr/local/bin/docker compose
 ```
 
 Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.
@@ -84,7 +84,7 @@ Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist
 
 **Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.**
 
-Bearbeiten Sie `docker-compose.yml` und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
+Bearbeiten Sie `docker compose.yml` und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
 Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
 ```
 networks:
@@ -104,8 +104,8 @@ Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um 
 
 **5\.** LAden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird mailcow: dockerized starten:
 ```
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 Geschafft!
@@ -117,4 +117,4 @@ Sie können nun auf **https://${MAILCOW_HOSTNAME}** mit den Standard-Zugangsdate
 
 Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zu MySQL hergestellt werden kann.
 
-Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie `docker volume ls` aus, um eine Liste aller Volumes zu sehen. Sie können `docker-compose down` sicher ausführen, ohne persistente Daten zu entfernen.
+Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie `docker volume ls` aus, um eine Liste aller Volumes zu sehen. Sie können `docker compose down` sicher ausführen, ohne persistente Daten zu entfernen.
