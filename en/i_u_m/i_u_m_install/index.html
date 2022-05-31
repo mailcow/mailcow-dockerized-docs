@@ -2373,29 +2373,16 @@
 
   <h1>Installation</h1>
 
-<p>You need Docker (a version &gt;= <code>20.10.2</code> is required) and Docker Compose (a version <code>&lt;= 2.0</code> is required).</p>
-<p><strong>1.</strong> Learn how to install <a href="https://docs.docker.com/install/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p>
+<p>You need Docker (a version &gt;= <code>20.10.2</code> is required) with compose bundled.</p>
+<p><strong>1.</strong> Learn how to install <a href="https://docs.docker.com/install/">Docker</a>.</p>
 <p>Quick installation for most operation systems:</p>
 <ul>
-<li>
-<p>Docker
+<li>Docker
 <div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
 systemctl enable --now docker
-</code></pre></div></p>
-</li>
-<li>
-<p>Docker-Compose</p>
-</li>
+</code></pre></div></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>mailcow requires the latest version of docker-compose v1.</strong> It is highly recommended to use the commands below to install <code>docker-compose</code>. Package managers (e.g. <code>apt</code>, <code>yum</code>) <strong>likely won't</strong> give you the correct version.
-<em>Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow).</em></p>
-</div>
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-</code></pre></div>
 <p>Please use the latest Docker engine available and do not use the engine that ships with your distros repository.</p>
 <p><strong>1.1.</strong> On SELinux enabled systems, e.g. CentOS 7:</p>
 <ul>
@@ -2449,8 +2436,8 @@ Add the new driver_opts parameter like this:
 <p><strong>Enable IPv6. Finally.</strong></p>
 <p>If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to <a href="../../post_installation/firststeps-disable_ipv6/">disable IPv6</a> for the mailcow network to prevent unforeseen issues.</p>
 <p><strong>5.</strong> Pull the images and run the compose file. The parameter <code>-d</code> will start mailcow: dockerized detached:
-<div class="highlight"><pre><span></span><code>docker-compose pull
-docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose pull
+docker compose up -d
 </code></pre></div></p>
 <p>Done!</p>
 <p>You can now access <strong>https://${MAILCOW_HOSTNAME}</strong> with the default credentials <code>admin</code> + password <code>moohoo</code>.</p>
@@ -2459,14 +2446,14 @@ docker-compose up -d
 <p>If you are not using mailcow behind a reverse proxy, you should <a href="../../manual-guides/u_e-80_to_443/">redirect all HTTP requests to HTTPS</a>.</p>
 </div>
 <p>The database will be initialized right after a connection to MySQL can be established.</p>
-<p>Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run <code>docker volume ls</code> to see a list of all volumes. You can safely run <code>docker-compose down</code> without removing persistent data.</p>
+<p>Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run <code>docker volume ls</code> to see a list of all volumes. You can safely run <code>docker compose down</code> without removing persistent data.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-02-07 17:48:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:25:50</span>
       
     
   </small>
