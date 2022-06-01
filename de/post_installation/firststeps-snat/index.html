@@ -1926,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2382,16 +2382,16 @@ SNAT_TO_SOURCE=1.2.3.4
 # Benutze dieses IPv6 für ausgehende Verbindungen (SNAT)
 SNAT6_TO_SOURCE=dead:beef
 </code></pre></div>
-<p>Führen Sie <code>docker compose up -d</code> aus.</p>
+<p>Führen Sie <code>docker-compose up -d</code> aus.</p>
 <p>Die Werte werden von netfilter-mailcow gelesen. netfilter-mailcow stellt sicher, dass die Post-Routing-Regeln auf Position 1 in der Netfilter-Tabelle stehen. Es löscht sie automatisch und legt sie neu an, wenn sie an einer anderen Position als 1 gefunden werden.</p>
-<p>Überprüfen Sie die Ausgabe von <code>docker compose logs --tail=200 netfilter-mailcow</code>, um sicherzustellen, dass die SNAT-Einstellungen angewendet wurden.</p>
+<p>Überprüfen Sie die Ausgabe von <code>docker-compose logs --tail=200 netfilter-mailcow</code>, um sicherzustellen, dass die SNAT-Einstellungen angewendet wurden.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

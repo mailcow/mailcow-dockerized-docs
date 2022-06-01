@@ -1921,7 +1921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2258,7 +2258,7 @@
         
           <li class="md-nav__item">
   <a href="#erstellen-oder-andern-sie-docker-composeoverrideyml" class="md-nav__link">
-    Erstellen oder ändern Sie docker compose.override.yml
+    Erstellen oder ändern Sie docker-compose.override.yml
   </a>
   
 </li>
@@ -2541,7 +2541,7 @@
         
           <li class="md-nav__item">
   <a href="#erstellen-oder-andern-sie-docker-composeoverrideyml" class="md-nav__link">
-    Erstellen oder ändern Sie docker compose.override.yml
+    Erstellen oder ändern Sie docker-compose.override.yml
   </a>
   
 </li>
@@ -2684,8 +2684,8 @@ Funktionalität wird durch das <a href="https://github.com/b3vis/docker-borgmati
 die <code>README</code> in diesem Repository, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
 Diese Anleitung behandelt nur die Grundlagen.</p>
 <h2 id="einrichten-von-borgmatic">Einrichten von borgmatic<a class="headerlink" href="#einrichten-von-borgmatic" title="Permanent link">&para;</a></h2>
-<h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
-<p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker compose.override.yml</code> und fügen Sie die folgende
+<h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker-compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
+<p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker-compose.override.yml</code> und fügen Sie die folgende
 Konfiguration ein:
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
@@ -2775,7 +2775,7 @@ nach der vollen Stunde auszuführen und am Ende einige nette Statistiken zu prot
 oder OpenSSH wird sich weigern, den SSH-Schlüssel zu benutzen.</p>
 <h3 id="den-container-hochfahren">Den Container hochfahren<a class="headerlink" href="#den-container-hochfahren" title="Permanent link">&para;</a></h3>
 <p>Für den nächsten Schritt müssen wir den Container in einem konfigurierten Zustand hochfahren und laufen lassen. Um das zu tun, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker compose up -d
+<div class="highlight"><pre><span></span><code>docker-compose up -d
 </code></pre></div>
 <h2 id="wiederherstellung-von-einem-backup">Wiederherstellung von einem Backup<a class="headerlink" href="#wiederherstellung-von-einem-backup" title="Permanent link">&para;</a></h2>
 <p>Das Wiederherstellen eines Backups setzt voraus, dass Sie mit einer neuen Installation von mailcow beginnen, und dass Sie derzeit keine
@@ -2793,10 +2793,10 @@ während der Extraktion des Archivs vorübergehend deaktivieren, da das Mailcow-
 ausschließlich. SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
 dieses Volume zu schreiben.</p>
 </div>
-<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker compose.override.yml</code> beschreibbar machen, indem Sie das
+<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker-compose.override.yml</code> beschreibbar machen, indem Sie das
 das <code>ro</code>-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:</p>
-<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
 </code></pre></div>
 <p>Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 <a href="#auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive</a>)</p>
@@ -2806,7 +2806,7 @@ Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup
 <p>Die Ausführung dieses Befehls löscht und erstellt die mailcow-Datenbank neu! Führen sie diesen Befehl nicht aus, es sei denn sie beabsichtigen, die mailcow-Datenbank von einem Backup wiederherzustellen.</p>
 </div>
 <p>Um die MySQL-Datenbank aus dem letzten Archiv wiederherzustellen, verwenden Sie diesen Befehl:</p>
-<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic restore --archive latest
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic restore --archive latest
 </code></pre></div>
 <p>Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 <a href="#auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive</a>)</p>
@@ -2814,21 +2814,21 @@ Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup
 <p>Nach der Wiederherstellung müssen Sie mailcow neu starten. Wenn Sie den SELinux-Erzwingungsmodus deaktiviert haben, wäre jetzt ein guter Zeitpunkt, um
 ihn wieder zu aktivieren.</p>
 <p>Um mailcow neu zu starten, verwenden Sie den folgenden Befehl:</p>
-<div class="highlight"><pre><span></span><code>docker compose down <span class="o">&amp;&amp;</span> docker compose up -d
+<div class="highlight"><pre><span></span><code>docker-compose down <span class="o">&amp;&amp;</span> docker-compose up -d
 </code></pre></div>
 <p>Wenn Sie SELinux verwenden, werden dadurch auch alle Dateien in Ihrem vmail-Volume neu benannt. Seien Sie geduldig, denn dies kann
 eine Weile dauern kann, wenn Sie viele Dateien haben.</p>
 <h2 id="nutzliche-befehle">Nützliche Befehle<a class="headerlink" href="#nutzliche-befehle" title="Permanent link">&para;</a></h2>
 <h3 id="manueller-archivierungslauf-mit-debugging-ausgabe">Manueller Archivierungslauf (mit Debugging-Ausgabe)<a class="headerlink" href="#manueller-archivierungslauf-mit-debugging-ausgabe" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic -v <span class="m">2</span>
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic -v <span class="m">2</span>
 </code></pre></div>
 <h3 id="auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive<a class="headerlink" href="#auflistung-aller-verfugbaren-archive" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic list
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic list
 </code></pre></div>
 <h3 id="sperre-aufheben">Sperre aufheben<a class="headerlink" href="#sperre-aufheben" title="Permanent link">&para;</a></h3>
 <p>Wenn borg während eines Archivierungslaufs unterbrochen wird, hinterlässt es eine veraltete Sperre, die gelöscht werden muss, bevor
 neue Operationen durchgeführt werden können:</p>
-<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg break-lock user@rsync.net:mailcow
 </code></pre></div>
 <p>Wobei <code>user@rsync.net:mailcow</code> die URI zu Ihrem Repository ist.</p>
 <p>Jetzt wäre ein guter Zeitpunkt, einen manuellen Archivierungslauf durchzuführen, um sicherzustellen, dass er erfolgreich durchgeführt werden kann.</p>
@@ -2838,7 +2838,7 @@ Schlüsseldateien werden erzeugt, wenn Sie das Repository initialisieren. Die <c
 Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
 <p>Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um die Archive zu entschlüsseln.</p>
 <p>Um die <code>keyfile</code> zu holen, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
+<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
 </code></pre></div>
 <p>Wobei <code>user@rsync.net:mailcow</code> die URI zu Ihrem Repository ist.</p>
 
@@ -2847,7 +2847,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

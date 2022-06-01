@@ -1926,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2374,7 +2374,7 @@
   <h1>Deinstallation</h1>
 
 <p>Um mailcow: dockerized mit all seinen Volumes, Images und Containern zu entfernen, tun Sie dies:</p>
-<div class="highlight"><pre><span></span><code>docker compose down -v --rmi all --remove-orphans
+<div class="highlight"><pre><span></span><code>docker-compose down -v --rmi all --remove-orphans
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2382,7 +2382,7 @@
 <li><strong>-v</strong> Entfernt benannte Volumes, die im Abschnitt <code>volumes</code> der Compose-Datei deklariert sind, und anonyme Volumes, die an Container angehängt sind.</li>
 <li><strong>--rmi <Typ></strong> Images entfernen. Der Typ muss einer der folgenden sein: <code>all</code>: Entfernt alle Images, die von einem beliebigen Dienst verwendet werden. <code>local</code>: Entfernt nur Bilder, die kein benutzerdefiniertes Tag haben, das durch das Feld "image" gesetzt wurde.</li>
 <li><strong>--remove-orphans</strong> Entfernt Container für Dienste, die nicht in der Compose-Datei definiert sind.</li>
-<li>Standardmäßig entfernt <code>docker compose down</code> nur derzeit aktive Container und Netzwerke, die in der Datei <code>docker compose.yml</code> definiert sind.</li>
+<li>Standardmäßig entfernt <code>docker-compose down</code> nur derzeit aktive Container und Netzwerke, die in der Datei <code>docker-compose.yml</code> definiert sind.</li>
 </ul>
 </div>
 
@@ -2391,7 +2391,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

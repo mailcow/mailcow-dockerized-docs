@@ -1928,7 +1928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2376,13 +2376,13 @@
   <h1>Customize Dockerfiles</h1>
 
 <p>You need to copy the override file with corresponding build tags to the mailcow: dockerized root folder (i.e. <code>/opt/mailcow-dockerized</code>):</p>
-<div class="highlight"><pre><span></span><code>cp helper-scripts/docker compose.override.yml.d/BUILD_FLAGS/docker compose.override.yml docker compose.override.yml
+<div class="highlight"><pre><span></span><code>cp helper-scripts/docker-compose.override.yml.d/BUILD_FLAGS/docker-compose.override.yml docker-compose.override.yml
 </code></pre></div>
 <p>Make your changes in <code>data/Dockerfiles/$service</code> and build the image locally:</p>
 <div class="highlight"><pre><span></span><code>docker build data/Dockerfiles/service -t mailcow/$service
 </code></pre></div>
 <p>Now auto-recreate modified containers:</p>
-<div class="highlight"><pre><span></span><code>docker compose up -d
+<div class="highlight"><pre><span></span><code>docker-compose up -d
 </code></pre></div>
 
   <hr>
@@ -2390,7 +2390,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>
@@ -2429,13 +2429,13 @@
       
       
         
-        <a href="../../u_e-why_unbound/" class="md-footer__link md-footer__link--next" aria-label="Next: Why unbound?" rel="next">
+        <a href="../u_e-docker-dc_bash_compl/" class="md-footer__link md-footer__link--next" aria-label="Next: Docker Compose Bash Completion" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Why unbound?
+              Docker Compose Bash Completion
             </div>
           </div>
           <div class="md-footer__button md-icon">

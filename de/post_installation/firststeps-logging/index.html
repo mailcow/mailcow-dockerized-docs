@@ -567,10 +567,10 @@
         
           <li class="md-nav__item">
   <a href="#uber-docker-composeoverrideyml" class="md-nav__link">
-    Über docker compose.override.yml
+    Über docker-compose.override.yml
   </a>
   
-    <nav class="md-nav" aria-label="Über docker compose.override.yml">
+    <nav class="md-nav" aria-label="Über docker-compose.override.yml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2007,7 +2007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2459,10 +2459,10 @@
         
           <li class="md-nav__item">
   <a href="#uber-docker-composeoverrideyml" class="md-nav__link">
-    Über docker compose.override.yml
+    Über docker-compose.override.yml
   </a>
   
-    <nav class="md-nav" aria-label="Über docker compose.override.yml">
+    <nav class="md-nav" aria-label="Über docker-compose.override.yml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2518,7 +2518,7 @@
 
 <p>Das Logging in mailcow: dockerized besteht aus mehreren Stufen, ist aber immerhin wesentlich flexibler und einfacher in einen Logging-Daemon zu integrieren als bisher.</p>
 <p>In Docker schreibt die containerisierte Anwendung (PID 1) ihre Ausgabe auf stdout. Für echte Ein-Anwendungs-Container funktioniert das sehr gut.
-Führen Sie <code>docker compose logs --help</code> aus, um mehr zu erfahren. </p>
+Führen Sie <code>docker-compose logs --help</code> aus, um mehr zu erfahren. </p>
 <p>Einige Container protokollieren oder streamen an mehrere Ziele.</p>
 <p>Kein Container wird persistente Logs in sich behalten. Container sind flüchtige Objekte!</p>
 <p>Am Ende wird jede Zeile der Logs den Docker-Daemon erreichen - ungefiltert.</p>
@@ -2531,9 +2531,9 @@ Führen Sie <code>docker compose logs --help</code> aus, um mehr zu erfahren. </
 ohne die Fähigkeit zu verlieren, Logs von der UI zu lesen oder verdächtige Clients mit netfilter-mailcow zu sperren.</p>
 <p>Redis-Schlüssel enthalten nur Logs von Anwendungen und filtern Systemmeldungen heraus (man denke an Cron etc.).</p>
 <h3 id="logging-treiber">Logging-Treiber<a class="headerlink" href="#logging-treiber" title="Permanent link">&para;</a></h3>
-<h4 id="uber-docker-composeoverrideyml">Über docker compose.override.yml<a class="headerlink" href="#uber-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
+<h4 id="uber-docker-composeoverrideyml">Über docker-compose.override.yml<a class="headerlink" href="#uber-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Hier ist die gute Nachricht: Da Docker einige großartige Logging-Treiber hat, können Sie mailcow: dockerized mit Leichtigkeit in Ihre bestehende Logging-Umgebung integrieren.</p>
-<p>Erstellen Sie eine <code>docker compose.override.yml</code> und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für <code>postfix-mailcow</code> zu verwenden:</p>
+<p>Erstellen Sie eine <code>docker-compose.override.yml</code> und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für <code>postfix-mailcow</code> zu verwenden:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   postfix-mailcow: # oder ein anderer
@@ -2600,7 +2600,7 @@ erstellen Sie die Datei <code>/etc/rsyslog.d/docker.conf</code>:</p>
 ...
 }
 </code></pre></div>
-<p>Starten Sie den Docker-Daemon neu und führen Sie <code>docker compose down &amp;&amp; docker compose up -d</code> aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.</p>
+<p>Starten Sie den Docker-Daemon neu und führen Sie <code>docker-compose down &amp;&amp; docker-compose up -d</code> aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.</p>
 <h3 id="log-rotation">Log rotation<a class="headerlink" href="#log-rotation" title="Permanent link">&para;</a></h3>
 <p>Da diese Logs sehr groß werden können, ist es eine gute Idee logrotate zu nutzen, um Logs nach einer gewissen Zeit zu
 komprimieren und zu löschen.</p>
@@ -2625,7 +2625,7 @@ komprimieren und zu löschen.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

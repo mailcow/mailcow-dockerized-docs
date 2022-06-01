@@ -2087,7 +2087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2674,7 +2674,7 @@
 
   <h1>Thresholds</h1>
 
-<p>Watchdog verwendet Standardwerte für alle in <code>docker compose.yml</code> definierten Thresholde.</p>
+<p>Watchdog verwendet Standardwerte für alle in <code>docker-compose.yml</code> definierten Thresholde.</p>
 <p>Die Standardwerte sind für die meisten Konfigurationen geeignet.
 Beispiel:
 <div class="highlight"><pre><span></span><code>- NGINX_THRESHOLD=${NGINX_THRESHOLD:-5}
@@ -2696,7 +2696,7 @@ Beispiel:
 - MAILQ_THRESHOLD=${MAILQ_THRESHOLD:-20}
 - MAILQ_CRIT=${MAILQ_CRIT:-30}
 </code></pre></div></p>
-<p>Um sie anzupassen, fügen Sie einfach die notwendigen Threshold Variablen (z.B. <code>MAILQ_THRESHOLD=10</code>) zu <code>mailcow.conf</code> hinzu und führen <code>docker compose up -d</code> aus.</p>
+<p>Um sie anzupassen, fügen Sie einfach die notwendigen Threshold Variablen (z.B. <code>MAILQ_THRESHOLD=10</code>) zu <code>mailcow.conf</code> hinzu und führen <code>docker-compose up -d</code> aus.</p>
 <h3 id="threshold-beschreibungen">Threshold Beschreibungen<a class="headerlink" href="#threshold-beschreibungen" title="Permanent link">&para;</a></h3>
 <h4 id="nginx_threshold">NGINX_THRESHOLD<a class="headerlink" href="#nginx_threshold" title="Permanent link">&para;</a></h4>
 <p>Benachrichtigt Administratoren, wenn Watchdog keine Verbindung zu Nginx auf Port 8081 herstellen kann und startet den Container automatisch neu, wenn Probleme gefunden wurden und der Threshold erreicht wurde.</p>
@@ -2738,7 +2738,7 @@ Beispiel:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

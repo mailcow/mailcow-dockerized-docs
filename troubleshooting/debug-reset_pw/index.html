@@ -2034,7 +2034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2576,13 +2576,13 @@
 ./helper-scripts/mailcow-reset-admin.sh
 </code></pre></div>
 <h2 id="reset-mysql-passwords">Reset MySQL Passwords<a class="headerlink" href="#reset-mysql-passwords" title="Permanent link">&para;</a></h2>
-<p>Stop the stack by running <code>docker compose stop</code>.</p>
+<p>Stop the stack by running <code>docker-compose stop</code>.</p>
 <p>When the containers came to a stop, run this command:</p>
-<div class="highlight"><pre><span></span><code>docker compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0&quot;&#39; mysql-mailcow
+<div class="highlight"><pre><span></span><code>docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0&quot;&#39; mysql-mailcow
 </code></pre></div>
 <h3 id="1-find-database-name">1. Find database name<a class="headerlink" href="#1-find-database-name" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code># source mailcow.conf
-# docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+# docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 MariaDB [(none)]&gt; show databases;
 +--------------------+
 | Database           |
@@ -2631,10 +2631,10 @@ MariaDB [(none)]&gt; FLUSH PRIVILEGES;
 <h3 id="for-mailcow-webui">For mailcow WebUI:<a class="headerlink" href="#for-mailcow-webui" title="Permanent link">&para;</a></h3>
 <p>This works similar to resetting a MySQL password, now we do it from the host without connecting to the MySQL CLI:</p>
 <div class="highlight"><pre><span></span><code>source mailcow.conf
-docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &quot;DELETE FROM tfa WHERE username=&#39;YOUR_USERNAME&#39;;&quot;
+docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &quot;DELETE FROM tfa WHERE username=&#39;YOUR_USERNAME&#39;;&quot;
 </code></pre></div>
 <h3 id="for-sogo">For SOGo:<a class="headerlink" href="#for-sogo" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled &#39;{&quot;SOGoGoogleAuthenticatorEnabled&quot;:0}&#39;
+<div class="highlight"><pre><span></span><code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled &#39;{&quot;SOGoGoogleAuthenticatorEnabled&quot;:0}&#39;
 </code></pre></div>
 
   <hr>
@@ -2642,7 +2642,7 @@ docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &qu
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

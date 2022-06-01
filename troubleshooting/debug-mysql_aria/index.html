@@ -1960,7 +1960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2424,12 +2424,12 @@
 
 <h2 id="mariadb-aria-recovery-after-crash">MariaDB: Aria recovery after crash<a class="headerlink" href="#mariadb-aria-recovery-after-crash" title="Permanent link">&para;</a></h2>
 <p>If your server crashed and MariaDB logs an error similar to <code>[ERROR] mysqld: Aria recovery failed. Please run aria_chk -r on all Aria tables (*.MAI) and delete all aria_log.######## files</code> you may want to try the following to recover the database to a healthy state:</p>
-<p>Start the stack and wait until mysql-mailcow begins to report a restarting state. Check by running <code>docker compose ps</code>.</p>
+<p>Start the stack and wait until mysql-mailcow begins to report a restarting state. Check by running <code>docker-compose ps</code>.</p>
 <p>Now run the following commands:</p>
 <div class="highlight"><pre><span></span><code># Stop the stack, don&#39;t run &quot;down&quot;
-docker compose stop
+docker-compose stop
 # Run a bash in the stopped container as user mysql
-docker compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
+docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql bash&quot;&#39; mysql-mailcow
 # cd to the SQL data directory
 cd /var/lib/mysql
 # Run aria_chk
@@ -2437,14 +2437,14 @@ aria_chk --check --force */*.MAI
 # Delete aria log files
 rm aria_log.*
 </code></pre></div>
-<p>Now run <code>docker compose down</code> followed by <code>docker compose up -d</code>.</p>
+<p>Now run <code>docker-compose down</code> followed by <code>docker-compose up -d</code>.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

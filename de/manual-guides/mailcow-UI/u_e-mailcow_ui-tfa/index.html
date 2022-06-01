@@ -2036,7 +2036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2632,7 +2632,7 @@ Geben Sie schließlich Ihr aktuelles Kontopasswort ein und berühren Sie nach Au
 <h3 id="deaktivieren-inoffizieller-unterstutzter-fido-security-keys">Deaktivieren inoffizieller unterstützter Fido Security Keys<a class="headerlink" href="#deaktivieren-inoffizieller-unterstutzter-fido-security-keys" title="Permanent link">&para;</a></h3>
 <p>Mit WebAuthn gibt es die Möglichkeit, nur offizielle Fido Security Keys zu verwenden (von den großen Marken wie: Yubico, Apple, Nitro, Google, Huawei, Microsoft, usw.) zu verwenden.</p>
 <p>Dies dient in erster Linie der Sicherheit, da es Administratoren ermöglicht, sicherzustellen, dass nur offizielle Hardware in ihrer Umgebung verwendet werden kann.</p>
-<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit <code>docker compose up -d</code> neu.</p>
+<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit <code>docker-compose up -d</code> neu.</p>
 <p>Die mailcow wird nun die Vendor-Zertifikate verwenden, die sich in Ihrem mailcow-Verzeichnis unter <code>data/web/inc/lib/WebAuthn/rootCertificates</code> befinden. </p>
 <h5 id="beispiel">Beispiel:<a class="headerlink" href="#beispiel" title="Permanent link">&para;</a></h5>
 <p>Wenn Sie die offiziellen Hersteller-Geräte nur auf Apple beschränken wollen, brauchen Sie nur das Apple Hersteller-Zertifikat im <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
@@ -2665,7 +2665,7 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

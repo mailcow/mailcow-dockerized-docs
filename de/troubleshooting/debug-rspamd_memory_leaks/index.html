@@ -1926,7 +1926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2374,7 +2374,7 @@
   <h1>Fortgeschritten: Memory-Leaks in Rspamd finden</h1>
 
 <p>Eine kurze Anleitung, um einen schlecht funktionierenden Rspamd tiefgehend zu analysieren.</p>
-<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow bash
+<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow bash
 
 if ! grep -qi &#39;apt-stable-asan&#39; /etc/apt/sources.list.d/rspamd.list; then
   sed -i &#39;s/apt-stabil/apt-stabil-asan/i&#39; /etc/apt/sources.list.d/rspamd.list
@@ -2389,17 +2389,17 @@ nano /docker-entrypoint.sh
 export G_SLICE=always-malloc
 export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violation=0:log_path=/tmp/rspamd-asan:quarantine_size_mb=2048:malloc_context_size=8:fast_unwind_on_malloc=0
 </code></pre></div>
-<p>Starten Sie Rspamd neu: <code>docker compose restart rspamd-mailcow</code></p>
+<p>Starten Sie Rspamd neu: <code>docker-compose restart rspamd-mailcow</code></p>
 <p>Ihr Speicherverbrauch wird stark ansteigen, er wird auch stetig wachsen, was nicht mit einem möglichen Memory Leak zusammenhängt, nach dem Sie suchen.</p>
-<p>Lassen Sie den Container für ein paar Minuten, Stunden oder Tage laufen (es sollte die Zeit sein, die Sie normalerweise warten, bis der Memory Leak "passiert") und starten Sie ihn neu: <code>docker compose restart rspamd-mailcow</code>.</p>
-<p>Betreten Sie nun den Container, indem Sie <code>docker compose exec rspamd-mailcow bash</code> ausführen, wechseln Sie das Verzeichnis zu /tmp und kopieren Sie die asan-Dateien an den gewünschten Ort oder laden Sie sie über termbin.com hoch (<code>cat /tmp/rspamd-asan.* | nc termbin.com 9999</code>).</p>
+<p>Lassen Sie den Container für ein paar Minuten, Stunden oder Tage laufen (es sollte die Zeit sein, die Sie normalerweise warten, bis der Memory Leak "passiert") und starten Sie ihn neu: <code>docker-compose restart rspamd-mailcow</code>.</p>
+<p>Betreten Sie nun den Container, indem Sie <code>docker-compose exec rspamd-mailcow bash</code> ausführen, wechseln Sie das Verzeichnis zu /tmp und kopieren Sie die asan-Dateien an den gewünschten Ort oder laden Sie sie über termbin.com hoch (<code>cat /tmp/rspamd-asan.* | nc termbin.com 9999</code>).</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>

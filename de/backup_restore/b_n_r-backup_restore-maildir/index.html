@@ -1969,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../manual-guides/Docker/u_e-docker-dc_bash_compl.md" class="md-nav__link">
+      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
         Docker Compose Bash Completion
       </a>
     </li>
@@ -2441,13 +2441,13 @@
 <h3 id="sicherung">Sicherung<a class="headerlink" href="#sicherung" title="Permanent link">&para;</a></h3>
 <p>Diese Zeile sichert das vmail-Verzeichnis in eine Datei backup_vmail.tar.gz im mailcow-Root-Verzeichnis:
 <div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
-docker run --rm -i -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if eq .Destination &quot;/var/vmail&quot; }}{{ .Name }}{{ end }}{{{ end }}&#39; $(docker compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar cvfz /backup/backup_vmail.tar.gz /vmail
+docker run --rm -i -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if eq .Destination &quot;/var/vmail&quot; }}{{ .Name }}{{ end }}{{{ end }}&#39; $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar cvfz /backup/backup_vmail.tar.gz /vmail
 </code></pre></div></p>
 <p>Sie können den Pfad ändern, indem Sie ${PWD} (das dem aktuellen Verzeichnis entspricht) an einen beliebigen Pfad anpassen, auf den Sie Schreibzugriff haben.
 Setzen Sie den Dateinamen <code>backup_vmail.tar.gz</code> auf einen beliebigen Namen, aber lassen Sie den Pfad so wie er ist. Beispiel: <code>[...] tar cvfz /backup/mein_eigener_filename_.tar.gz</code></p>
 <h3 id="wiederherstellen">Wiederherstellen<a class="headerlink" href="#wiederherstellen" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
-docker run --rm -it -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if eq .Destination &quot;/var/vmail&quot; }}{{ .Name }}{{ end }}{{ end }}&#39; $(docker compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar xvfz /backup/backup_vmail.tar.gz
+docker run --rm -it -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if eq .Destination &quot;/var/vmail&quot; }}{{ .Name }}{{ end }}{{ end }}&#39; $(docker-compose ps -q dovecot-mailcow)):/vmail -v ${PWD}:/backup debian:stretch-slim tar xvfz /backup/backup_vmail.tar.gz
 </code></pre></div>
 
   <hr>
@@ -2455,7 +2455,7 @@ docker run --rm -it -v $(docker inspect --format &#39;{{ range .Mounts }}{{ if e
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-31 09:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
       
     
   </small>
