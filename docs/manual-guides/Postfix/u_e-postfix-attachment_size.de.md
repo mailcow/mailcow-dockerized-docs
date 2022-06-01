@@ -3,5 +3,5 @@
 Starten Sie Postfix neu:
 
 ```
-docker compose restart postfix-mailcow
+docker-compose restart postfix-mailcow
 ```

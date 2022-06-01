@@ -9,19 +9,19 @@ cd mailcow_path
 
 ## Reset MySQL Passwords
 
-Stop the stack by running `docker compose stop`.
+Stop the stack by running `docker-compose stop`.
 
 When the containers came to a stop, run this command:
 
 ```
-docker compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables & sleep 10 && mysql -hlocalhost -uroot && exit 0"' mysql-mailcow
+docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables & sleep 10 && mysql -hlocalhost -uroot && exit 0"' mysql-mailcow
 ```
 
 ### 1\. Find database name
 
 ```
 # source mailcow.conf
-# docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+# docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 MariaDB [(none)]> show databases;
 +--------------------+
 | Database           |
@@ -83,11 +83,11 @@ This works similar to resetting a MySQL password, now we do it from the host wit
 
 ```
 source mailcow.conf
-docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e "DELETE FROM tfa WHERE username='YOUR_USERNAME';"
+docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e "DELETE FROM tfa WHERE username='YOUR_USERNAME';"
 ```
 
 ### For SOGo:
 
 ```
-docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled '{"SOGoGoogleAuthenticatorEnabled":0}'
+docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled '{"SOGoGoogleAuthenticatorEnabled":0}'
 ```

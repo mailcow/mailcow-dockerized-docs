@@ -14,4 +14,4 @@ docker volume rm mailcowdockerized_${VOLUME_NAME}
 - Entfernen Sie das Volume `rspamd-vol-1`, um alle Rspamd-Daten zu entfernen.
 - Entfernen Sie Volume `crypt-vol-1`, um alle Crypto-Daten zu entfernen. Dies wird **alle Mails** unlesbar machen.
 
-Alternativ dazu wird die Ausführung von `docker compose down -v` **alle mailcow: dockerized volumes** zerstören und alle zugehörigen Container und Netzwerke löschen.
+Alternativ dazu wird die Ausführung von `docker-compose down -v` **alle mailcow: dockerized volumes** zerstören und alle zugehörigen Container und Netzwerke löschen.

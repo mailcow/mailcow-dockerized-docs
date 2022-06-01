@@ -11,7 +11,7 @@ DOVECOT_MASTER_USER=mymasteruser
 DOVECOT_MASTER_PASS=mysecretpass
 ```
 
-Run `docker compose up -d` to apply your changes.
+Run `docker-compose up -d` to apply your changes.
 
 The static master username will be expanded to `DOVECOT_MASTER_USER@mailcow.local`.
 

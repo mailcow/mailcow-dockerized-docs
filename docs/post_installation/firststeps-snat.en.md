@@ -11,8 +11,8 @@ SNAT_TO_SOURCE=1.2.3.4
 SNAT6_TO_SOURCE=dead:beef
 ```
 
-Run `docker compose up -d`.
+Run `docker-compose up -d`.
 
 The values are read by netfilter-mailcow. netfilter-mailcow will make sure, the post-routing rules are on position 1 in the netfilter table. It does automatically delete and re-create them if they are found on another position than 1.
 
-Check the output of `docker compose logs --tail=200 netfilter-mailcow` to ensure the SNAT settings have been applied.
+Check the output of `docker-compose logs --tail=200 netfilter-mailcow` to ensure the SNAT settings have been applied.

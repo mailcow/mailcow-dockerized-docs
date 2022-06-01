@@ -13,7 +13,7 @@ Dadurch werden auch die Bindungen innerhalb des Nginx-Containers geändert! Dies
 
 **WICHTIG:** Verwenden Sie nicht Port 8081, 9081 oder 65510!
 
-Erzeugen Sie die betroffenen Container neu, indem Sie `docker compose up -d` ausführen.
+Erzeugen Sie die betroffenen Container neu, indem Sie `docker-compose up -d` ausführen.
 
 **Wichtige Informationen, bitte lesen Sie diese sorgfältig durch!**
 
@@ -180,9 +180,9 @@ backend mailcow
 In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 `[certificatesresolvers]` in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier [traefik.toml](https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml), falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.
 
 Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
-Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und `docker compose up -d` ausführen, um die Änderungen zu übernehmen.
+Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und `docker-compose up -d` ausführen, um die Änderungen zu übernehmen.
 
-Dann erstellen wir eine `docker compose.override.yml` Datei, um die Hauptdatei `docker compose.yml` zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. 
+Dann erstellen wir eine `docker-compose.override.yml` Datei, um die Hauptdatei `docker-compose.yml` zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. 
 
 ```yaml
 version: '2.1'
@@ -216,7 +216,7 @@ services:
         network_mode: none
         volumes:
           # mounten Sie den Ordner, der Traefiks `acme.json' Datei enthält
-          # in diesem Fall wird Traefik von seinem eigenen docker compose in ../traefik gestartet
+          # in diesem Fall wird Traefik von seinem eigenen docker-compose in ../traefik gestartet
           - ../traefik/data:/traefik:ro
           # SSL-Ordner von mailcow einhängen
           - ./data/assets/ssl/:/output:rw
@@ -230,13 +230,13 @@ networks:
     external: true
 ```
 
-Starten Sie die neuen Container mit `docker compose up -d`.
+Starten Sie die neuen Container mit `docker-compose up -d`.
 
 Da Traefik 2 ein acme v2 Format verwendet, um ALLE Lizenzen von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (https://hub.docker.com/r/humenius/traefik-certs-dumper), der die Datei `acme.json` über ein Volume und eine Variable `DOMAIN=example. org`, und damit wird der Container die `cert.pem` und `key.pem` Dateien ausgeben, dafür lassen wir einfach den `traefik-certs-dumper` Container laufen, binden das `/traefik` Volume an den Ordner, in dem unsere `acme.json` gespeichert ist, binden das `/output` Volume an unseren mailcow `data/assets/ssl/` Ordner, und setzen die `DOMAIN=example.org` Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. 
 
 Dieser Container überwacht die Datei `acme.json` auf Änderungen und generiert die Dateien `cert.pem` und `key.pem` direkt in `data/assets/ssl/`, wobei der Pfad mit dem `/output`-Pfad des Containers verbunden ist.
 
-Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker compose verwenden (https://hub.docker.com/r/humenius/traefik-certs-dumper).
+Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker-compose verwenden (https://hub.docker.com/r/humenius/traefik-certs-dumper).
 
 Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden).
 
@@ -264,4 +264,4 @@ Wenn Sie vorhaben, einen Servernamen zu verwenden, der nicht `MAILCOW_HOSTNAME` 
 ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 ```
 
-Führen Sie `docker compose up -d` zum Anwenden aus.
+Führen Sie `docker-compose up -d` zum Anwenden aus.

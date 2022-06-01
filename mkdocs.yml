@@ -348,6 +348,7 @@ plugins:
         'u_e-rspamd.md': 'manual-guides/Rspamd/u_e-rspamd.en.md'
         'u_e-sogo.md': 'manual-guides/SOGo/u_e-sogo.en.md'
         'u_e-docker-cust_dockerfiles.md': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.en.md'
+        'u_e-docker-dc_bash_compl.md': 'manual-guides/Docker/u_e-docker-dc_bash_compl.en.md'
         'u_e-why_unbound.md': 'manual-guides/u_e-why_unbound.en.md'
         'u_e-autodiscover_config.md': 'manual-guides/u_e-autodiscover_config.en.md'
         'u_e-80_to_443.md': 'manual-guides/u_e-80_to_443.en.md'

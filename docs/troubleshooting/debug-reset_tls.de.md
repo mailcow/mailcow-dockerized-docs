@@ -2,12 +2,12 @@ Sollten Sie Probleme mit Ihrem Zertifikat, Schlüssel oder Let's Encrypt-Konto h
 
 ```
 source mailcow.conf
-docker compose down
+docker-compose down
 rm -rf data/assets/ssl
 mkdir data/assets/ssl
 openssl req -x509 -newkey rsa:4096 -keyout data/assets/ssl-example/key.pem -out data/assets/ssl-example/cert.pem -days 365 -subj "/C=DE/ST=NRW/L=Willich/O=mailcow/OU=mailcow/CN=${MAILCOW_HOSTNAME}" -sha256 -nodes
 cp -n -d data/assets/ssl-example/*.pem data/assets/ssl/
-docker compose up -d
+docker-compose up -d
 ```
 
 Dies wird mailcow stoppen, die benötigten Variablen beschaffen, ein selbstsigniertes Zertifikat erstellen und mailcow starten.

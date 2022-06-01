@@ -1,6 +1,6 @@
-In order to enable Portainer, the docker compose.yml and site.conf for Nginx must be modified.
+In order to enable Portainer, the docker-compose.yml and site.conf for Nginx must be modified.
 
-1\. Create a new file `docker compose.override.yml` in the mailcow-dockerized root folder and insert the following configuration
+1\. Create a new file `docker-compose.override.yml` in the mailcow-dockerized root folder and insert the following configuration
 ```
 version: '2.1'
 services:
@@ -55,7 +55,7 @@ map $http_upgrade $connection_upgrade {
 
 3\. Apply your changes:
 ```
-docker compose up -d && docker compose restart nginx-mailcow
+docker-compose up -d && docker-compose restart nginx-mailcow
 ```
 
 Now you can simply navigate to https://${MAILCOW_HOSTNAME}/portainer/ to view your Portainer container monitoring page. You’ll then be prompted to specify a new password for the **admin** account. After specifying your password, you’ll then be able to connect to the Portainer UI.

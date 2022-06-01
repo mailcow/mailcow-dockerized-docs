@@ -21,7 +21,7 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 # - Check for updates and show changes
 ./update.sh --check
 
-# Do not try to update docker compose, **make sure to use the latest docker compose available**
+# Do not try to update docker-compose, **make sure to use the latest docker-compose available**
 ./update.sh --no-update-compose
 
 # - Do not start mailcow after applying an update
@@ -62,11 +62,11 @@ Yes.
 See the topic above, instead of a diff, you run checkout:
 
 ```
-docker compose down
+docker-compose down
 # Replace commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab by your ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker compose pull
-docker compose up -d
+docker-compose pull
+docker-compose up -d
 ```
 
 ### Hooks

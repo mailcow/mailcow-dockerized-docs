@@ -26,7 +26,7 @@ server {
 }
 ```
 
-Speichern Sie und starten Sie Nginx neu: `docker compose restart nginx-mailcow`.
+Speichern Sie und starten Sie Nginx neu: `docker-compose restart nginx-mailcow`.
 
 Öffnen Sie nun `mailcow.conf` und suchen Sie `ADDITIONAL_SAN`.
 Fügen Sie `webmail.example.org` zu diesem Array hinzu, verwenden Sie keine Anführungszeichen!
@@ -35,4 +35,4 @@ Fügen Sie `webmail.example.org` zu diesem Array hinzu, verwenden Sie keine Anf�
 ADDITIONAL_SAN=webmail.example.org
 ```
 
-Führen Sie `docker compose up -d` aus. Siehe "acme-mailcow" und "nginx-mailcow" Logs, wenn etwas fehlschlägt.
+Führen Sie `docker-compose up -d` aus. Siehe "acme-mailcow" und "nginx-mailcow" Logs, wenn etwas fehlschlägt.

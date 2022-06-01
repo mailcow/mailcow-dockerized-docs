@@ -113,6 +113,6 @@ If PHP is to be included in a custom site, please use the PHP-FPM listener on ph
 Restart Nginx (and PHP-FPM, if a new listener was created):
 
 ```
-docker compose restart nginx-mailcow
-docker compose restart php-fpm-mailcow
+docker-compose restart nginx-mailcow
+docker-compose restart php-fpm-mailcow
 ```

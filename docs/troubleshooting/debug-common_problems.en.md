@@ -24,15 +24,15 @@ Escape character is '^]'.
 
 Please read our guide on [DNS configuration](../prerequisite/prerequisite-dns.en.md).
 
-## docker compose throws weird errors
+## docker-compose throws weird errors
 
 ... like:
 
 - `ERROR: Invalid interpolation format ...`
 - `AttributeError: 'NoneType' object has no attribute 'keys'`.
-- `ERROR: In file './docker compose.yml' service 'version' doesn't have any configuration options`.
+- `ERROR: In file './docker-compose.yml' service 'version' doesn't have any configuration options`.
 
-When you encounter one or similar messages while trying to run mailcow: dockerized please check if you have the **latest** version of **Docker** and **docker compose**
+When you encounter one or similar messages while trying to run mailcow: dockerized please check if you have the **latest** version of **Docker** and **docker-compose**
 
 ## Container XY is unhealthy
 
