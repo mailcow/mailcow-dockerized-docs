@@ -1,6 +1,6 @@
-You need Docker (a version >= `20.10.2` is required) with compose bundled.
+You need Docker (a version >= `20.10.2` is required) and Docker Compose (a version `<= 2.0` is required).
 
-**1\.** Learn how to install [Docker](https://docs.docker.com/install/).
+**1\.** Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
 Quick installation for most operation systems:
 
@@ -9,6 +9,17 @@ Quick installation for most operation systems:
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 # After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
 systemctl enable --now docker
+```
+
+- Docker-Compose
+
+!!! warning
+    **mailcow requires the latest version of docker-compose v1.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the correct version.
+    _Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
+
+```
+curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 ```
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
@@ -93,8 +104,8 @@ If you do not have an IPv6 enabled network on your host and you don't care for a
 
 **5\.** Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
 ```
-docker compose pull
-docker compose up -d
+docker-compose pull
+docker-compose up -d
 ```
 
 Done!
@@ -106,4 +117,4 @@ You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials 
 
 The database will be initialized right after a connection to MySQL can be established.
 
-Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker compose down` without removing persistent data.
+Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker-compose down` without removing persistent data.
