@@ -39,9 +39,9 @@ Um Ihre Änderungen zu übernehmen, führen Sie `docker compose down` gefolgt vo
 
 Das Ändern von IPv6-Bindings ist anders als bei IPv4. Auch dies hat einen technischen Hintergrund.
 
-Eine `docker compose.override.yml` Datei wird verwendet, anstatt die `docker compose.yml` Datei direkt zu bearbeiten. Dies geschieht, um die Aktualisierbarkeit zu erhalten, da die Datei `docker compose.yml` regelmäßig aktualisiert wird und Ihre Änderungen höchstwahrscheinlich überschrieben werden.
+Eine `docker-compose.override.yml` Datei wird verwendet, anstatt die `docker-compose.yml` Datei direkt zu bearbeiten. Dies geschieht, um die Aktualisierbarkeit zu erhalten, da die Datei `docker-compose.yml` regelmäßig aktualisiert wird und Ihre Änderungen höchstwahrscheinlich überschrieben werden.
 
-Bearbeiten Sie die Datei "docker compose.override.yml" und erstellen Sie sie mit dem folgenden Inhalt. Ihr Inhalt wird mit der produktiven Datei "docker compose.yml" zusammengeführt.
+Bearbeiten Sie die Datei "docker-compose.override.yml" und erstellen Sie sie mit dem folgenden Inhalt. Ihr Inhalt wird mit der produktiven Datei "docker-compose.yml" zusammengeführt.
 
 Es wird eine imaginäre IPv6 **2a00:dead:beef::abc** angegeben. Das erste Suffix `:PORT1` definiert den externen Port, während das zweite Suffix `:PORT2` zu dem entsprechenden Port innerhalb des Containers führt und nicht verändert werden darf.
 

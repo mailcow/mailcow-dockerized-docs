@@ -1,4 +1,4 @@
-Watchdog uses default values for all thresholds defined in `docker compose.yml`.
+Watchdog uses default values for all thresholds defined in `docker-compose.yml`.
 
 The default values will work for most setups.
 Example:

@@ -16,7 +16,7 @@ Start mailcow afterwards.
 
 ## The "old" way
 
-If you want to use another folder for the vmail-volume, you can create a `docker compose.override.yml` file and add the following content:
+If you want to use another folder for the vmail-volume, you can create a `docker-compose.override.yml` file and add the following content:
 
 ```
 version: '2.1'
@@ -52,6 +52,6 @@ volumes:
 
 - Copy the content of the `Mountpoint` folder to the new location (e.g. `/data/mailcow/vmail`) using `cp -a`, `rsync -a` or a similar non strcuture breaking copy command
 - Stop mailcow by executing `docker compose down` from within your mailcow root folder (e.g. `/opt/mailcow-dockerized`)
-- Create the file `docker compose.override.yml`, edit the device path accordingly
+- Create the file `docker-compose.override.yml`, edit the device path accordingly
 - Delete the current vmail folder: `docker volume rm mailcowdockerized_vmail-vol-1`
 - Start mailcow by executing `docker compose up -d` from within your mailcow root folder (e.g. `/opt/mailcow-dockerized`)

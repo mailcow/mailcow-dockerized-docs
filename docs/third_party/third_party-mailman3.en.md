@@ -111,7 +111,7 @@ SNAT6_TO_SOURCE=dead:beef  # change this to your global IPv6
 
 #### Add Mailman integration
 
-Create the file `/opt/mailcow-dockerized/docker compose.override.yml` (e.g. with `nano`) and add the following lines:
+Create the file `/opt/mailcow-dockerized/docker-compose.override.yml` (e.g. with `nano`) and add the following lines:
 
 ```
 version: '2.1'

@@ -26,11 +26,11 @@ Redis keys will only hold logs from applications and filter out system messages 
 
 ### Logging drivers
 
-#### Via docker compose.override.yml
+#### Via docker-compose.override.yml
 
 Here is the good news: Since Docker has some great logging drivers, you can integrate mailcow: dockerized into your existing logging environment with ease.
 
-Create a `docker compose.override.yml` and add, for example, this block to use the "gelf" logging plugin for `postfix-mailcow`:
+Create a `docker-compose.override.yml` and add, for example, this block to use the "gelf" logging plugin for `postfix-mailcow`:
 
 ```
 version: '2.1'

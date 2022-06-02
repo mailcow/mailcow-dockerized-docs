@@ -1,6 +1,6 @@
 Mit Gogs' Fähigkeit, sich über SMTP zu authentifizieren, ist es einfach, es mit mailcow zu verbinden. Es sind nur wenige Änderungen erforderlich:
 
-1\. Öffne `docker compose.override.yml` und füge Gogs hinzu:
+1\. Öffne `docker-compose.override.yml` und füge Gogs hinzu:
 
 ```
 version: '2.1'

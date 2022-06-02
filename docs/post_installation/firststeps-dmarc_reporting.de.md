@@ -34,7 +34,7 @@ reporting {
 }
 ```
 
-Erstellen oder ändern Sie `docker compose.override.yml` im mailcow-dockerized Basisverzeichnis:
+Erstellen oder ändern Sie `docker-compose.override.yml` im mailcow-dockerized Basisverzeichnis:
 
 ```
 version: '2.1'
@@ -115,7 +115,7 @@ Der Olefia-Zeitplan hat die gleiche Implementierung wie `cron` in Go, die unters
 
 Um den Zeitplan zu ändern:
 
-1. Bearbeiten Sie `docker compose.override.yml` und stellen Sie `ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"` auf einen gewünschten Wert, zum Beispiel auf `"@midnight"`
+1. Bearbeiten Sie `docker-compose.override.yml` und stellen Sie `ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"` auf einen gewünschten Wert, zum Beispiel auf `"@midnight"`
 
 2. Führen Sie `docker compose up -d` aus.
 
@@ -127,6 +127,6 @@ Zum Deaktivieren der Berichterstattung:
 
 1. Setzen Sie `enabled` auf `false` in `data/conf/rspamd/local.d/dmarc.conf`.
 
-2. Machen Sie Änderungen in `docker compose.override.yml` an `rspamd-mailcow` und `ofelia-mailcow` rückgängig
+2. Machen Sie Änderungen in `docker-compose.override.yml` an `rspamd-mailcow` und `ofelia-mailcow` rückgängig
 
 3. Führen Sie `docker compose up -d` aus

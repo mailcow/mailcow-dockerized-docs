@@ -207,7 +207,7 @@ Edit `mailcow.conf` and add the following:
 ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
 ```
 
-Edit `docker compose.override.yml` and crate/extend the section for `php-fpm-mailcow`:
+Edit `docker-compose.override.yml` and crate/extend the section for `php-fpm-mailcow`:
 
 ```yml
 version: '2.1'

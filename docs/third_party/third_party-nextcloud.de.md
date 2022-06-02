@@ -10,7 +10,7 @@ Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die
 
 ## Hintergrund-Aufgaben
 
-Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der `docker compose.override.yml` folgende Zeilen
+Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der `docker-compose.override.yml` folgende Zeilen
  hinzugefügt werden:
 
 ```

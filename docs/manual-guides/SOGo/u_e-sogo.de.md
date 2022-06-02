@@ -24,7 +24,7 @@ copy([].slice.call(document.styleSheets)
 7. Öffnen Sie den Texteditor und fügen Sie die Daten aus der Zwischenablage ein (Strg+V), Sie sollten ein minimiertes CSS erhalten, speichern Sie es
 8. kopieren Sie die CSS-Datei auf den Mailcow-Server `data/conf/sogo/custom-theme.css`
 9. editiere `data/conf/sogo/sogo.conf` und setze `SOGoUIxDebugEnabled = NO;`
-10. Anhängen/Erstellen von `docker compose.override.yml` mit:
+10. Anhängen/Erstellen von `docker-compose.override.yml` mit:
 ```
 Version: '2.1'
 
@@ -60,7 +60,7 @@ und ersetzen Sie es durch:
 ```
     $mdThemingProvider.theme('default');
 ```
-3. Entfernen Sie aus `docker compose.override.yml` Volume Mount in `sogo-mailcow`:
+3. Entfernen Sie aus `docker-compose.override.yml` Volume Mount in `sogo-mailcow`:
 ```
 - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```

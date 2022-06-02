@@ -26,11 +26,11 @@ Redis-Schlüssel enthalten nur Logs von Anwendungen und filtern Systemmeldungen 
 
 ### Logging-Treiber
 
-#### Über docker compose.override.yml
+#### Über docker-compose.override.yml
 
 Hier ist die gute Nachricht: Da Docker einige großartige Logging-Treiber hat, können Sie mailcow: dockerized mit Leichtigkeit in Ihre bestehende Logging-Umgebung integrieren.
 
-Erstellen Sie eine `docker compose.override.yml` und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für `postfix-mailcow` zu verwenden:
+Erstellen Sie eine `docker-compose.override.yml` und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für `postfix-mailcow` zu verwenden:
 
 ```
 version: '2.1'

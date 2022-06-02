@@ -26,9 +26,9 @@ docker compose restart unbound-mailcow
 
 ```
 cd /opt/mailcow-dockerized
-cp helper-scripts/docker compose.override.yml.d/EXTERNAL_DNS/docker compose.override.yml .
+cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .
 ```
 
-Bearbeiten Sie `docker compose.override.yml` und passen Sie die IP an.
+Bearbeiten Sie `docker-compose.override.yml` und passen Sie die IP an.
 
 Führen Sie `docker compose down ; docker compose up -d` aus.

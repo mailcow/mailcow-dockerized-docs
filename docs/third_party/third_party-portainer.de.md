@@ -1,6 +1,6 @@
-Um Portainer zu aktivieren, müssen die docker compose.yml und site.conf für Nginx geändert werden.
+Um Portainer zu aktivieren, müssen die docker-compose.yml und site.conf für Nginx geändert werden.
 
-1\. Erstellen Sie eine neue Datei `docker compose.override.yml` im mailcow-dockerized Stammverzeichnis und fügen Sie die folgende Konfiguration ein
+1\. Erstellen Sie eine neue Datei `docker-compose.override.yml` im mailcow-dockerized Stammverzeichnis und fügen Sie die folgende Konfiguration ein
 ```
 version: '2.1'
 services:

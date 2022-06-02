@@ -24,7 +24,7 @@ for file in /my/folder/cur/*; do docker exec -i $(docker compose ps -q rspamd-ma
 for file in /my/folder/.Junk/cur/*; do docker exec -i $(docker compose ps -q rspamd-mailcow) rspamc learn_spam < $file; done
 ```
 
-Consider attaching a local folder as new volume to `rspamd-mailcow` in `docker compose.yml` and learn given files inside the container. This can be used as workaround to parse compressed data with zcat. Example:
+Consider attaching a local folder as new volume to `rspamd-mailcow` in `docker-compose.yml` and learn given files inside the container. This can be used as workaround to parse compressed data with zcat. Example:
 
 ```bash
 for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam < zcat $file; done

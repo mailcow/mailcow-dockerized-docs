@@ -16,7 +16,7 @@ Starten Sie anschließend mailcow.
 
 ## Der "alte" Weg
 
-Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine `docker compose.override.yml` Datei erstellen und den folgenden Inhalt hinzufügen:
+Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine `docker-compose.override.yml` Datei erstellen und den folgenden Inhalt hinzufügen:
 
 ```
 version: '2.1'
@@ -52,7 +52,7 @@ volumes:
 
 - Kopieren Sie den Inhalt des `Mountpoint`-Ordners an den neuen Speicherort (z.B. `/data/mailcow/vmail`) mit `cp -a`, `rsync -a` oder einem ähnlichen, nicht strikten Kopierbefehl
 - Stoppen Sie mailcow durch Ausführen von `docker compose down` aus Ihrem mailcow-Stammverzeichnis (z.B. `/opt/mailcow-dockerized`)
-- Erstellen Sie die Datei `docker compose.override.yml`, bearbeiten Sie den Gerätepfad entsprechend
+- Erstellen Sie die Datei `docker-compose.override.yml`, bearbeiten Sie den Gerätepfad entsprechend
 - Löschen Sie den aktuellen vmail-Ordner: `docker volume rm mailcowdockerized_vmail-vol-1`
 - Starten Sie mailcow durch Ausführen von `docker compose up -d` aus Ihrem mailcow-Stammverzeichnis (z.B. `/opt/mailcow-dockerized`)
 
