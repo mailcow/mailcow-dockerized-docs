@@ -135,7 +135,6 @@ nav:
     - 'SOGo': 'manual-guides/SOGo/u_e-sogo.md'
     - 'Docker':
       - 'Customize Dockerfiles': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.md'
-      - 'Docker Compose Bash Completion': 'manual-guides/Docker/u_e-docker-dc_bash_compl.md'
     - 'Why unbound?': 'manual-guides/u_e-why_unbound.md'
     - 'Autodiscover / Autoconfig': 'manual-guides/u_e-autodiscover_config.md'
     - 'Redirect HTTP to HTTPS': 'manual-guides/u_e-80_to_443.md'
