@@ -3,12 +3,12 @@ This is **ONLY** recommended if you do not have an IPv6 enabled network on your 
 If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.
 
-Instead of editing docker-compose.yml directly, it is preferable to create an override file for it 
+Instead of editing docker compose.yml directly, it is preferable to create an override file for it 
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.
 
-To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). 
+To disable IPv6 on the mailcow network, open docker compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). 
 
-**1.** Modify docker-compose.yml
+**1.** Modify docker compose.yml
 
 Change `enable_ipv6: true` to `enable_ipv6: false`:
 
@@ -22,13 +22,13 @@ networks:
 
 **2.** Disable ipv6nat-mailcow
 
-To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": 
+To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker compose.override.yml": 
 
 **NOTE:** If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!
 
 ```
 # cd /opt/mailcow-dockerized
-# touch docker-compose.override.yml
+# touch docker compose.override.yml
 ```
 
 Open the file in your favourite text editor and fill in the following:
@@ -46,8 +46,8 @@ services:
 For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:
 
 ```
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 **3.** Disable IPv6 in unbound-mailcow
@@ -64,7 +64,7 @@ server:
 Restart Unbound:
 
 ```
-docker-compose restart unbound-mailcow
+docker compose restart unbound-mailcow
 ```
 
 **4.** Disable IPv6 in postfix-mailcow
@@ -79,5 +79,5 @@ inet_protocols = ipv4
 Restart Postfix:
 
 ```
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```

@@ -7,25 +7,25 @@ That said, let's dive in:
 Delete a user's mails inside the junk folder that **are read** and **older** than 4 hours
 
 ```
-docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'Junk' SEEN not SINCE 4h
+docker compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'Junk' SEEN not SINCE 4h
 ```
 
 Delete **all** user's mails in the junk folder that are **older** than 7 days
 
 ```
-docker-compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 7d
+docker compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 7d
 ```
 
 Delete **all** mails (of all users) in **all** folders that are **older** than 52 weeks (internal date of the mail, not the date it was saved on the system => `before` instead of `savedbefore`). Useful for deleting very old mails on all users and folders (thus especially useful for GDPR-compliance).
 
 ```
-docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+docker compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
 ```
 
 Delete mails inside a custom folder **inside** a user's inbox that are **not** flagged and **older** than 2 weeks
 
 ```
-docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'INBOX/custom-folder' not FLAGGED not SINCE 2w
+docker compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'INBOX/custom-folder' not FLAGGED not SINCE 2w
 ```
 
 !!! info
@@ -42,8 +42,8 @@ If you want to automate such a task you can create a cron job on your host that 
 # Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
 cd /path/to/your/mailcow-dockerized
 
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
 [...]
 ```
 
@@ -56,7 +56,7 @@ To create a cron job you may execute `crontab -e` and insert something like the 
 
 ### via Docker job scheduler
 
-To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
+To archive this with a docker job scheduler use this docker compose.override.yml with your mailcow: 
 
 ```
 version: '2.1'
@@ -81,7 +81,7 @@ services:
 ```
 
 The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
-This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
+This docker compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
 
 ```
 common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,

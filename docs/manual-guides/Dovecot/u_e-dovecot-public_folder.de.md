@@ -22,7 +22,7 @@ Die neue Mailbox im öffentlichen Namensraum wird von den Benutzern automatisch 
 Um allen authentifizierten Benutzern vollen Zugriff auf das neue Postfach (nicht auf den gesamten Namespace) zu gewähren, führen Sie aus:
 
 ```
-docker-compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create
+docker compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create
 ```
 
 Passen Sie den Befehl an Ihre Bedürfnisse an, wenn Sie detailliertere Rechte pro Benutzer vergeben möchten (verwenden Sie z.B. `-u user@domain` anstelle von `-A`).

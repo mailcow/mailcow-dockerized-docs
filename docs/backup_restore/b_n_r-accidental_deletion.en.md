@@ -12,13 +12,13 @@ Copy the file named after the user you want to restore to `__MAILCOW_DIRECTORY__
 
 1\. Copy the backup: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo`
 
-2\. Run `docker-compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org`
+2\. Run `docker compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org`
 
 Run `sogo-tool` without parameters to check for possible restore options.
 
 3\. Delete the copied backup by running `rm __MAILCOW_DIRECTORY__/data/conf/sogo`
 
-4\. Restart SOGo and Memcached: `docker-compose restart sogo-mailcow memcached-mailcow`
+4\. Restart SOGo and Memcached: `docker compose restart sogo-mailcow memcached-mailcow`
 
 ### Mail
 
@@ -35,6 +35,6 @@ To restore make sure you are actually restoring to the same mailcow it was delet
 Copy the folders from `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]` back to `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]` and resync the folder and recalc the quota:
 
 ```
-docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
-docker-compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
+docker compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
+docker compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
 ```

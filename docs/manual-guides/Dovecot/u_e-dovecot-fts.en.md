@@ -14,9 +14,9 @@ Since we run in Docker and create our containers with the "restart: always" flag
 
 ```
 # single user
-docker-compose exec dovecot-mailcow doveadm fts rescan -u user@domain
+docker compose exec dovecot-mailcow doveadm fts rescan -u user@domain
 # all users
-docker-compose exec dovecot-mailcow doveadm fts rescan -A
+docker compose exec dovecot-mailcow doveadm fts rescan -A
 ```
 
 Dovecot Wiki: "Scan what mails exist in the full text search index and compare those to what actually exist in mailboxes. This removes mails from the index that have already been expunged and makes sure that the next doveadm index will index all the missing mails (if any)."
@@ -27,9 +27,9 @@ If you want to re-index data immediately, you can run the followig command, wher
 
 ```
 # single user
-docker-compose exec dovecot-mailcow doveadm index -u user@domain '*'
+docker compose exec dovecot-mailcow doveadm index -u user@domain '*'
 # all users, but obviously slower and more dangerous
-docker-compose exec dovecot-mailcow doveadm index -A '*'
+docker compose exec dovecot-mailcow doveadm index -A '*'
 ```
 
 This **will** take some time depending on your machine and Solr can run oom, monitor it!

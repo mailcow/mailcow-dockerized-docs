@@ -2,7 +2,7 @@ Mails are stored compressed (lz4) and encrypted. The key pair can be found in cr
 
 If you want to decode/encode existing maildir files, you can use the following script at your own risk:
 
-Enter Dovecot by running `docker-compose exec dovecot-mailcow /bin/bash` in the mailcow-dockerized location.
+Enter Dovecot by running `docker compose exec dovecot-mailcow /bin/bash` in the mailcow-dockerized location.
 
 ```
 # Decrypt /var/vmail
