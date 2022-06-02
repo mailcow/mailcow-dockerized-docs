@@ -11,7 +11,7 @@ Run the update script:
 
 If it needs to, it will ask you how you wish to proceed.
 Merge errors will be reported.
-Some minor conflicts will be auto-corrected (in favour for the mailcow: dockerized repository code).
+Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerized repository code).
 
 ### Options
 
@@ -20,9 +20,6 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow: dockeriz
 
 # - Check for updates and show changes
 ./update.sh --check
-
-# Do not try to update docker compose, **make sure to use the latest docker compose available**
-./update.sh --no-update-compose
 
 # - Do not start mailcow after applying an update
 ./update.sh --skip-start
