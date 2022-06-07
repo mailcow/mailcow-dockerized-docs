@@ -69,4 +69,7 @@ services:
         - '[2a00:dead:beef::abc]:443:443'
 ```
 
+!!! info
+    Alternatively, the [::] notation can be used to let the respective service listen on all IPv6 interfaces.
+
 To apply your changes, run `docker compose down` followed by `docker compose up -d`.

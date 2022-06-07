@@ -50,6 +50,12 @@ If you are interested in how this works, you can check out the readme of https:/
     **Docker Compose v1 will lose official support from Docker in October 2022.** <br>
     _mailcow supports Docker Compose v1 until December 2022, after which installation is **imperative** should you wish to **continue** running mailcow._
 
+!!! bug "Compatibility"
+    The web interface will only be accessible via v4 by default in the period from June - December 2022.<br>
+    The reason for this is the dual compatibility between Compose v1 and v2. <br>
+    Should you wish to access the web interface, as before by default via v6, please take a look at [this chapter](../post_installation/firststeps-ip_bindings.md#ipv6-binding). <br>
+    **The 2022-12 update will restore the native IPv6 reachability from the UI.**
+
 If you are freshly installing mailcow and have installed Docker in the above way, Docker Compose v2 will already be installed with it. So you don't need to do anything else.
 
 You can check this with `docker compose version`, if the return looks something like `Docker Compose version v2.5.0`, then the new Docker Compose is already installed on your system.
@@ -57,6 +63,8 @@ You can check this with `docker compose version`, if the return looks something 
 If it is not installed or you want to upgrade from Docker Compose v1 to v2 just follow the instructions:    
 
 #### Uninstall Docker Compose v1
+**If you are already running the mailcow stack with docker-compose v1, make sure you have shut down the mailcow stack and installed the latest update before upgrading to Compose v2**.
+
 To uninstall Docker Compose v1 enter the following command:
 
 ```
