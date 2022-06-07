@@ -493,7 +493,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-ip_bindings/" class="md-nav__link">
-        IP-Verbindungen
+        IP-Bindings
       </a>
     </li>
   
@@ -1997,20 +1997,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2515,7 +2501,7 @@ Bitte schauen Sie sich die AngularJS Material <a href="https://material.angularj
 Nachdem Sie <code>data/conf/sogo/custom-theme.js</code> modifiziert und Änderungen an Ihrem neuen SOGo-Theme vorgenommen haben, müssen Sie </p>
 <ol>
 <li>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und fügen Sie <code>SOGoUIxDebugEnabled = YES;</code> ein.</li>
-<li>SOGo und Memcached Container neu starten, indem man <code>docker-compose restart memcached-mailcow sogo-mailcow</code> ausführt.</li>
+<li>SOGo und Memcached Container neu starten, indem man <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführt.</li>
 <li>SOGo im Browser öffnen</li>
 <li>öffnen Sie die Entwicklerkonsole des Browsers, normalerweise ist die Tastenkombination F12</li>
 <li>nur wenn Sie Firefox benutzen: schreiben Sie mit der Hand in die Entwicklerkonsole <code>allow pasting</code> und drücken Sie Enter</li>
@@ -2538,8 +2524,8 @@ Dienste:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>führen Sie <code>docker-compose up -d</code> aus</li>
-<li>Ausführen von <code>docker-compose restart memcached-mailcow</code></li>
+<li>führen Sie <code>docker compose up -d</code> aus</li>
+<li>Ausführen von <code>docker compose restart memcached-mailcow</code></li>
 </ol>
 <h2 id="zurucksetzen-auf-das-sogo-standardthema">Zurücksetzen auf das SOGo Standardthema<a class="headerlink" href="#zurucksetzen-auf-das-sogo-standardthema" title="Permanent link">&para;</a></h2>
 <ol>
@@ -2567,17 +2553,17 @@ und ersetzen Sie es durch:
 <li>Entfernen Sie aus <code>docker-compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
 <div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>führen Sie <code>docker-compose up -d</code> aus</li>
-<li>Starten Sie <code>docker-compose restart memcached-mailcow</code>.</li>
+<li>führen Sie <code>docker compose up -d</code> aus</li>
+<li>Starten Sie <code>docker compose restart memcached-mailcow</code>.</li>
 </ol>
 <h2 id="favicon-andern">Favicon ändern<a class="headerlink" href="#favicon-andern" title="Permanent link">&para;</a></h2>
 <p>mailcow-Builds nach dem 31. Januar 2021 können SOGo's Favicon ändern, indem sie <code>data/conf/sogo/custom-favicon.ico</code> für SOGo und <code>data/web/favicon.png</code> für mailcow UI ersetzen.
 <strong>Anmerkung</strong>: Sie können <code>.png</code> Favicons für SOGo verwenden, indem Sie sie in <code>custom-favicon.ico</code> umbenennen.
 Für beide, SOGo und mailcow UI Favicons, müssen Sie eine der Standardgrößen verwenden: 16x16, 32x32, 64x64, 128x128 und 256x256.
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
 <h2 id="logo-andern">Logo ändern<a class="headerlink" href="#logo-andern" title="Permanent link">&para;</a></h2>
 <p>Mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei <code>data/conf/sogo/sogo-full.svg</code> ersetzen oder erstellen (falls sie fehlt).
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
 <h2 id="domains-verbinden-untereinander-sichtbar-machen">Domains verbinden (untereinander sichtbar machen)<a class="headerlink" href="#domains-verbinden-untereinander-sichtbar-machen" title="Permanent link">&para;</a></h2>
 <p>Domains sind normalerweise voneinander isoliert.</p>
 <p>Sie können das ändern, indem Sie <code>data/conf/sogo/sogo.conf</code> modifizieren:</p>
@@ -2592,19 +2578,19 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
       (beispiel.org, beispiel.com, beispiel.net)
     );
 </code></pre></div>
-<p>SOGo neu starten: <code>docker-compose restart sogo-mailcow</code></p>
+<p>SOGo neu starten: <code>docker compose restart sogo-mailcow</code></p>
 <h2 id="deaktivieren-sie-die-passwortanderung">Deaktivieren Sie die Passwortänderung<a class="headerlink" href="#deaktivieren-sie-die-passwortanderung" title="Permanent link">&para;</a></h2>
 <p>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> Sie <code>SOGoPasswordChangeEnabled</code> auf <code>NO</code>. Bitte fügen Sie keinen neuen Parameter hinzu.</p>
-<p>Führen Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> aus, um die Änderungen zu aktivieren.</p>
+<p>Führen Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> aus, um die Änderungen zu aktivieren.</p>
 <h2 id="totp-zurucksetzen-totp-deaktivieren">TOTP zurücksetzen / TOTP deaktivieren<a class="headerlink" href="#totp-zurucksetzen-totp-deaktivieren" title="Permanent link">&para;</a></h2>
-<p>Führen Sie <code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
+<p>Führen Sie <code>docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>

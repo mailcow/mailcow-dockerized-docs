@@ -15,7 +15,7 @@
     
     
       
-        <title>IP-Verbindungen - mailcow: dockerized documentation</title>
+        <title>IP-Bindings - mailcow: dockerized documentation</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              IP-Verbindungen
+              IP-Bindings
             
           </span>
         </div>
@@ -502,12 +502,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          IP-Verbindungen
+          IP-Bindings
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        IP-Verbindungen
+        IP-Bindings
       </a>
       
         
@@ -1962,20 +1962,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2435,10 +2421,10 @@
 
 
 
-  <h1>IP-Verbindungen</h1>
+  <h1>IP-Bindings</h1>
 
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>Das Ändern der Bindung hat keinen Einfluss auf Source-NAT. Siehe <a href="../firststeps-snat/">SNAT</a> für die erforderlichen Schritte.</p>
 </div>
 <h2 id="ipv4-binding">IPv4-Binding<a class="headerlink" href="#ipv4-binding" title="Permanent link">&para;</a></h2>
@@ -2469,42 +2455,46 @@ DOVEADM_PORT=127.0.0.1:19991
 SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
 </code></pre></div>
-<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
+<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker compose down</code> gefolgt von <code>docker compose up -d</code> aus.</p>
 <h2 id="ipv6-binding">IPv6-Binding<a class="headerlink" href="#ipv6-binding" title="Permanent link">&para;</a></h2>
 <p>Das Ändern von IPv6-Bindings ist anders als bei IPv4. Auch dies hat einen technischen Hintergrund.</p>
 <p>Eine <code>docker-compose.override.yml</code> Datei wird verwendet, anstatt die <code>docker-compose.yml</code> Datei direkt zu bearbeiten. Dies geschieht, um die Aktualisierbarkeit zu erhalten, da die Datei <code>docker-compose.yml</code> regelmäßig aktualisiert wird und Ihre Änderungen höchstwahrscheinlich überschrieben werden.</p>
 <p>Bearbeiten Sie die Datei "docker-compose.override.yml" und erstellen Sie sie mit dem folgenden Inhalt. Ihr Inhalt wird mit der produktiven Datei "docker-compose.yml" zusammengeführt.</p>
-<p>Es wird eine imaginäre IPv6 <strong>2a00:dead:beef::abc</strong> angegeben. Das erste Suffix <code>:PORT1</code> definiert den externen Port, während das zweite Suffix <code>:PORT2</code> zu dem entsprechenden Port innerhalb des Containers führt und nicht verändert werden darf.</p>
+<p>Es wird eine imaginäre IPv6 <strong>2a00:dead:beef::abc</strong> in [] angegeben. Das erste Suffix <code>:PORT1</code> definiert den externen Port, während das zweite Suffix <code>:PORT2</code> zu dem entsprechenden Port innerhalb des Containers führt und nicht verändert werden darf.</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
 
     dovecot-mailcow:
       ports:
-        - &#39;2a00:dead:beef::abc:143:143&#39;
-        - &#39;2a00:dead:beef::abc:993:993&#39;
-        - &#39;2a00:dead:beef::abc:110:110&#39;
-        - &#39;2a00:dead:beef::abc:995:995&#39;
-        - &#39;2a00:dead:beef::abc:4190:4190&#39;
+        - &#39;[2a00:dead:beef::abc]:143:143&#39;
+        - &#39;[2a00:dead:beef::abc]:993:993&#39;
+        - &#39;[2a00:dead:beef::abc]:110:110&#39;
+        - &#39;[2a00:dead:beef::abc]:995:995&#39;
+        - &#39;[2a00:dead:beef::abc]:4190:4190&#39;
 
     postfix-mailcow:
       ports:
-        - &#39;2a00:dead:beef::abc:25:25&#39;
-        - &#39;2a00:dead:beef::abc:465:465&#39;
-        - &#39;2a00:dead:beef::abc:587:587&#39;
+        - &#39;[2a00:dead:beef::abc]:25:25&#39;
+        - &#39;[2a00:dead:beef::abc]:465:465&#39;
+        - &#39;[2a00:dead:beef::abc]:587:587&#39;
 
     nginx-mailcow:
       ports:
-        - &#39;2a00:dead:beef::abc:80:80&#39;
-        - &#39;2a00:dead:beef::abc:443:443&#39;
+        - &#39;[2a00:dead:beef::abc]:80:80&#39;
+        - &#39;[2a00:dead:beef::abc]:443:443&#39;
 </code></pre></div>
-<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Alternativ kann auch die [::] Schreibweise benutzt werden um den jeweiligen Dienst auf allen IPv6 Interfaces lauschen zu lassen.</p>
+</div>
+<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker compose down</code> gefolgt von <code>docker compose up -d</code> aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-07 11:39:16</span>
       
     
   </small>

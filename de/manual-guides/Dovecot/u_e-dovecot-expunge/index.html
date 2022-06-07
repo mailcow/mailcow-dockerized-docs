@@ -493,7 +493,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-ip_bindings/" class="md-nav__link">
-        IP-Verbindungen
+        IP-Bindings
       </a>
     </li>
   
@@ -1984,20 +1984,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2483,16 +2469,16 @@
 <h2 id="der-manuelle-weg">Der manuelle Weg<a class="headerlink" href="#der-manuelle-weg" title="Permanent link">&para;</a></h2>
 <p>Dann wollen wir mal loslegen:</p>
 <p>Löschen Sie die Mails eines Benutzers im Junk-Ordner, die <strong>gelesen</strong> und <strong>älter</strong> als 4 Stunden sind</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
 </code></pre></div>
 <p>Lösche <strong>alle</strong> Mails des Benutzers im Junk-Ordner, die <strong>älter</strong> als 7 Tage sind</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
 </code></pre></div>
 <p>Löscht <strong>alle</strong> Mails (aller Benutzer) in <strong>allen</strong> Ordnern, die <strong>älter</strong> als 52 Wochen sind (internes Datum der Mail, nicht das Datum, an dem sie auf dem System gespeichert wurde =&gt; <code>before</code> statt <code>savedbefore</code>). Nützlich zum Löschen sehr alter Mails in allen Benutzern und Ordnern (daher besonders nützlich für GDPR-Compliance).</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
 </code></pre></div>
 <p>Löschen von Mails in einem benutzerdefinierten Ordner <strong>innerhalb</strong> des Posteingangs eines Benutzers, die <strong>nicht</strong> gekennzeichnet und <strong>älter</strong> als 2 Wochen sind</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2505,8 +2491,8 @@
 # Pfad zu mailcow-dockerized, z.B. /opt/mailcow-dockerized
 cd /pfad/zu/ihrem/mailcow-dockerized
 
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
 [...]
 </code></pre></div>
 <p>Um einen Cronjob zu erstellen, können Sie <code>crontab -e</code> ausführen und etwas wie das Folgende einfügen, um ein Skript auszuführen:</p>
@@ -2547,7 +2533,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>

@@ -1984,20 +1984,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2544,7 +2530,7 @@ fi
 </code></pre></div></p>
 <p>On the destination (in this case <code>/external_share/backups</code>) you may want to have snapshot capabilities (ZFS, Btrfs etc.). Snapshot daily and keep for n days for a consistent backup.
 Do <strong>not</strong> rsync to a Samba share, you need to keep the correct permissions!</p>
-<p>To restore you'd simply need to run rsync the other way round and restart Docker to re-read the volumes. Run <code>docker-compose pull</code> and <code>docker-compose up -d</code>.</p>
+<p>To restore you'd simply need to run rsync the other way round and restart Docker to re-read the volumes. Run <code>docker compose pull</code> and <code>docker compose up -d</code>.</p>
 <p>If you are lucky Redis and MariaDB can automatically fix the inconsistent databases (if they <em>are</em> inconsistent).
 In case of a corrupted database you'd need to use the helper script to restore the inconsistent elements. If a restore fails, try to extract the backups and copy the files back manually. Keep the file permissions!</p>
 
@@ -2553,7 +2539,7 @@ In case of a corrupted database you'd need to use the helper script to restore t
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
       
     
   </small>

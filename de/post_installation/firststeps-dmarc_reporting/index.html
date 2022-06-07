@@ -560,7 +560,7 @@
   
     <li class="md-nav__item">
       <a href="../firststeps-ip_bindings/" class="md-nav__link">
-        IP-Verbindungen
+        IP-Bindings
       </a>
     </li>
   
@@ -1983,20 +1983,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2531,7 +2517,7 @@ services:
     depends_on:
       - rspamd-mailcow
 </code></pre></div>
-<p>Starte <code>docker-compose up -d</code></p>
+<p>Starte <code>docker compose up -d</code></p>
 <h2 id="senden-sie-eine-kopie-der-berichte-an-sich-selbst">Senden Sie eine Kopie der Berichte an sich selbst<a class="headerlink" href="#senden-sie-eine-kopie-der-berichte-an-sich-selbst" title="Permanent link">&para;</a></h2>
 <p>Um eine versteckte Kopie der von Rspamd erzeugten Berichte zu erhalten, können Sie eine <code>bcc_addrs</code> Liste im <code>reporting</code> Konfigurationsabschnitt von <code>data/conf/rspamd/local.d/dmarc.conf</code> setzen:</p>
 <div class="highlight"><pre><span></span><code>reporting {
@@ -2548,20 +2534,20 @@ services:
 </ul>
 <h2 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h2>
 <p>Prüfen Sie, wann der Berichtsplan zuletzt ausgeführt wurde:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
 </code></pre></div>
 <p>Sehen Sie sich die letzte Berichtsausgabe an:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
 </code></pre></div>
 <p>Manuelles Auslösen eines DMARC-Berichts:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow rspamadm dmarc_report
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow rspamadm dmarc_report
 </code></pre></div>
 <p>Bestätigen Sie, dass Rspamd Daten in Redis aufgezeichnet hat:
 Ändern Sie <code>20220428</code> in ein anderes interessantes Datum zum schauen.</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli SMEMBERS &quot;dmarc_idx;20220428&quot;
+<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli SMEMBERS &quot;dmarc_idx;20220428&quot;
 </code></pre></div>
 <p>Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Sie sie an, z. B.:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli ZRANGE &quot;dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428&quot; 0 49
+<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli ZRANGE &quot;dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428&quot; 0 49
 </code></pre></div>
 <h2 id="andern-sie-die-haufigkeit-der-dmarc-berichte">Ändern Sie die Häufigkeit der DMARC-Berichte<a class="headerlink" href="#andern-sie-die-haufigkeit-der-dmarc-berichte" title="Permanent link">&para;</a></h2>
 <p>Im obigen Beispiel werden die Berichte einmal alle 24 Stunden gesendet.</p>
@@ -2572,10 +2558,10 @@ services:
 <p>Bearbeiten Sie <code>docker-compose.override.yml</code> und stellen Sie <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> auf einen gewünschten Wert, zum Beispiel auf <code>"@midnight"</code></p>
 </li>
 <li>
-<p>Führen Sie <code>docker-compose up -d</code> aus.</p>
+<p>Führen Sie <code>docker compose up -d</code> aus.</p>
 </li>
 <li>
-<p>Führen Sie <code>docker-compose restart ofelia-mailcow</code> aus</p>
+<p>Führen Sie <code>docker compose restart ofelia-mailcow</code> aus</p>
 </li>
 </ol>
 <h2 id="dmarc-berichterstattung-deaktivieren">DMARC-Berichterstattung deaktivieren<a class="headerlink" href="#dmarc-berichterstattung-deaktivieren" title="Permanent link">&para;</a></h2>
@@ -2588,7 +2574,7 @@ services:
 <p>Machen Sie Änderungen in <code>docker-compose.override.yml</code> an <code>rspamd-mailcow</code> und <code>ofelia-mailcow</code> rückgängig</p>
 </li>
 <li>
-<p>Führen Sie <code>docker-compose up -d</code> aus</p>
+<p>Führen Sie <code>docker compose up -d</code> aus</p>
 </li>
 </ol>
 
@@ -2597,7 +2583,7 @@ services:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>
@@ -2638,13 +2624,13 @@ services:
       
       
         
-        <a href="../firststeps-ip_bindings/" class="md-footer__link md-footer__link--next" aria-label="Weiter: IP-Verbindungen" rel="next">
+        <a href="../firststeps-ip_bindings/" class="md-footer__link md-footer__link--next" aria-label="Weiter: IP-Bindings" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Weiter
               </span>
-              IP-Verbindungen
+              IP-Bindings
             </div>
           </div>
           <div class="md-footer__button md-icon">

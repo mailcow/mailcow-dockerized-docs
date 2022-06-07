@@ -1964,20 +1964,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2451,7 +2437,7 @@
 <div class="highlight"><pre><span></span><code>smtpd_sender_restrictions = check_sasl_access hash:/opt/postfix/conf/check_sasl_access reject_authenticated_sender_login_mismatch [...]
 </code></pre></div></p>
 <p>Run postmap on check_sasl_access:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
+<div class="highlight"><pre><span></span><code>docker compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
 </code></pre></div>
 <p>Restart the Postfix container.</p>
 
@@ -2460,7 +2446,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
       
     
   </small>

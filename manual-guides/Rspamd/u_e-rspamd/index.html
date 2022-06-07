@@ -2031,20 +2031,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2586,9 +2572,9 @@ This is achieved by using the Sieve plugin "sieve_imapsieve" and parser scripts.
 <h3 id="learn-spam-or-ham-from-existing-directory">Learn Spam or Ham from existing directory<a class="headerlink" href="#learn-spam-or-ham-from-existing-directory" title="Permanent link">&para;</a></h3>
 <p>You can use a one-liner to learn mail in plain-text (uncompressed) format:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Ham</span>
-<span class="k">for</span> file <span class="k">in</span> /my/folder/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker-compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_ham &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+<span class="k">for</span> file <span class="k">in</span> /my/folder/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_ham &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 <span class="c1"># Spam</span>
-<span class="k">for</span> file <span class="k">in</span> /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker-compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+<span class="k">for</span> file <span class="k">in</span> /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <p>Consider attaching a local folder as new volume to <code>rspamd-mailcow</code> in <code>docker-compose.yml</code> and learn given files inside the container. This can be used as workaround to parse compressed data with zcat. Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> file <span class="k">in</span> /data/old_mail/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> rspamc learn_spam &lt; zcat <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
@@ -2600,15 +2586,15 @@ This is achieved by using the Sieve plugin "sieve_imapsieve" and parser scripts.
 cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
 </code></pre></div>
 <p><strong>Reset Bayes data</strong></p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern BAYES_* | xargs redis-cli del&#39;</span>
-docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern RS* | xargs redis-cli del&#39;</span>
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern BAYES_* | xargs redis-cli del&#39;</span>
+docker compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern RS* | xargs redis-cli del&#39;</span>
 </code></pre></div>
 <p><strong>Reset Neural data</strong></p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern rn_* | xargs redis-cli del&#39;</span>
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern rn_* | xargs redis-cli del&#39;</span>
 </code></pre></div>
 <p><strong>Reset Fuzzy data</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># We need to enter the redis-cli first:</span>
-docker-compose <span class="nb">exec</span> redis-mailcow redis-cli
+docker compose <span class="nb">exec</span> redis-mailcow redis-cli
 <span class="c1"># In redis-cli:</span>
 <span class="m">127</span>.0.0.1:6379&gt; EVAL <span class="s2">&quot;for i, name in ipairs(redis.call(&#39;KEYS&#39;, ARGV[1])) do redis.call(&#39;DEL&#39;, name); end&quot;</span> <span class="m">0</span> fuzzy*
 </code></pre></div>
@@ -2618,8 +2604,8 @@ docker-compose <span class="nb">exec</span> redis-mailcow redis-cli
 </code></pre></div>
 <p>...the key pattern was not found and thus no data is available to delete - it is fine.</p>
 <h2 id="cli-tools">CLI tools<a class="headerlink" href="#cli-tools" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> rspamd-mailcow rspamc --help
-docker-compose <span class="nb">exec</span> rspamd-mailcow rspamadm --help
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> rspamd-mailcow rspamc --help
+docker compose <span class="nb">exec</span> rspamd-mailcow rspamadm --help
 </code></pre></div>
 <h2 id="disable-greylisting">Disable Greylisting<a class="headerlink" href="#disable-greylisting" title="Permanent link">&para;</a></h2>
 <p>Only messages with a higher score will be considered to be greylisted (soft rejected). It is bad practice to disable greylisting.</p>
@@ -2628,26 +2614,26 @@ docker-compose <span class="nb">exec</span> rspamd-mailcow rspamadm --help
 <p>Add the line:</p>
 <div class="highlight"><pre><span></span><code><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
-<p>Save the file and restart "rspamd-mailcow": <code>docker-compose restart rspamd-mailcow</code></p>
+<p>Save the file and restart "rspamd-mailcow": <code>docker compose restart rspamd-mailcow</code></p>
 <h2 id="spam-filter-thresholds-global">Spam filter thresholds (global)<a class="headerlink" href="#spam-filter-thresholds-global" title="Permanent link">&para;</a></h2>
 <p>Each user is able to change <a href="../../mailcow-UI/u_e-mailcow_ui-spamfilter/">their spam rating individually</a>. To define a new <strong>server-wide</strong> limit, edit <code>data/conf/rspamd/local.d/actions.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">reject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span><span class="w"></span>
 <span class="n">add_header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
 <span class="n">greylist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
 </code></pre></div>
-<p>Save the file and restart "rspamd-mailcow": <code>docker-compose restart rspamd-mailcow</code></p>
+<p>Save the file and restart "rspamd-mailcow": <code>docker compose restart rspamd-mailcow</code></p>
 <p>Existing settings of users will not be overwritten!</p>
 <p>To reset custom defined thresholds, run:</p>
 <div class="highlight"><pre><span></span><code>source mailcow.conf
-docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39;;&quot;
+docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39;;&quot;
 # or:
-# docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39; and object = &#39;only-this-mailbox@example.org&#39;;&quot;
+# docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39; and object = &#39;only-this-mailbox@example.org&#39;;&quot;
 </code></pre></div>
 <h2 id="custom-reject-messages">Custom reject messages<a class="headerlink" href="#custom-reject-messages" title="Permanent link">&para;</a></h2>
 <p>The default spam reject message can be changed by adding a new file <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> with the following content:</p>
 <div class="highlight"><pre><span></span><code>reject_message = &quot;My custom reject message&quot;;
 </code></pre></div>
-<p>Save the file and restart Rspamd: <code>docker-compose restart rspamd-mailcow</code>.</p>
+<p>Save the file and restart Rspamd: <code>docker compose restart rspamd-mailcow</code>.</p>
 <p>While the above works for rejected mails with a high spam score, prefilter reject actions will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:</p>
 <ol>
 <li>
@@ -2667,27 +2653,27 @@ docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;del
 }
 </code></pre></div>
 <ol>
-<li>Save the file and restart Rspamd: <code>docker-compose restart rspamd-mailcow</code>.</li>
+<li>Save the file and restart Rspamd: <code>docker compose restart rspamd-mailcow</code>.</li>
 </ol>
 <h2 id="discard-instead-of-reject">Discard instead of reject<a class="headerlink" href="#discard-instead-of-reject" title="Permanent link">&para;</a></h2>
 <p>If you want to silently drop a message, create or edit the file <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> and add the following content:</p>
 <div class="highlight"><pre><span></span><code>discard_on_reject = true;
 </code></pre></div>
 <p>Restart Rspamd:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart rspamd-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart rspamd-mailcow
 </code></pre></div>
 <h2 id="wipe-all-ratelimit-keys">Wipe all ratelimit keys<a class="headerlink" href="#wipe-all-ratelimit-keys" title="Permanent link">&para;</a></h2>
 <p>If you don't want to use the UI and instead wipe all keys in the Redis database, you can use redis-cli for that task:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow sh
+<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow sh
 # Unlink (available in Redis &gt;=4.) will delete in the backgronud
 redis-cli --scan --pattern RL* | xargs redis-cli unlink
 </code></pre></div>
 <p>Restart Rspamd:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> redis-mailcow sh
 </code></pre></div>
 <h2 id="trigger-a-resend-of-quarantine-notifications">Trigger a resend of quarantine notifications<a class="headerlink" href="#trigger-a-resend-of-quarantine-notifications" title="Permanent link">&para;</a></h2>
 <p>Should be used for debugging only!</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow bash
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow bash
 mysql -umailcow -p$DBPASS mailcow -e &quot;update quarantine set notified = 0;&quot;
 redis-cli -h redis DEL Q_LAST_NOTIFIED
 quarantine_notify.py
@@ -2699,14 +2685,14 @@ quarantine_notify.py
 <p>Edit <code>data/conf/rspamd/local.d/history_redis.conf</code>:</p>
 <div class="highlight"><pre><span></span><code>nrows = 1000; # change this value
 </code></pre></div>
-<p>Restart Rspamd afterwards: <code>docker-compose restart rspamd-mailcow</code></p>
+<p>Restart Rspamd afterwards: <code>docker compose restart rspamd-mailcow</code></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>

@@ -2002,20 +2002,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2519,7 +2505,7 @@
 
 <p>Logging in mailcow: dockerized consists of multiple stages, but is, after all, much more flexible and easier to integrate into a logging daemon than before.</p>
 <p>In Docker the containerized application (PID 1) writes its output to stdout. For real one-application containers this works just fine.
-Run <code>docker-compose logs --help</code> to learn more. </p>
+Run <code>docker compose logs --help</code> to learn more. </p>
 <p>Some containers log or stream to multiple destinations.</p>
 <p>No container will keep persistent logs in it. Containers are transient items!</p>
 <p>In the end, every line of logs will reach the Docker daemon - unfiltered.</p>
@@ -2600,7 +2586,7 @@ input(type=&quot;imudp&quot; port=&quot;514&quot;)
 ...
 }
 </code></pre></div>
-<p>Restart the Docker daemon and run <code>docker-compose down &amp;&amp; docker-compose up -d</code> to recreate the containers with the new logging driver.</p>
+<p>Restart the Docker daemon and run <code>docker compose down &amp;&amp; docker compose up -d</code> to recreate the containers with the new logging driver.</p>
 <h3 id="log-rotation">Log rotation<a class="headerlink" href="#log-rotation" title="Permanent link">&para;</a></h3>
 <p>As those logs can get quite big, it is a good idea to use logrotate to compress and delete them after a certain time period.</p>
 <p>Create <code>/etc/logrotate.d/mailcow</code> with the following content:</p>
@@ -2624,7 +2610,7 @@ input(type=&quot;imudp&quot; port=&quot;514&quot;)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>

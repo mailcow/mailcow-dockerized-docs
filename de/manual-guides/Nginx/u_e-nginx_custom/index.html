@@ -493,7 +493,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-ip_bindings/" class="md-nav__link">
-        IP-Verbindungen
+        IP-Bindings
       </a>
     </li>
   
@@ -1978,20 +1978,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2557,8 +2543,8 @@
 <p>Dieser Dateiname muss keine ".conf"-Erweiterung haben, sondern folgt dem Muster <code>site.*.custom</code>, wobei <code>*</code> ein eigener Name ist.</p>
 <p>Wenn PHP in eine benutzerdefinierte Site eingebunden werden soll, verwenden Sie bitte den PHP-FPM-Listener auf phpfpm:9002 oder erstellen Sie einen neuen Listener in <code>data/conf/phpfpm/php-fpm.d/pools.conf</code>.</p>
 <p>Starten Sie Nginx neu (und PHP-FPM, falls ein neuer Listener erstellt wurde):</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart nginx-mailcow
-docker-compose restart php-fpm-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart nginx-mailcow
+docker compose restart php-fpm-mailcow
 </code></pre></div>
 
   <hr>
@@ -2566,7 +2552,7 @@ docker-compose restart php-fpm-mailcow
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
       
     
   </small>

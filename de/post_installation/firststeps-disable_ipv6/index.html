@@ -498,7 +498,7 @@
   
     <li class="md-nav__item">
       <a href="../firststeps-ip_bindings/" class="md-nav__link">
-        IP-Verbindungen
+        IP-Bindings
       </a>
     </li>
   
@@ -1921,20 +1921,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2404,8 +2390,8 @@ services:
       entrypoint: [&quot;echo&quot;, &quot;ipv6nat disabled in compose.override.yml&quot;]
 </code></pre></div>
 <p>Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stoppen und dann neu starten, damit Container und Netzwerke neu erstellt werden:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
-docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose down
+docker compose up -d
 </code></pre></div>
 <p><strong>3.</strong> Deaktivieren Sie IPv6 in unbound-mailcow</p>
 <p>Bearbeiten Sie <code>data/conf/unbound/unbound.conf</code> und setzen Sie <code>do-ip6</code> auf "no":</p>
@@ -2415,7 +2401,7 @@ docker-compose up -d
   [...]
 </code></pre></div>
 <p>unbound neu starten:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart unbound-mailcow
 </code></pre></div>
 <p><strong>4.</strong> Deaktivieren Sie IPv6 in postfix-mailcow</p>
 <p>Erstellen Sie <code>data/conf/postfix/extra.cf</code> und setzen Sie <code>smtp_address_preference</code> auf <code>ipv4</code>:</p>
@@ -2423,7 +2409,7 @@ docker-compose up -d
 inet_protocols = ipv4
 </code></pre></div>
 <p>Starten Sie Postfix neu:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart postfix-mailcow
 </code></pre></div>
 
   <hr>
@@ -2431,7 +2417,7 @@ inet_protocols = ipv4
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>

@@ -1984,20 +1984,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2483,16 +2469,16 @@
 <h2 id="the-manual-way">The manual way<a class="headerlink" href="#the-manual-way" title="Permanent link">&para;</a></h2>
 <p>That said, let's dive in:</p>
 <p>Delete a user's mails inside the junk folder that <strong>are read</strong> and <strong>older</strong> than 4 hours</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
 </code></pre></div>
 <p>Delete <strong>all</strong> user's mails in the junk folder that are <strong>older</strong> than 7 days</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
 </code></pre></div>
 <p>Delete <strong>all</strong> mails (of all users) in <strong>all</strong> folders that are <strong>older</strong> than 52 weeks (internal date of the mail, not the date it was saved on the system =&gt; <code>before</code> instead of <code>savedbefore</code>). Useful for deleting very old mails on all users and folders (thus especially useful for GDPR-compliance).</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
 </code></pre></div>
 <p>Delete mails inside a custom folder <strong>inside</strong> a user's inbox that are <strong>not</strong> flagged and <strong>older</strong> than 2 weeks</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2505,8 +2491,8 @@
 # Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
 cd /path/to/your/mailcow-dockerized
 
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
 [...]
 </code></pre></div>
 <p>To create a cron job you may execute <code>crontab -e</code> and insert something like the following to execute a script:</p>
@@ -2547,7 +2533,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>

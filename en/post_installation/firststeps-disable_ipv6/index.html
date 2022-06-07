@@ -1921,20 +1921,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-dc_bash_compl/" class="md-nav__link">
-        Docker Compose Bash Completion
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -2404,8 +2390,8 @@ services:
       entrypoint: [&quot;echo&quot;, &quot;ipv6nat disabled in compose.override.yml&quot;]
 </code></pre></div>
 <p>For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
-docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose down
+docker compose up -d
 </code></pre></div>
 <p><strong>3.</strong> Disable IPv6 in unbound-mailcow</p>
 <p>Edit <code>data/conf/unbound/unbound.conf</code> and set <code>do-ip6</code> to "no":</p>
@@ -2415,7 +2401,7 @@ docker-compose up -d
   [...]
 </code></pre></div>
 <p>Restart Unbound:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart unbound-mailcow
 </code></pre></div>
 <p><strong>4.</strong> Disable IPv6 in postfix-mailcow</p>
 <p>Create <code>data/conf/postfix/extra.cf</code> and set <code>smtp_address_preference</code> to <code>ipv4</code>:</p>
@@ -2423,7 +2409,7 @@ docker-compose up -d
 inet_protocols = ipv4
 </code></pre></div>
 <p>Restart Postfix:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart postfix-mailcow
 </code></pre></div>
 
   <hr>
@@ -2431,7 +2417,7 @@ inet_protocols = ipv4
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-01 15:39:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
       
     
   </small>
