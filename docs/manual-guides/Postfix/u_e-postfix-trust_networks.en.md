@@ -19,7 +19,7 @@ Edit `data/conf/postfix/extra.cf`:
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
 ```
 
-Run `docker-compose restart postfix-mailcow` to apply your new settings.
+Run `docker compose restart postfix-mailcow` to apply your new settings.
 
 ### IPv6 hosts/subnets
 
@@ -33,7 +33,7 @@ Edit `data/conf/postfix/extra.cf`:
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
 ```
 
-Run `docker-compose restart postfix-mailcow` to apply your new settings.
+Run `docker compose restart postfix-mailcow` to apply your new settings.
 
 !!! Info
     More information about mynetworks can be found in the [Postfix documentation](http://www.postfix.org/postconf.5.html#mynetworks).

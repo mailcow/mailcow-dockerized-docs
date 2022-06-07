@@ -128,7 +128,7 @@ oder OpenSSH wird sich weigern, den SSH-Schlüssel zu benutzen.
 Für den nächsten Schritt müssen wir den Container in einem konfigurierten Zustand hochfahren und laufen lassen. Um das zu tun, führen Sie aus:
 
 ```shell
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Wiederherstellung von einem Backup
@@ -153,7 +153,7 @@ das `ro`-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:
 
 ```shell
-docker-compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
 ```
 
 Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
@@ -167,7 +167,7 @@ Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archi
 Um die MySQL-Datenbank aus dem letzten Archiv wiederherzustellen, verwenden Sie diesen Befehl:
 
 ```shell
-docker-compose exec borgmatic-mailcow borgmatic restore --archive latest
+docker compose exec borgmatic-mailcow borgmatic restore --archive latest
 ```
 
 Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
@@ -181,7 +181,7 @@ ihn wieder zu aktivieren.
 Um mailcow neu zu starten, verwenden Sie den folgenden Befehl:
 
 ```shell
-docker-compose down && docker-compose up -d
+docker compose down && docker compose up -d
 ```
 
 Wenn Sie SELinux verwenden, werden dadurch auch alle Dateien in Ihrem vmail-Volume neu benannt. Seien Sie geduldig, denn dies kann
@@ -192,13 +192,13 @@ eine Weile dauern kann, wenn Sie viele Dateien haben.
 ### Manueller Archivierungslauf (mit Debugging-Ausgabe)
 
 ```shell
-docker-compose exec borgmatic-mailcow borgmatic -v 2
+docker compose exec borgmatic-mailcow borgmatic -v 2
 ```
 
 ### Auflistung aller verfügbaren Archive
 
 ```shell
-docker-compose exec borgmatic-mailcow borgmatic list
+docker compose exec borgmatic-mailcow borgmatic list
 ```
 
 ### Sperre aufheben
@@ -207,7 +207,7 @@ Wenn borg während eines Archivierungslaufs unterbrochen wird, hinterlässt es e
 neue Operationen durchgeführt werden können:
 
 ```shell
-docker-compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+docker compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
 ```
 
 Wobei `user@rsync.net:mailcow` die URI zu Ihrem Repository ist.
@@ -225,7 +225,7 @@ Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um d
 Um die `keyfile` zu holen, führen Sie aus:
 
 ```shell
-docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
 ```
 
 Wobei `user@rsync.net:mailcow` die URI zu Ihrem Repository ist.

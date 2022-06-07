@@ -1,7 +1,7 @@
 Das Logging in mailcow: dockerized besteht aus mehreren Stufen, ist aber immerhin wesentlich flexibler und einfacher in einen Logging-Daemon zu integrieren als bisher.
 
 In Docker schreibt die containerisierte Anwendung (PID 1) ihre Ausgabe auf stdout. Für echte Ein-Anwendungs-Container funktioniert das sehr gut.
-Führen Sie `docker-compose logs --help` aus, um mehr zu erfahren. 
+Führen Sie `docker compose logs --help` aus, um mehr zu erfahren. 
 
 Einige Container protokollieren oder streamen an mehrere Ziele.
 
@@ -118,7 +118,7 @@ Für Syslog:
 }
 ```
 
-Starten Sie den Docker-Daemon neu und führen Sie `docker-compose down && docker-compose up -d` aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.
+Starten Sie den Docker-Daemon neu und führen Sie `docker compose down && docker compose up -d` aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.
 
 ### Log rotation
 

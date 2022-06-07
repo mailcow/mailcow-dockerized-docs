@@ -18,7 +18,7 @@ forward-zone:
 Restart Unbound:
 
 ```
-docker-compose restart unbound-mailcow
+docker compose restart unbound-mailcow
 ```
 
 
@@ -31,4 +31,4 @@ cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.over
 
 Edit `docker-compose.override.yml` and adjust the IP.
 
-Run `docker-compose down ; docker-compose up -d`.
+Run `docker compose down ; docker compose up -d`.

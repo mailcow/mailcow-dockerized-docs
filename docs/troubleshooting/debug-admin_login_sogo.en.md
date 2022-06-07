@@ -13,7 +13,7 @@ ALLOW_ADMIN_EMAIL_LOGIN=y
 ```
 and recreating the affected containers with
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Drawbacks when enabled

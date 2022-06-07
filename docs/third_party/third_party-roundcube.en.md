@@ -246,6 +246,6 @@ Copy the contents of the following files from this [Snippet](https://gitlab.com/
 Finally, restart mailcow
 
 ```
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```

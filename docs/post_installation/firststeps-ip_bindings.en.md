@@ -33,7 +33,7 @@ SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
 ```
 
-To apply your changes, run `docker-compose down` followed by `docker-compose up -d`.
+To apply your changes, run `docker compose down` followed by `docker compose up -d`.
 
 ## IPv6 binding
 
@@ -51,22 +51,25 @@ services:
 
     dovecot-mailcow:
       ports:
-        - '2a00:dead:beef::abc:143:143'
-        - '2a00:dead:beef::abc:993:993'
-        - '2a00:dead:beef::abc:110:110'
-        - '2a00:dead:beef::abc:995:995'
-        - '2a00:dead:beef::abc:4190:4190'
+        - '[2a00:dead:beef::abc]:143:143'
+        - '[2a00:dead:beef::abc]:993:993'
+        - '[2a00:dead:beef::abc]:110:110'
+        - '[2a00:dead:beef::abc]:995:995'
+        - '[2a00:dead:beef::abc]:4190:4190'
 
     postfix-mailcow:
       ports:
-        - '2a00:dead:beef::abc:25:25'
-        - '2a00:dead:beef::abc:465:465'
-        - '2a00:dead:beef::abc:587:587'
+        - '[2a00:dead:beef::abc]:25:25'
+        - '[2a00:dead:beef::abc]:465:465'
+        - '[2a00:dead:beef::abc]:587:587'
 
     nginx-mailcow:
       ports:
-        - '2a00:dead:beef::abc:80:80'
-        - '2a00:dead:beef::abc:443:443'
+        - '[2a00:dead:beef::abc]:80:80'
+        - '[2a00:dead:beef::abc]:443:443'
 ```
 
-To apply your changes, run `docker-compose down` followed by `docker-compose up -d`.
+!!! info
+    Alternatively, the [::] notation can be used to let the respective service listen on all IPv6 interfaces.
+
+To apply your changes, run `docker compose down` followed by `docker compose up -d`.

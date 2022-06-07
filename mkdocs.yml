@@ -135,7 +135,6 @@ nav:
     - 'SOGo': 'manual-guides/SOGo/u_e-sogo.md'
     - 'Docker':
       - 'Customize Dockerfiles': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.md'
-      - 'Docker Compose Bash Completion': 'manual-guides/Docker/u_e-docker-dc_bash_compl.md'
     - 'Why unbound?': 'manual-guides/u_e-why_unbound.md'
     - 'Autodiscover / Autoconfig': 'manual-guides/u_e-autodiscover_config.md'
     - 'Redirect HTTP to HTTPS': 'manual-guides/u_e-80_to_443.md'
@@ -183,7 +182,7 @@ plugins:
           'Post Installation Tasks': 'Post-Installationsaufgaben'
           'Advanced SSL': 'Erweitertes SSL'
           'Disable IPv6': 'IPv6 deaktivieren'
-          'IP bindings': 'IP-Verbindungen'
+          'IP bindings': 'IP-Bindings'
           'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
           'Sync job migration': 'Migration von Sync-Jobs'
           ### Models Section
@@ -348,7 +347,6 @@ plugins:
         'u_e-rspamd.md': 'manual-guides/Rspamd/u_e-rspamd.en.md'
         'u_e-sogo.md': 'manual-guides/SOGo/u_e-sogo.en.md'
         'u_e-docker-cust_dockerfiles.md': 'manual-guides/Docker/u_e-docker-cust_dockerfiles.en.md'
-        'u_e-docker-dc_bash_compl.md': 'manual-guides/Docker/u_e-docker-dc_bash_compl.en.md'
         'u_e-why_unbound.md': 'manual-guides/u_e-why_unbound.en.md'
         'u_e-autodiscover_config.md': 'manual-guides/u_e-autodiscover_config.en.md'
         'u_e-80_to_443.md': 'manual-guides/u_e-80_to_443.en.md'

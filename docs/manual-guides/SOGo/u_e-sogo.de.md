@@ -8,7 +8,7 @@ Sie können die mitgelieferte `custom-theme.js` als Beispiel verwenden, indem Si
 Nachdem Sie `data/conf/sogo/custom-theme.js` modifiziert und Änderungen an Ihrem neuen SOGo-Theme vorgenommen haben, müssen Sie 
 
 1. Bearbeiten Sie `data/conf/sogo/sogo.conf` und fügen Sie `SOGoUIxDebugEnabled = YES;` ein.
-2. SOGo und Memcached Container neu starten, indem man `docker-compose restart memcached-mailcow sogo-mailcow` ausführt.
+2. SOGo und Memcached Container neu starten, indem man `docker compose restart memcached-mailcow sogo-mailcow` ausführt.
 3. SOGo im Browser öffnen
 4. öffnen Sie die Entwicklerkonsole des Browsers, normalerweise ist die Tastenkombination F12
 5. nur wenn Sie Firefox benutzen: schreiben Sie mit der Hand in die Entwicklerkonsole `allow pasting` und drücken Sie Enter
@@ -33,8 +33,8 @@ Dienste:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
-11. führen Sie `docker-compose up -d` aus
-12. Ausführen von `docker-compose restart memcached-mailcow`
+11. führen Sie `docker compose up -d` aus
+12. Ausführen von `docker compose restart memcached-mailcow`
 
 ## Zurücksetzen auf das SOGo Standardthema
 1. checken Sie `data/conf/sogo/custom-theme.js` aus, indem Sie `git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js` ausführen
@@ -64,18 +64,18 @@ und ersetzen Sie es durch:
 ```
 - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
-4. führen Sie `docker-compose up -d` aus
-5. Starten Sie `docker-compose restart memcached-mailcow`.
+4. führen Sie `docker compose up -d` aus
+5. Starten Sie `docker compose restart memcached-mailcow`.
 
 ## Favicon ändern
 mailcow-Builds nach dem 31. Januar 2021 können SOGo's Favicon ändern, indem sie `data/conf/sogo/custom-favicon.ico` für SOGo und `data/web/favicon.png` für mailcow UI ersetzen.
 **Anmerkung**: Sie können `.png` Favicons für SOGo verwenden, indem Sie sie in `custom-favicon.ico` umbenennen.
 Für beide, SOGo und mailcow UI Favicons, müssen Sie eine der Standardgrößen verwenden: 16x16, 32x32, 64x64, 128x128 und 256x256.
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie `docker-compose restart memcached-mailcow sogo-mailcow` ausführen.
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie `docker compose restart memcached-mailcow sogo-mailcow` ausführen.
 
 ## Logo ändern
 Mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei `data/conf/sogo/sogo-full.svg` ersetzen oder erstellen (falls sie fehlt).
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie `docker-compose restart memcached-mailcow sogo-mailcow` ausführen.
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie `docker compose restart memcached-mailcow sogo-mailcow` ausführen.
 
 ## Domains verbinden (untereinander sichtbar machen)
 Domains sind normalerweise voneinander isoliert.
@@ -97,15 +97,15 @@ Suche...
     );
 ```
 
-SOGo neu starten: `docker-compose restart sogo-mailcow`
+SOGo neu starten: `docker compose restart sogo-mailcow`
 
 ## Deaktivieren Sie die Passwortänderung
 
 Bearbeiten Sie `data/conf/sogo/sogo.conf` und **ändern** Sie `SOGoPasswordChangeEnabled` auf `NO`. Bitte fügen Sie keinen neuen Parameter hinzu.
 
-Führen Sie `docker-compose restart memcached-mailcow sogo-mailcow` aus, um die Änderungen zu aktivieren.
+Führen Sie `docker compose restart memcached-mailcow sogo-mailcow` aus, um die Änderungen zu aktivieren.
 
 ## TOTP zurücksetzen / TOTP deaktivieren
 
-Führen Sie `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` aus dem mailcow Verzeichnis aus.
+Führen Sie `docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` aus dem mailcow Verzeichnis aus.
 

@@ -1,4 +1,4 @@
-!!! warning
+!!! warning "Warnung"
     Das Ändern der Bindung hat keinen Einfluss auf Source-NAT. Siehe [SNAT](../post_installation/firststeps-snat.de.md) für die erforderlichen Schritte.
 
 ## IPv4-Binding
@@ -33,7 +33,7 @@ SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
 ```
 
-Um Ihre Änderungen zu übernehmen, führen Sie `docker-compose down` gefolgt von `docker-compose up -d` aus.
+Um Ihre Änderungen zu übernehmen, führen Sie `docker compose down` gefolgt von `docker compose up -d` aus.
 
 ## IPv6-Binding
 
@@ -43,7 +43,7 @@ Eine `docker-compose.override.yml` Datei wird verwendet, anstatt die `docker-com
 
 Bearbeiten Sie die Datei "docker-compose.override.yml" und erstellen Sie sie mit dem folgenden Inhalt. Ihr Inhalt wird mit der produktiven Datei "docker-compose.yml" zusammengeführt.
 
-Es wird eine imaginäre IPv6 **2a00:dead:beef::abc** angegeben. Das erste Suffix `:PORT1` definiert den externen Port, während das zweite Suffix `:PORT2` zu dem entsprechenden Port innerhalb des Containers führt und nicht verändert werden darf.
+Es wird eine imaginäre IPv6 **2a00:dead:beef::abc** in [] angegeben. Das erste Suffix `:PORT1` definiert den externen Port, während das zweite Suffix `:PORT2` zu dem entsprechenden Port innerhalb des Containers führt und nicht verändert werden darf.
 
 ```
 version: '2.1'
@@ -51,22 +51,25 @@ services:
 
     dovecot-mailcow:
       ports:
-        - '2a00:dead:beef::abc:143:143'
-        - '2a00:dead:beef::abc:993:993'
-        - '2a00:dead:beef::abc:110:110'
-        - '2a00:dead:beef::abc:995:995'
-        - '2a00:dead:beef::abc:4190:4190'
+        - '[2a00:dead:beef::abc]:143:143'
+        - '[2a00:dead:beef::abc]:993:993'
+        - '[2a00:dead:beef::abc]:110:110'
+        - '[2a00:dead:beef::abc]:995:995'
+        - '[2a00:dead:beef::abc]:4190:4190'
 
     postfix-mailcow:
       ports:
-        - '2a00:dead:beef::abc:25:25'
-        - '2a00:dead:beef::abc:465:465'
-        - '2a00:dead:beef::abc:587:587'
+        - '[2a00:dead:beef::abc]:25:25'
+        - '[2a00:dead:beef::abc]:465:465'
+        - '[2a00:dead:beef::abc]:587:587'
 
     nginx-mailcow:
       ports:
-        - '2a00:dead:beef::abc:80:80'
-        - '2a00:dead:beef::abc:443:443'
+        - '[2a00:dead:beef::abc]:80:80'
+        - '[2a00:dead:beef::abc]:443:443'
 ```
 
-Um Ihre Änderungen zu übernehmen, führen Sie `docker-compose down` gefolgt von `docker-compose up -d` aus.
+!!! info
+    Alternativ kann auch die [::] Schreibweise benutzt werden um den jeweiligen Dienst auf allen IPv6 Interfaces lauschen zu lassen.
+
+Um Ihre Änderungen zu übernehmen, führen Sie `docker compose down` gefolgt von `docker compose up -d` aus.

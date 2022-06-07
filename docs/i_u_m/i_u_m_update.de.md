@@ -11,7 +11,7 @@ Führen sie das Update-Skript aus:
 
 Wenn es nötig ist, wird es Sie fragen, wie Sie fortfahren möchten.
 Merge-Fehler werden gemeldet.
-Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: dockerized repository code).
+Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-dockerized repository code).
 
 ### Optionen
 
@@ -20,9 +20,6 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow: 
 
 # - Prüft auf Updates und zeigt Änderungen an
 ./update.sh --check
-
-# Versuchen Sie nicht, docker-compose zu aktualisieren, **stellen Sie sicher, dass Sie die neueste verfügbare Version von docker-compose verwenden**
-./update.sh --no-update-compose
 
 # - Starten Sie mailcow nicht, nachdem Sie ein Update durchgeführt haben
 ./update.sh --skip-start
@@ -62,11 +59,11 @@ Ja.
 Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:
 
 ```
-docker-compose down
+docker compose down
 # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 ### Hooks
