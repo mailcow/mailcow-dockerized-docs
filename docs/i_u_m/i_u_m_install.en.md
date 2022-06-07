@@ -58,7 +58,7 @@ If you are interested in how this works, you can check out the readme of https:/
 
 If you are freshly installing mailcow and have installed Docker in the above way, Docker Compose v2 will already be installed with it. So you don't need to do anything else.
 
-You can check this with `docker compose version`, if the return looks something like `Docker Compose version v2.5.0`, then the new Docker Compose is already installed on your system.
+You can check this with `docker-compose version`, if the return looks something like `Docker Compose version v2.5.0`, then the new Docker Compose is already installed on your system.
 
 If it is not installed or you want to upgrade from Docker Compose v1 to v2 just follow the instructions:    
 
