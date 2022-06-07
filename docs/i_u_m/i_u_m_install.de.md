@@ -53,7 +53,7 @@ Wenn Sie daran interessiert sind, wie das funktioniert, können Sie sich die Rea
     Das Webinterface wird im Zeitraum von Juni - Dezember 2022 standardmäßig nur über v4 erreichbar sein.<br>
     Der Grund dafür ist die Dual-Kompatibilität zwischen Compose v1 und v2. <br>
     Sollten Sie das Webinterface, wie bisher standardmäßig über v6 erreichen wollen, werfen Sie bitte einen Blick auf [dieses Kapitel](../post_installation/firststeps-ip_bindings.de.md#ipv6-binding). <br>
-    **Mit dem 2022-12 Update wird die native IPv6 Erreichbarkeit der Weboberfläche wieder hergestellt.**
+    **Mit dem 2022-12 Update wird die native IPv6 Erreichbarkeit der Weboberfläche wiederhergestellt.**
 
 Sollten Sie mailcow frisch installieren und Docker auf die oben stehende Weise installiert haben, wird Docker Compose v2 schon mit installiert. Sie müssen also nichts weiter tun.
 
