@@ -44,7 +44,7 @@ Wenn Sie daran interessiert sind, wie dies funktioniert, können Sie sich die Re
 
 ## Installation von Docker Compose v2
 
-!!! Info
+!!! info
 Version 2 Dateien werden von Compose 1.6.0+ unterstützt und erfordern eine Docker Engine der Version 1.10.0+.
 
 !!! danger "Achtung"
