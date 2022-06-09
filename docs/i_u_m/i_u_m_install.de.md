@@ -39,10 +39,13 @@ Wenn der obige Befehl eine leere oder keine Ausgabe liefert, erstellen oder bear
 
 Starten Sie den Docker-Daemon neu und überprüfen Sie, ob SELinux nun aktiviert ist.
 
-Dieser Schritt ist erforderlich, um sicherzustellen, dass die mailcows-Volumes richtig gekennzeichnet sind, wie in der Compose-Datei angegeben.
-Wenn Sie daran interessiert sind, wie das funktioniert, können Sie sich die Readme-Datei von https://github.com/containers/container-selinux ansehen, die auf viele nützliche Informationen zu diesem Thema verweist.
+Dieser Schritt ist erforderlich, um sicherzustellen, dass die mailcow-Volumes richtig gekennzeichnet werden, wie in der Compose-Datei angegeben.
+Wenn Sie daran interessiert sind, wie dies funktioniert, können Sie sich die Readme-Datei von https://github.com/containers/container-selinux ansehen, die auf viele nützliche Informationen zu diesem Thema verweist.
 
 ## Installation von Docker Compose v2
+
+!!! info
+Version 2 Dateien werden von Compose 1.6.0+ unterstützt und erfordern eine Docker Engine der Version 1.10.0+.
 
 !!! danger "Achtung"
     Seit Juni 2022 wurde Docker Compose v1 in der mailcow durch Docker Compose v2 abgelöst. <br>
@@ -110,11 +113,11 @@ $ su
 ./generate_config.sh
 ```
 
-**3\.** Ändern Sie die Konfiguration, wenn Sie das wollen oder müssen.
+**3\.** Ändern Sie die Konfiguration, wenn Sie dies möchten:
 ```
 nano mailcow.conf
 ```
-Wenn Sie planen, einen Reverse Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.
+Wenn Sie planen, einen Reverse-Proxy zu verwenden, können Sie zum Beispiel HTTPS an 127.0.0.1 auf Port 8443 und HTTP an 127.0.0.1 auf Port 8080 binden.
 
 Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp blockiert. Siehe [dieses Kapitel](../post_installation/firststeps-local_mta.de.md), um zu erfahren, wie man Postfix rekonfiguriert, um nach einer erfolgreichen Installation neben mailcow laufen zu lassen.
 
@@ -142,19 +145,25 @@ networks:
 Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um ein besseres Internet kümmern (hehe), ist es empfehlenswert, IPv6 für das mailcow-Netzwerk zu [deaktivieren](../post_installation/firststeps-disable_ipv6.de.md), um unvorhergesehene Probleme zu vermeiden.
 
 
-**4\.** Laden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird mailcow: dockerized starten:
+**4\.** Laden Sie die Docker Images herunter und führen Sie die Compose-Datei aus, um die mailcow-Container zu starten. Der Parameter `-d` sorgt dafür, dass die Container im Hintergrund ausgeführt werden.
+
 ```
 docker compose pull
 docker compose up -d
 ```
 
-Geschafft!
+Der Container Status kann mit folgendem Befehl abgefragt werden:
+```
+docker compose ps
+```
+
+Fertig!
 
 Sie können nun auf **https://${MAILCOW_HOSTNAME}** mit den Standard-Zugangsdaten `admin` + Passwort `moohoo` zugreifen.
 
 !!! info
-    Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](../manual-guides/u_e-80_to_443.md).
+    Wenn Sie mailcow nicht hinter einem Reverse-Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](../manual-guides/u_e-80_to_443.md).
 
-Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zu MySQL hergestellt werden kann.
+Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zur MySQL-Datenbank hergestellt werden kann.
 
 Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie `docker volume ls` aus, um eine Liste aller Volumes zu sehen. Sie können `docker compose down` sicher ausführen, ohne persistente Daten zu entfernen.
