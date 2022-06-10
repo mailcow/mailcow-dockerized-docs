@@ -2460,28 +2460,28 @@ SOLR_PORT=127.0.0.1:18983
 <p>Changing IPv6 bindings is different from IPv4. Again, this has a technical background.</p>
 <p>A <code>docker-compose.override.yml</code> file will be used instead of editing the <code>docker-compose.yml</code> file directly. This is to maintain updatability, as the <code>docker-compose.yml</code> file gets updated regularly and your changes will most likely be overwritten.</p>
 <p>Edit to create a file  <code>docker-compose.override.yml</code> with the following content. Its content will be merged with the productive <code>docker-compose.yml</code> file.</p>
-<p>An imaginary IPv6 <strong>2a00:dead:beef::abc</strong> is given. The first suffix <code>:PORT1</code> defines the external port, while the second suffix <code>:PORT2</code> routes to the corresponding port inside the container and must not be changed.</p>
+<p>An <strong>example</strong> IPv6 <strong>2001:db8:dead:beef::123</strong> is given. The first suffix <code>:PORT1</code> defines the external port, while the second suffix <code>:PORT2</code> routes to the corresponding port inside the container and must <u><strong>not</strong></u> be changed.</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
 
     dovecot-mailcow:
       ports:
-        - &#39;[2a00:dead:beef::abc]:143:143&#39;
-        - &#39;[2a00:dead:beef::abc]:993:993&#39;
-        - &#39;[2a00:dead:beef::abc]:110:110&#39;
-        - &#39;[2a00:dead:beef::abc]:995:995&#39;
-        - &#39;[2a00:dead:beef::abc]:4190:4190&#39;
+        - &#39;[2001:db8:dead:beef::123]:143:143&#39;
+        - &#39;[2001:db8:dead:beef::123]:993:993&#39;
+        - &#39;[2001:db8:dead:beef::123]:110:110&#39;
+        - &#39;[2001:db8:dead:beef::123]:995:995&#39;
+        - &#39;[2001:db8:dead:beef::123]:4190:4190&#39;
 
     postfix-mailcow:
       ports:
-        - &#39;[2a00:dead:beef::abc]:25:25&#39;
-        - &#39;[2a00:dead:beef::abc]:465:465&#39;
-        - &#39;[2a00:dead:beef::abc]:587:587&#39;
+        - &#39;[2001:db8:dead:beef::123]:25:25&#39;
+        - &#39;[2001:db8:dead:beef::123]:465:465&#39;
+        - &#39;[2001:db8:dead:beef::123]:587:587&#39;
 
     nginx-mailcow:
       ports:
-        - &#39;[2a00:dead:beef::abc]:80:80&#39;
-        - &#39;[2a00:dead:beef::abc]:443:443&#39;
+        - &#39;[2001:db8:dead:beef::123]:80:80&#39;
+        - &#39;[2001:db8:dead:beef::123]:443:443&#39;
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2494,7 +2494,7 @@ services:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-07 11:39:16</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-10 10:46:15</span>
       
     
   </small>
