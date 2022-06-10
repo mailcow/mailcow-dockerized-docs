@@ -43,7 +43,7 @@ A `docker-compose.override.yml` file will be used instead of editing the `docker
 
 Edit to create a file  `docker-compose.override.yml` with the following content. Its content will be merged with the productive `docker-compose.yml` file.
 
-An imaginary IPv6 **2a00:dead:beef::abc** is given. The first suffix `:PORT1` defines the external port, while the second suffix `:PORT2` routes to the corresponding port inside the container and must not be changed.
+An **example** IPv6 **2001:db8:dead:beef::123** is given. The first suffix `:PORT1` defines the external port, while the second suffix `:PORT2` routes to the corresponding port inside the container and must <u>**not**</u> be changed.
 
 ```
 version: '2.1'
@@ -51,22 +51,22 @@ services:
 
     dovecot-mailcow:
       ports:
-        - '[2a00:dead:beef::abc]:143:143'
-        - '[2a00:dead:beef::abc]:993:993'
-        - '[2a00:dead:beef::abc]:110:110'
-        - '[2a00:dead:beef::abc]:995:995'
-        - '[2a00:dead:beef::abc]:4190:4190'
+        - '[2001:db8:dead:beef::123]:143:143'
+        - '[2001:db8:dead:beef::123]:993:993'
+        - '[2001:db8:dead:beef::123]:110:110'
+        - '[2001:db8:dead:beef::123]:995:995'
+        - '[2001:db8:dead:beef::123]:4190:4190'
 
     postfix-mailcow:
       ports:
-        - '[2a00:dead:beef::abc]:25:25'
-        - '[2a00:dead:beef::abc]:465:465'
-        - '[2a00:dead:beef::abc]:587:587'
+        - '[2001:db8:dead:beef::123]:25:25'
+        - '[2001:db8:dead:beef::123]:465:465'
+        - '[2001:db8:dead:beef::123]:587:587'
 
     nginx-mailcow:
       ports:
-        - '[2a00:dead:beef::abc]:80:80'
-        - '[2a00:dead:beef::abc]:443:443'
+        - '[2001:db8:dead:beef::123]:80:80'
+        - '[2001:db8:dead:beef::123]:443:443'
 ```
 
 !!! info
