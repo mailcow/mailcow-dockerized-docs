@@ -10,7 +10,7 @@ It is also possible to create a daily pflogsumm report via cron. Create the /etc
 
 ```
 SHELL=/bin/bash
-59 23 * * root docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | /usr/sbin/pflogsumm -d today | mail -s "Postfix Report of $(date)" postmaster@example.net
+59 23 * * * root docker logs --since 24h $(docker ps -qf name=postfix-mailcow) | /usr/sbin/pflogsumm -d today | mail -s "Postfix Report of $(date)" postmaster@example.net
 ```
 
 To work, a local postfix must be installed on the server, which relays to the mailcow postfix.
