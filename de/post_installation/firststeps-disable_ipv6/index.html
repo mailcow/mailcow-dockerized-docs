@@ -2411,13 +2411,21 @@ inet_protocols = ipv4
 <p>Starten Sie Postfix neu:</p>
 <div class="highlight"><pre><span></span><code>docker compose restart postfix-mailcow
 </code></pre></div>
+<p><strong>5.</strong> Wenn im Docker Daemon IPv6 komplett deaktiviert ist:</p>
+<p>Folgende NGINX, Dovecot und Php-fpm Konfigurationsdateien anpassen</p>
+<div class="highlight"><pre><span></span><code>sed -i &#39;/::/d&#39; data/conf/nginx/listen_*
+sed -i &#39;/::/d&#39; data/conf/nginx/templates/listen*
+sed -i &#39;s/,\[::\]//g&#39; data/conf/dovecot/dovecot.conf
+sed -i &#39;s/\[::\]://g&#39; data/conf/nginx/dynmaps.conf
+sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-15 23:22:15</span>
       
     
   </small>
