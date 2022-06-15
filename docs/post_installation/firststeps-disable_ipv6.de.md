@@ -81,3 +81,15 @@ Starten Sie Postfix neu:
 ```
 docker compose restart postfix-mailcow
 ```
+
+**5.** Wenn im Docker Daemon IPv6 komplett deaktiviert ist:
+
+Folgende NGINX, Dovecot und Php-fpm Konfigurationsdateien anpassen
+
+```
+sed -i '/::/d' data/conf/nginx/listen_*
+sed -i '/::/d' data/conf/nginx/templates/listen*
+sed -i 's/,\[::\]//g' data/conf/dovecot/dovecot.conf
+sed -i 's/\[::\]://g' data/conf/nginx/dynmaps.conf
+sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
+```
