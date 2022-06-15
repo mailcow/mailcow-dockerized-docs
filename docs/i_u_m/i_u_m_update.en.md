@@ -9,6 +9,10 @@ Run the update script:
 ./update.sh
 ```
 
+!!! danger
+        If you update your mailcow after the 07th June 2022, please update your mailcow first and only install Docker-Compose v2 afterwards (if you haven't already done so).<br>
+        For more information about Docker-Compose v2, please visit [this page](i_u_m_install.en.md#install-docker-compose-v2).
+
 If it needs to, it will ask you how you wish to proceed.
 Merge errors will be reported.
 Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerized repository code).
