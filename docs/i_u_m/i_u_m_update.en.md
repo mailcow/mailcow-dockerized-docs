@@ -27,6 +27,9 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerize
 # - Skip ICMP Check to public DNS resolvers (Use it only if you´ve blocked any ICMP Connections to your mailcow machine)
 ./update.sh --skip-ping-check
 
+# - Skips the Docker-Compose update process, update is done by the user manually
+./update.sh --no-update-compose
+
 # - Force update (unattended, but unsupported, use at own risk)
 ./update.sh --force
 

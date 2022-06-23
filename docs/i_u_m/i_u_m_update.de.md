@@ -27,6 +27,9 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-d
 # - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
 ./update.sh --skip-ping-check
 
+# - Überspringt den Docker-Compose Update Prozess, aktualisierung erfolgt dann vom Benutzer
+./update.sh --no-update-compose
+
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
 ./update.sh --force
 
