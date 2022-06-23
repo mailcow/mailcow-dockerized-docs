@@ -10,7 +10,7 @@ Speicherplatz zu verschwenden. So können Sie Backups in sehr kurzen Abständen 
 Daten aus einer Sicherung wiederherzustellen.
 
 Dieses Dokument führt Sie durch den Prozess zur Aktivierung kontinuierlicher Backups für mailcow mit borgmatic. Die borgmatic
-Funktionalität wird durch das [borgmatic Docker image von b3vis](https://github.com/b3vis/docker-borgmatic) bereitgestellt. Schauen Sie sich
+Funktionalität wird durch das [borgmatic Docker Image](https://github.com/borgmatic-collective/docker-borgmatic) bereitgestellt. Schauen Sie sich
 die `README` in diesem Repository, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
 Diese Anleitung behandelt nur die Grundlagen.
 
@@ -25,7 +25,7 @@ version: '2.1'
 
 services:
   borgmatic-mailcow:
-    image: b3vis/borgmatic
+    image: ghcr.io/borgmatic-collective/borgmatic
     hostname: mailcow
     restart: always
     dns: ${IPV4_NETWORK:-172.22.1}.254
