@@ -52,7 +52,7 @@ services:
       - rspamd-mailcow
 ```
 
-Starte `docker compose up -d`
+Starte `docker-compose up -d`
 
 ## Senden Sie eine Kopie der Berichte an sich selbst
 
@@ -78,32 +78,32 @@ Dies kann nützlich sein, wenn Sie...
 Prüfen Sie, wann der Berichtsplan zuletzt ausgeführt wurde:
 
 ```
-docker compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
 ```
 
 Sehen Sie sich die letzte Berichtsausgabe an:
 
 ```
-docker compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
 ```
 
 Manuelles Auslösen eines DMARC-Berichts:
 
 ```
-docker compose exec rspamd-mailcow rspamadm dmarc_report
+docker-compose exec rspamd-mailcow rspamadm dmarc_report
 ```
 
 Bestätigen Sie, dass Rspamd Daten in Redis aufgezeichnet hat:
 Ändern Sie `20220428` in ein anderes interessantes Datum zum schauen.
 
 ```
-docker compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"
+docker-compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"
 ```
 
 Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Sie sie an, z. B.:
 
 ```
-docker compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
+docker-compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
 ```
 
 
@@ -117,9 +117,9 @@ Um den Zeitplan zu ändern:
 
 1. Bearbeiten Sie `docker-compose.override.yml` und stellen Sie `ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"` auf einen gewünschten Wert, zum Beispiel auf `"@midnight"`
 
-2. Führen Sie `docker compose up -d` aus.
+2. Führen Sie `docker-compose up -d` aus.
 
-3. Führen Sie `docker compose restart ofelia-mailcow` aus
+3. Führen Sie `docker-compose restart ofelia-mailcow` aus
 
 ## DMARC-Berichterstattung deaktivieren
 
@@ -129,4 +129,4 @@ Zum Deaktivieren der Berichterstattung:
 
 2. Machen Sie Änderungen in `docker-compose.override.yml` an `rspamd-mailcow` und `ofelia-mailcow` rückgängig
 
-3. Führen Sie `docker compose up -d` aus
+3. Führen Sie `docker-compose up -d` aus

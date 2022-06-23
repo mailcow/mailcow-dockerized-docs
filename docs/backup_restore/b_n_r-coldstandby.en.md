@@ -18,7 +18,7 @@ The use rsync with the `--delete` flag. The destination will be an exact copy of
 
 `mariabackup` is used to create a consistent copy of the SQL data directory.
 
-After rsync'ing the data we will run `docker compose pull` and remove old image tags from the destination.
+After rsync'ing the data we will run `docker-compose pull` and remove old image tags from the destination.
 
 Your source will not be changed at any time.
 
@@ -45,7 +45,7 @@ export REMOTE_SSH_HOST=mailcow-backup.host.name
 The key must be owned and readable by root only.
 
 Both the source and destination require `rsync` >= v3.1.0.
-The destination must have Docker and docker compose **v1** available.
+The destination must have Docker and docker-compose **v1** available.
 
 The script will detect errors automatically and exit.
 

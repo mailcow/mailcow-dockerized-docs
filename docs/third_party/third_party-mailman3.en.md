@@ -91,7 +91,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Install mailcow
 
-Follow the [mailcow installation](../i_u_m/i_u_m_install.md). **Omit step 5 and do not pull and up with `docker compose`!**
+Follow the [mailcow installation](../i_u_m/i_u_m_install.md). **Omit step 5 and do not pull and up with `docker-compose`!**
 
 #### Configure mailcow
 
@@ -204,7 +204,7 @@ Create a long password for the database, e.g. with the linux command `cat /dev/u
 
 Create a long key for *Django*, e.g. with the linux command `cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo`. Save this key for a moment as DJANGO_KEY.
 
-Create the file `/opt/docker-mailman/docker compose.override.yaml` and replace `HYPERKITTY_KEY`, `DBPASS` and `DJANGO_KEY` with the generated values:
+Create the file `/opt/docker-mailman/docker-compose.override.yaml` and replace `HYPERKITTY_KEY`, `DBPASS` and `DJANGO_KEY` with the generated values:
 
 ```
 version: '2'
@@ -279,11 +279,11 @@ a2ensite mailman.conf
 systemctl restart apache2
 
 cd /opt/docker-mailman
-docker compose pull
-docker compose up -d
+docker-compose pull
+docker-compose up -d
 
 cd /opt/mailcow-dockerized/
-docker compose pull
+docker-compose pull
 ./renew-ssl.sh
 ```
 
@@ -297,7 +297,7 @@ When you create a new list and try to immediately send an e-mail, *postfix* resp
 
 ```
 cd /opt/mailcow-dockerized
-docker compose restart postfix-mailcow
+docker-compose restart postfix-mailcow
 ```
 
 ## Update

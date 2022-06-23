@@ -5,7 +5,7 @@
     Alternativ können Sie das Skript `./helper-scripts/backup_and_restore.sh` verwenden, um ein vollständiges Backup auf der Quellmaschine zu erstellen, dann installieren Sie mailcow auf der Zielmaschine wie gewohnt, kopieren Sie Ihre `mailcow.conf` und verwenden Sie das gleiche Skript, um Ihr Backup auf der Zielmaschine wiederherzustellen.
 
 **1\.** 
-Installieren Sie [Docker](https://docs.docker.com/engine/installation/linux/) und [Docker Compose](https://docs.docker.com/compose/install/) auf Ihrem neuen Server.
+Installieren Sie [Docker](https://docs.docker.com/engine/installation/linux/) und [docker-compose](https://docs.docker.com/compose/install/) auf Ihrem neuen Server.
 
 Schnelle Installation für die meisten Betriebssysteme:
 
@@ -16,10 +16,10 @@ curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 systemctl enable docker.service
 ```
 
-- docker compose
+- docker-compose
 ```
-curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker compose
-chmod +x /usr/local/bin/docker compose
+curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 ```
 
 Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.
@@ -39,7 +39,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 **4\.** Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
 ```
 cd /opt/mailcow-dockerized
-docker compose herunterfahren
+docker-compose herunterfahren
 systemctl stop docker.service
 ```
 
@@ -53,12 +53,12 @@ systemctl start docker.service
 **7\.** Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.
 ```
 cd /opt/mailcow-dockerized
-docker compose pull
+docker-compose pull
 ```
 
 **8\.** Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 **9\.** Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen.

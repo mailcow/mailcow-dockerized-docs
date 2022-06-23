@@ -6,7 +6,7 @@ Nextcloud kann mit dem [helper script](https://github.com/mailcow/mailcow-docker
 
 Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset), können Sie durch den Aufruf des Helper-Skripts mit `-r` als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.
 
-Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und `docker compose up -d` zur Übernahme ausgeführt werden. Für weitere Informationen siehe: [Erweitertes SSL](../post_installation/firststeps-ssl.md).
+Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und `docker-compose up -d` zur Übernahme ausgeführt werden. Für weitere Informationen siehe: [Erweitertes SSL](../post_installation/firststeps-ssl.md).
 
 ## Hintergrund-Aufgaben
 
@@ -23,9 +23,9 @@ services:
       ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""
 ```
 
-Nachdem diese Zeilen hinzugefügt wurden muss `docker compose up -d` ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
- zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird `docker compose restart ofelia-mailcow` ausgeführt. Zur
- Überprüfung, ob die `ofelia` Konfiguration korrekt ist geladen wurde, kann mittels `docker compose logs ofelia-mailcow` nach einer Zeile mit dem Inhalt
+Nachdem diese Zeilen hinzugefügt wurden muss `docker-compose up -d` ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
+ zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird `docker-compose restart ofelia-mailcow` ausgeführt. Zur
+ Überprüfung, ob die `ofelia` Konfiguration korrekt ist geladen wurde, kann mittels `docker-compose logs ofelia-mailcow` nach einer Zeile mit dem Inhalt
  `New job registered "nextcloud-cron" - ...` gesucht werden.
 
 Hierdurch wird alle 5 Minuten die Hintergrundverarbeitung gestartet. Da die Ausführung selbst keine Ausgabe liefert, kann die korrekte Funktionsweise in den
@@ -86,7 +86,7 @@ Klicken Sie auf die Schaltfläche _Speichern_ ganz unten auf der Seite.
 Wenn Sie bisher Nextcloud mit mailcow-Authentifizierung über user\_external/IMAP verwendet haben, müssen Sie einige zusätzliche Schritte durchführen, um Ihre bestehenden Benutzerkonten mit OAuth2 zu verknüpfen.
 
 1\. Klicken Sie auf die Schaltfläche in der oberen rechten Ecke und wählen Sie _Apps_. Scrollen Sie nach unten zur App _Externe Benutzerauthentifizierung_ und klicken Sie daneben auf _Entfernen_.
-2\. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie `source mailcow.conf && docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME` ausführen):
+2\. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie `source mailcow.conf && docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME` ausführen):
 ```
 INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
 INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users_external;
@@ -96,7 +96,7 @@ INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT
 
 Wenn Sie Nextcloud bisher ohne mailcow-Authentifizierung, aber mit den gleichen Benutzernamen wie mailcow genutzt haben, können Sie Ihre bestehenden Benutzerkonten auch mit OAuth2 verknüpfen.
 
-1\. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie `source mailcow.conf && docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME` ausführen):
+1\. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie `source mailcow.conf && docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME` ausführen):
 ```
 INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users;
 ```
@@ -127,4 +127,4 @@ Es kann vorkommen, dass Sie die Nextcloud-Instanz von Ihrem Netzwerk aus nicht e
 ```
 
 Nachdem die Änderungen vorgenommen wurden, muss der nginx-Container neu gestartet werden.
-`docker compose restart nginx-mailcow`
+`docker-compose restart nginx-mailcow`

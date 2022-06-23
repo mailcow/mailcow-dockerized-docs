@@ -5,7 +5,7 @@
     Alternatively, you can use the `./helper-scripts/backup_and_restore.sh` script to create a full backup on the source machine, then install mailcow on the target machine as usual, copy over your `mailcow.conf` and use the same script to restore your backup to the target machine.
 
 **1\.** 
-Install [Docker](https://docs.docker.com/engine/installation/linux/) and [Docker Compose](https://docs.docker.com/compose/install/) on your new server.
+Install [Docker](https://docs.docker.com/engine/installation/linux/) and [docker-compose](https://docs.docker.com/compose/install/) on your new server.
 
 Quick installation for most operation systems:
 
@@ -16,10 +16,10 @@ curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 systemctl enable docker.service
 ```
 
-- docker compose
+- docker-compose
 ```
-curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker compose
-chmod +x /usr/local/bin/docker compose
+curl -L https://github.com/docker/compose/releases/download/$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 ```
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
@@ -39,7 +39,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 **4\.** Shut down mailcow and stop Docker on the source machine.
 ```
 cd /opt/mailcow-dockerized
-docker compose down
+docker-compose down
 systemctl stop docker.service
 ```
 
@@ -53,12 +53,12 @@ systemctl start docker.service
 **7\.** Now pull the mailcow Docker images on the target machine.
 ```
 cd /opt/mailcow-dockerized
-docker compose pull
+docker-compose pull
 ```
 
 **8\.** Start the whole mailcow stack and everything should be done!
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 **9\.** Finally, change your DNS settings to point to the target server.

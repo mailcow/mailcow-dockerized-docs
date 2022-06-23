@@ -46,4 +46,4 @@ The value of `MAILCOW_PASS_SCHEME` will _always_ be used to encrypt new password
 
 > I changed the password hashes in the "mailbox" SQL table and cannot login.
 
-A "view" needs to be updated. You can trigger this by restarting sogo-mailcow: `docker compose restart sogo-mailcow`
+A "view" needs to be updated. You can trigger this by restarting sogo-mailcow: `docker-compose restart sogo-mailcow`

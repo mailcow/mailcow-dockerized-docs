@@ -7,25 +7,25 @@ Dann wollen wir mal loslegen:
 Löschen Sie die Mails eines Benutzers im Junk-Ordner, die **gelesen** und **älter** als 4 Stunden sind
 
 ```
-docker compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'Junk' SEEN not SINCE 4h
+docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'Junk' SEEN not SINCE 4h
 ```
 
 Lösche **alle** Mails des Benutzers im Junk-Ordner, die **älter** als 7 Tage sind
 
 ```
-docker compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 7d
+docker-compose exec dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 7d
 ```
 
 Löscht **alle** Mails (aller Benutzer) in **allen** Ordnern, die **älter** als 52 Wochen sind (internes Datum der Mail, nicht das Datum, an dem sie auf dem System gespeichert wurde => `before` statt `savedbefore`). Nützlich zum Löschen sehr alter Mails in allen Benutzern und Ordnern (daher besonders nützlich für GDPR-Compliance).
 
 ```
-docker compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
 ```
 
 Löschen von Mails in einem benutzerdefinierten Ordner **innerhalb** des Posteingangs eines Benutzers, die **nicht** gekennzeichnet und **älter** als 2 Wochen sind
 
 ```
-docker compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'INBOX/custom-folder' not FLAGGED not SINCE 2w
+docker-compose exec dovecot-mailcow doveadm expunge -u 'mailbox@example.com' mailbox 'INBOX/custom-folder' not FLAGGED not SINCE 2w
 ```
 
 !!! info
@@ -42,8 +42,8 @@ Wenn Sie eine solche Aufgabe automatisieren wollen, können Sie einen Cron-Job a
 # Pfad zu mailcow-dockerized, z.B. /opt/mailcow-dockerized
 cd /pfad/zu/ihrem/mailcow-dockerized
 
-/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
-/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
+/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' savedbefore 2w
+/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox 'Junk' SEEN not SINCE 12h
 [...]
 ```
 

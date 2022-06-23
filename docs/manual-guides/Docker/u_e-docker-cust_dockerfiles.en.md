@@ -13,5 +13,5 @@ docker build data/Dockerfiles/service -t mailcow/$service
 Now auto-recreate modified containers:
 
 ```
-docker compose up -d
+docker-compose up -d
 ```

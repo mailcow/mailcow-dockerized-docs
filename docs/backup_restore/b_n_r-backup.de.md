@@ -110,7 +110,7 @@ Cronjobs erstellen:
 Am Zielort (in diesem Fall `/external_share/backups`) möchten Sie vielleicht Snapshot-Fähigkeiten haben (ZFS, Btrfs usw.). Machen Sie täglich einen Snapshot und bewahren Sie ihn für n Tage auf, um ein konsistentes Backup zu erhalten.
 Führen Sie **kein** rsync auf eine Samba-Freigabe durch, Sie müssen die richtigen Berechtigungen einhalten!
 
-Zum Wiederherstellen müssen Sie rsync einfach in umgekehrter Richtung ausführen und Docker neu starten, um die Volumes erneut zu lesen. Führen Sie `docker compose pull` und `docker compose up -d` aus.
+Zum Wiederherstellen müssen Sie rsync einfach in umgekehrter Richtung ausführen und Docker neu starten, um die Volumes erneut zu lesen. Führen Sie `docker-compose pull` und `docker-compose up -d` aus.
 
 Wenn Sie Glück haben, können Redis und MariaDB die inkonsistenten Datenbanken automatisch reparieren (wenn sie _inkonsistent_ sind).
 Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um die inkonsistenten Elemente wiederherzustellen. Wenn die Wiederherstellung fehlschlägt, versuchen Sie, die Sicherungen zu extrahieren und die Dateien manuell zurück zu kopieren. Behalten Sie die Dateiberechtigungen bei!

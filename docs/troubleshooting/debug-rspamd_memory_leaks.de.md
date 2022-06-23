@@ -1,7 +1,7 @@
 Eine kurze Anleitung, um einen schlecht funktionierenden Rspamd tiefgehend zu analysieren.
 
 ```
-docker compose exec rspamd-mailcow bash
+docker-compose exec rspamd-mailcow bash
 
 if ! grep -qi 'apt-stable-asan' /etc/apt/sources.list.d/rspamd.list; then
   sed -i 's/apt-stabil/apt-stabil-asan/i' /etc/apt/sources.list.d/rspamd.list
@@ -18,10 +18,10 @@ export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violati
 
 ```
 
-Starten Sie Rspamd neu: `docker compose restart rspamd-mailcow`
+Starten Sie Rspamd neu: `docker-compose restart rspamd-mailcow`
 
 Ihr Speicherverbrauch wird stark ansteigen, er wird auch stetig wachsen, was nicht mit einem möglichen Memory Leak zusammenhängt, nach dem Sie suchen.
 
-Lassen Sie den Container für ein paar Minuten, Stunden oder Tage laufen (es sollte die Zeit sein, die Sie normalerweise warten, bis der Memory Leak "passiert") und starten Sie ihn neu: `docker compose restart rspamd-mailcow`.
+Lassen Sie den Container für ein paar Minuten, Stunden oder Tage laufen (es sollte die Zeit sein, die Sie normalerweise warten, bis der Memory Leak "passiert") und starten Sie ihn neu: `docker-compose restart rspamd-mailcow`.
 
-Betreten Sie nun den Container, indem Sie `docker compose exec rspamd-mailcow bash` ausführen, wechseln Sie das Verzeichnis zu /tmp und kopieren Sie die asan-Dateien an den gewünschten Ort oder laden Sie sie über termbin.com hoch (`cat /tmp/rspamd-asan.* | nc termbin.com 9999`).
+Betreten Sie nun den Container, indem Sie `docker-compose exec rspamd-mailcow bash` ausführen, wechseln Sie das Verzeichnis zu /tmp und kopieren Sie die asan-Dateien an den gewünschten Ort oder laden Sie sie über termbin.com hoch (`cat /tmp/rspamd-asan.* | nc termbin.com 9999`).

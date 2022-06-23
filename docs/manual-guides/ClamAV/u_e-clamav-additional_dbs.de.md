@@ -45,7 +45,7 @@ MaxZipTypeRcg 50M
 ```
 10. Starten Sie den ClamAV Container neu:
 ```bash
-docker compose restart clamd-mailcow
+docker-compose restart clamd-mailcow
 ```
 
 **Bitte beachten Sie**:
@@ -66,5 +66,5 @@ DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
 ```
 2. Starten Sie den ClamAV Container neu:
 ```bash
-docker compose restart clamd-mailcow
+docker-compose restart clamd-mailcow
 ```

@@ -31,9 +31,9 @@ location /gitea/ {
 GITEA_SSH_PORT=127.0.0.1:4000
 ```
 
-5\. Führen Sie `docker compose up -d` aus, um den Gitea-Container hochzufahren und führen Sie anschließend `docker compose restart nginx-mailcow` aus.
+5\. Führen Sie `docker-compose up -d` aus, um den Gitea-Container hochzufahren und führen Sie anschließend `docker-compose restart nginx-mailcow` aus.
 
-6\. Wenn Sie mailcow zu https gezwungen haben, führen Sie Schritt 9 aus und starten Sie gitea mit `docker compose restart gitea-mailcow` neu. Fahren Sie mit Schritt 7 fort (Denken Sie daran, https anstelle von http zu verwenden, `https://mx.example.org/gitea/` 
+6\. Wenn Sie mailcow zu https gezwungen haben, führen Sie Schritt 9 aus und starten Sie gitea mit `docker-compose restart gitea-mailcow` neu. Fahren Sie mit Schritt 7 fort (Denken Sie daran, https anstelle von http zu verwenden, `https://mx.example.org/gitea/` 
 
 7\. Öffnen Sie `http://${MAILCOW_HOSTNAME}/gitea/`, zum Beispiel `http://mx.example.org/gitea/`. Für die Datenbankdetails stellen Sie `mysql` als Datenbankhost ein. Verwenden Sie den in mailcow.conf gefundenen Wert von DBNAME als Datenbankname, DBUSER als Datenbankbenutzer und DBPASS als Datenbankpasswort.
 
@@ -51,5 +51,5 @@ SSH_PORT = 4000
 ROOT_URL = https://mx.example.org/gitea/
 ```
 
-10\. Starten Sie gitea neu mit `docker compose restart gitea-mailcow`. Ihre Nutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten anzumelden.
+10\. Starten Sie gitea neu mit `docker-compose restart gitea-mailcow`. Ihre Nutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten anzumelden.
 

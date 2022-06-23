@@ -31,7 +31,7 @@ location /gogs/ {
 GOGS_SSH_PORT=127.0.0.1:4000
 ```
 
-5\. Führen Sie `docker compose up -d` aus, um den Gogs-Container hochzufahren und führen Sie anschließend `docker compose restart nginx-mailcow` aus.
+5\. Führen Sie `docker-compose up -d` aus, um den Gogs-Container hochzufahren und führen Sie anschließend `docker-compose restart nginx-mailcow` aus.
 
 6\. Öffnen Sie `http://${MAILCOW_HOSTNAME}/gogs/`, zum Beispiel `http://mx.example.org/gogs/`. Für Datenbank-Details setzen Sie `mysql` als Datenbank-Host. Verwenden Sie den in mailcow.conf gefundenen Wert von DBNAME als Datenbankname, DBUSER als Datenbankbenutzer und DBPASS als Datenbankpasswort.
 
@@ -49,5 +49,5 @@ SSH_PORT = 4000
 ROOT_URL = https://mx.example.org/gogs/
 ```
 
-9\. Starten Sie Gogs neu mit `docker compose restart gogs-mailcow`. Ihre Benutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten einzuloggen.
+9\. Starten Sie Gogs neu mit `docker-compose restart gogs-mailcow`. Ihre Benutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten einzuloggen.
 

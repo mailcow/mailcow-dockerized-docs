@@ -59,11 +59,11 @@ Yes.
 See the topic above, instead of a diff, you run checkout:
 
 ```
-docker compose down
+docker-compose down
 # Replace commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab by your ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker compose pull
-docker compose up -d
+docker-compose pull
+docker-compose up -d
 ```
 
 ### Hooks
