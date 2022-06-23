@@ -2667,7 +2667,7 @@ einzurichten.</p>
 Speicherplatz zu verschwenden. So können Sie Backups in sehr kurzen Abständen durchführen, um einen minimalen Datenverlust zu gewährleisten, wenn die Notwendigkeit besteht
 Daten aus einer Sicherung wiederherzustellen.</p>
 <p>Dieses Dokument führt Sie durch den Prozess zur Aktivierung kontinuierlicher Backups für mailcow mit borgmatic. Die borgmatic
-Funktionalität wird durch das <a href="https://github.com/b3vis/docker-borgmatic">borgmatic Docker image von b3vis</a> bereitgestellt. Schauen Sie sich
+Funktionalität wird durch das <a href="https://github.com/borgmatic-collective/docker-borgmatic">borgmatic Docker Image</a> bereitgestellt. Schauen Sie sich
 die <code>README</code> in diesem Repository, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
 Diese Anleitung behandelt nur die Grundlagen.</p>
 <h2 id="einrichten-von-borgmatic">Einrichten von borgmatic<a class="headerlink" href="#einrichten-von-borgmatic" title="Permanent link">&para;</a></h2>
@@ -2678,7 +2678,7 @@ Konfiguration ein:
 
 <span class="nt">services</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">borgmatic-mailcow</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b3vis/borgmatic</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/borgmatic-collective/borgmatic</span><span class="w"></span>
 <span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow</span><span class="w"></span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
 <span class="w">    </span><span class="nt">dns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}.254</span><span class="w"></span>
@@ -2834,7 +2834,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 18:27:30</span>
       
     
   </small>

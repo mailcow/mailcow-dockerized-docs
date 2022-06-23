@@ -2695,7 +2695,7 @@ set up.</p>
 space. This allows you to run backups in very short intervals to ensure minimal data loss when the need arises to
 recover data from a backup.</p>
 <p>This document guides you through the process to enable continuous backups for mailcow with borgmatic. The borgmatic
-functionality is provided by the <a href="https://github.com/b3vis/docker-borgmatic">borgmatic Docker image by b3vis</a>. Check out
+functionality is provided by the <a href="https://github.com/borgmatic-collective/docker-borgmatic">borgmatic Docker image</a>. Check out
 the <code>README</code> in that repository to find out about the other options (such as push notifications) that are available.
 This guide only covers the basics.</p>
 <h2 id="setting-up-borgmatic">Setting up borgmatic<a class="headerlink" href="#setting-up-borgmatic" title="Permanent link">&para;</a></h2>
@@ -2706,7 +2706,7 @@ configuration:</p>
 
 <span class="nt">services</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">borgmatic-mailcow</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b3vis/borgmatic</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/borgmatic-collective/borgmatic</span><span class="w"></span>
 <span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow</span><span class="w"></span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
 <span class="w">    </span><span class="nt">dns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}.254</span><span class="w"></span>
@@ -2881,7 +2881,7 @@ repository, so a manual backup isn't as essential.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 18:27:30</span>
       
     
   </small>
