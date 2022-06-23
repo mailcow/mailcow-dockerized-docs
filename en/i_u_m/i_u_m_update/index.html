@@ -2512,6 +2512,9 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerize
 # - Skip ICMP Check to public DNS resolvers (Use it only if you´ve blocked any ICMP Connections to your mailcow machine)
 ./update.sh --skip-ping-check
 
+# - Skips the Docker-Compose update process, update is done by the user manually
+./update.sh --no-update-compose
+
 # - Force update (unattended, but unsupported, use at own risk)
 ./update.sh --force
 
@@ -2554,7 +2557,7 @@ docker-compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:19:13</span>
       
     
   </small>
