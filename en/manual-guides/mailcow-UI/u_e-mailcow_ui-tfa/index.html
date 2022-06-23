@@ -2620,7 +2620,7 @@ Finally, enter your current account password and, after selecting the <code>Touc
 <h3 id="disable-unofficial-supported-fido-security-keys">Disable unofficial supported Fido Security Keys<a class="headerlink" href="#disable-unofficial-supported-fido-security-keys" title="Permanent link">&para;</a></h3>
 <p>With WebAuthn there is the possibility to use only official Fido Security Keys (from the big brands like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).</p>
 <p>This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used in their environment.</p>
-<p>To enable this feature, change the value <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf from <code>n</code> to <code>y</code> and restart the affected containers with <code>docker compose up -d</code>.</p>
+<p>To enable this feature, change the value <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf from <code>n</code> to <code>y</code> and restart the affected containers with <code>docker-compose up -d</code>.</p>
 <p>The mailcow will now use the Vendor Certificates located in your mailcow directory under <code>data/web/inc/lib/WebAuthn/rootCertificates</code>. </p>
 <h5 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
 <p>If you want to limit the official Vendor devices to Apple only you only need the Apple Vendor Certificate inside the <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
@@ -2653,7 +2653,7 @@ These vendor certificates are only used to verify original hardware, not to secu
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

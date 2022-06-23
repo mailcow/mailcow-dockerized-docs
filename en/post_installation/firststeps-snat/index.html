@@ -2369,16 +2369,16 @@ SNAT_TO_SOURCE=1.2.3.4
 # Use this IPv6 for outgoing connections (SNAT)
 SNAT6_TO_SOURCE=dead:beef
 </code></pre></div>
-<p>Run <code>docker compose up -d</code>.</p>
+<p>Run <code>docker-compose up -d</code>.</p>
 <p>The values are read by netfilter-mailcow. netfilter-mailcow will make sure, the post-routing rules are on position 1 in the netfilter table. It does automatically delete and re-create them if they are found on another position than 1.</p>
-<p>Check the output of <code>docker compose logs --tail=200 netfilter-mailcow</code> to ensure the SNAT settings have been applied.</p>
+<p>Check the output of <code>docker-compose logs --tail=200 netfilter-mailcow</code> to ensure the SNAT settings have been applied.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

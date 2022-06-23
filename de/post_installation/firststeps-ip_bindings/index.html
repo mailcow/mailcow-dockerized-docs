@@ -2455,7 +2455,7 @@ DOVEADM_PORT=127.0.0.1:19991
 SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
 </code></pre></div>
-<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker compose down</code> gefolgt von <code>docker compose up -d</code> aus.</p>
+<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
 <h2 id="ipv6-binding">IPv6-Binding<a class="headerlink" href="#ipv6-binding" title="Permanent link">&para;</a></h2>
 <p>Das Ändern von IPv6-Bindings ist anders als bei IPv4. Auch dies hat einen technischen Hintergrund.</p>
 <p>Eine <code>docker-compose.override.yml</code> Datei wird verwendet, anstatt die <code>docker-compose.yml</code> Datei direkt zu bearbeiten. Dies geschieht, um die Aktualisierbarkeit zu erhalten, da die Datei <code>docker-compose.yml</code> regelmäßig aktualisiert wird und Ihre Änderungen höchstwahrscheinlich überschrieben werden.</p>
@@ -2483,18 +2483,14 @@ services:
         - &#39;[2001:db8:dead:beef::123]:80:80&#39;
         - &#39;[2001:db8:dead:beef::123]:443:443&#39;
 </code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Alternativ kann auch die [::] Schreibweise benutzt werden um den jeweiligen Dienst auf allen IPv6 Interfaces lauschen zu lassen.</p>
-</div>
-<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker compose down</code> gefolgt von <code>docker compose up -d</code> aus.</p>
+<p>Um Ihre Änderungen zu übernehmen, führen Sie <code>docker-compose down</code> gefolgt von <code>docker-compose up -d</code> aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-10 10:46:15</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

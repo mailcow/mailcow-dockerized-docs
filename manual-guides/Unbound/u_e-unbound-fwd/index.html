@@ -2439,21 +2439,21 @@
   forward-addr: 8.8.4.4 # DO NOT USE PUBLIC DNS SERVERS - JUST AN EXAMPLE
 </code></pre></div>
 <p>Restart Unbound:</p>
-<div class="highlight"><pre><span></span><code>docker compose restart unbound-mailcow
+<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
 </code></pre></div>
 <h2 id="method-b-override-file">Method B, Override file<a class="headerlink" href="#method-b-override-file" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.override.yml .
 </code></pre></div>
 <p>Edit <code>docker-compose.override.yml</code> and adjust the IP.</p>
-<p>Run <code>docker compose down ; docker compose up -d</code>.</p>
+<p>Run <code>docker-compose down ; docker-compose up -d</code>.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

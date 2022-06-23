@@ -2486,12 +2486,12 @@ Fügen Sie die Einstellung ein, gefolgt von dem neuen Wert. Um zum Beispiel das 
 </div>
 <h3 id="dovecot-neu-laden">Dovecot neu laden<a class="headerlink" href="#dovecot-neu-laden" title="Permanent link">&para;</a></h3>
 <p>Nun laden Sie Dovecot neu:</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow dovecot reload
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot reload
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Sie können den Wert dieser Einstellung überprüfen mit 
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
 </code></pre></div>
 Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn geändert haben, sollten Sie den neuen Wert sehen.</p>
 </div>
@@ -2501,7 +2501,7 @@ Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn g
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

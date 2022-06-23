@@ -2489,7 +2489,7 @@ mailcow: dockerized vertraut auf das Standard-Gateway IP 172.22.1.1 als Proxy.</
 </code></pre></div></p>
 <p>Dadurch werden auch die Bindungen innerhalb des Nginx-Containers geändert! Dies ist wichtig, wenn Sie sich entscheiden, einen Proxy innerhalb von Docker zu verwenden.</p>
 <p><strong>WICHTIG:</strong> Verwenden Sie nicht Port 8081, 9081 oder 65510!</p>
-<p>Erzeugen Sie die betroffenen Container neu, indem Sie <code>docker compose up -d</code> ausführen.</p>
+<p>Erzeugen Sie die betroffenen Container neu, indem Sie <code>docker-compose up -d</code> ausführen.</p>
 <p><strong>Wichtige Informationen, bitte lesen Sie diese sorgfältig durch!</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2640,7 +2640,7 @@ backend mailcow
 <p><strong>Wichtig</strong>: Diese Konfiguration deckt nur das "Reverseproxing" des Webpanels (nginx-mailcow) unter Verwendung von Traefik v2 ab. Wenn Sie auch die Mail-Dienste wie dovecot, postfix... reproxen wollen, müssen Sie die folgende Konfiguration an jeden Container anpassen und einen <a href="https://docs.traefik.io/routing/entrypoints/">EntryPoint</a> in Ihrer <code>traefik.toml</code> oder <code>traefik.yml</code> (je nachdem, welche Konfiguration Sie verwenden) für jeden Port erstellen. </p>
 <p>In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 <code>[certificatesresolvers]</code> in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a>, falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.</p>
 <p>Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
-Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf</code> setzen und <code>docker compose up -d</code> ausführen, um die Änderungen zu übernehmen.</p>
+Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf</code> setzen und <code>docker-compose up -d</code> ausführen, um die Änderungen zu übernehmen.</p>
 <p>Dann erstellen wir eine <code>docker-compose.override.yml</code> Datei, um die Hauptdatei <code>docker-compose.yml</code> zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
@@ -2673,7 +2673,7 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <span class="w">        </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"></span>
 <span class="w">        </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="c1"># mounten Sie den Ordner, der Traefiks `acme.json&#39; Datei enthält</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># in diesem Fall wird Traefik von seinem eigenen docker compose in ../traefik gestartet</span><span class="w"></span>
+<span class="w">          </span><span class="c1"># in diesem Fall wird Traefik von seinem eigenen docker-compose in ../traefik gestartet</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../traefik/data:/traefik:ro</span><span class="w"></span>
 <span class="w">          </span><span class="c1"># SSL-Ordner von mailcow einhängen</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/:/output:rw</span><span class="w"></span>
@@ -2686,10 +2686,10 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 </code></pre></div>
-<p>Starten Sie die neuen Container mit <code>docker compose up -d</code>.</p>
+<p>Starten Sie die neuen Container mit <code>docker-compose up -d</code>.</p>
 <p>Da Traefik 2 ein acme v2 Format verwendet, um ALLE Lizenzen von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>), der die Datei <code>acme.json</code> über ein Volume und eine Variable <code>DOMAIN=example. org</code>, und damit wird der Container die <code>cert.pem</code> und <code>key.pem</code> Dateien ausgeben, dafür lassen wir einfach den <code>traefik-certs-dumper</code> Container laufen, binden das <code>/traefik</code> Volume an den Ordner, in dem unsere <code>acme.json</code> gespeichert ist, binden das <code>/output</code> Volume an unseren mailcow <code>data/assets/ssl/</code> Ordner, und setzen die <code>DOMAIN=example.org</code> Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. </p>
 <p>Dieser Container überwacht die Datei <code>acme.json</code> auf Änderungen und generiert die Dateien <code>cert.pem</code> und <code>key.pem</code> direkt in <code>data/assets/ssl/</code>, wobei der Pfad mit dem <code>/output</code>-Pfad des Containers verbunden ist.</p>
-<p>Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker compose verwenden (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>).</p>
+<p>Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker-compose verwenden (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>).</p>
 <p>Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie <a href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden">hier</a>.</p>
 <p>Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.</p>
 <h3 id="optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Optional: Post-Hook-Skript für nicht-mailcow ACME-Clients<a class="headerlink" href="#optional-post-hook-skript-fur-nicht-mailcow-acme-clients" title="Permanent link">&para;</a></h3>
@@ -2707,14 +2707,14 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
 <p>Wenn Sie vorhaben, einen Servernamen zu verwenden, der nicht <code>MAILCOW_HOSTNAME</code> in Ihrem Reverse-Proxy ist, stellen Sie sicher, dass Sie diesen Namen zuerst in mailcow.conf über <code>ADDITIONAL_SERVER_NAMES</code> einpflegen. Die Namen müssen durch Kommas getrennt werden und <strong>dürfen</strong> keine Leerzeichen enthalten. Wenn Sie diesen Schritt überspringen, kann es sein, dass mailcow auf Ihren Reverse-Proxy mit einer falschen Seite antwortet.</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 </code></pre></div>
-<p>Führen Sie <code>docker compose up -d</code> zum Anwenden aus.</p>
+<p>Führen Sie <code>docker-compose up -d</code> zum Anwenden aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

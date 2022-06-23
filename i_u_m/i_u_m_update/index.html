@@ -2534,11 +2534,11 @@ dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
 <h3 id="can-i-roll-back">Can I roll back?<a class="headerlink" href="#can-i-roll-back" title="Permanent link">&para;</a></h3>
 <p>Yes.</p>
 <p>See the topic above, instead of a diff, you run checkout:</p>
-<div class="highlight"><pre><span></span><code>docker compose down
+<div class="highlight"><pre><span></span><code>docker-compose down
 # Replace commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab by your ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker compose pull
-docker compose up -d
+docker-compose pull
+docker-compose up -d
 </code></pre></div>
 <h3 id="hooks">Hooks<a class="headerlink" href="#hooks" title="Permanent link">&para;</a></h3>
 <p>You can hook into the update mechanism by adding scripts called <code>pre_commit_hook.sh</code> and <code>post_commit_hook.sh</code> to your mailcows root directory. See <a href="../../manual-guides/u_e-update-hooks/">this</a> for more details.</p>
@@ -2554,7 +2554,7 @@ docker compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:01:22</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

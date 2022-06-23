@@ -2549,7 +2549,7 @@ fi
 </code></pre></div></p>
 <p>Am Zielort (in diesem Fall <code>/external_share/backups</code>) möchten Sie vielleicht Snapshot-Fähigkeiten haben (ZFS, Btrfs usw.). Machen Sie täglich einen Snapshot und bewahren Sie ihn für n Tage auf, um ein konsistentes Backup zu erhalten.
 Führen Sie <strong>kein</strong> rsync auf eine Samba-Freigabe durch, Sie müssen die richtigen Berechtigungen einhalten!</p>
-<p>Zum Wiederherstellen müssen Sie rsync einfach in umgekehrter Richtung ausführen und Docker neu starten, um die Volumes erneut zu lesen. Führen Sie <code>docker compose pull</code> und <code>docker compose up -d</code> aus.</p>
+<p>Zum Wiederherstellen müssen Sie rsync einfach in umgekehrter Richtung ausführen und Docker neu starten, um die Volumes erneut zu lesen. Führen Sie <code>docker-compose pull</code> und <code>docker-compose up -d</code> aus.</p>
 <p>Wenn Sie Glück haben, können Redis und MariaDB die inkonsistenten Datenbanken automatisch reparieren (wenn sie <em>inkonsistent</em> sind).
 Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um die inkonsistenten Elemente wiederherzustellen. Wenn die Wiederherstellung fehlschlägt, versuchen Sie, die Sicherungen zu extrahieren und die Dateien manuell zurück zu kopieren. Behalten Sie die Dateiberechtigungen bei!</p>
 
@@ -2558,7 +2558,7 @@ Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

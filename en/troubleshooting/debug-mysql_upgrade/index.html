@@ -2411,8 +2411,8 @@
 
 <h2 id="run-a-manual-mysql_upgrade">Run a manual mysql_upgrade<a class="headerlink" href="#run-a-manual-mysql_upgrade" title="Permanent link">&para;</a></h2>
 <p>This step is usually not necessary. </p>
-<div class="highlight"><pre><span></span><code>docker compose stop mysql-mailcow watchdog-mailcow
-docker compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; bash &amp;&amp; exit 0&quot;&#39; mysql-mailcow
+<div class="highlight"><pre><span></span><code>docker-compose stop mysql-mailcow watchdog-mailcow
+docker-compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; bash &amp;&amp; exit 0&quot;&#39; mysql-mailcow
 </code></pre></div>
 <p>As soon as the SQL shell spawned, run <code>mysql_upgrade</code> and exit the container:</p>
 <div class="highlight"><pre><span></span><code>mysql_upgrade
@@ -2424,7 +2424,7 @@ exit
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

@@ -2456,7 +2456,7 @@
 <p class="admonition-title">Warning</p>
 <p>Neuere Docker-Versionen scheinen sich über bestehende Volumes zu beschweren. Man kann dies vorübergehend beheben, indem man das bestehende Volume entfernt und mailcow mit der Override-Datei startet. Aber es scheint nach einem Neustart problematisch zu sein (muss bestätigt werden).</p>
 </div>
-<p>Ein einfacher, schmutziger, aber stabiler Workaround ist es, mailcow zu stoppen (<code>docker compose down</code>), <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data</code> zu entfernen und einen neuen Link zu Ihrem entfernten Dateisystem zu erstellen, zum Beispiel:</p>
+<p>Ein einfacher, schmutziger, aber stabiler Workaround ist es, mailcow zu stoppen (<code>docker-compose down</code>), <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data</code> zu entfernen und einen neuen Link zu Ihrem entfernten Dateisystem zu erstellen, zum Beispiel:</p>
 <div class="highlight"><pre><span></span><code>mv /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data_backup
 ln -s /mnt/volume-xy/vmail_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data
 </code></pre></div>
@@ -2494,10 +2494,10 @@ volumes:
 </code></pre></div>
 <ul>
 <li>Kopieren Sie den Inhalt des <code>Mountpoint</code>-Ordners an den neuen Speicherort (z.B. <code>/data/mailcow/vmail</code>) mit <code>cp -a</code>, <code>rsync -a</code> oder einem ähnlichen, nicht strikten Kopierbefehl</li>
-<li>Stoppen Sie mailcow durch Ausführen von <code>docker compose down</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
+<li>Stoppen Sie mailcow durch Ausführen von <code>docker-compose down</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
 <li>Erstellen Sie die Datei <code>docker-compose.override.yml</code>, bearbeiten Sie den Gerätepfad entsprechend</li>
 <li>Löschen Sie den aktuellen vmail-Ordner: <code>docker volume rm mailcowdockerized_vmail-vol-1</code></li>
-<li>Starten Sie mailcow durch Ausführen von <code>docker compose up -d</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
+<li>Starten Sie mailcow durch Ausführen von <code>docker-compose up -d</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
 </ul>
 
   <hr>
@@ -2505,7 +2505,7 @@ volumes:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 15:19:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

@@ -2385,19 +2385,19 @@
 </span>  }
 }
 </code></pre></div>
-<p>Speichern Sie und starten Sie Nginx neu: <code>docker compose restart nginx-mailcow</code>.</p>
+<p>Speichern Sie und starten Sie Nginx neu: <code>docker-compose restart nginx-mailcow</code>.</p>
 <p>Öffnen Sie nun <code>mailcow.conf</code> und suchen Sie <code>ADDITIONAL_SAN</code>.
 Fügen Sie <code>webmail.example.org</code> zu diesem Array hinzu, verwenden Sie keine Anführungszeichen!</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SAN=webmail.example.org
 </code></pre></div>
-<p>Führen Sie <code>docker compose up -d</code> aus. Siehe "acme-mailcow" und "nginx-mailcow" Logs, wenn etwas fehlschlägt.</p>
+<p>Führen Sie <code>docker-compose up -d</code> aus. Siehe "acme-mailcow" und "nginx-mailcow" Logs, wenn etwas fehlschlägt.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

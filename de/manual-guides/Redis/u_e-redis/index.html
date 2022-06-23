@@ -2492,13 +2492,13 @@
 <p>Redis wird als Key-Value-Speicher für die Einstellungen und Daten von rspamd und (einige von) mailcow verwendet. Wenn Sie mit Redis nicht vertraut sind, lesen Sie bitte die <a href="https://redis.io/topics/introduction">Einführung in Redis</a> und besuchen Sie gegebenenfalls diese <a href="http://try.redis.io/">wunderbare Anleitung</a>, um zu erfahren, wie man Redis benutzt.</p>
 <h2 id="client">Client<a class="headerlink" href="#client" title="Permanent link">&para;</a></h2>
 <p>Um sich mit dem redis cli zu verbinden, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli
+<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli
 </code></pre></div>
 <h3 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h3>
 <p>Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:</p>
 <h5 id="monitor">MONITOR<a class="headerlink" href="#monitor" title="Permanent link">&para;</a></h5>
 <p>Überwacht alle vom Server empfangenen Anfragen in Echtzeit:</p>
-<div class="highlight"><pre><span></span><code># docker compose exec redis-mailcow redis-cli
+<div class="highlight"><pre><span></span><code># docker-compose exec redis-mailcow redis-cli
 127.0.0.1:6379&gt; überwachen
 OK
 1494077286.401963 [0 172.22.1.253:41228] &quot;SMEMBERS&quot; &quot;BAYES_SPAM_keys&quot;
@@ -2521,7 +2521,7 @@ PONG
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

@@ -2486,12 +2486,12 @@ Insert the setting followed by the new value. For example, to set the interval t
 </div>
 <h3 id="reload-dovecot">Reload Dovecot<a class="headerlink" href="#reload-dovecot" title="Permanent link">&para;</a></h3>
 <p>Now reload Dovecot:
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow dovecot reload
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot reload
 </code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>You can check the value of this setting with 
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
+<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
 </code></pre></div>
 If you didn't change it, it should be at 2m. If you did change it, you should see your new value.</p>
 </div>
@@ -2501,7 +2501,7 @@ If you didn't change it, it should be at 2m. If you did change it, you should se
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>

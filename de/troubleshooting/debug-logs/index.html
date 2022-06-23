@@ -2364,11 +2364,11 @@
 <p class="admonition-title">Warning</p>
 <p>Dieser Abschnitt gilt nur für Docker's Standard-Logging-Treiber (JSON).</p>
 </div>
-<p>Um die Logs aller mailcow: dockerized bezogenen Container zu sehen, können Sie <code>docker compose logs</code> innerhalb Ihres mailcow-dockerized Ordners verwenden, der Ihre <code>mailcow.conf</code> enthält. Dies ist normalerweise ein bisschen viel, aber Sie können die Ausgabe mit <code>--tail=100</code> auf die letzten 100 Zeilen pro Container kürzen, oder ein <code>-f</code> hinzufügen, um die Live-Ausgabe aller Ihrer Dienste zu verfolgen.</p>
-<p>Um die Logs eines bestimmten Dienstes zu sehen, kann man <code>docker compose logs [options] $service_name</code> verwenden</p>
+<p>Um die Logs aller mailcow: dockerized bezogenen Container zu sehen, können Sie <code>docker-compose logs</code> innerhalb Ihres mailcow-dockerized Ordners verwenden, der Ihre <code>mailcow.conf</code> enthält. Dies ist normalerweise ein bisschen viel, aber Sie können die Ausgabe mit <code>--tail=100</code> auf die letzten 100 Zeilen pro Container kürzen, oder ein <code>-f</code> hinzufügen, um die Live-Ausgabe aller Ihrer Dienste zu verfolgen.</p>
+<p>Um die Logs eines bestimmten Dienstes zu sehen, kann man <code>docker-compose logs [options] $service_name</code> verwenden</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Die verfügbaren Optionen für den Befehl <strong>docker compose logs</strong> sind:</p>
+<p>Die verfügbaren Optionen für den Befehl <strong>docker-compose logs</strong> sind:</p>
 <ul>
 <li><strong>-no-color</strong>: Erzeugt eine einfarbige Ausgabe.</li>
 <li><strong>-f</strong>: Der Log-Ausgabe folgen.</li>
@@ -2382,7 +2382,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-02 14:32:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
       
     
   </small>
