@@ -10,7 +10,7 @@ space. This allows you to run backups in very short intervals to ensure minimal 
 recover data from a backup.
 
 This document guides you through the process to enable continuous backups for mailcow with borgmatic. The borgmatic
-functionality is provided by the [borgmatic Docker image by b3vis](https://github.com/b3vis/docker-borgmatic). Check out
+functionality is provided by the [borgmatic Docker image](https://github.com/borgmatic-collective/docker-borgmatic). Check out
 the `README` in that repository to find out about the other options (such as push notifications) that are available.
 This guide only covers the basics.
 
@@ -26,7 +26,7 @@ version: '2.1'
 
 services:
   borgmatic-mailcow:
-    image: b3vis/borgmatic
+    image: ghcr.io/borgmatic-collective/borgmatic
     hostname: mailcow
     restart: always
     dns: ${IPV4_NETWORK:-172.22.1}.254
