@@ -2482,15 +2482,15 @@ Sie können auch "all" als zweiten Parameter verwenden, um alle Komponenten zu s
 ./helper-scripts/backup_and_restore.sh backup vmail
 </code></pre></div>
 <p>Das Skript wird Sie nach einem Speicherort für die Sicherung fragen. Innerhalb dieses Speicherortes wird es Ordner im Format "mailcow_DATE" erstellen.
-Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nicht zu unterbrechen.</p>
-<p>Um ein Backup unbeaufsichtigt durchzuführen, definieren Sie MAILCOW_BACKUP_LOCATION als Umgebungsvariable bevor Sie das Skript starten:</p>
+Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nicht zu stören.</p>
+<p>Um ein Backup unbeaufsichtigt durchzuführen, definieren Sie MAILCOW_BACKUP_LOCATION als Umgebungsvariable, bevor Sie das Skript starten:</p>
 <div class="highlight"><pre><span></span><code>MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 </code></pre></div>
 <h4 id="cronjob">Cronjob<a class="headerlink" href="#cronjob" title="Permanent link">&para;</a></h4>
 <p>Sie können das Backup-Skript regelmäßig über einen Cronjob laufen lassen. Stellen Sie sicher, dass <code>BACKUP_LOCATION</code> existiert:</p>
 <div class="highlight"><pre><span></span><code>5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
 </code></pre></div>
-<p>Standardmäßig sendet Cron das komplette Ergebnis jeder Backup-Operation per E-Mail. Wenn Sie möchten, dass cron nur im Fehlerfall (Exit-Code ungleich Null) eine E-Mail sendet, können Sie den folgenden Ausschnitt verwenden. Die Pfade müssen entsprechend Ihrer Einrichtung angepasst werden (dieses Skript ist ein Beitrag des Benutzers).</p>
+<p>Standardmäßig sendet Cron das komplette Ergebnis jeder Backup-Operation per E-Mail. Wenn Sie möchten, dass cron nur im Fehlerfall (Exit-Code ungleich Null) eine E-Mail sendet, können Sie den folgenden Ausschnitt verwenden. Die Pfade müssen entsprechend Ihrer Einrichtung angepasst werden (dieses Skript ist ein Beitrag eines Benutzers).</p>
 <p>Das folgende Skript kann in <code>/etc/cron.daily/mailcow-backup</code> platziert werden - vergessen Sie nicht, es mit <code>chmod +x</code> als ausführbar zu markieren:</p>
 <div class="highlight"><pre><span></span><code>#!/bin/sh
 
@@ -2514,25 +2514,6 @@ if [ $RESULT -ne 0 ]
     then
             echo &quot;${SCRIPT} ${PARAMETERS} ${OPTIONS} encounters an error:&quot;
             echo &quot;RESULT=$RESULT&quot;
-# https://mailcow.github.io/mailcow-dockerized-docs/b_n_r_backup/
-
-set -e
-
-OUT=&quot;$(mktemp)&quot;
-export MAILCOW_BACKUP_LOCATION=&quot;/opt/backup&quot;
-SCRIPT=&quot;/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh&quot;
-PARAMETERS=&quot;alle sichern&quot;
-OPTIONS=&quot;--delete-days 30&quot;
-
-# Befehl ausführen
-setzen +e
-&quot;${SCRIPT}&quot; ${PARAMETERS} ${OPTIONS} 2&gt;&amp;1 &gt; &quot;$OUT&quot;
-ERGEBNIS=$?
-
-if [ $RESULT -ne 0 ]
-    dann
-            echo &quot;${SCRIPT} ${PARAMETER} ${OPTIONS} ist auf einen Fehler gestoßen:&quot;
-            echo &quot;ERGEBNIS=$ERGEBNIS&quot;
             echo &quot;STDOUT / STDERR:&quot;
             cat &quot;$OUT&quot;
 fi
@@ -2545,12 +2526,12 @@ fi
 <div class="highlight"><pre><span></span><code>25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
 40 2 * * * rsync -aH --delete /var/lib/docker/volumes /external_share/backups/var_lib_docker_volumes
 5 4 * * * cd /opt/mailcow-dockerized/; BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
-# Wenn Sie wollen, benutzen Sie acl util, um die Berechtigungen einiger/aller Ordner/Dateien zu sichern: getfacl -Rn /path
+# Wenn Sie wollen, benutzen Sie das Werkzeug acl, um die Berechtigungen einiger/aller Ordner/Dateien zu sichern: getfacl -Rn /path
 </code></pre></div></p>
-<p>Am Zielort (in diesem Fall <code>/external_share/backups</code>) möchten Sie vielleicht Snapshot-Fähigkeiten haben (ZFS, Btrfs usw.). Machen Sie täglich einen Snapshot und bewahren Sie ihn für n Tage auf, um ein konsistentes Backup zu erhalten.
-Führen Sie <strong>kein</strong> rsync auf eine Samba-Freigabe durch, Sie müssen die richtigen Berechtigungen einhalten!</p>
+<p>Am Zielort (in diesem Fall <code>/external_share/backups</code>) möchten Sie vielleicht Snapshot-Möglichkeiten haben (ZFS, Btrfs usw.). Machen Sie täglich einen Snapshot und bewahren Sie ihn für n Tage auf, um ein konsistentes Backup zu erhalten.
+Führen Sie <strong>kein</strong> rsync auf eine Samba-Freigabe durch, Sie müssen die richtigen Berechtigungen behalten!</p>
 <p>Zum Wiederherstellen müssen Sie rsync einfach in umgekehrter Richtung ausführen und Docker neu starten, um die Volumes erneut zu lesen. Führen Sie <code>docker-compose pull</code> und <code>docker-compose up -d</code> aus.</p>
-<p>Wenn Sie Glück haben, können Redis und MariaDB die inkonsistenten Datenbanken automatisch reparieren (wenn sie <em>inkonsistent</em> sind).
+<p>Wenn Sie Glück haben, können Redis und MariaDB die inkonsistenten Datenbanken automatisch reparieren (wenn sie inkonsistent <em>sind</em>).
 Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um die inkonsistenten Elemente wiederherzustellen. Wenn die Wiederherstellung fehlschlägt, versuchen Sie, die Sicherungen zu extrahieren und die Dateien manuell zurück zu kopieren. Behalten Sie die Dateiberechtigungen bei!</p>
 
   <hr>
@@ -2558,7 +2539,7 @@ Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-27 19:14:02</span>
       
     
   </small>

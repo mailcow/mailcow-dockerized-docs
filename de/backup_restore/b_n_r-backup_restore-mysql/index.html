@@ -2428,7 +2428,7 @@
 <h2 id="sicherung">Sicherung<a class="headerlink" href="#sicherung" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd /pfad/zu/mailcow-dockerized
 source mailcow.conf
-DATE=$(Datum +&quot;%Y%m%d_%H%M%S&quot;)
+DATE=$(date +&quot;%Y%m%d_%H%M%S&quot;)
 docker-compose exec -T mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} &gt; backup_${DBNAME}_${DATE}.sql
 </code></pre></div>
 <h2 id="wiederherstellen">Wiederherstellen<a class="headerlink" href="#wiederherstellen" title="Permanent link">&para;</a></h2>
@@ -2446,7 +2446,7 @@ docker exec -i $(docker-compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPAS
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-27 19:14:02</span>
       
     
   </small>

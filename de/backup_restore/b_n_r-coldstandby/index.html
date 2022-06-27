@@ -2460,27 +2460,27 @@
 <p>Dies kann auch verwendet werden, um Ihre mailcow auf einen neuen Server zu übertragen.</p>
 <h2 id="das-sollten-sie-wissen">Das sollten Sie wissen<a class="headerlink" href="#das-sollten-sie-wissen" title="Permanent link">&para;</a></h2>
 <p>Das bereitgestellte Skript funktioniert auf Standardinstallationen.</p>
-<p>Es kann kaputt gehen, wenn Sie nicht unterstützte Volume Overrides verwenden. Wir unterstützen das nicht und wir werden keine Hacks einbauen, die das unterstützen. Bitte erstellen und pflegen Sie einen Fork, wenn Sie Ihre Änderungen beibehalten wollen.</p>
+<p>Es kann versagen, wenn Sie nicht unterstützte Volume Overrides verwenden. Wir unterstützen das nicht und wir werden keine Hacks einbauen, die das unterstützen. Bitte erstellen und pflegen Sie einen Fork, wenn Sie Ihre Änderungen beibehalten wollen.</p>
 <p>Das Skript wird <strong>die gleichen Pfade</strong> wie Ihre Standard-Mailcow-Installation verwenden. Das ist das mailcow-Basisverzeichnis - für die meisten Nutzer <code>/opt/mailcow-dockerized</code> - sowie die Mountpoints.</p>
 <p>Um die Pfade Ihrer Quellvolumes zu finden, verwenden wir <code>docker inspect</code> und lesen das Zielverzeichnis jedes Volumes, das mit Ihrem mailcow compose Projekt verbunden ist. Das bedeutet, dass wir auch Volumes übertragen, die Sie in einer Override-Datei hinzugefügt haben. Lokale Bind-Mounts können funktionieren, müssen aber nicht.</p>
-<p>Die Verwendung von rsync mit dem <code>--delete</code> Flag. Das Ziel wird eine exakte Kopie der Quelle sein.</p>
+<p>Das Skript verwendet rsync mit dem <code>--delete</code> Flag. Das Ziel wird eine exakte Kopie der Quelle sein.</p>
 <p><code>mariabackup</code> wird verwendet, um eine konsistente Kopie des SQL-Datenverzeichnisses zu erstellen.</p>
 <p>Nach dem Rsync der Daten führen wir <code>docker-compose pull</code> aus und entfernen alte Image-Tags aus dem Ziel.</p>
 <p>Ihre Quelle wird zu keinem Zeitpunkt verändert.</p>
-<p>**Sie sollten sicherstellen, dass Sie die gleiche <code>/etc/docker/daemon.json</code> auf dem entfernten Ziel verwenden.</p>
+<p><strong>Sie sollten sicherstellen, dass Sie die gleiche <code>/etc/docker/daemon.json</code> auf dem entfernten Ziel verwenden.</strong></p>
 <p>Sie sollten keine Festplatten-Snapshots (z. B. über ZFS, LVM usw.) auf dem Ziel ausführen, während dieses Skript ausgeführt wird.</p>
 <p>Die Versionierung ist nicht Teil dieses Skripts, wir verlassen uns auf das Ziel (Snapshots oder Backups). Sie können dafür auch jedes andere Tool verwenden.</p>
 <h2 id="vorbereiten">Vorbereiten<a class="headerlink" href="#vorbereiten" title="Permanent link">&para;</a></h2>
 <p>Sie benötigen ein SSH-fähiges Ziel und eine Schlüsseldatei, um sich mit diesem Ziel zu verbinden. Der Schlüssel sollte nicht durch ein Passwort geschützt sein, damit das Skript unbeaufsichtigt arbeiten kann.</p>
 <p>In Ihrem mailcow-Basisverzeichnis, z.B. <code>/opt/mailcow-dockerized</code>, finden Sie eine Datei <code>create_cold_standby.sh</code>.</p>
 <p>Bearbeiten Sie diese Datei und ändern Sie die exportierten Variablen:</p>
-<div class="highlight"><pre><span></span><code>export REMOTE_SSH_KEY=/pfad/zur/keyfile
+<div class="highlight"><pre><span></span><code>export REMOTE_SSH_KEY=/pfad/zum/keyfile
 export REMOTE_SSH_PORT=22
 export REMOTE_SSH_HOST=mailcow-backup.host.name
 </code></pre></div>
 <p>Der Schlüssel muss im Besitz von root sein und darf nur von diesem gelesen werden können.</p>
 <p>Sowohl die Quelle als auch das Ziel benötigen <code>rsync</code> &gt;= v3.1.0.
-Das Ziel muss über Docker und docker-compose <strong>v1</strong> verfügen.</p>
+Das Ziel muss über Docker und docker-compose <strong>v2</strong> verfügen.</p>
 <p>Das Skript wird Fehler automatisch erkennen und sich beenden.</p>
 <p>Sie können die Verbindung testen, indem Sie <code>ssh mailcow-backup.host.name -p22 -i /path/to/keyfile</code> ausführen.</p>
 <h2 id="backup-und-aktualisierung-des-cold-standby">Backup und Aktualisierung des Cold-Standby<a class="headerlink" href="#backup-und-aktualisierung-des-cold-standby" title="Permanent link">&para;</a></h2>
@@ -2504,7 +2504,7 @@ Das Ziel muss über Docker und docker-compose <strong>v1</strong> verfügen.</p>
 
 0 3 * * * bash /opt/mailcow-dockerized/create_cold_standby.sh 2&gt; /var/log/mailcow-coldstandby-sync.log
 </code></pre></div>
-<p>Wenn korrekt gespeichert, sollte der Cron-Job durch Eingabe angezeigt werden:</p>
+<p>Wenn korrekt gespeichert, sollte der Cron-Job durch folgende Eingabe angezeigt werden:</p>
 <div class="highlight"><pre><span></span><code>crontab -l
 </code></pre></div>
 
@@ -2513,7 +2513,7 @@ Das Ziel muss über Docker und docker-compose <strong>v1</strong> verfügen.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-27 19:14:02</span>
       
     
   </small>
