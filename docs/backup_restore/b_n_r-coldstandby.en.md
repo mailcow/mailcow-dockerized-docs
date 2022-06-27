@@ -10,11 +10,11 @@ The provided script will work on default installations.
 
 It may break when you use unsupported volume overrides. We don't support that and we will not include hacks to support that. Please run and maintain a fork if you plan to keep your changes.
 
-The script will use **the same pathes** as your default mailcow installation. That is the mailcow base directory - for most users `/opt/mailcow-dockerized` - as well as the mountpoints.
+The script will use **the same paths** as your default mailcow installation. That is the mailcow base directory - for most users `/opt/mailcow-dockerized` - as well as the mountpoints.
 
-To find the pathes of your source volumes we use `docker inspect` and read the destination directory of every volume related to your mailcow compose project. This means we will also transfer volumes you may have added in a override file. Local bind mounts may or may not work.
+To find the paths of your source volumes we use `docker inspect` and read the destination directory of every volume related to your mailcow compose project. This means we will also transfer volumes you may have added in an override file. Local bind mounts may or may not work.
 
-The use rsync with the `--delete` flag. The destination will be an exact copy of the source.
+The script uses rsync with the `--delete` flag. The destination will be an exact copy of the source.
 
 `mariabackup` is used to create a consistent copy of the SQL data directory.
 
@@ -30,7 +30,7 @@ Versioning is not part of this script, we rely on the destination (snapshots or 
 
 ## Prepare
 
-You will need a SSH-enabled destination and a keyfile to connect to said destination. The key should not be protected by a password for the script to work unattended.
+You will need an SSH-enabled destination and a keyfile to connect to said destination. The key should not be protected by a password for the script to work unattended.
 
 In your mailcow base directory, e.g. `/opt/mailcow-dockerized` you will find a file `create_cold_standby.sh`.
 
@@ -45,7 +45,7 @@ export REMOTE_SSH_HOST=mailcow-backup.host.name
 The key must be owned and readable by root only.
 
 Both the source and destination require `rsync` >= v3.1.0.
-The destination must have Docker and docker-compose **v1** available.
+The destination must have Docker and docker-compose **v2** available.
 
 The script will detect errors automatically and exit.
 

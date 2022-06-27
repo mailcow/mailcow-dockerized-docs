@@ -6,7 +6,7 @@ Wenn Sie Ihren Fehler innerhalb von ein paar Stunden bemerken, können Sie die D
 
 Wir erstellen automatisch tägliche Backups (24 Stunden Intervall ab dem Hochfahren -d) in `/var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/`.
 
-**Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrem Mailcow-Backend** existiert. Legen Sie diesen neu an, falls nicht mehr existent.
+**Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrem Mailcow-Backend existiert**. Legen Sie diesen neu an, falls nicht mehr existent.
 
 Kopieren Sie die Datei mit dem Namen des Benutzers, den Sie wiederherstellen wollen, nach `__MAILCOW_DIRECTORY__/data/conf/sogo`.
 
@@ -28,7 +28,7 @@ Eine gelöschte Mailbox wird in ihrer verschlüsselten Form nach `/var/lib/docke
 
 Der Ordner innerhalb von `_garbage` folgt der Struktur `[timestamp]_[domain_sanitized][user_sanitized]`, zum Beispiel `1629109708_exampleorgtest` im Falle von test@example.org, das am 1629109708 gelöscht wurde.
 
-Um die Mailbox wiederherzustellen, stellen Sie sicher, dass Sie tatsächlich auf die gleiche Mailcow wiederherstellen, von der sie gelöscht wurde, oder Sie verwenden die gleichen Verschlüsselungsschlüssel in `crypt-vol-1`.
+Um die Mailbox wiederherzustellen, stellen Sie sicher, dass Sie tatsächlich auf die gleiche Mailcow wiederherstellen, von der sie gelöscht wurde, oder Sie die gleichen Verschlüsselungsschlüssel in `crypt-vol-1` verwenden.
 
 **Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrer Mailcow existiert**. Legen Sie diesen neu an, wenn der Benutzer fehlt.
 
