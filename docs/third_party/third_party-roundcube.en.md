@@ -120,7 +120,7 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
 cd data/web/rc/plugins
-wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1.tar.gz  | tar xfvz -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
