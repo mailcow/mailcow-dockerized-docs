@@ -175,7 +175,7 @@ Upgrading Roundcube is rather simple, go to the [Github releases](https://github
 
 ```
 # Enter a bash session of the mailcow PHP container
-docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
+docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
 # Install required upgrade dependency, then upgrade Roundcube to wanted release
 apk add rsync
@@ -246,6 +246,6 @@ Copy the contents of the following files from this [Snippet](https://gitlab.com/
 Finally, restart mailcow
 
 ```
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
