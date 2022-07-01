@@ -2483,10 +2483,10 @@
 <p>Laden Sie Roundcube 1.5.x in das Web htdocs Verzeichnis herunter und entpacken Sie es (hier <code>rc/</code>):
 <div class="highlight"><pre><span></span><code># Prüfen Sie, ob eine neuere Version vorliegt!
 cd daten/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
 
 # Ändern Sie den Ordnernamen
-mv roundcubemail-1.5.2 rc
+mv roundcubemail-1.5.3 rc
 
 # Berechtigungen ändern
 chown -R root: rc/
@@ -2577,7 +2577,7 @@ $config[&#39;password_query&#39;] = &quot;UPDATE mailbox SET password = %P WHERE
 <h2 id="carddav-adressbucher-in-roundcube-einbinden">CardDAV Adressbücher in Roundcube einbinden<a class="headerlink" href="#carddav-adressbucher-in-roundcube-einbinden" title="Permanent link">&para;</a></h2>
 <p>Laden Sie die neueste Version von <a href="https://github.com/mstilkerich/rcmcarddav">RCMCardDAV</a> in das Roundcube Plugin Verzeichnis und entpacken Sie es (hier <code>rc/plugins</code>):
 <div class="highlight"><pre><span></span><code>cd data/web/rc/plugins
-wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.3.0/carddav-v4.3.0.tar.gz | tar xfvz -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz | tar xfvz -
 chown -R root: carddav/
 </code></pre></div></p>
 <p>Kopieren Sie die Datei <code>config.inc.php.dist</code> nach <code>config.inc.php</code> (hier in <code>rc/plugins/carddav</code>) und fügen Sie die folgende Voreinstellung an das Ende der Datei an - vergessen Sie nicht, <code>mx.example.org</code> durch Ihren eigenen Hostnamen zu ersetzen:
@@ -2618,13 +2618,13 @@ $MAILCOW_APPS = array(
 <h2 id="aktualisierung-von-roundcube">Aktualisierung von Roundcube<a class="headerlink" href="#aktualisierung-von-roundcube" title="Permanent link">&para;</a></h2>
 <p>Ein Upgrade von Roundcube ist recht einfach: Gehen Sie auf die <a href="https://github.com/roundcube/roundcubemail/releases">Github releases</a> Seite für Roundcube und holen Sie sich den Link für die "complete.tar.gz" Datei für die gewünschte Version. Dann folgen Sie den untenstehenden Befehlen und ändern Sie die URL und den Namen des Roundcube-Ordners, falls nötig. </p>
 <div class="highlight"><pre><span></span><code># Starten Sie eine Bash-Sitzung des mailcow PHP-Containers
-docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
+docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
 # Installieren Sie die erforderliche Upgrade-Abhängigkeit, dann aktualisieren Sie Roundcube auf die gewünschte Version
 apk add rsync
 cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.5.2
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.5.3
 bin/installto.sh /web/rc
 
 # Geben Sie &#39;Y&#39; ein und drücken Sie die Eingabetaste, um Ihre Installation von Roundcube zu aktualisieren.
@@ -2677,7 +2677,7 @@ docker-compose up -d
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-01 10:56:27</span>
       
     
   </small>
