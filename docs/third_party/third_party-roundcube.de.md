@@ -246,8 +246,8 @@ Kopieren Sie den Inhalt der folgenden Dateien aus diesem [Snippet](https://gitla
 Starten Sie schließlich mailcow neu
 
 ```
-docker compose down
-docker compose up -d
+docker-compose down
+docker-compose up -d
 ```
 
 
