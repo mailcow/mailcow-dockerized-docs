@@ -4,10 +4,10 @@ Download Roundcube 1.5.x to the web htdocs directory and extract it (here `rc/`)
 ```
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
 
 # Change folder name
-mv roundcubemail-1.5.2 rc
+mv roundcubemail-1.5.3 rc
 
 # Change permissions
 chown -R root: rc/
@@ -120,7 +120,7 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
 ```
 cd data/web/rc/plugins
-wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.3.0/carddav-v4.3.0.tar.gz  | tar xfvz -
+wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
@@ -175,13 +175,13 @@ Upgrading Roundcube is rather simple, go to the [Github releases](https://github
 
 ```
 # Enter a bash session of the mailcow PHP container
-docker exec -it mailcowdockerized_php-fpm-mailcow_1 bash
+docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
 # Install required upgrade dependency, then upgrade Roundcube to wanted release
 apk add rsync
 cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.2/roundcubemail-1.5.2-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.5.2
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.5.3
 bin/installto.sh /web/rc
 
 # Type 'Y' and press enter to upgrade your install of Roundcube
