@@ -38,6 +38,7 @@ MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backu
 You can run the backup script regularly via cronjob. Make sure `BACKUP_LOCATION` exists:
 
 ```
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
 ```
 
@@ -82,6 +83,7 @@ mkdir -p /external_share/backups/backup_script
 
 Create cronjobs:
 ```
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
 40 2 * * * rsync -aH --delete /var/lib/docker/volumes /external_share/backups/var_lib_docker_volumes
 5 4 * * * cd /opt/mailcow-dockerized/; BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
