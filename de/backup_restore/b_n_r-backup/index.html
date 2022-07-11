@@ -2488,7 +2488,8 @@ Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nich
 </code></pre></div>
 <h4 id="cronjob">Cronjob<a class="headerlink" href="#cronjob" title="Permanent link">&para;</a></h4>
 <p>Sie können das Backup-Skript regelmäßig über einen Cronjob laufen lassen. Stellen Sie sicher, dass <code>BACKUP_LOCATION</code> existiert:</p>
-<div class="highlight"><pre><span></span><code>5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
 </code></pre></div>
 <p>Standardmäßig sendet Cron das komplette Ergebnis jeder Backup-Operation per E-Mail. Wenn Sie möchten, dass cron nur im Fehlerfall (Exit-Code ungleich Null) eine E-Mail sendet, können Sie den folgenden Ausschnitt verwenden. Die Pfade müssen entsprechend Ihrer Einrichtung angepasst werden (dieses Skript ist ein Beitrag eines Benutzers).</p>
 <p>Das folgende Skript kann in <code>/etc/cron.daily/mailcow-backup</code> platziert werden - vergessen Sie nicht, es mit <code>chmod +x</code> als ausführbar zu markieren:</p>
@@ -2523,7 +2524,8 @@ fi
 <div class="highlight"><pre><span></span><code>mkdir -p /external_share/backups/backup_script
 </code></pre></div></p>
 <p>Cronjobs erstellen:
-<div class="highlight"><pre><span></span><code>25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
 40 2 * * * rsync -aH --delete /var/lib/docker/volumes /external_share/backups/var_lib_docker_volumes
 5 4 * * * cd /opt/mailcow-dockerized/; BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
 # Wenn Sie wollen, benutzen Sie das Werkzeug acl, um die Berechtigungen einiger/aller Ordner/Dateien zu sichern: getfacl -Rn /path
@@ -2539,7 +2541,7 @@ Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-27 19:14:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-11 21:14:01</span>
       
     
   </small>

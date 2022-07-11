@@ -2488,7 +2488,8 @@ You should not rename those folders to not break the restore process.</p>
 </code></pre></div>
 <h4 id="cronjob">Cronjob<a class="headerlink" href="#cronjob" title="Permanent link">&para;</a></h4>
 <p>You can run the backup script regularly via cronjob. Make sure <code>BACKUP_LOCATION</code> exists:</p>
-<div class="highlight"><pre><span></span><code>5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
 </code></pre></div>
 <p>Per default cron sends the full result of each backup operation by email. If you want cron to only mail on error (non-zero exit code) you may want to use the following snippet. Pathes need to be modified according to your setup (this script is a user contribution).</p>
 <p>This following script may be placed in <code>/etc/cron.daily/mailcow-backup</code> - do not forget to mark it as executable via <code>chmod +x</code>:</p>
@@ -2523,7 +2524,8 @@ fi
 <div class="highlight"><pre><span></span><code>mkdir -p /external_share/backups/backup_script
 </code></pre></div></p>
 <p>Create cronjobs:
-<div class="highlight"><pre><span></span><code>25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
+<div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
 40 2 * * * rsync -aH --delete /var/lib/docker/volumes /external_share/backups/var_lib_docker_volumes
 5 4 * * * cd /opt/mailcow-dockerized/; BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
 # If you want to, use the acl util to backup permissions of some/all folders/files: getfacl -Rn /path
@@ -2539,7 +2541,7 @@ In case of a corrupted database you'd need to use the helper script to restore t
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-11 21:14:01</span>
       
     
   </small>
