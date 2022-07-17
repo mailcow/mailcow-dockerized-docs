@@ -30,9 +30,15 @@ Sofern keine Updates vorhanden sind, wird `OK` ausgegeben.
 
 ### Neue Updates verfügbar
 
-Sofern Updates vorhanden sind, wird `WARN` ausgegeben (sollte `CRIT` gewünscht sein ist in der 7. Zeile die erste "1" durch eine "2" zu ersetzen).
+Sofern Updates vorhanden sind, wird `WARN` ausgegeben.
 
 ![Updates available](../../assets/images/checkmk/updates_available.png)
+
+Sollte stattdessen `CRIT` gewünscht sein, ist die 7. Zeile durch folgendes zu ersetzen:
+
+````
+  echo "1 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
+````
 
 ### Detailierter Check-Output
 
