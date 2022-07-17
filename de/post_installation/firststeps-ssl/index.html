@@ -2321,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-borgmatic/" class="md-nav__link">
+      <a href="../../third_party/borgmatic/third_party-borgmatic/" class="md-nav__link">
         Borgmatic-Sicherung
       </a>
     </li>
@@ -2335,7 +2335,21 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-exchange_onprem/" class="md-nav__link">
+      <a href="../../third_party/checkmk/u_e-checkmk/" class="md-nav__link">
+        CheckMK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../third_party/exchange_onprem/third_party-exchange_onprem/" class="md-nav__link">
         Exchange Hybrid Setup
       </a>
     </li>
@@ -2349,7 +2363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-gitea/" class="md-nav__link">
+      <a href="../../third_party/gitea/third_party-gitea/" class="md-nav__link">
         Gitea
       </a>
     </li>
@@ -2363,7 +2377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-gogs/" class="md-nav__link">
+      <a href="../../third_party/gogs/third_party-gogs/" class="md-nav__link">
         Gogs
       </a>
     </li>
@@ -2377,7 +2391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-mailman3/" class="md-nav__link">
+      <a href="../../third_party/mailman3/third_party-mailman3/" class="md-nav__link">
         Mailman 3
       </a>
     </li>
@@ -2391,7 +2405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-mailpiler_integration/" class="md-nav__link">
+      <a href="../../third_party/mailpiler/third_party-mailpiler_integration/" class="md-nav__link">
         Mailpiler Integration
       </a>
     </li>
@@ -2405,7 +2419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-nextcloud/" class="md-nav__link">
+      <a href="../../third_party/nextcloud/third_party-nextcloud/" class="md-nav__link">
         Nextcloud
       </a>
     </li>
@@ -2419,7 +2433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-portainer/" class="md-nav__link">
+      <a href="../../third_party/portainer/third_party-portainer/" class="md-nav__link">
         Portainer
       </a>
     </li>
@@ -2433,7 +2447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/third_party-roundcube/" class="md-nav__link">
+      <a href="../../third_party/roundcube/third_party-roundcube/" class="md-nav__link">
         Roundcube
       </a>
     </li>
@@ -2669,7 +2683,7 @@ Sie sollten sicherstellen, dass diese Clients den <code>MAILCOW_HOSTNAME</code> 
 <p><strong>WICHTIG:</strong> Verwenden Sie keine symbolischen Links! Stellen Sie sicher, dass Sie die Zertifikate kopieren und sie nicht mit <code>data/assets/ssl</code> verknüpfen.</p>
 <p>Starten Sie die betroffenen Dienste anschließend neu:</p>
 <div class="highlight"><pre><span></span><code>docker restart $(docker ps -qaf name=postfix-mailcow)
-docker neu starten $(docker ps -qaf name=nginx-mailcow)
+docker restart $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 </code></pre></div>
 <p>Siehe <a href="../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Post-Hook-Skript für Nicht-Mailcow-ACME-Clients</a> für ein vollständiges Beispielskript.</p>
@@ -2703,7 +2717,7 @@ bash helper-scripts/expiry-dates.sh
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
       
     
   </small>

@@ -433,14 +433,6 @@
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/manual-guides/checkmk/u_e-checkmk/</loc>
-         <lastmod>2022-07-17</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/manual-guides/checkmk/u_e-checkmk/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/manual-guides/checkmk/u_e-checkmk/"/>
-         
-    </url>
-    <url>
          <loc>https://mailcow.github.io/mailcow-dockerized-docs/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
@@ -649,75 +641,83 @@
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-borgmatic/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/borgmatic/third_party-borgmatic/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-borgmatic/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-borgmatic/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/borgmatic/third_party-borgmatic/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/borgmatic/third_party-borgmatic/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-exchange_onprem/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/checkmk/u_e-checkmk/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-exchange_onprem/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-exchange_onprem/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/checkmk/u_e-checkmk/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/checkmk/u_e-checkmk/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-gitea/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/exchange_onprem/third_party-exchange_onprem/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-gitea/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-gitea/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/exchange_onprem/third_party-exchange_onprem/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/exchange_onprem/third_party-exchange_onprem/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-gogs/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/gitea/third_party-gitea/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-gogs/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-gogs/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/gitea/third_party-gitea/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/gitea/third_party-gitea/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-mailman3/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/gogs/third_party-gogs/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-mailman3/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-mailman3/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/gogs/third_party-gogs/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/gogs/third_party-gogs/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-mailpiler_integration/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/mailman3/third_party-mailman3/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-mailpiler_integration/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-mailpiler_integration/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/mailman3/third_party-mailman3/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/mailman3/third_party-mailman3/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-nextcloud/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/mailpiler/third_party-mailpiler_integration/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-nextcloud/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-nextcloud/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/mailpiler/third_party-mailpiler_integration/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/mailpiler/third_party-mailpiler_integration/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-portainer/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/nextcloud/third_party-nextcloud/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-portainer/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-portainer/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/nextcloud/third_party-nextcloud/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/nextcloud/third_party-nextcloud/"/>
          
     </url>
     <url>
-         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/third_party-roundcube/</loc>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/portainer/third_party-portainer/</loc>
          <lastmod>2022-07-17</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/third_party-roundcube/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/third_party-roundcube/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/portainer/third_party-portainer/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/portainer/third_party-portainer/"/>
+         
+    </url>
+    <url>
+         <loc>https://mailcow.github.io/mailcow-dockerized-docs/third_party/roundcube/third_party-roundcube/</loc>
+         <lastmod>2022-07-17</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://mailcow.github.io/mailcow-dockerized-docs/en/third_party/roundcube/third_party-roundcube/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://mailcow.github.io/mailcow-dockerized-docs/de/third_party/roundcube/third_party-roundcube/"/>
          
     </url>
     <url>
