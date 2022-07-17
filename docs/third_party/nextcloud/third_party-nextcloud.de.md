@@ -6,7 +6,7 @@ Nextcloud kann mit dem [helper script](https://github.com/mailcow/mailcow-docker
 
 Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset), können Sie durch den Aufruf des Helper-Skripts mit `-r` als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.
 
-Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und `docker-compose up -d` zur Übernahme ausgeführt werden. Für weitere Informationen siehe: [Erweitertes SSL](../post_installation/firststeps-ssl.md).
+Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und `docker-compose up -d` zur Übernahme ausgeführt werden. Für weitere Informationen siehe: [Erweitertes SSL](../../post_installation/firststeps-ssl.de.md).
 
 ## Hintergrund-Aufgaben
 

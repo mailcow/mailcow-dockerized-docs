@@ -16,7 +16,7 @@ Dieses Setup ist sehr praktisch, wenn Sie die [Office 365 Sicherheitsvorgaben](h
 Ihre Mailcow muss alle Mails an Ihren personalisierten Exchange Host weiterleiten. Es ist die gleiche Host-Adresse, die wir bereits für den mx Record gesucht haben.
 
 1. Fügen Sie die Domain zu Ihrer Mailcow hinzu
-2. [Fügen Sie Ihre personalisierte Exchange Host Adresse als relayhost hinzu](../manual-guides/Postfix/u_e-postfix-relayhost.md)
+2. [Fügen Sie Ihre personalisierte Exchange Host Adresse als relayhost hinzu](../../manual-guides/Postfix/u_e-postfix-relayhost.de.md)
 3. Fügen Sie Ihre personalisierte Exchange Host Adresse als Weiterleitungshost hinzu, um alle weitergeleiteten Mails von Exchange bedingungslos zu akzeptieren. (Admin > Konfiguration & Details > Konfigurations-Dropdown > Weiterleitungshosts)
 4. Gehen Sie zu den Domäneneinstellungen und wählen Sie den neu hinzugefügten Host in der Dropdown-Liste "Absenderabhängige Transporte" aus. Aktivieren Sie die Weiterleitung, indem Sie die Kontrollkästchen "Diese Domäne weiterleiten", "Alle Empfänger weiterleiten" und "Nur nicht vorhandene Postfächer weiterleiten" aktivieren.
 

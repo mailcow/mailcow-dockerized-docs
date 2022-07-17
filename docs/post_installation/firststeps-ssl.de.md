@@ -121,7 +121,7 @@ Starten Sie die betroffenen Dienste anschließend neu:
 
 ```
 docker restart $(docker ps -qaf name=postfix-mailcow)
-docker neu starten $(docker ps -qaf name=nginx-mailcow)
+docker restart $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
