@@ -16,7 +16,7 @@ fi
 exit
 ````
 
-Sofern das Installationsverzeichnis nicht `/opt/` ist, ist das in der 2. Zeile anzupassen.
+Sofern das mailcow-Installationsverzeichnis nicht `/opt/` ist, ist das in der 2. Zeile anzupassen.
 
 Danach für euren mailcow-Host in checmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen `mailcow_update` auswählbar sein.
 
