@@ -30,7 +30,7 @@ Sofern keine Updates vorhanden sind, wir `OK` ausgegeben.
 
 ### Neue Updates verfügbar
 
-Sofern Updates vorhanden sind, wird `WARN` ausgegeben (sollte `CRIT` gewünscht sein ist in der 2. `echo`-Zeile die erste "1" durch eine "2" zu ersetzen).
+Sofern Updates vorhanden sind, wird `WARN` ausgegeben (sollte `CRIT` gewünscht sein ist in der 7. Zeile die erste "1" durch eine "2" zu ersetzen).
 
 ![Updates available](../../assets/images/checkmk/updates_available.png)
 
