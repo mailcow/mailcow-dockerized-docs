@@ -24,7 +24,7 @@ Danach für euren mailcow-Host in checmk die Services neu inventarisieren und es
 
 ### Keine Updates verfügbar
 
-Sofern keine Updates vorhanden sind, wir `OK` ausgegeben.
+Sofern keine Updates vorhanden sind, wird `OK` ausgegeben.
 
 ![No update available](../../assets/images/checkmk/no_updates_available.png)
 
