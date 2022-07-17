@@ -37,7 +37,7 @@ If updates are available, `WARN` is displayed.
 If `CRIT` is desired instead, replace the 7th line with the following:
 
 ````
-  echo "1 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
+  echo "2 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
 ````
 
 ### Detailed check output
