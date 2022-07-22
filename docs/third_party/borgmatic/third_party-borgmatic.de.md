@@ -6,7 +6,7 @@ Borgmatic ist ein großartiger Weg, um Backups auf Ihrem Mailcow-Setup durchzuf�
 einzurichten.
 
 Aufgrund seiner Deduplizierungsfähigkeiten können Sie eine große Anzahl von Backups speichern, ohne große Mengen an Speicherplatz zu verschwenden.
-Speicherplatz zu verschwenden. So können Sie Backups in sehr kurzen Abständen durchführen, um einen minimalen Datenverlust zu gewährleisten, wenn die Notwendigkeit besteht
+So können Sie Backups in sehr kurzen Abständen durchführen, um einen minimalen Datenverlust zu gewährleisten, wenn die Notwendigkeit besteht
 Daten aus einer Sicherung wiederherzustellen.
 
 Dieses Dokument führt Sie durch den Prozess zur Aktivierung kontinuierlicher Backups für mailcow mit borgmatic. Die borgmatic
