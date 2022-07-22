@@ -86,6 +86,9 @@ Jeder Container repräsentiert eine einzelne Anwendung.
 - [Unbound](https://unbound.net/)
 - Ein Watchdog für die grundlegende Überwachung
 
+!!! warning "Achtung"
+	Die Mails werden komprimiert und verschlüsselt gespeichert. Das Schlüsselpaar ist in crypt-vol-1 zu finden. Bitte vergessen Sie nicht, dieses zu sichern.
+
 **Docker-Volumes** zur Aufbewahrung dynamischer Daten - kümmern Sie sich um sie!
 
 - clamd-db-vol-1
