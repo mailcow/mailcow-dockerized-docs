@@ -1,4 +1,5 @@
-Die Mails werden komprimiert (lz4) und verschlüsselt gespeichert. Das Schlüsselpaar ist in crypt-vol-1 zu finden.
+!!! warning "Achtung"
+	Die Mails werden komprimiert (lz4) und verschlüsselt gespeichert. Das Schlüsselpaar ist in crypt-vol-1 zu finden.
 
 Wenn Sie vorhandene maildir-Dateien entschlüsseln/verschlüsseln wollen, können Sie das folgende Skript auf eigene Gefahr verwenden:
 
