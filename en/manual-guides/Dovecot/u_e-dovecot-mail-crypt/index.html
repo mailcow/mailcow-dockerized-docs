@@ -2376,7 +2376,10 @@
 
   <h1>Mail crypt</h1>
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Mails are stored compressed (lz4) and encrypted. The key pair can be found in crypt-vol-1.</p>
+</div>
 <p>If you want to decode/encode existing maildir files, you can use the following script at your own risk:</p>
 <p>Enter Dovecot by running <code>docker-compose exec dovecot-mailcow /bin/bash</code> in the mailcow-dockerized location.</p>
 <div class="highlight"><pre><span></span><code># Decrypt /var/vmail
@@ -2410,7 +2413,7 @@ done
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-23 01:17:49</span>
       
     
   </small>
