@@ -41,4 +41,4 @@ authenticated kxeilprwts
 
 You can use `doveadm acl set -u user@domain "Public/Develcow" user=user@domain lookup read` to limit access for a single user. You may also turn it around to limit access for all users to "lr" and grant only some users full access.
 
-See [Dovecot ACL](https://doc.dovecot.org/settings/plugin/acl/) for further information about ACL.
+See [Dovecot ACL](https://doc.dovecot.org/configuration_manual/acl/) for further information about ACL.
