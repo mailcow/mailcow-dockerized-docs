@@ -14,12 +14,11 @@ systemctl enable --now docker
 - Docker-Compose
 
 !!! danger
-    **mailcow requires the latest version of docker-compose v2.** It is highly recommended to use the commands below to install `docker-compose`. Package managers (e.g. `apt`, `yum`) **likely won't** give you the correct version.
-    _Note: This command downloads docker-compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
+    **mailcow requires the latest version of Docker Compose v2.** It is highly recommended to use the commands below to install Docker Compose. Package managers (e.g. `apt`, `yum`) **likely won't** give you the correct version.
+    _Note: This command downloads Docker Compose from the official Docker Github repository and is a safe method. The snippet will determine the latest supported version by mailcow. In almost all cases this is the latest version available (exceptions are broken releases or major changes not yet supported by mailcow)._
 
 ```
-curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/lib/docker/cli-plugins/docker-compose
 ```
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.

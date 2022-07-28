@@ -14,12 +14,11 @@ systemctl enable --now docker
 - Docker-Compose
 
 !!! danger "Achtung"
-    **mailcow benötigt die neueste Version von docker-compose v2.** Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um `docker-compose` zu installieren. Paket-Manager (z.B. `apt`, `yum`) werden **wahrscheinlich** nicht die richtige Version liefern.
-    Hinweis: Dieser Befehl lädt docker-compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).
+    **mailcow benötigt die neueste Version von Docker Compose v2.** Es wird dringend empfohlen, die untenstehenden Befehle zu verwenden, um Docker Compose zu installieren. Paket-Manager (z.B. `apt`, `yum`) werden **wahrscheinlich** nicht die richtige Version liefern.
+    Hinweis: Dieser Befehl lädt Docker Compose aus dem offiziellen Docker-Github-Repository herunter und ist eine sichere Methode. Das Snippet ermittelt die neueste unterstützte Version von mailcow. In fast allen Fällen ist dies die letzte verfügbare Version (Ausnahmen sind kaputte Versionen oder größere Änderungen, die noch nicht von mailcow unterstützt werden).
 
 ```
-curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/lib/docker/cli-plugins/docker-compose
 ```
 
 Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.
