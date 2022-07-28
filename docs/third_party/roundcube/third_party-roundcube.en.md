@@ -1,19 +1,16 @@
 ## Installing Roundcube
 
-Download Roundcube 1.5.x to the web htdocs directory and extract it (here `rc/`):
+Download Roundcube 1.6.x to the web htdocs directory and extract it (here `rc/`):
 ```
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
 
 # Change folder name
-mv roundcubemail-1.5.3 rc
+mv roundcubemail-1.6.0 rc
 
 # Change permissions
 chown -R root: rc/
-
-# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
-sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" rc/program/include/rcmail.php
 ```
 
 If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
@@ -35,10 +32,8 @@ file_put_contents("/tmp/mime.types", fopen("http://svn.apache.org/repos/asf/http
 }
 $config = array();
 $config['db_dsnw'] = 'mysql://' . getenv('DBUSER') . ':' . getenv('DBPASS') . '@mysql/' . getenv('DBNAME');
-$config['default_host'] = 'tls://dovecot';
-$config['default_port'] = '143';
-$config['smtp_server'] = 'tls://postfix';
-$config['smtp_port'] = 587;
+$config['imap_host'] = 'tls://dovecot:143';
+$config['smtp_server'] = 'tls://postfix:587';
 $config['smtp_user'] = '%u';
 $config['smtp_pass'] = '%p';
 $config['support_url'] = '';
@@ -71,8 +66,7 @@ Initialize the database and leave the installer.
 
 Open `data/web/rc/plugins/managesieve/config.inc.php` and change the following parameters (or add them at the bottom of that file):
 ```
-$config['managesieve_port'] = 4190;
-$config['managesieve_host'] = 'tls://dovecot';
+$config['managesieve_host'] = 'tls://dovecot:4190';
 $config['managesieve_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
@@ -180,8 +174,8 @@ docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 # Install required upgrade dependency, then upgrade Roundcube to wanted release
 apk add rsync
 cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.5.3
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.6.0
 bin/installto.sh /web/rc
 
 # Type 'Y' and press enter to upgrade your install of Roundcube
@@ -190,8 +184,13 @@ bin/installto.sh /web/rc
 cd /tmp
 rm -rf roundcube*
 
-# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) should not be required in 1.6
-sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" /web/rc/program/include/rcmail.php
+# If your going from 1.5 to 1.6 please run the config file changes below
+sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'tls:\/\/dovecot:143'\;/" /web/rc/config/config.inc.php
+sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
+sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'tls:\/\/postfix:587'\;/" /web/rc/config/config.inc.php
+sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
+sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'tls:\/\/dovecot:4190'\;/" /web/rc/config/config.inc.php
+sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
 ```
 
 ## Let admins log into Roundcube without password
