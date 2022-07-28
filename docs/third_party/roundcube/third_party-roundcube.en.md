@@ -179,6 +179,7 @@ cd roundcubemail-1.6.0
 bin/installto.sh /web/rc
 
 # Type 'Y' and press enter to upgrade your install of Roundcube
+# Type 'N' to "Do you want me to fix your local configuration" if prompted
 
 # Remove leftover files
 cd /tmp
