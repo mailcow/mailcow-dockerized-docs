@@ -41,5 +41,5 @@ kxeilprwts" ist gleichbedeutend mit "lookup read write write-seen write-deleted 
 
 Sie können `doveadm acl set -u user@domain "Public/Develcow" user=user@domain lookup read` verwenden, um den Zugriff für einen einzelnen Benutzer zu beschränken. Sie können es auch umdrehen und den Zugriff für alle Benutzer auf "lr" beschränken und nur einigen Benutzern vollen Zugriff gewähren.
 
-Siehe [Dovecot ACL](https://doc.dovecot.org/settings/plugin/acl/) für weitere Informationen über ACL.
+Siehe [Dovecot ACL](https://doc.dovecot.org/configuration_manual/acl/) für weitere Informationen über ACL.
 
