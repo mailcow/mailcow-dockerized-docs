@@ -13,5 +13,5 @@ docker build data/Dockerfiles/service -t mailcow/$service
 Nun werden die geänderten Container automatisch neu erstellt:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```

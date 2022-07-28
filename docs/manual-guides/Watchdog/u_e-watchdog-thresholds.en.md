@@ -23,7 +23,7 @@ Example:
 - MAILQ_CRIT=${MAILQ_CRIT:-30}
 ```
 
-To adjust them just add necessary threshold variables (e.g. `MAILQ_THRESHOLD=10`) to `mailcow.conf` and run `docker-compose up -d`.
+To adjust them just add necessary threshold variables (e.g. `MAILQ_THRESHOLD=10`) to `mailcow.conf` and run `docker compose up -d`.
 
 
 ### Thresholds descriptions

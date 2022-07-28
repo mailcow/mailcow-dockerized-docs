@@ -13,9 +13,9 @@ Da wir in Docker laufen und unsere Container mit dem "restart: always" Flag erst
 
 ```
 # Einzelbenutzer
-docker-compose exec dovecot-mailcow doveadm fts rescan -u user@domain
+docker compose exec dovecot-mailcow doveadm fts rescan -u user@domain
 # alle Benutzer
-docker-compose exec dovecot-mailcow doveadm fts rescan -A
+docker compose exec dovecot-mailcow doveadm fts rescan -A
 
 ```
 Dovecot Wiki: "Scannt, welche Mails im Volltextsuchindex vorhanden sind und vergleicht diese mit den tatsächlich in den Postfächern vorhandenen Mails. Dies entfernt Mails aus dem Index, die bereits gelöscht wurden und stellt sicher, dass der nächste doveadm-Index alle fehlenden Mails (falls vorhanden) indiziert."
@@ -26,9 +26,9 @@ Wenn Sie die Daten sofort neu indizieren wollen, können Sie den folgenden Befeh
 
 ```
 # einzelner Benutzer
-docker-compose exec dovecot-mailcow doveadm index -u user@domain '*'
+docker compose exec dovecot-mailcow doveadm index -u user@domain '*'
 # alle Benutzer, aber offensichtlich langsamer und gefährlicher
-docker-compose exec dovecot-mailcow doveadm index -A '*'
+docker compose exec dovecot-mailcow doveadm index -A '*'
 ```
 
 Dies **wird** einige Zeit in Anspruch nehmen, abhängig von Ihrer Maschine und Solr kann oom ausführen, überwachen Sie es!
@@ -38,4 +38,3 @@ Da die Neuindizierung sehr sinnvoll ist, haben wir sie nicht in die mailcow UI i
 ### Löschen der Mailbox-Daten
 
 mailcow wird die Indexdaten eines Benutzers löschen, wenn eine Mailbox gelöscht wird.
-

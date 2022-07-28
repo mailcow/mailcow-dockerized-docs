@@ -91,7 +91,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Install mailcow
 
-Follow the [mailcow installation](../../i_u_m/i_u_m_install.en.md). **Omit step 5 and do not pull and up with `docker-compose`!**
+Follow the [mailcow installation](../../i_u_m/i_u_m_install.en.md). **Omit step 5 and do not pull and up with Docker Compose!**
 
 #### Configure mailcow
 
@@ -279,11 +279,11 @@ a2ensite mailman.conf
 systemctl restart apache2
 
 cd /opt/docker-mailman
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 
 cd /opt/mailcow-dockerized/
-docker-compose pull
+docker compose pull
 ./renew-ssl.sh
 ```
 
@@ -297,7 +297,7 @@ When you create a new list and try to immediately send an e-mail, *postfix* resp
 
 ```
 cd /opt/mailcow-dockerized
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```
 
 ## Update

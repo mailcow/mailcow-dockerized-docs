@@ -27,7 +27,7 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerize
 # - Skip ICMP Check to public DNS resolvers (Use it only if you´ve blocked any ICMP Connections to your mailcow machine)
 ./update.sh --skip-ping-check
 
-# - Skips the Docker-Compose update process, update is done by the user manually
+# - Skips the Docker Compose update process, update is done by the user manually
 ./update.sh --no-update-compose
 
 # - Force update (unattended, but unsupported, use at own risk)
@@ -62,11 +62,11 @@ Yes.
 See the topic above, instead of a diff, you run checkout:
 
 ```
-docker-compose down
+docker compose down
 # Replace commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab by your ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 ### Hooks

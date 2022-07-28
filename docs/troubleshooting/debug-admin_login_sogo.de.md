@@ -11,7 +11,7 @@ ALLOW_ADMIN_EMAIL_LOGIN=y
 ```
 und die betroffenen Container neu erstellen mit
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Nachteile bei Aktivierung

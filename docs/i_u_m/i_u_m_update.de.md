@@ -27,7 +27,7 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-d
 # - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
 ./update.sh --skip-ping-check
 
-# - Überspringt den Docker-Compose Update Prozess, aktualisierung erfolgt dann vom Benutzer
+# - Überspringt den Docker Compose Update Prozess, aktualisierung erfolgt dann vom Benutzer
 ./update.sh --no-update-compose
 
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
@@ -62,11 +62,11 @@ Ja.
 Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:
 
 ```
-docker-compose down
+docker compose down
 # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 ### Hooks

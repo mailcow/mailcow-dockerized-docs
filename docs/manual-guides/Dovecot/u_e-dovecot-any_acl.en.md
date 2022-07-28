@@ -6,4 +6,4 @@ This function can be re-enabled by setting `ACL_ANYONE` to `allow` in mailcow.co
 ACL_ANYONE=allow
 ```
 
-Apply the changes by running `docker-compose up -d`.
+Apply the changes by running `docker compose up -d`.

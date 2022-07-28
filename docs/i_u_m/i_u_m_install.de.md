@@ -104,8 +104,8 @@ Wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich nicht um 
 
 **5\.** LAden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird mailcow: dockerized starten:
 ```
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 Geschafft!
@@ -117,4 +117,4 @@ Sie können nun auf **https://${MAILCOW_HOSTNAME}** mit den Standard-Zugangsdate
 
 Die Datenbank wird sofort initialisiert, nachdem eine Verbindung zu MySQL hergestellt werden kann.
 
-Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie `docker volume ls` aus, um eine Liste aller Volumes zu sehen. Sie können `docker-compose down` sicher ausführen, ohne persistente Daten zu entfernen.
+Ihre Daten bleiben in mehreren Docker-Volumes erhalten, die nicht gelöscht werden, wenn Sie Container neu erstellen oder löschen. Führen Sie `docker volume ls` aus, um eine Liste aller Volumes zu sehen. Sie können `docker compose down` sicher ausführen, ohne persistente Daten zu entfernen.

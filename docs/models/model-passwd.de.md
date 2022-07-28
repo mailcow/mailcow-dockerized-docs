@@ -46,4 +46,4 @@ Der Wert von `MAILCOW_PASS_SCHEME` wird _immer_ verwendet, um neue Passwörter z
 
 > Ich habe die Passwort-Hashes in der SQL-Tabelle "Mailbox" geändert und kann mich nicht anmelden.
 
-Eine "Ansicht" muss aktualisiert werden. Sie können dies durch einen Neustart von sogo-mailcow auslösen: `docker-compose restart sogo-mailcow`
+Eine "Ansicht" muss aktualisiert werden. Sie können dies durch einen Neustart von sogo-mailcow auslösen: `docker compose restart sogo-mailcow`

@@ -76,7 +76,7 @@ Mit WebAuthn gibt es die Möglichkeit, nur offizielle Fido Security Keys zu verw
 
 Dies dient in erster Linie der Sicherheit, da es Administratoren ermöglicht, sicherzustellen, dass nur offizielle Hardware in ihrer Umgebung verwendet werden kann.
 
-Um diese Funktion zu aktivieren, ändern Sie den Wert `WEBAUTHN_ONLY_TRUSTED_VENDORS` in mailcow.conf von `n` auf `y` und starten Sie die betroffenen Container mit `docker-compose up -d` neu.
+Um diese Funktion zu aktivieren, ändern Sie den Wert `WEBAUTHN_ONLY_TRUSTED_VENDORS` in mailcow.conf von `n` auf `y` und starten Sie die betroffenen Container mit `docker compose up -d` neu.
 
 Die mailcow wird nun die Vendor-Zertifikate verwenden, die sich in Ihrem mailcow-Verzeichnis unter `data/web/inc/lib/WebAuthn/rootCertificates` befinden. 
 

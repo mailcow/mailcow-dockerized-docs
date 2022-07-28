@@ -3,7 +3,7 @@
 To attach a container to your shell you can simply run
 
 ```
-docker-compose exec $Service_Name /bin/bash
+docker compose exec $Service_Name /bin/bash
 ```
 
 ### Connecting to Services
@@ -14,13 +14,13 @@ If you want to connect to a service / application directly it is always a good i
 
 ```
 source mailcow.conf
-docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
 ```
 
 #### Redis
 
 ```
-docker-compose exec redis-mailcow redis-cli
+docker compose exec redis-mailcow redis-cli
 ```
 
 ## Service Descriptions

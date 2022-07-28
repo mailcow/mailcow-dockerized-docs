@@ -23,7 +23,7 @@ Escape-Zeichen ist '^]'.
 
 Bitte lesen Sie unsere [DNS-Konfiguration](../prerequisite/prerequisite-dns.de.md) Anleitung.
 
-## docker-compose wirft seltsame Fehler aus.
+## Docker Compose wirft seltsame Fehler aus.
 
 ... wie:
 

@@ -39,7 +39,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 **4\.** Shut down mailcow and stop Docker on the source machine.
 ```
 cd /opt/mailcow-dockerized
-docker-compose down
+docker compose down
 systemctl stop docker.service
 ```
 
@@ -53,12 +53,12 @@ systemctl start docker.service
 **7\.** Now pull the mailcow Docker images on the target machine.
 ```
 cd /opt/mailcow-dockerized
-docker-compose pull
+docker compose pull
 ```
 
 **8\.** Start the whole mailcow stack and everything should be done!
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 **9\.** Finally, change your DNS settings to point to the target server.

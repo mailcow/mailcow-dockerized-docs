@@ -3,7 +3,7 @@
 Es kann vorkommen, dass legitime (saubere) Mails von ClamAV blockiert werden (Rspamd markiert die Mail mit `VIRUS_FOUND`). So werden beispielsweise interaktive PDF-Formularanhänge standardmäßig blockiert, da der eingebettete Javascript-Code für schädliche Zwecke verwendet werden könnte. Überprüfen Sie dies anhand der clamd-Protokolle, z.B.:
 
 ```bash
-docker-compose logs clamd-mailcow | grep "FOUND"
+docker compose logs clamd-mailcow | grep "FOUND"
 ```
 
 Diese Zeile bestätigt, dass ein solcher identifiziert wurde:
@@ -18,16 +18,16 @@ Um diese spezielle Signatur auf die Whitelist zu setzen (und den Versand dieses 
 echo 'PUA.Pdf.Trojan.EmbeddedJavaScript-1' >> data/conf/clamav/whitelist.ign2
 ```
 
-Dann starten Sie den clamd-mailcow Service Container in der mailcow UI oder mit docker-compose neu:
+Dann starten Sie den clamd-mailcow Service Container in der mailcow UI oder mit docker compose neu:
 
 ```bash
-docker-compose restart clamd-mailcow
+docker compose restart clamd-mailcow
 ```
 
 Bereinigen Sie zwischengespeicherte ClamAV-Ergebnisse in Redis:
 
 ```
-# docker-compose exec redis-mailcow /bin/sh
+# docker compose exec redis-mailcow /bin/sh
 /data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
 /data # exit
 ```

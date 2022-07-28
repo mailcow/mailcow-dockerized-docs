@@ -33,7 +33,7 @@ SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
 ```
 
-Um Ihre Änderungen zu übernehmen, führen Sie `docker-compose down` gefolgt von `docker-compose up -d` aus.
+Um Ihre Änderungen zu übernehmen, führen Sie `docker compose down` gefolgt von `docker compose up -d` aus.
 
 ## IPv6-Binding
 
@@ -69,4 +69,4 @@ services:
         - '[2001:db8:dead:beef::123]:443:443'
 ```
 
-Um Ihre Änderungen zu übernehmen, führen Sie `docker-compose down` gefolgt von `docker-compose up -d` aus.
+Um Ihre Änderungen zu übernehmen, führen Sie `docker compose down` gefolgt von `docker compose up -d` aus.

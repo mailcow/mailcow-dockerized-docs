@@ -23,7 +23,7 @@ Beispiel:
 - MAILQ_CRIT=${MAILQ_CRIT:-30}
 ```
 
-Um sie anzupassen, fügen Sie einfach die notwendigen Threshold Variablen (z.B. `MAILQ_THRESHOLD=10`) zu `mailcow.conf` hinzu und führen `docker-compose up -d` aus.
+Um sie anzupassen, fügen Sie einfach die notwendigen Threshold Variablen (z.B. `MAILQ_THRESHOLD=10`) zu `mailcow.conf` hinzu und führen `docker compose up -d` aus.
 
 
 ### Threshold Beschreibungen
@@ -78,4 +78,3 @@ Benachrichtigt Administratoren, wenn watchdog keine Verbindung zu olefy auf Port
 
 #### MAILQ_CRIT und MAILQ_THRESHOLD
 Benachrichtigt Administratoren, wenn die Anzahl der E-Mails in der Postfix-Warteschlange größer ist als `MAILQ_CRIT` für einen Zeitraum von `MAILQ_THRESHOLD * (60±30)` Sekunden.
-

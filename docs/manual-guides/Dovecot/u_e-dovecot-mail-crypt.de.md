@@ -2,7 +2,7 @@ Die Mails werden komprimiert (lz4) und verschlüsselt gespeichert. Das Schlüsse
 
 Wenn Sie vorhandene maildir-Dateien entschlüsseln/verschlüsseln wollen, können Sie das folgende Skript auf eigene Gefahr verwenden:
 
-Rufen Sie Dovecot auf, indem Sie `docker-compose exec dovecot-mailcow /bin/bash` im mailcow-dockerisierten Verzeichnis ausführen.
+Rufen Sie Dovecot auf, indem Sie `docker compose exec dovecot-mailcow /bin/bash` im mailcow-dockerisierten Verzeichnis ausführen.
 
 ```
 # Entschlüsseln Sie /var/vmail

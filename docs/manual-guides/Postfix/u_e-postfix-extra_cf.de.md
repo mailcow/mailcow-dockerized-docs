@@ -7,5 +7,5 @@ Syslog-ng wurde so konfiguriert, dass es diese Warnungen ausblendet, während Po
 Starten Sie `postfix-mailcow` neu, um Ihre Änderungen zu übernehmen:
 
 ```
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```

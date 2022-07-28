@@ -104,8 +104,8 @@ If you do not have an IPv6 enabled network on your host and you don't care for a
 
 **5\.** Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
 ```
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 Done!
@@ -117,4 +117,4 @@ You can now access **https://${MAILCOW_HOSTNAME}** with the default credentials 
 
 The database will be initialized right after a connection to MySQL can be established.
 
-Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker-compose down` without removing persistent data.
+Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker compose down` without removing persistent data.

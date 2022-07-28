@@ -46,8 +46,8 @@ services:
 Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stoppen und dann neu starten, damit Container und Netzwerke neu erstellt werden:
 
 ```
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 **3.** Deaktivieren Sie IPv6 in unbound-mailcow
@@ -64,7 +64,7 @@ Server:
 unbound neu starten:
 
 ```
-docker-compose restart unbound-mailcow
+docker compose restart unbound-mailcow
 ```
 
 **4.** Deaktivieren Sie IPv6 in postfix-mailcow
@@ -79,7 +79,7 @@ inet_protocols = ipv4
 Starten Sie Postfix neu:
 
 ```
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```
 
 **5.** Wenn im Docker Daemon IPv6 komplett deaktiviert ist:

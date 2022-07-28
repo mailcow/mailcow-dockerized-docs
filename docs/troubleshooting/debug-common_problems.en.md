@@ -24,7 +24,7 @@ Escape character is '^]'.
 
 Please read our guide on [DNS configuration](../prerequisite/prerequisite-dns.en.md).
 
-## docker-compose throws weird errors
+## Docker Compose throws weird errors
 
 ... like:
 

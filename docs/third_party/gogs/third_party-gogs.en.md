@@ -31,7 +31,7 @@ location /gogs/ {
 GOGS_SSH_PORT=127.0.0.1:4000
 ```
 
-5\. Run `docker-compose up -d` to bring up the Gogs container and run `docker-compose restart nginx-mailcow` afterwards.
+5\. Run `docker compose up -d` to bring up the Gogs container and run `docker compose restart nginx-mailcow` afterwards.
 
 6\. Open `http://${MAILCOW_HOSTNAME}/gogs/`, for example `http://mx.example.org/gogs/`. For database details set `mysql` as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.
 
@@ -49,4 +49,4 @@ SSH_PORT = 4000
 ROOT_URL = https://mx.example.org/gogs/
 ```
 
-9\. Restart Gogs with `docker-compose restart gogs-mailcow`. Your users should be able to login with mailcow managed accounts.
+9\. Restart Gogs with `docker compose restart gogs-mailcow`. Your users should be able to login with mailcow managed accounts.

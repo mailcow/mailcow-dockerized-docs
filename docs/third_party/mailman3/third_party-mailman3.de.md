@@ -90,7 +90,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Installieren Sie mailcow
 
-Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit `docker-compose` starten!**
+Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit Docker Compose starten!**
 
 #### Mailcow konfigurieren
 
@@ -278,11 +278,11 @@ a2ensite mailman.conf
 systemctl restart apache2
 
 cd /opt/docker-mailman
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 
 cd /opt/mailcow-dockerized/
-docker-compose pull
+docker compose pull
 ./renew-ssl.sh
 ```
 
@@ -296,7 +296,7 @@ Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, a
 
 ```
 cd /opt/mailcow-dockerized
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```
 
 ## Update
@@ -320,6 +320,3 @@ Schreiben Sie ein Skript wie in [mailman-mailcow-integration/mailman-install.sh]
 1. Fragen Sie alle Konfigurationsvariablen ab und erstellen Sie Passwörter und Schlüssel.
 2. Führen Sie eine (halb)automatische Installation durch.
 3. Viel Spaß!
-
-
-
