@@ -1,4 +1,5 @@
-Mails are stored compressed (lz4) and encrypted. The key pair can be found in crypt-vol-1.
+!!! warning
+	Mails are stored compressed (lz4) and encrypted. The key pair can be found in crypt-vol-1.
 
 If you want to decode/encode existing maildir files, you can use the following script at your own risk:
 
