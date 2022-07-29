@@ -33,7 +33,7 @@ file_put_contents("/tmp/mime.types", fopen("http://svn.apache.org/repos/asf/http
 $config = array();
 $config['db_dsnw'] = 'mysql://' . getenv('DBUSER') . ':' . getenv('DBPASS') . '@mysql/' . getenv('DBNAME');
 $config['imap_host'] = 'tls://dovecot:143';
-$config['smtp_server'] = 'tls://postfix:587';
+$config['smtp_host'] = 'tls://postfix:587';
 $config['smtp_user'] = '%u';
 $config['smtp_pass'] = '%p';
 $config['support_url'] = '';
