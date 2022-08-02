@@ -1,19 +1,16 @@
 ## Installation von Roundcube
 
-Laden Sie Roundcube 1.5.x in das Web htdocs Verzeichnis herunter und entpacken Sie es (hier `rc/`):
+Laden Sie Roundcube 1.6.x in das Web htdocs Verzeichnis herunter und entpacken Sie es (hier `rc/`):
 ```
 # Prüfen Sie, ob eine neuere Version vorliegt!
 cd daten/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
 
 # Ändern Sie den Ordnernamen
-mv roundcubemail-1.5.3 rc
+mv roundcubemail-1.6.0 rc
 
 # Berechtigungen ändern
 chown -R root: rc/
-
-# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) sollte in 1.6 nicht erforderlich sein
-sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" rc/program/include/rcmail.php
 ```
 
 Wenn Sie eine Rechtschreibprüfung benötigen, erstellen Sie eine Datei `data/hooks/phpfpm/aspell.sh` mit folgendem Inhalt und geben Sie dann `chmod +x data/hooks/phpfpm/aspell.sh` ein. Dadurch wird eine lokale Rechtschreibprüfung installiert. Beachten Sie, dass die meisten modernen Webbrowser eine eingebaute Rechtschreibprüfung haben, so dass Sie diese vielleicht nicht benötigen.
@@ -35,10 +32,8 @@ file_put_contents("/tmp/mime.types", fopen("http://svn.apache.org/repos/asf/http
 }
 $config = array();
 $config['db_dsnw'] = 'mysql://' . getenv('DBUSER') . ':' . getenv('DBPASS') . '@mysql/' . getenv('DBNAME');
-$config['default_host'] = 'tls://dovecot';
-$config['default_port'] = '143';
-$config['smtp_server'] = 'tls://postfix';
-$config['smtp_port'] = 587;
+$config['imap_host'] = 'tls://dovecot:143';
+$config['smtp_host'] = 'tls://postfix:587';
 $config['smtp_user'] = '%u';
 $config['smtp_pass'] = '%p';
 $config['support_url'] = '';
@@ -71,8 +66,7 @@ Initialisiere die Datenbank und verlasse das Installationsprogramm.
 
 Öffnen Sie `data/web/rc/plugins/managesieve/config.inc.php` und ändern Sie die folgenden Parameter (oder fügen Sie sie am Ende der Datei hinzu):
 ```
-$config['managesieve_port'] = 4190;
-$config['managesieve_host'] = 'tls://dovecot';
+$config['managesieve_host'] = 'tls://dovecot:4190';
 $config['managesieve_conn_options'] = array(
   ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
@@ -180,18 +174,24 @@ docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 # Installieren Sie die erforderliche Upgrade-Abhängigkeit, dann aktualisieren Sie Roundcube auf die gewünschte Version
 apk add rsync
 cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.5.3/roundcubemail-1.5.3-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.5.3
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.6.0
 bin/installto.sh /web/rc
 
 # Geben Sie 'Y' ein und drücken Sie die Eingabetaste, um Ihre Installation von Roundcube zu aktualisieren.
+# Geben Sie 'N' ein, wenn folgender Dialog erscheint: "Do you want me to fix your local configuration".
 
 # Entfernen Sie übrig gebliebene Dateien
 cd /tmp
 rm -rf roundcube*
 
-# Fix Allow remote resources (https://github.com/roundcube/roundcubemail/issues/8170) sollte in 1.6 nicht benötigt werden
-sed -i "s/\$prefix = '\.\/';/\$prefix = preg_replace\('\/\[\?\&]\.\*\$\/', '', \$_SERVER\['REQUEST_URI'] \?\? ''\) \?: '\.\/';/g" /web/rc/program/include/rcmail.php
+# Falls Sie von Version 1.5 auf 1.6 updaten, dann führen Sie folgende Befehle aus, um die Konfigurationsdatei anzupassen:`
+sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'tls:\/\/dovecot:143'\;/" /web/rc/config/config.inc.php
+sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
+sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'tls:\/\/postfix:587'\;/" /web/rc/config/config.inc.php
+sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
+sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'tls:\/\/dovecot:4190'\;/" /web/rc/config/config.inc.php
+sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
 ```
 
 ## Administratoren ohne Passwort in Roundcube einloggen lassen
