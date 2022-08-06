@@ -99,7 +99,7 @@ Save the file and restart "rspamd-mailcow": `docker-compose restart rspamd-mailc
 
 ## Spam filter thresholds (global)
 
-Each user is able to change [their spam rating individually](../mailcow-UI/u_e-mailcow_ui-spamfilter.md). To define a new **server-wide** limit, edit `data/conf/rspamd/local.d/actions.conf`:
+Each user is able to change [their spam rating individually](../mailcow-UI/u_e-mailcow_ui-spamfilter.en.md). To define a new **server-wide** limit, edit `data/conf/rspamd/local.d/actions.conf`:
 
 ```cpp
 reject = 15;
@@ -176,7 +176,7 @@ redis-cli --scan --pattern RL* | xargs redis-cli unlink
 Restart Rspamd:
 
 ```bash
-docker-compose exec redis-mailcow sh
+docker-compose restart rspamd-mailcow
 ```
 
 ## Trigger a resend of quarantine notifications
