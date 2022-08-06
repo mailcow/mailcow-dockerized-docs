@@ -98,7 +98,7 @@ Speichern Sie die Datei und starten Sie "rspamd-mailcow" neu: `docker-compose re
 
 ## Spamfilter-Schwellenwerte (global)
 
-Jeder Benutzer kann [seine Spam-Bewertung](../mailcow-UI/u_e-mailcow_ui-spamfilter.md) individuell ändern. Um eine neue **serverweite** Grenze zu definieren, editieren Sie `data/conf/rspamd/local.d/actions.conf`:
+Jeder Benutzer kann [seine Spam-Bewertung](../mailcow-UI/u_e-mailcow_ui-spamfilter.de.md) individuell ändern. Um eine neue **serverweite** Grenze zu definieren, editieren Sie `data/conf/rspamd/local.d/actions.conf`:
 
 ```cpp
 reject = 15;
@@ -175,7 +175,7 @@ redis-cli --scan --pattern RL* | xargs redis-cli unlink
 Starten Sie Rspamd neu:
 
 ```bash
-docker-compose exec redis-mailcow sh
+docker-compose restart rspamd-mailcow
 ```
 
 ## Erneutes Senden von Quarantäne-Benachrichtigungen auslösen
