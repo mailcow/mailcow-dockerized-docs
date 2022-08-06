@@ -2665,7 +2665,7 @@ docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;del
 redis-cli --scan --pattern RL* | xargs redis-cli unlink
 </code></pre></div>
 <p>Starten Sie Rspamd neu:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> redis-mailcow sh
+<div class="highlight"><pre><span></span><code>docker-compose restart rspamd-mailcow
 </code></pre></div>
 <h2 id="erneutes-senden-von-quarantane-benachrichtigungen-auslosen">Erneutes Senden von Quarantäne-Benachrichtigungen auslösen<a class="headerlink" href="#erneutes-senden-von-quarantane-benachrichtigungen-auslosen" title="Permanent link">&para;</a></h2>
 <p>Sollte nur zur Fehlersuche verwendet werden!</p>
@@ -2688,7 +2688,7 @@ quarantine_notify.py
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-06 22:09:53</span>
       
     
   </small>
