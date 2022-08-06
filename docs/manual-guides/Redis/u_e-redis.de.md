@@ -18,7 +18,7 @@ Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:
 
 ```
 # docker-compose exec redis-mailcow redis-cli
-127.0.0.1:6379> überwachen
+127.0.0.1:6379> monitor
 OK
 1494077286.401963 [0 172.22.1.253:41228] "SMEMBERS" "BAYES_SPAM_keys"
 1494077288.292970 [0 172.22.1.253:41229] "SMEMBERS" "BAYES_SPAM_keys"
