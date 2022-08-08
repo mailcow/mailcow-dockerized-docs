@@ -11,7 +11,7 @@ These instructions are valid for unchanged port bindings only!
 |SMTP|STARTTLS|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|587|
 |SMTPS|SSL|<span class="client_variables_available"> <code><span class="client_var_host"></span><span class="client_var_port"></span></code></span><span class="client_variables_unavailable">mailcow hostname</span>|465|
 
-Please use "plain" as authentication mechanisms. Contrary to the assumption no passwords will be transferred plain text, as no authentication is allowed to take place without TLS.
+Please use the "plain" password setting as the authentication mechanism. Contrary to what the name implies, the password will not be transferred to the server in plain text as no authentication is allowed to take place without TLS.
 
 ## Contacts and calendars
 
