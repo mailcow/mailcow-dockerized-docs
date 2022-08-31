@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2627,7 +2644,7 @@ Geben Sie schließlich Ihr aktuelles Kontopasswort ein und berühren Sie nach Au
 <h3 id="deaktivieren-inoffizieller-unterstutzter-fido-security-keys">Deaktivieren inoffizieller unterstützter Fido Security Keys<a class="headerlink" href="#deaktivieren-inoffizieller-unterstutzter-fido-security-keys" title="Permanent link">&para;</a></h3>
 <p>Mit WebAuthn gibt es die Möglichkeit, nur offizielle Fido Security Keys zu verwenden (von den großen Marken wie: Yubico, Apple, Nitro, Google, Huawei, Microsoft, usw.) zu verwenden.</p>
 <p>Dies dient in erster Linie der Sicherheit, da es Administratoren ermöglicht, sicherzustellen, dass nur offizielle Hardware in ihrer Umgebung verwendet werden kann.</p>
-<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit <code>docker-compose up -d</code> neu.</p>
+<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit <code>docker compose up -d</code> neu.</p>
 <p>Die mailcow wird nun die Vendor-Zertifikate verwenden, die sich in Ihrem mailcow-Verzeichnis unter <code>data/web/inc/lib/WebAuthn/rootCertificates</code> befinden. </p>
 <h5 id="beispiel">Beispiel:<a class="headerlink" href="#beispiel" title="Permanent link">&para;</a></h5>
 <p>Wenn Sie die offiziellen Hersteller-Geräte nur auf Apple beschränken wollen, brauchen Sie nur das Apple Hersteller-Zertifikat im <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
@@ -2660,7 +2677,7 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2776,7 +2793,7 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2477,16 +2494,16 @@
 <h2 id="the-manual-way">The manual way<a class="headerlink" href="#the-manual-way" title="Permanent link">&para;</a></h2>
 <p>That said, let's dive in:</p>
 <p>Delete a user's mails inside the junk folder that <strong>are read</strong> and <strong>older</strong> than 4 hours</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
 </code></pre></div>
 <p>Delete <strong>all</strong> user's mails in the junk folder that are <strong>older</strong> than 7 days</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
 </code></pre></div>
 <p>Delete <strong>all</strong> mails (of all users) in <strong>all</strong> folders that are <strong>older</strong> than 52 weeks (internal date of the mail, not the date it was saved on the system =&gt; <code>before</code> instead of <code>savedbefore</code>). Useful for deleting very old mails on all users and folders (thus especially useful for GDPR-compliance).</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
 </code></pre></div>
 <p>Delete mails inside a custom folder <strong>inside</strong> a user's inbox that are <strong>not</strong> flagged and <strong>older</strong> than 2 weeks</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
+<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2499,8 +2516,8 @@
 # Path to mailcow-dockerized, e.g. /opt/mailcow-dockerized
 cd /path/to/your/mailcow-dockerized
 
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
-/usr/local/bin/docker-compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
+/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
 [...]
 </code></pre></div>
 <p>To create a cron job you may execute <code>crontab -e</code> and insert something like the following to execute a script:</p>
@@ -2508,7 +2525,7 @@ cd /path/to/your/mailcow-dockerized
 0 4 * * * /path/to/your/expunge_mailboxes.sh
 </code></pre></div>
 <h3 id="via-docker-job-scheduler">via Docker job scheduler<a class="headerlink" href="#via-docker-job-scheduler" title="Permanent link">&para;</a></h3>
-<p>To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: </p>
+<p>To archive this with a docker job scheduler use this docker compose.override.yml with your mailcow: </p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2529,7 +2546,7 @@ services:
       - &quot;ofelia.job-exec.dovecot-expunge-trash.tty=false&quot;
 </code></pre></div>
 <p>The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use <a href="https://crontab.guru/">crontab guru</a>. 
-This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
+This docker compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
 <div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
 common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
 </code></pre></div>
@@ -2541,7 +2558,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2657,7 +2674,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

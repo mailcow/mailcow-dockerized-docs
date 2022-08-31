@@ -64,6 +64,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2377,7 +2394,7 @@
 <p>Alternativ können Sie das Skript <code>./helper-scripts/backup_and_restore.sh</code> verwenden, um ein vollständiges Backup auf der Quellmaschine zu erstellen, dann installieren Sie mailcow auf der Zielmaschine wie gewohnt, kopieren Sie Ihre <code>mailcow.conf</code> und verwenden Sie das gleiche Skript, um Ihr Backup auf der Zielmaschine wiederherzustellen.</p>
 </div>
 <p><strong>1.</strong> 
-Installieren Sie <a href="https://docs.docker.com/engine/installation/linux/">Docker</a> und <a href="https://docs.docker.com/compose/install/">docker-compose</a> auf Ihrem neuen Server.</p>
+Installieren Sie <a href="https://docs.docker.com/engine/installation/linux/">Docker</a> und <a href="https://docs.docker.com/compose/install/">docker compose</a> auf Ihrem neuen Server.</p>
 <p>Schnelle Installation für die meisten Betriebssysteme:</p>
 <ul>
 <li>
@@ -2388,9 +2405,9 @@ systemctl enable docker.service
 </code></pre></div></p>
 </li>
 <li>
-<p>docker-compose
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+<p>docker compose
+<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker compose
+chmod +x /usr/local/bin/docker compose
 </code></pre></div></p>
 </li>
 </ul>
@@ -2405,7 +2422,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 </code></pre></div></p>
 <p><strong>4.</strong> Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose herunterfahren
+docker compose herunterfahren
 systemctl stop docker.service
 </code></pre></div></p>
 <p>**Wiederholen Sie Schritt 3 mit denselben Befehlen. Dies wird viel schneller gehen als beim ersten Mal.</p>
@@ -2414,10 +2431,10 @@ systemctl stop docker.service
 </code></pre></div></p>
 <p><strong>7.</strong> Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose pull
+docker compose pull
 </code></pre></div></p>
 <p><strong>8.</strong> Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
-<div class="highlight"><pre><span></span><code>docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose up -d
 </code></pre></div></p>
 <p><strong>9.</strong> Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen.</p>
 
@@ -2426,7 +2443,7 @@ docker-compose pull
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-24 11:27:36</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2542,7 +2559,7 @@ docker-compose pull
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

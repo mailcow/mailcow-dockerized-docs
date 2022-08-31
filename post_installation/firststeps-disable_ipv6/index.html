@@ -64,6 +64,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2371,10 +2388,10 @@
 <p>This is <strong>ONLY</strong> recommended if you do not have an IPv6 enabled network on your host!</p>
 <p>If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.</p>
-<p>Instead of editing docker-compose.yml directly, it is preferable to create an override file for it 
+<p>Instead of editing docker compose.yml directly, it is preferable to create an override file for it 
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.</p>
-<p>To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). </p>
-<p><strong>1.</strong> Modify docker-compose.yml</p>
+<p>To disable IPv6 on the mailcow network, open docker compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). </p>
+<p><strong>1.</strong> Modify docker compose.yml</p>
 <p>Change <code>enable_ipv6: true</code> to <code>enable_ipv6: false</code>:</p>
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
@@ -2383,10 +2400,10 @@ and implement your changes to the service there. Unfortunately, this right now o
     [...]
 </code></pre></div>
 <p><strong>2.</strong> Disable ipv6nat-mailcow</p>
-<p>To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": </p>
+<p>To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker compose.override.yml": </p>
 <p><strong>NOTE:</strong> If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!</p>
 <div class="highlight"><pre><span></span><code># cd /opt/mailcow-dockerized
-# touch docker-compose.override.yml
+# touch docker compose.override.yml
 </code></pre></div>
 <p>Open the file in your favourite text editor and fill in the following:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
@@ -2398,8 +2415,8 @@ services:
       entrypoint: [&quot;echo&quot;, &quot;ipv6nat disabled in compose.override.yml&quot;]
 </code></pre></div>
 <p>For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
-docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose down
+docker compose up -d
 </code></pre></div>
 <p><strong>3.</strong> Disable IPv6 in unbound-mailcow</p>
 <p>Edit <code>data/conf/unbound/unbound.conf</code> and set <code>do-ip6</code> to "no":</p>
@@ -2409,7 +2426,7 @@ docker-compose up -d
   [...]
 </code></pre></div>
 <p>Restart Unbound:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart unbound-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart unbound-mailcow
 </code></pre></div>
 <p><strong>4.</strong> Disable IPv6 in postfix-mailcow</p>
 <p>Create <code>data/conf/postfix/extra.cf</code> and set <code>smtp_address_preference</code> to <code>ipv4</code>:</p>
@@ -2417,7 +2434,7 @@ docker-compose up -d
 inet_protocols = ipv4
 </code></pre></div>
 <p>Restart Postfix:</p>
-<div class="highlight"><pre><span></span><code>docker-compose restart postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker compose restart postfix-mailcow
 </code></pre></div>
 <p><strong>5.</strong> If your docker daemon completly disabled IPv6:</p>
 <p>Fix the following NGINX, Dovecot and php-fpm config files</p>
@@ -2433,7 +2450,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2549,7 +2566,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

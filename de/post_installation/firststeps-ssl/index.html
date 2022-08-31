@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2605,7 +2622,7 @@
 <p>Für jede hinzugefügte Domain wird versucht, <code>autodiscover.ADDED_MAIL_DOMAIN</code> und <code>autoconfig.ADDED_MAIL_DOMAIN</code> in die IPv6-Adresse oder - falls IPv6 in der Domain nicht konfiguriert ist - in die IPv4-Adresse aufzulösen. Wenn dies gelingt, wird ein Name als SAN zur Zertifikatsanforderung hinzugefügt.</p>
 <p>Nur Namen, die validiert werden können, werden als SAN hinzugefügt.</p>
 <p>Für jede Domain, die Sie entfernen, wird das Zertifikat verschoben und ein neues Zertifikat angefordert. Es ist nicht möglich, Domains in einem Zertifikat zu behalten, wenn wir nicht in der Lage sind, die Challenge für diese zu validieren.</p>
-<p>Wenn Sie den ACME-Client neu starten wollen, verwenden Sie <code>docker-compose restart acme-mailcow</code> und überwachen Sie die Protokolle mit <code>docker-compose logs --tail=200 -f acme-mailcow</code>.</p>
+<p>Wenn Sie den ACME-Client neu starten wollen, verwenden Sie <code>docker compose restart acme-mailcow</code> und überwachen Sie die Protokolle mit <code>docker compose logs --tail=200 -f acme-mailcow</code>.</p>
 <h3 id="zusatzliche-domain-namen">Zusätzliche Domain-Namen<a class="headerlink" href="#zusatzliche-domain-namen" title="Permanent link">&para;</a></h3>
 <p>Bearbeiten Sie "mailcow.conf" und fügen Sie einen Parameter <code>ADDITIONAL_SAN</code> wie folgt hinzu:</p>
 <p>Verwenden Sie keine Anführungszeichen (<code>"</code>) und keine Leerzeichen zwischen den Namen!</p>
@@ -2613,7 +2630,7 @@
 </code></pre></div>
 <p>Jeder Name wird anhand seiner IPv6-Adresse oder - wenn IPv6 in Ihrer Domäne nicht konfiguriert ist - anhand seiner IPv4-Adresse überprüft.</p>
 <p>Ein Wildcard-Name wie <code>smtp.*</code> wird versuchen, ein smtp.DOMAIN_NAME SAN für jede zu mailcow hinzugefügte Domain zu erhalten.</p>
-<p>Führen Sie <code>docker-compose up -d</code> aus, um betroffene Container automatisch neu zu erstellen.</p>
+<p>Führen Sie <code>docker compose up -d</code> aus, um betroffene Container automatisch neu zu erstellen.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Die Verwendung anderer Namen als <code>MAILCOW_HOSTNAME</code> für den Zugriff auf das mailcow UI kann weitere Konfiguration erfordern.</p>
@@ -2621,26 +2638,26 @@
 <p>Wenn Sie planen, einen anderen Servernamen als <code>MAILCOW_HOSTNAME</code> für den Zugriff auf die mailcow UI zu verwenden (z.B. durch Hinzufügen von <code>mail.*</code> zu <code>ADDITIONAL_SAN</code>), stellen Sie sicher, dass Sie diesen Namen in mailcow.conf über <code>ADDITIONAL_SERVER_NAMES</code> eintragen. Die Namen müssen durch Kommas getrennt sein und <strong>dürfen</strong> keine Leerzeichen enthalten. Wenn Sie diesen Schritt auslassen, kann mailcow mit einer falschen Seite antworten.</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 </code></pre></div>
-<p>Führen Sie <code>docker-compose up -d</code> aus, um es anzuwenden.</p>
+<p>Führen Sie <code>docker compose up -d</code> aus, um es anzuwenden.</p>
 <h3 id="erneuerung-erzwingen">Erneuerung erzwingen<a class="headerlink" href="#erneuerung-erzwingen" title="Permanent link">&para;</a></h3>
 <p>Um eine Erneuerung zu erzwingen, müssen Sie eine Datei namens <code>force_renew</code> erstellen und den <code>acme-mailcow</code> Container neu starten:</p>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
 touch data/assets/ssl/force_renew
-docker-compose restart acme-mailcow
+docker compose restart acme-mailcow
 # Prüfen Sie nun die Logs auf eine Erneuerung
-docker-compose logs --tail=200 -f acme-mailcow
+docker compose logs --tail=200 -f acme-mailcow
 </code></pre></div>
 <p>Die Datei wird automatisch gelöscht.</p>
 <h3 id="validierungsfehler-und-wie-man-die-validierung-uberspringt">Validierungsfehler und wie man die Validierung überspringt<a class="headerlink" href="#validierungsfehler-und-wie-man-die-validierung-uberspringt" title="Permanent link">&para;</a></h3>
 <p>Sie können die <strong>IP-Überprüfung</strong> überspringen, indem Sie <code>SKIP_IP_CHECK=y</code> in mailcow.conf setzen (keine Anführungszeichen). Seien Sie gewarnt, dass eine Fehlkonfiguration dazu führt, dass Sie von Let's Encrypt eingeschränkt werden! Dies ist vor allem für Multi-IP-Setups nützlich, bei denen der IP-Check die falsche Quell-IP-Adresse zurückgeben würde. Aufgrund der Verwendung von dynamischen IPs für acme-mailcow ist Source-NAT bei Neustarts nicht konsistent.</p>
-<p>Wenn Sie Probleme mit der "HTTP-Validierung" haben, aber Ihre IP-Adressbestätigung erfolgreich ist, verwenden Sie höchstwahrscheinlich firewalld, ufw oder eine andere Firewall, die Verbindungen von <code>br-mailcow</code> zu Ihrem externen Interface verbietet. Sowohl firewalld als auch ufw lassen dies standardmäßig nicht zu. Es reicht oft nicht aus, diese Firewall-Dienste einfach zu stoppen. Sie müssen mailcow stoppen (<code>docker-compose down</code>), den Firewall-Dienst stoppen, die Ketten flushen und Docker neu starten.</p>
+<p>Wenn Sie Probleme mit der "HTTP-Validierung" haben, aber Ihre IP-Adressbestätigung erfolgreich ist, verwenden Sie höchstwahrscheinlich firewalld, ufw oder eine andere Firewall, die Verbindungen von <code>br-mailcow</code> zu Ihrem externen Interface verbietet. Sowohl firewalld als auch ufw lassen dies standardmäßig nicht zu. Es reicht oft nicht aus, diese Firewall-Dienste einfach zu stoppen. Sie müssen mailcow stoppen (<code>docker compose down</code>), den Firewall-Dienst stoppen, die Ketten flushen und Docker neu starten.</p>
 <p>Sie können diese Validierungsmethode auch überspringen, indem Sie <code>SKIP_HTTP_VERIFICATION=y</code> in "mailcow.conf" setzen. Seien Sie gewarnt, dass dies nicht zu empfehlen ist. In den meisten Fällen wird die HTTP-Überprüfung übersprungen, um unbekannte NAT-Reflection-Probleme zu umgehen, die durch das Ignorieren dieser spezifischen Netzwerk-Fehlkonfiguration nicht gelöst werden. Wenn Sie Probleme haben, TLSA-Einträge in der DNS-Übersicht innerhalb von mailcow zu generieren, haben Sie höchstwahrscheinlich Probleme mit NAT-Reflexion, die Sie beheben sollten.</p>
-<p>Wenn du einen SKIP_* Parameter geändert hast, führe <code>docker-compose up -d</code> aus, um deine Änderungen zu übernehmen.</p>
+<p>Wenn du einen SKIP_* Parameter geändert hast, führe <code>docker compose up -d</code> aus, um deine Änderungen zu übernehmen.</p>
 <h3 id="deaktivieren-sie-lets-encrypt">Deaktivieren Sie Let's Encrypt<a class="headerlink" href="#deaktivieren-sie-lets-encrypt" title="Permanent link">&para;</a></h3>
 <h4 id="deaktivieren-sie-lets-encrypt-vollstandig">Deaktivieren Sie Let's Encrypt vollständig<a class="headerlink" href="#deaktivieren-sie-lets-encrypt-vollstandig" title="Permanent link">&para;</a></h4>
-<p>Setzen Sie <code>SKIP_LETS_ENCRYPT=y</code> in "mailcow.conf" und erstellen Sie "acme-mailcow" neu, indem Sie <code>docker-compose up -d</code> ausführen.</p>
+<p>Setzen Sie <code>SKIP_LETS_ENCRYPT=y</code> in "mailcow.conf" und erstellen Sie "acme-mailcow" neu, indem Sie <code>docker compose up -d</code> ausführen.</p>
 <h4 id="alle-namen-auer-mailcow_hostname-uberspringen">Alle Namen außer ${MAILCOW_HOSTNAME} überspringen<a class="headerlink" href="#alle-namen-auer-mailcow_hostname-uberspringen" title="Permanent link">&para;</a></h4>
-<p>Fügen Sie <code>ONLY_MAILCOW_HOSTNAME=y</code> zu "mailcow.conf" hinzu und erstellen Sie "acme-mailcow" neu, indem Sie <code>docker-compose up -d</code> ausführen.</p>
+<p>Fügen Sie <code>ONLY_MAILCOW_HOSTNAME=y</code> zu "mailcow.conf" hinzu und erstellen Sie "acme-mailcow" neu, indem Sie <code>docker compose up -d</code> ausführen.</p>
 <h3 id="das-lets-encrypt-subjectaltname-limit-von-100-domains">Das Let's Encrypt subjectAltName-Limit von 100 Domains<a class="headerlink" href="#das-lets-encrypt-subjectaltname-limit-von-100-domains" title="Permanent link">&para;</a></h3>
 <p>Let's Encrypt hat derzeit <a href="https://letsencrypt.org/docs/rate-limits/">ein Limit von 100 Domainnamen pro Zertifikat</a>.</p>
 <p>Standardmäßig erstellt "acme-mailcow" ein einzelnes SAN-Zertifikat für alle validierten Domains
@@ -2653,7 +2670,7 @@ Dies bietet beste Kompatibilität, bedeutet aber, dass das Let's Encrypt-Limit �
 <li>Begrenzungen: Ein Zertifikatsname <code>ADDITIONAL_SAN=test.example.com</code> wird als SAN zum Hauptzertifikat hinzugefügt. Ein separates Zertifikat/Schlüsselpaar wird für dieses Format <strong>nicht</strong> erzeugt.</li>
 </ul>
 <p>Postfix, Dovecot und Nginx werden dann diese Zertifikate mit SNI bedienen.</p>
-<p>Setzen Sie <code>ENABLE_SSL_SNI=y</code> in "mailcow.conf" und erstellen Sie "acme-mailcow" durch Ausführen von <code>docker-compose up -d</code>.</p>
+<p>Setzen Sie <code>ENABLE_SSL_SNI=y</code> in "mailcow.conf" und erstellen Sie "acme-mailcow" durch Ausführen von <code>docker compose up -d</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Nicht alle Clients unterstützen SNI, <a href="https://wiki.dovecot.org/SSL/SNIClientSupport">siehe Dovecot Dokumentation</a> oder <a href="https://en.wikipedia.org/wiki/Server_Name_Indication#Support">Wikipedia</a>.
@@ -2683,15 +2700,15 @@ docker restart $(docker ps -qaf name=dovecot-mailcow)
 <p>Siehe <a href="../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Post-Hook-Skript für Nicht-Mailcow-ACME-Clients</a> für ein vollständiges Beispielskript.</p>
 <h3 id="test-gegen-das-acme-verzeichnis">Test gegen das ACME-Verzeichnis<a class="headerlink" href="#test-gegen-das-acme-verzeichnis" title="Permanent link">&para;</a></h3>
 <p>Bearbeiten Sie <code>mailcow.conf</code> und fügen Sie <code>LE_STAGING=y</code> hinzu.</p>
-<p>Führen Sie <code>docker-compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
+<p>Führen Sie <code>docker compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
 <h3 id="benutzerdefinierte-verzeichnis-url">Benutzerdefinierte Verzeichnis-URL<a class="headerlink" href="#benutzerdefinierte-verzeichnis-url" title="Permanent link">&para;</a></h3>
 <p>Editieren Sie <code>mailcow.conf</code> und fügen Sie die entsprechende Verzeichnis-URL in die neue Variable <code>DIRECTORY_URL</code> ein:</p>
 <div class="highlight"><pre><span></span><code>DIRECTORY_URL=https://acme-custom-v9000.api.letsencrypt.org/directory
 </code></pre></div>
 <p>Sie können <code>LE_STAGING</code> nicht mit <code>DIRECTORY_URL</code> verwenden. Wenn beide gesetzt sind, wird nur <code>LE_STAGING</code> verwendet.</p>
-<p>Führen Sie <code>docker-compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
+<p>Führen Sie <code>docker compose up -d</code> aus, um Ihre Änderungen zu aktivieren.</p>
 <h3 id="uberprufen-sie-ihre-konfiguration">Überprüfen Sie Ihre Konfiguration<a class="headerlink" href="#uberprufen-sie-ihre-konfiguration" title="Permanent link">&para;</a></h3>
-<p>Führen Sie <code>docker-compose logs acme-mailcow</code> aus, um herauszufinden, warum eine Validierung fehlschlägt.</p>
+<p>Führen Sie <code>docker compose logs acme-mailcow</code> aus, um herauszufinden, warum eine Validierung fehlschlägt.</p>
 <p>Um zu überprüfen, ob nginx das richtige Zertifikat verwendet, benutzen Sie einfach einen Browser Ihrer Wahl und überprüfen Sie das angezeigte Zertifikat.</p>
 <p>Um das von Postfix, Dovecot und Nginx verwendete Zertifikat zu überprüfen, verwenden wir <code>openssl</code>:</p>
 <div class="highlight"><pre><span></span><code># Verbindung über SMTP (587)
@@ -2711,7 +2728,7 @@ bash helper-scripts/expiry-dates.sh
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2827,7 +2844,7 @@ bash helper-scripts/expiry-dates.sh
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

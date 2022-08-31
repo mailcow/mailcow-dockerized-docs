@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2510,7 +2527,7 @@
     keys_expire = 2d;
 }
 </code></pre></div>
-<p>Erstellen oder ändern Sie <code>docker-compose.override.yml</code> im mailcow-dockerized Basisverzeichnis:</p>
+<p>Erstellen oder ändern Sie <code>docker compose.override.yml</code> im mailcow-dockerized Basisverzeichnis:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2525,7 +2542,7 @@ services:
     depends_on:
       - rspamd-mailcow
 </code></pre></div>
-<p>Starte <code>docker-compose up -d</code></p>
+<p>Starte <code>docker compose up -d</code></p>
 <h2 id="senden-sie-eine-kopie-der-berichte-an-sich-selbst">Senden Sie eine Kopie der Berichte an sich selbst<a class="headerlink" href="#senden-sie-eine-kopie-der-berichte-an-sich-selbst" title="Permanent link">&para;</a></h2>
 <p>Um eine versteckte Kopie der von Rspamd erzeugten Berichte zu erhalten, können Sie eine <code>bcc_addrs</code> Liste im <code>reporting</code> Konfigurationsabschnitt von <code>data/conf/rspamd/local.d/dmarc.conf</code> setzen:</p>
 <div class="highlight"><pre><span></span><code>reporting {
@@ -2542,20 +2559,20 @@ services:
 </ul>
 <h2 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h2>
 <p>Prüfen Sie, wann der Berichtsplan zuletzt ausgeführt wurde:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
 </code></pre></div>
 <p>Sehen Sie sich die letzte Berichtsausgabe an:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
 </code></pre></div>
 <p>Manuelles Auslösen eines DMARC-Berichts:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec rspamd-mailcow rspamadm dmarc_report
+<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow rspamadm dmarc_report
 </code></pre></div>
 <p>Bestätigen Sie, dass Rspamd Daten in Redis aufgezeichnet hat:
 Ändern Sie <code>20220428</code> in ein anderes interessantes Datum zum schauen.</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli SMEMBERS &quot;dmarc_idx;20220428&quot;
+<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli SMEMBERS &quot;dmarc_idx;20220428&quot;
 </code></pre></div>
 <p>Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Sie sie an, z. B.:</p>
-<div class="highlight"><pre><span></span><code>docker-compose exec redis-mailcow redis-cli ZRANGE &quot;dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428&quot; 0 49
+<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli ZRANGE &quot;dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428&quot; 0 49
 </code></pre></div>
 <h2 id="andern-sie-die-haufigkeit-der-dmarc-berichte">Ändern Sie die Häufigkeit der DMARC-Berichte<a class="headerlink" href="#andern-sie-die-haufigkeit-der-dmarc-berichte" title="Permanent link">&para;</a></h2>
 <p>Im obigen Beispiel werden die Berichte einmal alle 24 Stunden gesendet.</p>
@@ -2563,13 +2580,13 @@ services:
 <p>Um den Zeitplan zu ändern:</p>
 <ol>
 <li>
-<p>Bearbeiten Sie <code>docker-compose.override.yml</code> und stellen Sie <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> auf einen gewünschten Wert, zum Beispiel auf <code>"@midnight"</code></p>
+<p>Bearbeiten Sie <code>docker compose.override.yml</code> und stellen Sie <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> auf einen gewünschten Wert, zum Beispiel auf <code>"@midnight"</code></p>
 </li>
 <li>
-<p>Führen Sie <code>docker-compose up -d</code> aus.</p>
+<p>Führen Sie <code>docker compose up -d</code> aus.</p>
 </li>
 <li>
-<p>Führen Sie <code>docker-compose restart ofelia-mailcow</code> aus</p>
+<p>Führen Sie <code>docker compose restart ofelia-mailcow</code> aus</p>
 </li>
 </ol>
 <h2 id="dmarc-berichterstattung-deaktivieren">DMARC-Berichterstattung deaktivieren<a class="headerlink" href="#dmarc-berichterstattung-deaktivieren" title="Permanent link">&para;</a></h2>
@@ -2579,10 +2596,10 @@ services:
 <p>Setzen Sie <code>enabled</code> auf <code>false</code> in <code>data/conf/rspamd/local.d/dmarc.conf</code>.</p>
 </li>
 <li>
-<p>Machen Sie Änderungen in <code>docker-compose.override.yml</code> an <code>rspamd-mailcow</code> und <code>ofelia-mailcow</code> rückgängig</p>
+<p>Machen Sie Änderungen in <code>docker compose.override.yml</code> an <code>rspamd-mailcow</code> und <code>ofelia-mailcow</code> rückgängig</p>
 </li>
 <li>
-<p>Führen Sie <code>docker-compose up -d</code> aus</p>
+<p>Führen Sie <code>docker compose up -d</code> aus</p>
 </li>
 </ol>
 
@@ -2591,7 +2608,7 @@ services:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2707,7 +2724,7 @@ services:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

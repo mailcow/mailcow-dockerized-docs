@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2473,7 +2490,7 @@
 <p>To find the paths of your source volumes we use <code>docker inspect</code> and read the destination directory of every volume related to your mailcow compose project. This means we will also transfer volumes you may have added in an override file. Local bind mounts may or may not work.</p>
 <p>The script uses rsync with the <code>--delete</code> flag. The destination will be an exact copy of the source.</p>
 <p><code>mariabackup</code> is used to create a consistent copy of the SQL data directory.</p>
-<p>After rsync'ing the data we will run <code>docker-compose pull</code> and remove old image tags from the destination.</p>
+<p>After rsync'ing the data we will run <code>docker compose pull</code> and remove old image tags from the destination.</p>
 <p>Your source will not be changed at any time.</p>
 <p><strong>You may want to make sure to use the same <code>/etc/docker/daemon.json</code> on the remote target.</strong></p>
 <p>You should not run disk snapshots (e.g. via ZFS, LVM etc.) on the target at the very same time as this script is run.</p>
@@ -2488,7 +2505,7 @@ export REMOTE_SSH_HOST=mailcow-backup.host.name
 </code></pre></div>
 <p>The key must be owned and readable by root only.</p>
 <p>Both the source and destination require <code>rsync</code> &gt;= v3.1.0.
-The destination must have Docker and docker-compose <strong>v2</strong> available.</p>
+The destination must have Docker and docker compose <strong>v2</strong> available.</p>
 <p>The script will detect errors automatically and exit.</p>
 <p>You may want to test the connection by running <code>ssh mailcow-backup.host.name -p22 -i /path/to/keyfile</code>.</p>
 <h2 id="backup-and-refresh-the-cold-standby">Backup and refresh the cold-standby<a class="headerlink" href="#backup-and-refresh-the-cold-standby" title="Permanent link">&para;</a></h2>
@@ -2521,7 +2538,7 @@ The destination must have Docker and docker-compose <strong>v2</strong> availabl
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-27 19:14:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2637,7 +2654,7 @@ The destination must have Docker and docker-compose <strong>v2</strong> availabl
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

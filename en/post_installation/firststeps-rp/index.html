@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2497,7 +2514,7 @@ mailcow: dockerized trusts the default gateway IP 172.22.1.1 as proxy.</p>
 </code></pre></div></p>
 <p>This will also change the bindings inside the Nginx container! This is important, if you decide to use a proxy within Docker.</p>
 <p><strong>IMPORTANT:</strong> Do not use port 8081, 9081 or 65510!</p>
-<p>Recreate affected containers by running <code>docker-compose up -d</code>.</p>
+<p>Recreate affected containers by running <code>docker compose up -d</code>.</p>
 <p><strong>Important information, please read them carefully!</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2648,8 +2665,8 @@ backend mailcow
 <p><strong>Important</strong>: This config only covers the "reverseproxing" of the webpannel (nginx-mailcow) using Traefik v2, if you also want to reverseproxy the mail services such as dovecot, postfix... you'll just need to adapt the following config to each container and create an <a href="https://docs.traefik.io/routing/entrypoints/">EntryPoint</a> on your <code>traefik.toml</code> or <code>traefik.yml</code> (depending which config you use) for each port. </p>
 <p>For this section we'll assume you have your Traefik 2 <code>[certificatesresolvers]</code> properly configured on your traefik configuration file, and also using acme, also, the following example uses Lets Encrypt, but feel free to change it to your own cert resolver. You can find a basic Traefik 2 toml config file with all the above implemented which can be used for this example here <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a> if you need one, or a hint on how to adapt your config.</p>
 <p>So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
-For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow.conf</code>, and run <code>docker-compose up -d</code> to apply the changes.</p>
-<p>Then we'll create a <code>docker-compose.override.yml</code> file in order to override the main <code>docker-compose.yml</code> found in your mailcow root folder. </p>
+For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow.conf</code>, and run <code>docker compose up -d</code> to apply the changes.</p>
+<p>Then we'll create a <code>docker compose.override.yml</code> file in order to override the main <code>docker compose.yml</code> found in your mailcow root folder. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
 <span class="nt">services</span><span class="p">:</span><span class="w"></span>
@@ -2681,7 +2698,7 @@ For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow
 <span class="w">        </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"></span>
 <span class="w">        </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="c1"># mount the folder which contains Traefik&#39;s `acme.json&#39; file</span><span class="w"></span>
-<span class="w">          </span><span class="c1">#   in this case Traefik is started from its own docker-compose in ../traefik</span><span class="w"></span>
+<span class="w">          </span><span class="c1">#   in this case Traefik is started from its own docker compose in ../traefik</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../traefik/data:/traefik:ro</span><span class="w"></span>
 <span class="w">          </span><span class="c1"># mount mailcow&#39;s SSL folder</span><span class="w"></span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/:/output:rw</span><span class="w"></span>
@@ -2694,10 +2711,10 @@ For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow
 <span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 </code></pre></div>
-<p>Start the new containers with <code>docker-compose up -d</code>.</p>
+<p>Start the new containers with <code>docker compose up -d</code>.</p>
 <p>Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">this tiny container</a> which grabs the <code>acme.json</code> file trough a volume, and a variable <code>DOMAIN=example.org</code>, and with these, the container will output the <code>cert.pem</code> and <code>key.pem</code> files, for this we'll simply run the <code>traefik-certs-dumper</code> container binding the <code>/traefik</code> volume to the folder where our <code>acme.json</code> is saved, bind the <code>/output</code> volume to our mailcow <code>data/assets/ssl/</code> folder, and set up the <code>DOMAIN=example.org</code> variable to the domain we want the certs dumped from. </p>
 <p>This container will watch over the <code>acme.json</code> file for any changes, and regenerate the <code>cert.pem</code> and <code>key.pem</code> files directly into <code>data/assets/ssl/</code> being the path binded to the container's <code>/output</code> path.</p>
-<p>You can use the command line to run it, or use the docker-compose shown <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">here</a>.</p>
+<p>You can use the command line to run it, or use the docker compose shown <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">here</a>.</p>
 <p>After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how <a href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate">here</a>.</p>
 <p>Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.</p>
 <h3 id="optional-post-hook-script-for-non-mailcow-acme-clients">Optional: Post-hook script for non-mailcow ACME clients<a class="headerlink" href="#optional-post-hook-script-for-non-mailcow-acme-clients" title="Permanent link">&para;</a></h3>
@@ -2715,14 +2732,14 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
 <p>If you plan to use a server name that is not <code>MAILCOW_HOSTNAME</code> in your reverse proxy, make sure to populate that name in mailcow.conf via <code>ADDITIONAL_SERVER_NAMES</code> first. Names must be separated by commas and <strong>must not</strong> contain spaces. If you skip this step, mailcow may respond to your reverse proxy with an incorrect site.</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 </code></pre></div>
-<p>Run <code>docker-compose up -d</code> to apply.</p>
+<p>Run <code>docker compose up -d</code> to apply.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2838,7 +2855,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

@@ -64,6 +64,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2369,7 +2386,7 @@
   <h1>Gitea</h1>
 
 <p>With Gitea' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:</p>
-<p>1. Open <code>docker-compose.override.yml</code> and add gitea:</p>
+<p>1. Open <code>docker compose.override.yml</code> and add gitea:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
 
@@ -2392,8 +2409,8 @@ services:
 <p>3. Open <code>mailcow.conf</code> and define the binding you want gitea to use for SSH. Example:</p>
 <div class="highlight"><pre><span></span><code>GITEA_SSH_PORT=127.0.0.1:4000
 </code></pre></div>
-<p>5. Run <code>docker-compose up -d</code> to bring up the gitea container and run <code>docker-compose restart nginx-mailcow</code> afterwards.</p>
-<p>6. If you forced mailcow to https, execute step 9 and restart gitea with <code>docker-compose restart gitea-mailcow</code> . Go head with step 7 (Remember to use https instead of http, <code>https://mx.example.org/gitea/</code> </p>
+<p>5. Run <code>docker compose up -d</code> to bring up the gitea container and run <code>docker compose restart nginx-mailcow</code> afterwards.</p>
+<p>6. If you forced mailcow to https, execute step 9 and restart gitea with <code>docker compose restart gitea-mailcow</code> . Go head with step 7 (Remember to use https instead of http, <code>https://mx.example.org/gitea/</code> </p>
 <p>7. Open <code>http://${MAILCOW_HOSTNAME}/gitea/</code>, for example <code>http://mx.example.org/gitea/</code>. For database details set <code>mysql</code> as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.</p>
 <p>8. Once the installation is complete, login as admin and set "settings" -&gt; "authorization" -&gt; "enable SMTP". SMTP Host should be <code>postfix</code> with port <code>587</code>, set <code>Skip TLS Verify</code> as we are using an unlisted SAN ("postfix" is most likely not part of your certificate).</p>
 <p>9. Create <code>data/gitea/gitea/conf/app.ini</code> and set following values. You can consult <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">gitea cheat sheet</a> for their meaning and other possible values.</p>
@@ -2405,14 +2422,14 @@ SSH_PORT = 4000
 # For MAILCOW_HOSTNAME=mx.example.org in mailcow.conf (and default ports for HTTPS), set:
 ROOT_URL = https://mx.example.org/gitea/
 </code></pre></div>
-<p>10. Restart gitea with <code>docker-compose restart gitea-mailcow</code>. Your users should be able to login with mailcow managed accounts.</p>
+<p>10. Restart gitea with <code>docker compose restart gitea-mailcow</code>. Your users should be able to login with mailcow managed accounts.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2528,7 +2545,7 @@ ROOT_URL = https://mx.example.org/gitea/
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2477,9 +2494,9 @@
 <p>Nextcloud can be set up (parameter <code>-i</code>) and removed (parameter <code>-p</code>) with the <a href="https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh">helper script</a> included with mailcow. In order to install Nextcloud simply navigate to your mailcow-dockerized root folder and run the helper script as follows:</p>
 <p><code>./helper-scripts/nextcloud.sh -i</code></p>
 <p>In case you have forgotten the password (e.g. for admin) and can't request a new one <a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">via the password reset link on the login screen</a> calling the helper script with <code>-r</code> as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.</p>
-<p>In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run <code>docker-compose up -d</code> to apply. For more informaton refer to: <a href="../../../post_installation/firststeps-ssl/">Advanced SSL</a>.</p>
+<p>In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run <code>docker compose up -d</code> to apply. For more informaton refer to: <a href="../../../post_installation/firststeps-ssl/">Advanced SSL</a>.</p>
 <h2 id="background-jobs">Background jobs<a class="headerlink" href="#background-jobs" title="Permanent link">&para;</a></h2>
-<p>To use the recommended setting (cron) to execute the background jobs following lines need to be added to the <code>docker-compose.override.yml</code>:</p>
+<p>To use the recommended setting (cron) to execute the background jobs following lines need to be added to the <code>docker compose.override.yml</code>:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   php-fpm-mailcow:
@@ -2488,9 +2505,9 @@ services:
       ofelia.job-exec.nextcloud-cron.schedule: &quot;@every 5m&quot;
       ofelia.job-exec.nextcloud-cron.command: &quot;su www-data -s /bin/bash -c \&quot;/usr/local/bin/php -f /web/nextcloud/cron.php\&quot;&quot;
 </code></pre></div>
-<p>After adding these lines the <code>docker-compose up -d</code> command must be executed to update the docker image and also the docker scheduler image must be restarted to
- pick up the new job definition by executing <code>docker-compose restart ofelia-mailcow</code>. To check if the job was successfully picked up by <code>ofelia</code> the command
- <code>docker-compose logs ofelia-mailcow</code> will contain a line similar to <code>New job registered "nextcloud-cron" - ...</code>.</p>
+<p>After adding these lines the <code>docker compose up -d</code> command must be executed to update the docker image and also the docker scheduler image must be restarted to
+ pick up the new job definition by executing <code>docker compose restart ofelia-mailcow</code>. To check if the job was successfully picked up by <code>ofelia</code> the command
+ <code>docker compose logs ofelia-mailcow</code> will contain a line similar to <code>New job registered "nextcloud-cron" - ...</code>.</p>
 <p>By adding these lines the background jobs will be executed every 5 minutes. To verify that the execution works correctly, the only way is to see it in the basic
  settings when logged in as an admin in Nextcloud. If everything is correct the first scheduled execution will change the background jobs processing setting to
  <code>(X) Cron</code> and the timestamp after <code>Last job ran</code> will be updated every 5 minutes.</p>
@@ -2538,13 +2555,13 @@ services:
 <hr />
 <p>If you have previously used Nextcloud with mailcow authentication via user_external/IMAP, you need to perform some additional steps to link your existing user accounts with OAuth2.</p>
 <p>1. Click the button in the top right corner and select <em>Apps</em>. Scroll down to the <em>External user authentication</em> app and click <em>Remove</em> next to it.
-2. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run <code>source mailcow.conf &amp;&amp; docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code>):
+2. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run <code>source mailcow.conf &amp;&amp; docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code>):
 <div class="highlight"><pre><span></span><code>INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
 INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users_external;
 </code></pre></div></p>
 <hr />
 <p>If you have previously used Nextcloud without mailcow authentication, but with the same usernames as mailcow, you can also link your existing user accounts with OAuth2.</p>
-<p>1. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run <code>source mailcow.conf &amp;&amp; docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code>):
+<p>1. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run <code>source mailcow.conf &amp;&amp; docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code>):
 <div class="highlight"><pre><span></span><code>INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users;
 </code></pre></div></p>
 <hr />
@@ -2564,14 +2581,14 @@ It shows which commands have to be executed, these have to be placed in the php-
   ),
 </code></pre></div>
 <p>After the changes have been made, the nginx container must be restarted.
-<code>docker-compose restart nginx-mailcow</code></p>
+<code>docker compose restart nginx-mailcow</code></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2687,7 +2704,7 @@ It shows which commands have to be executed, these have to be placed in the php-
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

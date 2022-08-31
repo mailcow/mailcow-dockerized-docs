@@ -62,12 +62,29 @@
     <div data-md-component="skip">
       
         
-        <a href="#automatische-aktualisierung" class="md-skip">
+        <a href="#mailcow-automatisch-updaten" class="md-skip">
           Zum Inhalt
         </a>
       
     </div>
     <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
       
     </div>
     
@@ -400,11 +417,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#automatische-aktualisierung" class="md-nav__link">
-    Automatische Aktualisierung
+  <a href="#mailcow-automatisch-updaten" class="md-nav__link">
+    mailcow automatisch Updaten
   </a>
   
-    <nav class="md-nav" aria-label="Automatische Aktualisierung">
+    <nav class="md-nav" aria-label="mailcow automatisch Updaten">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -444,6 +461,47 @@
   <a href="#update-zyklus" class="md-nav__link">
     Update-Zyklus
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-varianten" class="md-nav__link">
+    Update-Varianten
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neu-nightly-updates-beziehen" class="md-nav__link">
+    NEU: Nightly Updates beziehen
+  </a>
+  
+    <nav class="md-nav" aria-label="NEU: Nightly Updates beziehen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infos-zu-den-nightly-updates" class="md-nav__link">
+    Infos zu den Nightly Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wie-bekomme-ich-nightly-updates" class="md-nav__link">
+    Wie bekomme ich Nightly Updates?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practice-nightly-update" class="md-nav__link">
+    Best Practice Nightly Update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2432,11 +2490,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#automatische-aktualisierung" class="md-nav__link">
-    Automatische Aktualisierung
+  <a href="#mailcow-automatisch-updaten" class="md-nav__link">
+    mailcow automatisch Updaten
   </a>
   
-    <nav class="md-nav" aria-label="Automatische Aktualisierung">
+    <nav class="md-nav" aria-label="mailcow automatisch Updaten">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2479,6 +2537,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#update-varianten" class="md-nav__link">
+    Update-Varianten
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neu-nightly-updates-beziehen" class="md-nav__link">
+    NEU: Nightly Updates beziehen
+  </a>
+  
+    <nav class="md-nav" aria-label="NEU: Nightly Updates beziehen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infos-zu-den-nightly-updates" class="md-nav__link">
+    Infos zu den Nightly Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wie-bekomme-ich-nightly-updates" class="md-nav__link">
+    Wie bekomme ich Nightly Updates?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practice-nightly-update" class="md-nav__link">
+    Best Practice Nightly Update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2499,7 +2598,7 @@
 
   <h1>Update</h1>
 
-<h2 id="automatische-aktualisierung">Automatische Aktualisierung<a class="headerlink" href="#automatische-aktualisierung" title="Permanent link">&para;</a></h2>
+<h2 id="mailcow-automatisch-updaten">mailcow automatisch Updaten<a class="headerlink" href="#mailcow-automatisch-updaten" title="Permanent link">&para;</a></h2>
 <p>Ein Update-Skript in Ihrem mailcow-dockerized Verzeichnis kümmert sich um Updates.</p>
 <p>Aber benutzen Sie es mit Bedacht! Wenn Sie denken, dass Sie viele Änderungen am mailcow-Code vorgenommen haben, sollten Sie die manuelle Update-Anleitung unten verwenden.</p>
 <p>Führen sie das Update-Skript aus:
@@ -2520,8 +2619,12 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-d
 # - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
 ./update.sh --skip-ping-check
 
-# - Überspringt den Docker-Compose Update Prozess, aktualisierung erfolgt dann vom Benutzer
-./update.sh --no-update-compose
+# - Wechselt die Update Quellen der mailcow auf nightly (unstabile) Inhalte.
+NUR ZUM TESTEN VERWENDEN!! KEIN PRODUKTIV BETRIEB!!!
+./update.sh --nightly
+
+# - Wechselt die Update Quellen der mailcow auf stable (stabile) Inhalte (standard).
+./update.sh --stable
 
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
 ./update.sh --force
@@ -2545,11 +2648,11 @@ dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
 <h3 id="kann-ich-ein-rollback-durchfuhren">Kann ich ein Rollback durchführen?<a class="headerlink" href="#kann-ich-ein-rollback-durchfuhren" title="Permanent link">&para;</a></h3>
 <p>Ja.</p>
 <p>Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down
+<div class="highlight"><pre><span></span><code>docker compose down
 # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
 git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 </code></pre></div>
 <h3 id="hooks">Hooks<a class="headerlink" href="#hooks" title="Permanent link">&para;</a></h3>
 <p>Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens <code>pre_commit_hook.sh</code> und <code>post_commit_hook.sh</code> zu Ihrem mailcows-Root-Verzeichnis hinzufügen. Siehe <a href="../../manual-guides/u_e-update-hooks/">hier</a> für weitere Details.</p>
@@ -2559,13 +2662,40 @@ docker-compose up -d
 <li>Die Updates sind wie folgt nummeriert: <code>JJJJ-MM</code> (Beispiel: <code>2022-05</code>).</li>
 <li>Fehlerkorrekturen eines Hauptupdates werden bei uns als "Revisionen" wie a,b,c (Beispiele: <code>2022-05a</code>, <code>2022-05b</code> usw.) erscheinen.</li>
 </ul>
+<h2 id="update-varianten">Update-Varianten<a class="headerlink" href="#update-varianten" title="Permanent link">&para;</a></h2>
+<p><strong>stable (stabile Updates)</strong>: Diese Updates sind für den Produktivbetrieb geeignet. Sie erscheinen in einem Zyklus von mindest 1x im Monat.</p>
+<p><strong>nightly (instabile Updates)</strong>: Diese Updates sind <strong>NICHT</strong> für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.</p>
+<h2 id="neu-nightly-updates-beziehen">NEU: Nightly Updates beziehen<a class="headerlink" href="#neu-nightly-updates-beziehen" title="Permanent link">&para;</a></h2>
+<h3 id="infos-zu-den-nightly-updates">Infos zu den Nightly Updates<a class="headerlink" href="#infos-zu-den-nightly-updates" title="Permanent link">&para;</a></h3>
+<p>Seit dem 2022-08 Update gibt es die Möglichkeit die Update quellen zu ändern. Bisher diente der master Branch auf GitHub als einzige (offizieller) Update Quelle. Mit dem August 2022 Update gibt es aber nun noch den Nightly Branch welcher instabile und größere Änderungen zum testen und Feedback geben enthält.</p>
+<p>Dabei bekommt der Nightly Branch immer dann neue Updates, wenn irgendetwas am mailcow Projekt fertig gemacht wurde was in die neue Hauptversion reinkommt.</p>
+<p>Neben den offensichtlichen neuerungen welche sowieso im nächsten Major Update enthalten sein werden enthält er ebenfalls erstmal exklusive Features welche eine längere Testzeit brauchen (bspw. das UI Update auf Bootstrap 5).</p>
+<h3 id="wie-bekomme-ich-nightly-updates">Wie bekomme ich Nightly Updates?<a class="headerlink" href="#wie-bekomme-ich-nightly-updates" title="Permanent link">&para;</a></h3>
+<p>Der Vorgang ist relativ simpel. Mit dem 2022-08 Update (ein Update auf die Version voraussgesetzt) ist es möglich die <code>update.sh</code> mit dem Parameter <code>--nightly</code> zu starten.</p>
+<div class="admonition danger">
+<p class="admonition-title">Achtung<p>Bitte machen Sie vorher ein Backup oder folgen Sie dem Abschnitt <a href="#best-practice-nightly-update">Best Practice Nightly Update</a> bevor Sie auf die Nightly Builds von mailcow wechseln. Wir sind für keinerlei Datenverluste/korruptionen verantwortlich, also arbeiten Sie mit bedacht!</p>
+</p>
+</div>
+<p>Das Skript wird nun den Branch wechseln mit <code>git checkout nightly</code> d.h. es wird auch wieder nach den IPv6 Einstellungen fragen. Das ist aber normal.</p>
+<p>Sollte alles problemlos geklappt haben (wofür wir ja auch vorsichtshalber ein Backup vorher gemacht haben) sollte nun in der mailcow UI unten rechts die aktuelle Versionsnummer samt Datumsstempel abgebildet sein: <br>
+<img alt="nightly footer" src="../../assets/images/i_u_m/nightly_footer.png" /></p>
+<h3 id="best-practice-nightly-update">Best Practice Nightly Update<a class="headerlink" href="#best-practice-nightly-update" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info<p>Wir empfehlen die Benutzung des Nightly Updates nur dann, wenn Ihr eine weitere Maschine oder VM besitzt und diese <strong>NICHT</strong> Produktiv nutzt.</p>
+</p>
+</div>
+<ol>
+<li>Das <a href="../../backup_restore/b_n_r-coldstandby/">Cold-Standby Skript</a> nutzen um die Maschine <strong>vor</strong> dem Schwenk auf die Nightly Builds auf ein anderes System zu kopieren.</li>
+<li>Das <code>update.sh</code> Skript auf der neuen Maschine mit dem Parameter <code>--nightly</code> ausführen und bestätigen.</li>
+<li>Die Nightly Updates auf der sekundären Maschine erleben/testen.</li>
+</ol>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:19:13</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2681,7 +2811,7 @@ docker-compose up -d
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

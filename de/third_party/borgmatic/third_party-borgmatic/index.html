@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2239,7 +2256,7 @@
         
           <li class="md-nav__item">
   <a href="#erstellen-oder-andern-sie-docker-composeoverrideyml" class="md-nav__link">
-    Erstellen oder ändern Sie docker-compose.override.yml
+    Erstellen oder ändern Sie docker compose.override.yml
   </a>
   
 </li>
@@ -2536,7 +2553,7 @@
         
           <li class="md-nav__item">
   <a href="#erstellen-oder-andern-sie-docker-composeoverrideyml" class="md-nav__link">
-    Erstellen oder ändern Sie docker-compose.override.yml
+    Erstellen oder ändern Sie docker compose.override.yml
   </a>
   
 </li>
@@ -2679,8 +2696,8 @@ Funktionalität wird durch das <a href="https://github.com/borgmatic-collective/
 die <code>README</code> in diesem Repository, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
 Diese Anleitung behandelt nur die Grundlagen.</p>
 <h2 id="einrichten-von-borgmatic">Einrichten von borgmatic<a class="headerlink" href="#einrichten-von-borgmatic" title="Permanent link">&para;</a></h2>
-<h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker-compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
-<p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker-compose.override.yml</code> und fügen Sie die folgende
+<h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
+<p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker compose.override.yml</code> und fügen Sie die folgende
 Konfiguration ein:
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
@@ -2770,7 +2787,7 @@ nach der vollen Stunde auszuführen und am Ende einige nette Statistiken zu prot
 oder OpenSSH wird sich weigern, den SSH-Schlüssel zu benutzen.</p>
 <h3 id="den-container-hochfahren">Den Container hochfahren<a class="headerlink" href="#den-container-hochfahren" title="Permanent link">&para;</a></h3>
 <p>Für den nächsten Schritt müssen wir den Container in einem konfigurierten Zustand hochfahren und laufen lassen. Um das zu tun, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose up -d
 </code></pre></div>
 <h2 id="wiederherstellung-von-einem-backup">Wiederherstellung von einem Backup<a class="headerlink" href="#wiederherstellung-von-einem-backup" title="Permanent link">&para;</a></h2>
 <p>Das Wiederherstellen eines Backups setzt voraus, dass Sie mit einer neuen Installation von mailcow beginnen, und dass Sie derzeit keine
@@ -2788,10 +2805,10 @@ während der Extraktion des Archivs vorübergehend deaktivieren, da das Mailcow-
 ausschließlich. SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
 dieses Volume zu schreiben.</p>
 </div>
-<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker-compose.override.yml</code> beschreibbar machen, indem Sie das
+<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker compose.override.yml</code> beschreibbar machen, indem Sie das
 das <code>ro</code>-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
 </code></pre></div>
 <p>Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 <a href="#auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive</a>)</p>
@@ -2801,7 +2818,7 @@ Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup
 <p>Die Ausführung dieses Befehls löscht und erstellt die mailcow-Datenbank neu! Führen sie diesen Befehl nicht aus, es sei denn sie beabsichtigen, die mailcow-Datenbank von einem Backup wiederherzustellen.</p>
 </div>
 <p>Um die MySQL-Datenbank aus dem letzten Archiv wiederherzustellen, verwenden Sie diesen Befehl:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic restore --archive latest
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic restore --archive latest
 </code></pre></div>
 <p>Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 <a href="#auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive</a>)</p>
@@ -2809,21 +2826,21 @@ Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup
 <p>Nach der Wiederherstellung müssen Sie mailcow neu starten. Wenn Sie den SELinux-Erzwingungsmodus deaktiviert haben, wäre jetzt ein guter Zeitpunkt, um
 ihn wieder zu aktivieren.</p>
 <p>Um mailcow neu zu starten, verwenden Sie den folgenden Befehl:</p>
-<div class="highlight"><pre><span></span><code>docker-compose down <span class="o">&amp;&amp;</span> docker-compose up -d
+<div class="highlight"><pre><span></span><code>docker compose down <span class="o">&amp;&amp;</span> docker compose up -d
 </code></pre></div>
 <p>Wenn Sie SELinux verwenden, werden dadurch auch alle Dateien in Ihrem vmail-Volume neu benannt. Seien Sie geduldig, denn dies kann
 eine Weile dauern kann, wenn Sie viele Dateien haben.</p>
 <h2 id="nutzliche-befehle">Nützliche Befehle<a class="headerlink" href="#nutzliche-befehle" title="Permanent link">&para;</a></h2>
 <h3 id="manueller-archivierungslauf-mit-debugging-ausgabe">Manueller Archivierungslauf (mit Debugging-Ausgabe)<a class="headerlink" href="#manueller-archivierungslauf-mit-debugging-ausgabe" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic -v <span class="m">2</span>
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic -v <span class="m">2</span>
 </code></pre></div>
 <h3 id="auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive<a class="headerlink" href="#auflistung-aller-verfugbaren-archive" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borgmatic list
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic list
 </code></pre></div>
 <h3 id="sperre-aufheben">Sperre aufheben<a class="headerlink" href="#sperre-aufheben" title="Permanent link">&para;</a></h3>
 <p>Wenn borg während eines Archivierungslaufs unterbrochen wird, hinterlässt es eine veraltete Sperre, die gelöscht werden muss, bevor
 neue Operationen durchgeführt werden können:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borg break-lock user@rsync.net:mailcow
 </code></pre></div>
 <p>Wobei <code>user@rsync.net:mailcow</code> die URI zu Ihrem Repository ist.</p>
 <p>Jetzt wäre ein guter Zeitpunkt, einen manuellen Archivierungslauf durchzuführen, um sicherzustellen, dass er erfolgreich durchgeführt werden kann.</p>
@@ -2833,7 +2850,7 @@ Schlüsseldateien werden erzeugt, wenn Sie das Repository initialisieren. Die <c
 Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
 <p>Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um die Archive zu entschlüsseln.</p>
 <p>Um die <code>keyfile</code> zu holen, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker-compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borg key <span class="nb">export</span> --paper user@rsync.net:mailcow
 </code></pre></div>
 <p>Wobei <code>user@rsync.net:mailcow</code> die URI zu Ihrem Repository ist.</p>
 
@@ -2842,7 +2859,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-22 15:01:40</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2958,7 +2975,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

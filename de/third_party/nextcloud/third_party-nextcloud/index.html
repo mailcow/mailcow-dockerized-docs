@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2477,9 +2494,9 @@
 <p>Nextcloud kann mit dem <a href="https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh">helper script</a>, das in mailcow enthalten ist, eingerichtet (Parameter <code>-i</code>) und entfernt (Parameter <code>-p</code>) werden. Um Nextcloud zu installieren, navigieren Sie einfach zu Ihrem mailcow-dockerized Root-Ordner und führen Sie das Helper-Skript wie folgt aus:</p>
 <p><code>./helper-scripts/nextcloud.sh -i</code></p>
 <p>Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (<a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset</a>), können Sie durch den Aufruf des Helper-Skripts mit <code>-r</code> als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.</p>
-<p>Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und <code>docker-compose up -d</code> zur Übernahme ausgeführt werden. Für weitere Informationen siehe: <a href="../../../post_installation/firststeps-ssl/">Erweitertes SSL</a>.</p>
+<p>Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und <code>docker compose up -d</code> zur Übernahme ausgeführt werden. Für weitere Informationen siehe: <a href="../../../post_installation/firststeps-ssl/">Erweitertes SSL</a>.</p>
 <h2 id="hintergrund-aufgaben">Hintergrund-Aufgaben<a class="headerlink" href="#hintergrund-aufgaben" title="Permanent link">&para;</a></h2>
-<p>Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der <code>docker-compose.override.yml</code> folgende Zeilen
+<p>Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der <code>docker compose.override.yml</code> folgende Zeilen
  hinzugefügt werden:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
@@ -2489,9 +2506,9 @@ services:
       ofelia.job-exec.nextcloud-cron.schedule: &quot;@every 5m&quot;
       ofelia.job-exec.nextcloud-cron.command: &quot;su www-data -s /bin/bash -c \&quot;/usr/local/bin/php -f /web/nextcloud/cron.php\&quot;&quot;
 </code></pre></div>
-<p>Nachdem diese Zeilen hinzugefügt wurden muss <code>docker-compose up -d</code> ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
- zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird <code>docker-compose restart ofelia-mailcow</code> ausgeführt. Zur
- Überprüfung, ob die <code>ofelia</code> Konfiguration korrekt ist geladen wurde, kann mittels <code>docker-compose logs ofelia-mailcow</code> nach einer Zeile mit dem Inhalt
+<p>Nachdem diese Zeilen hinzugefügt wurden muss <code>docker compose up -d</code> ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
+ zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird <code>docker compose restart ofelia-mailcow</code> ausgeführt. Zur
+ Überprüfung, ob die <code>ofelia</code> Konfiguration korrekt ist geladen wurde, kann mittels <code>docker compose logs ofelia-mailcow</code> nach einer Zeile mit dem Inhalt
  <code>New job registered "nextcloud-cron" - ...</code> gesucht werden.</p>
 <p>Hierdurch wird alle 5 Minuten die Hintergrundverarbeitung gestartet. Da die Ausführung selbst keine Ausgabe liefert, kann die korrekte Funktionsweise in den
  Grundeinstellungen von Nextcloud überprüft werden. Hier wird automatisch mit der ersten Ausführung die Hintergrund-Aufgaben Verarbeitung auf <code>(X) Cron</code> gesetzt
@@ -2540,13 +2557,13 @@ services:
 <hr />
 <p>Wenn Sie bisher Nextcloud mit mailcow-Authentifizierung über user_external/IMAP verwendet haben, müssen Sie einige zusätzliche Schritte durchführen, um Ihre bestehenden Benutzerkonten mit OAuth2 zu verknüpfen.</p>
 <p>1. Klicken Sie auf die Schaltfläche in der oberen rechten Ecke und wählen Sie <em>Apps</em>. Scrollen Sie nach unten zur App <em>Externe Benutzerauthentifizierung</em> und klicken Sie daneben auf <em>Entfernen</em>.
-2. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie <code>source mailcow.conf &amp;&amp; docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code> ausführen):
+2. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie <code>source mailcow.conf &amp;&amp; docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code> ausführen):
 <div class="highlight"><pre><span></span><code>INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
 INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users_external;
 </code></pre></div></p>
 <hr />
 <p>Wenn Sie Nextcloud bisher ohne mailcow-Authentifizierung, aber mit den gleichen Benutzernamen wie mailcow genutzt haben, können Sie Ihre bestehenden Benutzerkonten auch mit OAuth2 verknüpfen.</p>
-<p>1. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie <code>source mailcow.conf &amp;&amp; docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code> ausführen):
+<p>1. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie <code>source mailcow.conf &amp;&amp; docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code> ausführen):
 <div class="highlight"><pre><span></span><code>INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users;
 </code></pre></div></p>
 <hr />
@@ -2566,14 +2583,14 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
   ),
 </code></pre></div>
 <p>Nachdem die Änderungen vorgenommen wurden, muss der nginx-Container neu gestartet werden.
-<code>docker-compose restart nginx-mailcow</code></p>
+<code>docker compose restart nginx-mailcow</code></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2689,7 +2706,7 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

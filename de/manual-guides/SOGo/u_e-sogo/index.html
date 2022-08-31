@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2509,7 +2526,7 @@ Bitte schauen Sie sich die AngularJS Material <a href="https://material.angularj
 Nachdem Sie <code>data/conf/sogo/custom-theme.js</code> modifiziert und Änderungen an Ihrem neuen SOGo-Theme vorgenommen haben, müssen Sie </p>
 <ol>
 <li>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und fügen Sie <code>SOGoUIxDebugEnabled = YES;</code> ein.</li>
-<li>SOGo und Memcached Container neu starten, indem man <code>docker-compose restart memcached-mailcow sogo-mailcow</code> ausführt.</li>
+<li>SOGo und Memcached Container neu starten, indem man <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführt.</li>
 <li>SOGo im Browser öffnen</li>
 <li>öffnen Sie die Entwicklerkonsole des Browsers, normalerweise ist die Tastenkombination F12</li>
 <li>nur wenn Sie Firefox benutzen: schreiben Sie mit der Hand in die Entwicklerkonsole <code>allow pasting</code> und drücken Sie Enter</li>
@@ -2524,7 +2541,7 @@ Nachdem Sie <code>data/conf/sogo/custom-theme.js</code> modifiziert und Änderun
 <li>Öffnen Sie den Texteditor und fügen Sie die Daten aus der Zwischenablage ein (Strg+V), Sie sollten ein minimiertes CSS erhalten, speichern Sie es</li>
 <li>kopieren Sie die CSS-Datei auf den Mailcow-Server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>editiere <code>data/conf/sogo/sogo.conf</code> und setze <code>SOGoUIxDebugEnabled = NO;</code></li>
-<li>Anhängen/Erstellen von <code>docker-compose.override.yml</code> mit:
+<li>Anhängen/Erstellen von <code>docker compose.override.yml</code> mit:
 <div class="highlight"><pre><span></span><code>Version: &#39;2.1&#39;
 
 Dienste:
@@ -2532,8 +2549,8 @@ Dienste:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>führen Sie <code>docker-compose up -d</code> aus</li>
-<li>Ausführen von <code>docker-compose restart memcached-mailcow</code></li>
+<li>führen Sie <code>docker compose up -d</code> aus</li>
+<li>Ausführen von <code>docker compose restart memcached-mailcow</code></li>
 </ol>
 <h2 id="zurucksetzen-auf-das-sogo-standardthema">Zurücksetzen auf das SOGo Standardthema<a class="headerlink" href="#zurucksetzen-auf-das-sogo-standardthema" title="Permanent link">&para;</a></h2>
 <ol>
@@ -2558,20 +2575,20 @@ Dienste:
 und ersetzen Sie es durch:
 <div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
 </code></pre></div></li>
-<li>Entfernen Sie aus <code>docker-compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
+<li>Entfernen Sie aus <code>docker compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
 <div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>führen Sie <code>docker-compose up -d</code> aus</li>
-<li>Starten Sie <code>docker-compose restart memcached-mailcow</code>.</li>
+<li>führen Sie <code>docker compose up -d</code> aus</li>
+<li>Starten Sie <code>docker compose restart memcached-mailcow</code>.</li>
 </ol>
 <h2 id="favicon-andern">Favicon ändern<a class="headerlink" href="#favicon-andern" title="Permanent link">&para;</a></h2>
 <p>mailcow-Builds nach dem 31. Januar 2021 können SOGo's Favicon ändern, indem sie <code>data/conf/sogo/custom-favicon.ico</code> für SOGo und <code>data/web/favicon.png</code> für mailcow UI ersetzen.
 <strong>Anmerkung</strong>: Sie können <code>.png</code> Favicons für SOGo verwenden, indem Sie sie in <code>custom-favicon.ico</code> umbenennen.
 Für beide, SOGo und mailcow UI Favicons, müssen Sie eine der Standardgrößen verwenden: 16x16, 32x32, 64x64, 128x128 und 256x256.
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
 <h2 id="logo-andern">Logo ändern<a class="headerlink" href="#logo-andern" title="Permanent link">&para;</a></h2>
 <p>Mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei <code>data/conf/sogo/sogo-full.svg</code> ersetzen oder erstellen (falls sie fehlt).
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
 <h2 id="domains-verbinden-untereinander-sichtbar-machen">Domains verbinden (untereinander sichtbar machen)<a class="headerlink" href="#domains-verbinden-untereinander-sichtbar-machen" title="Permanent link">&para;</a></h2>
 <p>Domains sind normalerweise voneinander isoliert.</p>
 <p>Sie können das ändern, indem Sie <code>data/conf/sogo/sogo.conf</code> modifizieren:</p>
@@ -2586,19 +2603,19 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
       (beispiel.org, beispiel.com, beispiel.net)
     );
 </code></pre></div>
-<p>SOGo neu starten: <code>docker-compose restart sogo-mailcow</code></p>
+<p>SOGo neu starten: <code>docker compose restart sogo-mailcow</code></p>
 <h2 id="deaktivieren-sie-die-passwortanderung">Deaktivieren Sie die Passwortänderung<a class="headerlink" href="#deaktivieren-sie-die-passwortanderung" title="Permanent link">&para;</a></h2>
 <p>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> Sie <code>SOGoPasswordChangeEnabled</code> auf <code>NO</code>. Bitte fügen Sie keinen neuen Parameter hinzu.</p>
-<p>Führen Sie <code>docker-compose restart memcached-mailcow sogo-mailcow</code> aus, um die Änderungen zu aktivieren.</p>
+<p>Führen Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> aus, um die Änderungen zu aktivieren.</p>
 <h2 id="totp-zurucksetzen-totp-deaktivieren">TOTP zurücksetzen / TOTP deaktivieren<a class="headerlink" href="#totp-zurucksetzen-totp-deaktivieren" title="Permanent link">&para;</a></h2>
-<p>Führen Sie <code>docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
+<p>Führen Sie <code>docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-06-23 15:17:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -2714,7 +2731,7 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>

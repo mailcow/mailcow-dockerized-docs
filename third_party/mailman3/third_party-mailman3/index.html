@@ -69,6 +69,23 @@
     </div>
     <div data-md-component="announce">
       
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
+    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
     </div>
     
     
@@ -2837,7 +2854,7 @@ certbot certonly -d MAILMAN_DOMAIN
 </code></pre></div>
 <h3 id="install-mailcow-with-mailman-integration">Install <em>mailcow</em> with <em>Mailman</em> integration<a class="headerlink" href="#install-mailcow-with-mailman-integration" title="Permanent link">&para;</a></h3>
 <h4 id="install-mailcow">Install mailcow<a class="headerlink" href="#install-mailcow" title="Permanent link">&para;</a></h4>
-<p>Follow the <a href="../../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Omit step 5 and do not pull and up with <code>docker-compose</code>!</strong></p>
+<p>Follow the <a href="../../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Omit step 5 and do not pull and up with <code>docker compose</code>!</strong></p>
 <h4 id="configure-mailcow">Configure mailcow<a class="headerlink" href="#configure-mailcow" title="Permanent link">&para;</a></h4>
 <p>This is also <strong>Step 4</strong> in the official <em>mailcow installation</em> (<code>nano mailcow.conf</code>). So change to your needs and alter the following variables:</p>
 <div class="highlight"><pre><span></span><code>HTTP_PORT=18080            # don&#39;t use 8080 as mailman needs it
@@ -2851,7 +2868,7 @@ SNAT_TO_SOURCE=1.2.3.4     # change this to your IPv4
 SNAT6_TO_SOURCE=dead:beef  # change this to your global IPv6
 </code></pre></div>
 <h4 id="add-mailman-integration">Add Mailman integration<a class="headerlink" href="#add-mailman-integration" title="Permanent link">&para;</a></h4>
-<p>Create the file <code>/opt/mailcow-dockerized/docker-compose.override.yml</code> (e.g. with <code>nano</code>) and add the following lines:</p>
+<p>Create the file <code>/opt/mailcow-dockerized/docker compose.override.yml</code> (e.g. with <code>nano</code>) and add the following lines:</p>
 <p><div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2921,7 +2938,7 @@ cd docker-mailman
 <p>Create a long key for <em>Hyperkitty</em>, e.g. with the linux command <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Save this key for a moment as HYPERKITTY_KEY.</p>
 <p>Create a long password for the database, e.g. with the linux command <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Save this password for a moment as DBPASS.</p>
 <p>Create a long key for <em>Django</em>, e.g. with the linux command <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Save this key for a moment as DJANGO_KEY.</p>
-<p>Create the file <code>/opt/docker-mailman/docker-compose.override.yaml</code> and replace <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> and <code>DJANGO_KEY</code> with the generated values:</p>
+<p>Create the file <code>/opt/docker-mailman/docker compose.override.yaml</code> and replace <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> and <code>DJANGO_KEY</code> with the generated values:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2&#39;
 
 services:
@@ -2980,11 +2997,11 @@ a2ensite mailman.conf
 systemctl restart apache2
 
 cd /opt/docker-mailman
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 
 cd /opt/mailcow-dockerized/
-docker-compose pull
+docker compose pull
 ./renew-ssl.sh
 </code></pre></div>
 <p><strong>Wait a few minutes!</strong> The containers have to create there databases and config files. This can last up to 1 minute and more.</p>
@@ -2992,7 +3009,7 @@ docker-compose pull
 <h3 id="new-lists-arent-recognized-by-postfix-instantly">New lists aren't recognized by postfix instantly<a class="headerlink" href="#new-lists-arent-recognized-by-postfix-instantly" title="Permanent link">&para;</a></h3>
 <p>When you create a new list and try to immediately send an e-mail, <em>postfix</em> responses with <code>User doesn't exist</code>, because <em>postfix</em> won't deliver it to <em>Mailman</em> yet. The configuration at <code>/opt/mailman/core/var/data/postfix_lmtp</code> is not instantly updated. If you need the list instantly, restart <em>postifx</em> manually:</p>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 </code></pre></div>
 <h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
 <p><strong>mailcow</strong> has it's own update script in <code>/opt/mailcow-dockerized/update.sh</code>, <a href="../../../i_u_m/i_u_m_update/">see the docs</a>.</p>
@@ -3014,7 +3031,7 @@ docker-compose restart postfix-mailcow
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
       
     
   </small>
@@ -3130,7 +3147,7 @@ docker-compose restart postfix-mailcow
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
