@@ -20,7 +20,7 @@ ssl_min_protocol = TLSv1
 Restart the affected services:
 
 ```
-docker-compose restart postfix-mailcow dovecot-mailcow
+docker compose restart postfix-mailcow dovecot-mailcow
 ```
 
 Hint: You can enable TLS 1.2 in Windows 7.

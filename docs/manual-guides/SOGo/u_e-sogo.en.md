@@ -8,7 +8,7 @@ You can use the provided `custom-theme.js` as an example starting point by remov
 After you modified `data/conf/sogo/custom-theme.js` and made changes to your new SOGo theme you need to 
 
 1. edit `data/conf/sogo/sogo.conf` and append/set `SOGoUIxDebugEnabled = YES;`
-2. restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
+2. restart SOGo and Memcached containers by executing `docker compose restart memcached-mailcow sogo-mailcow`.
 3. open SOGo in browser
 4. open browser developer console, usually shortcut is F12
 5. only if you use Firefox: write by hands in dev console `allow pasting` and press enter
@@ -24,7 +24,7 @@ copy([].slice.call(document.styleSheets)
 7. open text editor and paste data from clipboard (Ctrl+V), you should get minified CSS, save it
 8. copy CSS file to mailcow server `data/conf/sogo/custom-theme.css`
 9. edit `data/conf/sogo/sogo.conf` and set `SOGoUIxDebugEnabled = NO;`
-10. append/create `docker-compose.override.yml` with:
+10. append/create `docker compose.override.yml` with:
 ```
 version: '2.1'
 
@@ -33,8 +33,8 @@ services:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
-11. run `docker-compose up -d`
-12. run `docker-compose restart memcached-mailcow`
+11. run `docker compose up -d`
+12. run `docker compose restart memcached-mailcow`
 
 ## Reset to SOGo default theme
 1. checkout `data/conf/sogo/custom-theme.js` by executing `git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js`
@@ -60,22 +60,22 @@ and replace it with:
 ```
     $mdThemingProvider.theme('default');
 ```
-3. remove from `docker-compose.override.yml` volume mount in `sogo-mailcow`:
+3. remove from `docker compose.override.yml` volume mount in `sogo-mailcow`:
 ```
 - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
-4. run `docker-compose up -d`
-5. run `docker-compose restart memcached-mailcow`
+4. run `docker compose up -d`
+5. run `docker compose restart memcached-mailcow`
 
 ## Change favicon
 mailcow builds after 31 January 2021 can change SOGo's favicon by replacing `data/conf/sogo/custom-favicon.ico` for SOGo and `data/web/favicon.png` for mailcow UI.
 **Note**: You can use `.png` favicons for SOGo by renaming them to `custom-favicon.ico`.
 For both SOGo and mailcow UI favicons you need use one of the standard dimensions: 16x16, 32x32, 64x64, 128x128 and 256x256.
-After you replaced said file you need to restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
+After you replaced said file you need to restart SOGo and Memcached containers by executing `docker compose restart memcached-mailcow sogo-mailcow`.
 
 ## Change logo
 mailcow builds after 21 December 2018 can change SOGo's logo by replacing or creating (if missing) `data/conf/sogo/sogo-full.svg`.
-After you replaced said file you need to restart SOGo and Memcached containers by executing `docker-compose restart memcached-mailcow sogo-mailcow`.
+After you replaced said file you need to restart SOGo and Memcached containers by executing `docker compose restart memcached-mailcow sogo-mailcow`.
 
 ## Connect domains
 Domains are usually isolated from eachother.
@@ -97,14 +97,14 @@ Search...
     );
 ```
 
-Restart SOGo: `docker-compose restart sogo-mailcow`
+Restart SOGo: `docker compose restart sogo-mailcow`
 
 ## Disable password changing
 
 Edit `data/conf/sogo/sogo.conf` and **change** `SOGoPasswordChangeEnabled` to `NO`. Please do not add a new parameter.
 
-Run `docker-compose restart memcached-mailcow sogo-mailcow` to activate the changes.
+Run `docker compose restart memcached-mailcow sogo-mailcow` to activate the changes.
 
 ## Reset TOTP / Disable TOTP
 
-Run `docker-compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` from within the mailcow directory.
+Run `docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'` from within the mailcow directory.

@@ -90,7 +90,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Installieren Sie mailcow
 
-Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit `docker-compose` starten!**
+Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit `docker compose` starten!**
 
 #### Mailcow konfigurieren
 
@@ -110,7 +110,7 @@ SNAT6_TO_SOURCE=dead:beef # Ändern Sie dies in Ihre globale IPv6
 
 #### Mailman-Integration hinzufügen
 
-Erstelle die Datei `/opt/mailcow-dockerized/docker-compose.override.yml` (z.B. mit `nano`) und füge die folgenden Zeilen hinzu:
+Erstelle die Datei `/opt/mailcow-dockerized/docker compose.override.yml` (z.B. mit `nano`) und füge die folgenden Zeilen hinzu:
 
 ```
 version: '2.1'
@@ -204,7 +204,7 @@ Erstellen Sie ein langes Passwort für die Datenbank, z. B. mit dem Linux-Befehl
 
 Erstellen Sie einen langen Schlüssel für *Django*, z. B. mit dem Linux-Befehl `cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo`. Speichern Sie diesen Schlüssel für einen Moment als DJANGO_KEY.
 
-Erstellen Sie die Datei `/opt/docker-mailman/docker-compose.override.yaml` und ersetzen Sie `HYPERKITTY_KEY`, `DBPASS` und `DJANGO_KEY` durch die generierten Werte:
+Erstellen Sie die Datei `/opt/docker-mailman/docker compose.override.yaml` und ersetzen Sie `HYPERKITTY_KEY`, `DBPASS` und `DJANGO_KEY` durch die generierten Werte:
 
 ```
 version: '2'
@@ -278,11 +278,11 @@ a2ensite mailman.conf
 systemctl restart apache2
 
 cd /opt/docker-mailman
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 
 cd /opt/mailcow-dockerized/
-docker-compose pull
+docker compose pull
 ./renew-ssl.sh
 ```
 
@@ -296,7 +296,7 @@ Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, a
 
 ```
 cd /opt/mailcow-dockerized
-docker-compose restart postfix-mailcow
+docker compose restart postfix-mailcow
 ```
 
 ## Update

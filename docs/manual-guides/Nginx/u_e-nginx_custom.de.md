@@ -112,7 +112,7 @@ Wenn PHP in eine benutzerdefinierte Site eingebunden werden soll, verwenden Sie 
 Starten Sie Nginx neu (und PHP-FPM, falls ein neuer Listener erstellt wurde):
 
 ```
-docker-compose restart nginx-mailcow
-docker-compose restart php-fpm-mailcow
+docker compose restart nginx-mailcow
+docker compose restart php-fpm-mailcow
 ```
 

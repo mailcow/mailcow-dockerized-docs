@@ -22,7 +22,7 @@ The new mailbox in the public namespace will be auto-subscribed by users.
 To allow all authenticated users access full to that new mailbox (not the whole namespace), run:
 
 ```
-docker-compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create
+docker compose exec dovecot-mailcow doveadm acl set -A "Public/Develcow" "authenticated" lookup read write write-seen write-deleted insert post delete expunge create
 ```
 
 Adjust the command to your needs if you like to assign more granular rights per user (use `-u user@domain` instead of `-A` for example).

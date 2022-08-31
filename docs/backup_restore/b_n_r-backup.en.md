@@ -93,7 +93,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 On the destination (in this case `/external_share/backups`) you may want to have snapshot capabilities (ZFS, Btrfs etc.). Snapshot daily and keep for n days for a consistent backup.
 Do **not** rsync to a Samba share, you need to keep the correct permissions!
 
-To restore you'd simply need to run rsync the other way round and restart Docker to re-read the volumes. Run `docker-compose pull` and `docker-compose up -d`.
+To restore you'd simply need to run rsync the other way round and restart Docker to re-read the volumes. Run `docker compose pull` and `docker compose up -d`.
 
 If you are lucky Redis and MariaDB can automatically fix the inconsistent databases (if they _are_ inconsistent).
 In case of a corrupted database you'd need to use the helper script to restore the inconsistent elements. If a restore fails, try to extract the backups and copy the files back manually. Keep the file permissions!

@@ -33,15 +33,15 @@ SQL_PORT=127.0.0.1:13306
 SOLR_PORT=127.0.0.1:18983
 ```
 
-To apply your changes, run `docker-compose down` followed by `docker-compose up -d`.
+To apply your changes, run `docker compose down` followed by `docker compose up -d`.
 
 ## IPv6 binding
 
 Changing IPv6 bindings is different from IPv4. Again, this has a technical background.
 
-A `docker-compose.override.yml` file will be used instead of editing the `docker-compose.yml` file directly. This is to maintain updatability, as the `docker-compose.yml` file gets updated regularly and your changes will most likely be overwritten.
+A `docker compose.override.yml` file will be used instead of editing the `docker compose.yml` file directly. This is to maintain updatability, as the `docker compose.yml` file gets updated regularly and your changes will most likely be overwritten.
 
-Edit to create a file  `docker-compose.override.yml` with the following content. Its content will be merged with the productive `docker-compose.yml` file.
+Edit to create a file  `docker compose.override.yml` with the following content. Its content will be merged with the productive `docker compose.yml` file.
 
 An **example** IPv6 **2001:db8:dead:beef::123** is given. The first suffix `:PORT1` defines the external port, while the second suffix `:PORT2` routes to the corresponding port inside the container and must <u>**not**</u> be changed.
 
@@ -69,4 +69,4 @@ services:
         - '[2001:db8:dead:beef::123]:443:443'
 ```
 
-To apply your changes, run `docker-compose down` followed by `docker-compose up -d`.
+To apply your changes, run `docker compose down` followed by `docker compose up -d`.
