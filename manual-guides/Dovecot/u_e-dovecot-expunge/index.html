@@ -2525,7 +2525,7 @@ cd /path/to/your/mailcow-dockerized
 0 4 * * * /path/to/your/expunge_mailboxes.sh
 </code></pre></div>
 <h3 id="via-docker-job-scheduler">via Docker job scheduler<a class="headerlink" href="#via-docker-job-scheduler" title="Permanent link">&para;</a></h3>
-<p>To archive this with a docker job scheduler use this docker compose.override.yml with your mailcow: </p>
+<p>To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: </p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2546,7 +2546,7 @@ services:
       - &quot;ofelia.job-exec.dovecot-expunge-trash.tty=false&quot;
 </code></pre></div>
 <p>The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use <a href="https://crontab.guru/">crontab guru</a>. 
-This docker compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
+This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
 <div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
 common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
 </code></pre></div>
@@ -2558,7 +2558,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

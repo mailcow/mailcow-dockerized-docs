@@ -2496,7 +2496,7 @@
 <p>In case you have forgotten the password (e.g. for admin) and can't request a new one <a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">via the password reset link on the login screen</a> calling the helper script with <code>-r</code> as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.</p>
 <p>In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run <code>docker compose up -d</code> to apply. For more informaton refer to: <a href="../../../post_installation/firststeps-ssl/">Advanced SSL</a>.</p>
 <h2 id="background-jobs">Background jobs<a class="headerlink" href="#background-jobs" title="Permanent link">&para;</a></h2>
-<p>To use the recommended setting (cron) to execute the background jobs following lines need to be added to the <code>docker compose.override.yml</code>:</p>
+<p>To use the recommended setting (cron) to execute the background jobs following lines need to be added to the <code>docker-compose.override.yml</code>:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   php-fpm-mailcow:
@@ -2588,7 +2588,7 @@ It shows which commands have to be executed, these have to be placed in the php-
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

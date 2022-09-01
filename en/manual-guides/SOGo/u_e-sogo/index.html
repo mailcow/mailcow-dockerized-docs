@@ -2541,7 +2541,7 @@ After you modified <code>data/conf/sogo/custom-theme.js</code> and made changes 
 <li>open text editor and paste data from clipboard (Ctrl+V), you should get minified CSS, save it</li>
 <li>copy CSS file to mailcow server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>edit <code>data/conf/sogo/sogo.conf</code> and set <code>SOGoUIxDebugEnabled = NO;</code></li>
-<li>append/create <code>docker compose.override.yml</code> with:
+<li>append/create <code>docker-compose.override.yml</code> with:
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2575,7 +2575,7 @@ services:
 and replace it with:
 <div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
 </code></pre></div></li>
-<li>remove from <code>docker compose.override.yml</code> volume mount in <code>sogo-mailcow</code>:
+<li>remove from <code>docker-compose.override.yml</code> volume mount in <code>sogo-mailcow</code>:
 <div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
 <li>run <code>docker compose up -d</code></li>
@@ -2615,7 +2615,7 @@ After you replaced said file you need to restart SOGo and Memcached containers b
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

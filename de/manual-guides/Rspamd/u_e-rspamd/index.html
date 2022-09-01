@@ -2573,7 +2573,7 @@ Dies wird durch die Verwendung des Sieve-Plugins "sieve_imapsieve" und Parser-Sk
 <span class="c1"># Spam</span>
 <span class="k">for</span> file <span class="k">in</span> /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
-<p>Erwägen Sie, einen lokalen Ordner als neues Volume an <code>rspamd-mailcow</code> in <code>docker compose.yml</code> anzuhängen und die gegebenen Dateien innerhalb des Containers zu lernen. Dies kann als Workaround verwendet werden, um komprimierte Daten mit zcat zu parsen. Beispiel:</p>
+<p>Erwägen Sie, einen lokalen Ordner als neues Volume an <code>rspamd-mailcow</code> in <code>docker-compose.yml</code> anzuhängen und die gegebenen Dateien innerhalb des Containers zu lernen. Dies kann als Workaround verwendet werden, um komprimierte Daten mit zcat zu parsen. Beispiel:</p>
 <p>``bash
 for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam &lt; zcat $file; done
 <div class="highlight"><pre><span></span><code>### Gelernte Daten zurücksetzen (Bayes, Neural)
@@ -2699,7 +2699,7 @@ quarantine_notify.py
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

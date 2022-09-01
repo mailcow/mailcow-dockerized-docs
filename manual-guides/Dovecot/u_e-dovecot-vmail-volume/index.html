@@ -2488,7 +2488,7 @@ ln -s /mnt/volume-xy/vmail_data /var/lib/docker/volumes/mailcowdockerized_vmail-
 <p>Start mailcow afterwards.</p>
 <hr />
 <h2 id="the-old-way">The "old" way<a class="headerlink" href="#the-old-way" title="Permanent link">&para;</a></h2>
-<p>If you want to use another folder for the vmail-volume, you can create a <code>docker compose.override.yml</code> file and add the following content:</p>
+<p>If you want to use another folder for the vmail-volume, you can create a <code>docker-compose.override.yml</code> file and add the following content:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 volumes:
   vmail-vol-1:
@@ -2520,7 +2520,7 @@ volumes:
 <ul>
 <li>Copy the content of the <code>Mountpoint</code> folder to the new location (e.g. <code>/data/mailcow/vmail</code>) using <code>cp -a</code>, <code>rsync -a</code> or a similar non strcuture breaking copy command</li>
 <li>Stop mailcow by executing <code>docker compose down</code> from within your mailcow root folder (e.g. <code>/opt/mailcow-dockerized</code>)</li>
-<li>Create the file <code>docker compose.override.yml</code>, edit the device path accordingly</li>
+<li>Create the file <code>docker-compose.override.yml</code>, edit the device path accordingly</li>
 <li>Delete the current vmail folder: <code>docker volume rm mailcowdockerized_vmail-vol-1</code></li>
 <li>Start mailcow by executing <code>docker compose up -d</code> from within your mailcow root folder (e.g. <code>/opt/mailcow-dockerized</code>)</li>
 </ul>
@@ -2530,7 +2530,7 @@ volumes:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

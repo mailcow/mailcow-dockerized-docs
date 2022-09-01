@@ -2666,7 +2666,7 @@ backend mailcow
 <p>For this section we'll assume you have your Traefik 2 <code>[certificatesresolvers]</code> properly configured on your traefik configuration file, and also using acme, also, the following example uses Lets Encrypt, but feel free to change it to your own cert resolver. You can find a basic Traefik 2 toml config file with all the above implemented which can be used for this example here <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a> if you need one, or a hint on how to adapt your config.</p>
 <p>So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
 For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow.conf</code>, and run <code>docker compose up -d</code> to apply the changes.</p>
-<p>Then we'll create a <code>docker compose.override.yml</code> file in order to override the main <code>docker compose.yml</code> found in your mailcow root folder. </p>
+<p>Then we'll create a <code>docker-compose.override.yml</code> file in order to override the main <code>docker-compose.yml</code> found in your mailcow root folder. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
 <span class="nt">services</span><span class="p">:</span><span class="w"></span>
@@ -2739,7 +2739,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

@@ -2527,7 +2527,7 @@
     keys_expire = 2d;
 }
 </code></pre></div>
-<p>Create or modify <code>docker compose.override.yml</code> in the mailcow-dockerized base directory:</p>
+<p>Create or modify <code>docker-compose.override.yml</code> in the mailcow-dockerized base directory:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2580,7 +2580,7 @@ Take one of the lines from output you interested in and request it, f.e.:
 <p>To change schedule:</p>
 <ol>
 <li>
-<p>Edit <code>docker compose.override.yml</code> and a djust <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> to a desired value, for example to <code>"@midnight"</code></p>
+<p>Edit <code>docker-compose.override.yml</code> and a djust <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> to a desired value, for example to <code>"@midnight"</code></p>
 </li>
 <li>
 <p>Run <code>docker compose up -d</code></p>
@@ -2596,7 +2596,7 @@ Take one of the lines from output you interested in and request it, f.e.:
 <p>Set <code>enabled</code> to <code>false</code> in <code>data/conf/rspamd/local.d/dmarc.conf</code></p>
 </li>
 <li>
-<p>Revert changes done in <code>docker compose.override.yml</code> to <code>rspamd-mailcow</code> and <code>ofelia-mailcow</code></p>
+<p>Revert changes done in <code>docker-compose.override.yml</code> to <code>rspamd-mailcow</code> and <code>ofelia-mailcow</code></p>
 </li>
 <li>
 <p>Run <code>docker compose up -d</code></p>
@@ -2608,7 +2608,7 @@ Take one of the lines from output you interested in and request it, f.e.:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

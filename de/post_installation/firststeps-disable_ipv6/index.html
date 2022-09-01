@@ -2388,10 +2388,10 @@
 <p>Dies wird <strong>NUR</strong> empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben!</p>
 <p>Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
 Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivieren, da er nicht benötigt wird, wenn Sie IPv6 nicht verwenden.</p>
-<p>Anstatt die Datei docker compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
+<p>Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
 zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.</p>
-<p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). </p>
-<p><strong>1.</strong> Ändern Sie docker compose.yml</p>
+<p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). </p>
+<p><strong>1.</strong> Ändern Sie docker-compose.yml</p>
 <p>Ändern Sie <code>enable_ipv6: true</code> in <code>enable_ipv6: false</code>:</p>
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
@@ -2400,10 +2400,10 @@ zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider schei
     [...]
 </code></pre></div>
 <p><strong>2.</strong> ipv6nat-mailcow deaktivieren</p>
-<p>Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker compose.override.yml": </p>
+<p>Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml": </p>
 <p><strong>HINWEIS:</strong> Wenn Sie bereits eine Override-Datei haben, erstellen Sie diese natürlich nicht neu, sondern fügen Sie die untenstehenden Zeilen entsprechend in Ihre bestehende Datei ein!</p>
 <div class="highlight"><pre><span></span><code># cd /opt/mailcow-dockerized
-# touch docker compose.override.yml
+# touch docker-compose.override.yml
 </code></pre></div>
 <p>Öffnen Sie die Datei in Ihrem bevorzugten Texteditor und tragen Sie folgendes ein:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
@@ -2450,7 +2450,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

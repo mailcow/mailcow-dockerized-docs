@@ -2541,7 +2541,7 @@ Nachdem Sie <code>data/conf/sogo/custom-theme.js</code> modifiziert und Änderun
 <li>Öffnen Sie den Texteditor und fügen Sie die Daten aus der Zwischenablage ein (Strg+V), Sie sollten ein minimiertes CSS erhalten, speichern Sie es</li>
 <li>kopieren Sie die CSS-Datei auf den Mailcow-Server <code>data/conf/sogo/custom-theme.css</code></li>
 <li>editiere <code>data/conf/sogo/sogo.conf</code> und setze <code>SOGoUIxDebugEnabled = NO;</code></li>
-<li>Anhängen/Erstellen von <code>docker compose.override.yml</code> mit:
+<li>Anhängen/Erstellen von <code>docker-compose.override.yml</code> mit:
 <div class="highlight"><pre><span></span><code>Version: &#39;2.1&#39;
 
 Dienste:
@@ -2575,7 +2575,7 @@ Dienste:
 und ersetzen Sie es durch:
 <div class="highlight"><pre><span></span><code>    $mdThemingProvider.theme(&#39;default&#39;);
 </code></pre></div></li>
-<li>Entfernen Sie aus <code>docker compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
+<li>Entfernen Sie aus <code>docker-compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
 <div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
 <li>führen Sie <code>docker compose up -d</code> aus</li>
@@ -2615,7 +2615,7 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

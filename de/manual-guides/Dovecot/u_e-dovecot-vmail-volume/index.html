@@ -2488,7 +2488,7 @@ ln -s /mnt/volume-xy/vmail_data /var/lib/docker/volumes/mailcowdockerized_vmail-
 <p>Starten Sie anschließend mailcow.</p>
 <hr />
 <h2 id="der-alte-weg">Der "alte" Weg<a class="headerlink" href="#der-alte-weg" title="Permanent link">&para;</a></h2>
-<p>Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine <code>docker compose.override.yml</code> Datei erstellen und den folgenden Inhalt hinzufügen:</p>
+<p>Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine <code>docker-compose.override.yml</code> Datei erstellen und den folgenden Inhalt hinzufügen:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 volumes:
   vmail-vol-1:
@@ -2520,7 +2520,7 @@ volumes:
 <ul>
 <li>Kopieren Sie den Inhalt des <code>Mountpoint</code>-Ordners an den neuen Speicherort (z.B. <code>/data/mailcow/vmail</code>) mit <code>cp -a</code>, <code>rsync -a</code> oder einem ähnlichen, nicht strikten Kopierbefehl</li>
 <li>Stoppen Sie mailcow durch Ausführen von <code>docker compose down</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
-<li>Erstellen Sie die Datei <code>docker compose.override.yml</code>, bearbeiten Sie den Gerätepfad entsprechend</li>
+<li>Erstellen Sie die Datei <code>docker-compose.override.yml</code>, bearbeiten Sie den Gerätepfad entsprechend</li>
 <li>Löschen Sie den aktuellen vmail-Ordner: <code>docker volume rm mailcowdockerized_vmail-vol-1</code></li>
 <li>Starten Sie mailcow durch Ausführen von <code>docker compose up -d</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
 </ul>
@@ -2530,7 +2530,7 @@ volumes:
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

@@ -2256,7 +2256,7 @@
         
           <li class="md-nav__item">
   <a href="#create-or-amend-docker-composeoverrideyml" class="md-nav__link">
-    Create or amend docker compose.override.yml
+    Create or amend docker-compose.override.yml
   </a>
   
 </li>
@@ -2567,7 +2567,7 @@
         
           <li class="md-nav__item">
   <a href="#create-or-amend-docker-composeoverrideyml" class="md-nav__link">
-    Create or amend docker compose.override.yml
+    Create or amend docker-compose.override.yml
   </a>
   
 </li>
@@ -2724,8 +2724,8 @@ functionality is provided by the <a href="https://github.com/borgmatic-collectiv
 the <code>README</code> in that repository to find out about the other options (such as push notifications) that are available.
 This guide only covers the basics.</p>
 <h2 id="setting-up-borgmatic">Setting up borgmatic<a class="headerlink" href="#setting-up-borgmatic" title="Permanent link">&para;</a></h2>
-<h3 id="create-or-amend-docker-composeoverrideyml">Create or amend <code>docker compose.override.yml</code><a class="headerlink" href="#create-or-amend-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
-<p>In the mailcow-dockerized root folder create or edit <code>docker compose.override.yml</code> and insert the following
+<h3 id="create-or-amend-docker-composeoverrideyml">Create or amend <code>docker-compose.override.yml</code><a class="headerlink" href="#create-or-amend-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
+<p>In the mailcow-dockerized root folder create or edit <code>docker-compose.override.yml</code> and insert the following
 configuration:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
@@ -2851,7 +2851,7 @@ extraction of the archive as the mailcow setup labels the vmail volume as privat
 exclusively. SELinux will (rightfully) prevent any other container, such as the borgmatic container, from writing to
 this volume.</p>
 </div>
-<p>Before running a restore you must make the vmail volume writeable in <code>docker compose.override.yml</code> by removing
+<p>Before running a restore you must make the vmail volume writeable in <code>docker-compose.override.yml</code> by removing
 the <code>ro</code> flag from the volume.
 Then you can use the following command to restore the maildir from a backup:</p>
 <div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
@@ -2906,7 +2906,7 @@ repository, so a manual backup isn't as essential.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

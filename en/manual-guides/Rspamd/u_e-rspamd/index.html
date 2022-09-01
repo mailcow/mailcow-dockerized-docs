@@ -2601,7 +2601,7 @@ This is achieved by using the Sieve plugin "sieve_imapsieve" and parser scripts.
 <span class="c1"># Spam</span>
 <span class="k">for</span> file <span class="k">in</span> /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
-<p>Consider attaching a local folder as new volume to <code>rspamd-mailcow</code> in <code>docker compose.yml</code> and learn given files inside the container. This can be used as workaround to parse compressed data with zcat. Example:</p>
+<p>Consider attaching a local folder as new volume to <code>rspamd-mailcow</code> in <code>docker-compose.yml</code> and learn given files inside the container. This can be used as workaround to parse compressed data with zcat. Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> file <span class="k">in</span> /data/old_mail/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> rspamc learn_spam &lt; zcat <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <h3 id="reset-learned-data-bayes-neural">Reset learned data (Bayes, Neural)<a class="headerlink" href="#reset-learned-data-bayes-neural" title="Permanent link">&para;</a></h3>
@@ -2717,7 +2717,7 @@ quarantine_notify.py
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

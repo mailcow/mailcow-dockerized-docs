@@ -2388,10 +2388,10 @@
 <p>This is <strong>ONLY</strong> recommended if you do not have an IPv6 enabled network on your host!</p>
 <p>If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.</p>
-<p>Instead of editing docker compose.yml directly, it is preferable to create an override file for it 
+<p>Instead of editing docker-compose.yml directly, it is preferable to create an override file for it 
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.</p>
-<p>To disable IPv6 on the mailcow network, open docker compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). </p>
-<p><strong>1.</strong> Modify docker compose.yml</p>
+<p>To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). </p>
+<p><strong>1.</strong> Modify docker-compose.yml</p>
 <p>Change <code>enable_ipv6: true</code> to <code>enable_ipv6: false</code>:</p>
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
@@ -2400,10 +2400,10 @@ and implement your changes to the service there. Unfortunately, this right now o
     [...]
 </code></pre></div>
 <p><strong>2.</strong> Disable ipv6nat-mailcow</p>
-<p>To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker compose.override.yml": </p>
+<p>To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": </p>
 <p><strong>NOTE:</strong> If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!</p>
 <div class="highlight"><pre><span></span><code># cd /opt/mailcow-dockerized
-# touch docker compose.override.yml
+# touch docker-compose.override.yml
 </code></pre></div>
 <p>Open the file in your favourite text editor and fill in the following:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
@@ -2450,7 +2450,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

@@ -2666,7 +2666,7 @@ backend mailcow
 <p>In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 <code>[certificatesresolvers]</code> in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a>, falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.</p>
 <p>Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
 Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf</code> setzen und <code>docker compose up -d</code> ausführen, um die Änderungen zu übernehmen.</p>
-<p>Dann erstellen wir eine <code>docker compose.override.yml</code> Datei, um die Hauptdatei <code>docker compose.yml</code> zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. </p>
+<p>Dann erstellen wir eine <code>docker-compose.override.yml</code> Datei, um die Hauptdatei <code>docker-compose.yml</code> zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
 <span class="nt">services</span><span class="p">:</span><span class="w"></span>
@@ -2739,7 +2739,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

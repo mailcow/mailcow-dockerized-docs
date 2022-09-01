@@ -579,10 +579,10 @@
         
           <li class="md-nav__item">
   <a href="#uber-docker-composeoverrideyml" class="md-nav__link">
-    Über docker compose.override.yml
+    Über docker-compose.override.yml
   </a>
   
-    <nav class="md-nav" aria-label="Über docker compose.override.yml">
+    <nav class="md-nav" aria-label="Über docker-compose.override.yml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2471,10 +2471,10 @@
         
           <li class="md-nav__item">
   <a href="#uber-docker-composeoverrideyml" class="md-nav__link">
-    Über docker compose.override.yml
+    Über docker-compose.override.yml
   </a>
   
-    <nav class="md-nav" aria-label="Über docker compose.override.yml">
+    <nav class="md-nav" aria-label="Über docker-compose.override.yml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2543,9 +2543,9 @@ Führen Sie <code>docker compose logs --help</code> aus, um mehr zu erfahren. </
 ohne die Fähigkeit zu verlieren, Logs von der UI zu lesen oder verdächtige Clients mit netfilter-mailcow zu sperren.</p>
 <p>Redis-Schlüssel enthalten nur Logs von Anwendungen und filtern Systemmeldungen heraus (man denke an Cron etc.).</p>
 <h3 id="logging-treiber">Logging-Treiber<a class="headerlink" href="#logging-treiber" title="Permanent link">&para;</a></h3>
-<h4 id="uber-docker-composeoverrideyml">Über docker compose.override.yml<a class="headerlink" href="#uber-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
+<h4 id="uber-docker-composeoverrideyml">Über docker-compose.override.yml<a class="headerlink" href="#uber-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Hier ist die gute Nachricht: Da Docker einige großartige Logging-Treiber hat, können Sie mailcow: dockerized mit Leichtigkeit in Ihre bestehende Logging-Umgebung integrieren.</p>
-<p>Erstellen Sie eine <code>docker compose.override.yml</code> und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für <code>postfix-mailcow</code> zu verwenden:</p>
+<p>Erstellen Sie eine <code>docker-compose.override.yml</code> und fügen Sie zum Beispiel diesen Block hinzu, um das "gelf" Logging-Plugin für <code>postfix-mailcow</code> zu verwenden:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   postfix-mailcow: # oder ein anderer
@@ -2637,7 +2637,7 @@ komprimieren und zu löschen.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

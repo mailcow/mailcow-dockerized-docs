@@ -579,10 +579,10 @@
         
           <li class="md-nav__item">
   <a href="#via-docker-composeoverrideyml" class="md-nav__link">
-    Via docker compose.override.yml
+    Via docker-compose.override.yml
   </a>
   
-    <nav class="md-nav" aria-label="Via docker compose.override.yml">
+    <nav class="md-nav" aria-label="Via docker-compose.override.yml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2471,10 +2471,10 @@
         
           <li class="md-nav__item">
   <a href="#via-docker-composeoverrideyml" class="md-nav__link">
-    Via docker compose.override.yml
+    Via docker-compose.override.yml
   </a>
   
-    <nav class="md-nav" aria-label="Via docker compose.override.yml">
+    <nav class="md-nav" aria-label="Via docker-compose.override.yml">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2543,9 +2543,9 @@ Run <code>docker compose logs --help</code> to learn more. </p>
 the ability to read logs from the UI or ban suspicious clients with netfilter-mailcow.</p>
 <p>Redis keys will only hold logs from applications and filter out system messages (think of cron etc.).</p>
 <h3 id="logging-drivers">Logging drivers<a class="headerlink" href="#logging-drivers" title="Permanent link">&para;</a></h3>
-<h4 id="via-docker-composeoverrideyml">Via docker compose.override.yml<a class="headerlink" href="#via-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
+<h4 id="via-docker-composeoverrideyml">Via docker-compose.override.yml<a class="headerlink" href="#via-docker-composeoverrideyml" title="Permanent link">&para;</a></h4>
 <p>Here is the good news: Since Docker has some great logging drivers, you can integrate mailcow: dockerized into your existing logging environment with ease.</p>
-<p>Create a <code>docker compose.override.yml</code> and add, for example, this block to use the "gelf" logging plugin for <code>postfix-mailcow</code>:</p>
+<p>Create a <code>docker-compose.override.yml</code> and add, for example, this block to use the "gelf" logging plugin for <code>postfix-mailcow</code>:</p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 services:
   postfix-mailcow: # or any other
@@ -2635,7 +2635,7 @@ input(type=&quot;imudp&quot; port=&quot;514&quot;)
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

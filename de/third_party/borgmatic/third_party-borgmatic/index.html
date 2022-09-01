@@ -2256,7 +2256,7 @@
         
           <li class="md-nav__item">
   <a href="#erstellen-oder-andern-sie-docker-composeoverrideyml" class="md-nav__link">
-    Erstellen oder ändern Sie docker compose.override.yml
+    Erstellen oder ändern Sie docker-compose.override.yml
   </a>
   
 </li>
@@ -2553,7 +2553,7 @@
         
           <li class="md-nav__item">
   <a href="#erstellen-oder-andern-sie-docker-composeoverrideyml" class="md-nav__link">
-    Erstellen oder ändern Sie docker compose.override.yml
+    Erstellen oder ändern Sie docker-compose.override.yml
   </a>
   
 </li>
@@ -2696,8 +2696,8 @@ Funktionalität wird durch das <a href="https://github.com/borgmatic-collective/
 die <code>README</code> in diesem Repository, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
 Diese Anleitung behandelt nur die Grundlagen.</p>
 <h2 id="einrichten-von-borgmatic">Einrichten von borgmatic<a class="headerlink" href="#einrichten-von-borgmatic" title="Permanent link">&para;</a></h2>
-<h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
-<p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker compose.override.yml</code> und fügen Sie die folgende
+<h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker-compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
+<p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker-compose.override.yml</code> und fügen Sie die folgende
 Konfiguration ein:
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span><span class="w"></span>
 
@@ -2805,7 +2805,7 @@ während der Extraktion des Archivs vorübergehend deaktivieren, da das Mailcow-
 ausschließlich. SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
 dieses Volume zu schreiben.</p>
 </div>
-<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker compose.override.yml</code> beschreibbar machen, indem Sie das
+<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker-compose.override.yml</code> beschreibbar machen, indem Sie das
 das <code>ro</code>-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:</p>
 <div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
@@ -2859,7 +2859,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>

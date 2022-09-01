@@ -2525,7 +2525,7 @@ cd /pfad/zu/ihrem/mailcow-dockerized
 0 4 * * * /pfad/zu/ihr/expunge_mailboxes.sh
 </code></pre></div>
 <h3 id="uber-docker-job-scheduler">über Docker Job Scheduler<a class="headerlink" href="#uber-docker-job-scheduler" title="Permanent link">&para;</a></h3>
-<p>Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docker compose.override.yml mit Ihrer Mailcow: </p>
+<p>Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docker-compose.override.yml mit Ihrer Mailcow: </p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2546,7 +2546,7 @@ services:
       - &quot;ofelia.job-exec.dovecot-expunge-trash.tty=false&quot;
 </code></pre></div>
 <p>Der Job-Controller braucht nur Zugriff auf den Docker Control Socket, um das Verhalten von "exec" zu emulieren. Dann fügen wir unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler zu aktivieren und ihm in einem Cron-kompatiblen Scheduling-Format mitzuteilen, wann er laufen soll. Wenn Sie Probleme mit dem Scheduling-String haben, können Sie <a href="https://crontab.guru/">crontab guru</a> verwenden. 
-Diese docker compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:</p>
+Diese docker-compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:</p>
 <div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
 common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
 </code></pre></div>
@@ -2558,7 +2558,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
       
     
   </small>
