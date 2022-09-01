@@ -53,7 +53,7 @@ chmod +x /usr/local/bin/docker-compose
 ```
 
 !!! danger "Achtung"
-    Die Syntax der Docker Compose Befehle lautet **`docker compose`** bei der **Standalone Variante** von Docker Compose!!
+    Die Syntax der Docker Compose Befehle lautet **`docker-compose`** bei der **Standalone Variante** von Docker Compose!!
 
 ## SELinux Besonderheiten prüfen
 Auf SELinux-aktivierten Systemen, z.B. CentOS 7:

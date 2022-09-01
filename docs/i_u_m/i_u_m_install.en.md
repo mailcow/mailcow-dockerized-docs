@@ -50,7 +50,7 @@ chmod +x /usr/local/bin/docker-compose
 ```
 
 !!! danger
-    The Docker Compose command syntax is **`docker compose`** for the **standalone variant** of Docker Compose!!!   
+    The Docker Compose command syntax is **`docker-compose`** for the **standalone variant** of Docker Compose!!!   
 
 Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
 
