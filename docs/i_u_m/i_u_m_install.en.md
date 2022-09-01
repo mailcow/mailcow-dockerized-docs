@@ -27,13 +27,13 @@ systemctl enable --now docker
 On Debian/Ubuntu systems:
 ```
 apt update
-apt install docker compose-plugin
+apt install docker-compose-plugin
 ```
 
 On Centos 7 systems:
 ```
 yum update
-yum install docker compose-plugin
+yum install docker-compose-plugin
 ```
 
 !!! danger
