@@ -30,7 +30,7 @@ Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, 
 Auf Debian/Ubuntu Systemen:
 ```
 apt update
-apt install docker compose-plugin
+apt install docker-compose-plugin
 ```
 
 Auf Centos 7 Systemen:
