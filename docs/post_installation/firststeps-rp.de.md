@@ -182,7 +182,7 @@ In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 `[certificates
 Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
 Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und `docker compose up -d` ausführen, um die Änderungen zu übernehmen.
 
-Dann erstellen wir eine `docker compose.override.yml` Datei, um die Hauptdatei `docker compose.yml` zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. 
+Dann erstellen wir eine `docker-compose.override.yml` Datei, um die Hauptdatei `docker-compose.yml` zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. 
 
 ```yaml
 version: '2.1'

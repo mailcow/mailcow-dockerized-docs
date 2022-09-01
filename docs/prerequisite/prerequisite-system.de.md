@@ -188,4 +188,4 @@ Sie können außerdem die [cloud-init Netzwerkänderungen deaktivieren.](https:/
 
 ## MTU
 
-Besonders relevant für OpenStack-Benutzer: Überprüfen Sie Ihre MTU und setzen Sie sie entsprechend in docker compose.yml. Siehe **4.1** in [unseren Installationsanleitungen](../i_u_m/i_u_m_install.de.md).
+Besonders relevant für OpenStack-Benutzer: Überprüfen Sie Ihre MTU und setzen Sie sie entsprechend in docker-compose.yml. Siehe [Problebehandlungen](../i_u_m/i_u_m_install.de.md#benutzer-mit-einer-mtu-ungleich-1500-zb-openstack) in unseren Installationsanleitungen.

@@ -56,7 +56,7 @@ To create a cron job you may execute `crontab -e` and insert something like the 
 
 ### via Docker job scheduler
 
-To archive this with a docker job scheduler use this docker compose.override.yml with your mailcow: 
+To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
 
 ```
 version: '2.1'
@@ -81,7 +81,7 @@ services:
 ```
 
 The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use [crontab guru](https://crontab.guru/). 
-This docker compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
+This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
 
 ```
 common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,

@@ -119,7 +119,7 @@ Some updates modify mailcow.conf and add new parameters. It is hard to keep trac
 
 **Whenever you run into trouble and strange phenomena, please check your MTU.**
 
-Edit `docker compose.yml` and change the network settings according to your MTU.
+Edit `docker-compose.yml` and change the network settings according to your MTU.
 Add the new driver_opts parameter like this:
 ```
 networks:

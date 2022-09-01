@@ -3,12 +3,12 @@ Dies wird **NUR** empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host
 Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
 Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivieren, da er nicht benötigt wird, wenn Sie IPv6 nicht verwenden.
 
-Anstatt die Datei docker compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
+Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
 zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.
 
-Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). 
+Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). 
 
-**1.** Ändern Sie docker compose.yml
+**1.** Ändern Sie docker-compose.yml
 
 Ändern Sie `enable_ipv6: true` in `enable_ipv6: false`:
 
@@ -22,13 +22,13 @@ networks:
 
 **2.** ipv6nat-mailcow deaktivieren
 
-Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker compose.override.yml": 
+Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml": 
 
 **HINWEIS:** Wenn Sie bereits eine Override-Datei haben, erstellen Sie diese natürlich nicht neu, sondern fügen Sie die untenstehenden Zeilen entsprechend in Ihre bestehende Datei ein!
 
 ```
 # cd /opt/mailcow-dockerized
-# touch docker compose.override.yml
+# touch docker-compose.override.yml
 ```
 
 Öffnen Sie die Datei in Ihrem bevorzugten Texteditor und tragen Sie folgendes ein:

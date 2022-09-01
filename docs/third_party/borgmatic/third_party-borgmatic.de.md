@@ -16,9 +16,9 @@ Diese Anleitung behandelt nur die Grundlagen.
 
 ## Einrichten von borgmatic
 
-### Erstellen oder ändern Sie `docker compose.override.yml`
+### Erstellen oder ändern Sie `docker-compose.override.yml`
 
-Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie `docker compose.override.yml` und fügen Sie die folgende
+Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie `docker-compose.override.yml` und fügen Sie die folgende
 Konfiguration ein:
 ```yaml
 version: '2.1'
@@ -148,7 +148,7 @@ keine benutzerdefinierten Daten in ihrem maildir oder ihrer mailcow Datenbank.
     ausschließlich. SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
     dieses Volume zu schreiben.
 
-Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in `docker compose.override.yml` beschreibbar machen, indem Sie das
+Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in `docker-compose.override.yml` beschreibbar machen, indem Sie das
 das `ro`-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:
 

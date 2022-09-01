@@ -1,4 +1,4 @@
-Watchdog verwendet Standardwerte für alle in `docker compose.yml` definierten Thresholde.
+Watchdog verwendet Standardwerte für alle in `docker-compose.yml` definierten Thresholde.
 
 Die Standardwerte sind für die meisten Konfigurationen geeignet.
 Beispiel:

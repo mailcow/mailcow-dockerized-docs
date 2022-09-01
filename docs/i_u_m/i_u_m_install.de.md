@@ -119,7 +119,7 @@ Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist
 ### Benutzer mit einer MTU ungleich 1500 (z.B. OpenStack)
 **Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.**
 
-Bearbeiten Sie `docker compose.yml` und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
+Bearbeiten Sie `docker-compose.yml` und ändern Sie die Netzwerkeinstellungen entsprechend Ihrer MTU.
 Fügen Sie den neuen Parameter driver_opts wie folgt hinzu:
 ```
 networks:

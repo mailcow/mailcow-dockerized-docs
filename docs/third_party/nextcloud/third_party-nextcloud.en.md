@@ -10,7 +10,7 @@ In order for mailcow to generate a a certificate for the nextcloud domain you ne
 
 ## Background jobs
 
-To use the recommended setting (cron) to execute the background jobs following lines need to be added to the `docker compose.override.yml`:
+To use the recommended setting (cron) to execute the background jobs following lines need to be added to the `docker-compose.override.yml`:
 
 ```
 version: '2.1'

@@ -1,6 +1,6 @@
 With Gitea' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:
 
-1\. Open `docker compose.override.yml` and add gitea:
+1\. Open `docker-compose.override.yml` and add gitea:
 
 ```
 version: '2.1'

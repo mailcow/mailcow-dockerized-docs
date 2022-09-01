@@ -184,7 +184,7 @@ For this section we'll assume you have your Traefik 2 `[certificatesresolvers]` 
 So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
 For this we'll have to set `SKIP_LETS_ENCRYPT=y` on our `mailcow.conf`, and run `docker compose up -d` to apply the changes.
 
-Then we'll create a `docker compose.override.yml` file in order to override the main `docker compose.yml` found in your mailcow root folder. 
+Then we'll create a `docker-compose.override.yml` file in order to override the main `docker-compose.yml` found in your mailcow root folder. 
 
 ```yaml
 version: '2.1'
