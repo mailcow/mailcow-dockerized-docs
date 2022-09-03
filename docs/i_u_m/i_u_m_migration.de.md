@@ -4,32 +4,15 @@
 !!! tip
     Alternativ können Sie das Skript `./helper-scripts/backup_and_restore.sh` verwenden, um ein vollständiges Backup auf der Quellmaschine zu erstellen, dann installieren Sie mailcow auf der Zielmaschine wie gewohnt, kopieren Sie Ihre `mailcow.conf` und verwenden Sie das gleiche Skript, um Ihr Backup auf der Zielmaschine wiederherzustellen.
 
-**1\.** 
-Installieren Sie [Docker](https://docs.docker.com/engine/installation/linux/) und [docker compose](https://docs.docker.com/compose/install/) auf Ihrem neuen Server.
-
-Schnelle Installation für die meisten Betriebssysteme:
-
-- Docker
-```
-curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# Nachdem der Installationsprozess abgeschlossen ist, müssen Sie den Dienst aktivieren und sicherstellen, dass er gestartet ist (z. B. CentOS 7)
-systemctl enable docker.service
-```
-
-- docker compose
-```
-curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker compose
-chmod +x /usr/local/bin/docker compose
-```
-
-Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.
+**1\.**
+Befolgen Sie die [Installationsanleitung](i_u_m_install.de.md) von Docker und Compose.
 
 **2\.** Stoppen Sie Docker und stellen Sie sicher, dass Docker gestoppt wurde:
 ```
 systemctl stop docker.service
 systemctl status docker.service
 ```
-    
+
 **3\.** Führen Sie die folgenden Befehle auf dem Quellcomputer aus (achten Sie darauf, die abschließenden Schrägstriche im ersten Pfadparameter wie unten gezeigt hinzuzufügen!) - **WARNUNG: Dieser Befehl löscht alles, was bereits unter `/var/lib/docker/volumes` auf dem Zielrechner existiert**:
 ```
 rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized

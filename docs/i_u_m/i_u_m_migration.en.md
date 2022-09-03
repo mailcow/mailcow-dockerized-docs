@@ -4,32 +4,15 @@
 !!! tip
     Alternatively, you can use the `./helper-scripts/backup_and_restore.sh` script to create a full backup on the source machine, then install mailcow on the target machine as usual, copy over your `mailcow.conf` and use the same script to restore your backup to the target machine.
 
-**1\.** 
-Install [Docker](https://docs.docker.com/engine/installation/linux/) and [docker compose](https://docs.docker.com/compose/install/) on your new server.
-
-Quick installation for most operation systems:
-
-- Docker
-```
-curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
-systemctl enable docker.service
-```
-
-- docker compose
-```
-curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker compose
-chmod +x /usr/local/bin/docker compose
-```
-
-Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
+**1\.**
+Follow the [installation guide](i_u_m_install.en.md) to install Docker and Compose.
 
 **2\.** Stop Docker and assure Docker has stopped:
 ```
 systemctl stop docker.service
 systemctl status docker.service
 ```
-    
+
 **3\.**	Run the following commands on the source machine (take care of adding the trailing slashes in the first path parameter as shown below!) - **WARNING: This command will erase anything that may already exist under `/var/lib/docker/volumes` on the target machine**:
 ```
 rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
