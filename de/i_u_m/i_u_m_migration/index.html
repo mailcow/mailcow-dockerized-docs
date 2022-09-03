@@ -2393,25 +2393,8 @@
 <p class="admonition-title">Tip</p>
 <p>Alternativ können Sie das Skript <code>./helper-scripts/backup_and_restore.sh</code> verwenden, um ein vollständiges Backup auf der Quellmaschine zu erstellen, dann installieren Sie mailcow auf der Zielmaschine wie gewohnt, kopieren Sie Ihre <code>mailcow.conf</code> und verwenden Sie das gleiche Skript, um Ihr Backup auf der Zielmaschine wiederherzustellen.</p>
 </div>
-<p><strong>1.</strong> 
-Installieren Sie <a href="https://docs.docker.com/engine/installation/linux/">Docker</a> und <a href="https://docs.docker.com/compose/install/">docker compose</a> auf Ihrem neuen Server.</p>
-<p>Schnelle Installation für die meisten Betriebssysteme:</p>
-<ul>
-<li>
-<p>Docker
-<div class="highlight"><pre><span></span><code>curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# Nachdem der Installationsprozess abgeschlossen ist, müssen Sie den Dienst aktivieren und sicherstellen, dass er gestartet ist (z. B. CentOS 7)
-systemctl enable docker.service
-</code></pre></div></p>
-</li>
-<li>
-<p>docker compose
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker compose/latest.php)/docker compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker compose
-chmod +x /usr/local/bin/docker compose
-</code></pre></div></p>
-</li>
-</ul>
-<p>Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.</p>
+<p><strong>1.</strong>
+Befolgen Sie die <a href="../i_u_m_install/">Installationsanleitung</a> von Docker und Compose.</p>
 <p><strong>2.</strong> Stoppen Sie Docker und stellen Sie sicher, dass Docker gestoppt wurde:
 <div class="highlight"><pre><span></span><code>systemctl stop docker.service
 systemctl status docker.service
@@ -2443,7 +2426,7 @@ docker compose pull
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-03 19:32:00</span>
       
     
   </small>
