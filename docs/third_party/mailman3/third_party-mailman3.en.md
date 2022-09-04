@@ -238,7 +238,7 @@ services:
     restart: always
 ```
 
-At `mailman-web` fill in correct values for `SERVE_FROM_DOMAIN` (e.g. `lists.example.org`), `MAILMAN_ADMIN_USER` and `MAILMAN_ADMIN_EMAIL`. You need the admin credentials to log into the web interface (*Pistorius*). For setting **the password for the first time** use the *Forgot password* function in the web interface.
+At `mailman-web` fill in correct values for `SERVE_FROM_DOMAIN` (e.g. `lists.example.org`), `MAILMAN_ADMIN_USER` and `MAILMAN_ADMIN_EMAIL`. You need the admin credentials to log into the web interface (*Postorius*). For setting **the password for the first time** use the *Forgot password* function in the web interface.
 
 About other configuration options read [Mailman-web](https://github.com/maxking/docker-mailman#mailman-web-1) and [Mailman-core](https://github.com/maxking/docker-mailman#mailman-core-1) documentation.
 
