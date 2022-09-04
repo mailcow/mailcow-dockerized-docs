@@ -2777,7 +2777,7 @@ Container einbinden. Der Container definiert zu diesem Zweck ein Volume namens <
 </div>
 <h3 id="erstellen-sie-einen-crontab">Erstellen Sie einen crontab<a class="headerlink" href="#erstellen-sie-einen-crontab" title="Permanent link">&para;</a></h3>
 <p>Erstellen Sie eine neue Textdatei in <code>data/conf/borgmatic/etc/crontab.txt</code> mit folgendem Inhalt:</p>
-<div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2&gt;&amp;1
+<div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --stats -v 0 2&gt;&amp;1
 </code></pre></div>
 <p>Diese Datei erwartet eine crontab-Syntax. Das hier gezeigte Beispiel veranlasst das Backup, jede Stunde um 14 Minuten nach
 nach der vollen Stunde auszuführen und am Ende einige nette Statistiken zu protokollieren.</p>
@@ -2859,7 +2859,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-04 18:30:53</span>
       
     
   </small>

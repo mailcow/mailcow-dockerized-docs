@@ -2805,7 +2805,7 @@ container. The container defines a volume called <code>/mnt/borg-repository</cod
 </div>
 <h3 id="create-a-crontab">Create a crontab<a class="headerlink" href="#create-a-crontab" title="Permanent link">&para;</a></h3>
 <p>Create a new text file in <code>data/conf/borgmatic/etc/crontab.txt</code> with the following content:</p>
-<div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2&gt;&amp;1
+<div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --stats -v 0 2&gt;&amp;1
 </code></pre></div>
 <p>This file expects crontab syntax. The example shown here will trigger the backup to run every hour at 14 minutes past
 the hour and log some nice stats at the end.</p>
@@ -2906,7 +2906,7 @@ repository, so a manual backup isn't as essential.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-04 18:30:53</span>
       
     
   </small>
