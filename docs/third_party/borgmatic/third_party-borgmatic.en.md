@@ -112,7 +112,7 @@ container. The container defines a volume called `/mnt/borg-repository` for this
 Create a new text file in `data/conf/borgmatic/etc/crontab.txt` with the following content:
 
 ```
-14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2>&1
+14 * * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --stats -v 0 2>&1
 ```
 
 This file expects crontab syntax. The example shown here will trigger the backup to run every hour at 14 minutes past

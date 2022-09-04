@@ -111,7 +111,7 @@ Container einbinden. Der Container definiert zu diesem Zweck ein Volume namens `
 Erstellen Sie eine neue Textdatei in `data/conf/borgmatic/etc/crontab.txt` mit folgendem Inhalt:
 
 ```
-14 * * * * PATH=$PATH:/usr/bin /usr/bin/borgmatic --stats -v 0 2>&1
+14 * * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --stats -v 0 2>&1
 ```
 
 Diese Datei erwartet eine crontab-Syntax. Das hier gezeigte Beispiel veranlasst das Backup, jede Stunde um 14 Minuten nach
