@@ -83,7 +83,7 @@ apt install certbot
 Get the desired certificates (as *root* or *sudo*):
 
 ```
-certbot certonly -d mailcow_HOSTNAME
+certbot certonly -d MAILCOW_HOSTNAME
 certbot certonly -d MAILMAN_DOMAIN
 ```
 
