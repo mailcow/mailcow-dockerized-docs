@@ -2969,7 +2969,7 @@ services:
     - POSTGRES_PASSWORD=DBPASS
     restart: always
 </code></pre></div>
-<p>At <code>mailman-web</code> fill in correct values for <code>SERVE_FROM_DOMAIN</code> (e.g. <code>lists.example.org</code>), <code>MAILMAN_ADMIN_USER</code> and <code>MAILMAN_ADMIN_EMAIL</code>. You need the admin credentials to log into the web interface (<em>Pistorius</em>). For setting <strong>the password for the first time</strong> use the <em>Forgot password</em> function in the web interface.</p>
+<p>At <code>mailman-web</code> fill in correct values for <code>SERVE_FROM_DOMAIN</code> (e.g. <code>lists.example.org</code>), <code>MAILMAN_ADMIN_USER</code> and <code>MAILMAN_ADMIN_EMAIL</code>. You need the admin credentials to log into the web interface (<em>Postorius</em>). For setting <strong>the password for the first time</strong> use the <em>Forgot password</em> function in the web interface.</p>
 <p>About other configuration options read <a href="https://github.com/maxking/docker-mailman#mailman-web-1">Mailman-web</a> and <a href="https://github.com/maxking/docker-mailman#mailman-core-1">Mailman-core</a> documentation.</p>
 <h4 id="configure-mailman-core-and-mailman-web">Configure Mailman core and Mailman web<a class="headerlink" href="#configure-mailman-core-and-mailman-web" title="Permanent link">&para;</a></h4>
 <p>Create the file <code>/opt/mailman/core/mailman-extra.cfg</code> with the following content. <code>mailman@example.org</code> should be pointing to a valid mail box or redirection.</p>
@@ -3031,7 +3031,7 @@ docker compose restart postfix-mailcow
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-05 00:20:13</span>
       
     
   </small>
