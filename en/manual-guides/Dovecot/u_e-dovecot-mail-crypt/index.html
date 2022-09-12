@@ -2397,7 +2397,7 @@
 <div class="highlight"><pre><span></span><code># Decrypt /var/vmail
 find /var/vmail/ -type f -regextype egrep -regex &#39;.*S=.*W=.*&#39; | while read -r file; do
 if [[ $(head -c7 &quot;$file&quot;) == &quot;CRYPTED&quot; ]]; then
-doveadm fs get compress lz4:0:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
+doveadm fs get compress lz4:1:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
   &quot;$file&quot; &gt; &quot;/tmp/$(basename &quot;$file&quot;)&quot;
   if [[ -s &quot;/tmp/$(basename &quot;$file&quot;)&quot; ]]; then
     chmod 600 &quot;/tmp/$(basename &quot;$file&quot;)&quot;
@@ -2425,7 +2425,7 @@ done
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-12 01:05:23</span>
       
     
   </small>
