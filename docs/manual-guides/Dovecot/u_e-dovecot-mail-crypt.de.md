@@ -9,7 +9,7 @@ Rufen Sie Dovecot auf, indem Sie `docker compose exec dovecot-mailcow /bin/bash`
 # Entschlüsseln Sie /var/vmail
 find /var/vmail/ -type f -regextype egrep -regex '.*S=.*W=.*' | while read -r file; do
 if [[ $(head -c7 "$file") == "CRYPTED" ]]; then
-doveadm fs get compress lz4:0:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
+doveadm fs get compress lz4:1:crypt:private_key_path=/mail_crypt/ecprivkey.pem:public_key_path=/mail_crypt/ecpubkey.pem:posix:prefix=/ \
   "$file" > "/tmp/$(basename "$file")"
   if [[ -s "/tmp/$(basename "$file")" ]]; then
     chmod 600 "/tmp/$(basename "$file")"
