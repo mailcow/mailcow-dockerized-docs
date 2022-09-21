@@ -607,6 +607,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#caddy-v2-supported-by-the-community" class="md-nav__link">
+    Caddy v2 (supported by the community)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#optional-post-hook-script-for-non-mailcow-acme-clients" class="md-nav__link">
     Optional: Post-hook script for non-mailcow ACME clients
   </a>
@@ -2473,6 +2480,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#caddy-v2-supported-by-the-community" class="md-nav__link">
+    Caddy v2 (supported by the community)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#optional-post-hook-script-for-non-mailcow-acme-clients" class="md-nav__link">
     Optional: Post-hook script for non-mailcow ACME clients
   </a>
@@ -2721,6 +2735,58 @@ For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow
 <p>You can use the command line to run it, or use the docker compose shown <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">here</a>.</p>
 <p>After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how <a href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate">here</a>.</p>
 <p>Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.</p>
+<h3 id="caddy-v2-supported-by-the-community">Caddy v2 (supported by the community)<a class="headerlink" href="#caddy-v2-supported-by-the-community" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is an unsupported community contribution. Feel free to provide fixes.</p>
+</div>
+<p>The configuration of Caddy with mailcow is very simple.</p>
+<p>In the caddyfile you just have to create a section for the mailserver.</p>
+<p>For example
+<div class="highlight"><pre><span></span><code><span class="hll">MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
+</span>        log {
+<span class="hll">                output file /var/log/caddy/MAILCOW_HOSTNAME.log {
+</span>                        roll_disabled
+                        roll_size 512M
+                        roll_uncompressed
+                        roll_local_time
+                        roll_keep 3
+                        roll_keep_for 48h
+                }
+        }
+
+<span class="hll">        reverse_proxy 127.0.0.1:HTTP_BIND
+</span>}
+</code></pre></div></p>
+<p>This allows Caddy to automatically create the certificates and accept traffic for these mentioned domains and forward them to mailcow.</p>
+<p><strong>Important</strong>: The ACME client of mailcow must be disabled, otherwise mailcow will fail.</p>
+<p>Since Caddy takes care of the certificates itself, we can use the following script to include the Caddy generated certificates into mailcow:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">MD5SUM_CURRENT_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /opt/mailcow-dockerized/data/assets/ssl/cert.pem<span class="k">)</span><span class="o">)</span>
+<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt<span class="k">)</span><span class="o">)</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$MD5SUM_CURRENT_CERT</span> !<span class="o">=</span> <span class="nv">$MD5SUM_NEW_CERT</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
+        <span class="nv">postfix_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>postfix-mailcow<span class="k">)</span>
+        <span class="nv">dovecot_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>dovecot-mailcow<span class="k">)</span>
+        <span class="nv">nginx_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>nginx-mailcow<span class="k">)</span>
+        docker restart <span class="si">${</span><span class="nv">postfix_c</span><span class="si">}</span> <span class="si">${</span><span class="nv">dovecot_c</span><span class="si">}</span> <span class="si">${</span><span class="nv">nginx_c</span><span class="si">}</span>
+
+<span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Certs not copied from Caddy (Not needed)&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Attention</p>
+<p>Caddy's certificate path varies depending on the installation type.<br>
+In this installation example, Caddy was installed using the Caddy repo (<a href="https://caddyserver.com/docs/install#debian-ubuntu-raspbian">more informations here</a>).<br>
+<br>
+To find out the Caddy certificate path on your system, just run a <code>find / -name "certificates"</code>.</p>
+</div>
+<p>This script could be called as a cronjob every hour:</p>
+<div class="highlight"><pre><span></span><code><span class="m">0</span> * * * * /bin/bash /path/to/script/deploy-certs.sh  &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
 <h3 id="optional-post-hook-script-for-non-mailcow-acme-clients">Optional: Post-hook script for non-mailcow ACME clients<a class="headerlink" href="#optional-post-hook-script-for-non-mailcow-acme-clients" title="Permanent link">&para;</a></h3>
 <p>Using a local certbot (or any other ACME client) requires to restart some containers, you can do this with a post-hook script.
 Make sure you change the paths accordingly:
@@ -2743,7 +2809,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-21 12:04:33</span>
       
     
   </small>

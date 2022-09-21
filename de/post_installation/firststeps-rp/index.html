@@ -607,6 +607,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#caddy-v2-von-der-community-unterstutzt" class="md-nav__link">
+    Caddy v2 (von der Community unterstützt)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#optional-post-hook-skript-fur-nicht-mailcow-acme-clients" class="md-nav__link">
     Optional: Post-Hook-Skript für nicht-mailcow ACME-Clients
   </a>
@@ -2473,6 +2480,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#caddy-v2-von-der-community-unterstutzt" class="md-nav__link">
+    Caddy v2 (von der Community unterstützt)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#optional-post-hook-skript-fur-nicht-mailcow-acme-clients" class="md-nav__link">
     Optional: Post-Hook-Skript für nicht-mailcow ACME-Clients
   </a>
@@ -2647,8 +2661,8 @@ server {
 </code></pre></div>
 <h3 id="haproxy-von-der-community-unterstutzt">HAProxy (von der Community unterstützt)<a class="headerlink" href="#haproxy-von-der-community-unterstutzt" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Dies ist ein nicht unterstützter Community Beitrag. Sie können gerne Korrekturen bereitstellen.</p>
+<p class="admonition-title">Warnung</p>
+<p>Dies ist ein nicht unterstützter Community Beitrag. Korrekturen sind immer erwünscht!</p>
 </div>
 <p><strong>Wichtig/Fix erwünscht</strong>: Dieses Beispiel leitet nur HTTPS-Verkehr weiter und benutzt nicht den in mailcow eingebauten ACME-Client.</p>
 <div class="highlight"><pre><span></span><code>frontend https-in
@@ -2663,8 +2677,8 @@ backend mailcow
 </code></pre></div>
 <h3 id="traefik-v2-von-der-community-unterstutzt">Traefik v2 (von der Community unterstützt)<a class="headerlink" href="#traefik-v2-von-der-community-unterstutzt" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Dies ist ein nicht unterstützter Community Beitrag. Fühlen Sie sich frei, Korrekturen bereitzustellen.</p>
+<p class="admonition-title">Warnung</p>
+<p>Dies ist ein nicht unterstützter Community Beitrag. Korrekturen sind immer erwünscht!</p>
 </div>
 <p><strong>Wichtig</strong>: Diese Konfiguration deckt nur das "Reverseproxing" des Webpanels (nginx-mailcow) unter Verwendung von Traefik v2 ab. Wenn Sie auch die Mail-Dienste wie dovecot, postfix... reproxen wollen, müssen Sie die folgende Konfiguration an jeden Container anpassen und einen <a href="https://docs.traefik.io/routing/entrypoints/">EntryPoint</a> in Ihrer <code>traefik.toml</code> oder <code>traefik.yml</code> (je nachdem, welche Konfiguration Sie verwenden) für jeden Port erstellen. </p>
 <p>In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 <code>[certificatesresolvers]</code> in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a>, falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.</p>
@@ -2716,11 +2730,63 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 </code></pre></div>
 <p>Starten Sie die neuen Container mit <code>docker compose up -d</code>.</p>
-<p>Da Traefik 2 ein acme v2 Format verwendet, um ALLE Lizenzen von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>), der die Datei <code>acme.json</code> über ein Volume und eine Variable <code>DOMAIN=example. org</code>, und damit wird der Container die <code>cert.pem</code> und <code>key.pem</code> Dateien ausgeben, dafür lassen wir einfach den <code>traefik-certs-dumper</code> Container laufen, binden das <code>/traefik</code> Volume an den Ordner, in dem unsere <code>acme.json</code> gespeichert ist, binden das <code>/output</code> Volume an unseren mailcow <code>data/assets/ssl/</code> Ordner, und setzen die <code>DOMAIN=example.org</code> Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. </p>
+<p>Da Traefik 2 ein acme v2 Format verwendet, um ALLE Zertifikaten von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>), der die Datei <code>acme.json</code> über ein Volume und eine Variable <code>DOMAIN=example. org</code>, und damit wird der Container die <code>cert.pem</code> und <code>key.pem</code> Dateien ausgeben, dafür lassen wir einfach den <code>traefik-certs-dumper</code> Container laufen, binden das <code>/traefik</code> Volume an den Ordner, in dem unsere <code>acme.json</code> gespeichert ist, binden das <code>/output</code> Volume an unseren mailcow <code>data/assets/ssl/</code> Ordner, und setzen die <code>DOMAIN=example.org</code> Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. </p>
 <p>Dieser Container überwacht die Datei <code>acme.json</code> auf Änderungen und generiert die Dateien <code>cert.pem</code> und <code>key.pem</code> direkt in <code>data/assets/ssl/</code>, wobei der Pfad mit dem <code>/output</code>-Pfad des Containers verbunden ist.</p>
 <p>Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker compose verwenden (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>).</p>
 <p>Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie <a href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden">hier</a>.</p>
 <p>Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.</p>
+<h3 id="caddy-v2-von-der-community-unterstutzt">Caddy v2 (von der Community unterstützt)<a class="headerlink" href="#caddy-v2-von-der-community-unterstutzt" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Dies ist ein nicht unterstützter Communitybeitrag. Korrekturen sind immer erwünscht!</p>
+</div>
+<p>Die Konfiguration von Caddy mit mailcow ist sehr simpel.</p>
+<p>In der Caddyfile muss einfach nur ein Bereich für den E-Mailserver angelegt werden.</p>
+<p>Bspw:</p>
+<div class="highlight"><pre><span></span><code><span class="hll">MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
+</span>        log {
+<span class="hll">                output file /var/log/caddy/MAILCOW_HOSTNAME.log {
+</span>                        roll_disabled
+                        roll_size 512M
+                        roll_uncompressed
+                        roll_local_time
+                        roll_keep 3
+                        roll_keep_for 48h
+                }
+        }
+
+<span class="hll">        reverse_proxy 127.0.0.1:HTTP_BIND
+</span>}
+</code></pre></div>
+<p>Dies erlaubt es Caddy automatisch die Zertifikate zu erstellen und den Traffic für diese erwähnten Domains anzunehmen und an mailcow weiterzuleiten.</p>
+<p><strong>Wichtig</strong>: Der ACME Client der mailcow muss deaktiviert sein, da es sonst zu Fehlern seitens mailcow kommt.</p>
+<p>Da Caddy sich direkt selbst um die Zertifikate kümmert, können wir mit dem folgenden Skript die Caddy generierten Zertifikate in die mailcow inkludieren:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">MD5SUM_CURRENT_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /opt/mailcow-dockerized/data/assets/ssl/cert.pem<span class="k">)</span><span class="o">)</span>
+<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt<span class="k">)</span><span class="o">)</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$MD5SUM_CURRENT_CERT</span> !<span class="o">=</span> <span class="nv">$MD5SUM_NEW_CERT</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
+        <span class="nv">postfix_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>postfix-mailcow<span class="k">)</span>
+        <span class="nv">dovecot_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>dovecot-mailcow<span class="k">)</span>
+        <span class="nv">nginx_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>nginx-mailcow<span class="k">)</span>
+        docker restart <span class="si">${</span><span class="nv">postfix_c</span><span class="si">}</span> <span class="si">${</span><span class="nv">dovecot_c</span><span class="si">}</span> <span class="si">${</span><span class="nv">nginx_c</span><span class="si">}</span>
+
+<span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Certs not copied from Caddy (Not needed)&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Achtung</p>
+<p>Der Zertifikatspfad von Caddy variiert je nach Installationsart.<br>
+Bei diesem Installationsbeispiel wurde Caddy mithilfe des Caddy Repos (<a href="https://caddyserver.com/docs/install#debian-ubuntu-raspbian">weitere Informationen hier</a>) installiert.<br>
+<br>
+Um den Caddy Zertifikatspfad auf Ihrem System herauszufinden, genügt ein <code>find / -name "certificates"</code>.</p>
+</div>
+<p>Dieses Skript könnte dann als Cronjob jede Stunde aufgerufen werden:</p>
+<div class="highlight"><pre><span></span><code><span class="m">0</span> * * * * /bin/bash /path/to/script/deploy-certs.sh  &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
 <h3 id="optional-post-hook-skript-fur-nicht-mailcow-acme-clients">Optional: Post-Hook-Skript für nicht-mailcow ACME-Clients<a class="headerlink" href="#optional-post-hook-skript-fur-nicht-mailcow-acme-clients" title="Permanent link">&para;</a></h3>
 <p>Die Verwendung eines lokalen Certbots (oder eines anderen ACME-Clients) erfordert den Neustart einiger Container, was Sie mit einem Post-Hook-Skript erledigen können.
 Stellen Sie sicher, dass Sie die Pfade entsprechend ändern:
@@ -2743,7 +2809,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-21 12:04:33</span>
       
     
   </small>
