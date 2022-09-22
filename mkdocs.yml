@@ -1,5 +1,5 @@
 site_name: 'mailcow: dockerized documentation'
-site_url: https://mailcow.github.io/mailcow-dockerized-docs/
+site_url: https://docs.mailcow.email/
 copyright: "Copyright &copy; 2022 Servercow Team & Community"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
