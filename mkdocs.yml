@@ -376,7 +376,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/solid/globe
-      link: https://news.mailcow.email
+      link: https://mailcow.email
     - icon: fontawesome/brands/github-alt
       link: https://github.com/mailcow
     - icon: fontawesome/brands/twitter
