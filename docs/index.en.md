@@ -34,16 +34,21 @@ For **bug tracking, feature requests and code contributions** only:
 
 - GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
 
-## Demo
+## Demos
 
-You can find a demo at [demo.mailcow.email](https://demo.mailcow.email), use the following credentials to login:
+Since September 2022 we´re providing two seperate Demo instances: 
+
++ **[demo.mailcow.email](https://demo.mailcow.email)** is the classic Demo based on the **stable releases**.
++ **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** is the new **nightly demo** based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)
+
+Use the following credentials to login on both demos:
 
 - **Administrator**: admin / moohoo
-- **Domain administrator**: department / moohoo
-- **Mailbox**:  demo@440044.xyz / moohoo
+- **Domain-Administrator**: department / moohoo
+- **Mailbox**: demo@440044.xyz / moohoo
 
-!!! info
-	The demo instance contains the latest updates directly after release from GitHub. Fully automatic!
+!!! success
+	The demo instances get the latest updates directly after releases from GitHub. Fully automatic, without any downtime!
 
 ## Overview
 
