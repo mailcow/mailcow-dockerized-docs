@@ -68,7 +68,7 @@ Initialisiere die Datenbank und verlasse das Installationsprogramm.
 ```
 $config['managesieve_host'] = 'tls://dovecot:4190';
 $config['managesieve_conn_options'] = array(
-  ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
+  'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
 );
 // Aktiviert separate Verwaltungsschnittstelle für Urlaubsantworten (außer Haus)
 // 0 - kein separater Abschnitt (Standard),
