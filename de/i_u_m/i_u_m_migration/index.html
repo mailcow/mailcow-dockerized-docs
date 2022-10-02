@@ -2409,7 +2409,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 </code></pre></div></p>
 <p><strong>4.</strong> Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker compose herunterfahren
+docker compose down
 systemctl stop docker.service
 </code></pre></div></p>
 <p>**Wiederholen Sie Schritt 3 mit denselben Befehlen. Dies wird viel schneller gehen als beim ersten Mal.</p>
@@ -2430,7 +2430,7 @@ docker compose pull
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-03 19:32:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-02 19:48:23</span>
       
     
   </small>
