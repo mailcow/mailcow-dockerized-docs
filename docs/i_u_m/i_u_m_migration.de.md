@@ -22,7 +22,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 **4\.** Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
 ```
 cd /opt/mailcow-dockerized
-docker compose herunterfahren
+docker compose down
 systemctl stop docker.service
 ```
 
