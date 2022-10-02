@@ -2653,6 +2653,13 @@ bin/installto.sh /web/rc
 # Type &#39;Y&#39; and press enter to upgrade your install of Roundcube
 # Type &#39;N&#39; to &quot;Do you want me to fix your local configuration&quot; if prompted
 
+# If you see  &quot;NOTICE: Update dependencies by running php composer.phar update --no-dev&quot; just download composer.phar and run it:
+cd /web/rc
+wget https://getcomposer.org/download/2.4.2/composer.phar
+php composer.phar update --no-dev
+# When asked &quot;Do you trust &quot;roundcube/plugin-installer&quot; to execute code and wish to enable it now? (writes &quot;allow-plugins&quot; to composer.json) [y,n,d,?] &quot; hit y and continue.
+
+
 # Remove leftover files
 cd /tmp
 rm -rf roundcube*
@@ -2706,7 +2713,7 @@ docker compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-02 12:16:18</span>
       
     
   </small>
