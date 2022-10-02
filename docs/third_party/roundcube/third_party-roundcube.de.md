@@ -181,6 +181,12 @@ bin/installto.sh /web/rc
 # Geben Sie 'Y' ein und drücken Sie die Eingabetaste, um Ihre Installation von Roundcube zu aktualisieren.
 # Geben Sie 'N' ein, wenn folgender Dialog erscheint: "Do you want me to fix your local configuration".
 
+# Sollte im Output eine Notice kommen "NOTICE: Update dependencies by running php composer.phar update --no-dev"  sollte an kurzerhand composer.phar downloaden und die updates durchführen:
+cd /web/rc
+wget https://getcomposer.org/download/2.4.2/composer.phar
+php composer.phar update --no-dev
+# Auf die Frage "Do you trust "roundcube/plugin-installer" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?] " bitte mit y antworten.
+
 # Entfernen Sie übrig gebliebene Dateien
 cd /tmp
 rm -rf roundcube*
