@@ -192,7 +192,7 @@ php composer.phar update --no-dev
 cd /tmp
 rm -rf roundcube*
 
-# If your going from 1.5 to 1.6 please run the config file changes below
+# If you're going from 1.5 to 1.6 please run the config file changes below
 sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'tls:\/\/dovecot:143'\;/" /web/rc/config/config.inc.php
 sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
 sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'tls:\/\/postfix:587'\;/" /web/rc/config/config.inc.php
