@@ -2664,7 +2664,7 @@ php composer.phar update --no-dev
 cd /tmp
 rm -rf roundcube*
 
-# If your going from 1.5 to 1.6 please run the config file changes below
+# If you&#39;re going from 1.5 to 1.6 please run the config file changes below
 sed -i &quot;s/\$config\[&#39;default_host&#39;\].*$/\$config\[&#39;imap_host&#39;\]\ =\ &#39;tls:\/\/dovecot:143&#39;\;/&quot; /web/rc/config/config.inc.php
 sed -i &quot;/\$config\[&#39;default_port&#39;\].*$/d&quot; /web/rc/config/config.inc.php
 sed -i &quot;s/\$config\[&#39;smtp_server&#39;\].*$/\$config\[&#39;smtp_host&#39;\]\ =\ &#39;tls:\/\/postfix:587&#39;\;/&quot; /web/rc/config/config.inc.php
@@ -2713,7 +2713,7 @@ docker compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-02 12:16:18</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-03 22:13:17</span>
       
     
   </small>
