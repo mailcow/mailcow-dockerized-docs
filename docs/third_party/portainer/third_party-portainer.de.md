@@ -60,3 +60,21 @@ docker compose up -d && docker compose restart nginx-mailcow
 
 Nun können Sie einfach zu https://${MAILCOW_HOSTNAME}/portainer/ navigieren, um Ihre Portainer-Container-Überwachungsseite anzuzeigen. Sie werden dann aufgefordert, ein neues Passwort für den **admin** Account anzugeben. Nachdem Sie Ihr Passwort eingegeben haben, können Sie sich mit der Portainer UI verbinden.
 
+---
+
+## Reverse Proxy
+
+Wenn Sie einen Reverse-Proxy verwenden, muss dieser noch konfiguriert werden die Websocket Requests richtig weiterzuleiten.
+
+Dies wird für die Docker Konsole und andere Komponenten benötigt.
+
+Hier ist ein Bespiel für Apache:
+
+```
+<Location /portainer/api/websocket/>
+  RewriteEngine on
+  RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
+  RewriteCond %{HTTP:CONNECTION} Upgrade$ [NC]
+  RewriteRule /portainer/api/websocket/(.*) ws://127.0.0.1:8080/portainer/api/websocket/$1 [P]
+</Location>
+```
