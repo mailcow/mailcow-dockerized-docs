@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#reverse-proxy" class="md-skip">
+          Zum Inhalt
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -2322,9 +2327,38 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Portainer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Portainer
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reverse-proxy" class="md-nav__link">
+    Reverse Proxy
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2368,6 +2402,21 @@
   
   
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reverse-proxy" class="md-nav__link">
+    Reverse Proxy
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2442,13 +2491,25 @@ map $http_upgrade $connection_upgrade {
 <div class="highlight"><pre><span></span><code>docker compose up -d &amp;&amp; docker compose restart nginx-mailcow
 </code></pre></div></p>
 <p>Nun können Sie einfach zu https://${MAILCOW_HOSTNAME}/portainer/ navigieren, um Ihre Portainer-Container-Überwachungsseite anzuzeigen. Sie werden dann aufgefordert, ein neues Passwort für den <strong>admin</strong> Account anzugeben. Nachdem Sie Ihr Passwort eingegeben haben, können Sie sich mit der Portainer UI verbinden.</p>
+<hr />
+<h2 id="reverse-proxy">Reverse Proxy<a class="headerlink" href="#reverse-proxy" title="Permanent link">&para;</a></h2>
+<p>Wenn Sie einen Reverse-Proxy verwenden, muss dieser noch konfiguriert werden die Websocket Requests richtig weiterzuleiten.</p>
+<p>Dies wird für die Docker Konsole und andere Komponenten benötigt.</p>
+<p>Hier ist ein Bespiel für Apache:</p>
+<div class="highlight"><pre><span></span><code>&lt;Location /portainer/api/websocket/&gt;
+  RewriteEngine on
+  RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
+  RewriteCond %{HTTP:CONNECTION} Upgrade$ [NC]
+  RewriteRule /portainer/api/websocket/(.*) ws://127.0.0.1:8080/portainer/api/websocket/$1 [P]
+&lt;/Location&gt;
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-12 18:19:33</span>
       
     
   </small>
