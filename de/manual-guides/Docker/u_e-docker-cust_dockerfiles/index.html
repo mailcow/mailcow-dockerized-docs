@@ -2391,22 +2391,28 @@
 
   <h1>Dockerfiles anpassen</h1>
 
-<p>Sie müssen die Override-Datei mit den entsprechenden Build-Tags in den mailcow: dockerized Root-Ordner (d.h. <code>/opt/mailcow-dockerized</code>) kopieren:</p>
+<p>Sie müssen die Override-Datei mit den entsprechenden Build-Tags in den mailcow: dockerized Root-Ordner (d.h. <code>/opt/mailcow-dockerized</code>) kopieren:
 <div class="highlight"><pre><span></span><code>cp helper-scripts/docker-compose.override.yml.d/BUILD_FLAGS/docker-compose.override.yml docker-compose.override.yml
+</code></pre></div></p>
+<p>Nehmen Sie Ihre Änderungen in <code>data/Dockerfiles/$service</code> vor und erstellen Sie das Image lokal:
+<div class="highlight"><pre><span></span><code>docker build data/Dockerfiles/$service -t mailcow/$service:$tag
 </code></pre></div>
-<p>Nehmen Sie Ihre Änderungen in <code>data/Dockerfiles/$service</code> vor und erstellen Sie das Image lokal:</p>
-<div class="highlight"><pre><span></span><code>docker build data/Dockerfiles/service -t mailcow/$service
-</code></pre></div>
-<p>Nun werden die geänderten Container automatisch neu erstellt:</p>
+(Ohne persönlichen :$tag wird automatisch :latest verwendet.)</p>
+<p>Nun muss dieser gerade erstellte Container in docker-compose.override.yml aktiviert werden, z.B.:
+<div class="highlight"><pre><span></span><code>$service-mailcow:
+    build: ./data/Dockerfiles/$service
+    image: mailcow/$service:$tag
+</code></pre></div></p>
+<p>Abschliessend müssen die geänderten Container automatisch neu erstellt werden:
 <div class="highlight"><pre><span></span><code>docker compose up -d
-</code></pre></div>
+</code></pre></div></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-19 17:34:14</span>
       
     
   </small>
