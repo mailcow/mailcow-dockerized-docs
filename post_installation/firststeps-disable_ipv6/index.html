@@ -2444,8 +2444,8 @@ inet_protocols = ipv4
 <p>Fix the following NGINX, Dovecot and php-fpm config files</p>
 <div class="highlight"><pre><span></span><code>sed -i &#39;/::/d&#39; data/conf/nginx/listen_*
 sed -i &#39;/::/d&#39; data/conf/nginx/templates/listen*
+sed -i &#39;/::/d&#39; data/conf/nginx/dynmaps.conf
 sed -i &#39;s/,\[::\]//g&#39; data/conf/dovecot/dovecot.conf
-sed -i &#39;s/\[::\]://g&#39; data/conf/nginx/dynmaps.conf
 sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
 </code></pre></div>
 
@@ -2454,7 +2454,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-19 15:29:13</span>
       
     
   </small>
