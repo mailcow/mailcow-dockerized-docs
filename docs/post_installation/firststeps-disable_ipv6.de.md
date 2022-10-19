@@ -89,7 +89,7 @@ Folgende NGINX, Dovecot und Php-fpm Konfigurationsdateien anpassen
 ```
 sed -i '/::/d' data/conf/nginx/listen_*
 sed -i '/::/d' data/conf/nginx/templates/listen*
+sed -i '/::/d' data/conf/nginx/dynmaps.conf
 sed -i 's/,\[::\]//g' data/conf/dovecot/dovecot.conf
-sed -i 's/\[::\]://g' data/conf/nginx/dynmaps.conf
 sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 ```
