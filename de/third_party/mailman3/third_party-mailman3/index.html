@@ -2986,14 +2986,14 @@ site_owner: mailman@example.org
 LANGUAGE_CODE = &#39;de-de&#39;
 
 # soziale Authentifizierung deaktivieren
-SOCIALACCOUNT_PROVIDERS = {}
+MAILMAN_WEB_SOCIAL_AUTH = []
 
 # ändern
 DEFAULT_FROM_EMAIL = &#39;mailman@example.org&#39;
 
 DEBUG = False
 </code></pre></div>
-Sie können <code>LANGUAGE_CODE</code> und <code>SOCIALACCOUNT_PROVIDERS</code> an Ihre Bedürfnisse anpassen. Im Moment hat <code>SOCIALACCOUNT_PROVIDERS</code> keinen Effekt, siehe <a href="https://github.com/g4rf/dockerized-mailcow-mailman/issues/2">issue #2</a>.</p>
+Sie können <code>LANGUAGE_CODE</code> und <code>SOCIALACCOUNT_PROVIDERS</code> an Ihre Bedürfnisse anpassen.</p>
 <h3 id="ausfuhren">🏃 Ausführen<a class="headerlink" href="#ausfuhren" title="Permanent link">&para;</a></h3>
 <p>Ausführen (als <em>root</em> oder <em>sudo</em>)</p>
 <div class="highlight"><pre><span></span><code>a2ensite mailcow.conf
@@ -3035,7 +3035,7 @@ docker compose restart postfix-mailcow
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-20 15:33:23</span>
       
     
   </small>
