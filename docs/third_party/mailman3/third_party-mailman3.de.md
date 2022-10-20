@@ -259,14 +259,14 @@ Erstellen Sie die Datei `/opt/mailman/web/settings_local.py` mit dem folgenden I
 LANGUAGE_CODE = 'de-de'
 
 # soziale Authentifizierung deaktivieren
-SOCIALACCOUNT_PROVIDERS = {}
+MAILMAN_WEB_SOCIAL_AUTH = []
 
 # ändern
 DEFAULT_FROM_EMAIL = 'mailman@example.org'
 
 DEBUG = False
 ```
-Sie können `LANGUAGE_CODE` und `SOCIALACCOUNT_PROVIDERS` an Ihre Bedürfnisse anpassen. Im Moment hat `SOCIALACCOUNT_PROVIDERS` keinen Effekt, siehe [issue #2](https://github.com/g4rf/dockerized-mailcow-mailman/issues/2).
+Sie können `LANGUAGE_CODE` und `SOCIALACCOUNT_PROVIDERS` an Ihre Bedürfnisse anpassen.
 
 ### 🏃 Ausführen
 
