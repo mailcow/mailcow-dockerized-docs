@@ -111,7 +111,7 @@ docker compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mail
 
 Im obigen Beispiel werden die Berichte einmal alle 24 Stunden gesendet.
 
-Der Olefia-Zeitplan hat die gleiche Implementierung wie `cron` in Go, die unterstützte Syntax ist beschrieben in [cron Documentation](https://pkg.go.dev/github.com/robfig/cron)
+Der Ofelia-Zeitplan hat die gleiche Implementierung wie `cron` in Go, die unterstützte Syntax ist beschrieben in [cron Documentation](https://pkg.go.dev/github.com/robfig/cron)
 
 Um den Zeitplan zu ändern:
 
