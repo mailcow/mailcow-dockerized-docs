@@ -79,8 +79,8 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des Docker Compose Plugins beschrieben.<br>
-    All commands are written according to the Docker Compose Plugin syntax.</h4></center>
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
+    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
 
           </div>
           
@@ -972,6 +972,33 @@
   <a href="#anleitung" class="md-nav__link">
     Anleitung
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variablen-fur-backuprestore-skript" class="md-nav__link">
+    Variablen für Backup/Restore Skript
+  </a>
+  
+    <nav class="md-nav" aria-label="Variablen für Backup/Restore Skript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multithreading" class="md-nav__link">
+    Multithreading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-pfad" class="md-nav__link">
+    Backup Pfad
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2454,6 +2481,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#variablen-fur-backuprestore-skript" class="md-nav__link">
+    Variablen für Backup/Restore Skript
+  </a>
+  
+    <nav class="md-nav" aria-label="Variablen für Backup/Restore Skript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multithreading" class="md-nav__link">
+    Multithreading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-pfad" class="md-nav__link">
+    Backup Pfad
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#cronjob" class="md-nav__link">
     Cronjob
   </a>
@@ -2510,11 +2564,25 @@ Sie können auch "all" als zweiten Parameter verwenden, um alle Komponenten zu s
 # vmail sichern
 ./helper-scripts/backup_and_restore.sh backup vmail
 </code></pre></div>
+<h4 id="variablen-fur-backuprestore-skript">Variablen für Backup/Restore Skript<a class="headerlink" href="#variablen-fur-backuprestore-skript" title="Permanent link">&para;</a></h4>
+<h5 id="multithreading">Multithreading<a class="headerlink" href="#multithreading" title="Permanent link">&para;</a></h5>
+<p>Seit dem 2022-10 Update ist es möglich das Skript mit Multithreading Support laufen zu lassen. Dies lässt sich sowohl für Backups aber auch für Restores nutzen.</p>
+<p>Um das Backup/den Restore mit Multithreading zu starten muss <code>THREADS</code> als Umgebungsvariable vor dem Befehl zum starten hinzugefügt werden.</p>
+<p><div class="highlight"><pre><span></span><code>THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+</code></pre></div>
+Die Anzahl hinter dem <code>=</code> Zeichen gibt dabei dann die Thread Anzahl an. Nehmen Sie bitte immer ihre Kernanzahl -2 um mailcow selber noch genug CPU Leistung zu lassen.</p>
+<h5 id="backup-pfad">Backup Pfad<a class="headerlink" href="#backup-pfad" title="Permanent link">&para;</a></h5>
 <p>Das Skript wird Sie nach einem Speicherort für die Sicherung fragen. Innerhalb dieses Speicherortes wird es Ordner im Format "mailcow_DATE" erstellen.
 Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nicht zu stören.</p>
 <p>Um ein Backup unbeaufsichtigt durchzuführen, definieren Sie MAILCOW_BACKUP_LOCATION als Umgebungsvariable, bevor Sie das Skript starten:</p>
 <div class="highlight"><pre><span></span><code>MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tipp<p>Beide oben genannten Variablen können auch kombiniert werden! Bsp:
+<div class="highlight"><pre><span></span><code>MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+</code></pre></div></p>
+</p>
+</div>
 <h4 id="cronjob">Cronjob<a class="headerlink" href="#cronjob" title="Permanent link">&para;</a></h4>
 <p>Sie können das Backup-Skript regelmäßig über einen Cronjob laufen lassen. Stellen Sie sicher, dass <code>BACKUP_LOCATION</code> existiert:</p>
 <div class="highlight"><pre><span></span><code>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -2570,7 +2638,7 @@ Im Falle einer beschädigten Datenbank müssen Sie das Hilfsskript verwenden, um
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-25 14:46:12</span>
       
     
   </small>
