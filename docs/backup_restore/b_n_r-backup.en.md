@@ -24,6 +24,18 @@ You can also use "all" as second parameter to backup all components. Append `--d
 
 ```
 
+#### Variables for backup/restore script
+##### Multithreading
+With the 2022-10 update it is possible to run the script with multithreading support. This can be used for backups as well as for restores.
+
+To start the backup/restore with multithreading you have to add `THREADS` as an environment variable in front of the command to execute the script.
+
+```
+THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+```
+The number after the `=` character indicates the number of threads. Please keep your core count -2 to leave enough CPU power for mailcow itself.
+
+##### Backup path
 The script will ask you for a backup location. Inside of this location it will create folders in the format "mailcow_DATE".
 You should not rename those folders to not break the restore process.
 
@@ -32,6 +44,12 @@ To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variab
 ```
 MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 ```
+
+!!! tip
+        Both variables mentioned above can also be combined! Ex:
+        ```
+        MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+        ```
 
 #### Cronjob
 

@@ -24,6 +24,18 @@ Sie können auch "all" als zweiten Parameter verwenden, um alle Komponenten zu s
 
 ```
 
+#### Variablen für Backup/Restore Skript
+##### Multithreading
+Seit dem 2022-10 Update ist es möglich das Skript mit Multithreading Support laufen zu lassen. Dies lässt sich sowohl für Backups aber auch für Restores nutzen.
+
+Um das Backup/den Restore mit Multithreading zu starten muss `THREADS` als Umgebungsvariable vor dem Befehl zum starten hinzugefügt werden.
+
+```
+THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+```
+Die Anzahl hinter dem `=` Zeichen gibt dabei dann die Thread Anzahl an. Nehmen Sie bitte immer ihre Kernanzahl -2 um mailcow selber noch genug CPU Leistung zu lassen.
+
+##### Backup Pfad
 Das Skript wird Sie nach einem Speicherort für die Sicherung fragen. Innerhalb dieses Speicherortes wird es Ordner im Format "mailcow_DATE" erstellen.
 Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nicht zu stören.
 
@@ -32,6 +44,12 @@ Um ein Backup unbeaufsichtigt durchzuführen, definieren Sie MAILCOW_BACKUP_LOCA
 ```
 MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 ```
+
+!!! tip "Tipp"
+        Beide oben genannten Variablen können auch kombiniert werden! Bsp:
+        ```
+        MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+        ```
 
 #### Cronjob
 
