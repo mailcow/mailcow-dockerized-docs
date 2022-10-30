@@ -192,7 +192,7 @@ version: '2.1'
 services:
     nginx-mailcow:
       networks:
-        # add Traefik's network
+        # Add Traefik's network
         web:
       labels:
         - traefik.enable=true
@@ -214,14 +214,16 @@ services:
 
     certdumper:
         image: humenius/traefik-certs-dumper
-        container_name: traefik_certdumper
+	command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
         network_mode: none
         volumes:
-          # mount the folder which contains Traefik's `acme.json' file
-          #   in this case Traefik is started from its own docker compose in ../traefik
-          - ../traefik/data:/traefik:ro
-          # mount mailcow's SSL folder
+          # Mount the volume which contains Traefik's `acme.json' file
+          #   Configure the external name in the volume definition
+          - acme:/traefik:ro
+          # Mount mailcow's SSL folder
           - ./data/assets/ssl/:/output:rw
+	  # Mount docker socket to restart containers
+	  - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: always
         environment:
           # only change this, if you're using another domain for mailcow's web frontend compared to the standard config
@@ -230,6 +232,14 @@ services:
 networks:
   web:
     external: true
+    # Name of the external network
+    name: traefik_web
+
+volumes:
+  acme:
+    external: true
+    # Name of the external docker volume which contains Traefik's `acme.json' file
+    name: traefik_acme
 ```
 
 Start the new containers with `docker compose up -d`.
