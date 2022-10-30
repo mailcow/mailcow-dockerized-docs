@@ -222,8 +222,8 @@ services:
           - acme:/traefik:ro
           # Mount mailcow's SSL folder
           - ./data/assets/ssl/:/output:rw
-	  # Mount docker socket to restart containers
-	  - /var/run/docker.sock:/var/run/docker.sock:ro
+          # Mount docker socket to restart containers
+          - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: always
         environment:
           # only change this, if you're using another domain for mailcow's web frontend compared to the standard config
