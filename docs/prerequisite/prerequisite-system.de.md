@@ -41,18 +41,27 @@ Ein Unternehmen mit 15 Smartphones (EAS aktiviert) und etwa 50 gleichzeitigen IM
 Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Setups helfen.
 
 ### Unterstützte Betriebssysteme
-Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe https://docs.docker.com/install/).
+Grundsätzlich kann mailcow auf jeder Distribution verwendet werden, die von Docker CE unterstützt wird (siehe https://docs.docker.com/install/).
+Es kann jedoch in vereinzelten Fällen zu einer Inkompatibilität der Betriebssysteme und den mailcow Komponenten kommen.
 
-Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme:
+Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand November 2022*):
 
-| Betriebssystem                | Status                              |
+| Betriebssystem                | Kompatibilität                            |
 | ----------------------- | ------------------------------------------------ |
-| Centos 7              | ✅                                            |
-| Debian 10, 11              | ✅                                            |
-| Ubuntu 18.04, 20.04, 22.04                   | ✅                          |
+| Alpine 3.16 und älter            | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel") |
+| Centos 7              | [✅](https://www.centos.org/ "Vollständig Kompatibel") |
+| Debian 10, 11              | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
+| Ubuntu 18.04, 20.04, 22.04                   | [✅](https://ubuntu.com/ "Vollständig Kompatibel")|
+| Rocky Linux 9 | [❔](https://rockylinux.org/ "Kompatibilität noch ausstehend") |
 
-**Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.**
 
+!!! info "Legende"
+        ✅ = Funktioniert **out of the box** anhand der Anleitung.<br>
+        ⚠️ = Erfordert einige **manuelle Anpassungen**, sonst aber nutzbar.<br>
+        ❌ = Generell **NICHT Kompatibel**.<br>
+        ❔ = Ausstehend.
+
+**Hinweis: Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.**
 
 ## Firewall & Ports
 

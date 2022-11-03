@@ -27,6 +27,7 @@ theme:
     - announce.dismiss
 
 markdown_extensions:
+  - abbr
   - attr_list
   - admonition
   - toc:
@@ -38,6 +39,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.extra
   - pymdownx.betterem
+  - pymdownx.snippets
   - footnotes
 
 nav:
