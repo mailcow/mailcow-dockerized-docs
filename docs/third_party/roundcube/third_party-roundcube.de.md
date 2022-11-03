@@ -60,7 +60,7 @@ $config['db_prefix'] = 'mailcow_rc1';
 Richten Sie Ihren Browser auf `https://myserver/rc/installer` und folgen Sie den Anweisungen.
 Initialisiere die Datenbank und verlasse das Installationsprogramm.
 
-**Löschen Sie das Verzeichnis `data/web/rc/installer` nach einer erfolgreichen Installation!
+**Löschen Sie das Verzeichnis `data/web/rc/installer` nach einer erfolgreichen Installation!**
 
 ## Konfigurieren Sie die ManageSieve-Filterung
 
