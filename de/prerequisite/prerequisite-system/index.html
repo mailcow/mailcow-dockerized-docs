@@ -2633,31 +2633,47 @@ Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam
 <p>6 GiB RAM + 1 GiB Swap sind für die meisten privaten Installationen ausreichend, während 8 GiB RAM für ~5 bis 10 Benutzer empfohlen werden.</p>
 <p>Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Setups helfen.</p>
 <h3 id="unterstutzte-betriebssysteme">Unterstützte Betriebssysteme<a class="headerlink" href="#unterstutzte-betriebssysteme" title="Permanent link">&para;</a></h3>
-<p>Wir empfehlen, jede Distribution zu verwenden, die von Docker CE unterstützt wird (siehe <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).</p>
-<p>Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme:</p>
+<p>Grundsätzlich kann mailcow auf jeder Distribution verwendet werden, die von Docker CE unterstützt wird (siehe <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).
+Es kann jedoch in vereinzelten Fällen zu einer Inkompatibilität der Betriebssysteme und den mailcow Komponenten kommen.</p>
+<p>Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (<em>Stand November 2022</em>):</p>
 <table>
 <thead>
 <tr>
 <th>Betriebssystem</th>
-<th>Status</th>
+<th>Kompatibilität</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>Alpine 3.16 und älter</td>
+<td><a href="https://www.alpinelinux.org/" title="Eingeschränkt Kompatibel">⚠️</a></td>
+</tr>
+<tr>
 <td>Centos 7</td>
-<td>✅</td>
+<td><a href="https://www.centos.org/" title="Vollständig Kompatibel">✅</a></td>
 </tr>
 <tr>
 <td>Debian 10, 11</td>
-<td>✅</td>
+<td><a href="https://www.debian.org/index.de.html" title="Vollständig Kompatibel">✅</a></td>
 </tr>
 <tr>
 <td>Ubuntu 18.04, 20.04, 22.04</td>
-<td>✅</td>
+<td><a href="https://ubuntu.com/" title="Vollständig Kompatibel">✅</a></td>
+</tr>
+<tr>
+<td>Rocky Linux 9</td>
+<td><a href="https://rockylinux.org/" title="Kompatibilität noch ausstehend">❔</a></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Legende<p>✅ = Funktioniert <strong>out of the box</strong> anhand der Anleitung.<br>
+⚠️ = Erfordert einige <strong>manuelle Anpassungen</strong>, sonst aber nutzbar.<br>
+❌ = Generell <strong>NICHT Kompatibel</strong>.<br>
+❔ = Ausstehend.</p>
+</p>
+</div>
+<p><strong>Hinweis: Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Bitte überprüfen Sie, ob alle Standard-Ports von mailcow offen sind und nicht von anderen Anwendungen genutzt werden:</p>
 <div class="highlight"><pre><span></span><code>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
@@ -2827,7 +2843,7 @@ Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_st
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 12:00:08</span>
       
     
   </small>

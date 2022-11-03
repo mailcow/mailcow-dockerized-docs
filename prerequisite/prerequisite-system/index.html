@@ -2631,31 +2631,47 @@
 <p>6 GiB RAM + 1 GiB swap are fine for most private installations while 8 GiB RAM are recommended for ~5 to 10 users.</p>
 <p>We can help to correctly plan your setup as part of our support.</p>
 <h3 id="supported-os">Supported OS<a class="headerlink" href="#supported-os" title="Permanent link">&para;</a></h3>
-<p>We recommend using any distribution listed as supported by Docker CE (check <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).</p>
-<p>See the following table for the official supported and tested destributions:</p>
+<p>Basically, mailcow can be used on any distribution that is supported by Docker CE (see <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).
+However, in some cases there may be incompatibilities between the operating systems and the mailcow components.</p>
+<p>The following table contains all operating systems officially supported and tested by us (<em>as of November 2022</em>):</p>
 <table>
 <thead>
 <tr>
 <th>OS</th>
-<th>Status</th>
+<th>Compatibility</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>Alpine 3.16 and older</td>
+<td><a href="https://www.alpinelinux.org/" title="Limited Compatibility">⚠️</a></td>
+</tr>
+<tr>
 <td>Centos 7</td>
-<td>✅</td>
+<td><a href="https://www.centos.org/" title="Fully Compatible">✅</a></td>
 </tr>
 <tr>
 <td>Debian 10, 11</td>
-<td>✅</td>
+<td><a href="https://www.debian.org/index.html" title="Fully Compatible">✅</a></td>
 </tr>
 <tr>
 <td>Ubuntu 18.04, 20.04, 22.04</td>
-<td>✅</td>
+<td><a href="https://ubuntu.com/" title="Fully Compatible">✅</a></td>
+</tr>
+<tr>
+<td>Rocky Linux 9</td>
+<td><a href="https://rockylinux.org/" title="Compatibility pending">❔</a></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Other Distributions may work as well but weren´t tested by us!</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Legend<p>✅ = Works <strong>out of the box</strong> using the instructions.<br>
+⚠️ = Requires some <strong>manual adjustments</strong> otherwise usable.<br>
+❌ = In general <strong>NOT Compatible</strong>.<br>
+❔ = Pending.</p>
+</p>
+</div>
+<p><strong>Note: All other operating systems (not mentioned) may also work, but have not been officially tested.</strong></p>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Please check if any of mailcow's standard ports are open and not in use by other applications:</p>
 <div class="highlight"><pre><span></span><code>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
@@ -2825,7 +2841,7 @@ You may want to <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#di
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 12:00:08</span>
       
     
   </small>
