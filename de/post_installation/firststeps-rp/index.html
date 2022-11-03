@@ -2772,11 +2772,11 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <p>Da Caddy sich direkt selbst um die Zertifikate kümmert, können wir mit dem folgenden Skript die Caddy generierten Zertifikate in die mailcow inkludieren:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 <span class="nv">MD5SUM_CURRENT_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /opt/mailcow-dockerized/data/assets/ssl/cert.pem<span class="k">)</span><span class="o">)</span>
-<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt<span class="k">)</span><span class="o">)</span>
+<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt<span class="k">)</span><span class="o">)</span>
 
 <span class="k">if</span> <span class="o">[</span> <span class="nv">$MD5SUM_CURRENT_CERT</span> !<span class="o">=</span> <span class="nv">$MD5SUM_NEW_CERT</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
-        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
         <span class="nv">postfix_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>postfix-mailcow<span class="k">)</span>
         <span class="nv">dovecot_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>dovecot-mailcow<span class="k">)</span>
         <span class="nv">nginx_c</span><span class="o">=</span><span class="k">$(</span>docker ps -qaf <span class="nv">name</span><span class="o">=</span>nginx-mailcow<span class="k">)</span>
@@ -2818,7 +2818,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 11:27:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 16:35:20</span>
       
     
   </small>
