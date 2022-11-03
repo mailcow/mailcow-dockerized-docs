@@ -280,11 +280,11 @@ Da Caddy sich direkt selbst um die Zertifikate kümmert, können wir mit dem fol
 ```bash
 #!/bin/bash
 MD5SUM_CURRENT_CERT=($(md5sum /opt/mailcow-dockerized/data/assets/ssl/cert.pem))
-MD5SUM_NEW_CERT=($(md5sum /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt))
+MD5SUM_NEW_CERT=($(md5sum /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt))
 
 if [ $MD5SUM_CURRENT_CERT != $MD5SUM_NEW_CERT ]; then
-        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
-        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/develcow.derlinkman.de/develcow.derlinkman.de.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
+        cp /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
         postfix_c=$(docker ps -qaf name=postfix-mailcow)
         dovecot_c=$(docker ps -qaf name=dovecot-mailcow)
         nginx_c=$(docker ps -qaf name=nginx-mailcow)
