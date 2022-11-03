@@ -212,14 +212,15 @@ services:
 
     certdumper:
         image: humenius/traefik-certs-dumper
-        container_name: traefik_certdumper
+        command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
         network_mode: none
         volumes:
-          # mounten Sie den Ordner, der Traefiks `acme.json' Datei enthält
-          # in diesem Fall wird Traefik von seinem eigenen docker compose in ../traefik gestartet
-          - ../traefik/data:/traefik:ro
+          # Binden Sie das Volume, das Traefiks `acme.json' Datei enthält, ein
+          - acme:/traefik:ro
           # SSL-Ordner von mailcow einhängen
           - ./data/assets/ssl/:/output:rw
+          # Binden Sie den Docker Socket ein, damit traefik-certs-dumper die Container neu starten kann
+          - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: always
         environment:
           # Ändern Sie dies nur, wenn Sie eine andere Domain für Mailcows Web-Frontend verwenden als in der Standard-Konfiguration
@@ -228,6 +229,14 @@ services:
 networks:
   web:
     external: true
+    # Name des externen Netzwerks
+    name: traefik_web
+
+volumes:
+  acme:
+    external: true
+    # Name des externen Docker Volumes, welches Traefiks `acme.json' Datei enthält
+    name: traefik_acme
 ```
 
 Starten Sie die neuen Container mit `docker compose up -d`.
