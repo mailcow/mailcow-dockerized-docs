@@ -64,7 +64,7 @@ Initialisiere die Datenbank und verlasse das Installationsprogramm.
 
 ## Konfigurieren Sie die ManageSieve-Filterung
 
-Öffnen Sie `data/web/rc/plugins/managesieve/config.inc.php` und ändern Sie die folgenden Parameter (oder fügen Sie sie am Ende der Datei hinzu):
+Öffnen Sie `data/web/rc/config/config.inc.php` und ändern Sie die folgenden Parameter (oder fügen Sie sie am Ende der Datei hinzu):
 ```
 $config['managesieve_host'] = 'tls://dovecot:4190';
 $config['managesieve_conn_options'] = array(
