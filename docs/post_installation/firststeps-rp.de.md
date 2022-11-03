@@ -215,11 +215,11 @@ services:
         command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
         network_mode: none
         volumes:
-          # Bilden Sie das Volume, das Traefiks `acme.json' Datei enthält, ein
+          # Binden Sie das Volume, das Traefiks `acme.json' Datei enthält, ein
           - acme:/traefik:ro
           # SSL-Ordner von mailcow einhängen
           - ./data/assets/ssl/:/output:rw
-          # Binde den Docker socket ein um die Container neu zu starten
+          # Binden Sie den Docker Socket ein, damit traefik-certs-dumper die Container neu starten kann
           - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: always
         environment:
