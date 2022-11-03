@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://docs.mailcow.email/en/third_party/roundcube/third_party-roundcube/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.7">
     
     
       
@@ -2564,7 +2564,7 @@ $config[&#39;db_prefix&#39;] = &#39;mailcow_rc1&#39;;
 Initialize the database and leave the installer.</p>
 <p><strong>Delete the directory <code>data/web/rc/installer</code> after a successful installation!</strong></p>
 <h2 id="configure-managesieve-filtering">Configure ManageSieve filtering<a class="headerlink" href="#configure-managesieve-filtering" title="Permanent link">&para;</a></h2>
-<p>Open <code>data/web/rc/plugins/managesieve/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):
+<p>Open <code>data/web/rc/config/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):
 <div class="highlight"><pre><span></span><code>$config[&#39;managesieve_host&#39;] = &#39;tls://dovecot:4190&#39;;
 $config[&#39;managesieve_conn_options&#39;] = array(
   &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
@@ -2713,7 +2713,7 @@ docker compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-03 22:13:17</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 10:43:03</span>
       
     
   </small>
