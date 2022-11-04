@@ -20,6 +20,9 @@ If the mailcow installation directory is not `/opt/`, adjust this in the 2nd lin
 
 After that re-inventory the services for your mailcow host in checmk and a new check named `mailcow_update` should be selectable.
 
+This will run the `mailcow_update` everytime checkmk agent is checked, you can cache the result by placing the script in a subfolder named the number of seconds you wish to cache it. \
+`/usr/lib/check_mk_agent/local/3600/` will cache the response for an 3600 seconds (1 hour).
+
 ## Screenshots
 
 ### No updates available
