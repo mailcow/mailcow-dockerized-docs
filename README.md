@@ -124,3 +124,12 @@ git clone https://github.com/mailcow/mailcow-dockerized-docs.git
 pip install -r requirements.txt
 mkdocs serve
 ```
+
+The Placeholder values get replaced by the javascript in the file docs/assets/javascript/client.js.
+
+If you want to test how the documentation looks like with the placeholder values filled in, you can set the values via url parameters.
+
+For Example: 
+```
+https://127.0.0.1:8000client/client-manual/#host=mail.example.org&email=mail@example.org&name=mail&ui=mail.example.org&port=443
+```
