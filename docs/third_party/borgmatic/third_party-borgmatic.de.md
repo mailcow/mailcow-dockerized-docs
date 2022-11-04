@@ -69,7 +69,7 @@ location:
     source_directories:
         - /mnt/source
     repositories:
-        - user@rsync.net:mailcow
+        - ssh://user@rsync.net:22/./mailcow
     exclude_patterns:
         - '/mnt/source/postfix/public/'
         - '/mnt/source/postfix/private/'
