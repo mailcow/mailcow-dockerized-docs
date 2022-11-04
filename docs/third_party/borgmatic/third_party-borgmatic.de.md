@@ -55,7 +55,7 @@ volumes:
 
 Stellen Sie sicher, dass Sie die `BORG_PASSPHRASE` in eine sichere Passphrase Ihrer Wahl ändern.
 
-Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen, müssen Sie das
+Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen, 
 müssen Sie das `ro`-Flag entfernen, bevor Sie die Daten wiederherstellen. Dies wird im Abschnitt über die Wiederherstellung von Backups beschrieben.
 
 ### Erstellen Sie `data/conf/borgmatic/etc/config.yaml`
