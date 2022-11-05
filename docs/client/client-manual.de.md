@@ -16,7 +16,8 @@ Bitte verwenden Sie "plain" als Authentifizierungsmechanismus. Entgegen der Anna
 
 SOGos Standard-URLs für Kalender (CalDAV) und Kontakte (CardDAV):
 
-1. **CalDAV** - https://mail.example.com/SOGo/dav/user@example.com/Calendar/personal/
-2. **CardDAV** - https://mail.example.com/SOGo/dav/user@example.com/Contacts/personal/
+1. **CalDAV**  <span class="client_variables_unavailable">https://mail.example.com/SOGo/dav/user@example.com/Calendar/personal/</span><span class="client_variables_available">https://<span class="client_var_host"></span>/SOGo/dav/<span class="client_var_email"></span>/Calendar/personal/</span>
 
-Einige Anwendungen verlangen möglicherweise die Verwendung von https://mail.example.com/SOGo/dav/ _oder_ den vollständigen Pfad zu Ihrem Kalender, der in SOGo gefunden und kopiert werden kann.
+2. **CardDAV**  <span class="client_variables_unavailable">https://mail.example.com/SOGo/dav/user@example.com/Contacts/personal/</span><span class="client_variables_available">https://<span class="client_var_host"></span>/SOGo/dav/<span class="client_var_email"></span>/Contacts/personal/</span>
+
+Einige Anwendungen verlangen möglicherweise die Verwendung von <span class="client_variables_unavailable">https://mail.example.com/SOGo/dav/</span><span class="client_variables_available">https://<span class="client_var_host"></span>/SOGo/dav/</span> _oder_ den vollständigen Pfad zu Ihrem Kalender, der in SOGo gefunden und kopiert werden kann.

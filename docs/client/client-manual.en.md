@@ -17,7 +17,8 @@ Please use the "plain" password setting as the authentication mechanism. Contrar
 
 SOGos default calendar (CalDAV) and contacts (CardDAV) URLs:
 
-1. **CalDAV** - https://mail.example.com/SOGo/dav/user@example.com/Calendar/personal/
-2. **CardDAV** - https://mail.example.com/SOGo/dav/user@example.com/Contacts/personal/
+1. **CalDAV**  <span class="client_variables_unavailable">https://mail.example.com/SOGo/dav/user@example.com/Calendar/personal/</span><span class="client_variables_available">https://<span class="client_var_host"></span>/SOGo/dav/<span class="client_var_email"></span>/Calendar/personal/</span>
 
-Some applications may require you to use https://mail.example.com/SOGo/dav/ _or_ the full path to your calendar, which can be found and copied from within SOGo.
+2. **CardDAV**  <span class="client_variables_unavailable">https://mail.example.com/SOGo/dav/user@example.com/Contacts/personal/</span><span class="client_variables_available">https://<span class="client_var_host"></span>/SOGo/dav/<span class="client_var_email"></span>/Contacts/personal/</span>
+
+Some applications may require you to use <span class="client_variables_unavailable">https://mail.example.com/SOGo/dav/</span><span class="client_variables_available">https://<span class="client_var_host"></span>/SOGo/dav/</span> _or_ the full path to your calendar, which can be found and copied from within SOGo.
