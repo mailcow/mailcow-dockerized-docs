@@ -2507,7 +2507,9 @@ fi
 exit
 </code></pre></div>
 <p>Sofern das mailcow-Installationsverzeichnis nicht <code>/opt/</code> ist, ist das in der 2. Zeile anzupassen.</p>
-<p>Danach für euren mailcow-Host in checmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen <code>mailcow_update</code> auswählbar sein.</p>
+<p>Danach für den mailcow-Host in checkmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen <code>mailcow_update</code> auswählbar sein.</p>
+<p>Der Check <code>mailcow_update</code> wird jedes Mal ausgeführt, wenn der checkmk Agent den mailcow Server überprüft. Sie können das Ergebnis zwischenspeichern, indem Sie das Skript in einem Unterordner mit dem Namen der Anzahl von Sekunden ablegen, für die Sie es zwischenspeichern möchten. \
+<code>/usr/lib/check_mk_agent/local/3600/</code> speichert die Antwort für 3600 Sekunden (1 Stunde).</p>
 <h2 id="screenshots">Screenshots<a class="headerlink" href="#screenshots" title="Permanent link">&para;</a></h2>
 <h3 id="keine-updates-verfugbar">Keine Updates verfügbar<a class="headerlink" href="#keine-updates-verfugbar" title="Permanent link">&para;</a></h3>
 <p>Sofern keine Updates vorhanden sind, wird <code>OK</code> ausgegeben.</p>
@@ -2532,7 +2534,7 @@ exit
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 22:55:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-08 12:01:39</span>
       
     
   </small>

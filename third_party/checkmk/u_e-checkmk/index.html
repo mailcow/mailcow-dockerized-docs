@@ -2508,6 +2508,8 @@ exit
 </code></pre></div>
 <p>If the mailcow installation directory is not <code>/opt/</code>, adjust this in the 2nd line.</p>
 <p>After that re-inventory the services for your mailcow host in checmk and a new check named <code>mailcow_update</code> should be selectable.</p>
+<p>This will run the <code>mailcow_update</code> everytime checkmk agent is checked, you can cache the result by placing the script in a subfolder named the number of seconds you wish to cache it. \
+<code>/usr/lib/check_mk_agent/local/3600/</code> will cache the response for an 3600 seconds (1 hour).</p>
 <h2 id="screenshots">Screenshots<a class="headerlink" href="#screenshots" title="Permanent link">&para;</a></h2>
 <h3 id="no-updates-available">No updates available<a class="headerlink" href="#no-updates-available" title="Permanent link">&para;</a></h3>
 <p>If there are no updates available, <code>OK</code> is displayed.</p>
@@ -2532,7 +2534,7 @@ exit
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 22:55:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-04 21:38:16</span>
       
     
   </small>
