@@ -108,7 +108,7 @@ docker compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mail
 
 In the example above reports are sent once every 24 hours and send reports for yesturday. This will be okay for most setups.
 
-If you have a large mail volume and want to run the DMARC reporting more than once a day you need create second schedule and run it with `dmarc_report $(date '+%Y%m%d')` to process the current day. You have to make sure that the first run on each day also processes the last report from the day before, so it needs to be started twice, one time with `$(date --date yesterday '+%Y%m%d')` at `@midnight` and then with `$(date '+%Y%m%d')` with interval you desire.
+If you have a large mail volume and want to run the DMARC reporting more than once a day you need create second schedule and run it with `dmarc_report $(date '+%Y%m%d')` to process the current day. You have to make sure that the first run on each day also processes the last report from the day before, so it needs to be started twice, one time with `$(date --date yesterday '+%Y%m%d')` at `@midnight` and then with `$(date '+%Y%m%d')` with desired interval.
 
 The Ofelia schedule has the same implementation as `cron` in Go, supported syntax described at [cron Documentation](https://pkg.go.dev/github.com/robfig/cron)
 
