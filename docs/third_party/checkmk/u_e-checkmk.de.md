@@ -18,7 +18,10 @@ exit
 
 Sofern das mailcow-Installationsverzeichnis nicht `/opt/` ist, ist das in der 2. Zeile anzupassen.
 
-Danach für euren mailcow-Host in checmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen `mailcow_update` auswählbar sein.
+Danach für den mailcow-Host in checkmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen `mailcow_update` auswählbar sein.
+
+Der Check `mailcow_update` wird jedes Mal ausgeführt, wenn der checkmk Agent den mailcow Server überprüft. Sie können das Ergebnis zwischenspeichern, indem Sie das Skript in einem Unterordner mit dem Namen der Anzahl von Sekunden ablegen, für die Sie es zwischenspeichern möchten. \
+`/usr/lib/check_mk_agent/local/3600/` speichert die Antwort für 3600 Sekunden (1 Stunde).
 
 ## Screenshots
 
