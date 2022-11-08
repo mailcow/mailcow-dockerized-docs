@@ -45,8 +45,8 @@ services:
       - MASTER=${MASTER:-y}
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.rspamd_dmarc_reporting_yesturday.schedule: "@every 24h"
-      ofelia.job-exec.rspamd_dmarc_reporting_yesturday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: "@every 24h"
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
   ofelia-mailcow:
     depends_on:
       - rspamd-mailcow
@@ -125,8 +125,8 @@ services:
       - MASTER=${MASTER:-y}
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.rspamd_dmarc_reporting_yesturday.schedule: "@midnight"
-      ofelia.job-exec.rspamd_dmarc_reporting_yesturday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: "@midnight"
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
       ofelia.job-exec.rspamd_dmarc_reporting_today.schedule: "@every 12h"
       ofelia.job-exec.rspamd_dmarc_reporting_today.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
   ofelia-mailcow:
