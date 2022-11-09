@@ -2542,8 +2542,8 @@ services:
       - MASTER=${MASTER:-y}
     labels:
       ofelia.enabled: &quot;true&quot;
-      ofelia.job-exec.rspamd_dmarc_reporting.schedule: &quot;@every 24h&quot;
-      ofelia.job-exec.rspamd_dmarc_reporting.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: &quot;@every 24h&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report $(date --date yesterday &#39;+%Y%m%d&#39;) &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
   ofelia-mailcow:
     depends_on:
       - rspamd-mailcow
@@ -2581,13 +2581,30 @@ Take one of the lines from output you interested in and request it, f.e.:
 <div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli ZRANGE &quot;dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428&quot; 0 49
 </code></pre></div></p>
 <h2 id="change-dmarc-reporting-frequency">Change DMARC reporting frequency<a class="headerlink" href="#change-dmarc-reporting-frequency" title="Permanent link">&para;</a></h2>
-<p>In the example above reports are sent once every 24 hours.</p>
+<p>In the example above reports are sent once every 24 hours and send reports for yesterday. This will be okay for most setups.</p>
+<p>If you have a large mail volume and want to run the DMARC reporting more than once a day you need create second schedule and run it with <code>dmarc_report $(date '+%Y%m%d')</code> to process the current day. You have to make sure that the first run on each day also processes the last report from the day before, so it needs to be started twice, one time with <code>$(date --date yesterday '+%Y%m%d')</code> at <code>0 5 0 * * *</code> (00:05 AM) and then with <code>$(date '+%Y%m%d')</code> with desired interval.</p>
 <p>The Ofelia schedule has the same implementation as <code>cron</code> in Go, supported syntax described at <a href="https://pkg.go.dev/github.com/robfig/cron">cron Documentation</a></p>
 <p>To change schedule:</p>
 <ol>
-<li>
-<p>Edit <code>docker-compose.override.yml</code> and a djust <code>ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"</code> to a desired value, for example to <code>"@midnight"</code></p>
-</li>
+<li>Edit <code>docker-compose.override.yml</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
+
+services:
+  rspamd-mailcow:
+    environment:
+      - MASTER=${MASTER:-y}
+    labels:
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: &quot;0 5 0 * * *&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report $(date --date yesterday &#39;+%Y%m%d&#39;) &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting_today.schedule: &quot;@every 12h&quot;
+      ofelia.job-exec.rspamd_dmarc_reporting_today.command: &quot;/bin/bash -c \&quot;[[ $${MASTER} == y ]] &amp;&amp; /usr/bin/rspamadm dmarc_report $(date &#39;+%Y%m%d&#39;) &gt; /var/lib/rspamd/dmarc_reports_last_log 2&gt;&amp;1 || exit 0\&quot;&quot;
+  ofelia-mailcow:
+    depends_on:
+      - rspamd-mailcow
+</code></pre></div>
+<ol>
 <li>
 <p>Run <code>docker compose up -d</code></p>
 </li>
@@ -2614,7 +2631,7 @@ Take one of the lines from output you interested in and request it, f.e.:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-23 16:41:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-09 01:01:48</span>
       
     
   </small>
