@@ -45,8 +45,8 @@ services:
       - MASTER=${MASTER:-y}
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"
-      ofelia.job-exec.rspamd_dmarc_reporting.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: "@every 24h"
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
   ofelia-mailcow:
     depends_on:
       - rspamd-mailcow
@@ -106,13 +106,33 @@ docker compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mail
 
 ## Change DMARC reporting frequency
 
-In the example above reports are sent once every 24 hours.
+In the example above reports are sent once every 24 hours and send reports for yesterday. This will be okay for most setups.
+
+If you have a large mail volume and want to run the DMARC reporting more than once a day you need create second schedule and run it with `dmarc_report $(date '+%Y%m%d')` to process the current day. You have to make sure that the first run on each day also processes the last report from the day before, so it needs to be started twice, one time with `$(date --date yesterday '+%Y%m%d')` at `0 5 0 * * *` (00:05 AM) and then with `$(date '+%Y%m%d')` with desired interval.
 
 The Ofelia schedule has the same implementation as `cron` in Go, supported syntax described at [cron Documentation](https://pkg.go.dev/github.com/robfig/cron)
 
 To change schedule:
 
-1. Edit `docker-compose.override.yml` and a djust `ofelia.job-exec.rspamd_dmarc_reporting.schedule: "@every 24h"` to a desired value, for example to `"@midnight"`
+1. Edit `docker-compose.override.yml`:
+
+```
+version: '2.1'
+
+services:
+  rspamd-mailcow:
+    environment:
+      - MASTER=${MASTER:-y}
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: "0 5 0 * * *"
+      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+      ofelia.job-exec.rspamd_dmarc_reporting_today.schedule: "@every 12h"
+      ofelia.job-exec.rspamd_dmarc_reporting_today.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+  ofelia-mailcow:
+    depends_on:
+      - rspamd-mailcow
+```
 
 2. Run `docker compose up -d`
 
