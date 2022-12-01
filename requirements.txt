@@ -1,5 +1,5 @@
 mkdocs-material==8.5.10
 mkdocs-redirects==1.2.0
 pygments>=2.13
-mkdocs-static-i18n==0.50
+mkdocs-static-i18n==0.51
 mkdocs-git-revision-date-localized-plugin==1.1.0
