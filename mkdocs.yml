@@ -13,12 +13,12 @@ theme:
   palette:
    - scheme: default
      toggle:
-       icon: material/toggle-switch-off-outline
-       name: Dark Mode
+       icon: material/weather-night
+       name: Switch to dark mode
    - scheme: slate
      toggle:
-       icon: material/toggle-switch
-       name: Light Mode
+       icon: material/weather-sunny
+       name: Switch to light mode
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
   features:
