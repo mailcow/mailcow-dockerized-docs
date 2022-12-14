@@ -25,6 +25,7 @@ theme:
     - navigation.top
     - navigation.tracking
     - announce.dismiss
+    - content.tabs.link
 
 markdown_extensions:
   - abbr
@@ -41,6 +42,9 @@ markdown_extensions:
   - pymdownx.betterem
   - pymdownx.snippets
   - footnotes
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - 'Information & Support': 'index.md'
