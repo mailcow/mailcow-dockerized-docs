@@ -44,13 +44,21 @@ MaxScriptNormalize 50M
 MaxZipTypeRcg 50M
 ```
 10. Restart ClamAV container:
-```bash
-docker compose restart clamd-mailcow
-```
+=== "docker compose"
+
+    ``` bash
+    docker compose restart clamd-mailcow
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose restart clamd-mailcow
+    ```
 
 Please note:
 
-- You can't use `ExcludePUA` and `IncludePUA` in `clamd.conf` simultaneously, so please comment any `IncludePUA` if you uncommented them before. 
+- You can't use `ExcludePUA` and `IncludePUA` in `clamd.conf` simultaneously, so please comment any `IncludePUA` if you uncommented them before.
 - List of databases provided in this example fit most use-cases, but SecuriteInfo also provides other databases. Please check SecuriteInfo FAQ for additional information.
 - With the current DB set (including default DBs) ClamAV will consume about 1.3Gb of RAM on your server.
 - If you modified  `message_size_limit` in Postfix you need to adapt `MaxSize` settings in ClamAV as well.
@@ -65,6 +73,14 @@ DatabaseCustomURL http://sigs.interserver.net/shell.ldb
 DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
 ```
 2. Restart ClamAV container:
-```bash
-docker compose restart clamd-mailcow
-```
+=== "docker compose"
+
+    ``` bash
+    docker compose restart clamd-mailcow
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose restart clamd-mailcow
+    ```

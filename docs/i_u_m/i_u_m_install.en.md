@@ -139,10 +139,19 @@ If you do not have an IPv6 enabled network on your host and you don't care for a
 
 ## Start mailcow
 Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
-```
-docker compose pull
-docker compose up -d
-```
+=== "docker compose"
+
+    ``` bash
+    docker compose pull
+    docker compose up -d
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 Done!
 

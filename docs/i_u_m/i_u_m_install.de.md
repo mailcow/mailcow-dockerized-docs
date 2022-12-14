@@ -17,7 +17,7 @@ Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, 
 ### docker compose
 
 !!! danger "Achtung"
-    **mailcow benötigt eine Version von Docker Compose >= v2**. 
+    **mailcow benötigt eine Version von Docker Compose >= v2**.
     <br>Sollte die Installation von Docker über das obenstehende Skript erfolgt sein wird das Docker Compose Plugin bereits automatisch
     in einer Version >=2.0 installiert. <br>
     Ist die mailcow Installation älter oder Docker wurde auf einem anderen Weg installiert, muss das Compose Plugin bzw. die Standalone Version von Docker manuell installiert werden.
@@ -114,7 +114,7 @@ Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp 
 
 Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.
 
-## Problembehandlungen 
+## Problembehandlungen
 
 ### Benutzer mit einer MTU ungleich 1500 (z.B. OpenStack)
 **Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.**
@@ -139,10 +139,19 @@ Sollten Sie jedoch kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich
 
 ## mailcow starten
 Laden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird ihre mailcow dann im Hintergrund starten:
-```
-docker compose pull
-docker compose up -d
-```
+=== "docker compose"
+
+    ``` bash
+    docker compose pull
+    docker compose up -d
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 Geschafft!
 

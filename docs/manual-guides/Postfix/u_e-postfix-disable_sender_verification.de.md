@@ -19,9 +19,16 @@ smtpd_sender_restrictions = check_sasl_access hash:/opt/postfix/conf/check_sasl_
 ```
 
 Postmap auf check_sasl_access ausführen:
+=== "docker compose"
 
-```
-docker compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
-```
+    ``` bash
+    docker compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
+    ```
 
 Starten Sie den Postfix-Container neu.

@@ -110,9 +110,16 @@ Dieser Dateiname muss keine ".conf"-Erweiterung haben, sondern folgt dem Muster 
 Wenn PHP in eine benutzerdefinierte Site eingebunden werden soll, verwenden Sie bitte den PHP-FPM-Listener auf phpfpm:9002 oder erstellen Sie einen neuen Listener in `data/conf/phpfpm/php-fpm.d/pools.conf`.
 
 Starten Sie Nginx neu (und PHP-FPM, falls ein neuer Listener erstellt wurde):
+=== "docker compose"
 
-```
-docker compose restart nginx-mailcow
-docker compose restart php-fpm-mailcow
-```
+    ``` bash
+    docker compose restart nginx-mailcow
+    docker compose restart php-fpm-mailcow
+    ```
 
+=== "docker-compose"
+
+    ``` bash
+    docker-compose restart nginx-mailcow
+    docker-compose restart php-fpm-mailcow
+    ```

@@ -20,11 +20,21 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 ```
 
 **4\.** Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
-```
-cd /opt/mailcow-dockerized
-docker compose down
-systemctl stop docker.service
-```
+=== "docker compose"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker compose down
+    systemctl stop docker.service
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker-compose down
+    systemctl stop docker.service
+    ```
 
 **Wiederholen Sie Schritt 3 mit denselben Befehlen. Dies wird viel schneller gehen als beim ersten Mal.
 
@@ -34,14 +44,31 @@ systemctl start docker.service
 ```
 
 **7\.** Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.
-```
-cd /opt/mailcow-dockerized
-docker compose pull
-```
+=== "docker compose"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker compose pull
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker-compose pull
+    ```
 
 **8\.** Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
-```
-docker compose up -d
-```
+=== "docker compose"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker compose up -d
+    ```
 
 **9\.** Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen.

@@ -64,14 +64,25 @@ Run `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` to see what changed.
 Yes.
 
 See the topic above, instead of a diff, you run checkout:
+=== "docker compose"
 
-```
-docker compose down
-# Replace commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab by your ID
-git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker compose pull
-docker compose up -d
-```
+    ``` bash
+    docker compose down
+    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
+    docker compose pull
+    docker compose up -d
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose down
+    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 ### Hooks
 

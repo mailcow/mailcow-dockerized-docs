@@ -3,10 +3,17 @@ Redis wird als Key-Value-Speicher für die Einstellungen und Daten von rspamd un
 ## Client
 
 Um sich mit dem redis cli zu verbinden, führen Sie aus:
+=== "docker compose"
 
-```
-docker compose exec redis-mailcow redis-cli
-```
+    ``` bash
+    docker compose exec redis-mailcow redis-cli
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    docker-compose exec redis-mailcow redis-cli
+    ```
 
 ### Fehlersuche
 
@@ -15,15 +22,27 @@ Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:
 ##### MONITOR
 
 Überwacht alle vom Server empfangenen Anfragen in Echtzeit:
+=== "docker compose"
 
-```
-# docker compose exec redis-mailcow redis-cli
-127.0.0.1:6379> monitor
-OK
-1494077286.401963 [0 172.22.1.253:41228] "SMEMBERS" "BAYES_SPAM_keys"
-1494077288.292970 [0 172.22.1.253:41229] "SMEMBERS" "BAYES_SPAM_keys"
-[...]
-```
+    ``` bash
+    #docker compose exec redis-mailcow redis-cli
+    127.0.0.1:6379> monitor
+    OK
+    1494077286.401963 [0 172.22.1.253:41228] "SMEMBERS" "BAYES_SPAM_keys"
+    1494077288.292970 [0 172.22.1.253:41229] "SMEMBERS" "BAYES_SPAM_keys"
+    [...]
+    ```
+
+=== "docker-compose"
+
+    ``` bash
+    #docker-compose exec redis-mailcow redis-cli
+    127.0.0.1:6379> monitor
+    OK
+    1494077286.401963 [0 172.22.1.253:41228] "SMEMBERS" "BAYES_SPAM_keys"
+    1494077288.292970 [0 172.22.1.253:41229] "SMEMBERS" "BAYES_SPAM_keys"
+    [...]
+    ```
 
 ##### SCHLÜSSEL (Keys)
 
