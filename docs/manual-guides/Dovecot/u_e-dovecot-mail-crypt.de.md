@@ -3,7 +3,20 @@
 
 Wenn Sie vorhandene maildir-Dateien entschlüsseln/verschlüsseln wollen, können Sie das folgende Skript auf eigene Gefahr verwenden:
 
-Rufen Sie Dovecot auf, indem Sie `docker compose exec dovecot-mailcow /bin/bash` im mailcow-dockerisierten Verzeichnis ausführen.
+Wechseln Sie in den Dovecot Container, indem Sie folgenden Befehl im mailcow-dockerized Verzeichnis ausführen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+	docker compose exec dovecot-mailcow /bin/bash
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+	docker-compose exec dovecot-mailcow /bin/bash
+    ```
+
 
 ```
 # Entschlüsseln Sie /var/vmail

@@ -1,11 +1,11 @@
 Um mailcow: dockerized mit all seinen Volumes, Images und Containern zu entfernen, tun Sie dies:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose down -v --rmi all --remove-orphans
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose down -v --rmi all --remove-orphans

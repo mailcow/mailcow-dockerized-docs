@@ -3,7 +3,7 @@
 !!! warning
     Newer Docker versions seem to complain about existing volumes. You can fix this temporarily by removing the existing volume and start mailcow with the override file. But it seems to be problematic after a reboot (needs to be confirmed).
 
-An easy, dirty, yet stable workaround is to stop mailcow (`docker compose down`), remove `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data` and create a new link to your remote filesystem location, for example:
+An easy, dirty, yet stable workaround is to stop mailcow, remove `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data` and create a new link to your remote filesystem location, for example:
 
 ```
 mv /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data_backup

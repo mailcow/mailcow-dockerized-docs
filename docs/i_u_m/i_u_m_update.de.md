@@ -64,7 +64,7 @@ Führen Sie `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` aus, um zu sehen
 Ja.
 
 Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose down
@@ -74,7 +74,7 @@ Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:
     docker compose up -d
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose down

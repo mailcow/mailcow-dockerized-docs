@@ -3,13 +3,13 @@ Redis is used as a key-value store for rspamd's and (some of) mailcow's settings
 ## Client
 
 To connect to the redis cli execute:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose exec redis-mailcow redis-cli
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose exec redis-mailcow redis-cli
@@ -22,7 +22,7 @@ Here are some useful commands for the redis-cli for debugging:
 ##### MONITOR
 
 Listens for all requests received by the server in real time:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     #docker compose exec redis-mailcow redis-cli
@@ -33,7 +33,7 @@ Listens for all requests received by the server in real time:
     [...]
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     #docker-compose exec redis-mailcow redis-cli

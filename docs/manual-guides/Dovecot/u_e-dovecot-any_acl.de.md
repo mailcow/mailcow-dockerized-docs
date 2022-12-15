@@ -6,4 +6,16 @@ Diese Funktion kann wieder aktiviert werden, indem `ACL_ANYONE` auf `allow` in m
 ACL_ANYONE=allow
 ```
 
-Wenden Sie die Änderungen an, indem Sie `docker compose up -d` ausführen.
+Wenden Sie die Änderungen an, indem Sie den Docker Stack neustarten mit:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```

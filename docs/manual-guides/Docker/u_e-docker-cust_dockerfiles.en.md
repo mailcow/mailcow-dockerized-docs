@@ -20,13 +20,13 @@ $service-mailcow:
 ```
 
 Now auto-recreate modified containers:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose up -d
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose up -d

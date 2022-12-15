@@ -111,14 +111,14 @@ This filename does not need to have a ".conf" extension but follows the pattern 
 If PHP is to be included in a custom site, please use the PHP-FPM listener on phpfpm:9002 or create a new listener in `data/conf/phpfpm/php-fpm.d/pools.conf`.
 
 Restart Nginx (and PHP-FPM, if a new listener was created):
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose restart nginx-mailcow
     docker compose restart php-fpm-mailcow
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose restart nginx-mailcow

@@ -139,14 +139,14 @@ Sollten Sie jedoch kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich
 
 ## mailcow starten
 Laden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird ihre mailcow dann im Hintergrund starten:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose pull
     docker compose up -d
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose pull

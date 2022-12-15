@@ -3,13 +3,13 @@ Redis wird als Key-Value-Speicher für die Einstellungen und Daten von rspamd un
 ## Client
 
 Um sich mit dem redis cli zu verbinden, führen Sie aus:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose exec redis-mailcow redis-cli
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose exec redis-mailcow redis-cli
@@ -22,7 +22,7 @@ Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:
 ##### MONITOR
 
 Überwacht alle vom Server empfangenen Anfragen in Echtzeit:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     #docker compose exec redis-mailcow redis-cli
@@ -33,7 +33,7 @@ Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:
     [...]
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     #docker-compose exec redis-mailcow redis-cli

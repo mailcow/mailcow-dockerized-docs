@@ -64,7 +64,7 @@ Run `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` to see what changed.
 Yes.
 
 See the topic above, instead of a diff, you run checkout:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose down
@@ -74,7 +74,7 @@ See the topic above, instead of a diff, you run checkout:
     docker compose up -d
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose down

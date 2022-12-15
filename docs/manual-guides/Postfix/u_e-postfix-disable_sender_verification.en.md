@@ -19,13 +19,13 @@ smtpd_sender_restrictions = check_sasl_access hash:/opt/postfix/conf/check_sasl_
 ```
 
 Run postmap on check_sasl_access:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose exec postfix-mailcow postmap /opt/postfix/conf/check_sasl_access

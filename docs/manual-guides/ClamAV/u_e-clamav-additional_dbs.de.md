@@ -44,13 +44,13 @@ MaxScriptNormalize 50M
 MaxZipTypeRcg 50M
 ```
 10. Starten Sie den ClamAV Container neu:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose restart clamd-mailcow
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose restart clamd-mailcow
@@ -73,13 +73,13 @@ DatabaseCustomURL http://sigs.interserver.net/shell.ldb
 DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
 ```
 2. Starten Sie den ClamAV Container neu:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose restart clamd-mailcow
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose restart clamd-mailcow

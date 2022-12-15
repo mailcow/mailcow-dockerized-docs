@@ -1,13 +1,13 @@
 ## Whitelist specific ClamAV signatures
 
 You may find that legitimate (clean) mail is being blocked by ClamAV (Rspamd will flag the mail with `VIRUS_FOUND`). For instance, interactive PDF form attachments are blocked by default because the embedded Javascript code may be used for nefarious purposes. Confirm by looking at the clamd logs, e.g.:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose logs clamd-mailcow | grep "FOUND"
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose logs clamd-mailcow | grep "FOUND"
@@ -26,20 +26,20 @@ echo 'PUA.Pdf.Trojan.EmbeddedJavaScript-1' >> data/conf/clamav/whitelist.ign2
 ```
 
 Then restart the clamd-mailcow service container in the mailcow UI or using docker compose:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose restart clamd-mailcow
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose restart clamd-mailcow
     ```
 
 Cleanup cached ClamAV results in Redis:
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose exec redis-mailcow /bin/sh
@@ -47,7 +47,7 @@ Cleanup cached ClamAV results in Redis:
     /data # exit
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker-compose exec redis-mailcow /bin/sh

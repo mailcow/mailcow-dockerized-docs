@@ -20,7 +20,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 ```
 
 **4\.** Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     cd /opt/mailcow-dockerized
@@ -28,7 +28,7 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
     systemctl stop docker.service
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     cd /opt/mailcow-dockerized
@@ -44,14 +44,14 @@ systemctl start docker.service
 ```
 
 **7\.** Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     cd /opt/mailcow-dockerized
     docker compose pull
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     cd /opt/mailcow-dockerized
@@ -59,13 +59,13 @@ systemctl start docker.service
     ```
 
 **8\.** Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
-=== "docker compose"
+=== "docker compose (Plugin)"
 
     ``` bash
     docker compose up -d
     ```
 
-=== "docker-compose"
+=== "docker-compose (Standalone)"
 
     ``` bash
     docker compose up -d
