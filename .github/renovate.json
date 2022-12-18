@@ -3,9 +3,11 @@
   "timezone": "Europe/Berlin",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
-  "commitBody": "Signed-off-by: Peter <magic@kthx.at>",
+  "commitBody": "Signed-off-by: milkmaker <milkmaker@mailcow.de>",
   "rebaseWhen": "auto",
   "assignees": [
     "@magiccc"
-  ]
+  ],
+  "baseBranches": ["master"],
+  "enabledManagers": ["github-actions", "pip_requirements"]
 }
