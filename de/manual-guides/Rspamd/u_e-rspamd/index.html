@@ -1854,6 +1854,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gelernte-daten-zurucksetzen-bayes-neural" class="md-nav__link">
+    Gelernte Daten zurücksetzen (Bayes, Neural)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1862,6 +1869,13 @@
         <li class="md-nav__item">
   <a href="#cli-werkzeuge" class="md-nav__link">
     CLI-Werkzeuge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#greylisting-deaktivieren" class="md-nav__link">
+    Greylisting deaktivieren
   </a>
   
 </li>
@@ -2488,6 +2502,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gelernte-daten-zurucksetzen-bayes-neural" class="md-nav__link">
+    Gelernte Daten zurücksetzen (Bayes, Neural)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2496,6 +2517,13 @@
         <li class="md-nav__item">
   <a href="#cli-werkzeuge" class="md-nav__link">
     CLI-Werkzeuge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#greylisting-deaktivieren" class="md-nav__link">
+    Greylisting deaktivieren
   </a>
   
 </li>
@@ -2580,18 +2608,14 @@ Dies wird durch die Verwendung des Sieve-Plugins "sieve_imapsieve" und Parser-Sk
 <span class="k">for</span> file <span class="k">in</span> /my/folder/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> docker <span class="nb">exec</span> -i <span class="k">$(</span>docker compose ps -q rspamd-mailcow<span class="k">)</span> rspamc learn_spam &lt; <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <p>Erwägen Sie, einen lokalen Ordner als neues Volume an <code>rspamd-mailcow</code> in <code>docker-compose.yml</code> anzuhängen und die gegebenen Dateien innerhalb des Containers zu lernen. Dies kann als Workaround verwendet werden, um komprimierte Daten mit zcat zu parsen. Beispiel:</p>
-<p>``bash
-for file in /data/old_mail/.Junk/cur/*; do rspamc learn_spam &lt; zcat $file; done
-<div class="highlight"><pre><span></span><code>### Gelernte Daten zurücksetzen (Bayes, Neural)
-
-Sie müssen die Schlüssel in Redis löschen, um die gelernten Daten zurückzusetzen, also erstellen Sie jetzt eine Kopie Ihrer Redis-Datenbank:
-
-**Backup Datenbank**
-
-```bash
-# Es ist besser, Redis zu stoppen, bevor Sie die Datei kopieren.
+<div class="highlight"><pre><span></span><code><span class="k">for</span> file <span class="k">in</span> /data/old_mail/.Junk/cur/*<span class="p">;</span> <span class="k">do</span> rspamc learn_spam &lt; zcat <span class="nv">$file</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></div>
+<h3 id="gelernte-daten-zurucksetzen-bayes-neural">Gelernte Daten zurücksetzen (Bayes, Neural)<a class="headerlink" href="#gelernte-daten-zurucksetzen-bayes-neural" title="Permanent link">&para;</a></h3>
+<p>Sie müssen die Schlüssel in Redis löschen, um die gelernten Daten zurückzusetzen, also erstellen Sie jetzt eine Kopie Ihrer Redis-Datenbank:</p>
+<p><strong>Backup Datenbank</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Es ist besser, Redis zu stoppen, bevor Sie die Datei kopieren.</span>
 cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
-</code></pre></div></p>
+</code></pre></div>
 <p><strong>Bayes-Daten zurücksetzen</strong></p>
 <div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern BAYES_* | xargs redis-cli del&#39;</span>
 docker compose <span class="nb">exec</span> redis-mailcow sh -c <span class="s1">&#39;redis-cli --scan --pattern RS* | xargs redis-cli del&#39;</span>
@@ -2611,22 +2635,16 @@ docker compose <span class="nb">exec</span> redis-mailcow redis-cli
 </code></pre></div>
 <p>...das Schlüsselmuster nicht gefunden wurde und somit keine Daten zum Löschen vorhanden sind - ist es in Ordnung.</p>
 <h2 id="cli-werkzeuge">CLI-Werkzeuge<a class="headerlink" href="#cli-werkzeuge" title="Permanent link">&para;</a></h2>
-<p>``bash
-docker compose exec rspamd-mailcow rspamc --help
-docker compose exec rspamd-mailcow rspamadm --help
-<div class="highlight"><pre><span></span><code>## Greylisting deaktivieren
-
-Nur Nachrichten mit einer höheren Punktzahl werden als Greylisting betrachtet (soft rejected). Es ist schlechte Praxis, Greylisting zu deaktivieren.
-
-Sie können Greylisting serverweit durch Editieren deaktivieren:
-
-`{mailcow-dir}/data/conf/rspamd/local.d/greylist.conf`
-
-Fügen Sie die Zeile hinzu:
-
-```cpp
-enabled = false;
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>docker compose <span class="nb">exec</span> rspamd-mailcow rspamc --help
+docker compose <span class="nb">exec</span> rspamd-mailcow rspamadm --help
+</code></pre></div>
+<h2 id="greylisting-deaktivieren">Greylisting deaktivieren<a class="headerlink" href="#greylisting-deaktivieren" title="Permanent link">&para;</a></h2>
+<p>Nur Nachrichten mit einer höheren Punktzahl werden als Greylisting betrachtet (soft rejected). Es ist schlechte Praxis, Greylisting zu deaktivieren.</p>
+<p>Sie können Greylisting serverweit durch Editieren deaktivieren:</p>
+<p><code>{mailcow-dir}/data/conf/rspamd/local.d/greylist.conf</code></p>
+<p>Fügen Sie die Zeile hinzu:</p>
+<div class="highlight"><pre><span></span><code><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
 <p>Speichern Sie die Datei und starten Sie "rspamd-mailcow" neu: <code>docker compose restart rspamd-mailcow</code></p>
 <h2 id="spamfilter-schwellenwerte-global">Spamfilter-Schwellenwerte (global)<a class="headerlink" href="#spamfilter-schwellenwerte-global" title="Permanent link">&para;</a></h2>
 <p>Jeder Benutzer kann <a href="../../mailcow-UI/u_e-mailcow_ui-spamfilter/">seine Spam-Bewertung</a> individuell ändern. Um eine neue <strong>serverweite</strong> Grenze zu definieren, editieren Sie <code>data/conf/rspamd/local.d/actions.conf</code>:</p>
@@ -2705,7 +2723,7 @@ quarantine_notify.py
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-27 17:00:52</span>
       
     
   </small>
