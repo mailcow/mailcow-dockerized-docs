@@ -2690,7 +2690,7 @@ services:
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/js/site/mailbox.js</code> und den folgenden Code nach <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487"><code>if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }</code></a></p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">btn</span><span class="o">-</span><span class="nx">xs</span><span class="o">-</span><span class="nx">half</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">btnSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/mailbox.php</code> und fügen Sie diese Zeile zum Array <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43"><code>$template_data</code></a> hinzu:</p>
@@ -2714,7 +2714,7 @@ docker compose up -d
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-31 11:29:25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-31 11:38:24</span>
       
     
   </small>
