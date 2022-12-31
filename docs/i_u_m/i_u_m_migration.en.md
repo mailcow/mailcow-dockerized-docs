@@ -44,4 +44,4 @@ docker compose pull
 docker compose up -d
 ```
 
-**9\.** Finally, change your DNS settings to point to the target server.
+**9\.** Finally, change your DNS settings to point to the target server. Also check the `SNAT_TO_SOURCE` variable in your `mailcow.conf` file if you have changed your public IP address, otherwise SOGo may not work.
