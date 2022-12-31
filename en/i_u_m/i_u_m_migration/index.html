@@ -2425,14 +2425,14 @@ docker compose pull
 <p><strong>8.</strong> Start the whole mailcow stack and everything should be done!
 <div class="highlight"><pre><span></span><code>docker compose up -d
 </code></pre></div></p>
-<p><strong>9.</strong> Finally, change your DNS settings to point to the target server.</p>
+<p><strong>9.</strong> Finally, change your DNS settings to point to the target server. Also check the <code>SNAT_TO_SOURCE</code> variable in your <code>mailcow.conf</code> file if you have changed your public IP address, otherwise SOGo may not work.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-03 19:32:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-31 04:35:23</span>
       
     
   </small>

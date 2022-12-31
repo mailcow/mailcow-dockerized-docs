@@ -2425,14 +2425,14 @@ docker compose pull
 <p><strong>8.</strong> Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
 <div class="highlight"><pre><span></span><code>docker compose up -d
 </code></pre></div></p>
-<p><strong>9.</strong> Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen.</p>
+<p><strong>9.</strong> Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen. Prüfen und ändern Sie gegebenenfalls die <code>SNAT_TO_SOURCE</code> Variable in der <code>mailcow.conf</code> im mailcow-dockerized Ordner, da andernfalls SOGo nicht richtig funktioniert, wenn die ausgehende IP eine andere ist.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-02 19:48:23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-31 11:22:09</span>
       
     
   </small>
