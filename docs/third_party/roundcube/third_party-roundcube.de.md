@@ -228,7 +228,7 @@ Bearbeiten Sie `data/web/js/site/mailbox.js` und den folgenden Code nach [`if (A
 
 ```js
 if (ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE) {
-  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-xs ' + btnSize + ' btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
+  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-xs ' + btn-xs-half + ' btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
 }
 ```
 
