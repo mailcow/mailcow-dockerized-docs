@@ -2689,15 +2689,15 @@ services:
       - ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/js/site/mailbox.js</code> und den folgenden Code nach <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487"><code>if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }</code></a></p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">btnSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">btnSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/mailbox.php</code> und fügen Sie diese Zeile zum Array <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43"><code>$template_data</code></a> hinzu:</p>
 <div class="highlight"><pre><span></span><code><span class="x">  &#39;allow_admin_email_login_roundcube&#39; =&gt; (preg_match(&quot;/^(yes|y)+$/i&quot;, $_ENV[&quot;ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE&quot;])) ? &#39;true&#39; : &#39;false&#39;,</span>
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/templates/mailbox.twig</code> und fügen Sie diesen Code am Ende des [javascript-Abschnitts] ein (<a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57">https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">allow_admin_email_login_roundcube</span><span class="w"> </span><span class="p">}};</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">allow_admin_email_login_roundcube</span><span class="w"> </span><span class="p">}};</span>
 </code></pre></div>
 <p>Kopieren Sie den Inhalt der folgenden Dateien aus diesem <a href="https://gitlab.com/-/snippets/2038244">Snippet</a>:</p>
 <ul>
@@ -2766,7 +2766,7 @@ docker compose up -d
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 Servercow Team & Community
+      Copyright &copy; 2023 Servercow Team & Community
     </div>
   
   
