@@ -375,6 +375,10 @@ plugins:
         'third_party-roundcube.md': 'third_party/roundcube/third_party-roundcube.en.md'
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang:
+         - en
+         - de
+
 
 extra:
   social:
