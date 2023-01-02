@@ -32,12 +32,12 @@ services:
     volumes:
       - vmail-vol-1:/mnt/source/vmail:ro
       - crypt-vol-1:/mnt/source/crypt:ro
-      - redis-vol-1:/mnt/source/redis:ro,z
-      - rspamd-vol-1:/mnt/source/rspamd:ro,z
-      - postfix-vol-1:/mnt/source/postfix:ro,z
-      - mysql-socket-vol-1:/var/run/mysqld/:z
-      - borg-config-vol-1:/root/.config/borg:Z
-      - borg-cache-vol-1:/root/.cache/borg:Z
+      - redis-vol-1:/mnt/source/redis:ro
+      - rspamd-vol-1:/mnt/source/rspamd:ro
+      - postfix-vol-1:/mnt/source/postfix:ro
+      - mysql-socket-vol-1:/var/run/mysqld/
+      - borg-config-vol-1:/root/.config/borg
+      - borg-cache-vol-1:/root/.cache/borg
       - ./data/conf/borgmatic/etc:/etc/borgmatic.d:Z
       - ./data/conf/borgmatic/ssh:/root/.ssh:Z
     environment:
