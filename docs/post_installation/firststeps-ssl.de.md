@@ -154,12 +154,18 @@ Um zu überprüfen, ob nginx das richtige Zertifikat verwendet, benutzen Sie ein
 Um das von Postfix, Dovecot und Nginx verwendete Zertifikat zu überprüfen, verwenden wir `openssl`:
 
 ```
-# Verbindung über SMTP (587)
-echo "Q" | openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
-# Verbindung über IMAP (143)
-echo "Q" | openssl s_client -starttls imap -showcerts -connect mx.mailcow.email:143
+# Verbindung über SMTP STARTTLS (587)
+openssl s_client -starttls smtp -connect MAILCOW_HOSTNAME:587 | openssl x509 -noout -text
+# Verbindung über SMTP (465)
+openssl s_client -connect MAILCOW_HOSTNAME:465 | openssl x509 -noout -text
+
+# Verbindung über IMAP STARTTLS (143)
+openssl s_client -starttls imap -connect MAILCOW_HOSTNAME:143 | openssl x509 -noout -text
+# Verbindung über IMAP (993)
+openssl s_client -connect MAILCOW_HOSTNAME:993 | openssl x509 -noout -text
+
 # Verbindung über HTTPS (443)
-echo "Q" | openssl s_client -connect mx.mailcow.email:443
+openssl s_client -connect MAILCOW_HOSTNAME:443 | openssl x509 -noout -text
 ```
 
 Um die von openssl zurückgegebenen Verfallsdaten gegen MAILCOW_HOSTNAME zu validieren, können Sie unser Hilfsskript verwenden:

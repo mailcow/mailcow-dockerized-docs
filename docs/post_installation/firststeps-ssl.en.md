@@ -154,12 +154,18 @@ To check if nginx serves the correct certificate, simply use a browser of your c
 To check the certificate served by Postfix, Dovecot and Nginx we will use `openssl`:
 
 ```
-# Connect via SMTP (587)
-echo "Q" | openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
-# Connect via IMAP (143)
-echo "Q" | openssl s_client -starttls imap -showcerts -connect mx.mailcow.email:143
+# Connect via SMTP STARTTLS (587)
+openssl s_client -starttls smtp -connect MAILCOW_HOSTNAME:587 | openssl x509 -noout -text
+# Connect via SMTP (465)
+openssl s_client -connect MAILCOW_HOSTNAME:465 | openssl x509 -noout -text
+
+# Connect via IMAP STARTTLS (143)
+openssl s_client -starttls imap -connect MAILCOW_HOSTNAME:143 | openssl x509 -noout -text
+# Connect via IMAP (993)
+openssl s_client -connect MAILCOW_HOSTNAME:993 | openssl x509 -noout -text
+
 # Connect via HTTPS (443)
-echo "Q" | openssl s_client -connect mx.mailcow.email:443
+openssl s_client -connect MAILCOW_HOSTNAME:443 | openssl x509 -noout -text
 ```
 
 To validate the expiry dates as returned by openssl against MAILCOW_HOSTNAME, you are able to use our helper script:
