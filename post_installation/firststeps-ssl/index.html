@@ -2717,12 +2717,18 @@ docker restart $(docker ps -qaf name=dovecot-mailcow)
 <p>Run <code>docker compose logs acme-mailcow</code> to find out why a validation fails.</p>
 <p>To check if nginx serves the correct certificate, simply use a browser of your choice and check the displayed certificate.</p>
 <p>To check the certificate served by Postfix, Dovecot and Nginx we will use <code>openssl</code>:</p>
-<div class="highlight"><pre><span></span><code># Connect via SMTP (587)
-echo &quot;Q&quot; | openssl s_client -starttls smtp -crlf -connect mx.mailcow.email:587
-# Connect via IMAP (143)
-echo &quot;Q&quot; | openssl s_client -starttls imap -showcerts -connect mx.mailcow.email:143
+<div class="highlight"><pre><span></span><code># Connect via SMTP STARTTLS (587)
+openssl s_client -starttls smtp -connect MAILCOW_HOSTNAME:587 | openssl x509 -noout -text
+# Connect via SMTP (465)
+openssl s_client -connect MAILCOW_HOSTNAME:465 | openssl x509 -noout -text
+
+# Connect via IMAP STARTTLS (143)
+openssl s_client -starttls imap -connect MAILCOW_HOSTNAME:143 | openssl x509 -noout -text
+# Connect via IMAP (993)
+openssl s_client -connect MAILCOW_HOSTNAME:993 | openssl x509 -noout -text
+
 # Connect via HTTPS (443)
-echo &quot;Q&quot; | openssl s_client -connect mx.mailcow.email:443
+openssl s_client -connect MAILCOW_HOSTNAME:443 | openssl x509 -noout -text
 </code></pre></div>
 <p>To validate the expiry dates as returned by openssl against MAILCOW_HOSTNAME, you are able to use our helper script:</p>
 <div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
@@ -2734,7 +2740,7 @@ bash helper-scripts/expiry-dates.sh
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-07 13:22:32</span>
       
     
   </small>
