@@ -166,6 +166,36 @@ docker compose restart borgmatic-mailcow
 Restoring a backup assumes you are starting off with a fresh installation of mailcow, and you currently do not have
 any custom data in your maildir or your mailcow database.
 
+### Restore All
+
+!!! warning
+    Running this command will overwrite all volumes and recreate the whole mailcow system! Do not run this unless you actually
+    intend to recover the mailcow system from a backup.
+
+If you need to restore the whole mailcow system you need to start only three containers of the mailcow stack. Before running a restore you must make all  volumes writeable in `docker-compose.override.yml` by removing the `ro` flag from the volume:
+
+```
+docker compose up -d mysql-mailcow borgmatic-mailcow
+```
+
+Execute following two commands, to restore the whole Mailcow Installation:
+
+```
+docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+```
+```
+docker compose exec borgmatic-mailcow borgmatic restore --archive latest
+```
+
+Alternatively you can specify any archive name from the list of archives (see
+[Listing all available archives](#listing-all-available-archives))
+
+After the commands are executed successfully, you must stop the containers and restart the whole mailcow stack. The mailcow system should now be restored.
+
+```
+docker compose down && docker compose up -d
+```
+
 ### Restore maildir
 
 !!! warning
