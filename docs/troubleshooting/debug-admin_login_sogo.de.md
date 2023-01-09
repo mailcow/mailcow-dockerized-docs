@@ -10,9 +10,18 @@ Die Funktion ist standardmäßig deaktiviert. Es kann in der `mailcow.conf` durc
 ALLOW_ADMIN_EMAIL_LOGIN=y
 ```
 und die betroffenen Container neu erstellen mit
-```
-docker compose up -d
-```
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+	docker-compose up -d
+    ```
 
 ## Nachteile bei Aktivierung
 
