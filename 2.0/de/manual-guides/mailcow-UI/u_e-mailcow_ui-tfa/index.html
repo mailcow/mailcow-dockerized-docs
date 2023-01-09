@@ -1,0 +1,2820 @@
+
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.mailcow.email/2.0/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Zwei-Faktoren-Authentifizierung - mailcow: dockerized documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#yubi-otp" class="md-skip">
+          Zum Inhalt
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
+    <a href="../../../" title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mailcow: dockerized documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Zwei-Faktoren-Authentifizierung
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="Sprache wechseln">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="../../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+              
+                <li class="md-select__item">
+                  <a href="./" hreflang="de" class="md-select__link">
+                    Deutsch
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Suche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mailcow/mailcow-dockerized" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mailcow/mailcow-dockerized
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../" title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo.svg" alt="logo">
+
+    </a>
+    mailcow: dockerized documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mailcow/mailcow-dockerized" title="Zum Repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mailcow/mailcow-dockerized
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        Informationen & Support
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Voraussetzungen
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Voraussetzungen" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Voraussetzungen
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prerequisite/prerequisite-system/" class="md-nav__link">
+        Systemvoraussetzungen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prerequisite/prerequisite-dns/" class="md-nav__link">
+        DNS Einstellungen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Installation, Update und Migration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Installation, Update und Migration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Installation, Update und Migration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../i_u_m/i_u_m_install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../i_u_m/i_u_m_update/" class="md-nav__link">
+        Update
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../i_u_m/i_u_m_migration/" class="md-nav__link">
+        Migration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../i_u_m/i_u_m_deinstall/" class="md-nav__link">
+        Deinstallation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Post-Installationsaufgaben
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Post-Installationsaufgaben" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Post-Installationsaufgaben
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-ssl/" class="md-nav__link">
+        Erweitertes SSL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-disable_ipv6/" class="md-nav__link">
+        IPv6 deaktivieren
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-dmarc_reporting/" class="md-nav__link">
+        DMARC Reporting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-ip_bindings/" class="md-nav__link">
+        IP-Bindings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-local_mta/" class="md-nav__link">
+        Lokaler MTA auf Docker-Host
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-logging/" class="md-nav__link">
+        Logging
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-rp/" class="md-nav__link">
+        Reverse Proxy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-rspamd_ui/" class="md-nav__link">
+        Rspamd UI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-snat/" class="md-nav__link">
+        SNAT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
+        Migration von Sync-Jobs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Modelle
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Modelle" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Modelle
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models/model-acl/" class="md-nav__link">
+        ACL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models/model-passwd/" class="md-nav__link">
+        Passwort-Hashing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../models/model-sender_rcv/" class="md-nav__link">
+        Sender- und Empfängermodell
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Allgemeine Fehlersuche
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Allgemeine Fehlersuche" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Allgemeine Fehlersuche
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug/" class="md-nav__link">
+        Einführung
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-admin_login_sogo/" class="md-nav__link">
+        Admin-Anmeldung bei SOGo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-rspamd_memory_leaks/" class="md-nav__link">
+        Fortgeschritten: Memory-Leaks in Rspamd finden
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-attach_service/" class="md-nav__link">
+        In einen Container wechseln (CLI)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-common_problems/" class="md-nav__link">
+        Häufig auftretende Probleme
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-mysql_upgrade/" class="md-nav__link">
+        Manuelles MySQL-Upgrade
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-mysql_aria/" class="md-nav__link">
+        Abgestürzte Aria-Speicher-Engine wiederherstellen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-rm_volumes/" class="md-nav__link">
+        Persistente Daten löschen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-reset_pw/" class="md-nav__link">
+        Passwörter zurücksetzen (inkl. SQL)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-reset_tls/" class="md-nav__link">
+        TLS-Zertifikate zurücksetzen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Sichern & Wiederherstellen
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sichern & Wiederherstellen" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Sichern & Wiederherstellen
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          Sicherung und Wiederherstellung von Komponenten
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Sicherung und Wiederherstellung von Komponenten" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          Sicherung und Wiederherstellung von Komponenten
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../backup_restore/b_n_r-backup/" class="md-nav__link">
+        Sicherung
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../backup_restore/b_n_r-restore/" class="md-nav__link">
+        Wiederherstellung
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../backup_restore/b_n_r-coldstandby/" class="md-nav__link">
+        Cold-standby (rollende Sicherung)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_3" type="checkbox" id="__nav_7_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_3">
+          Manuelle Sicherung
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Manuelle Sicherung" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Manuelle Sicherung
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../backup_restore/b_n_r-backup_restore-maildir/" class="md-nav__link">
+        Mail-Verzeichnis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../backup_restore/b_n_r-backup_restore-mysql/" class="md-nav__link">
+        MySQL (mysqldump)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_4" type="checkbox" id="__nav_7_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_4">
+          Interne mailcow Sicherungen
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interne mailcow Sicherungen" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          Interne mailcow Sicherungen
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../backup_restore/b_n_r-accidental_deletion/" class="md-nav__link">
+        Versehentlich gelöschte Daten wiederherstellen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Anleitungen/Beispiele
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Anleitungen/Beispiele" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Anleitungen/Beispiele
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1">
+          mailcow UI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mailcow UI" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          mailcow UI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
+        Blacklist / Whitelist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-config/" class="md-nav__link">
+        Konfiguration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+        CSS-Überschreibungen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-netfilter/" class="md-nav__link">
+        Netfilter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-pushover/" class="md-nav__link">
+        Pushover
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-spamfilter/" class="md-nav__link">
+        Spamfilter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
+        Sub-Adressierung
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-tags/" class="md-nav__link">
+        Tags (für Domains und Mailboxen)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-spamalias/" class="md-nav__link">
+        Temporäre E-Mail-Aliase
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Zwei-Faktoren-Authentifizierung
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Zwei-Faktoren-Authentifizierung
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yubi-otp" class="md-nav__link">
+    Yubi OTP
+  </a>
+  
+    <nav class="md-nav" aria-label="Yubi OTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beispiel-einrichtung" class="md-nav__link">
+    Beispiel-Einrichtung
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webauthn-u2f-ersatz" class="md-nav__link">
+    WebAuthn (U2F, Ersatz)
+  </a>
+  
+    <nav class="md-nav" aria-label="WebAuthn (U2F, Ersatz)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#was-passiert-mit-meinem-registrierten-fido-security-key-nach-dem-update-von-u2f-auf-webauthn" class="md-nav__link">
+    Was passiert mit meinem registrierten Fido Security Key nach dem Update von U2F auf WebAuthn?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deaktivieren-inoffizieller-unterstutzter-fido-security-keys" class="md-nav__link">
+    Deaktivieren inoffizieller unterstützter Fido Security Keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Deaktivieren inoffizieller unterstützter Fido Security Keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beispiel" class="md-nav__link">
+    Beispiel:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eigene-zertifikate-fur-webauthn-verwenden" class="md-nav__link">
+    Eigene Zertifikate für WebAuthn verwenden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" class="md-nav__link">
+    Ist es gefährlich, den Vendor Check deaktiviert zu lassen?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#totp" class="md-nav__link">
+    TOTP
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-fido/" class="md-nav__link">
+        WebAuthn / FIDO2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_2" type="checkbox" id="__nav_8_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_2">
+          Postfix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Postfix" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Postfix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-trust_networks/" class="md-nav__link">
+        Vertrauenswürdige Netzwerke hinzufügen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-custom_transport/" class="md-nav__link">
+        Benutzerdefinierte Transportmaps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-extra_cf/" class="md-nav__link">
+        main.cf anpassen/erweitern
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-disable_sender_verification/" class="md-nav__link">
+        Überprüfung der Absenderadressen deaktivieren
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-attachment_size/" class="md-nav__link">
+        Maximale Nachrichtengröße (Größe des Anhangs)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-relayhost/" class="md-nav__link">
+        Relayhosts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-pflogsumm/" class="md-nav__link">
+        Statistik mit pflogsumm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Postfix/u_e-postfix-postscreen_whitelist/" class="md-nav__link">
+        IP in Postscreen auf die Whitelist setzen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_3" type="checkbox" id="__nav_8_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_3">
+          Unbound
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Unbound" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Unbound
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Unbound/u_e-unbound-fwd/" class="md-nav__link">
+        Verwendung eines externen DNS-Dienstes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_4" type="checkbox" id="__nav_8_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_4">
+          Dovecot
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Dovecot" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_4">
+          <span class="md-nav__icon md-icon"></span>
+          Dovecot
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-extra_conf/" class="md-nav__link">
+        Anpassen/Erweitern von dovecot.conf
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-any_acl/" class="md-nav__link">
+        Aktivierung von "any" ACL-Einstellungen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-expunge/" class="md-nav__link">
+        Löschen der Mails eines Benutzers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-fts/" class="md-nav__link">
+        FTS (Solr)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-idle_interval/" class="md-nav__link">
+        IMAP IDLE-Intervall
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-mail-crypt/" class="md-nav__link">
+        Mail crypt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-more/" class="md-nav__link">
+        Weitere Beispiele mit DOVEADM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-vmail-volume/" class="md-nav__link">
+        Maildir verschieben (vmail)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-public_folder/" class="md-nav__link">
+        Öffentliche Ordner
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-static_master/" class="md-nav__link">
+        Statischer Hauptbenutzer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dovecot/u_e-dovecot-catchall_vacation/" class="md-nav__link">
+        Urlaubsantworten für Catchall-Adressen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_5" type="checkbox" id="__nav_8_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_5">
+          Nginx
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Nginx" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_5">
+          <span class="md-nav__icon md-icon"></span>
+          Nginx
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/u_e-nginx_webmail-site/" class="md-nav__link">
+        Subdomäne webmail.example.org erstellen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Nginx/u_e-nginx_custom/" class="md-nav__link">
+        Benutzerdefinierte Seiten
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_6" type="checkbox" id="__nav_8_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_6">
+          Watchdog
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Watchdog" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_6">
+          <span class="md-nav__icon md-icon"></span>
+          Watchdog
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Watchdog/u_e-watchdog-thresholds/" class="md-nav__link">
+        Thresholds
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Redis/u_e-redis/" class="md-nav__link">
+        Redis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rspamd/u_e-rspamd/" class="md-nav__link">
+        Rspamd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_9" type="checkbox" id="__nav_8_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_9">
+          ClamAV
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="ClamAV" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_9">
+          <span class="md-nav__icon md-icon"></span>
+          ClamAV
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ClamAV/u_e-clamav-whitelist/" class="md-nav__link">
+        Whitelist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
+        Weitere Datenbanken
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SOGo/u_e-sogo/" class="md-nav__link">
+        SOGo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_11" type="checkbox" id="__nav_8_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_11">
+          Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Docker" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_11">
+          <span class="md-nav__icon md-icon"></span>
+          Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Docker/u_e-docker-cust_dockerfiles/" class="md-nav__link">
+        Dockerfiles anpassen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u_e-why_unbound/" class="md-nav__link">
+        Warum unbound?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u_e-autodiscover_config/" class="md-nav__link">
+        Autodiscover / Autoconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u_e-80_to_443/" class="md-nav__link">
+        HTTP auf HTTPS umleiten
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u_e-reeanble-weak-protocols/" class="md-nav__link">
+        TLS 1.0 und TLS 1.1 wieder aktivieren
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u_e-update-hooks/" class="md-nav__link">
+        Skripte vor und nach Aktualisierungen ausführen
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          Client-Konfiguration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client-Konfiguration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Client-Konfiguration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client/" class="md-nav__link">
+        Übersicht
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-android/" class="md-nav__link">
+        Android
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-apple/" class="md-nav__link">
+        Apple macOS / iOS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-emclient/" class="md-nav__link">
+        eM Client
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-kontact/" class="md-nav__link">
+        KDE Kontact
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-outlook/" class="md-nav__link">
+        Microsoft Outlook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-thunderbird/" class="md-nav__link">
+        Mozilla Thunderbird
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-windows/" class="md-nav__link">
+        Windows Mail
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../client/client-manual/" class="md-nav__link">
+        Manuelle Konfiguration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Anwendungen von Drittanbietern
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Anwendungen von Drittanbietern" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Anwendungen von Drittanbietern
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/borgmatic/third_party-borgmatic/" class="md-nav__link">
+        Borgmatic-Sicherung
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/checkmk/u_e-checkmk/" class="md-nav__link">
+        CheckMK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/exchange_onprem/third_party-exchange_onprem/" class="md-nav__link">
+        Exchange Hybrid Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/gitea/third_party-gitea/" class="md-nav__link">
+        Gitea
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/gogs/third_party-gogs/" class="md-nav__link">
+        Gogs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/mailman3/third_party-mailman3/" class="md-nav__link">
+        Mailman 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/mailpiler/third_party-mailpiler_integration/" class="md-nav__link">
+        Mailpiler Integration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/nextcloud/third_party-nextcloud/" class="md-nav__link">
+        Nextcloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/portainer/third_party-portainer/" class="md-nav__link">
+        Portainer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../third_party/roundcube/third_party-roundcube/" class="md-nav__link">
+        Roundcube
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yubi-otp" class="md-nav__link">
+    Yubi OTP
+  </a>
+  
+    <nav class="md-nav" aria-label="Yubi OTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beispiel-einrichtung" class="md-nav__link">
+    Beispiel-Einrichtung
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webauthn-u2f-ersatz" class="md-nav__link">
+    WebAuthn (U2F, Ersatz)
+  </a>
+  
+    <nav class="md-nav" aria-label="WebAuthn (U2F, Ersatz)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#was-passiert-mit-meinem-registrierten-fido-security-key-nach-dem-update-von-u2f-auf-webauthn" class="md-nav__link">
+    Was passiert mit meinem registrierten Fido Security Key nach dem Update von U2F auf WebAuthn?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deaktivieren-inoffizieller-unterstutzter-fido-security-keys" class="md-nav__link">
+    Deaktivieren inoffizieller unterstützter Fido Security Keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Deaktivieren inoffizieller unterstützter Fido Security Keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beispiel" class="md-nav__link">
+    Beispiel:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eigene-zertifikate-fur-webauthn-verwenden" class="md-nav__link">
+    Eigene Zertifikate für WebAuthn verwenden
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" class="md-nav__link">
+    Ist es gefährlich, den Vendor Check deaktiviert zu lassen?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#totp" class="md-nav__link">
+    TOTP
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/mailcow/mailcow-dockerized-docs/edit/master/docs/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.de.md" title="Seite editieren" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+  <h1>Zwei-Faktoren-Authentifizierung</h1>
+
+<p>Bislang sind drei Methoden für die <em>Zwei-Faktor-Authentifizierung</em> implementiert: WebAuthn (ersetzt seit Februar 2022 U2F), Yubi OTP und TOTP</p>
+<ul>
+<li>Damit WebAuthn funktioniert, benötigen Sie eine verschlüsselte Verbindung zum Server (HTTPS) sowie einen FIDO-Sicherheitsschlüssel.</li>
+<li>Sowohl WebAuthn als auch Yubi OTP funktionieren gut mit dem fantastischen <a href="https://www.yubico.com">Yubikey</a>.</li>
+<li>Während Yubi OTP eine aktive Internetverbindung und eine API ID + Schlüssel benötigt, funktioniert WebAuthn mit jedem Fido Security Key, kann aber nur verwendet werden, wenn der Zugriff auf mailcow über HTTPS erfolgt.</li>
+<li>WebAuthn und Yubi OTP unterstützen mehrere Schlüssel pro Nutzer.</li>
+<li>Als dritte TFA-Methode verwendet mailcow TOTP: zeitbasierte Einmal-Passwörter. Diese Passwörter können mit Apps wie "Google Authenticator" generiert werden, nachdem zunächst ein QR-Code gescannt oder das gegebene Geheimnis manuell eingegeben wurde.</li>
+</ul>
+<p>Als Administrator können Sie den TFA-Login eines Domain-Administrators vorübergehend deaktivieren, bis dieser sich erfolgreich eingeloggt hat.</p>
+<p>Der für die Anmeldung verwendete Schlüssel wird in grüner Farbe angezeigt, während andere Schlüssel grau bleiben.</p>
+<p>Informationen zum Entfernen von 2FA finden Sie <a href="../../../troubleshooting/debug-reset_pw/#zwei-faktor-authentifizierung-entfernen">hier</a>.</p>
+<h2 id="yubi-otp">Yubi OTP<a class="headerlink" href="#yubi-otp" title="Permanent link">&para;</a></h2>
+<p>Die Yubi API ID und der Schlüssel werden mit der Yubico Cloud API abgeglichen. Bei der Einrichtung von TFA werden Sie nach Ihrem persönlichen API-Konto für diesen Schlüssel gefragt.
+Die API-ID, der API-Schlüssel und die ersten 12 Zeichen (Ihre YubiKeys ID in modhex) werden in der MySQL-Tabelle als Geheimnis gespeichert.</p>
+<h3 id="beispiel-einrichtung">Beispiel-Einrichtung<a class="headerlink" href="#beispiel-einrichtung" title="Permanent link">&para;</a></h3>
+<p>Als erstes muss der YubiKey für die Verwendung als OTP-Generator konfiguriert werden. Laden Sie dazu den <code>YubiKey Manager</code> von der Yubico Website herunter: <a href="https://www.yubico.com/support/download/">hier</a></p>
+<p>Im Folgenden konfigurieren Sie den YubiKey für OTP.
+Über den Menüpunkt <code>Anwendungen</code> -&gt; <code>OTP</code> und einem Klick auf den <code>Konfigurieren</code> Button. Wählen Sie im folgenden Menü <code>Credential Type</code> -&gt; <code>Yubico OTP</code> und klicken Sie auf <code>Next</code>.</p>
+<p>Setzen Sie ein Häkchen in die Checkbox <code>Use serial</code>, generieren Sie eine <code>Private ID</code> und einen <code>Secret key</code> über die Schaltflächen. 
+Damit der YubiKey später validiert werden kann, muss auch das Häkchen in der <code>Upload</code> Checkbox gesetzt werden und klicken Sie dann auf <code>Finish</code>.</p>
+<p>Nun öffnet sich ein neues Browserfenster, in dem Sie unten im Formular ein OTP Ihres YubiKey eingeben müssen (auf das Feld klicken und dann auf Ihren YubiKey tippen). Bestätigen Sie das Captcha und laden Sie die Daten auf den Yubico-Server hoch, indem Sie auf 'Hochladen' klicken. Die Verarbeitung der Daten wird einen Moment dauern.</p>
+<p>Nachdem die Generierung erfolgreich war, werden Ihnen eine <code>Client ID</code> und ein <code>Secret key</code> angezeigt, notieren Sie sich diese Informationen an einem sicheren Ort.</p>
+<p>Nun können Sie <code>Yubico OTP-Authentifizierung</code> aus dem Dropdown-Menü in der mailcow UI auf der Startseite unter <code>Zugang</code> -&gt; <code>Zwei-Faktor-Authentifizierung</code> auswählen. 
+In dem sich nun öffnenden Dialog können Sie einen Namen für diesen YubiKey eingeben und die zuvor notierte <code>Client ID</code> sowie den <code>Secret key</code> in die vorgesehenen Felder eintragen.
+Geben Sie schließlich Ihr aktuelles Kontopasswort ein und berühren Sie nach Auswahl des Feldes <code>Touch Yubikey</code> die Schaltfläche Ihres YubiKey.</p>
+<p>Herzlichen Glückwunsch! Sie können sich nun mit Ihrem YubiKey in die mailcow UI einloggen!</p>
+<hr />
+<h2 id="webauthn-u2f-ersatz">WebAuthn (U2F, Ersatz)<a class="headerlink" href="#webauthn-u2f-ersatz" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Seit Februar 2022 hat Google Chrome die Unterstützung für U2F aufgegeben und die Verwendung von WebAuthn standardisiert.<br></strong>
+<em>Die WebAuthn API (der Ersatz für U2F) ist seit dem 21. Januar 2022 Teil von mailcow, wenn Sie also den Key über Februar 2022 hinaus nutzen wollen, sollten Sie ein Update mit der <code>update.sh</code></em> in Betracht ziehen. </p>
+</div>
+<p>Um WebAuthn zu nutzen, muss der Browser diesen Standard unterstützen:</p>
+<ul>
+<li>Edge (&gt;=18)</li>
+<li>Firefox (&gt;=60)</li>
+<li>Chrome (&gt;=67)</li>
+<li>Safari (&gt;=13)</li>
+<li>Opera (&gt;=54)</li>
+</ul>
+<p>Die folgenden mobilen Browser unterstützen diesen Authentifizierungstyp:</p>
+<ul>
+<li>Safari auf iOS (&gt;=14.5)</li>
+<li>Android-Browser (&gt;=97)</li>
+<li>Opera Mobil (&gt;=64)</li>
+<li>Chrome für Android (&gt;=97)</li>
+</ul>
+<p>Quellen: <a href="https://caniuse.com/webauthn">caniuse.com</a>, <a href="https://blog.mozilla.org/security/2019/04/04/shipping-fido-u2f-api-support-in-firefox/">blog.mozilla.org</a></p>
+<p>WebAuthn funktioniert auch ohne Internetverbindung.</p>
+<h3 id="was-passiert-mit-meinem-registrierten-fido-security-key-nach-dem-update-von-u2f-auf-webauthn">Was passiert mit meinem registrierten Fido Security Key nach dem Update von U2F auf WebAuthn?<a class="headerlink" href="#was-passiert-mit-meinem-registrierten-fido-security-key-nach-dem-update-von-u2f-auf-webauthn" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Mit dem neuen U2F-Ersatz (WebAuthn) müssen Sie Ihren Fido Security Key neu registrieren, zum Glück ist WebAuthn abwärtskompatibel und unterstützt das U2F-Protokoll.</p>
+</div>
+<p>Im Idealfall sollten Sie beim nächsten Einloggen (mit dem Schlüssel) ein Textfeld erhalten, das besagt, dass Ihr Fido Security Key aufgrund des Updates auf WebAuthn entfernt und als 2-Faktor-Authentifikator gelöscht wurde.</p>
+<p>Aber keine Sorge! Sie können Ihren bestehenden Schlüssel einfach neu registrieren und ihn wie gewohnt verwenden. Sie werden wahrscheinlich nicht einmal einen Unterschied bemerken, außer dass Ihr Browser die U2F-Deaktivierungsmeldung nicht mehr anzeigt.</p>
+<h3 id="deaktivieren-inoffizieller-unterstutzter-fido-security-keys">Deaktivieren inoffizieller unterstützter Fido Security Keys<a class="headerlink" href="#deaktivieren-inoffizieller-unterstutzter-fido-security-keys" title="Permanent link">&para;</a></h3>
+<p>Mit WebAuthn gibt es die Möglichkeit, nur offizielle Fido Security Keys zu verwenden (von den großen Marken wie: Yubico, Apple, Nitro, Google, Huawei, Microsoft, usw.) zu verwenden.</p>
+<p>Dies dient in erster Linie der Sicherheit, da es Administratoren ermöglicht, sicherzustellen, dass nur offizielle Hardware in ihrer Umgebung verwendet werden kann.</p>
+<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit <code>docker compose up -d</code> neu.</p>
+<p>Die mailcow wird nun die Vendor-Zertifikate verwenden, die sich in Ihrem mailcow-Verzeichnis unter <code>data/web/inc/lib/WebAuthn/rootCertificates</code> befinden. </p>
+<h5 id="beispiel">Beispiel:<a class="headerlink" href="#beispiel" title="Permanent link">&para;</a></h5>
+<p>Wenn Sie die offiziellen Hersteller-Geräte nur auf Apple beschränken wollen, brauchen Sie nur das Apple Hersteller-Zertifikat im <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
+Nachdem Sie alle anderen Zertifikate gelöscht haben, können Sie WebAuthn 2FA nur noch mit Apple-Geräten aktivieren.</p>
+<p>Das ist für jeden Hersteller gleich, also wählen Sie aus, was Ihnen gefällt (wenn Sie es wollen).</p>
+<h4 id="eigene-zertifikate-fur-webauthn-verwenden">Eigene Zertifikate für WebAuthn verwenden<a class="headerlink" href="#eigene-zertifikate-fur-webauthn-verwenden" title="Permanent link">&para;</a></h4>
+<p>Wenn du ein gültiges Zertifikat vom Hersteller deines Schlüssels hast, kannst du es auch zu deiner Mailcow hinzufügen!</p>
+<p>Kopieren Sie einfach das Zertifikat in den <code>data/web/inc/lib/WebAuthn/rootCertificates</code> Ordner und starten Sie Ihre Mailcow neu.</p>
+<p>Nun sollten Sie in der Lage sein, auch dieses Gerät zu registrieren, obwohl die Überprüfung für die Herstellerzertifikate aktiviert ist, da Sie das Zertifikat manuell hinzugefügt haben. </p>
+<h4 id="ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen">Ist es gefährlich, den Vendor Check deaktiviert zu lassen?<a class="headerlink" href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" title="Permanent link">&para;</a></h4>
+<p>Nein, das ist es nicht!
+Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware verwendet, nicht zur Absicherung des Registrierungsprozesses.</p>
+<p>Wie Sie in diesen Artikeln lesen können, hat die Deaktivierung nichts mit der Software-Sicherheit zu tun:
+- <a href="https://developers.yubico.com/U2F/Attestation_and_Metadata/">https://developers.yubico.com/U2F/Attestation_and_Metadata/</a>
+- <a href="https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651">https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651</a>
+- <a href="https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01">https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01</a></p>
+<p>Letztendlich ist es aber natürlich Ihre Entscheidung, ob Sie dieses Häkchen deaktiviert oder aktiviert lassen. </p>
+<hr />
+<h2 id="totp">TOTP<a class="headerlink" href="#totp" title="Permanent link">&para;</a></h2>
+<p>Die bekannteste TFA-Methode, die meist mit einem Smartphone verwendet wird.</p>
+<p>Um die TOTP-Methode einzurichten, loggen Sie sich in die Admin UI ein und wählen Sie <code>Time-based OTP (TOTP)</code> aus der Liste.</p>
+<p>Nun öffnet sich ein Modal, in dem Sie einen Namen für Ihr 2FA-"Gerät" (Beispiel: John Deer's Smartphone) und das Passwort des betroffenen Admin-Kontos (mit dem Sie derzeit eingeloggt sind) eingeben müssen.</p>
+<p>Sie haben zwei verschiedene Methoden, um TOTP für Ihr Konto zu registrieren:
+1. Scannen Sie den QR-Code mit Ihrer Authenticator App auf einem Smartphone oder Tablet.
+2. Verwenden Sie den TOTP-Code (unter dem QR-Code) in Ihrem TOTP-Programm oder Ihrer App (wenn Sie keinen QR-Code scannen können).</p>
+<p>Nachdem Sie den QR- oder TOTP-Code in der TOTP-App/dem TOTP-Programm Ihrer Wahl registriert haben, müssen Sie nur noch den nun generierten TOTP-Token (in der App/dem Programm) als Bestätigung in der mailcow UI eingeben, um die TOTP 2FA endgültig zu aktivieren, ansonsten wird sie nicht aktiviert, obwohl der TOTP-Token bereits in Ihrer App/ Ihrem Programm generiert wurde.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Letztes Update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Zurück zum Seitenanfang
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Fußzeile" >
+      
+        
+        <a href="../u_e-mailcow_ui-spamalias/" class="md-footer__link md-footer__link--prev" aria-label="Zurück: Temporäre E-Mail-Aliase" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Zurück
+              </span>
+              Temporäre E-Mail-Aliase
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../u_e-mailcow_ui-fido/" class="md-footer__link md-footer__link--next" aria-label="Weiter: WebAuthn / FIDO2" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Weiter
+              </span>
+              WebAuthn / FIDO2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Servercow Team & Community
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://mailcow.email" target="_blank" rel="noopener" title="mailcow.email" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 21 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/mailcow" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/mailcow_email" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../../assets/javascripts/client.js"></script>
+      
+    
+  </body>
+</html>
