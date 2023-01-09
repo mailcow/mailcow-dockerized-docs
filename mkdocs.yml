@@ -392,6 +392,8 @@ extra:
     palette:
       primary: indigo
       accent: orange
+  version:
+    provider: mike
 extra_css: [ assets/stylesheets/extra.css ]
 extra_javascript:
   - assets/javascripts/client.js
