@@ -10,15 +10,39 @@ Wir erstellen automatisch tägliche Backups (24 Stunden Intervall ab dem Hochfah
 
 Kopieren Sie die Datei mit dem Namen des Benutzers, den Sie wiederherstellen wollen, nach `__MAILCOW_DIRECTORY__/data/conf/sogo`.
 
-1\. Kopieren Sie die Sicherung: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo`
+1. Kopieren Sie die Sicherung: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo`
 
-2\. Starten Sie `docker compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org`.
+2. Führen Sie folgenden Befehl aus:
 
-Führen Sie `sogo-tool` ohne Parameter aus, um nach möglichen Wiederherstellungsoptionen zu suchen.
+    === "docker compose (Plugin)"
 
-3\. Löschen Sie die kopierte Sicherung, indem Sie `rm __MAILCOW_DIRECTORY__/data/conf/sogo` ausführen
+        ``` bash
+        docker compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org
+        ```
 
-4\. Starten Sie SOGo und Memcached neu: `docker compose restart sogo-mailcow memcached-mailcow`
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org
+        ```
+
+    Führen Sie `sogo-tool` ohne Parameter aus, um nach möglichen Wiederherstellungsoptionen zu suchen.
+
+3. Löschen Sie die kopierte Sicherung, indem Sie `rm __MAILCOW_DIRECTORY__/data/conf/sogo` ausführen
+
+4. Starten Sie SOGo und Memcached neu: 
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose restart sogo-mailcow memcached-mailcow
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose restart sogo-mailcow memcached-mailcow
+        ```
 
 ### Mail
 
@@ -34,7 +58,17 @@ Um die Mailbox wiederherzustellen, stellen Sie sicher, dass Sie tatsächlich auf
 
 Kopieren Sie die Ordner von `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]` zurück nach `/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]` und synchronisieren Sie die Ordner neu und berechnen Sie die Quota (Speicherplatz) neu:
 
-```
-docker compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
-docker compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
-```
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
+    docker compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net '*'
+    docker-compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
+    ```

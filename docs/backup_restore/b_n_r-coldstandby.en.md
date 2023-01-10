@@ -18,7 +18,19 @@ The script uses rsync with the `--delete` flag. The destination will be an exact
 
 `mariabackup` is used to create a consistent copy of the SQL data directory.
 
-After rsync'ing the data we will run `docker compose pull` and remove old image tags from the destination.
+After rsync'ing the data we will run the command below (depending on your set  docker compose type in mailcow.conf) and remove old image tags from the destination:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose pull
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose pull
+    ```
 
 Your source will not be changed at any time.
 
