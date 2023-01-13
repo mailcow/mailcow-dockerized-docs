@@ -2,7 +2,6 @@
 The official mailcow docs based on mkdocs-material
 
 ## Introduction:
----
 The mailcow documentation has been redesigned from scratch based on the original (legacy-1.0 branch).
 
 Advantages compared to the legacy version:
@@ -12,7 +11,6 @@ Advantages compared to the legacy version:
 
 
 ## Contributions:
----
 
 ### About contributions:
 The documentation lives (just like the actual mailcow project) from community contributions.
@@ -135,7 +133,6 @@ docs <-- Root Folder
 ```
 
 ## Testing
----
 
 To build and test it locally, you need the [Material theme for MkDocs](https://squidfunk.github.io/mkdocs-material/), [MkDocs](https://www.mkdocs.org/) itself and [Pygments](http://pygments.org/). To install these with [pip](https://pip.pypa.io/en/stable/) and get it up and running, fire up your terminal and enter
 
@@ -156,7 +153,6 @@ http://127.0.0.1:8000/client/client-manual/#host=mail.test.org&email=mail@exampl
 ```
 
 ## Misc
----
 
 mailcow is a registered word mark of The Infrastructure Company GmbH, Parkstr. 42, 47877 Willich, Germany.
 
