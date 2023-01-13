@@ -90,7 +90,7 @@ Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens 
 
 ## Update-Zyklus
 
-- Wir planen an jedem ersten Dienstag eines Monats ein neues Hauptupdate zu veröffentlichen.
+- Wir planen in jedem Monat ein neues Hauptupdate zu veröffentlichen.
 - Die Updates sind wie folgt nummeriert: `JJJJ-MM` (Beispiel: `2022-05`).
 - Fehlerkorrekturen eines Hauptupdates werden bei uns als "Revisionen" wie a,b,c (Beispiele: `2022-05a`, `2022-05b` usw.) erscheinen.
 

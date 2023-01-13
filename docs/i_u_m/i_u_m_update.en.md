@@ -90,7 +90,7 @@ You can hook into the update mechanism by adding scripts called `pre_commit_hook
 
 ## Update Cycle
 
-- We schedule a monthly release cycle for a major update at the first tuesday of the month.
+- We schedule a monthly release cycle for a major update.
 - The releases are numbered like this: `YYYY-MM` (e.g. `2022-05`)
 - Fixes for a main Update will be stated as "Revisions" like a,b,c (e.g. `2022-05a`, `2022-05b` etc.)
 
