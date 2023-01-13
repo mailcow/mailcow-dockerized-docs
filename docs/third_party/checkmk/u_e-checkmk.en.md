@@ -1,4 +1,4 @@
-Mailcow provides the ability to check for updates using its own update script.
+mailcow provides the ability to check for updates using its own update script.
 
 If you want to check for mailcow updates using checkmk, you can create an executable file in the `local` directory of the checkmk agent (typically `/usr/lib/check_mk_agent/local/`) with the name `mailcow_update` and the following content:
 

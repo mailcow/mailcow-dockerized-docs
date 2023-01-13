@@ -52,7 +52,19 @@ services:
       - rspamd-mailcow
 ```
 
-Starte `docker compose up -d`
+Starten Sie den mailcow Stack mit:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ## Senden Sie eine Kopie der Berichte an sich selbst
 
@@ -77,34 +89,74 @@ Dies kann nützlich sein, wenn Sie...
 
 Prüfen Sie, wann der Berichtsplan zuletzt ausgeführt wurde:
 
-```
-docker compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec rspamd-mailcow date -r /var/lib/rspamd/dmarc_reports_last_log
+    ```
 
 Sehen Sie sich die letzte Berichtsausgabe an:
 
-```
-docker compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec rspamd-mailcow cat /var/lib/rspamd/dmarc_reports_last_log
+    ```
 
 Manuelles Auslösen eines DMARC-Berichts:
 
-```
-docker compose exec rspamd-mailcow rspamadm dmarc_report
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec rspamd-mailcow rspamadm dmarc_report
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec rspamd-mailcow rspamadm dmarc_report
+    ```
 
 Bestätigen Sie, dass Rspamd Daten in Redis aufgezeichnet hat:
-Ändern Sie `20220428` in ein anderes interessantes Datum zum schauen.
+Ändern Sie `20220428` in Ihr gewünschtes Datum zum überprüfen.
 
-```
-docker compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec redis-mailcow redis-cli SMEMBERS "dmarc_idx;20220428"
+    ```
 
 Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Sie sie an, z. B.:
 
-```
-docker compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
+    ```
 
 
 ## Ändern Sie die Häufigkeit der DMARC-Berichte
@@ -118,28 +170,51 @@ Der Ofelia-Zeitplan hat die gleiche Implementierung wie `cron` in Go, die unters
 Um den Zeitplan zu ändern:
 
 1. `docker-compose.override.yml` bearbeiten:
+    ```
+    version: '2.1'
 
-```
-version: '2.1'
+    services:
+      rspamd-mailcow:
+        environment:
+          - MASTER=${MASTER:-y}
+        labels:
+          ofelia.enabled: "true"
+          ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: "0 5 0 * * *"
+          ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+          ofelia.job-exec.rspamd_dmarc_reporting_today.schedule: "@every 12h"
+          ofelia.job-exec.rspamd_dmarc_reporting_today.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
+      ofelia-mailcow:
+        depends_on:
+          - rspamd-mailcow
+    ```
 
-services:
-  rspamd-mailcow:
-    environment:
-      - MASTER=${MASTER:-y}
-    labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.schedule: "0 5 0 * * *"
-      ofelia.job-exec.rspamd_dmarc_reporting_yesterday.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date --date yesterday '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
-      ofelia.job-exec.rspamd_dmarc_reporting_today.schedule: "@every 12h"
-      ofelia.job-exec.rspamd_dmarc_reporting_today.command: "/bin/bash -c \"[[ $${MASTER} == y ]] && /usr/bin/rspamadm dmarc_report $(date '+%Y%m%d') > /var/lib/rspamd/dmarc_reports_last_log 2>&1 || exit 0\""
-  ofelia-mailcow:
-    depends_on:
-      - rspamd-mailcow
-```
+2. Starten Sie die betroffenen Container neu:
 
-2. Führen Sie `docker compose up -d` aus.
+    === "docker compose (Plugin)"
 
-3. Führen Sie `docker compose restart ofelia-mailcow` aus
+        ``` bash
+        docker compose up -d
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose up -d
+        ```
+
+3. Führen Sie einen Neustart nur von Ofelia aus:
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose restart ofelia-mailcow
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose restart ofelia-mailcow
+        ```
 
 ## DMARC-Berichterstattung deaktivieren
 
@@ -149,4 +224,16 @@ Zum Deaktivieren der Berichterstattung:
 
 2. Machen Sie Änderungen in `docker-compose.override.yml` an `rspamd-mailcow` und `ofelia-mailcow` rückgängig
 
-3. Führen Sie `docker compose up -d` aus
+3. Starten Sie die betroffenen Container neu:
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose up -d
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose up -d
+        ```

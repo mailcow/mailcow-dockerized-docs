@@ -11,7 +11,7 @@ Wenn Sie auf diese Seite zugreifen, indem Sie sich bei Ihrem mailcow-Server anme
 <div class="client_variables_available" markdown="1">
 <div class="admonition success">
 <p class="admonition-title">Erfolgreich</p>
-Da Sie diese Seite aufgerufen haben, nachdem Sie sich in Ihren Mailcow-Server eingeloggt haben, wurden alle Anleitungen mit Ihrer E-Mail-Adresse und Ihrem Servernamen personalisiert.
+Da Sie diese Seite aufgerufen haben, nachdem Sie sich in Ihren mailcow-Server eingeloggt haben, wurden alle Anleitungen mit Ihrer E-Mail-Adresse und Ihrem Servernamen personalisiert.
 </div>
 </div>
 

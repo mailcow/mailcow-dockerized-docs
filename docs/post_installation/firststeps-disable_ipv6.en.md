@@ -45,10 +45,19 @@ services:
 
 For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:
 
-```
-docker compose down
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down
+    docker-compose up -d
+    ```
 
 **3.** Disable IPv6 in unbound-mailcow
 
@@ -63,9 +72,17 @@ server:
 
 Restart Unbound:
 
-```
-docker compose restart unbound-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart unbound-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart unbound-mailcow
+    ```
 
 **4.** Disable IPv6 in postfix-mailcow
 
@@ -78,9 +95,17 @@ inet_protocols = ipv4
 
 Restart Postfix:
 
-```
-docker compose restart postfix-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart postfix-mailcow
+    ```
 
 **5.** If your docker daemon completly disabled IPv6:
 

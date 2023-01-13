@@ -16,13 +16,23 @@ You can also use Rspamd's web UI to learn ham and / or spam or to adjust certain
 ### Learn Spam or Ham from existing directory
 
 You can use a one-liner to learn mail in plain-text (uncompressed) format:
+=== "docker compose (Plugin)"
 
-```bash
-# Ham
-for file in /my/folder/cur/*; do docker exec -i $(docker compose ps -q rspamd-mailcow) rspamc learn_ham < $file; done
-# Spam
-for file in /my/folder/.Junk/cur/*; do docker exec -i $(docker compose ps -q rspamd-mailcow) rspamc learn_spam < $file; done
-```
+    ``` bash
+    # Ham
+    for file in /my/folder/cur/*; do docker exec -i $(docker compose ps -q rspamd-mailcow) rspamc learn_ham < $file; done
+    # Spam
+    for file in /my/folder/.Junk/cur/*; do docker exec -i $(docker compose ps -q rspamd-mailcow) rspamc learn_spam < $file; done
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    # Ham
+    for file in /my/folder/cur/*; do docker exec -i $(docker-compose ps -q rspamd-mailcow) rspamc learn_ham < $file; done
+    # Spam
+    for file in /my/folder/.Junk/cur/*; do docker exec -i $(docker-compose ps -q rspamd-mailcow) rspamc learn_spam < $file; done
+    ```
 
 Consider attaching a local folder as new volume to `rspamd-mailcow` in `docker-compose.yml` and learn given files inside the container. This can be used as workaround to parse compressed data with zcat. Example:
 
@@ -42,26 +52,51 @@ cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
 ```
 
 **Reset Bayes data**
+=== "docker compose (Plugin)"
 
-```bash
-docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xargs redis-cli del'
-docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
-```
+    ``` bash
+    docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xargs redis-cli del'
+    docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xargs redis-cli del'
+    docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
+    ```
 
 **Reset Neural data**
+=== "docker compose (Plugin)"
 
-```bash
-docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs redis-cli del'
-```
+    ``` bash
+    docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs redis-cli del'
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs redis-cli del'
+    ```
 
 **Reset Fuzzy data**
+=== "docker compose (Plugin)"
 
-```bash
-# We need to enter the redis-cli first:
-docker compose exec redis-mailcow redis-cli
-# In redis-cli:
-127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
-```
+    ``` bash
+    # We need to enter the redis-cli first:
+    docker compose exec redis-mailcow redis-cli
+    # In redis-cli:
+    127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    # We need to enter the redis-cli first:
+    docker-compose exec redis-mailcow redis-cli
+    # In redis-cli:
+    127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
+    ```
 
 **Info**
 
@@ -75,11 +110,19 @@ If redis-cli complains about...
 
 
 ## CLI tools
+=== "docker compose (Plugin)"
 
-```bash
-docker compose exec rspamd-mailcow rspamc --help
-docker compose exec rspamd-mailcow rspamadm --help
-```
+    ``` bash
+    docker compose exec rspamd-mailcow rspamc --help
+    docker compose exec rspamd-mailcow rspamadm --help
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec rspamd-mailcow rspamc --help
+    docker-compose exec rspamd-mailcow rspamadm --help
+    ```
 
 ## Disable Greylisting
 
@@ -95,7 +138,18 @@ Add the line:
 enabled = false;
 ```
 
-Save the file and restart "rspamd-mailcow": `docker compose restart rspamd-mailcow`
+Save the file and restart "rspamd-mailcow":
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
 
 ## Spam filter thresholds (global)
 
@@ -107,12 +161,39 @@ add_header = 8;
 greylist = 7;
 ```
 
-Save the file and restart "rspamd-mailcow": `docker compose restart rspamd-mailcow`
+Save the file and restart "rspamd-mailcow":
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
 
 Existing settings of users will not be overwritten!
 
 To reset custom defined thresholds, run:
+=== "docker compose (Plugin)"
 
+    ``` bash
+    source mailcow.conf
+    docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel';"
+    # or:
+    docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel' and object = 'only-this-mailbox@example.org';"
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    source mailcow.conf
+    docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel';"
+    # or:
+    docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel' and object = 'only-this-mailbox@example.org';"
+    ```
 ```
 source mailcow.conf
 docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel';"
@@ -128,7 +209,18 @@ The default spam reject message can be changed by adding a new file `data/conf/r
 reject_message = "My custom reject message";
 ```
 
-Save the file and restart Rspamd: `docker compose restart rspamd-mailcow`.
+Save the file and restart Rspamd:
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
 
 While the above works for rejected mails with a high spam score, prefilter reject actions will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:
 
@@ -147,7 +239,18 @@ GLOBAL_RCPT_BL {
 }
 ```
 
-3. Save the file and restart Rspamd: `docker compose restart rspamd-mailcow`.
+3. Save the file and restart Rspamd:
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
 
 ## Discard instead of reject
 
@@ -158,37 +261,70 @@ discard_on_reject = true;
 ```
 
 Restart Rspamd:
+=== "docker compose (Plugin)"
 
-```bash
-docker compose restart rspamd-mailcow
-```
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
 
 ## Wipe all ratelimit keys
 
 If you don't want to use the UI and instead wipe all keys in the Redis database, you can use redis-cli for that task:
+=== "docker compose (Plugin)"
 
-```
-docker compose exec redis-mailcow sh
-# Unlink (available in Redis >=4.) will delete in the backgronud
-redis-cli --scan --pattern RL* | xargs redis-cli unlink
-```
+    ``` bash
+    docker compose exec redis-mailcow sh
+    # Unlink (available in Redis >=4.) will delete in the backgronud
+    redis-cli --scan --pattern RL* | xargs redis-cli unlink
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec redis-mailcow sh
+    # Unlink (available in Redis >=4.) will delete in the backgronud
+    redis-cli --scan --pattern RL* | xargs redis-cli unlink
+    ```
 
 Restart Rspamd:
+=== "docker compose (Plugin)"
 
-```bash
-docker compose restart rspamd-mailcow
-```
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
 
 ## Trigger a resend of quarantine notifications
 
 Should be used for debugging only!
+=== "docker compose (Plugin)"
 
-```
-docker compose exec dovecot-mailcow bash
-mysql -umailcow -p$DBPASS mailcow -e "update quarantine set notified = 0;"
-redis-cli -h redis DEL Q_LAST_NOTIFIED
-quarantine_notify.py
-```
+    ``` bash
+    docker compose exec dovecot-mailcow bash
+    mysql -umailcow -p$DBPASS mailcow -e "update quarantine set notified = 0;"
+    redis-cli -h redis DEL Q_LAST_NOTIFIED
+    quarantine_notify.py
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec dovecot-mailcow bash
+    mysql -umailcow -p$DBPASS mailcow -e "update quarantine set notified = 0;"
+    redis-cli -h redis DEL Q_LAST_NOTIFIED
+    quarantine_notify.py
+    ```
 
 ## Increase history retention
 
@@ -204,4 +340,15 @@ Edit `data/conf/rspamd/local.d/history_redis.conf`:
 nrows = 1000; # change this value
 ```
 
-Restart Rspamd afterwards: `docker compose restart rspamd-mailcow`
+Restart Rspamd afterwards:
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```

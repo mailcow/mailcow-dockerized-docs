@@ -1,8 +1,15 @@
 Um mailcow: dockerized mit all seinen Volumes, Images und Containern zu entfernen, tun Sie dies:
+=== "docker compose (Plugin)"
 
-```
-docker compose down -v --rmi all --remove-orphans
-```
+    ``` bash
+    docker compose down -v --rmi all --remove-orphans
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down -v --rmi all --remove-orphans
+    ```
 
 !!! info
     - **-v** Entfernt benannte Volumes, die im Abschnitt `volumes` der Compose-Datei deklariert sind, und anonyme Volumes, die an Container angehängt sind.

@@ -2,7 +2,7 @@ Mit Gogs' Fähigkeit, sich über SMTP zu authentifizieren, ist es einfach, es mi
 
 1\. Öffne `docker-compose.override.yml` und füge Gogs hinzu:
 
-```
+```yaml
 version: '2.1'
 services:
 
@@ -31,7 +31,21 @@ location /gogs/ {
 GOGS_SSH_PORT=127.0.0.1:4000
 ```
 
-5\. Führen Sie `docker compose up -d` aus, um den Gogs-Container hochzufahren und führen Sie anschließend `docker compose restart nginx-mailcow` aus.
+5\. Führen Sie folgenden Befehl aus, um den Gogs-Container hochzufahren und führen Sie anschließend einen Neustart von NGINX mit dem zweiten Befehl durch:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+	docker compose restart nginx-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+	docker-compose restart nginx-mailcow
+    ```
 
 6\. Öffnen Sie `http://${MAILCOW_HOSTNAME}/gogs/`, zum Beispiel `http://mx.example.org/gogs/`. Für Datenbank-Details setzen Sie `mysql` als Datenbank-Host. Verwenden Sie den in mailcow.conf gefundenen Wert von DBNAME als Datenbankname, DBUSER als Datenbankbenutzer und DBPASS als Datenbankpasswort.
 
@@ -39,7 +53,7 @@ GOGS_SSH_PORT=127.0.0.1:4000
 
 8\. Erstellen Sie `data/gogs/gogs/conf/app.ini` und setzen Sie die folgenden Werte. Sie können [Gogs cheat sheet](https://gogs.io/docs/advanced/configuration_cheat_sheet) für ihre Bedeutung und andere mögliche Werte konsultieren.
 
-```
+```ini
 [server]
 SSH_LISTEN_PORT = 22
 # Für GOGS_SSH_PORT=127.0.0.1:4000 in mailcow.conf, setzen:
@@ -49,5 +63,17 @@ SSH_PORT = 4000
 ROOT_URL = https://mx.example.org/gogs/
 ```
 
-9\. Starten Sie Gogs neu mit `docker compose restart gogs-mailcow`. Ihre Benutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten einzuloggen.
+9\. Starten Sie Gogs neu mit dem kommenden Befehl. Ihre Nutzer sollten in der Lage sein, sich mit von mailcow verwalteten Konten anzumelden.
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart gogs-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart gogs-mailcow
+    ```
 

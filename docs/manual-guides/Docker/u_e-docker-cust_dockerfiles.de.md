@@ -20,6 +20,14 @@ $service-mailcow:
 
 
 Abschliessend müssen die geänderten Container automatisch neu erstellt werden:
-```
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```

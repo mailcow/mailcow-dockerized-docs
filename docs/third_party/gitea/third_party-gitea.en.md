@@ -2,7 +2,7 @@ With Gitea' ability to authenticate over SMTP it is trivial to integrate it with
 
 1\. Open `docker-compose.override.yml` and add gitea:
 
-```
+```yaml
 version: '2.1'
 services:
 
@@ -31,9 +31,37 @@ location /gitea/ {
 GITEA_SSH_PORT=127.0.0.1:4000
 ```
 
-5\. Run `docker compose up -d` to bring up the gitea container and run `docker compose restart nginx-mailcow` afterwards.
+5\. Run the commands to bring up the gitea container and restart the nginx-mailcow container afterwards:
 
-6\. If you forced mailcow to https, execute step 9 and restart gitea with `docker compose restart gitea-mailcow` . Go head with step 7 (Remember to use https instead of http, `https://mx.example.org/gitea/` 
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+	docker compose restart nginx-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+	docker-compose restart nginx-mailcow
+    ```
+
+6\. If you forced mailcow to https, execute step 9 and restart gitea with the following command:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart gitea-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart gitea-mailcow
+    ```
+
+Go head with step 7 (Remember to use https instead of http, `https://mx.example.org/gitea/`) 
 
 7\. Open `http://${MAILCOW_HOSTNAME}/gitea/`, for example `http://mx.example.org/gitea/`. For database details set `mysql` as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.
 
@@ -41,7 +69,7 @@ GITEA_SSH_PORT=127.0.0.1:4000
 
 9\. Create `data/gitea/gitea/conf/app.ini` and set following values. You can consult [gitea cheat sheet](https://docs.gitea.io/en-us/config-cheat-sheet/) for their meaning and other possible values.
 
-```
+```ini
 [server]
 SSH_LISTEN_PORT = 22
 # For GITEA_SSH_PORT=127.0.0.1:4000 in mailcow.conf, set:
@@ -51,4 +79,16 @@ SSH_PORT = 4000
 ROOT_URL = https://mx.example.org/gitea/
 ```
 
-10\. Restart gitea with `docker compose restart gitea-mailcow`. Your users should be able to login with mailcow managed accounts.
+10\. Restart gitea with the following command. Your users should be able to login with mailcow managed accounts.
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart gitea-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart gitea-mailcow
+    ```

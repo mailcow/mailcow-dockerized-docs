@@ -64,14 +64,25 @@ Führen Sie `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` aus, um zu sehen
 Ja.
 
 Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:
+=== "docker compose (Plugin)"
 
-```
-docker compose down
-# Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
-git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker compose pull
-docker compose up -d
-```
+    ``` bash
+    docker compose down
+    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
+    docker compose pull
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down
+    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 ### Hooks
 
@@ -79,7 +90,7 @@ Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens 
 
 ## Update-Zyklus
 
-- Wir planen an jedem ersten Dienstag eines Monats ein neues Hauptupdate zu veröffentlichen.
+- Wir planen in jedem Monat ein neues Hauptupdate zu veröffentlichen.
 - Die Updates sind wie folgt nummeriert: `JJJJ-MM` (Beispiel: `2022-05`).
 - Fehlerkorrekturen eines Hauptupdates werden bei uns als "Revisionen" wie a,b,c (Beispiele: `2022-05a`, `2022-05b` usw.) erscheinen.
 

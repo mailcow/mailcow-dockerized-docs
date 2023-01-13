@@ -10,7 +10,7 @@ Das bereitgestellte Skript funktioniert auf Standardinstallationen.
 
 Es kann versagen, wenn Sie nicht unterstützte Volume Overrides verwenden. Wir unterstützen das nicht und wir werden keine Hacks einbauen, die das unterstützen. Bitte erstellen und pflegen Sie einen Fork, wenn Sie Ihre Änderungen beibehalten wollen.
 
-Das Skript wird **die gleichen Pfade** wie Ihre Standard-Mailcow-Installation verwenden. Das ist das mailcow-Basisverzeichnis - für die meisten Nutzer `/opt/mailcow-dockerized` - sowie die Mountpoints.
+Das Skript wird **die gleichen Pfade** wie Ihre Standard-mailcow-Installation verwenden. Das ist das mailcow-Basisverzeichnis - für die meisten Nutzer `/opt/mailcow-dockerized` - sowie die Mountpoints.
 
 Um die Pfade Ihrer Quellvolumes zu finden, verwenden wir `docker inspect` und lesen das Zielverzeichnis jedes Volumes, das mit Ihrem mailcow compose Projekt verbunden ist. Das bedeutet, dass wir auch Volumes übertragen, die Sie in einer Override-Datei hinzugefügt haben. Lokale Bind-Mounts können funktionieren, müssen aber nicht.
 
@@ -18,7 +18,19 @@ Das Skript verwendet rsync mit dem `--delete` Flag. Das Ziel wird eine exakte Ko
 
 `mariabackup` wird verwendet, um eine konsistente Kopie des SQL-Datenverzeichnisses zu erstellen.
 
-Nach dem Rsync der Daten führen wir `docker compose pull` aus und entfernen alte Image-Tags aus dem Ziel.
+Nach dem Rsync der Daten führen wir folgenden Befehl aus (anhand der gesetzten docker compose Version in der mailcow.conf) und entfernen alte Image-Tags aus dem Ziel:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose pull
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose pull
+    ```
 
 Ihre Quelle wird zu keinem Zeitpunkt verändert.
 

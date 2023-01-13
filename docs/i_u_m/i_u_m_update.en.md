@@ -64,14 +64,25 @@ Run `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` to see what changed.
 Yes.
 
 See the topic above, instead of a diff, you run checkout:
+=== "docker compose (Plugin)"
 
-```
-docker compose down
-# Replace commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab by your ID
-git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
-docker compose pull
-docker compose up -d
-```
+    ``` bash
+    docker compose down
+    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
+    docker compose pull
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down
+    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 ### Hooks
 
@@ -79,7 +90,7 @@ You can hook into the update mechanism by adding scripts called `pre_commit_hook
 
 ## Update Cycle
 
-- We schedule a monthly release cycle for a major update at the first tuesday of the month.
+- We schedule a monthly release cycle for a major update.
 - The releases are numbered like this: `YYYY-MM` (e.g. `2022-05`)
 - Fixes for a main Update will be stated as "Revisions" like a,b,c (e.g. `2022-05a`, `2022-05b` etc.)
 

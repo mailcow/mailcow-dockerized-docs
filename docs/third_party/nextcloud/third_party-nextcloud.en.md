@@ -6,13 +6,27 @@ Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [
 
 In case you have forgotten the password (e.g. for admin) and can't request a new one [via the password reset link on the login screen](https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset) calling the helper script with `-r` as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.
 
-In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and run `docker compose up -d` to apply. For more informaton refer to: [Advanced SSL](../../post_installation/firststeps-ssl.en.md).
+In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and runthe following to apply:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+For more informaton refer to: [Advanced SSL](../../post_installation/firststeps-ssl.en.md).
 
 ## Background jobs
 
 To use the recommended setting (cron) to execute the background jobs following lines need to be added to the `docker-compose.override.yml`:
 
-```
+```yaml
 version: '2.1'
 services:
   php-fpm-mailcow:
@@ -22,9 +36,49 @@ services:
       ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""
 ```
 
-After adding these lines the `docker compose up -d` command must be executed to update the docker image and also the docker scheduler image must be restarted to
- pick up the new job definition by executing `docker compose restart ofelia-mailcow`. To check if the job was successfully picked up by `ofelia` the command
- `docker compose logs ofelia-mailcow` will contain a line similar to `New job registered "nextcloud-cron" - ...`.
+After adding these lines the following command must be executed to update the docker image:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+And also the docker scheduler image must be restarted to pick up the new job definition by executing:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart ofelia-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart ofelia-mailcow
+    ```
+
+To check if the job was successfully picked up by `ofelia` the command:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose logs ofelia-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose logs ofelia-mailcow
+    ```
+
+It should contain a line similar to `New job registered "nextcloud-cron" - ...`.
 
 By adding these lines the background jobs will be executed every 5 minutes. To verify that the execution works correctly, the only way is to see it in the basic
  settings when logged in as an admin in Nextcloud. If everything is correct the first scheduled execution will change the background jobs processing setting to
@@ -36,18 +90,22 @@ The following describes how set up authentication via mailcow using the OAuth2 p
 
 1\. Log into mailcow as administrator.
 
-2\. Scroll down to _OAuth2 Apps_ and click the _Add_ button. Specify the redirect URI as `https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/Mailcow` and click _Add_. Save the client ID and secret for later.
+2\. Click Configuration in the drop-down menu (top right).
+
+3\. Then, in the "Access" tab, select the OAuth2 drop-down item.
+
+4\. Scroll down and click the _Add OAuth2 client_ button. Specify the redirect URI as `https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/mailcow` and click _Add_. Save the client ID and secret for later.
 
 !!! info
-    Some installations, including those setup using the helper script of mailcow, need to remove index.php/ from the URL to get a successful redirect: `https://cloud.example.com/apps/sociallogin/custom_oauth2/Mailcow`
+    Some installations, including those setup using the helper script of mailcow, need to remove index.php/ from the URL to get a successful redirect: `https://cloud.example.com/apps/sociallogin/custom_oauth2/mailcow`
 
-3\. Log into Nextcloud as administrator.
+5\. Log into Nextcloud as administrator.
 
-4\. Click the button in the top right corner and select _Apps_. Click the search button in the toolbar, search for the [_Social Login_](https://apps.nextcloud.com/apps/sociallogin) plugin and click _Download and enable_ next to it.
+6\. Click the button in the top right corner and select _Apps_. Click the search button in the toolbar, search for the [_Social Login_](https://apps.nextcloud.com/apps/sociallogin) plugin and click _Download and enable_ next to it.
 
-5\. Click the button in the top right corner and select _Settings_. Scroll down to the _Administration_ section on the left and click _Social login_.
+7\. Click the button in the top right corner and select _Settings_. Scroll down to the _Administration_ section on the left and click _Social login_.
 
-6\. Uncheck the following items:
+8\. Uncheck the following items:
 
 - "Disable auto create new users"
 - "Allow users to connect social logins with their accounts"
@@ -66,8 +124,8 @@ Click the _Save_ button.
 8\. Scroll down to _Custom OAuth2_ and click the _+_ button.
 9\. Configure the parameters as follows:
 
-- Internal name: `Mailcow`
-- Title: `Mailcow`
+- Internal name: `mailcow`
+- Title: `mailcow`
 - API Base URL: `https://mail.example.com`
 - Authorize URL: `https://mail.example.com/oauth/authorize`
 - Token URL: `https://mail.example.com/oauth/token`
@@ -84,19 +142,44 @@ Click the _Save_ button at the very bottom of the page.
 If you have previously used Nextcloud with mailcow authentication via user\_external/IMAP, you need to perform some additional steps to link your existing user accounts with OAuth2.
 
 1\. Click the button in the top right corner and select _Apps_. Scroll down to the _External user authentication_ app and click _Remove_ next to it.
-2\. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run `source mailcow.conf && docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME`):
-```
-INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
-INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users_external;
+2\. Run the following queries in your Nextcloud database (if you set up Nextcloud with the script from mailcow, you can use the following command to get into the container):
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    source mailcow.conf && docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    source mailcow.conf && docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME
+    ```
+
+```sql
+INSERT INTO oc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM oc_users_external;
+INSERT INTO oc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("mailcow-", uid) FROM oc_users_external;
 ```
 
 ---
 
 If you have previously used Nextcloud without mailcow authentication, but with the same usernames as mailcow, you can also link your existing user accounts with OAuth2.
 
-1\. Run the following queries in your Nextcloud database (if you set up Nextcloud using mailcow's script, you can run `source mailcow.conf && docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME`):
-```
-INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("Mailcow-", uid) FROM nc_users;
+1\. Run the following queries in your Nextcloud database (if you set up Nextcloud with the script from mailcow, you can use the following command to get into the container):
+=== "docker compose (Plugin)"
+
+    ``` bash
+    source mailcow.conf && docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    source mailcow.conf && docker-compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME
+    ```
+
+```sql
+INSERT INTO oc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("mailcow-", uid) FROM oc_users;
 ```
 
 ---
@@ -125,4 +208,14 @@ It may happen that you cannot reach the Nextcloud instance from your network. Th
 ```
 
 After the changes have been made, the nginx container must be restarted.
-`docker compose restart nginx-mailcow`
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart nginx-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart nginx-mailcow
+    ```

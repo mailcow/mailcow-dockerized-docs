@@ -6,7 +6,7 @@ Wenn Sie sich entscheiden, `mynetworks` zu setzen, ignoriert Postfix die mynetwo
 
 ## Unauthentifiziertes Relaying
 
-!!! warning
+!!! warning "Warnung"
     Eine falsche Einstellung von `mynetworks` erlaubt es Ihrem Server, als offenes Relay verwendet zu werden. Wenn dies missbraucht wird, **beeinträchtigt** dies Ihre Fähigkeit, E-Mails zu versenden, und es kann einige Zeit dauern, bis dies behoben ist.
 
 ### IPv4-Hosts/Subnetze
@@ -19,7 +19,19 @@ Bearbeiten Sie `data/conf/postfix/extra.cf`:
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
 ```
 
-Führen Sie `docker compose restart postfix-mailcow` aus, um Ihre neuen Einstellungen zu übernehmen.
+Führen Sie folgenden Befehl aus aus, um Ihre neuen Einstellungen zu übernehmen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart postfix-mailcow
+    ```
 
 ### IPv6-Hosts/Subnets
 
@@ -33,7 +45,19 @@ Bearbeiten Sie `data/conf/postfix/extra.cf`:
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
 ```
 
-Führen Sie `docker compose restart postfix-mailcow` aus, um Ihre neuen Einstellungen zu übernehmen.
+Führen Sie folgenden Befehl aus, um Ihre neuen Einstellungen zu übernehmen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart postfix-mailcow
+    ```
 
 !!! Info
     Weitere Informationen über mynetworks finden Sie in der [Postfix-Dokumentation](http://www.postfix.org/postconf.5.html#mynetworks).

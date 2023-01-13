@@ -1,6 +1,6 @@
 Es ist möglich, Pre- und Post-Update-Hooks zum `update.sh` Skript hinzuzufügen, das Ihre gesamte mailcow-Installation aktualisiert.
 
-Um dies zu tun, fügen Sie einfach das entsprechende Bash-Skript in Ihr Mailcow-Root-Verzeichnis ein:  
+Um dies zu tun, fügen Sie einfach das entsprechende Bash-Skript in Ihr mailcow-Root-Verzeichnis ein:  
 
 * `pre_update_hook.sh` für Befehle, die vor dem Update laufen sollen
 * `post_update_hook.sh` für Befehle, die nach dem Update ausgeführt werden sollen

@@ -1,7 +1,7 @@
 ## Installing Roundcube
 
 Download Roundcube 1.6.x to the web htdocs directory and extract it (here `rc/`):
-```
+```bash
 # Check for a newer release!
 cd data/web
 wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
@@ -14,7 +14,7 @@ chown -R root: rc/
 ```
 
 If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
-```
+```bash
 #!/bin/bash
 apk update
 apk add aspell-en # or any other language
@@ -24,7 +24,7 @@ Create a file `data/web/rc/config/config.inc.php` with the following content.
    - **Change the `des_key` parameter to a random value.** It is used to temporarily store your IMAP password.
    - The `db_prefix` is optional but recommended.
    - If you didn't install spell check in the above step, remove `spellcheck_engine` parameter and replace it with `$config['enable_spellcheck'] = false;`.
-```
+```php
 <?php
 error_reporting(0);
 if (!file_exists('/tmp/mime.types')) {
@@ -65,7 +65,7 @@ Initialize the database and leave the installer.
 ## Configure ManageSieve filtering
 
 Open `data/web/rc/config/config.inc.php` and change the following parameters (or add them at the bottom of that file):
-```
+```php
 $config['managesieve_host'] = 'tls://dovecot:4190';
 $config['managesieve_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
@@ -81,7 +81,7 @@ $config['managesieve_vacation'] = 1;
 
 Open `data/web/rc/config/config.inc.php` and enable the password plugin:
 
-```
+```php
 ...
 $config['plugins'] = array(
     'archive',
@@ -92,7 +92,7 @@ $config['plugins'] = array(
 
 Open `data/web/rc/plugins/password/password.php`, search for `case 'ssha':` and add above:
 
-```
+```php
         case 'ssha256':
             $salt = rcube_utils::random_bytes(8);
             $crypted = base64_encode( hash('sha256', $password . $salt, TRUE ) . $salt );
@@ -102,7 +102,7 @@ Open `data/web/rc/plugins/password/password.php`, search for `case 'ssha':` and 
 
 Open `data/web/rc/plugins/password/config.inc.php` and change the following parameters (or add them at the bottom of that file):
 
-```
+```php
 $config['password_driver'] = 'sql';
 $config['password_algorithm'] = 'ssha256';
 $config['password_algorithm_prefix'] = '{SSHA256}';
@@ -112,14 +112,14 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 ## Integrate CardDAV addressbooks in Roundcube
 
 Download the latest release of [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) to the Roundcube plugin directory and extract it (here `rc/plugins`):
-```
+```bash
 cd data/web/rc/plugins
 wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz  | tar xfvz -
 chown -R root: carddav/
 ```
   
 Copy the file `config.inc.php.dist` to `config.inc.php` (here in `rc/plugins/carddav`) and append the following preset to the end of the file - don't forget to replace `mx.example.org` with your own hostname:
-```
+```php
 $prefs['SOGo'] = array(
     'name'         =>  'SOGo',
     'username'     =>  '%u',
@@ -147,7 +147,7 @@ To do this, open or create `data/web/inc/vars.local.inc.php` and add the followi
 
 *NOTE: Don't forget to add the `<?php` delimiter on the first line*
 
-````
+```php
 ...
 $MAILCOW_APPS = array(
   array(
@@ -160,14 +160,14 @@ $MAILCOW_APPS = array(
    )
 );
 ...
-````
+```
 
 ## Upgrading Roundcube
 
 Upgrading Roundcube is rather simple, go to the [Github releases](https://github.com/roundcube/roundcubemail/releases) page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands and change the URL and Roundcube folder name if needed. 
 
 
-```
+```bash
 # Enter a bash session of the mailcow PHP container
 docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
@@ -252,7 +252,16 @@ Copy the contents of the following files from this [Snippet](https://gitlab.com/
 
 Finally, restart mailcow
 
-```
-docker compose down
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down    
+    docker-compose up -d
+    ```

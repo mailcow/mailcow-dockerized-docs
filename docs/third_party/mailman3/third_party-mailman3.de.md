@@ -3,7 +3,7 @@
 !!! info
     Diese Anleitung ist eine Kopie von [dockerized-mailcow-mailman](https://github.com/g4rf/dockerized-mailcow-mailman). Bitte posten Sie Probleme, Fragen und Verbesserungen in den [issue tracker](https://github.com/g4rf/dockerized-mailcow-mailman/issues) dort.
 
-!!! warning
+!!! warning "Warnung"
     mailcow ist nicht verantwortlich für Datenverlust, Hardwareschäden oder kaputte Tastaturen. Diese Anleitung kommt ohne jegliche Garantie. Macht Backups bevor ihr anfangt, **Kein Backup kein Mitleid!**
 
 ## Einleitung
@@ -90,9 +90,9 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Installieren Sie mailcow
 
-Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit `docker compose` starten!**
+Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit starten!**
 
-#### Mailcow konfigurieren
+#### mailcow konfigurieren
 
 Dies ist auch **Schritt 4** in der offiziellen *mailcow-Installation* (`nano mailcow.conf`). Passen Sie also Ihre Bedürfnisse an und ändern Sie die folgenden Variablen:
 
@@ -272,19 +272,37 @@ Sie können `LANGUAGE_CODE` und `SOCIALACCOUNT_PROVIDERS` an Ihre Bedürfnisse a
 
 Ausführen (als *root* oder *sudo*)
 
-```
-a2ensite mailcow.conf
-a2ensite mailman.conf
-systemctl restart apache2
+=== "docker compose (Plugin)"
 
-cd /opt/docker-mailman
-docker compose pull
-docker compose up -d
+    ``` bash
+    a2ensite mailcow.conf
+    a2ensite mailman.conf
+    systemctl restart apache2
 
-cd /opt/mailcow-dockerized/
-docker compose pull
-./renew-ssl.sh
-```
+    cd /opt/docker-mailman
+    docker compose pull
+    docker compose up -d
+
+    cd /opt/mailcow-dockerized/
+    docker compose pull
+    ./renew-ssl.sh
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    a2ensite mailcow.conf
+    a2ensite mailman.conf
+    systemctl restart apache2
+
+    cd /opt/docker-mailman
+    docker-compose pull
+    docker-compose up -d
+
+    cd /opt/mailcow-dockerized/
+    docker-compose pull
+    ./renew-ssl.sh
+    ```
 
 **Warten Sie ein paar Minuten!** Die Container müssen ihre Datenbanken und Konfigurationsdateien erstellen. Dies kann bis zu 1 Minute und mehr dauern.
 
@@ -294,10 +312,19 @@ docker compose pull
 
 Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, antwortet *postfix* mit `Benutzer existiert nicht`, weil *postfix* die Liste noch nicht an *Mailman* übergeben hat. Die Konfiguration unter `/opt/mailman/core/var/data/postfix_lmtp` wird nicht sofort aktualisiert. Wenn Sie die Liste sofort benötigen, starten Sie *postifx* manuell neu:
 
-```
-cd /opt/mailcow-dockerized
-docker compose restart postfix-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker-compose restart postfix-mailcow
+    ```
 
 ## Update
 

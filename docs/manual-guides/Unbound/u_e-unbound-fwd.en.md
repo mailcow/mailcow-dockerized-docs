@@ -17,9 +17,17 @@ forward-zone:
 
 Restart Unbound:
 
-```
-docker compose restart unbound-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+      docker compose restart unbound-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+      docker-compose restart unbound-mailcow
+    ```
 
 
 ## Method B, Override file
@@ -31,4 +39,18 @@ cp helper-scripts/docker-compose.override.yml.d/EXTERNAL_DNS/docker-compose.over
 
 Edit `docker-compose.override.yml` and adjust the IP.
 
-Run `docker compose down ; docker compose up -d`.
+Afterwards stop and start the Docker Stack again:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+      docker compose down
+      docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+      docker-compose down
+      docker-compose up -d
+    ```

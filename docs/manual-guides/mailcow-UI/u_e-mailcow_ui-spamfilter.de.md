@@ -1,4 +1,4 @@
-Ein Mailbox-Nutzer kann den Spam-Filter und die Black-/Whitelist-Einstellungen für seine Mailbox individuell anpassen, indem er zum Reiter **Spam-Filter** in der Mailcow-Benutzeroberfläche navigiert.
+Ein Mailbox-Nutzer kann den Spam-Filter und die Black-/Whitelist-Einstellungen für seine Mailbox individuell anpassen, indem er zum Reiter **Spam-Filter** in der mailcow-Benutzeroberfläche navigiert.
 
 ![Wo man die Spam-, Black- und Whitelist-Einstellungen des Benutzers anpasst](../../assets/images/manual-guides/mailcow-spamfilter.png)
 

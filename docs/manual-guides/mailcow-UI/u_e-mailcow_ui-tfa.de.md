@@ -40,7 +40,7 @@ Herzlichen Glückwunsch! Sie können sich nun mit Ihrem YubiKey in die mailcow U
 ---
 
 ## WebAuthn (U2F, Ersatz)
-!!! warning
+!!! warning "Warnung"
     **Seit Februar 2022 hat Google Chrome die Unterstützung für U2F aufgegeben und die Verwendung von WebAuthn standardisiert.<br>**
     *Die WebAuthn API (der Ersatz für U2F) ist seit dem 21. Januar 2022 Teil von mailcow, wenn Sie also den Key über Februar 2022 hinaus nutzen wollen, sollten Sie ein Update mit der `update.sh`* in Betracht ziehen. 
     
@@ -64,7 +64,7 @@ Quellen: [caniuse.com](https://caniuse.com/webauthn), [blog.mozilla.org](https:/
 WebAuthn funktioniert auch ohne Internetverbindung.
 
 ### Was passiert mit meinem registrierten Fido Security Key nach dem Update von U2F auf WebAuthn?
-!!! warning
+!!! warning "Warnung"
     Mit dem neuen U2F-Ersatz (WebAuthn) müssen Sie Ihren Fido Security Key neu registrieren, zum Glück ist WebAuthn abwärtskompatibel und unterstützt das U2F-Protokoll.
 
 Im Idealfall sollten Sie beim nächsten Einloggen (mit dem Schlüssel) ein Textfeld erhalten, das besagt, dass Ihr Fido Security Key aufgrund des Updates auf WebAuthn entfernt und als 2-Faktor-Authentifikator gelöscht wurde.
@@ -76,28 +76,41 @@ Mit WebAuthn gibt es die Möglichkeit, nur offizielle Fido Security Keys zu verw
 
 Dies dient in erster Linie der Sicherheit, da es Administratoren ermöglicht, sicherzustellen, dass nur offizielle Hardware in ihrer Umgebung verwendet werden kann.
 
-Um diese Funktion zu aktivieren, ändern Sie den Wert `WEBAUTHN_ONLY_TRUSTED_VENDORS` in mailcow.conf von `n` auf `y` und starten Sie die betroffenen Container mit `docker compose up -d` neu.
+Um diese Funktion zu aktivieren, ändern Sie den Wert `WEBAUTHN_ONLY_TRUSTED_VENDORS` in mailcow.conf von `n` auf `y` und starten Sie die betroffenen Container mit dem folgenden Befehl neu: 
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 Die mailcow wird nun die Vendor-Zertifikate verwenden, die sich in Ihrem mailcow-Verzeichnis unter `data/web/inc/lib/WebAuthn/rootCertificates` befinden. 
 
-##### Beispiel:
-Wenn Sie die offiziellen Hersteller-Geräte nur auf Apple beschränken wollen, brauchen Sie nur das Apple Hersteller-Zertifikat im `data/web/inc/lib/WebAuthn/rootCertificates`.
-Nachdem Sie alle anderen Zertifikate gelöscht haben, können Sie WebAuthn 2FA nur noch mit Apple-Geräten aktivieren.
+!!! abstract "Beispiel"
+    Wenn Sie die offiziellen Hersteller-Geräte nur auf Apple beschränken wollen, brauchen Sie nur das Apple Hersteller-Zertifikat im `data/web/inc/lib/WebAuthn/rootCertificates`.
+    Nachdem Sie alle anderen Zertifikate gelöscht haben, können Sie WebAuthn 2FA nur noch mit Apple-Geräten aktivieren.
 
-Das ist für jeden Hersteller gleich, also wählen Sie aus, was Ihnen gefällt (wenn Sie es wollen).
+    Das ist für jeden Hersteller gleich, also wählen Sie aus, was Ihnen gefällt (wenn Sie wollen).
 
-#### Eigene Zertifikate für WebAuthn verwenden
-Wenn du ein gültiges Zertifikat vom Hersteller deines Schlüssels hast, kannst du es auch zu deiner Mailcow hinzufügen!
+### Eigene Zertifikate für WebAuthn verwenden
+Wenn Sie ein gültiges Zertifikat vom Hersteller eines Schlüssels haben, können Sie es auch zu ihrer mailcow hinzufügen!
 
-Kopieren Sie einfach das Zertifikat in den `data/web/inc/lib/WebAuthn/rootCertificates` Ordner und starten Sie Ihre Mailcow neu.
+Kopieren Sie einfach das Zertifikat in den `data/web/inc/lib/WebAuthn/rootCertificates` Ordner und starten Sie Ihre mailcow neu.
 
 Nun sollten Sie in der Lage sein, auch dieses Gerät zu registrieren, obwohl die Überprüfung für die Herstellerzertifikate aktiviert ist, da Sie das Zertifikat manuell hinzugefügt haben. 
 
-#### Ist es gefährlich, den Vendor Check deaktiviert zu lassen?
+### Ist es gefährlich, den Vendor Check deaktiviert zu lassen?
 Nein, das ist es nicht!
 Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware verwendet, nicht zur Absicherung des Registrierungsprozesses.
 
 Wie Sie in diesen Artikeln lesen können, hat die Deaktivierung nichts mit der Software-Sicherheit zu tun:
+
 - [https://developers.yubico.com/U2F/Attestation_and_Metadata/](https://developers.yubico.com/U2F/Attestation_and_Metadata/)
 - [https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651](https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651)
 - [https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01](https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01)
