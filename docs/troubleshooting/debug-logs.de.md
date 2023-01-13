@@ -1,4 +1,4 @@
-!!! warning
+!!! warning "Warnung"
     Dieser Abschnitt gilt nur für Docker's Standard-Logging-Treiber (JSON).
 
 Um die Logs aller mailcow: dockerized bezogenen Container zu sehen, können Sie den folgenden Befehl innerhalb Ihres mailcow-dockerized Ordners verwenden, der Ihre `mailcow.conf` enthält:
@@ -32,7 +32,7 @@ Um die Logs eines bestimmten Dienstes zu sehen, kann man folgendes verwenden:
     ```
 
 !!! info
-    Die verfügbaren Optionen für den Befehl **docker compose logs** sind:
+    Die verfügbaren Optionen für den Befehl obrigen Befehlsind:
 
     - **-no-color**: Erzeugt eine einfarbige Ausgabe.
     - **-f**: Der Log-Ausgabe folgen.

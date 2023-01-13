@@ -2,7 +2,7 @@
 
 Der "acme-mailcow" Container wird versuchen, ein LE-Zertifikat für `${MAILCOW_HOSTNAME}`, `autodiscover.ADDED_MAIL_DOMAIN` und `autoconfig.ADDED_MAIL_DOMAIN` zu erhalten.
 
-!!! warning
+!!! warning "Warnung"
     mailcow **muss** auf Port 80 verfügbar sein, damit der acme-Client funktioniert. Unsere Reverse Proxy Beispielkonfigurationen decken das ab. Sie können auch jeden externen ACME-Client (z.B. certbot) verwenden, um Zertifikate zu erhalten, aber Sie müssen sicherstellen, dass sie an den richtigen Ort kopiert werden und ein Post-Hook die betroffenen Container neu lädt. Weitere Informationen finden Sie in der Reverse Proxy-Dokumentation.
 
 Standardmäßig, d.h. **0 Domains** sind zu mailcow hinzugefügt, wird es versuchen, ein Zertifikat für `${MAILCOW_HOSTNAME}` zu erhalten.
@@ -13,7 +13,33 @@ Nur Namen, die validiert werden können, werden als SAN hinzugefügt.
 
 Für jede Domain, die Sie entfernen, wird das Zertifikat verschoben und ein neues Zertifikat angefordert. Es ist nicht möglich, Domains in einem Zertifikat zu behalten, wenn wir nicht in der Lage sind, die Challenge für diese zu validieren.
 
-Wenn Sie den ACME-Client neu starten wollen, verwenden Sie `docker compose restart acme-mailcow` und überwachen Sie die Protokolle mit `docker compose logs --tail=200 -f acme-mailcow`.
+Wenn Sie den ACME-Client neu starten wollen, verwenden Sie den folgenden Befehl:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart acme-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart acme-mailcow
+    ```
+    
+Überwachen Sie die Logs mit:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose logs --tail=200 -f acme-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose logs --tail=200 -f acme-mailcow
+    ```
 
 ### Zusätzliche Domain-Namen
 
@@ -29,7 +55,19 @@ Jeder Name wird anhand seiner IPv6-Adresse oder - wenn IPv6 in Ihrer Domäne nic
 
 Ein Wildcard-Name wie `smtp.*` wird versuchen, ein smtp.DOMAIN_NAME SAN für jede zu mailcow hinzugefügte Domain zu erhalten.
 
-Führen Sie `docker compose up -d` aus, um betroffene Container automatisch neu zu erstellen.
+Führen Sie den folgenden Befehl aus, um betroffene Container automatisch neu zu erstellen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 !!! info
     Die Verwendung anderer Namen als `MAILCOW_HOSTNAME` für den Zugriff auf das mailcow UI kann weitere Konfiguration erfordern.
@@ -40,19 +78,43 @@ Wenn Sie planen, einen anderen Servernamen als `MAILCOW_HOSTNAME` für den Zugri
 ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 ```
 
-Führen Sie `docker compose up -d` aus, um es anzuwenden.
+Führen Sie den folgenden Befehl aus, um es anzuwenden:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ### Erneuerung erzwingen
 
 Um eine Erneuerung zu erzwingen, müssen Sie eine Datei namens `force_renew` erstellen und den `acme-mailcow` Container neu starten:
 
-```
-cd /opt/mailcow-dockerized
-touch data/assets/ssl/force_renew
-docker compose restart acme-mailcow
-# Prüfen Sie nun die Logs auf eine Erneuerung
-docker compose logs --tail=200 -f acme-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    touch data/assets/ssl/force_renew
+    docker compose restart acme-mailcow
+    # Prüfen Sie nun die Logs auf eine Erneuerung
+    docker compose logs --tail=200 -f acme-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    touch data/assets/ssl/force_renew
+    docker-compose restart acme-mailcow
+    # Prüfen Sie nun die Logs auf eine Erneuerung
+    docker-compose logs --tail=200 -f acme-mailcow
+    ```
 
 Die Datei wird automatisch gelöscht.
 
@@ -60,20 +122,56 @@ Die Datei wird automatisch gelöscht.
 
 Sie können die **IP-Überprüfung** überspringen, indem Sie `SKIP_IP_CHECK=y` in mailcow.conf setzen (keine Anführungszeichen). Seien Sie gewarnt, dass eine Fehlkonfiguration dazu führt, dass Sie von Let's Encrypt eingeschränkt werden! Dies ist vor allem für Multi-IP-Setups nützlich, bei denen der IP-Check die falsche Quell-IP-Adresse zurückgeben würde. Aufgrund der Verwendung von dynamischen IPs für acme-mailcow ist Source-NAT bei Neustarts nicht konsistent.
 
-Wenn Sie Probleme mit der "HTTP-Validierung" haben, aber Ihre IP-Adressbestätigung erfolgreich ist, verwenden Sie höchstwahrscheinlich firewalld, ufw oder eine andere Firewall, die Verbindungen von `br-mailcow` zu Ihrem externen Interface verbietet. Sowohl firewalld als auch ufw lassen dies standardmäßig nicht zu. Es reicht oft nicht aus, diese Firewall-Dienste einfach zu stoppen. Sie müssen mailcow stoppen (`docker compose down`), den Firewall-Dienst stoppen, die Ketten flushen und Docker neu starten.
+Wenn Sie Probleme mit der "HTTP-Validierung" haben, aber Ihre IP-Adressbestätigung erfolgreich ist, verwenden Sie höchstwahrscheinlich firewalld, ufw oder eine andere Firewall, die Verbindungen von `br-mailcow` zu Ihrem externen Interface verbietet. Sowohl firewalld als auch ufw lassen dies standardmäßig nicht zu. Es reicht oft nicht aus, diese Firewall-Dienste einfach zu stoppen. Sie müssen mailcow stoppen, den Firewall-Dienst stoppen, die Chains flushen und Docker neu starten.
 
 Sie können diese Validierungsmethode auch überspringen, indem Sie `SKIP_HTTP_VERIFICATION=y` in "mailcow.conf" setzen. Seien Sie gewarnt, dass dies nicht zu empfehlen ist. In den meisten Fällen wird die HTTP-Überprüfung übersprungen, um unbekannte NAT-Reflection-Probleme zu umgehen, die durch das Ignorieren dieser spezifischen Netzwerk-Fehlkonfiguration nicht gelöst werden. Wenn Sie Probleme haben, TLSA-Einträge in der DNS-Übersicht innerhalb von mailcow zu generieren, haben Sie höchstwahrscheinlich Probleme mit NAT-Reflexion, die Sie beheben sollten.
 
-Wenn du einen SKIP_* Parameter geändert hast, führe `docker compose up -d` aus, um deine Änderungen zu übernehmen.
+Wenn Sie einen SKIP_* Parameter geändert haben, führen Sie den folgenden Befehl aus, um die Änderungen zu übernehmen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ### Deaktivieren Sie Let's Encrypt
 #### Deaktivieren Sie Let's Encrypt vollständig
 
-Setzen Sie `SKIP_LETS_ENCRYPT=y` in "mailcow.conf" und erstellen Sie "acme-mailcow" neu, indem Sie `docker compose up -d` ausführen.
+Setzen Sie `SKIP_LETS_ENCRYPT=y` in "mailcow.conf" und erstellen Sie "acme-mailcow" neu, mit dem folgenden Befehl:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 #### Alle Namen außer ${MAILCOW_HOSTNAME} überspringen
 
-Fügen Sie `ONLY_MAILCOW_HOSTNAME=y` zu "mailcow.conf" hinzu und erstellen Sie "acme-mailcow" neu, indem Sie `docker compose up -d` ausführen.
+Fügen Sie `ONLY_MAILCOW_HOSTNAME=y` zu "mailcow.conf" hinzu und erstellen Sie "acme-mailcow" neu, mit dem folgenden Befehl:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ### Das Let's Encrypt subjectAltName-Limit von 100 Domains
 
@@ -81,7 +179,7 @@ Let's Encrypt hat derzeit [ein Limit von 100 Domainnamen pro Zertifikat](https:/
 
 Standardmäßig erstellt "acme-mailcow" ein einzelnes SAN-Zertifikat für alle validierten Domains
 (siehe den [ersten Abschnitt](#lets-encrypt-wird-mitgeliefert) und [Zusätzliche Domainnamen](#zusatzliche-domain-namen)).
-Dies bietet beste Kompatibilität, bedeutet aber, dass das Let's Encrypt-Limit überschritten wird, wenn Sie zu viele Domains zu einer einzelnen Mailcow-Installation hinzufügen.
+Dies bietet beste Kompatibilität, bedeutet aber, dass das Let's Encrypt-Limit überschritten wird, wenn Sie zu viele Domains zu einer einzelnen mailcow-Installation hinzufügen.
 
 Um dies zu lösen, können Sie `ENABLE_SSL_SNI` so konfigurieren, dass es generiert wird:
 
@@ -91,9 +189,21 @@ Um dies zu lösen, können Sie `ENABLE_SSL_SNI` so konfigurieren, dass es generi
 
 Postfix, Dovecot und Nginx werden dann diese Zertifikate mit SNI bedienen.
 
-Setzen Sie `ENABLE_SSL_SNI=y` in "mailcow.conf" und erstellen Sie "acme-mailcow" durch Ausführen von `docker compose up -d`.
+Setzen Sie `ENABLE_SSL_SNI=y` in "mailcow.conf" und erstellen Sie "acme-mailcow" mit dem folgenden Befehl neu:
 
-!!! warning
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+!!! warning "Warnung"
     Nicht alle Clients unterstützen SNI, [siehe Dovecot Dokumentation](https://wiki.dovecot.org/SSL/SNIClientSupport) oder [Wikipedia](https://en.wikipedia.org/wiki/Server_Name_Indication#Support).
     Sie sollten sicherstellen, dass diese Clients den `MAILCOW_HOSTNAME` für sichere Verbindungen verwenden, wenn Sie diese Funktion aktivieren.
 
@@ -101,7 +211,7 @@ Hier ist ein Beispiel:
 
 - `MAILCOW_HOSTNAME=server.email.tld`
 - `ADDITIONAL_SAN=webmail.email.tld,mail.*`
-- Mailcow E-Mail-Domänen: "domain1.tld" und "domain2.tld"
+- mailcow E-Mail-Domänen: "domain1.tld" und "domain2.tld"
 
 Die folgenden Zertifikate werden generiert:
 
@@ -125,13 +235,25 @@ docker restart $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
-Siehe [Post-Hook-Skript für Nicht-Mailcow-ACME-Clients](../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients) für ein vollständiges Beispielskript.
+Siehe [Post-Hook-Skript für Nicht-mailcow-ACME-Clients](../firststeps-rp#optional-post-hook-skript-fur-nicht-mailcow-acme-clients) für ein vollständiges Beispielskript.
 
 ### Test gegen das ACME-Verzeichnis
 
 Bearbeiten Sie `mailcow.conf` und fügen Sie `LE_STAGING=y` hinzu.
 
-Führen Sie `docker compose up -d` aus, um Ihre Änderungen zu aktivieren.
+Führen Sie den folgenden Befehl aus, um Ihre Änderungen zu aktivieren:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ### Benutzerdefinierte Verzeichnis-URL
 
@@ -143,11 +265,35 @@ DIRECTORY_URL=https://acme-custom-v9000.api.letsencrypt.org/directory
 
 Sie können `LE_STAGING` nicht mit `DIRECTORY_URL` verwenden. Wenn beide gesetzt sind, wird nur `LE_STAGING` verwendet.
 
-Führen Sie `docker compose up -d` aus, um Ihre Änderungen zu aktivieren.
+Führen Sie den folgenden Befehl aus, um Ihre Änderungen zu aktivieren:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ### Überprüfen Sie Ihre Konfiguration
 
-Führen Sie `docker compose logs acme-mailcow` aus, um herauszufinden, warum eine Validierung fehlschlägt.
+Führen Sie den folgenden Befehl aus, um herauszufinden, warum eine Validierung fehlschlägt:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose logs --tail=200 acme-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose logs --tail=200 acme-mailcow
+    ```
 
 Um zu überprüfen, ob nginx das richtige Zertifikat verwendet, benutzen Sie einfach einen Browser Ihrer Wahl und überprüfen Sie das angezeigte Zertifikat.
 
@@ -164,7 +310,7 @@ echo "Q" | openssl s_client -connect mx.mailcow.email:443
 
 Um die von openssl zurückgegebenen Verfallsdaten gegen MAILCOW_HOSTNAME zu validieren, können Sie unser Hilfsskript verwenden:
 
-```
+```bash
 cd /opt/mailcow-dockerized
 bash helper-scripts/expiry-dates.sh
 ```

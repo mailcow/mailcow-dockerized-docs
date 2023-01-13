@@ -9,13 +9,33 @@ cd mailcow_path
 
 ## Reset MySQL Passwords
 
-Stop the stack by running `docker compose stop`.
+Stop the stack by running:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose stop
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose stop
+    ```
 
 When the containers came to a stop, run this command:
 
-```
-docker compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables & sleep 10 && mysql -hlocalhost -uroot && exit 0"' mysql-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables & sleep 10 && mysql -hlocalhost -uroot && exit 0"' mysql-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose run --rm --entrypoint '/bin/sh -c "gosu mysql mysqld --skip-grant-tables & sleep 10 && mysql -hlocalhost -uroot && exit 0"' mysql-mailcow
+    ```
 
 ### 1\. Find database name
 

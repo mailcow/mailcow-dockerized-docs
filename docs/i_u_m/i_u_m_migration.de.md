@@ -1,5 +1,5 @@
-!!! warning
-    Diese Anleitung geht davon aus, dass Sie beabsichtigen, einen bestehenden Mailcow-Server (Quelle) auf einen brandneuen, leeren Server (Ziel) zu migrieren. Sie kümmert sich nicht um die Erhaltung bestehender Daten auf dem Zielserver und löscht alles innerhalb von `/var/lib/docker/volumes` und somit alle Docker-Volumes, die Sie bereits eingerichtet haben.
+!!! warning "Warnung"
+    Diese Anleitung geht davon aus, dass Sie beabsichtigen, einen bestehenden mailcow-Server (Quelle) auf einen brandneuen, leeren Server (Ziel) zu migrieren. Sie kümmert sich nicht um die Erhaltung bestehender Daten auf dem Zielserver und löscht alles innerhalb von `/var/lib/docker/volumes` und somit alle Docker-Volumes, die Sie bereits eingerichtet haben.
 
 !!! tip
     Alternativ können Sie das Skript `./helper-scripts/backup_and_restore.sh` verwenden, um ein vollständiges Backup auf der Quellmaschine zu erstellen, dann installieren Sie mailcow auf der Zielmaschine wie gewohnt, kopieren Sie Ihre `mailcow.conf` und verwenden Sie das gleiche Skript, um Ihr Backup auf der Zielmaschine wiederherzustellen.

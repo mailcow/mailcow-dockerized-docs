@@ -192,7 +192,7 @@ plugins:
           'Disable IPv6': 'IPv6 deaktivieren'
           'IP bindings': 'IP-Bindings'
           'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
-          'Sync job migration': 'Migration von Sync-Jobs'
+          'Sync job migration': 'Migration mit Sync Jobs'
           ### Models Section
           'Models': 'Modelle'
           'Password hashing': 'Passwort-Hashing'
@@ -220,13 +220,13 @@ plugins:
           'Recover accidentally deleted data' : 'Versehentlich gelöschte Daten wiederherstellen'
           ### Manual/Guides/Examples Section
           'Manual/Guides/Examples': 'Anleitungen/Beispiele'
-            ### Mailcow UI Subsection
+            ### mailcow UI Subsection
           'Configuration' : 'Konfiguration'
           'CSS overrides' : 'CSS-Überschreibungen'
           'Sub-addressing' : 'Sub-Adressierung'
           'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
           'Tags (for Domains and Mailboxes)' : 'Tags (für Domains und Mailboxen)'
-          'Two-Factor Authentication' : 'Zwei-Faktoren-Authentifizierung'
+          'Two-Factor Authentication' : 'Zwei-Faktor Authentifizierung'
             ### Postfix Subsection
           'Add trusted networks': 'Vertrauenswürdige Netzwerke hinzufügen'
           'Custom transport maps': 'Benutzerdefinierte Transportmaps'

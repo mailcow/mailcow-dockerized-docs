@@ -13,18 +13,30 @@ Dadurch werden auch die Bindungen innerhalb des Nginx-Containers geändert! Dies
 
 **WICHTIG:** Verwenden Sie nicht Port 8081, 9081 oder 65510!
 
-Erzeugen Sie die betroffenen Container neu, indem Sie `docker compose up -d` ausführen.
+Erzeugen Sie die betroffenen Container neu, indem Sie den folgenden Befehl ausführen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 **Wichtige Informationen, bitte lesen Sie diese sorgfältig durch!**
 
 !!! info
     Wenn Sie planen, einen Reverse-Proxy zu verwenden und einen anderen Servernamen als **MAILCOW_HOSTNAME** verwenden wollen, müssen Sie **Zusätzliche Servernamen für mailcow UI** am Ende dieser Seite hinzufügen.
 
-!!! warning
+!!! warning "Warnung"
     Stellen Sie sicher, dass Sie `generate_config.sh` ausführen, bevor Sie die untenstehenden Konfigurationsbeispiele aktivieren.
     Das Skript `generate_config.sh` kopiert die Snake-oil Zertifikate an den richtigen Ort, so dass die Dienste nicht aufgrund fehlender Dateien nicht starten können.
 
-!!! warning
+!!! warning "Warnung"
     Wenn Sie TLS SNI aktivieren (`ENABLE_TLS_SNI` in mailcow.conf), **müssen** die Zertifikatspfade in Ihrem Reverse-Proxy mit den korrekten Pfaden in data/assets/ssl/{hostname} übereinstimmen. Die Zertifikate werden in `data/assets/ssl/{hostname1,hostname2,etc}` aufgeteilt und werden daher nicht funktionieren, wenn Sie die Beispiele von unten kopieren, die auf `data/assets/ssl/cert.pem` etc. zeigen.
 
 !!! info
@@ -180,9 +192,21 @@ backend mailcow
 In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 `[certificatesresolvers]` in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier [traefik.toml](https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml), falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.
 
 Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
-Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und `docker compose up -d` ausführen, um die Änderungen zu übernehmen.
+Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und den folgenden Befehl ausführen, um die Änderungen zu übernehmen:
 
-Dann erstellen wir eine `docker-compose.override.yml` Datei, um die Hauptdatei `docker-compose.yml` zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. 
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+Dann erstellen wir eine `docker-compose.override.yml` Datei, um die Hauptdatei `docker-compose.yml` zu überschreiben, die sich im mailcow-Stammverzeichnis befindet. 
 
 ```yaml
 version: '2.1'
@@ -223,7 +247,7 @@ services:
           - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: always
         environment:
-          # Ändern Sie dies nur, wenn Sie eine andere Domain für Mailcows Web-Frontend verwenden als in der Standard-Konfiguration
+          # Ändern Sie dies nur, wenn Sie eine andere Domain für mailcows Web-Frontend verwenden als in der Standard-Konfiguration
           - DOMAIN=${MAILCOW_HOSTNAME}
 
 networks:
@@ -239,13 +263,25 @@ volumes:
     name: traefik_acme
 ```
 
-Starten Sie die neuen Container mit `docker compose up -d`.
+Starten Sie die neuen Container mit:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 Da Traefik 2 ein acme v2 Format verwendet, um ALLE Zertifikaten von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (https://hub.docker.com/r/humenius/traefik-certs-dumper), der die Datei `acme.json` über ein Volume und eine Variable `DOMAIN=example. org`, und damit wird der Container die `cert.pem` und `key.pem` Dateien ausgeben, dafür lassen wir einfach den `traefik-certs-dumper` Container laufen, binden das `/traefik` Volume an den Ordner, in dem unsere `acme.json` gespeichert ist, binden das `/output` Volume an unseren mailcow `data/assets/ssl/` Ordner, und setzen die `DOMAIN=example.org` Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. 
 
 Dieser Container überwacht die Datei `acme.json` auf Änderungen und generiert die Dateien `cert.pem` und `key.pem` direkt in `data/assets/ssl/`, wobei der Pfad mit dem `/output`-Pfad des Containers verbunden ist.
 
-Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker compose verwenden (https://hub.docker.com/r/humenius/traefik-certs-dumper).
+Sie können es über die Kommandozeile ausführen oder das [hier](https://hub.docker.com/r/humenius/traefik-certs-dumper) gezeigte docker-compose.yml verwenden.
 
 Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden).
 
@@ -339,4 +375,16 @@ Wenn Sie vorhaben, einen Servernamen zu verwenden, der nicht `MAILCOW_HOSTNAME` 
 ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 ```
 
-Führen Sie `docker compose up -d` zum Anwenden aus.
+Führen Sie zum Anwenden folgendes aus:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```

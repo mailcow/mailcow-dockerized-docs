@@ -51,7 +51,29 @@ volumes:
 ```
 
 - Copy the content of the `Mountpoint` folder to the new location (e.g. `/data/mailcow/vmail`) using `cp -a`, `rsync -a` or a similar non strcuture breaking copy command
-- Stop mailcow by executing `docker compose down` from within your mailcow root folder (e.g. `/opt/mailcow-dockerized`)
+- Stop mailcow by executing the following command from within your mailcow root folder (e.g. `/opt/mailcow-dockerized`):
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down    
+    ```
 - Create the file `docker-compose.override.yml`, edit the device path accordingly
 - Delete the current vmail folder: `docker volume rm mailcowdockerized_vmail-vol-1`
-- Start mailcow by executing `docker compose up -d` from within your mailcow root folder (e.g. `/opt/mailcow-dockerized`)
+- Start mailcow by executing the following command from within your mailcow root folder (e.g. `/opt/mailcow-dockerized`):
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash  
+    docker-compose up -d
+    ```

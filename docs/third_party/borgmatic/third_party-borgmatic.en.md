@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Borgmatic is a great way to run backups on your Mailcow setup as it securely encrypts your data and is extremely easy to
+Borgmatic is a great way to run backups on your mailcow setup as it securely encrypts your data and is extremely easy to
 set up.
 
 Due to it's deduplication capabilities you can store a great number of backups without wasting large amounts of disk
@@ -128,9 +128,17 @@ or OpenSSH will refuse to use the SSH key.
 
 For the next step we need the container to be up and running in a configured state. To do that run:
 
-```shell
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 ### Initialize the repository
 
@@ -139,9 +147,17 @@ initialized.
 
 To initialize the repository run:
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic init --encryption repokey-blake2
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic init --encryption repokey-blake2
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic init --encryption repokey-blake2
+    ```
 
 You will be asked you to authenticate the SSH host key of your remote repository server. See if it matches and confirm
 the prompt by entering `yes`. The repository will be initialized with the passphrase you set in the `BORG_PASSPHRASE`
@@ -157,9 +173,17 @@ for how to retrieve the key.
 Now that we finished configuring and initializing the repository restart the container to ensure it is in a defined
 state:
 
-```shell
-docker compose restart borgmatic-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart borgmatic-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart borgmatic-mailcow
+    ```
 
 ## Restoring from a backup
 
@@ -182,9 +206,17 @@ Before running a restore you must make the vmail volume writeable in `docker-com
 the `ro` flag from the volume.
 Then you can use the following command to restore the maildir from a backup:
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+    ```
 
 Alternatively you can specify any archive name from the list of archives (see
 [Listing all available archives](#listing-all-available-archives))
@@ -197,9 +229,17 @@ Alternatively you can specify any archive name from the list of archives (see
 
 To restore the MySQL database from the latest archive use this command:
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic restore --archive latest
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic restore --archive latest
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic restore --archive latest
+    ```
 
 Alternatively you can specify any archive name from the list of archives (see
 [Listing all available archives](#listing-all-available-archives))
@@ -211,9 +251,17 @@ re-enable it.
 
 To restart mailcow use the follwing command:
 
-```shell
-docker compose down && docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down && docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down && docker-compose up -d
+    ```
 
 If you use SELinux this will also trigger the re-labeling of all files in your vmail volume. Be patient, as this may
 take a while if you have lots of files.
@@ -222,24 +270,48 @@ take a while if you have lots of files.
 
 ### Manual archiving run (with debugging output)
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic -v 2
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic -v 2
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic -v 2
+    ```
 
 ### Listing all available archives
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic list
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic list
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic list
+    ```
 
 ### Break lock
 
 When borg is interrupted during an archiving run it will leave behind a stale lock that needs to be cleared before any
 new operations can be performed:
 
-```shell
-docker compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+    ```
 
 Where `user@rsync.net:mailcow` is the URI to your repository.
 
@@ -255,8 +327,16 @@ Note that in either case you also must have the passphrase to decrypt any archiv
 
 To fetch the keyfile run:
 
-```shell
-docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    ```
 
 Where `user@rsync.net:mailcow` is the URI to your repository.

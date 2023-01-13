@@ -2,7 +2,7 @@
 
 ## Einführung
 
-Borgmatic ist ein großartiger Weg, um Backups auf Ihrem Mailcow-Setup durchzuführen, da es Ihre Daten sicher verschlüsselt und extrem einfach zu
+Borgmatic ist ein großartiger Weg, um Backups auf Ihrem mailcow-Setup durchzuführen, da es Ihre Daten sicher verschlüsselt und extrem einfach zu
 einzurichten.
 
 Aufgrund seiner Deduplizierungsfähigkeiten können Sie eine große Anzahl von Backups speichern, ohne große Mengen an Speicherplatz zu verschwenden.
@@ -127,9 +127,61 @@ oder OpenSSH wird sich weigern, den SSH-Schlüssel zu benutzen.
 
 Für den nächsten Schritt müssen wir den Container in einem konfigurierten Zustand hochfahren und laufen lassen. Um das zu tun, führen Sie aus:
 
-```shell
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+### Das Backup Repository initialisieren
+
+Zwar ist Ihr borgmatic-Container jetzt betriebsbereit, aber die Backups schlagen derzeit fehl, da das Repository nicht
+initialisiert wurde.
+
+Um das Repository zu initialisieren, führen Sie folgenden Befehl aus:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic init --encryption repokey-blake2
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic init --encryption repokey-blake2
+    ```
+
+Sie werden aufgefordert, den SSH-Hostschlüssel Ihres entfernten Repository-Servers zu authentifizieren. Prüfen Sie, ob er übereinstimmt und bestätigen
+und bestätigen Sie die Aufforderung mit `yes`. Das Repository wird mit der Passphrase initialisiert, die Sie zuvor in der Umgebungsvariable `BORG_PASSPHRASE` gesetzt haben.
+
+Bei Verwendung einer der `repokey`-Verschlüsselungsmethoden wird der Verschlüsselungsschlüssel im Repository selbst gespeichert und nicht auf dem
+dem Client, so dass in dieser Hinsicht keine weiteren Maßnahmen erforderlich sind. Wenn Sie sich für die Verwendung einer `keyfile` anstelle von
+`repokey` entscheiden, stellen Sie sicher, dass Sie den Schlüssel exportieren und separat sichern. Lesen Sie den Abschnitt [Exportieren von Schlüsseln](#exportieren-von-schlusseln)
+um zu erfahren, wie Sie den Schlüssel abrufen können.
+
+### Container neustarten
+
+Nachdem wir nun die Konfiguration und Initialisierung des Repositorys abgeschlossen haben, starten wir den Container neu, um sicherzustellen, dass er sich in einem definierten
+Zustand befindet:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart borgmatic-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart borgmatic-mailcow
+    ``` 
 
 ## Wiederherstellung von einem Backup
 
@@ -138,13 +190,13 @@ keine benutzerdefinierten Daten in ihrem maildir oder ihrer mailcow Datenbank.
 
 ### Wiederherstellen von maildir
 
-!!! warning
+!!! warning "Warnung"
     Dies wird Dateien in Ihrem maildir überschreiben! Führen Sie dies nicht aus, es sei denn, Sie beabsichtigen tatsächlich, Mail
     Dateien von einem Backup wiederherzustellen.
 
 !!! note "Wenn Sie SELinux im Erzwingungsmodus verwenden"
     Wenn Sie mailcow auf einem Host mit SELinux im Enforcing-Modus verwenden, müssen Sie es vorübergehend deaktivieren während
-    während der Extraktion des Archivs vorübergehend deaktivieren, da das Mailcow-Setup das vmail-Volumen als privat kennzeichnet, das ausschließlich dem Dovecot-Container
+    während der Extraktion des Archivs vorübergehend deaktivieren, da das mailcow-Setup das vmail-Volumen als privat kennzeichnet, das ausschließlich dem Dovecot-Container
     ausschließlich. SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
     dieses Volume zu schreiben.
 
@@ -152,37 +204,61 @@ Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in `
 das `ro`-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic extract --path mnt/source --archive latest
+    ```
 
 Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 [Auflistung aller verfügbaren Archive](#auflistung-aller-verfugbaren-archive))
 
 ### MySQL wiederherstellen
 
-!!! warning
+!!! warning "Warnung"
     Die Ausführung dieses Befehls löscht und erstellt die mailcow-Datenbank neu! Führen sie diesen Befehl nicht aus, es sei denn sie beabsichtigen, die mailcow-Datenbank von einem Backup wiederherzustellen.
 
 Um die MySQL-Datenbank aus dem letzten Archiv wiederherzustellen, verwenden Sie diesen Befehl:
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic restore --archive latest
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic restore --archive latest
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic restore --archive latest
+    ```
 
 Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 [Auflistung aller verfügbaren Archive](#auflistung-aller-verfugbaren-archive))
 
 ### Nach der Wiederherstellung
 
-Nach der Wiederherstellung müssen Sie mailcow neu starten. Wenn Sie den SELinux-Erzwingungsmodus deaktiviert haben, wäre jetzt ein guter Zeitpunkt, um
+Nach der Wiederherstellung müssen Sie mailcow neu starten. Wenn Sie SELinux "Erzwingen" deaktiviert haben, wäre jetzt ein guter Zeitpunkt, um
 ihn wieder zu aktivieren.
 
 Um mailcow neu zu starten, verwenden Sie den folgenden Befehl:
 
-```shell
-docker compose down && docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down && docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down && docker-compose up -d
+    ```
 
 Wenn Sie SELinux verwenden, werden dadurch auch alle Dateien in Ihrem vmail-Volume neu benannt. Seien Sie geduldig, denn dies kann
 eine Weile dauern kann, wenn Sie viele Dateien haben.
@@ -191,24 +267,48 @@ eine Weile dauern kann, wenn Sie viele Dateien haben.
 
 ### Manueller Archivierungslauf (mit Debugging-Ausgabe)
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic -v 2
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic -v 2
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic -v 2
+    ```
 
 ### Auflistung aller verfügbaren Archive
 
-```shell
-docker compose exec borgmatic-mailcow borgmatic list
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic list
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic list
+    ```
 
 ### Sperre aufheben
 
 Wenn borg während eines Archivierungslaufs unterbrochen wird, hinterlässt es eine veraltete Sperre, die gelöscht werden muss, bevor
 neue Operationen durchgeführt werden können:
 
-```shell
-docker compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+    ```
 
 Wobei `user@rsync.net:mailcow` die URI zu Ihrem Repository ist.
 
@@ -224,8 +324,16 @@ Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um d
 
 Um die `keyfile` zu holen, führen Sie aus:
 
-```shell
-docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    ```
 
 Wobei `user@rsync.net:mailcow` die URI zu Ihrem Repository ist.

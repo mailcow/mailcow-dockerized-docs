@@ -15,6 +15,7 @@ SHELL=/bin/bash
 
 Um zu funktionieren muss ein lokaler Postfix auf dem Server installiert werden, welcher an den Postfix der mailcow relayed.
 
-Genauere Informationen lassen sich unter Sektion [Post-Installationsaufgaben -> Lokaler MTA auf Dockerhost](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-local_mta/) finden.
+!!! question "Frage"
+    Genauere Informationen lassen sich unter Sektion [Post-Installationsaufgaben -> Lokaler MTA auf Dockerhost](../../post_installation/firststeps-local_mta.de.md) finden.
 
 Basierend auf den Postfix-Logs der letzten 24 Stunden sendet dieses Beispiel dann jeden Tag um 23:59:00 Uhr einen pflogsumm-Bericht an postmaster@example.net.

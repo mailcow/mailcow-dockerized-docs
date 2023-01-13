@@ -103,7 +103,7 @@ Um einen Cronjob zu erstellen, können Sie `crontab -e` ausführen und etwas wie
 
 ### über Docker Job Scheduler
 
-Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docker-compose.override.yml mit Ihrer Mailcow: 
+Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docker-compose.override.yml mit Ihrer mailcow: 
 
 
 ```

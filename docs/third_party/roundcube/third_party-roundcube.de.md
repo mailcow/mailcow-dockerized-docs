@@ -1,9 +1,9 @@
 ## Installation von Roundcube
 
 Laden Sie Roundcube 1.6.x in das Web htdocs Verzeichnis herunter und entpacken Sie es (hier `rc/`):
-```
+```bash
 # Prüfen Sie, ob eine neuere Version vorliegt!
-cd daten/web
+cd data/web
 wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
 
 # Ändern Sie den Ordnernamen
@@ -14,7 +14,7 @@ chown -R root: rc/
 ```
 
 Wenn Sie eine Rechtschreibprüfung benötigen, erstellen Sie eine Datei `data/hooks/phpfpm/aspell.sh` mit folgendem Inhalt und geben Sie dann `chmod +x data/hooks/phpfpm/aspell.sh` ein. Dadurch wird eine lokale Rechtschreibprüfung installiert. Beachten Sie, dass die meisten modernen Webbrowser eine eingebaute Rechtschreibprüfung haben, so dass Sie diese vielleicht nicht benötigen.
-```
+```bash
 #!/bin/bash
 apk update
 apk add aspell-de # oder jede andere Sprache
@@ -24,7 +24,7 @@ Erstellen Sie eine Datei `data/web/rc/config/config.inc.php` mit dem folgenden I
    - **Ändern Sie den Parameter `des_key` auf einen Zufallswert.** Er wird verwendet, um Ihr IMAP-Passwort vorübergehend zu speichern.
    - Der `db_prefix` ist optional, wird aber empfohlen.
    - Wenn Sie die Rechtschreibprüfung im obigen Schritt nicht installiert haben, entfernen Sie den Parameter `spellcheck_engine` und ersetzen ihn durch `$config['enable_spellcheck'] = false;`.
-```
+```php
 <?php
 error_reporting(0);
 if (!file_exists('/tmp/mime.types')) {
@@ -65,7 +65,7 @@ Initialisiere die Datenbank und verlasse das Installationsprogramm.
 ## Konfigurieren Sie die ManageSieve-Filterung
 
 Öffnen Sie `data/web/rc/config/config.inc.php` und ändern Sie die folgenden Parameter (oder fügen Sie sie am Ende der Datei hinzu):
-```
+```php
 $config['managesieve_host'] = 'tls://dovecot:4190';
 $config['managesieve_conn_options'] = array(
   'ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true)
@@ -81,7 +81,7 @@ $config['managesieve_vacation'] = 1;
 
 Öffnen Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das Passwort-Plugin:
 
-```
+```php
 [...]
 $config['plugins'] = array(
     'archive',
@@ -92,7 +92,7 @@ $config['plugins'] = array(
 
 Öffnen Sie `data/web/rc/plugins/password/password.php`, suchen Sie nach `case 'ssha':` und fügen Sie oben hinzu:
 
-```
+```php
         case 'ssha256':
             $salt = rcube_utils::random_bytes(8);
             $crypted = base64_encode( hash('sha256', $password . $salt, TRUE ) . $salt );
@@ -102,7 +102,7 @@ $config['plugins'] = array(
 
 Öffnen Sie `data/web/rc/plugins/password/config.inc.php` und ändern Sie die folgenden Parameter (oder fügen Sie sie am Ende der Datei hinzu):
 
-```
+```php
 $config['password_driver'] = 'sql';
 $config['password_algorithm'] = 'ssha256';
 $config['password_algorithm_prefix'] = '{SSHA256}';
@@ -112,14 +112,14 @@ $config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %
 ## CardDAV Adressbücher in Roundcube einbinden
 
 Laden Sie die neueste Version von [RCMCardDAV](https://github.com/mstilkerich/rcmcarddav) in das Roundcube Plugin Verzeichnis und entpacken Sie es (hier `rc/plugins`):
-```
+```bash
 cd data/web/rc/plugins
 wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz | tar xfvz -
 chown -R root: carddav/
 ```
   
 Kopieren Sie die Datei `config.inc.php.dist` nach `config.inc.php` (hier in `rc/plugins/carddav`) und fügen Sie die folgende Voreinstellung an das Ende der Datei an - vergessen Sie nicht, `mx.example.org` durch Ihren eigenen Hostnamen zu ersetzen:
-```
+```php
 $prefs['SOGo'] = array(
     'name'         =>  'SOGo',
     'username'     =>  '%u',
@@ -147,7 +147,7 @@ Um dies zu tun, öffnen oder erstellen Sie `data/web/inc/vars.local.inc.php` und
 
 *HINWEIS: Vergessen Sie nicht, das `<?php` Trennzeichen in der ersten Zeile einzufügen*
 
-```
+```php
 ...
 $MAILCOW_APPS = array(
   array(
@@ -167,7 +167,7 @@ $MAILCOW_APPS = array(
 Ein Upgrade von Roundcube ist recht einfach: Gehen Sie auf die [Github releases](https://github.com/roundcube/roundcubemail/releases) Seite für Roundcube und holen Sie sich den Link für die "complete.tar.gz" Datei für die gewünschte Version. Dann folgen Sie den untenstehenden Befehlen und ändern Sie die URL und den Namen des Roundcube-Ordners, falls nötig. 
 
 
-```
+```bash
 # Starten Sie eine Bash-Sitzung des mailcow PHP-Containers
 docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
@@ -202,7 +202,7 @@ sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
 
 ## Administratoren ohne Passwort in Roundcube einloggen lassen
 
-Installieren Sie zunächst das Plugin [dovecot_impersonate] (https://github.com/corbosman/dovecot_impersonate/) und fügen Sie Roundcube als App hinzu (siehe oben).
+Installieren Sie zunächst das Plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) und fügen Sie Roundcube als App hinzu (siehe oben).
 
 Editieren Sie `mailcow.conf` und fügen Sie folgendes hinzu:
 
@@ -238,7 +238,7 @@ Bearbeiten Sie `data/web/mailbox.php` und fügen Sie diese Zeile zum Array [`$te
   'allow_admin_email_login_roundcube' => (preg_match("/^(yes|y)+$/i", $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"])) ? 'true' : 'false',
 ```
 
-Bearbeiten Sie `data/web/templates/mailbox.twig` und fügen Sie diesen Code am Ende des [javascript-Abschnitts] ein (https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57):
+Bearbeiten Sie `data/web/templates/mailbox.twig` und fügen Sie diesen Code am Ende des [javascript-Abschnitts](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57) ein:
 
 ```js
   var ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE = {{ allow_admin_email_login_roundcube }};
@@ -251,10 +251,19 @@ Kopieren Sie den Inhalt der folgenden Dateien aus diesem [Snippet](https://gitla
 
 Starten Sie schließlich mailcow neu
 
-```
-docker compose down
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down    
+    docker-compose up -d
+    ```
 
 
 

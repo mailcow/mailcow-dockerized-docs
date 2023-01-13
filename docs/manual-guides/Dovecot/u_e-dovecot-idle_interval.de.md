@@ -15,7 +15,7 @@ imap_idle_notify_interval = 5 mins
 
 29 Minuten ist der maximale Wert, den der [entsprechende RFC](https://tools.ietf.org/html/rfc2177) erlaubt.
 
-!!! warning
+!!! warning "Warnung"
 	Dies ist keine Standardeinstellung in mailcow, da wir nicht wissen, wie diese Einstellung das Verhalten anderer Clients verändert. Seien Sie vorsichtig, wenn Sie dies ändern und ein anderes Verhalten beobachten.
 
 ### Dovecot neu laden

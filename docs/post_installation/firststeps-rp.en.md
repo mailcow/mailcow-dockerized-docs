@@ -13,7 +13,19 @@ This will also change the bindings inside the Nginx container! This is important
 
 **IMPORTANT:** Do not use port 8081, 9081 or 65510!
 
-Recreate affected containers by running `docker compose up -d`.
+Recreate affected containers by running the command:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 **Important information, please read them carefully!**
 
@@ -182,7 +194,19 @@ For this section we'll assume you have your Traefik 2 `[certificatesresolvers]` 
 
 
 So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
-For this we'll have to set `SKIP_LETS_ENCRYPT=y` on our `mailcow.conf`, and run `docker compose up -d` to apply the changes.
+For this we'll have to set `SKIP_LETS_ENCRYPT=y` on our `mailcow.conf`, and run the following command to apply the changes:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 Then we'll create a `docker-compose.override.yml` file in order to override the main `docker-compose.yml` found in your mailcow root folder. 
 
@@ -242,14 +266,26 @@ volumes:
     name: traefik_acme
 ```
 
-Start the new containers with `docker compose up -d`.
+Start the new containers with:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 
 
 Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have [this tiny container](https://hub.docker.com/r/humenius/traefik-certs-dumper) which grabs the `acme.json` file trough a volume, and a variable `DOMAIN=example.org`, and with these, the container will output the `cert.pem` and `key.pem` files, for this we'll simply run the `traefik-certs-dumper` container binding the `/traefik` volume to the folder where our `acme.json` is saved, bind the `/output` volume to our mailcow `data/assets/ssl/` folder, and set up the `DOMAIN=example.org` variable to the domain we want the certs dumped from. 
 
 This container will watch over the `acme.json` file for any changes, and regenerate the `cert.pem` and `key.pem` files directly into `data/assets/ssl/` being the path binded to the container's `/output` path.
 
-You can use the command line to run it, or use the docker compose shown [here](https://hub.docker.com/r/humenius/traefik-certs-dumper).
+You can use the command line to run it, or use the docker-compose.yml shown [here](https://hub.docker.com/r/humenius/traefik-certs-dumper).
 
 After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how [here](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate).
 
@@ -342,4 +378,16 @@ If you plan to use a server name that is not `MAILCOW_HOSTNAME` in your reverse 
 ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 ```
 
-Run `docker compose up -d` to apply.
+Run the following command to apply:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
