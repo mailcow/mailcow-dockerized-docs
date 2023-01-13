@@ -79,8 +79,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -601,7 +602,7 @@
   
     <li class="md-nav__item">
       <a href="../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1290,7 +1291,7 @@
   
     <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2410,8 +2411,8 @@
 
 
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Diese Anleitung geht davon aus, dass Sie beabsichtigen, einen bestehenden Mailcow-Server (Quelle) auf einen brandneuen, leeren Server (Ziel) zu migrieren. Sie kümmert sich nicht um die Erhaltung bestehender Daten auf dem Zielserver und löscht alles innerhalb von <code>/var/lib/docker/volumes</code> und somit alle Docker-Volumes, die Sie bereits eingerichtet haben.</p>
+<p class="admonition-title">Warnung</p>
+<p>Diese Anleitung geht davon aus, dass Sie beabsichtigen, einen bestehenden mailcow-Server (Quelle) auf einen brandneuen, leeren Server (Ziel) zu migrieren. Sie kümmert sich nicht um die Erhaltung bestehender Daten auf dem Zielserver und löscht alles innerhalb von <code>/var/lib/docker/volumes</code> und somit alle Docker-Volumes, die Sie bereits eingerichtet haben.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2427,22 +2428,55 @@ systemctl status docker.service
 <div class="highlight"><pre><span></span><code>rsync -aHhP --numeric-ids --delete /opt/mailcow-dockerized/ root@target-machine.example.com:/opt/mailcow-dockerized
 rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.example.com:/var/lib/docker/volumes
 </code></pre></div></p>
-<p><strong>4.</strong> Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker compose down
-systemctl stop docker.service
-</code></pre></div></p>
+<p><strong>4.</strong> Schalten Sie mailcow ab und stoppen Sie Docker auf dem Quellrechner.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized
+docker<span class="w"> </span>compose<span class="w"> </span>down
+systemctl<span class="w"> </span>stop<span class="w"> </span>docker.service
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized
+docker-compose<span class="w"> </span>down
+systemctl<span class="w"> </span>stop<span class="w"> </span>docker.service
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>**Wiederholen Sie Schritt 3 mit denselben Befehlen. Dies wird viel schneller gehen als beim ersten Mal.</p>
 <p><strong>6.</strong> Wechseln Sie auf den Zielrechner und starten Sie Docker.
 <div class="highlight"><pre><span></span><code>systemctl start docker.service
 </code></pre></div></p>
-<p><strong>7.</strong> Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker compose pull
-</code></pre></div></p>
-<p><strong>8.</strong> Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!
-<div class="highlight"><pre><span></span><code>docker compose up -d
-</code></pre></div></p>
+<p><strong>7.</strong> Ziehen Sie nun die mailcow Docker-Images auf den Zielrechner.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized
+docker<span class="w"> </span>compose<span class="w"> </span>pull
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized
+docker-compose<span class="w"> </span>pull
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>8.</strong> Starten Sie den gesamten mailcow-Stack und alles sollte fertig sein!</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>9.</strong> Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen. Prüfen und ändern Sie gegebenenfalls die <code>SNAT_TO_SOURCE</code> Variable in der <code>mailcow.conf</code> im mailcow-dockerized Ordner, da andernfalls SOGo nicht richtig funktioniert, wenn die ausgehende IP eine andere ist.</p>
 
   <hr>
@@ -2450,7 +2484,7 @@ docker compose pull
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-31 11:22:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:34:22</span>
       
     
   </small>
@@ -2465,6 +2499,8 @@ docker compose pull
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2532,7 +2568,7 @@ docker compose pull
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

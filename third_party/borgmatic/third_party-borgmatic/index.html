@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2740,7 +2741,7 @@
 
 <h1 id="borgmatic-backup">Borgmatic Backup<a class="headerlink" href="#borgmatic-backup" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>Borgmatic is a great way to run backups on your Mailcow setup as it securely encrypts your data and is extremely easy to
+<p>Borgmatic is a great way to run backups on your mailcow setup as it securely encrypts your data and is extremely easy to
 set up.</p>
 <p>Due to it's deduplication capabilities you can store a great number of backups without wasting large amounts of disk
 space. This allows you to run backups in very short intervals to ensure minimal data loss when the need arises to
@@ -2841,14 +2842,34 @@ usual <code>id_rsa</code>, <code>id_ed25519</code> or similar to be in this dire
 or OpenSSH will refuse to use the SSH key.</p>
 <h3 id="bring-up-the-container">Bring up the container<a class="headerlink" href="#bring-up-the-container" title="Permanent link">&para;</a></h3>
 <p>For the next step we need the container to be up and running in a configured state. To do that run:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="initialize-the-repository">Initialize the repository<a class="headerlink" href="#initialize-the-repository" title="Permanent link">&para;</a></h3>
 <p>By now your borgmatic container is up and running, but the backups will currently fail due to the repository not being
 initialized.</p>
 <p>To initialize the repository run:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>init<span class="w"> </span>--encryption<span class="w"> </span>repokey-blake2
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>init<span class="w"> </span>--encryption<span class="w"> </span>repokey-blake2
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>You will be asked you to authenticate the SSH host key of your remote repository server. See if it matches and confirm
 the prompt by entering <code>yes</code>. The repository will be initialized with the passphrase you set in the <code>BORG_PASSPHRASE</code>
 environment variable earlier.</p>
@@ -2859,8 +2880,18 @@ for how to retrieve the key.</p>
 <h3 id="restart-container">Restart container<a class="headerlink" href="#restart-container" title="Permanent link">&para;</a></h3>
 <p>Now that we finished configuring and initializing the repository restart the container to ensure it is in a defined
 state:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>borgmatic-mailcow
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>borgmatic-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="restoring-from-a-backup">Restoring from a backup<a class="headerlink" href="#restoring-from-a-backup" title="Permanent link">&para;</a></h2>
 <p>Restoring a backup assumes you are starting off with a fresh installation of mailcow, and you currently do not have
 any custom data in your maildir or your mailcow database.</p>
@@ -2880,8 +2911,18 @@ this volume.</p>
 <p>Before running a restore you must make the vmail volume writeable in <code>docker-compose.override.yml</code> by removing
 the <code>ro</code> flag from the volume.
 Then you can use the following command to restore the maildir from a backup:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>extract<span class="w"> </span>--path<span class="w"> </span>mnt/source<span class="w"> </span>--archive<span class="w"> </span>latest
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>extract<span class="w"> </span>--path<span class="w"> </span>mnt/source<span class="w"> </span>--archive<span class="w"> </span>latest
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Alternatively you can specify any archive name from the list of archives (see
 <a href="#listing-all-available-archives">Listing all available archives</a>)</p>
 <h3 id="restore-mysql">Restore MySQL<a class="headerlink" href="#restore-mysql" title="Permanent link">&para;</a></h3>
@@ -2891,30 +2932,80 @@ Then you can use the following command to restore the maildir from a backup:</p>
 intend to recover the mailcow database from a backup.</p>
 </div>
 <p>To restore the MySQL database from the latest archive use this command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>restore<span class="w"> </span>--archive<span class="w"> </span>latest
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>restore<span class="w"> </span>--archive<span class="w"> </span>latest
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Alternatively you can specify any archive name from the list of archives (see
 <a href="#listing-all-available-archives">Listing all available archives</a>)</p>
 <h3 id="after-restoring">After restoring<a class="headerlink" href="#after-restoring" title="Permanent link">&para;</a></h3>
 <p>After restoring you need to restart mailcow. If you disabled SELinux enforcing mode now would be a good time to
 re-enable it.</p>
 <p>To restart mailcow use the follwing command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>If you use SELinux this will also trigger the re-labeling of all files in your vmail volume. Be patient, as this may
 take a while if you have lots of files.</p>
 <h2 id="useful-commands">Useful commands<a class="headerlink" href="#useful-commands" title="Permanent link">&para;</a></h2>
 <h3 id="manual-archiving-run-with-debugging-output">Manual archiving run (with debugging output)<a class="headerlink" href="#manual-archiving-run-with-debugging-output" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">docker compose (Plugin)</label><label for="__tabbed_7_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="listing-all-available-archives">Listing all available archives<a class="headerlink" href="#listing-all-available-archives" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">docker compose (Plugin)</label><label for="__tabbed_8_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>list
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>list
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="break-lock">Break lock<a class="headerlink" href="#break-lock" title="Permanent link">&para;</a></h3>
 <p>When borg is interrupted during an archiving run it will leave behind a stale lock that needs to be cleared before any
 new operations can be performed:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>break-lock<span class="w"> </span>user@rsync.net:mailcow
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>break-lock<span class="w"> </span>user@rsync.net:mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
 <p>Now would be a good time to do a manual archiving run to ensure it can be successfully performed.</p>
 <h3 id="exporting-keys">Exporting keys<a class="headerlink" href="#exporting-keys" title="Permanent link">&para;</a></h3>
@@ -2923,8 +3014,18 @@ key files are generated when you initialize the repository. The <code>repokey</c
 repository, so a manual backup isn't as essential.</p>
 <p>Note that in either case you also must have the passphrase to decrypt any archives.</p>
 <p>To fetch the keyfile run:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">docker compose (Plugin)</label><label for="__tabbed_10_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>user@rsync.net:mailcow
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>user@rsync.net:mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
 
   <hr>
@@ -2932,7 +3033,7 @@ repository, so a manual backup isn't as essential.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-02 16:08:29</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:34:22</span>
       
     
   </small>
@@ -2947,6 +3048,8 @@ repository, so a manual backup isn't as essential.</p>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -3014,7 +3117,7 @@ repository, so a manual backup isn't as essential.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

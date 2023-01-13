@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -677,7 +678,7 @@
   
     <li class="md-nav__item">
       <a href="../firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1366,7 +1367,7 @@
   
     <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2554,19 +2555,31 @@ mailcow: dockerized vertraut auf das Standard-Gateway IP 172.22.1.1 als Proxy.</
 </code></pre></div></p>
 <p>Dadurch werden auch die Bindungen innerhalb des Nginx-Containers geändert! Dies ist wichtig, wenn Sie sich entscheiden, einen Proxy innerhalb von Docker zu verwenden.</p>
 <p><strong>WICHTIG:</strong> Verwenden Sie nicht Port 8081, 9081 oder 65510!</p>
-<p>Erzeugen Sie die betroffenen Container neu, indem Sie <code>docker compose up -d</code> ausführen.</p>
+<p>Erzeugen Sie die betroffenen Container neu, indem Sie den folgenden Befehl ausführen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>Wichtige Informationen, bitte lesen Sie diese sorgfältig durch!</strong></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Wenn Sie planen, einen Reverse-Proxy zu verwenden und einen anderen Servernamen als <strong>MAILCOW_HOSTNAME</strong> verwenden wollen, müssen Sie <strong>Zusätzliche Servernamen für mailcow UI</strong> am Ende dieser Seite hinzufügen.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>Stellen Sie sicher, dass Sie <code>generate_config.sh</code> ausführen, bevor Sie die untenstehenden Konfigurationsbeispiele aktivieren.
 Das Skript <code>generate_config.sh</code> kopiert die Snake-oil Zertifikate an den richtigen Ort, so dass die Dienste nicht aufgrund fehlender Dateien nicht starten können.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>Wenn Sie TLS SNI aktivieren (<code>ENABLE_TLS_SNI</code> in mailcow.conf), <strong>müssen</strong> die Zertifikatspfade in Ihrem Reverse-Proxy mit den korrekten Pfaden in data/assets/ssl/{hostname} übereinstimmen. Die Zertifikate werden in <code>data/assets/ssl/{hostname1,hostname2,etc}</code> aufgeteilt und werden daher nicht funktionieren, wenn Sie die Beispiele von unten kopieren, die auf <code>data/assets/ssl/cert.pem</code> etc. zeigen.</p>
 </div>
 <div class="admonition info">
@@ -2705,8 +2718,20 @@ backend mailcow
 <p><strong>Wichtig</strong>: Diese Konfiguration deckt nur das "Reverseproxing" des Webpanels (nginx-mailcow) unter Verwendung von Traefik v2 ab. Wenn Sie auch die Mail-Dienste wie dovecot, postfix... reproxen wollen, müssen Sie die folgende Konfiguration an jeden Container anpassen und einen <a href="https://docs.traefik.io/routing/entrypoints/">EntryPoint</a> in Ihrer <code>traefik.toml</code> oder <code>traefik.yml</code> (je nachdem, welche Konfiguration Sie verwenden) für jeden Port erstellen. </p>
 <p>In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 <code>[certificatesresolvers]</code> in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a>, falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.</p>
 <p>Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
-Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf</code> setzen und <code>docker compose up -d</code> ausführen, um die Änderungen zu übernehmen.</p>
-<p>Dann erstellen wir eine <code>docker-compose.override.yml</code> Datei, um die Hauptdatei <code>docker-compose.yml</code> zu überschreiben, die sich im Mailcow-Stammverzeichnis befindet. </p>
+Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf</code> setzen und den folgenden Befehl ausführen, um die Änderungen zu übernehmen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Dann erstellen wir eine <code>docker-compose.override.yml</code> Datei, um die Hauptdatei <code>docker-compose.yml</code> zu überschreiben, die sich im mailcow-Stammverzeichnis befindet. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span>
 
 <span class="nt">services</span><span class="p">:</span>
@@ -2745,7 +2770,7 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock:ro</span>
 <span class="w">        </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
 <span class="w">        </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">          </span><span class="c1"># Ändern Sie dies nur, wenn Sie eine andere Domain für Mailcows Web-Frontend verwenden als in der Standard-Konfiguration</span>
+<span class="w">          </span><span class="c1"># Ändern Sie dies nur, wenn Sie eine andere Domain für mailcows Web-Frontend verwenden als in der Standard-Konfiguration</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOMAIN=${MAILCOW_HOSTNAME}</span>
 
 <span class="nt">networks</span><span class="p">:</span>
@@ -2760,10 +2785,22 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <span class="w">    </span><span class="c1"># Name des externen Docker Volumes, welches Traefiks `acme.json&#39; Datei enthält</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik_acme</span>
 </code></pre></div>
-<p>Starten Sie die neuen Container mit <code>docker compose up -d</code>.</p>
+<p>Starten Sie die neuen Container mit:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Da Traefik 2 ein acme v2 Format verwendet, um ALLE Zertifikaten von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>), der die Datei <code>acme.json</code> über ein Volume und eine Variable <code>DOMAIN=example. org</code>, und damit wird der Container die <code>cert.pem</code> und <code>key.pem</code> Dateien ausgeben, dafür lassen wir einfach den <code>traefik-certs-dumper</code> Container laufen, binden das <code>/traefik</code> Volume an den Ordner, in dem unsere <code>acme.json</code> gespeichert ist, binden das <code>/output</code> Volume an unseren mailcow <code>data/assets/ssl/</code> Ordner, und setzen die <code>DOMAIN=example.org</code> Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. </p>
 <p>Dieser Container überwacht die Datei <code>acme.json</code> auf Änderungen und generiert die Dateien <code>cert.pem</code> und <code>key.pem</code> direkt in <code>data/assets/ssl/</code>, wobei der Pfad mit dem <code>/output</code>-Pfad des Containers verbunden ist.</p>
-<p>Sie können es über die Kommandozeile ausführen oder das [hier] gezeigte docker compose verwenden (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>).</p>
+<p>Sie können es über die Kommandozeile ausführen oder das <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">hier</a> gezeigte docker-compose.yml verwenden.</p>
 <p>Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie <a href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden">hier</a>.</p>
 <p>Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.</p>
 <h3 id="caddy-v2-von-der-community-unterstutzt">Caddy v2 (von der Community unterstützt)<a class="headerlink" href="#caddy-v2-von-der-community-unterstutzt" title="Permanent link">&para;</a></h3>
@@ -2833,14 +2870,26 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
 <p>Wenn Sie vorhaben, einen Servernamen zu verwenden, der nicht <code>MAILCOW_HOSTNAME</code> in Ihrem Reverse-Proxy ist, stellen Sie sicher, dass Sie diesen Namen zuerst in mailcow.conf über <code>ADDITIONAL_SERVER_NAMES</code> einpflegen. Die Namen müssen durch Kommas getrennt werden und <strong>dürfen</strong> keine Leerzeichen enthalten. Wenn Sie diesen Schritt überspringen, kann es sein, dass mailcow auf Ihren Reverse-Proxy mit einer falschen Seite antwortet.</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
 </code></pre></div>
-<p>Führen Sie <code>docker compose up -d</code> zum Anwenden aus.</p>
+<p>Führen Sie zum Anwenden folgendes aus:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 16:35:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2855,6 +2904,8 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2922,7 +2973,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

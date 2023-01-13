@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -682,7 +683,7 @@
   
     <li class="md-nav__item">
       <a href="../firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1371,7 +1372,7 @@
   
     <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2556,7 +2557,19 @@
 
 <p>Das Logging in mailcow: dockerized besteht aus mehreren Stufen, ist aber immerhin wesentlich flexibler und einfacher in einen Logging-Daemon zu integrieren als bisher.</p>
 <p>In Docker schreibt die containerisierte Anwendung (PID 1) ihre Ausgabe auf stdout. Für echte Ein-Anwendungs-Container funktioniert das sehr gut.
-Führen Sie <code>docker compose logs --help</code> aus, um mehr zu erfahren. </p>
+Führen Sie folgenden Befehl aus, um mehr zu erfahren:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--help
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>logs<span class="w"> </span>--help
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Einige Container protokollieren oder streamen an mehrere Ziele.</p>
 <p>Kein Container wird persistente Logs in sich behalten. Container sind flüchtige Objekte!</p>
 <p>Am Ende wird jede Zeile der Logs den Docker-Daemon erreichen - ungefiltert.</p>
@@ -2620,25 +2633,39 @@ erstellen Sie die Datei <code>/etc/rsyslog.d/docker.conf</code>:</p>
 <h4 id="uber-daemonjson-global">Über daemon.json (global)<a class="headerlink" href="#uber-daemonjson-global" title="Permanent link">&para;</a></h4>
 <p>Wenn Sie den Logging-Treiber <strong>global</strong> ändern wollen, editieren Sie die Konfigurationsdatei des Docker-Daemons <code>/etc/docker/daemon.json</code> und starten Sie den Docker-Dienst neu:</p>
 <div class="highlight"><pre><span></span><code>{
-...
+[...]
   &quot;log-driver&quot;: &quot;gelf&quot;,
   &quot;log-opts&quot;: {
     &quot;gelf-address&quot;: &quot;udp://graylog:12201&quot;
   }
-...
+[...]
 }
 </code></pre></div>
 <p>Für Syslog:</p>
 <div class="highlight"><pre><span></span><code>{
-...
+[...]
   &quot;log-driver&quot;: &quot;syslog&quot;,
   &quot;log-opts&quot;: {
     &quot;syslog-address&quot;: &quot;udp://1.2.3.4:514&quot;
   }
-...
+[...]
 }
 </code></pre></div>
-<p>Starten Sie den Docker-Daemon neu und führen Sie <code>docker compose down &amp;&amp; docker compose up -d</code> aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen.</p>
+<p>Starten Sie den Docker-Daemon neu und führen Sie die folgenden Befehle aus, um die Container mit dem neuen Protokollierungstreiber neu zu erstellen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="log-rotation">Log rotation<a class="headerlink" href="#log-rotation" title="Permanent link">&para;</a></h3>
 <p>Da diese Logs sehr groß werden können, ist es eine gute Idee logrotate zu nutzen, um Logs nach einer gewissen Zeit zu
 komprimieren und zu löschen.</p>
@@ -2663,7 +2690,7 @@ komprimieren und zu löschen.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-09 15:44:30</span>
       
     
   </small>
@@ -2678,6 +2705,8 @@ komprimieren und zu löschen.</p>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2745,7 +2774,7 @@ komprimieren und zu löschen.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

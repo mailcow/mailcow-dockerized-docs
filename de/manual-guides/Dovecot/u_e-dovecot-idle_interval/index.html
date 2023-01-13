@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1287,7 +1288,7 @@
   
     <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2532,19 +2533,39 @@ Fügen Sie die Einstellung ein, gefolgt von dem neuen Wert. Um zum Beispiel das 
 </code></pre></div>
 <p>29 Minuten ist der maximale Wert, den der <a href="https://tools.ietf.org/html/rfc2177">entsprechende RFC</a> erlaubt.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>Dies ist keine Standardeinstellung in mailcow, da wir nicht wissen, wie diese Einstellung das Verhalten anderer Clients verändert. Seien Sie vorsichtig, wenn Sie dies ändern und ein anderes Verhalten beobachten.</p>
 </div>
 <h3 id="dovecot-neu-laden">Dovecot neu laden<a class="headerlink" href="#dovecot-neu-laden" title="Permanent link">&para;</a></h3>
 <p>Nun laden Sie Dovecot neu:</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow dovecot reload
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>dovecot<span class="w"> </span>reload
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>dovecot<span class="w"> </span>reload
+</code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Sie können den Wert dieser Einstellung überprüfen mit 
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow dovecot -a | grep &quot;imap_idle_notify_interval&quot;
+<p>Sie können den Wert dieser Einstellung überprüfen mit </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>dovecot<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;imap_idle_notify_interval&quot;</span>
 </code></pre></div>
-Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn geändert haben, sollten Sie den neuen Wert sehen.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>dovecot<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;imap_idle_notify_interval&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn geändert haben, sollten Sie den neuen Wert sehen.</p>
 </div>
 
   <hr>
@@ -2552,7 +2573,7 @@ Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn g
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2567,6 +2588,8 @@ Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn g
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2634,7 +2657,7 @@ Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn g
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

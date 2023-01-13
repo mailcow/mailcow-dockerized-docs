@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1285,7 +1286,7 @@
   
     <li class="md-nav__item">
       <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2297,7 +2298,7 @@
       
         <li class="md-nav__item">
   <a href="#einrichten-der-mailcow" class="md-nav__link">
-    Einrichten der Mailcow
+    Einrichten der mailcow
   </a>
   
 </li>
@@ -2475,7 +2476,7 @@
       
         <li class="md-nav__item">
   <a href="#einrichten-der-mailcow" class="md-nav__link">
-    Einrichten der Mailcow
+    Einrichten der mailcow
   </a>
   
 </li>
@@ -2541,31 +2542,31 @@
 </ol>
 </li>
 </ul>
-<h2 id="einrichten-der-mailcow">Einrichten der Mailcow<a class="headerlink" href="#einrichten-der-mailcow" title="Permanent link">&para;</a></h2>
-<p>Ihre Mailcow muss alle Mails an Ihren personalisierten Exchange Host weiterleiten. Es ist die gleiche Host-Adresse, die wir bereits für den mx Record gesucht haben.</p>
+<h2 id="einrichten-der-mailcow">Einrichten der mailcow<a class="headerlink" href="#einrichten-der-mailcow" title="Permanent link">&para;</a></h2>
+<p>Ihre mailcow muss alle Mails an Ihren personalisierten Exchange Host weiterleiten. Es ist die gleiche Host-Adresse, die wir bereits für den mx Record gesucht haben.</p>
 <ol>
-<li>Fügen Sie die Domain zu Ihrer Mailcow hinzu</li>
+<li>Fügen Sie die Domain zu Ihrer mailcow hinzu</li>
 <li><a href="../../../manual-guides/Postfix/u_e-postfix-relayhost/">Fügen Sie Ihre personalisierte Exchange Host Adresse als relayhost hinzu</a></li>
 <li>Fügen Sie Ihre personalisierte Exchange Host Adresse als Weiterleitungshost hinzu, um alle weitergeleiteten Mails von Exchange bedingungslos zu akzeptieren. (Admin &gt; Konfiguration &amp; Details &gt; Konfigurations-Dropdown &gt; Weiterleitungshosts)</li>
 <li>Gehen Sie zu den Domäneneinstellungen und wählen Sie den neu hinzugefügten Host in der Dropdown-Liste "Absenderabhängige Transporte" aus. Aktivieren Sie die Weiterleitung, indem Sie die Kontrollkästchen "Diese Domäne weiterleiten", "Alle Empfänger weiterleiten" und "Nur nicht vorhandene Postfächer weiterleiten" aktivieren.</li>
 </ol>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Von nun an wird Ihre Mailcow alle Mails akzeptieren, die von Exchange weitergeleitet werden. Die <strong>Eingangsfilterung und damit das neuronale Lernen Ihrer Kuh wird nicht mehr funktionieren</strong>. Da alle Mails über Exchange geroutet werden, wird der <a href="https://docs.microsoft.com/exchange/antispam-and-antimalware/antispam-and-antimalware?view=exchserver-2019">Filterungsprozess dort abgewickelt</a>.</p>
+<p>Von nun an wird Ihre mailcow alle Mails akzeptieren, die von Exchange weitergeleitet werden. Die <strong>Eingangsfilterung und damit das neuronale Lernen Ihrer Kuh wird nicht mehr funktionieren</strong>. Da alle Mails über Exchange geroutet werden, wird der <a href="https://docs.microsoft.com/exchange/antispam-and-antimalware/antispam-and-antimalware?view=exchserver-2019">Filterungsprozess dort abgewickelt</a>.</p>
 </div>
 <h2 id="connectors-in-exchange-einrichten">Connectors in Exchange einrichten<a class="headerlink" href="#connectors-in-exchange-einrichten" title="Permanent link">&para;</a></h2>
-<p>Der gesamte Mailverkehr läuft nun über Exchange. Zu diesem Zeitpunkt filtert der Exchange Online-Schutz bereits alle ein- und ausgehenden Mails. Jetzt müssen wir zwei Konnektoren einrichten, um eingehende Mails von unserem Exchange Service an die Mailcow weiterzuleiten und einen weiteren, um Mails zuzulassen, die von der Mailcow an unseren Exchange Service weitergeleitet werden. Sie können der [offiziellen Anleitung von Microsoft] folgen (<a href="https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server">https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server</a>).</p>
+<p>Der gesamte Mailverkehr läuft nun über Exchange. Zu diesem Zeitpunkt filtert der Exchange Online-Schutz bereits alle ein- und ausgehenden Mails. Jetzt müssen wir zwei Konnektoren einrichten, um eingehende Mails von unserem Exchange Service an die mailcow weiterzuleiten und einen weiteren, um Mails zuzulassen, die von der mailcow an unseren Exchange Service weitergeleitet werden. Sie können der [offiziellen Anleitung von Microsoft] folgen (<a href="https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server">https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#2-set-up-a-connector-from-microsoft-365-or-office-365-to-your-email-server</a>).</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Für den Connector, der die Mails von Ihrer Mailcow zu Exchange weiterleitet, bietet Microsoft zwei Möglichkeiten der Authentifizierung an. Der empfohlene Weg ist die Verwendung eines tls-Zertifikats, das mit einem Subject-Namen konfiguriert ist, der mit einer akzeptierten Domäne in Exchange übereinstimmt. Andernfalls müssen Sie die Authentifizierung mit der statischen IP-Adresse Ihrer Mailcow wählen.</p>
+<p class="admonition-title">Warnung</p>
+<p>Für den Connector, der die Mails von Ihrer mailcow zu Exchange weiterleitet, bietet Microsoft zwei Möglichkeiten der Authentifizierung an. Der empfohlene Weg ist die Verwendung eines tls-Zertifikats, das mit einem Subject-Namen konfiguriert ist, der mit einer akzeptierten Domäne in Exchange übereinstimmt. Andernfalls müssen Sie die Authentifizierung mit der statischen IP-Adresse Ihrer mailcow wählen.</p>
 </div>
 <h2 id="validierung">Validierung<a class="headerlink" href="#validierung" title="Permanent link">&para;</a></h2>
-<p>Der einfachste Weg, die hybride Einrichtung zu überprüfen, ist das Senden einer Mail aus dem Internet an eine Mailbox, die nur auf der Mailcow existiert und andersherum.</p>
+<p>Der einfachste Weg, die hybride Einrichtung zu überprüfen, ist das Senden einer Mail aus dem Internet an eine Mailbox, die nur auf der mailcow existiert und andersherum.</p>
 <h3 id="allgemeine-probleme">Allgemeine Probleme<a class="headerlink" href="#allgemeine-probleme" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Die Validierung des Connectors von Exchange zu Ihrer Mailcow schlug fehl mit <code>550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient test@contoso.com not found by SMTP address lookup</code><br />
+<li>Die Validierung des Connectors von Exchange zu Ihrer mailcow schlug fehl mit <code>550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient test@contoso.com not found by SMTP address lookup</code><br />
 <strong>Mögliche Lösung:</strong> Ihre Domäne ist nicht als "internes Relay" eingerichtet. Exchange kann daher den Empfänger nicht finden.</li>
-<li>Mails, die von der Mailcow an eine Mailbox im Internet gesendet werden, können nicht zugestellt werden. Non Delivery Report mit Fehler <code>550 5.7.64 TenantAttribution; Relay Access Denied</code><br />
+<li>Mails, die von der mailcow an eine Mailbox im Internet gesendet werden, können nicht zugestellt werden. Non Delivery Report mit Fehler <code>550 5.7.64 TenantAttribution; Relay Access Denied</code><br />
 <strong>Mögliche Lösung:</strong> Die Authentifizierungsmethode ist fehlgeschlagen. Stellen Sie sicher, dass der Betreff des Zertifikats mit einer akzeptierten Domäne in Exchange übereinstimmt. Versuchen Sie stattdessen die Authentifizierung über eine statische IP.</li>
 </ul>
 <p>Microsoft-Anleitung für die Einrichtung des Connectors und zusätzliche Anforderungen: <a href="https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#prerequisites-for-your-on-premises-email-environment">https://docs.microsoft.com/exchange/mail-flow-best-practices/use-connectors-to-configure-mail-flow/set-up-connectors-to-route-mail#prerequisites-for-your-on-premises-email-environment</a></p>
@@ -2575,7 +2576,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-07-17 17:01:03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2590,6 +2591,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2657,7 +2660,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

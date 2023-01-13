@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1287,7 +1288,7 @@
   
     <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2520,17 +2521,57 @@
 <h2 id="der-manuelle-weg">Der manuelle Weg<a class="headerlink" href="#der-manuelle-weg" title="Permanent link">&para;</a></h2>
 <p>Dann wollen wir mal loslegen:</p>
 <p>Löschen Sie die Mails eines Benutzers im Junk-Ordner, die <strong>gelesen</strong> und <strong>älter</strong> als 4 Stunden sind</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;Junk&#39; SEEN not SINCE 4h
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;mailbox@example.com&#39;</span><span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>SEEN<span class="w"> </span>not<span class="w"> </span>SINCE<span class="w"> </span>4h
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;mailbox@example.com&#39;</span><span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>SEEN<span class="w"> </span>not<span class="w"> </span>SINCE<span class="w"> </span>4h
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Lösche <strong>alle</strong> Mails des Benutzers im Junk-Ordner, die <strong>älter</strong> als 7 Tage sind</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 7d
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>savedbefore<span class="w"> </span>7d
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>savedbefore<span class="w"> </span>7d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Löscht <strong>alle</strong> Mails (aller Benutzer) in <strong>allen</strong> Ordnern, die <strong>älter</strong> als 52 Wochen sind (internes Datum der Mail, nicht das Datum, an dem sie auf dem System gespeichert wurde =&gt; <code>before</code> statt <code>savedbefore</code>). Nützlich zum Löschen sehr alter Mails in allen Benutzern und Ordnern (daher besonders nützlich für GDPR-Compliance).</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -A mailbox % before 52w
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span>%<span class="w"> </span>before<span class="w"> </span>52w
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span>%<span class="w"> </span>before<span class="w"> </span>52w
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Löschen von Mails in einem benutzerdefinierten Ordner <strong>innerhalb</strong> des Posteingangs eines Benutzers, die <strong>nicht</strong> gekennzeichnet und <strong>älter</strong> als 2 Wochen sind</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm expunge -u &#39;mailbox@example.com&#39; mailbox &#39;INBOX/custom-folder&#39; not FLAGGED not SINCE 2w
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;mailbox@example.com&#39;</span><span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;INBOX/custom-folder&#39;</span><span class="w"> </span>not<span class="w"> </span>FLAGGED<span class="w"> </span>not<span class="w"> </span>SINCE<span class="w"> </span>2w
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-u<span class="w"> </span><span class="s1">&#39;mailbox@example.com&#39;</span><span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;INBOX/custom-folder&#39;</span><span class="w"> </span>not<span class="w"> </span>FLAGGED<span class="w"> </span>not<span class="w"> </span>SINCE<span class="w"> </span>2w
+</code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Für mögliche <a href="https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_date_specification">Zeitspannen</a> oder <a href="https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_search_keys">SearchQuery</a> schauen Sie bitte in <a href="https://wiki.dovecot.org/Tools/Doveadm/SearchQuery">man doveadm-search-query</a></p>
@@ -2538,20 +2579,36 @@
 <h2 id="job-scheduler">Job-Scheduler<a class="headerlink" href="#job-scheduler" title="Permanent link">&para;</a></h2>
 <h3 id="uber-das-host-system-cron">über das Host-System cron<a class="headerlink" href="#uber-das-host-system-cron" title="Permanent link">&para;</a></h3>
 <p>Wenn Sie eine solche Aufgabe automatisieren wollen, können Sie einen Cron-Job auf Ihrem Rechner erstellen, der ein Skript wie das folgende aufruft:</p>
-<div class="highlight"><pre><span></span><code>#!/bin/bash
-# Pfad zu mailcow-dockerized, z.B. /opt/mailcow-dockerized
-cd /pfad/zu/ihrem/mailcow-dockerized
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Pfad zu mailcow-dockerized, z.B. /opt/mailcow-dockerized</span>
+<span class="nb">cd</span><span class="w"> </span>/pfad/zu/ihrer/mailcow-dockerized
 
-/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w
-/usr/local/bin/docker compose exec -T dovecot-mailcow doveadm expunge -A mailbox &#39;Junk&#39; SEEN not SINCE 12h
-[...]
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>savedbefore<span class="w"> </span>2w
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>SEEN<span class="w"> </span>not<span class="w"> </span>SINCE<span class="w"> </span>12h
+<span class="o">[</span>...<span class="o">]</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Pfad zu mailcow-dockerized, z.B. /opt/mailcow-dockerized</span>
+<span class="nb">cd</span><span class="w"> </span>/pfad/zu/ihrer/mailcow-dockerized
+
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>savedbefore<span class="w"> </span>2w
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>expunge<span class="w"> </span>-A<span class="w"> </span>mailbox<span class="w"> </span><span class="s1">&#39;Junk&#39;</span><span class="w"> </span>SEEN<span class="w"> </span>not<span class="w"> </span>SINCE<span class="w"> </span>12h
+<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Um einen Cronjob zu erstellen, können Sie <code>crontab -e</code> ausführen und etwas wie das Folgende einfügen, um ein Skript auszuführen:</p>
 <div class="highlight"><pre><span></span><code># Jeden Tag um 04:00 Uhr morgens ausführen.
 0 4 * * * /pfad/zu/ihr/expunge_mailboxes.sh
 </code></pre></div>
 <h3 id="uber-docker-job-scheduler">über Docker Job Scheduler<a class="headerlink" href="#uber-docker-job-scheduler" title="Permanent link">&para;</a></h3>
-<p>Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docker-compose.override.yml mit Ihrer Mailcow: </p>
+<p>Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docker-compose.override.yml mit Ihrer mailcow: </p>
 <div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
 
 services:
@@ -2584,7 +2641,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2599,6 +2656,8 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2666,7 +2725,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

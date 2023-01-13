@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2542,17 +2543,48 @@
 
 <h2 id="attaching-a-container-to-your-shell">Attaching a Container to your Shell<a class="headerlink" href="#attaching-a-container-to-your-shell" title="Permanent link">&para;</a></h2>
 <p>To attach a container to your shell you can simply run</p>
-<div class="highlight"><pre><span></span><code>docker compose exec $Service_Name /bin/bash
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$Dienst_Name</span><span class="w"> </span>/bin/bash
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$Dienst_Name</span><span class="w"> </span>/bin/bash
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="connecting-to-services">Connecting to Services<a class="headerlink" href="#connecting-to-services" title="Permanent link">&para;</a></h3>
 <p>If you want to connect to a service / application directly it is always a good idea to <code>source mailcow.conf</code> to get all relevant variables into your environment.</p>
 <h4 id="mysql">MySQL<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>source mailcow.conf
-docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h4 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis-mailcow<span class="w"> </span>redis-cli
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis-mailcow<span class="w"> </span>redis-cli
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="service-descriptions">Service Descriptions<a class="headerlink" href="#service-descriptions" title="Permanent link">&para;</a></h2>
 <p>Here is a brief overview of what container / service does what:</p>
 <table>
@@ -2635,7 +2667,7 @@ docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-09 15:44:30</span>
       
     
   </small>
@@ -2650,6 +2682,8 @@ docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2717,7 +2751,7 @@ docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

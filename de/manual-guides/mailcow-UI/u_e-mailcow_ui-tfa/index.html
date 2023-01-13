@@ -21,7 +21,7 @@
     
     
       
-        <title>Zwei-Faktoren-Authentifizierung - mailcow: dockerized documentation</title>
+        <title>Zwei-Faktor Authentifizierung - mailcow: dockerized documentation</title>
       
     
     
@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -118,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zwei-Faktoren-Authentifizierung
+              Zwei-Faktor Authentifizierung
             
           </span>
         </div>
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1296,12 +1297,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Zwei-Faktoren-Authentifizierung
+          Zwei-Faktor Authentifizierung
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
       
         
@@ -1357,14 +1358,6 @@
     Deaktivieren inoffizieller unterstützter Fido Security Keys
   </a>
   
-    <nav class="md-nav" aria-label="Deaktivieren inoffizieller unterstützter Fido Security Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beispiel" class="md-nav__link">
-    Beispiel:
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1378,11 +1371,6 @@
   <a href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" class="md-nav__link">
     Ist es gefährlich, den Vendor Check deaktiviert zu lassen?
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2548,14 +2536,6 @@
     Deaktivieren inoffizieller unterstützter Fido Security Keys
   </a>
   
-    <nav class="md-nav" aria-label="Deaktivieren inoffizieller unterstützter Fido Security Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#beispiel" class="md-nav__link">
-    Beispiel:
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
@@ -2569,11 +2549,6 @@
   <a href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" class="md-nav__link">
     Ist es gefährlich, den Vendor Check deaktiviert zu lassen?
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2608,7 +2583,7 @@
 
 
 
-  <h1>Zwei-Faktoren-Authentifizierung</h1>
+  <h1>Zwei-Faktor Authentifizierung</h1>
 
 <p>Bislang sind drei Methoden für die <em>Zwei-Faktor-Authentifizierung</em> implementiert: WebAuthn (ersetzt seit Februar 2022 U2F), Yubi OTP und TOTP</p>
 <ul>
@@ -2639,7 +2614,7 @@ Geben Sie schließlich Ihr aktuelles Kontopasswort ein und berühren Sie nach Au
 <hr />
 <h2 id="webauthn-u2f-ersatz">WebAuthn (U2F, Ersatz)<a class="headerlink" href="#webauthn-u2f-ersatz" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p><strong>Seit Februar 2022 hat Google Chrome die Unterstützung für U2F aufgegeben und die Verwendung von WebAuthn standardisiert.<br></strong>
 <em>Die WebAuthn API (der Ersatz für U2F) ist seit dem 21. Januar 2022 Teil von mailcow, wenn Sie also den Key über Februar 2022 hinaus nutzen wollen, sollten Sie ein Update mit der <code>update.sh</code></em> in Betracht ziehen. </p>
 </div>
@@ -2662,7 +2637,7 @@ Geben Sie schließlich Ihr aktuelles Kontopasswort ein und berühren Sie nach Au
 <p>WebAuthn funktioniert auch ohne Internetverbindung.</p>
 <h3 id="was-passiert-mit-meinem-registrierten-fido-security-key-nach-dem-update-von-u2f-auf-webauthn">Was passiert mit meinem registrierten Fido Security Key nach dem Update von U2F auf WebAuthn?<a class="headerlink" href="#was-passiert-mit-meinem-registrierten-fido-security-key-nach-dem-update-von-u2f-auf-webauthn" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>Mit dem neuen U2F-Ersatz (WebAuthn) müssen Sie Ihren Fido Security Key neu registrieren, zum Glück ist WebAuthn abwärtskompatibel und unterstützt das U2F-Protokoll.</p>
 </div>
 <p>Im Idealfall sollten Sie beim nächsten Einloggen (mit dem Schlüssel) ein Textfeld erhalten, das besagt, dass Ihr Fido Security Key aufgrund des Updates auf WebAuthn entfernt und als 2-Faktor-Authentifikator gelöscht wurde.</p>
@@ -2670,23 +2645,39 @@ Geben Sie schließlich Ihr aktuelles Kontopasswort ein und berühren Sie nach Au
 <h3 id="deaktivieren-inoffizieller-unterstutzter-fido-security-keys">Deaktivieren inoffizieller unterstützter Fido Security Keys<a class="headerlink" href="#deaktivieren-inoffizieller-unterstutzter-fido-security-keys" title="Permanent link">&para;</a></h3>
 <p>Mit WebAuthn gibt es die Möglichkeit, nur offizielle Fido Security Keys zu verwenden (von den großen Marken wie: Yubico, Apple, Nitro, Google, Huawei, Microsoft, usw.) zu verwenden.</p>
 <p>Dies dient in erster Linie der Sicherheit, da es Administratoren ermöglicht, sicherzustellen, dass nur offizielle Hardware in ihrer Umgebung verwendet werden kann.</p>
-<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit <code>docker compose up -d</code> neu.</p>
+<p>Um diese Funktion zu aktivieren, ändern Sie den Wert <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf von <code>n</code> auf <code>y</code> und starten Sie die betroffenen Container mit dem folgenden Befehl neu: </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Die mailcow wird nun die Vendor-Zertifikate verwenden, die sich in Ihrem mailcow-Verzeichnis unter <code>data/web/inc/lib/WebAuthn/rootCertificates</code> befinden. </p>
-<h5 id="beispiel">Beispiel:<a class="headerlink" href="#beispiel" title="Permanent link">&para;</a></h5>
+<div class="admonition abstract">
+<p class="admonition-title">Beispiel</p>
 <p>Wenn Sie die offiziellen Hersteller-Geräte nur auf Apple beschränken wollen, brauchen Sie nur das Apple Hersteller-Zertifikat im <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
 Nachdem Sie alle anderen Zertifikate gelöscht haben, können Sie WebAuthn 2FA nur noch mit Apple-Geräten aktivieren.</p>
-<p>Das ist für jeden Hersteller gleich, also wählen Sie aus, was Ihnen gefällt (wenn Sie es wollen).</p>
-<h4 id="eigene-zertifikate-fur-webauthn-verwenden">Eigene Zertifikate für WebAuthn verwenden<a class="headerlink" href="#eigene-zertifikate-fur-webauthn-verwenden" title="Permanent link">&para;</a></h4>
-<p>Wenn du ein gültiges Zertifikat vom Hersteller deines Schlüssels hast, kannst du es auch zu deiner Mailcow hinzufügen!</p>
-<p>Kopieren Sie einfach das Zertifikat in den <code>data/web/inc/lib/WebAuthn/rootCertificates</code> Ordner und starten Sie Ihre Mailcow neu.</p>
+<p>Das ist für jeden Hersteller gleich, also wählen Sie aus, was Ihnen gefällt (wenn Sie wollen).</p>
+</div>
+<h3 id="eigene-zertifikate-fur-webauthn-verwenden">Eigene Zertifikate für WebAuthn verwenden<a class="headerlink" href="#eigene-zertifikate-fur-webauthn-verwenden" title="Permanent link">&para;</a></h3>
+<p>Wenn Sie ein gültiges Zertifikat vom Hersteller eines Schlüssels haben, können Sie es auch zu ihrer mailcow hinzufügen!</p>
+<p>Kopieren Sie einfach das Zertifikat in den <code>data/web/inc/lib/WebAuthn/rootCertificates</code> Ordner und starten Sie Ihre mailcow neu.</p>
 <p>Nun sollten Sie in der Lage sein, auch dieses Gerät zu registrieren, obwohl die Überprüfung für die Herstellerzertifikate aktiviert ist, da Sie das Zertifikat manuell hinzugefügt haben. </p>
-<h4 id="ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen">Ist es gefährlich, den Vendor Check deaktiviert zu lassen?<a class="headerlink" href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" title="Permanent link">&para;</a></h4>
+<h3 id="ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen">Ist es gefährlich, den Vendor Check deaktiviert zu lassen?<a class="headerlink" href="#ist-es-gefahrlich-den-vendor-check-deaktiviert-zu-lassen" title="Permanent link">&para;</a></h3>
 <p>Nein, das ist es nicht!
 Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware verwendet, nicht zur Absicherung des Registrierungsprozesses.</p>
-<p>Wie Sie in diesen Artikeln lesen können, hat die Deaktivierung nichts mit der Software-Sicherheit zu tun:
-- <a href="https://developers.yubico.com/U2F/Attestation_and_Metadata/">https://developers.yubico.com/U2F/Attestation_and_Metadata/</a>
-- <a href="https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651">https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651</a>
-- <a href="https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01">https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01</a></p>
+<p>Wie Sie in diesen Artikeln lesen können, hat die Deaktivierung nichts mit der Software-Sicherheit zu tun:</p>
+<ul>
+<li><a href="https://developers.yubico.com/U2F/Attestation_and_Metadata/">https://developers.yubico.com/U2F/Attestation_and_Metadata/</a></li>
+<li><a href="https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651">https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651</a></li>
+<li><a href="https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01">https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01</a></li>
+</ul>
 <p>Letztendlich ist es aber natürlich Ihre Entscheidung, ob Sie dieses Häkchen deaktiviert oder aktiviert lassen. </p>
 <hr />
 <h2 id="totp">TOTP<a class="headerlink" href="#totp" title="Permanent link">&para;</a></h2>
@@ -2703,7 +2694,7 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2718,6 +2709,8 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2785,7 +2778,7 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

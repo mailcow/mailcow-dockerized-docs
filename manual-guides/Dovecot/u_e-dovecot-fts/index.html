@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2509,19 +2510,45 @@
 <p>The default heap size (1024 M) is defined in mailcow.conf.</p>
 <p>Since we run in Docker and create our containers with the "restart: always" flag, a oom situation will at least only trigger a restart of the container.</p>
 <h3 id="fts-related-dovecot-commands">FTS related Dovecot commands<a class="headerlink" href="#fts-related-dovecot-commands" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code># single user
-docker compose exec dovecot-mailcow doveadm fts rescan -u user@domain
-# all users
-docker compose exec dovecot-mailcow doveadm fts rescan -A
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># single user</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-u<span class="w"> </span>user@domain
+<span class="c1"># all users</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-A
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># single user</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-u<span class="w"> </span>user@domain
+<span class="c1"># all users</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-A
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Dovecot Wiki: "Scan what mails exist in the full text search index and compare those to what actually exist in mailboxes. This removes mails from the index that have already been expunged and makes sure that the next doveadm index will index all the missing mails (if any)."</p>
 <p>This does <strong>not</strong> re-index a mailbox. It basically repairs a given index.</p>
 <p>If you want to re-index data immediately, you can run the followig command, where '*' can also be a mailbox mask like 'Sent'. You do not need to run these commands, but it will speed things up a bit:</p>
-<div class="highlight"><pre><span></span><code># single user
-docker compose exec dovecot-mailcow doveadm index -u user@domain &#39;*&#39;
-# all users, but obviously slower and more dangerous
-docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># single user</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@domain<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># all users, but obviously slower and more dangerous</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span><span class="s1">&#39;*&#39;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># single user</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@domain<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># all users, but obviously slower and more dangerous</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>This <strong>will</strong> take some time depending on your machine and Solr can run oom, monitor it!</p>
 <p>Because re-indexing is very sensible, we did not include it to mailcow UI. You will need to take care of any errors while re-indexing a mailbox.</p>
 <h3 id="delete-mailbox-data">Delete mailbox data<a class="headerlink" href="#delete-mailbox-data" title="Permanent link">&para;</a></h3>
@@ -2532,7 +2559,7 @@ docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
       
     
   </small>
@@ -2547,6 +2574,8 @@ docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2614,7 +2643,7 @@ docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

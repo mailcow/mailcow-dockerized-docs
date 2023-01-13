@@ -79,8 +79,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2410,32 +2411,92 @@
 
 
 <p>A quick guide to deeply analyze a malfunctioning Rspamd.</p>
-<div class="highlight"><pre><span></span><code>docker compose exec rspamd-mailcow bash
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
 
-if ! grep -qi &#39;apt-stable-asan&#39; /etc/apt/sources.list.d/rspamd.list; then
-  sed -i &#39;s/apt-stable/apt-stable-asan/i&#39; /etc/apt/sources.list.d/rspamd.list
-fi
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>grep<span class="w"> </span>-qi<span class="w"> </span><span class="s1">&#39;apt-stable-asan&#39;</span><span class="w"> </span>/etc/apt/sources.list.d/rspamd.list<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/apt-stabil/apt-stabil-asan/i&#39;</span><span class="w"> </span>/etc/apt/sources.list.d/rspamd.list
+<span class="k">fi</span>
 
-apt-get update ; apt-get upgrade rspamd
+apt-get<span class="w"> </span>update<span class="w"> </span><span class="p">;</span><span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>rspamd
 
-nano /docker-entrypoint.sh
+nano<span class="w"> </span>/docker-entrypoint.sh
 
-# Before &quot;exec &quot;$@&quot;&quot; add the following lines:
+<span class="c1"># Add this in front of &quot;exec &quot;$@&quot;&quot;:</span>
 
-export G_SLICE=always-malloc
-export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violation=0:log_path=/tmp/rspamd-asan:quarantine_size_mb=2048:malloc_context_size=8:fast_unwind_on_malloc=0
+<span class="nb">export</span><span class="w"> </span><span class="nv">G_SLICE</span><span class="o">=</span>always-malloc
+<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="nv">new_delete_type_mismatch</span><span class="o">=</span><span class="m">0</span>:detect_leaks<span class="o">=</span><span class="m">1</span>:detect_odr_violation<span class="o">=</span><span class="m">0</span>:log_path<span class="o">=</span>/tmp/rspamd-asan:quarantine_size_mb<span class="o">=</span><span class="m">2048</span>:malloc_context_size<span class="o">=</span><span class="m">8</span>:fast_unwind_on_malloc<span class="o">=</span><span class="m">0</span>
 </code></pre></div>
-<p>Restart Rspamd: <code>docker compose restart rspamd-mailcow</code></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>grep<span class="w"> </span>-qi<span class="w"> </span><span class="s1">&#39;apt-stable-asan&#39;</span><span class="w"> </span>/etc/apt/sources.list.d/rspamd.list<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/apt-stabil/apt-stabil-asan/i&#39;</span><span class="w"> </span>/etc/apt/sources.list.d/rspamd.list
+<span class="k">fi</span>
+
+apt-get<span class="w"> </span>update<span class="w"> </span><span class="p">;</span><span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>rspamd
+
+nano<span class="w"> </span>/docker-entrypoint.sh
+
+<span class="c1"># Add this in front of &quot;exec &quot;$@&quot;&quot;:</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">G_SLICE</span><span class="o">=</span>always-malloc
+<span class="nb">export</span><span class="w"> </span><span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="nv">new_delete_type_mismatch</span><span class="o">=</span><span class="m">0</span>:detect_leaks<span class="o">=</span><span class="m">1</span>:detect_odr_violation<span class="o">=</span><span class="m">0</span>:log_path<span class="o">=</span>/tmp/rspamd-asan:quarantine_size_mb<span class="o">=</span><span class="m">2048</span>:malloc_context_size<span class="o">=</span><span class="m">8</span>:fast_unwind_on_malloc<span class="o">=</span><span class="m">0</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Restart Rspamd:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Your memory consumption will increase by a lot, it will also steadily grow, which is not related to a possible memory leak you are looking for.</p>
-<p>Leave the container running for a few minutes, hours or days (it should match the time you usually wait for the leak to "happen") and restart it: <code>docker compose restart rspamd-mailcow</code>.</p>
-<p>Now enter the container by running <code>docker compose exec rspamd-mailcow bash</code>, change the directory to /tmp and copy the asan Files to your desired location or upload them via termbin.com (<code>cat /tmp/rspamd-asan.* | nc termbin.com 9999</code>).</p>
+<p>Leave the container running for a few minutes, hours or days (it should match the time you usually wait for the leak to "happen") and restart it:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Now enter the container by running the command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Change the directory to /tmp and copy the asan Files to your desired location or upload them via termbin.com (<code>cat /tmp/rspamd-asan.* | nc termbin.com 9999</code>).</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2450,6 +2511,8 @@ export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violati
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2517,7 +2580,7 @@ export ASAN_OPTIONS=new_delete_type_mismatch=0:detect_leaks=1:detect_odr_violati
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>

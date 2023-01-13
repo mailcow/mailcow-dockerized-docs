@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2477,19 +2478,41 @@
   <h1>MySQL (mysqldump)</h1>
 
 <h2 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cd /path/to/mailcow-dockerized
-source mailcow.conf
-DATE=$(date +&quot;%Y%m%d_%H%M%S&quot;)
-docker compose exec -T mysql-mailcow mysqldump --default-character-set=utf8mb4 -u${DBUSER} -p${DBPASS} ${DBNAME} &gt; backup_${DBNAME}_${DATE}.sql
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/mailcow-dockerized
+<span class="nb">source</span><span class="w"> </span>mailcow.conf
+<span class="nv">DATE</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s2">&quot;%Y%m%d_%H%M%S&quot;</span><span class="k">)</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>mysql-mailcow<span class="w"> </span>mysqldump<span class="w"> </span>--default-character-set<span class="o">=</span>utf8mb4<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>backup_<span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span>_<span class="si">${</span><span class="nv">DATE</span><span class="si">}</span>.sql
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/mailcow-dockerized
+<span class="nb">source</span><span class="w"> </span>mailcow.conf
+<span class="nv">DATE</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s2">&quot;%Y%m%d_%H%M%S&quot;</span><span class="k">)</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-T<span class="w"> </span>mysql-mailcow<span class="w"> </span>mysqldump<span class="w"> </span>--default-character-set<span class="o">=</span>utf8mb4<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>backup_<span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span>_<span class="si">${</span><span class="nv">DATE</span><span class="si">}</span>.sql
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="restore">Restore<a class="headerlink" href="#restore" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>You should redirect the SQL dump without <code>docker compose</code> to prevent parsing errors.</p>
 </div>
-<div class="highlight"><pre><span></span><code>cd /path/to/mailcow-dockerized
-source mailcow.conf
-docker exec -i $(docker compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPASS} ${DBNAME} &lt; backup_file.sql
+<div class="tabbed-block">
+<p>You should redirect the SQL dump without <code>docker-compose</code> to prevent parsing errors.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/mailcow-dockerized
+<span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w"> </span>-q<span class="w"> </span>mysql-mailcow<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span><span class="w"> </span>&lt;<span class="w"> </span>backup_file.sql
 </code></pre></div>
 
   <hr>
@@ -2497,7 +2520,7 @@ docker exec -i $(docker compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPAS
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-10 12:08:32</span>
       
     
   </small>
@@ -2512,6 +2535,8 @@ docker exec -i $(docker compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPAS
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2579,7 +2604,7 @@ docker exec -i $(docker compose ps -q mysql-mailcow) mysql -u${DBUSER} -p${DBPAS
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1287,7 +1288,7 @@
   
     <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2509,19 +2510,45 @@
 <p>Die Standard-Heap-Größe (1024 M) ist in mailcow.conf definiert.</p>
 <p>Da wir in Docker laufen und unsere Container mit dem "restart: always" Flag erstellen, wird eine oom Situation zumindest nur einen Neustart des Containers auslösen.</p>
 <h3 id="fts-bezogene-dovecot-befehle">FTS-bezogene Dovecot-Befehle<a class="headerlink" href="#fts-bezogene-dovecot-befehle" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code># Einzelbenutzer
-docker compose exec dovecot-mailcow doveadm fts rescan -u user@domain
-# alle Benutzer
-docker compose exec dovecot-mailcow doveadm fts rescan -A
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Einzelbenutzer</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-u<span class="w"> </span>user@domain
+<span class="c1"># alle Benutzer</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-A
 </code></pre></div>
-Dovecot Wiki: "Scannt, welche Mails im Volltextsuchindex vorhanden sind und vergleicht diese mit den tatsächlich in den Postfächern vorhandenen Mails. Dies entfernt Mails aus dem Index, die bereits gelöscht wurden und stellt sicher, dass der nächste doveadm-Index alle fehlenden Mails (falls vorhanden) indiziert."</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Einzelbenutzer</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-u<span class="w"> </span>user@domain
+<span class="c1"># alle Benutzer</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>fts<span class="w"> </span>rescan<span class="w"> </span>-A
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Dovecot Wiki: "Scannt, welche Mails im Volltextsuchindex vorhanden sind und vergleicht diese mit den tatsächlich in den Postfächern vorhandenen Mails. Dies entfernt Mails aus dem Index, die bereits gelöscht wurden und stellt sicher, dass der nächste doveadm-Index alle fehlenden Mails (falls vorhanden) indiziert."</p>
 <p>Dies indiziert <strong>nicht</strong> eine Mailbox neu. Es repariert im Grunde einen gegebenen Index.</p>
 <p>Wenn Sie die Daten sofort neu indizieren wollen, können Sie den folgenden Befehl ausführen, wobei '*' auch eine Postfachmaske wie 'Sent' sein kann. Sie müssen diese Befehle nicht ausführen, aber es wird die Dinge ein wenig beschleunigen:</p>
-<div class="highlight"><pre><span></span><code># einzelner Benutzer
-docker compose exec dovecot-mailcow doveadm index -u user@domain &#39;*&#39;
-# alle Benutzer, aber offensichtlich langsamer und gefährlicher
-docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># einzelner Benutzer</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@domain<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># alle Benutzer, aber offensichtlich langsamer und gefährlicher</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span><span class="s1">&#39;*&#39;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># einzelner Benutzer</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@domain<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="c1"># alle Benutzer, aber offensichtlich langsamer und gefährlicher</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Dies <strong>wird</strong> einige Zeit in Anspruch nehmen, abhängig von Ihrer Maschine und Solr kann oom ausführen, überwachen Sie es!</p>
 <p>Da die Neuindizierung sehr sinnvoll ist, haben wir sie nicht in die mailcow UI integriert. Sie müssen sich um eventuelle Fehler beim Re-Indizieren einer Mailbox kümmern.</p>
 <h3 id="loschen-der-mailbox-daten">Löschen der Mailbox-Daten<a class="headerlink" href="#loschen-der-mailbox-daten" title="Permanent link">&para;</a></h3>
@@ -2532,7 +2559,7 @@ docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
       
     
   </small>
@@ -2547,6 +2574,8 @@ docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2614,7 +2643,7 @@ docker compose exec dovecot-mailcow doveadm index -A &#39;*&#39;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

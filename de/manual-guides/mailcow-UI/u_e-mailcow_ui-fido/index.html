@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1289,7 +1290,7 @@
   
     <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2494,7 +2495,7 @@
 <p>Das UV-Flag (wie in "user verification") erzwingt, dass WebAuthn den Benutzer verifiziert, bevor es den Zugriff auf den Schlüssel erlaubt (denken Sie an eine PIN). Wir erzwingen keine UV, um Logins über iOS und NFC (YubiKey) zu ermöglichen.</p>
 <h2 id="login-und-schlussel-verarbeitung">Login und Schlüssel-Verarbeitung<a class="headerlink" href="#login-und-schlussel-verarbeitung" title="Permanent link">&para;</a></h2>
 <p>mailcow verwendet <strong>Client-seitige Schlüsselverarbeitung</strong>. Wir bitten den Authentifikator (d.h. YubiKey), die Registrierung in seinem Speicher zu speichern.</p>
-<p>Ein Benutzer muss keinen Benutzernamen eingeben. Die verfügbaren Anmeldedaten - falls vorhanden - werden dem Nutzer angezeigt, wenn er den "Schlüssel-Login" über das Mailcow UI Login auswählt.</p>
+<p>Ein Benutzer muss keinen Benutzernamen eingeben. Die verfügbaren Anmeldedaten - falls vorhanden - werden dem Nutzer angezeigt, wenn er den "Schlüssel-Login" über das mailcow UI Login auswählt.</p>
 <p>Beim Aufruf des Login-Prozesses werden dem Authentifikator keine Credential-IDs übergeben. Dies wird ihn dazu zwingen, die Anmeldeinformationen in seinem eigenen Speicher zu suchen.</p>
 <h2 id="wer-kann-webauthn-benutzen-um-sich-bei-mailcow-anzumelden">Wer kann WebAuthn benutzen, um sich bei mailcow anzumelden?<a class="headerlink" href="#wer-kann-webauthn-benutzen-um-sich-bei-mailcow-anzumelden" title="Permanent link">&para;</a></h2>
 <p>Ab heute sind nur Administratoren und Domain-Administratoren in der Lage, WebAuthn/FIDO2 einzurichten.</p>
@@ -2506,7 +2507,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-31 11:08:49</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2521,6 +2522,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2588,7 +2591,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

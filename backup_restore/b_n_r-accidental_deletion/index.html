@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2482,11 +2483,45 @@
 <p>We automatically create daily backups (24h interval starting from running up -d) in <code>/var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/</code>.</p>
 <p><strong>Make sure the user you want to restore exists in your mailcow</strong>. Re-create them if they are missing.</p>
 <p>Copy the file named after the user you want to restore to <code>__MAILCOW_DIRECTORY__/data/conf/sogo</code>.</p>
-<p>1. Copy the backup: <code>cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo</code></p>
-<p>2. Run <code>docker compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org</code></p>
+<ol>
+<li>
+<p>Copy the backup: <code>cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo</code></p>
+</li>
+<li>
+<p>Run the following command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>sogo<span class="w"> </span>sogo-mailcow<span class="w"> </span>sogo-tool<span class="w"> </span>restore<span class="w"> </span>-F<span class="w"> </span>ALL<span class="w"> </span>/etc/sogo<span class="w"> </span>restoreme@example.org
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>sogo<span class="w"> </span>sogo-mailcow<span class="w"> </span>sogo-tool<span class="w"> </span>restore<span class="w"> </span>-F<span class="w"> </span>ALL<span class="w"> </span>/etc/sogo<span class="w"> </span>restoreme@example.org
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Run <code>sogo-tool</code> without parameters to check for possible restore options.</p>
-<p>3. Delete the copied backup by running <code>rm __MAILCOW_DIRECTORY__/data/conf/sogo</code></p>
-<p>4. Restart SOGo and Memcached: <code>docker compose restart sogo-mailcow memcached-mailcow</code></p>
+</li>
+<li>
+<p>Delete the copied backup by running <code>rm __MAILCOW_DIRECTORY__/data/conf/sogo</code></p>
+</li>
+<li>
+<p>Restart SOGo and Memcached: </p>
+</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>sogo-mailcow<span class="w"> </span>memcached-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>sogo-mailcow<span class="w"> </span>memcached-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="mail">Mail<a class="headerlink" href="#mail" title="Permanent link">&para;</a></h3>
 <p>In case of an accidental deletion of a mailbox, you will be able to recover for (by default) 5 days. This depends on the <code>MAILDIR_GC_TIME</code> parameter in <code>mailcow.conf</code>.</p>
 <p>A deleted mailbox is copied in its encrypted form to <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage</code>.</p>
@@ -2494,16 +2529,27 @@
 <p>To restore make sure you are actually restoring to the same mailcow it was deleted from or you use the same encryption keys in <code>crypt-vol-1</code>.</p>
 <p><strong>Make sure the user you want to restore exists in your mailcow</strong>. Re-create them if they are missing.</p>
 <p>Copy the folders from <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/_garbage/[timestamp]_[domain_sanitized][user_sanitized]</code> back to <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data/[domain]/[user]</code> and resync the folder and recalc the quota:</p>
-<div class="highlight"><pre><span></span><code>docker compose exec dovecot-mailcow doveadm force-resync -u restoreme@example.net &#39;*&#39;
-docker compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.net
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>force-resync<span class="w"> </span>-u<span class="w"> </span>restoreme@example.net<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>quota<span class="w"> </span>recalc<span class="w"> </span>-u<span class="w"> </span>restoreme@example.net
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>force-resync<span class="w"> </span>-u<span class="w"> </span>restoreme@example.net<span class="w"> </span><span class="s1">&#39;*&#39;</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>quota<span class="w"> </span>recalc<span class="w"> </span>-u<span class="w"> </span>restoreme@example.net
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-10 12:08:32</span>
       
     
   </small>
@@ -2518,6 +2564,8 @@ docker compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.ne
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2585,7 +2633,7 @@ docker compose exec dovecot-mailcow doveadm quota recalc -u restoreme@example.ne
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>

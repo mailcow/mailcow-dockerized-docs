@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1287,7 +1288,7 @@
   
     <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2543,19 +2544,44 @@
 <p>Redis wird als Key-Value-Speicher für die Einstellungen und Daten von rspamd und (einige von) mailcow verwendet. Wenn Sie mit Redis nicht vertraut sind, lesen Sie bitte die <a href="https://redis.io/topics/introduction">Einführung in Redis</a> und besuchen Sie gegebenenfalls diese <a href="http://try.redis.io/">wunderbare Anleitung</a>, um zu erfahren, wie man Redis benutzt.</p>
 <h2 id="client">Client<a class="headerlink" href="#client" title="Permanent link">&para;</a></h2>
 <p>Um sich mit dem redis cli zu verbinden, führen Sie aus:</p>
-<div class="highlight"><pre><span></span><code>docker compose exec redis-mailcow redis-cli
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis-mailcow<span class="w"> </span>redis-cli
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis-mailcow<span class="w"> </span>redis-cli
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="fehlersuche">Fehlersuche<a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h3>
 <p>Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:</p>
 <h5 id="monitor">MONITOR<a class="headerlink" href="#monitor" title="Permanent link">&para;</a></h5>
 <p>Überwacht alle vom Server empfangenen Anfragen in Echtzeit:</p>
-<div class="highlight"><pre><span></span><code># docker compose exec redis-mailcow redis-cli
-127.0.0.1:6379&gt; monitor
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">#docker compose exec redis-mailcow redis-cli</span>
+<span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>monitor
 OK
-1494077286.401963 [0 172.22.1.253:41228] &quot;SMEMBERS&quot; &quot;BAYES_SPAM_keys&quot;
-1494077288.292970 [0 172.22.1.253:41229] &quot;SMEMBERS&quot; &quot;BAYES_SPAM_keys&quot;
-[...]
+<span class="m">1494077286</span>.401963<span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">172</span>.22.1.253:41228<span class="o">]</span><span class="w"> </span><span class="s2">&quot;SMEMBERS&quot;</span><span class="w"> </span><span class="s2">&quot;BAYES_SPAM_keys&quot;</span>
+<span class="m">1494077288</span>.292970<span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">172</span>.22.1.253:41229<span class="o">]</span><span class="w"> </span><span class="s2">&quot;SMEMBERS&quot;</span><span class="w"> </span><span class="s2">&quot;BAYES_SPAM_keys&quot;</span>
+<span class="o">[</span>...<span class="o">]</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">#docker-compose exec redis-mailcow redis-cli</span>
+<span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>monitor
+OK
+<span class="m">1494077286</span>.401963<span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">172</span>.22.1.253:41228<span class="o">]</span><span class="w"> </span><span class="s2">&quot;SMEMBERS&quot;</span><span class="w"> </span><span class="s2">&quot;BAYES_SPAM_keys&quot;</span>
+<span class="m">1494077288</span>.292970<span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">172</span>.22.1.253:41229<span class="o">]</span><span class="w"> </span><span class="s2">&quot;SMEMBERS&quot;</span><span class="w"> </span><span class="s2">&quot;BAYES_SPAM_keys&quot;</span>
+<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h5 id="schlussel-keys">SCHLÜSSEL (Keys)<a class="headerlink" href="#schlussel-keys" title="Permanent link">&para;</a></h5>
 <p>Ermittelt alle Schlüssel, die dem Muster entsprechen:</p>
 <div class="highlight"><pre><span></span><code>KEYS *
@@ -2572,7 +2598,7 @@ PONG
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
       
     
   </small>
@@ -2587,6 +2613,8 @@ PONG
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2654,7 +2682,7 @@ PONG
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

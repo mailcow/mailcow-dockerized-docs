@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1285,7 +1286,7 @@
   
     <li class="md-nav__item">
       <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2520,32 +2521,83 @@
 <p>Nextcloud kann mit dem <a href="https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh">helper script</a>, das in mailcow enthalten ist, eingerichtet (Parameter <code>-i</code>) und entfernt (Parameter <code>-p</code>) werden. Um Nextcloud zu installieren, navigieren Sie einfach zu Ihrem mailcow-dockerized Root-Ordner und führen Sie das Helper-Skript wie folgt aus:</p>
 <p><code>./helper-scripts/nextcloud.sh -i</code></p>
 <p>Für den Fall, dass Sie das Passwort (z.B. für admin) vergessen haben und kein neues anfordern können [über den Passwort-Reset-Link auf dem Login-Bildschirm] (<a href="https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset">https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset</a>), können Sie durch den Aufruf des Helper-Skripts mit <code>-r</code> als Parameter ein neues Passwort setzen. Verwenden Sie diese Option nur, wenn Ihre Nextcloud nicht so konfiguriert ist, dass Sie mailcow zur Authentifizierung verwendet, wie im nächsten Abschnitt beschrieben.</p>
-<p>Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und <code>docker compose up -d</code> zur Übernahme ausgeführt werden. Für weitere Informationen siehe: <a href="../../../post_installation/firststeps-ssl/">Erweitertes SSL</a>.</p>
+<p>Damit mailcow ein Zertifikat für die Nextcloud Domain generieren kann, muss die Domain unter welcher die Nextcloud später erreichbar sein soll als ADDITIONAL_SAN in die mailcow.conf hinzufügt werden und folgender Befehl zur Übernahme ausgeführt werden. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Für weitere Informationen siehe: <a href="../../../post_installation/firststeps-ssl/">Erweitertes SSL</a>.</p>
 <h2 id="hintergrund-aufgaben">Hintergrund-Aufgaben<a class="headerlink" href="#hintergrund-aufgaben" title="Permanent link">&para;</a></h2>
 <p>Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergrund-Aufgaben müssen in der <code>docker-compose.override.yml</code> folgende Zeilen
  hinzugefügt werden:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-services:
-  php-fpm-mailcow:
-    labels:
-      ofelia.enabled: &quot;true&quot;
-      ofelia.job-exec.nextcloud-cron.schedule: &quot;@every 5m&quot;
-      ofelia.job-exec.nextcloud-cron.command: &quot;su www-data -s /bin/bash -c \&quot;/usr/local/bin/php -f /web/nextcloud/cron.php\&quot;&quot;
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">php-fpm-mailcow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ofelia.enabled</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">ofelia.job-exec.nextcloud-cron.schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;@every</span><span class="nv"> </span><span class="s">5m&quot;</span>
+<span class="w">      </span><span class="nt">ofelia.job-exec.nextcloud-cron.command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;su</span><span class="nv"> </span><span class="s">www-data</span><span class="nv"> </span><span class="s">-s</span><span class="nv"> </span><span class="s">/bin/bash</span><span class="nv"> </span><span class="s">-c</span><span class="nv"> </span><span class="s">\&quot;/usr/local/bin/php</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">/web/nextcloud/cron.php\&quot;&quot;</span>
 </code></pre></div>
-<p>Nachdem diese Zeilen hinzugefügt wurden muss <code>docker compose up -d</code> ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. Danach muss
- zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird <code>docker compose restart ofelia-mailcow</code> ausgeführt. Zur
- Überprüfung, ob die <code>ofelia</code> Konfiguration korrekt ist geladen wurde, kann mittels <code>docker compose logs ofelia-mailcow</code> nach einer Zeile mit dem Inhalt
- <code>New job registered "nextcloud-cron" - ...</code> gesucht werden.</p>
+<p>Nachdem diese Zeilen hinzugefügt wurden muss der folgende Befehl ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Danach muss zudem der docker scheduler neu gestartet werden, um den neuen Job zu registrieren. Dazu wird der folgende Befehl ausgeführt. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>ofelia-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>ofelia-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Zur Überprüfung, ob die <code>ofelia</code> Konfiguration korrekt ist geladen wurde, kann mittels dem untenstehenden Befehl nach einer Zeile mit dem Inhalt
+ <code>New job registered "nextcloud-cron" - ...</code> gesucht werden:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>ofelia-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>logs<span class="w"> </span>ofelia-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Hierdurch wird alle 5 Minuten die Hintergrundverarbeitung gestartet. Da die Ausführung selbst keine Ausgabe liefert, kann die korrekte Funktionsweise in den
  Grundeinstellungen von Nextcloud überprüft werden. Hier wird automatisch mit der ersten Ausführung die Hintergrund-Aufgaben Verarbeitung auf <code>(X) Cron</code> gesetzt
  und der Zeitstempel <code>Letzte Aufgabe ausgeführt</code> aktualisiert.</p>
 <h2 id="konfigurieren-sie-nextcloud-um-mailcow-fur-die-authentifizierung-zu-verwenden">Konfigurieren Sie Nextcloud, um mailcow für die Authentifizierung zu verwenden<a class="headerlink" href="#konfigurieren-sie-nextcloud-um-mailcow-fur-die-authentifizierung-zu-verwenden" title="Permanent link">&para;</a></h2>
 <p>Im Folgenden wird beschrieben, wie die Authentifizierung über mailcow unter Verwendung des OAuth2-Protokolls eingerichtet wird. Wir nehmen nur an, dass Sie Nextcloud bereits unter <em>cloud.example.com</em> eingerichtet haben und dass Ihre mailcow unter <em>mail.example.com</em> läuft. Es spielt keine Rolle, wenn Ihre Nextcloud auf einem anderen Server läuft, Sie können immer noch mailcow für die Authentifizierung verwenden.</p>
 <p>1. Melden Sie sich bei mailcow als Administrator an.</p>
-<p>2. Scrollen Sie nach unten zu <em>OAuth2 Apps</em> und klicken Sie auf die Schaltfläche <em>Hinzufügen</em>. Geben Sie die Redirect URI als <code>https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/Mailcow</code> an und klicken Sie auf <em>Hinzufügen</em>. Speichern Sie die Client-ID und das Geheimnis für später.</p>
+<p>2. Klicken Sie im Dropdown Menü (oben rechts) auf Konfiguration.</p>
+<p>3. Wählen Sie dann im Reiter "Zugang" den Dropdown Punkt OAuth2 aus.</p>
+<p>4. Scrollen Sie nach unten und klicken Sie auf die Schaltfläche <em>Füge OAuth2 Client hinzu</em>. Geben Sie die Redirect URI als <code>https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/mailcow</code> an und klicken Sie auf <em>Hinzufügen</em>. Speichern Sie die Client-ID und das Geheimnis für später.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Einige Installationen, einschließlich derer, die mit dem Helper-Skript von mailcow eingerichtet wurden, müssen index.php/ aus der URL entfernen, um einen erfolgreichen Redirect zu erhalten: <code>https://cloud.example.com/apps/sociallogin/custom_oauth2/Mailcow</code></p>
+<p>Einige Installationen, einschließlich derer, die mit dem Helper-Skript von mailcow eingerichtet wurden, müssen index.php/ aus der URL entfernen, um einen erfolgreichen Redirect zu erhalten: <code>https://cloud.example.com/apps/sociallogin/custom_oauth2/mailcow</code></p>
 </div>
 <p>3. Melden Sie sich bei Nextcloud als Administrator an.</p>
 <p>4. Klicken Sie auf die Schaltfläche in der oberen rechten Ecke und wählen Sie <em>Apps</em>. Klicken Sie auf die Schaltfläche "Suchen" in der Symbolleiste, suchen Sie nach dem Plugin <a href="https://apps.nextcloud.com/apps/sociallogin"><em>Social Login</em></a> und klicken Sie daneben auf <em>Herunterladen und aktivieren</em>.</p>
@@ -2568,8 +2620,8 @@ services:
 <p>8. Scrollen Sie nach unten zu <em>Custom OAuth2</em> und klicken Sie auf die Schaltfläche <em>+</em>.
 9. Konfigurieren Sie die Parameter wie folgt:</p>
 <ul>
-<li>Interner Name: <code>Mailcow</code></li>
-<li>Titel: <code>Mailcow</code></li>
+<li>Interner Name: <code>mailcow</code></li>
+<li>Titel: <code>mailcow</code></li>
 <li>API Basis-URL: <code>https://mail.example.com</code></li>
 <li>Autorisierungs-URL: <code>https://mail.example.com/oauth/authorize</code></li>
 <li>Token-URL: <code>https://mail.example.com/oauth/token</code></li>
@@ -2582,41 +2634,76 @@ services:
 <p>Klicken Sie auf die Schaltfläche <em>Speichern</em> ganz unten auf der Seite.</p>
 <hr />
 <p>Wenn Sie bisher Nextcloud mit mailcow-Authentifizierung über user_external/IMAP verwendet haben, müssen Sie einige zusätzliche Schritte durchführen, um Ihre bestehenden Benutzerkonten mit OAuth2 zu verknüpfen.</p>
-<p>1. Klicken Sie auf die Schaltfläche in der oberen rechten Ecke und wählen Sie <em>Apps</em>. Scrollen Sie nach unten zur App <em>Externe Benutzerauthentifizierung</em> und klicken Sie daneben auf <em>Entfernen</em>.
-2. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie <code>source mailcow.conf &amp;&amp; docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code> ausführen):
-<div class="highlight"><pre><span></span><code>INSERT INTO nc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM nc_users_external;
-INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users_external;
-</code></pre></div></p>
+<p>1. Klicken Sie auf die Schaltfläche in der oberen rechten Ecke und wählen Sie <em>Apps</em>. Scrollen Sie nach unten zur App <em>Externe Benutzerauthentifizierung</em> und klicken Sie daneben auf <em>Entfernen</em>.</p>
+<p>2. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie folgenden Befehl nutzen um in den Container zu gelangen)</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_users</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">uid_lower</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users_external</span><span class="p">;</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users_external</span><span class="p">;</span>
+</code></pre></div>
 <hr />
 <p>Wenn Sie Nextcloud bisher ohne mailcow-Authentifizierung, aber mit den gleichen Benutzernamen wie mailcow genutzt haben, können Sie Ihre bestehenden Benutzerkonten auch mit OAuth2 verknüpfen.</p>
-<p>1. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie <code>source mailcow.conf &amp;&amp; docker compose exec mysql-mailcow mysql -u$DBUSER -p$DBPASS $DBNAME</code> ausführen):
-<div class="highlight"><pre><span></span><code>INSERT INTO nc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT(&quot;Mailcow-&quot;, uid) FROM nc_users;
-</code></pre></div></p>
+<p>1. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus (wenn Sie Nextcloud mit dem Skript von mailcow einrichten, können Sie folgenden Befehl nutzen um in den Container zu gelangen):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users</span><span class="p">;</span>
+</code></pre></div>
 <hr />
 <h2 id="aktualisieren">Aktualisieren<a class="headerlink" href="#aktualisieren" title="Permanent link">&para;</a></h2>
 <p>Die Nextcloud-Instanz kann einfach mit dem Web-Update-Mechanismus aktualisiert werden. Bei größeren Updates können nach dem Update weitere Änderungen vorgenommen werden. Nachdem die Nextcloud-Instanz geprüft wurde, werden Probleme angezeigt. Dies können z.B. fehlende Indizes in der DB oder ähnliches sein.
 Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im php-fpm-mailcow Container platziert werden.</p>
-<p>Führen Sie z.B. folgenden Befehl aus, um die fehlenden Indizes hinzuzufügen
-<code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"</code></p>
+<p>Führen Sie z.B. folgenden Befehl aus, um die fehlenden Indizes hinzuzufügen:</p>
+<p><code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"</code></p>
 <hr />
 <h2 id="fehlersuche-und-fehlerbehebung">Fehlersuche und Fehlerbehebung<a class="headerlink" href="#fehlersuche-und-fehlerbehebung" title="Permanent link">&para;</a></h2>
 <p>Es kann vorkommen, dass Sie die Nextcloud-Instanz von Ihrem Netzwerk aus nicht erreichen können. Dies kann daran liegen, dass der Eintrag Ihres Subnetzes im Array 'trusted_proxies' fehlt. Sie können Änderungen in der Nextcloud config.php in <code>data/web/nextcloud/config/*</code> vornehmen.</p>
-<div class="highlight"><pre><span></span><code>&#39;trusted_proxies&#39; =&gt;
-  array (
-    0 =&gt; &#39;fd4d:6169:6c63:6f77::/64&#39;,
-    1 =&gt; &#39;172.22.1.0/24&#39;,
-    2 =&gt; &#39;NewSubnet/24&#39;,
-  ),
+<div class="highlight"><pre><span></span><code><span class="x">&#39;trusted_proxies&#39; =&gt;</span>
+<span class="x">  array (</span>
+<span class="x">    0 =&gt; &#39;fd4d:6169:6c63:6f77::/64&#39;,</span>
+<span class="x">    1 =&gt; &#39;172.22.1.0/24&#39;,</span>
+<span class="x">    2 =&gt; &#39;NewSubnet/24&#39;,</span>
+<span class="x">  ),</span>
 </code></pre></div>
-<p>Nachdem die Änderungen vorgenommen wurden, muss der nginx-Container neu gestartet werden.
-<code>docker compose restart nginx-mailcow</code></p>
+<p>Nachdem die Änderungen vorgenommen wurden, muss der nginx-Container neu gestartet werden.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">docker compose (Plugin)</label><label for="__tabbed_7_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2631,6 +2718,8 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2698,7 +2787,7 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

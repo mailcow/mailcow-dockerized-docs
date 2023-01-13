@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -1357,14 +1358,6 @@
     Disable unofficial supported Fido Security Keys
   </a>
   
-    <nav class="md-nav" aria-label="Disable unofficial supported Fido Security Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example:
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1378,11 +1371,6 @@
   <a href="#is-it-dangerous-to-keep-the-vendor-check-disabled" class="md-nav__link">
     Is it dangerous to keep the Vendor Check disabled?
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2548,14 +2536,6 @@
     Disable unofficial supported Fido Security Keys
   </a>
   
-    <nav class="md-nav" aria-label="Disable unofficial supported Fido Security Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example:
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
@@ -2569,11 +2549,6 @@
   <a href="#is-it-dangerous-to-keep-the-vendor-check-disabled" class="md-nav__link">
     Is it dangerous to keep the Vendor Check disabled?
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -2671,23 +2646,39 @@ Finally, enter your current account password and, after selecting the <code>Touc
 <h3 id="disable-unofficial-supported-fido-security-keys">Disable unofficial supported Fido Security Keys<a class="headerlink" href="#disable-unofficial-supported-fido-security-keys" title="Permanent link">&para;</a></h3>
 <p>With WebAuthn there is the possibility to use only official Fido Security Keys (from the big brands like: Yubico, Apple, Nitro, Google, Huawei, Microsoft, etc.).</p>
 <p>This is primarily for security purposes, as it allows administrators to ensure that only official hardware can be used in their environment.</p>
-<p>To enable this feature, change the value <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf from <code>n</code> to <code>y</code> and restart the affected containers with <code>docker compose up -d</code>.</p>
+<p>To enable this feature, change the value <code>WEBAUTHN_ONLY_TRUSTED_VENDORS</code> in mailcow.conf from <code>n</code> to <code>y</code> and restart the affected containers with the following command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>The mailcow will now use the Vendor Certificates located in your mailcow directory under <code>data/web/inc/lib/WebAuthn/rootCertificates</code>. </p>
-<h5 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
+<div class="admonition abstract">
+<p class="admonition-title">Example</p>
 <p>If you want to limit the official Vendor devices to Apple only you only need the Apple Vendor Certificate inside the <code>data/web/inc/lib/WebAuthn/rootCertificates</code>.
 After you deleted all other certs you now only can activate WebAuthn 2FA with Apple devices.</p>
-<p>That´s for every vendor the same, so choose what you like (if you want to).</p>
-<h4 id="use-own-certificates-for-webauthn">Use own certificates for WebAuthn<a class="headerlink" href="#use-own-certificates-for-webauthn" title="Permanent link">&para;</a></h4>
+<p>Every vendor (listed there) behaves the same, so choose what you like (if you want to).</p>
+</div>
+<h3 id="use-own-certificates-for-webauthn">Use own certificates for WebAuthn<a class="headerlink" href="#use-own-certificates-for-webauthn" title="Permanent link">&para;</a></h3>
 <p>If you have a valid certificate from the vendor of your key you can also add it to your mailcow!</p>
 <p>Just copy the certificate into the <code>data/web/inc/lib/WebAuthn/rootCertificates</code> folder and restart your mailcow.</p>
 <p>Now you should be able to register this device as well, even though the verification for the vendor certificates is enabled, since you just added the certificate manually. </p>
-<h4 id="is-it-dangerous-to-keep-the-vendor-check-disabled">Is it dangerous to keep the Vendor Check disabled?<a class="headerlink" href="#is-it-dangerous-to-keep-the-vendor-check-disabled" title="Permanent link">&para;</a></h4>
+<h3 id="is-it-dangerous-to-keep-the-vendor-check-disabled">Is it dangerous to keep the Vendor Check disabled?<a class="headerlink" href="#is-it-dangerous-to-keep-the-vendor-check-disabled" title="Permanent link">&para;</a></h3>
 <p>No, it isn´t!
 These vendor certificates are only used to verify original hardware, not to secure the registration process.</p>
-<p>As you can read in these articles, the deactivation is not software security related:
-- <a href="https://developers.yubico.com/U2F/Attestation_and_Metadata/">https://developers.yubico.com/U2F/Attestation_and_Metadata/</a>
-- <a href="https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651">https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651</a>
-- <a href="https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01">https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01</a></p>
+<p>As you can read in these articles, the deactivation is not software security related:</p>
+<ul>
+<li><a href="https://developers.yubico.com/U2F/Attestation_and_Metadata/">https://developers.yubico.com/U2F/Attestation_and_Metadata/</a></li>
+<li><a href="https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651">https://medium.com/webauthnworks/webauthn-fido2-demystifying-attestation-and-mds-efc3b3cb3651</a></li>
+<li><a href="https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01">https://medium.com/webauthnworks/sorting-fido-ctap-webauthn-terminology-7d32067c0b01</a></li>
+</ul>
 <p>In the end, however, it is of course your decision to leave this check disabled or enabled. </p>
 <hr />
 <h2 id="totp">TOTP<a class="headerlink" href="#totp" title="Permanent link">&para;</a></h2>
@@ -2704,7 +2695,7 @@ These vendor certificates are only used to verify original hardware, not to secu
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2719,6 +2710,8 @@ These vendor certificates are only used to verify original hardware, not to secu
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2786,7 +2779,7 @@ These vendor certificates are only used to verify original hardware, not to secu
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

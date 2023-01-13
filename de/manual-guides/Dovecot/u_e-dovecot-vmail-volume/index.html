@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1287,7 +1288,7 @@
   
     <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2504,24 +2505,24 @@
 
 <h2 id="der-neue-weg">Der "neue" Weg<a class="headerlink" href="#der-neue-weg" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>Neuere Docker-Versionen scheinen sich über bestehende Volumes zu beschweren. Man kann dies vorübergehend beheben, indem man das bestehende Volume entfernt und mailcow mit der Override-Datei startet. Aber es scheint nach einem Neustart problematisch zu sein (muss bestätigt werden).</p>
 </div>
-<p>Ein einfacher, schmutziger, aber stabiler Workaround ist es, mailcow zu stoppen (<code>docker compose down</code>), <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data</code> zu entfernen und einen neuen Link zu Ihrem entfernten Dateisystem zu erstellen, zum Beispiel:</p>
-<div class="highlight"><pre><span></span><code>mv /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data_backup
-ln -s /mnt/volume-xy/vmail_data /var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data
+<p>Ein einfacher, schmutziger, aber stabiler Workaround ist es, mailcow zu stoppen, <code>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data</code> zu entfernen und einen neuen Link zu Ihrem entfernten Dateisystem zu erstellen, zum Beispiel:</p>
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data<span class="w"> </span>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data_backup
+ln<span class="w"> </span>-s<span class="w"> </span>/mnt/volume-xy/vmail_data<span class="w"> </span>/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data
 </code></pre></div>
 <p>Starten Sie anschließend mailcow.</p>
 <hr />
 <h2 id="der-alte-weg">Der "alte" Weg<a class="headerlink" href="#der-alte-weg" title="Permanent link">&para;</a></h2>
 <p>Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine <code>docker-compose.override.yml</code> Datei erstellen und den folgenden Inhalt hinzufügen:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-volumes:
-  vmail-vol-1:
-    driver_opts:
-      type: none
-      device: /data/mailcow/vmail   
-      o: bind
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span>
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">vmail-vol-1</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver_opts</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">      </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/mailcow/vmail</span><span class="w">   </span>
+<span class="w">      </span><span class="nt">o</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bind</span>
 </code></pre></div>
 <h3 id="verschieben-eines-bestehenden-vmail-ordners">Verschieben eines bestehenden vmail-Ordners:<a class="headerlink" href="#verschieben-eines-bestehenden-vmail-ordners" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2545,18 +2546,44 @@ volumes:
 </code></pre></div>
 <ul>
 <li>Kopieren Sie den Inhalt des <code>Mountpoint</code>-Ordners an den neuen Speicherort (z.B. <code>/data/mailcow/vmail</code>) mit <code>cp -a</code>, <code>rsync -a</code> oder einem ähnlichen, nicht strikten Kopierbefehl</li>
-<li>Stoppen Sie mailcow durch Ausführen von <code>docker compose down</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
+<li>Stoppen Sie mailcow durch Ausführen des kommenden Befehls aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>):</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down<span class="w">    </span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<ul>
 <li>Erstellen Sie die Datei <code>docker-compose.override.yml</code>, bearbeiten Sie den Gerätepfad entsprechend</li>
 <li>Löschen Sie den aktuellen vmail-Ordner: <code>docker volume rm mailcowdockerized_vmail-vol-1</code></li>
-<li>Starten Sie mailcow durch Ausführen von <code>docker compose up -d</code> aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>)</li>
+<li>Starten Sie mailcow durch Ausführen des folgenden Befehls aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>):</li>
 </ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2571,6 +2598,8 @@ volumes:
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2638,7 +2667,7 @@ volumes:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1398,7 +1399,7 @@
   
     <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2614,24 +2615,67 @@
 ./helper-scripts/mailcow-reset-admin.sh
 </code></pre></div>
 <h2 id="mysql-passworter-zurucksetzen">MySQL-Passwörter zurücksetzen<a class="headerlink" href="#mysql-passworter-zurucksetzen" title="Permanent link">&para;</a></h2>
-<p>Stoppen Sie den Stack, indem Sie <code>docker compose stop</code> ausführen.</p>
+<p>Stoppen Sie den Stack, indem Sie den folgenden Befehl ausführen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>stop
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>stop
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Wenn die Container heruntergefahren sind, führen Sie diesen Befehl aus:</p>
-<div class="highlight"><pre><span></span><code>docker compose run --rm --entrypoint &#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0&quot;&#39; mysql-mailcow
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--entrypoint<span class="w"> </span><span class="s1">&#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0&quot;&#39;</span><span class="w"> </span>mysql-mailcow
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--entrypoint<span class="w"> </span><span class="s1">&#39;/bin/sh -c &quot;gosu mysql mysqld --skip-grant-tables &amp; sleep 10 &amp;&amp; mysql -hlocalhost -uroot &amp;&amp; exit 0&quot;&#39;</span><span class="w"> </span>mysql-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="1-datenbank-name-finden">1. Datenbank-Name finden<a class="headerlink" href="#1-datenbank-name-finden" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code># source mailcow.conf
-# docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}
-MariaDB [(none)]&gt; show databases;
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># source mailcow.conf</span>
+<span class="c1"># docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}</span>
+MariaDB<span class="w"> </span><span class="o">[(</span>none<span class="o">)]</span>&gt;<span class="w"> </span>show<span class="w"> </span>databases<span class="p">;</span>
 +--------------------+
-| Database |
+<span class="p">|</span><span class="w"> </span>Database<span class="w"> </span><span class="p">|</span>
 +--------------------+
-| information_schema |
-| mailcow_database | &lt;=====
-| mysql |
-| performance_schema |
+<span class="p">|</span><span class="w"> </span>information_schema<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>mailcow_database<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;<span class="o">=====</span>
+<span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>performance_schema<span class="w"> </span><span class="p">|</span>
 +--------------------+
-4 rows in set (0.00 sec)
+<span class="m">4</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.00<span class="w"> </span>sec<span class="o">)</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># source mailcow.conf</span>
+<span class="c1"># docker-compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME}</span>
+MariaDB<span class="w"> </span><span class="o">[(</span>none<span class="o">)]</span>&gt;<span class="w"> </span>show<span class="w"> </span>databases<span class="p">;</span>
++--------------------+
+<span class="p">|</span><span class="w"> </span>Database<span class="w"> </span><span class="p">|</span>
++--------------------+
+<span class="p">|</span><span class="w"> </span>information_schema<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>mailcow_database<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;<span class="o">=====</span>
+<span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>performance_schema<span class="w"> </span><span class="p">|</span>
++--------------------+
+<span class="m">4</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>.00<span class="w"> </span>sec<span class="o">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="2-einen-oder-mehrere-benutzer-zurucksetzen">2. Einen oder mehrere Benutzer zurücksetzen<a class="headerlink" href="#2-einen-oder-mehrere-benutzer-zurucksetzen" title="Permanent link">&para;</a></h3>
 <h4 id="21-maria-db-104-altere-mailcow-installationen">2.1 Maria DB &lt; 10.4 (ältere mailcow-Installationen)<a class="headerlink" href="#21-maria-db-104-altere-mailcow-installationen" title="Permanent link">&para;</a></h4>
 <p>Sowohl "password" als auch "authentication_string" existieren. Derzeit wird "password" verwendet, aber besser ist es, beide zu setzen.</p>
@@ -2668,19 +2712,40 @@ MariaDB [(none)]&gt; FLUSH PRIVILEGES;
 <h2 id="zwei-faktor-authentifizierung-entfernen">Zwei-Faktor-Authentifizierung entfernen<a class="headerlink" href="#zwei-faktor-authentifizierung-entfernen" title="Permanent link">&para;</a></h2>
 <h3 id="fur-mailcow-webui">Für mailcow WebUI:<a class="headerlink" href="#fur-mailcow-webui" title="Permanent link">&para;</a></h3>
 <p>Dies funktioniert ähnlich wie das Zurücksetzen eines MySQL-Passworts, jetzt machen wir es vom Host aus, ohne uns mit dem MySQL CLI zu verbinden:</p>
-<div class="highlight"><pre><span></span><code>Quelle mailcow.conf
-docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &quot;DELETE FROM tfa WHERE username=&#39;YOUR_USERNAME&#39;;&quot;
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;DELETE FROM tfa WHERE username=&#39;YOUR_USERNAME&#39;;&quot;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="si">${</span><span class="nv">DBUSER</span><span class="si">}</span><span class="w"> </span>-p<span class="si">${</span><span class="nv">DBPASS</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">DBNAME</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;DELETE FROM tfa WHERE username=&#39;YOUR_USERNAME&#39;;&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="fur-sogo">Für SOGo:<a class="headerlink" href="#fur-sogo" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoGoogleAuthenticatorEnabled &#39;{&quot;SOGoGoogleAuthenticatorEnabled&quot;:0}&#39;
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>sogo<span class="w"> </span>sogo-mailcow<span class="w"> </span>sogo-tool<span class="w"> </span>user-preferences<span class="w"> </span><span class="nb">set</span><span class="w"> </span>defaults<span class="w"> </span>user@example.com<span class="w"> </span>SOGoGoogleAuthenticatorEnabled<span class="w"> </span><span class="s1">&#39;{&quot;SOGoGoogleAuthenticatorEnabled&quot;:0}&#39;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>sogo<span class="w"> </span>sogo-mailcow<span class="w"> </span>sogo-tool<span class="w"> </span>user-preferences<span class="w"> </span><span class="nb">set</span><span class="w"> </span>defaults<span class="w"> </span>user@example.com<span class="w"> </span>SOGoGoogleAuthenticatorEnabled<span class="w"> </span><span class="s1">&#39;{&quot;SOGoGoogleAuthenticatorEnabled&quot;:0}&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-08-31 14:45:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2695,6 +2760,8 @@ docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &qu
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2762,7 +2829,7 @@ docker compose exec mysql-mailcow mysql -u${DBUSER} -p${DBPASS} ${DBNAME} -e &qu
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

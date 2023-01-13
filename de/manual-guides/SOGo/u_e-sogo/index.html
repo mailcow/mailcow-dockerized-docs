@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1287,7 +1288,7 @@
   
     <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2544,40 +2545,74 @@
 
   <h1>SOGo</h1>
 
-<p>SOGo wird verwendet, um über einen Webbrowser auf Ihre Mails zuzugreifen und Ihre Kontakte oder Kalender hinzuzufügen und zu teilen. Für eine ausführlichere Dokumentation zu SOGo besuchen Sie bitte die [eigene Dokumentation] (<a href="http://wiki.sogo.nu/">http://wiki.sogo.nu/</a>).</p>
+<p>SOGo wird verwendet, um über einen Webbrowser auf Ihre Mails zuzugreifen und Ihre Kontakte oder Kalender hinzuzufügen und zu teilen. Für eine ausführlichere Dokumentation zu SOGo besuchen Sie bitte die <a href="http://wiki.sogo.nu/">Dokumentation von SOGo</a>.</p>
 <h2 id="benutzerdefiniertes-sogo-thema-css-anwenden">Benutzerdefiniertes SOGo-Thema (CSS) anwenden<a class="headerlink" href="#benutzerdefiniertes-sogo-thema-css-anwenden" title="Permanent link">&para;</a></h2>
 <p>mailcow-Builds nach dem 28. Januar 2021 können das CSS-Thema von SOGo ändern, indem sie <code>data/conf/sogo/custom-theme.js</code> bearbeiten.
 Bitte schauen Sie sich die AngularJS Material <a href="https://material.angularjs.org/latest/Theming/01_introduction">intro</a> und <a href="https://material.angularjs.org/latest/Theming/03_configuring_a_theme">documentation</a> sowie die <a href="https://material.io/archive/guidelines/style/color.html#color-color-palette">material style guideline</a> an, um zu erfahren, wie das funktioniert. </p>
 <p>Sie können die mitgelieferte <code>custom-theme.js</code> als Beispiel verwenden, indem Sie die Kommentare entfernen.
 Nachdem Sie <code>data/conf/sogo/custom-theme.js</code> modifiziert und Änderungen an Ihrem neuen SOGo-Theme vorgenommen haben, müssen Sie </p>
-<ol>
-<li>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und fügen Sie <code>SOGoUIxDebugEnabled = YES;</code> ein.</li>
-<li>SOGo und Memcached Container neu starten, indem man <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführt.</li>
-<li>SOGo im Browser öffnen</li>
-<li>öffnen Sie die Entwicklerkonsole des Browsers, normalerweise ist die Tastenkombination F12</li>
-<li>nur wenn Sie Firefox benutzen: schreiben Sie mit der Hand in die Entwicklerkonsole <code>allow pasting</code> und drücken Sie Enter</li>
-<li>fügen Sie den Java-Script-Schnipsel in die Entwicklungskonsole ein:
+<p>1. Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und fügen Sie <code>SOGoUIxDebugEnabled = YES;</code> ein.</p>
+<p>2. SOGo und Memcached Container neu starten, indem man folgenden Befehl ausführt:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>3. SOGo im Browser öffnen</p>
+<p>4. öffnen Sie die Entwicklerkonsole des Browsers, normalerweise ist die Tastenkombination F12</p>
+<p>5. nur wenn Sie Firefox benutzen: schreiben Sie mit der Hand in die Entwicklerkonsole <code>allow pasting</code> und drücken Sie Enter</p>
+<p>6. fügen Sie den Java-Script-Schnipsel in die Entwicklungskonsole ein:
 <div class="highlight"><pre><span></span><code>copy([].slice.call(document.styleSheets)
   .map(e =&gt; e.ownerNode)
   .filter(e =&gt; e.hasAttribute(&#39;md-theme-style&#39;))
   .map(e =&gt; e.textInhalt)
   .join(&#39;\n&#39;)
 )
-</code></pre></div></li>
-<li>Öffnen Sie den Texteditor und fügen Sie die Daten aus der Zwischenablage ein (Strg+V), Sie sollten ein minimiertes CSS erhalten, speichern Sie es</li>
-<li>kopieren Sie die CSS-Datei auf den Mailcow-Server <code>data/conf/sogo/custom-theme.css</code></li>
-<li>editiere <code>data/conf/sogo/sogo.conf</code> und setze <code>SOGoUIxDebugEnabled = NO;</code></li>
-<li>Anhängen/Erstellen von <code>docker-compose.override.yml</code> mit:
+</code></pre></div>
+7. Öffnen Sie den Texteditor und fügen Sie die Daten aus der Zwischenablage ein (Strg+V), Sie sollten ein minimiertes CSS erhalten, speichern Sie es</p>
+<p>8. kopieren Sie die CSS-Datei auf den mailcow-Server <code>data/conf/sogo/custom-theme.css</code></p>
+<p>9. editiere <code>data/conf/sogo/sogo.conf</code> und setze <code>SOGoUIxDebugEnabled = NO;</code></p>
+<p>10. Anhängen/Erstellen von <code>docker-compose.override.yml</code> mit:
 <div class="highlight"><pre><span></span><code>Version: &#39;2.1&#39;
 
 Dienste:
   sogo-mailcow:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
-</code></pre></div></li>
-<li>führen Sie <code>docker compose up -d</code> aus</li>
-<li>Ausführen von <code>docker compose restart memcached-mailcow</code></li>
-</ol>
+</code></pre></div>
+11. Führen Sie folgenden Befehl aus:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>12. Neustarten des memcached Containers mit:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="zurucksetzen-auf-das-sogo-standardthema">Zurücksetzen auf das SOGo Standardthema<a class="headerlink" href="#zurucksetzen-auf-das-sogo-standardthema" title="Permanent link">&para;</a></h2>
 <ol>
 <li>checken Sie <code>data/conf/sogo/custom-theme.js</code> aus, indem Sie <code>git fetch ; git checkout origin/master data/conf/sogo/custom-theme.js data/conf/sogo/custom-theme.js</code> ausführen</li>
@@ -2604,17 +2639,67 @@ und ersetzen Sie es durch:
 <li>Entfernen Sie aus <code>docker-compose.override.yml</code> Volume Mount in <code>sogo-mailcow</code>:
 <div class="highlight"><pre><span></span><code>- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 </code></pre></div></li>
-<li>führen Sie <code>docker compose up -d</code> aus</li>
-<li>Starten Sie <code>docker compose restart memcached-mailcow</code>.</li>
+<li>Führen Sie folgenden Befehl aus:</li>
 </ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<ol>
+<li>Starten Sie memcached neu mit:</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="favicon-andern">Favicon ändern<a class="headerlink" href="#favicon-andern" title="Permanent link">&para;</a></h2>
-<p>mailcow-Builds nach dem 31. Januar 2021 können SOGo's Favicon ändern, indem sie <code>data/conf/sogo/custom-favicon.ico</code> für SOGo und <code>data/web/favicon.png</code> für mailcow UI ersetzen.
-<strong>Anmerkung</strong>: Sie können <code>.png</code> Favicons für SOGo verwenden, indem Sie sie in <code>custom-favicon.ico</code> umbenennen.
+<p>mailcow-Builds nach dem 31. Januar 2021 können SOGo's Favicon ändern, indem sie <code>data/conf/sogo/custom-favicon.ico</code> für SOGo und <code>data/web/favicon.png</code> für mailcow UI ersetzen.</p>
+<p><strong>Anmerkung</strong>: Sie können <code>.png</code> Favicons für SOGo verwenden, indem Sie sie in <code>custom-favicon.ico</code> umbenennen.
 Für beide, SOGo und mailcow UI Favicons, müssen Sie eine der Standardgrößen verwenden: 16x16, 32x32, 64x64, 128x128 und 256x256.
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie folgenden Befehl ausführen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="logo-andern">Logo ändern<a class="headerlink" href="#logo-andern" title="Permanent link">&para;</a></h2>
-<p>Mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei <code>data/conf/sogo/sogo-full.svg</code> ersetzen oder erstellen (falls sie fehlt).
-Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> ausführen.</p>
+<p>mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei <code>data/conf/sogo/sogo-full.svg</code> ersetzen oder erstellen (falls sie fehlt).
+Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie folgendes ausführen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">docker compose (Plugin)</label><label for="__tabbed_7_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="domains-verbinden-untereinander-sichtbar-machen">Domains verbinden (untereinander sichtbar machen)<a class="headerlink" href="#domains-verbinden-untereinander-sichtbar-machen" title="Permanent link">&para;</a></h2>
 <p>Domains sind normalerweise voneinander isoliert.</p>
 <p>Sie können das ändern, indem Sie <code>data/conf/sogo/sogo.conf</code> modifizieren:</p>
@@ -2629,19 +2714,55 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
       (beispiel.org, beispiel.com, beispiel.net)
     );
 </code></pre></div>
-<p>SOGo neu starten: <code>docker compose restart sogo-mailcow</code></p>
+<p>SOGo neu starten:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">docker compose (Plugin)</label><label for="__tabbed_8_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="deaktivieren-sie-die-passwortanderung">Deaktivieren Sie die Passwortänderung<a class="headerlink" href="#deaktivieren-sie-die-passwortanderung" title="Permanent link">&para;</a></h2>
 <p>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> Sie <code>SOGoPasswordChangeEnabled</code> auf <code>NO</code>. Bitte fügen Sie keinen neuen Parameter hinzu.</p>
-<p>Führen Sie <code>docker compose restart memcached-mailcow sogo-mailcow</code> aus, um die Änderungen zu aktivieren.</p>
+<p>Führen Sie folgenden Befehl aus, um die Änderungen zu aktivieren:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>memcached-mailcow<span class="w"> </span>sogo-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="totp-zurucksetzen-totp-deaktivieren">TOTP zurücksetzen / TOTP deaktivieren<a class="headerlink" href="#totp-zurucksetzen-totp-deaktivieren" title="Permanent link">&para;</a></h2>
-<p>Führen Sie <code>docker compose exec -u sogo sogo-mailcow sogo-tool user-preferences set defaults user@example.com SOGoTOTPEnabled '{"SOGoTOTPEnabled":0}'</code> aus dem mailcow Verzeichnis aus.</p>
+<p>Führen Sie folgenden Befehl aus dem mailcow Verzeichnis aus:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">docker compose (Plugin)</label><label for="__tabbed_10_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>sogo<span class="w"> </span>sogo-mailcow<span class="w"> </span>sogo-tool<span class="w"> </span>user-preferences<span class="w"> </span><span class="nb">set</span><span class="w"> </span>defaults<span class="w"> </span>user@example.com<span class="w"> </span>SOGoTOTPEnabled<span class="w"> </span><span class="s1">&#39;{&quot;SOGoTOTPEnabled&quot;:0}&#39;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>sogo<span class="w"> </span>sogo-mailcow<span class="w"> </span>sogo-tool<span class="w"> </span>user-preferences<span class="w"> </span><span class="nb">set</span><span class="w"> </span>defaults<span class="w"> </span>user@example.com<span class="w"> </span>SOGoTOTPEnabled<span class="w"> </span><span class="s1">&#39;{&quot;SOGoTOTPEnabled&quot;:0}&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2656,6 +2777,8 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2723,7 +2846,7 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

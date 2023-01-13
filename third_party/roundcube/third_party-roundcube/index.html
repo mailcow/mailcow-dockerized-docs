@@ -82,8 +82,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2530,113 +2531,113 @@
 
 <h2 id="installing-roundcube">Installing Roundcube<a class="headerlink" href="#installing-roundcube" title="Permanent link">&para;</a></h2>
 <p>Download Roundcube 1.6.x to the web htdocs directory and extract it (here <code>rc/</code>):
-<div class="highlight"><pre><span></span><code># Check for a newer release!
-cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
+<div class="highlight"><pre><span></span><code><span class="c1"># Check for a newer release!</span>
+<span class="nb">cd</span><span class="w"> </span>data/web
+wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
 
-# Change folder name
-mv roundcubemail-1.6.0 rc
+<span class="c1"># Change folder name</span>
+mv<span class="w"> </span>roundcubemail-1.6.0<span class="w"> </span>rc
 
-# Change permissions
-chown -R root: rc/
+<span class="c1"># Change permissions</span>
+chown<span class="w"> </span>-R<span class="w"> </span>root:<span class="w"> </span>rc/
 </code></pre></div></p>
 <p>If you need spell check features, create a file <code>data/hooks/phpfpm/aspell.sh</code> with the following content, then <code>chmod +x data/hooks/phpfpm/aspell.sh</code>. This installs a local spell check engine. Note, most modern web browsers have built in spell check, so you may not want/need this.
-<div class="highlight"><pre><span></span><code>#!/bin/bash
-apk update
-apk add aspell-en # or any other language
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+apk<span class="w"> </span>update
+apk<span class="w"> </span>add<span class="w"> </span>aspell-en<span class="w"> </span><span class="c1"># or any other language</span>
 </code></pre></div></p>
 <p>Create a file <code>data/web/rc/config/config.inc.php</code> with the following content.
    - <strong>Change the <code>des_key</code> parameter to a random value.</strong> It is used to temporarily store your IMAP password.
    - The <code>db_prefix</code> is optional but recommended.
    - If you didn't install spell check in the above step, remove <code>spellcheck_engine</code> parameter and replace it with <code>$config['enable_spellcheck'] = false;</code>.
-<div class="highlight"><pre><span></span><code>&lt;?php
-error_reporting(0);
-if (!file_exists(&#39;/tmp/mime.types&#39;)) {
-file_put_contents(&quot;/tmp/mime.types&quot;, fopen(&quot;http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types&quot;, &#39;r&#39;));
-}
-$config = array();
-$config[&#39;db_dsnw&#39;] = &#39;mysql://&#39; . getenv(&#39;DBUSER&#39;) . &#39;:&#39; . getenv(&#39;DBPASS&#39;) . &#39;@mysql/&#39; . getenv(&#39;DBNAME&#39;);
-$config[&#39;imap_host&#39;] = &#39;tls://dovecot:143&#39;;
-$config[&#39;smtp_host&#39;] = &#39;tls://postfix:587&#39;;
-$config[&#39;smtp_user&#39;] = &#39;%u&#39;;
-$config[&#39;smtp_pass&#39;] = &#39;%p&#39;;
-$config[&#39;support_url&#39;] = &#39;&#39;;
-$config[&#39;product_name&#39;] = &#39;Roundcube Webmail&#39;;
-$config[&#39;des_key&#39;] = &#39;yourrandomstring_changeme&#39;;
-$config[&#39;log_dir&#39;] = &#39;/dev/null&#39;;
-$config[&#39;temp_dir&#39;] = &#39;/tmp&#39;;
-$config[&#39;plugins&#39;] = array(
-  &#39;archive&#39;,
-  &#39;managesieve&#39;
-);
-$config[&#39;spellcheck_engine&#39;] = &#39;aspell&#39;;
-$config[&#39;mime_types&#39;] = &#39;/tmp/mime.types&#39;;
-$config[&#39;imap_conn_options&#39;] = array(
-  &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
-);
-$config[&#39;enable_installer&#39;] = true;
-$config[&#39;smtp_conn_options&#39;] = array(
-  &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
-);
-$config[&#39;db_prefix&#39;] = &#39;mailcow_rc1&#39;;
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">file_exists</span><span class="p">(</span><span class="s1">&#39;/tmp/mime.types&#39;</span><span class="p">))</span> <span class="p">{</span>
+<span class="nb">file_put_contents</span><span class="p">(</span><span class="s2">&quot;/tmp/mime.types&quot;</span><span class="p">,</span> <span class="nb">fopen</span><span class="p">(</span><span class="s2">&quot;http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;db_dsnw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mysql://&#39;</span> <span class="o">.</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">&#39;DBUSER&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;:&#39;</span> <span class="o">.</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">&#39;DBPASS&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39;@mysql/&#39;</span> <span class="o">.</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">&#39;DBNAME&#39;</span><span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;imap_host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tls://dovecot:143&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;smtp_host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tls://postfix:587&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;smtp_user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;%u&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;smtp_pass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;%p&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;support_url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;product_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Roundcube Webmail&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;des_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;yourrandomstring_changeme&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;log_dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/dev/null&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;temp_dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;plugins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;archive&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;managesieve&#39;</span>
+<span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;spellcheck_engine&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;aspell&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;mime_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/tmp/mime.types&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;imap_conn_options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;ssl&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;verify_peer&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;verify_peer_name&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;allow_self_signed&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;enable_installer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;smtp_conn_options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;ssl&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;verify_peer&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;verify_peer_name&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span> <span class="s1">&#39;allow_self_signed&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;db_prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mailcow_rc1&#39;</span><span class="p">;</span>
 </code></pre></div></p>
 <p>Point your browser to <code>https://myserver/rc/installer</code> and follow the instructions.
 Initialize the database and leave the installer.</p>
 <p><strong>Delete the directory <code>data/web/rc/installer</code> after a successful installation!</strong></p>
 <h2 id="configure-managesieve-filtering">Configure ManageSieve filtering<a class="headerlink" href="#configure-managesieve-filtering" title="Permanent link">&para;</a></h2>
 <p>Open <code>data/web/rc/config/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):
-<div class="highlight"><pre><span></span><code>$config[&#39;managesieve_host&#39;] = &#39;tls://dovecot:4190&#39;;
-$config[&#39;managesieve_conn_options&#39;] = array(
-  &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)
-);
-// Enables separate management interface for vacation responses (out-of-office)
-// 0 - no separate section (default),
-// 1 - add Vacation section,
-// 2 - add Vacation section, but hide Filters section
-$config[&#39;managesieve_vacation&#39;] = 1;
+<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;managesieve_host&#39;] = &#39;tls://dovecot:4190&#39;;</span>
+<span class="x">$config[&#39;managesieve_conn_options&#39;] = array(</span>
+<span class="x">  &#39;ssl&#39; =&gt; array(&#39;verify_peer&#39; =&gt; false, &#39;verify_peer_name&#39; =&gt; false, &#39;allow_self_signed&#39; =&gt; true)</span>
+<span class="x">);</span>
+<span class="x">// Enables separate management interface for vacation responses (out-of-office)</span>
+<span class="x">// 0 - no separate section (default),</span>
+<span class="x">// 1 - add Vacation section,</span>
+<span class="x">// 2 - add Vacation section, but hide Filters section</span>
+<span class="x">$config[&#39;managesieve_vacation&#39;] = 1;</span>
 </code></pre></div></p>
 <h2 id="enable-change-password-function-in-roundcube">Enable change password function in Roundcube<a class="headerlink" href="#enable-change-password-function-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Open <code>data/web/rc/config/config.inc.php</code> and enable the password plugin:</p>
-<div class="highlight"><pre><span></span><code>...
-$config[&#39;plugins&#39;] = array(
-    &#39;archive&#39;,
-    &#39;password&#39;,
-);
-...
+<div class="highlight"><pre><span></span><code><span class="x">...</span>
+<span class="x">$config[&#39;plugins&#39;] = array(</span>
+<span class="x">    &#39;archive&#39;,</span>
+<span class="x">    &#39;password&#39;,</span>
+<span class="x">);</span>
+<span class="x">...</span>
 </code></pre></div>
 <p>Open <code>data/web/rc/plugins/password/password.php</code>, search for <code>case 'ssha':</code> and add above:</p>
-<div class="highlight"><pre><span></span><code>        case &#39;ssha256&#39;:
-            $salt = rcube_utils::random_bytes(8);
-            $crypted = base64_encode( hash(&#39;sha256&#39;, $password . $salt, TRUE ) . $salt );
-            $prefix  = &#39;{SSHA256}&#39;;
-            break;
+<div class="highlight"><pre><span></span><code><span class="x">        case &#39;ssha256&#39;:</span>
+<span class="x">            $salt = rcube_utils::random_bytes(8);</span>
+<span class="x">            $crypted = base64_encode( hash(&#39;sha256&#39;, $password . $salt, TRUE ) . $salt );</span>
+<span class="x">            $prefix  = &#39;{SSHA256}&#39;;</span>
+<span class="x">            break;</span>
 </code></pre></div>
 <p>Open <code>data/web/rc/plugins/password/config.inc.php</code> and change the following parameters (or add them at the bottom of that file):</p>
-<div class="highlight"><pre><span></span><code>$config[&#39;password_driver&#39;] = &#39;sql&#39;;
-$config[&#39;password_algorithm&#39;] = &#39;ssha256&#39;;
-$config[&#39;password_algorithm_prefix&#39;] = &#39;{SSHA256}&#39;;
-$config[&#39;password_query&#39;] = &quot;UPDATE mailbox SET password = %P WHERE username = %u&quot;;
+<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;password_driver&#39;] = &#39;sql&#39;;</span>
+<span class="x">$config[&#39;password_algorithm&#39;] = &#39;ssha256&#39;;</span>
+<span class="x">$config[&#39;password_algorithm_prefix&#39;] = &#39;{SSHA256}&#39;;</span>
+<span class="x">$config[&#39;password_query&#39;] = &quot;UPDATE mailbox SET password = %P WHERE username = %u&quot;;</span>
 </code></pre></div>
 <h2 id="integrate-carddav-addressbooks-in-roundcube">Integrate CardDAV addressbooks in Roundcube<a class="headerlink" href="#integrate-carddav-addressbooks-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Download the latest release of <a href="https://github.com/mstilkerich/rcmcarddav">RCMCardDAV</a> to the Roundcube plugin directory and extract it (here <code>rc/plugins</code>):
-<div class="highlight"><pre><span></span><code>cd data/web/rc/plugins
-wget -O - https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz  | tar xfvz -
-chown -R root: carddav/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>data/web/rc/plugins
+wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/mstilkerich/rcmcarddav/releases/download/v4.4.1/carddav-v4.4.1-roundcube16.tar.gz<span class="w">  </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
+chown<span class="w"> </span>-R<span class="w"> </span>root:<span class="w"> </span>carddav/
 </code></pre></div></p>
 <p>Copy the file <code>config.inc.php.dist</code> to <code>config.inc.php</code> (here in <code>rc/plugins/carddav</code>) and append the following preset to the end of the file - don't forget to replace <code>mx.example.org</code> with your own hostname:
-<div class="highlight"><pre><span></span><code>$prefs[&#39;SOGo&#39;] = array(
-    &#39;name&#39;         =&gt;  &#39;SOGo&#39;,
-    &#39;username&#39;     =&gt;  &#39;%u&#39;,
-    &#39;password&#39;     =&gt;  &#39;%p&#39;,
-    &#39;url&#39;          =&gt;  &#39;https://mx.example.org/SOGo/dav/%u/&#39;,
-    &#39;carddav_name_only&#39; =&gt; true,
-    &#39;use_categories&#39; =&gt; true,
-    &#39;active&#39;       =&gt;  true,
-    &#39;readonly&#39;     =&gt;  false,
-    &#39;refresh_time&#39; =&gt; &#39;02:00:00&#39;,
-    &#39;fixed&#39;        =&gt;  array( &#39;active&#39;, &#39;name&#39;, &#39;username&#39;, &#39;password&#39;, &#39;refresh_time&#39; ),
-    &#39;hide&#39;        =&gt;  false,
-);
+<div class="highlight"><pre><span></span><code><span class="x">$prefs[&#39;SOGo&#39;] = array(</span>
+<span class="x">    &#39;name&#39;         =&gt;  &#39;SOGo&#39;,</span>
+<span class="x">    &#39;username&#39;     =&gt;  &#39;%u&#39;,</span>
+<span class="x">    &#39;password&#39;     =&gt;  &#39;%p&#39;,</span>
+<span class="x">    &#39;url&#39;          =&gt;  &#39;https://mx.example.org/SOGo/dav/%u/&#39;,</span>
+<span class="x">    &#39;carddav_name_only&#39; =&gt; true,</span>
+<span class="x">    &#39;use_categories&#39; =&gt; true,</span>
+<span class="x">    &#39;active&#39;       =&gt;  true,</span>
+<span class="x">    &#39;readonly&#39;     =&gt;  false,</span>
+<span class="x">    &#39;refresh_time&#39; =&gt; &#39;02:00:00&#39;,</span>
+<span class="x">    &#39;fixed&#39;        =&gt;  array( &#39;active&#39;, &#39;name&#39;, &#39;username&#39;, &#39;password&#39;, &#39;refresh_time&#39; ),</span>
+<span class="x">    &#39;hide&#39;        =&gt;  false,</span>
+<span class="x">);</span>
 </code></pre></div>
 Please note, that this preset only integrates the default addressbook (the one that's named "Personal Address Book" and can't be deleted). Additional addressbooks are currently not automatically detected but can be manually added within the roundecube settings.</p>
 <p>Enable the plugin by adding <code>carddav</code> to <code>$config['plugins']</code> in <code>rc/config/config.inc.php</code>.</p>
@@ -2645,52 +2646,52 @@ Please note, that this preset only integrates the default addressbook (the one t
 <p>Optionally, you can add Roundcube's link to the mailcow Apps list.
 To do this, open or create <code>data/web/inc/vars.local.inc.php</code> and add the following code-block:</p>
 <p><em>NOTE: Don't forget to add the <code>&lt;?php</code> delimiter on the first line</em></p>
-<div class="highlight"><pre><span></span><code>...
-$MAILCOW_APPS = array(
-  array(
-    &#39;name&#39; =&gt; &#39;SOGo&#39;,
-    &#39;link&#39; =&gt; &#39;/SOGo/&#39;
-  ),
-  array(
-    &#39;name&#39; =&gt; &#39;Roundcube&#39;,
-    &#39;link&#39; =&gt; &#39;/rc/&#39;
-   )
-);
-...
+<div class="highlight"><pre><span></span><code><span class="x">...</span>
+<span class="x">$MAILCOW_APPS = array(</span>
+<span class="x">  array(</span>
+<span class="x">    &#39;name&#39; =&gt; &#39;SOGo&#39;,</span>
+<span class="x">    &#39;link&#39; =&gt; &#39;/SOGo/&#39;</span>
+<span class="x">  ),</span>
+<span class="x">  array(</span>
+<span class="x">    &#39;name&#39; =&gt; &#39;Roundcube&#39;,</span>
+<span class="x">    &#39;link&#39; =&gt; &#39;/rc/&#39;</span>
+<span class="x">   )</span>
+<span class="x">);</span>
+<span class="x">...</span>
 </code></pre></div>
 <h2 id="upgrading-roundcube">Upgrading Roundcube<a class="headerlink" href="#upgrading-roundcube" title="Permanent link">&para;</a></h2>
 <p>Upgrading Roundcube is rather simple, go to the <a href="https://github.com/roundcube/roundcubemail/releases">Github releases</a> page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below commands and change the URL and Roundcube folder name if needed. </p>
-<div class="highlight"><pre><span></span><code># Enter a bash session of the mailcow PHP container
-docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
+<div class="highlight"><pre><span></span><code><span class="c1"># Enter a bash session of the mailcow PHP container</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mailcowdockerized-php-fpm-mailcow-1<span class="w"> </span>bash
 
-# Install required upgrade dependency, then upgrade Roundcube to wanted release
-apk add rsync
-cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.6.0
-bin/installto.sh /web/rc
+<span class="c1"># Install required upgrade dependency, then upgrade Roundcube to wanted release</span>
+apk<span class="w"> </span>add<span class="w"> </span>rsync
+<span class="nb">cd</span><span class="w"> </span>/tmp
+wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
+<span class="nb">cd</span><span class="w"> </span>roundcubemail-1.6.0
+bin/installto.sh<span class="w"> </span>/web/rc
 
-# Type &#39;Y&#39; and press enter to upgrade your install of Roundcube
-# Type &#39;N&#39; to &quot;Do you want me to fix your local configuration&quot; if prompted
+<span class="c1"># Type &#39;Y&#39; and press enter to upgrade your install of Roundcube</span>
+<span class="c1"># Type &#39;N&#39; to &quot;Do you want me to fix your local configuration&quot; if prompted</span>
 
-# If you see  &quot;NOTICE: Update dependencies by running php composer.phar update --no-dev&quot; just download composer.phar and run it:
-cd /web/rc
-wget https://getcomposer.org/download/2.4.2/composer.phar
-php composer.phar update --no-dev
-# When asked &quot;Do you trust &quot;roundcube/plugin-installer&quot; to execute code and wish to enable it now? (writes &quot;allow-plugins&quot; to composer.json) [y,n,d,?] &quot; hit y and continue.
+<span class="c1"># If you see  &quot;NOTICE: Update dependencies by running php composer.phar update --no-dev&quot; just download composer.phar and run it:</span>
+<span class="nb">cd</span><span class="w"> </span>/web/rc
+wget<span class="w"> </span>https://getcomposer.org/download/2.4.2/composer.phar
+php<span class="w"> </span>composer.phar<span class="w"> </span>update<span class="w"> </span>--no-dev
+<span class="c1"># When asked &quot;Do you trust &quot;roundcube/plugin-installer&quot; to execute code and wish to enable it now? (writes &quot;allow-plugins&quot; to composer.json) [y,n,d,?] &quot; hit y and continue.</span>
 
 
-# Remove leftover files
-cd /tmp
-rm -rf roundcube*
+<span class="c1"># Remove leftover files</span>
+<span class="nb">cd</span><span class="w"> </span>/tmp
+rm<span class="w"> </span>-rf<span class="w"> </span>roundcube*
 
-# If you&#39;re going from 1.5 to 1.6 please run the config file changes below
-sed -i &quot;s/\$config\[&#39;default_host&#39;\].*$/\$config\[&#39;imap_host&#39;\]\ =\ &#39;tls:\/\/dovecot:143&#39;\;/&quot; /web/rc/config/config.inc.php
-sed -i &quot;/\$config\[&#39;default_port&#39;\].*$/d&quot; /web/rc/config/config.inc.php
-sed -i &quot;s/\$config\[&#39;smtp_server&#39;\].*$/\$config\[&#39;smtp_host&#39;\]\ =\ &#39;tls:\/\/postfix:587&#39;\;/&quot; /web/rc/config/config.inc.php
-sed -i &quot;/\$config\[&#39;smtp_port&#39;\].*$/d&quot; /web/rc/config/config.inc.php
-sed -i &quot;s/\$config\[&#39;managesieve_host&#39;\].*$/\$config\[&#39;managesieve_host&#39;\]\ =\ &#39;tls:\/\/dovecot:4190&#39;\;/&quot; /web/rc/config/config.inc.php
-sed -i &quot;/\$config\[&#39;managesieve_port&#39;\].*$/d&quot; /web/rc/config/config.inc.php
+<span class="c1"># If you&#39;re going from 1.5 to 1.6 please run the config file changes below</span>
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/\$config\[&#39;default_host&#39;\].*</span>$<span class="s2">/\$config\[&#39;imap_host&#39;\]\ =\ &#39;tls:\/\/dovecot:143&#39;\;/&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/\$config\[&#39;default_port&#39;\].*</span>$<span class="s2">/d&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/\$config\[&#39;smtp_server&#39;\].*</span>$<span class="s2">/\$config\[&#39;smtp_host&#39;\]\ =\ &#39;tls:\/\/postfix:587&#39;\;/&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/\$config\[&#39;smtp_port&#39;\].*</span>$<span class="s2">/d&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/\$config\[&#39;managesieve_host&#39;\].*</span>$<span class="s2">/\$config\[&#39;managesieve_host&#39;\]\ =\ &#39;tls:\/\/dovecot:4190&#39;\;/&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/\$config\[&#39;managesieve_port&#39;\].*</span>$<span class="s2">/d&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
 </code></pre></div>
 <h2 id="let-admins-log-into-roundcube-without-password">Let admins log into Roundcube without password<a class="headerlink" href="#let-admins-log-into-roundcube-without-password" title="Permanent link">&para;</a></h2>
 <p>First, install plugin <a href="https://github.com/corbosman/dovecot_impersonate/">dovecot_impersonate</a> and add Roundcube as an app (see above).</p>
@@ -2724,16 +2725,27 @@ services:
 <li><code>data/web/rc-auth.php</code></li>
 </ul>
 <p>Finally, restart mailcow</p>
-<div class="highlight"><pre><span></span><code>docker compose down
-docker compose up -d
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down<span class="w">    </span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-31 11:38:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -2748,6 +2760,8 @@ docker compose up -d
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2815,7 +2829,7 @@ docker compose up -d
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>

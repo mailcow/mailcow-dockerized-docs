@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+
 
           </div>
           
@@ -2688,7 +2689,7 @@ yum install docker-compose-plugin
 <p class="admonition-title">Info</p>
 <p>This installation is the old familiar way. It installs Docker Compose as a standalone program and does not rely on the Docker installation way.</p>
 </div>
-<div class="highlight"><pre><span></span><code>curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
+<div class="highlight"><pre><span></span><code>LATEST=$(curl -Ls -w %{url_effective} -o /dev/null https://github.com/docker/compose/releases/latest) &amp;&amp; LATEST=${LATEST##*/} &amp;&amp; curl -L https://github.com/docker/compose/releases/download/$LATEST/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 </code></pre></div>
 <div class="admonition danger">
@@ -2752,10 +2753,21 @@ Add the new driver_opts parameter like this:
 <p><strong>Please don't turn off IPv6, even if you don't like it. IPv6 is the future and should not be ignored.</strong></p>
 <p>If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to <a href="../../post_installation/firststeps-disable_ipv6/">disable IPv6</a> for the mailcow network to prevent unforeseen issues.</p>
 <h2 id="start-mailcow">Start mailcow<a class="headerlink" href="#start-mailcow" title="Permanent link">&para;</a></h2>
-<p>Pull the images and run the compose file. The parameter <code>-d</code> will start mailcow: dockerized detached:
-<div class="highlight"><pre><span></span><code>docker compose pull
-docker compose up -d
-</code></pre></div></p>
+<p>Pull the images and run the compose file. The parameter <code>-d</code> will start mailcow: dockerized detached:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>pull
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>pull
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Done!</p>
 <p>You can now access <strong>https://${MAILCOW_HOSTNAME}</strong> with the default credentials <code>admin</code> + password <code>moohoo</code>.</p>
 <div class="admonition info">
@@ -2770,7 +2782,7 @@ docker compose up -d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-18 11:55:11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-16 19:22:13</span>
       
     
   </small>
@@ -2785,6 +2797,8 @@ docker compose up -d
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -2852,7 +2866,7 @@ docker compose up -d
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>

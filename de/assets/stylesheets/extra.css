@@ -60,3 +60,8 @@ code {
   :root {
     --md-code-font: "Source Code Pro";
   }
+
+[data-md-color-scheme="slate"] {
+
+  --md-typeset-a-color: #6390e5;
+}

@@ -84,8 +84,9 @@
               </button>
             
             
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugins</a> beschrieben.<br>
-    All commands are written according to the <a href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> syntax.</h4></center>
+
+  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+
 
           </div>
           
@@ -596,7 +597,7 @@
   
     <li class="md-nav__item">
       <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
-        Migration von Sync-Jobs
+        Migration mit Sync Jobs
       </a>
     </li>
   
@@ -1285,7 +1286,7 @@
   
     <li class="md-nav__item">
       <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
-        Zwei-Faktoren-Authentifizierung
+        Zwei-Faktor Authentifizierung
       </a>
     </li>
   
@@ -2400,7 +2401,7 @@
         
           <li class="md-nav__item">
   <a href="#mailcow-konfigurieren" class="md-nav__link">
-    Mailcow konfigurieren
+    mailcow konfigurieren
   </a>
   
 </li>
@@ -2680,7 +2681,7 @@
         
           <li class="md-nav__item">
   <a href="#mailcow-konfigurieren" class="md-nav__link">
-    Mailcow konfigurieren
+    mailcow konfigurieren
   </a>
   
 </li>
@@ -2822,7 +2823,7 @@
 <p>Diese Anleitung ist eine Kopie von <a href="https://github.com/g4rf/dockerized-mailcow-mailman">dockerized-mailcow-mailman</a>. Bitte posten Sie Probleme, Fragen und Verbesserungen in den <a href="https://github.com/g4rf/dockerized-mailcow-mailman/issues">issue tracker</a> dort.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">Warnung</p>
 <p>mailcow ist nicht verantwortlich für Datenverlust, Hardwareschäden oder kaputte Tastaturen. Diese Anleitung kommt ohne jegliche Garantie. Macht Backups bevor ihr anfangt, <strong>Kein Backup kein Mitleid!</strong></p>
 </div>
 <h2 id="einleitung">Einleitung<a class="headerlink" href="#einleitung" title="Permanent link">&para;</a></h2>
@@ -2880,8 +2881,8 @@ certbot certonly -d MAILMAN_DOMAIN
 </code></pre></div>
 <h3 id="installieren-sie-mailcow-mit-mailman-integration">Installieren Sie <em>mailcow</em> mit <em>Mailman</em> Integration<a class="headerlink" href="#installieren-sie-mailcow-mit-mailman-integration" title="Permanent link">&para;</a></h3>
 <h4 id="installieren-sie-mailcow">Installieren Sie mailcow<a class="headerlink" href="#installieren-sie-mailcow" title="Permanent link">&para;</a></h4>
-<p>Folgen Sie der <a href="../../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Schritt 5 auslassen und nicht mit <code>docker compose</code> starten!</strong></p>
-<h4 id="mailcow-konfigurieren">Mailcow konfigurieren<a class="headerlink" href="#mailcow-konfigurieren" title="Permanent link">&para;</a></h4>
+<p>Folgen Sie der <a href="../../../i_u_m/i_u_m_install/">mailcow installation</a>. <strong>Schritt 5 auslassen und nicht mit starten!</strong></p>
+<h4 id="mailcow-konfigurieren">mailcow konfigurieren<a class="headerlink" href="#mailcow-konfigurieren" title="Permanent link">&para;</a></h4>
 <p>Dies ist auch <strong>Schritt 4</strong> in der offiziellen <em>mailcow-Installation</em> (<code>nano mailcow.conf</code>). Passen Sie also Ihre Bedürfnisse an und ändern Sie die folgenden Variablen:</p>
 <div class="highlight"><pre><span></span><code>HTTP_PORT=18080 # verwenden Sie nicht 8080, da mailman es braucht
 HTTP_BIND=127.0.0.1 #
@@ -3018,25 +3019,56 @@ DEBUG = False
 Sie können <code>LANGUAGE_CODE</code> und <code>SOCIALACCOUNT_PROVIDERS</code> an Ihre Bedürfnisse anpassen.</p>
 <h3 id="ausfuhren">🏃 Ausführen<a class="headerlink" href="#ausfuhren" title="Permanent link">&para;</a></h3>
 <p>Ausführen (als <em>root</em> oder <em>sudo</em>)</p>
-<div class="highlight"><pre><span></span><code>a2ensite mailcow.conf
-a2ensite mailman.conf
-systemctl restart apache2
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>a2ensite<span class="w"> </span>mailcow.conf
+a2ensite<span class="w"> </span>mailman.conf
+systemctl<span class="w"> </span>restart<span class="w"> </span>apache2
 
-cd /opt/docker-mailman
-docker compose pull
-docker compose up -d
+<span class="nb">cd</span><span class="w"> </span>/opt/docker-mailman
+docker<span class="w"> </span>compose<span class="w"> </span>pull
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 
-cd /opt/mailcow-dockerized/
-docker compose pull
+<span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized/
+docker<span class="w"> </span>compose<span class="w"> </span>pull
 ./renew-ssl.sh
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>a2ensite<span class="w"> </span>mailcow.conf
+a2ensite<span class="w"> </span>mailman.conf
+systemctl<span class="w"> </span>restart<span class="w"> </span>apache2
+
+<span class="nb">cd</span><span class="w"> </span>/opt/docker-mailman
+docker-compose<span class="w"> </span>pull
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized/
+docker-compose<span class="w"> </span>pull
+./renew-ssl.sh
+</code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>Warten Sie ein paar Minuten!</strong> Die Container müssen ihre Datenbanken und Konfigurationsdateien erstellen. Dies kann bis zu 1 Minute und mehr dauern.</p>
 <h2 id="bemerkungen">Bemerkungen<a class="headerlink" href="#bemerkungen" title="Permanent link">&para;</a></h2>
 <h3 id="neue-listen-werden-von-postfix-nicht-sofort-erkannt">Neue Listen werden von Postfix nicht sofort erkannt<a class="headerlink" href="#neue-listen-werden-von-postfix-nicht-sofort-erkannt" title="Permanent link">&para;</a></h3>
 <p>Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, antwortet <em>postfix</em> mit <code>Benutzer existiert nicht</code>, weil <em>postfix</em> die Liste noch nicht an <em>Mailman</em> übergeben hat. Die Konfiguration unter <code>/opt/mailman/core/var/data/postfix_lmtp</code> wird nicht sofort aktualisiert. Wenn Sie die Liste sofort benötigen, starten Sie <em>postifx</em> manuell neu:</p>
-<div class="highlight"><pre><span></span><code>cd /opt/mailcow-dockerized
-docker compose restart postfix-mailcow
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized
+docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/mailcow-dockerized
+docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
 <p><strong>mailcow</strong> hat sein eigenes Update-Skript in <code>/opt/mailcow-dockerized/update.sh</code>, <a href="../../../i_u_m/i_u_m_update/">siehe die Dokumentation</a>.</p>
 <p>Für <strong>Mailman</strong> holen Sie sich einfach die neueste Version aus dem <a href="https://github.com/maxking/docker-mailman">github repository</a>.</p>
@@ -3057,7 +3089,7 @@ docker compose restart postfix-mailcow
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-10-20 15:33:23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
       
     
   </small>
@@ -3072,6 +3104,8 @@ docker compose restart postfix-mailcow
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
           <a href="#" class="md-top md-icon" data-md-component="top" hidden>
@@ -3139,7 +3173,7 @@ docker compose restart postfix-mailcow
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
