@@ -5,6 +5,7 @@
   "dependencyDashboardTitle": "Renovate Dashboard",
   "commitBody": "Signed-off-by: milkmaker <milkmaker@mailcow.de>",
   "rebaseWhen": "auto",
+  "labels": ["renovate"],
   "assignees": [
     "@magiccc"
   ],
