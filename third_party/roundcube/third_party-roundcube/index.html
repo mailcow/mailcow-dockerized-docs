@@ -2533,10 +2533,10 @@
 <p>Download Roundcube 1.6.x to the web htdocs directory and extract it (here <code>rc/</code>):
 <div class="highlight"><pre><span></span><code><span class="c1"># Check for a newer release!</span>
 <span class="nb">cd</span><span class="w"> </span>data/web
-wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
+wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/roundcube/roundcubemail/releases/download/1.6.1/roundcubemail-1.6.1-complete.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
 
 <span class="c1"># Change folder name</span>
-mv<span class="w"> </span>roundcubemail-1.6.0<span class="w"> </span>rc
+mv<span class="w"> </span>roundcubemail-1.6.1<span class="w"> </span>rc
 
 <span class="c1"># Change permissions</span>
 chown<span class="w"> </span>-R<span class="w"> </span>root:<span class="w"> </span>rc/
@@ -2667,8 +2667,8 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 <span class="c1"># Install required upgrade dependency, then upgrade Roundcube to wanted release</span>
 apk<span class="w"> </span>add<span class="w"> </span>rsync
 <span class="nb">cd</span><span class="w"> </span>/tmp
-wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
-<span class="nb">cd</span><span class="w"> </span>roundcubemail-1.6.0
+wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/roundcube/roundcubemail/releases/download/1.6.1/roundcubemail-1.6.1-complete.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>tar<span class="w"> </span>xfvz<span class="w"> </span>-
+<span class="nb">cd</span><span class="w"> </span>roundcubemail-1.6.1
 bin/installto.sh<span class="w"> </span>/web/rc
 
 <span class="c1"># Type &#39;Y&#39; and press enter to upgrade your install of Roundcube</span>
@@ -2745,7 +2745,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-23 21:33:08</span>
       
     
   </small>
