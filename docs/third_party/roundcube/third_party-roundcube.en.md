@@ -4,10 +4,10 @@ Download Roundcube 1.6.x to the web htdocs directory and extract it (here `rc/`)
 ```bash
 # Check for a newer release!
 cd data/web
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.1/roundcubemail-1.6.1-complete.tar.gz | tar xfvz -
 
 # Change folder name
-mv roundcubemail-1.6.0 rc
+mv roundcubemail-1.6.1 rc
 
 # Change permissions
 chown -R root: rc/
@@ -174,8 +174,8 @@ docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 # Install required upgrade dependency, then upgrade Roundcube to wanted release
 apk add rsync
 cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.6.0
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.1/roundcubemail-1.6.1-complete.tar.gz | tar xfvz -
+cd roundcubemail-1.6.1
 bin/installto.sh /web/rc
 
 # Type 'Y' and press enter to upgrade your install of Roundcube
