@@ -1,6 +1,14 @@
 With Gogs' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:
 
-1\. Open `docker-compose.override.yml` and add Gogs:
+1\. In order to create a database for Gogs, connect to your shell and execute the following commands:
+```
+source mailcow.conf
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE gogs;"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'gogs'@'%' IDENTIFIED BY 'your_strong_password';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON gogs.* TO 'gogs'@'%';
+```
+
+2\. Open `docker-compose.override.yml` and add Gogs:
 
 ```yaml
 version: '2.1'
@@ -18,14 +26,14 @@ services:
         - "${GOGS_SSH_PORT:-127.0.0.1:4000}:22"
 ```
 
-2\. Create `data/conf/nginx/site.gogs.custom`, add:
+3\. Create `data/conf/nginx/site.gogs.custom`, add:
 ```
 location /gogs/ {
     proxy_pass http://gogs:3000/;
 }
 ```
 
-3\. Open `mailcow.conf` and define the binding you want Gogs to use for SSH. Example:
+4\. Open `mailcow.conf` and define the binding you want Gogs to use for SSH. Example:
 
 ```
 GOGS_SSH_PORT=127.0.0.1:4000
@@ -47,7 +55,7 @@ GOGS_SSH_PORT=127.0.0.1:4000
 	docker-compose restart nginx-mailcow
     ```
 
-6\. Open `http://${MAILCOW_HOSTNAME}/gogs/`, for example `http://mx.example.org/gogs/`. For database details set `mysql` as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.
+6\. Open `http://${MAILCOW_HOSTNAME}/gogs/`, for example `http://mx.example.org/gogs/`. For database details set `mysql` as database host. Use the value gogs as database name, gogs as database user and your_strong_password you previously definied at step 1 as database password.
 
 7\. Once the installation is complete, login as admin and set "settings" -> "authorization" -> "enable SMTP". SMTP Host should be `postfix` with port `587`, set `Skip TLS Verify` as we are using an unlisted SAN ("postfix" is most likely not part of your certificate).
 
