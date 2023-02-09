@@ -1,6 +1,14 @@
 Mit der Fähigkeit von Gitea, sich über SMTP zu authentifizieren, ist es trivial, es mit mailcow zu integrieren. Es sind nur wenige Änderungen erforderlich:
 
-1\. Öffnen Sie `docker-compose.override.yml` und fügen Sie Gitea hinzu:
+1\. Um eine Datenbank für Gitea zu erstellen, verbinden Sie sich mit ihrem Server und führen Sie folgende Befehle aus:
+```
+source mailcow.conf
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE gitea;"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'gitea'@'%' IDENTIFIED BY 'your_strong_password';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON gitea.* TO 'gitea'@'%';
+```
+
+2\. Öffnen Sie `docker-compose.override.yml` und fügen Sie Gitea hinzu:
 
 ```yaml
 version: '2.1'
@@ -18,14 +26,14 @@ services:
 				- "${GITEA_SSH_PORT:-127.0.0.1:4000}:22"
 ```
 
-2\. Erstellen Sie `data/conf/nginx/site.gitea.custom`, fügen Sie folgendes hinzu:
+3\. Erstellen Sie `data/conf/nginx/site.gitea.custom`, fügen Sie folgendes hinzu:
 ```
 location /gitea/ {
 		proxy_pass http://gitea:3000/;
 }
 ```
 
-3\. Öffne `mailcow.conf` und definiere den Port Bind, den Gitea für SSH verwenden soll. Beispiel:
+4\. Öffne `mailcow.conf` und definiere den Port Bind, den Gitea für SSH verwenden soll. Beispiel:
 
 ```
 GITEA_SSH_PORT=127.0.0.1:4000
@@ -62,7 +70,7 @@ GITEA_SSH_PORT=127.0.0.1:4000
 
 Fahren Sie mit Schritt 7 fort (Denken Sie daran, https anstelle von http zu verwenden, `https://mx.example.org/gitea/`)
 
-7\. Öffnen Sie `http://${MAILCOW_HOSTNAME}/gitea/`, zum Beispiel `http://mx.example.org/gitea/`. Für die Datenbankdetails stellen Sie `mysql` als Datenbankhost ein. Verwenden Sie den in mailcow.conf gefundenen Wert von DBNAME als Datenbankname, DBUSER als Datenbankbenutzer und DBPASS als Datenbankpasswort.
+7\. Öffnen Sie `http://${MAILCOW_HOSTNAME}/gitea/`, zum Beispiel `http://mx.example.org/gitea/`. Für Datenbank-Details setzen Sie `mysql` als Datenbank-Host. Verwenden Sie gitea als Datenbankname, gitea als Datenbankbenutzer und your_strong_password als Datenbankpasswort, welches Sie in Schritt 1 definiert haben.
 
 8\. Sobald die Installation abgeschlossen ist, loggen Sie sich als Administrator ein und setzen Sie "Einstellungen" -> "Autorisierung" -> "SMTP aktivieren". SMTP-Host sollte `postfix` mit Port `587` sein, setzen Sie `Skip TLS Verify`, da wir ein nicht gelistetes SAN verwenden ("postfix" ist höchstwahrscheinlich nicht Teil Ihres Zertifikats).
 
