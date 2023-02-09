@@ -2411,7 +2411,13 @@
 
 
 <p>With Gitea' ability to authenticate over SMTP it is trivial to integrate it with mailcow. Few changes are needed:</p>
-<p>1. Open <code>docker-compose.override.yml</code> and add gitea:</p>
+<p>1. In order to create a database for gitea, connect to your shell and execute the following commands:
+<div class="highlight"><pre><span></span><code>source mailcow.conf
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e &quot;CREATE DATABASE gitea;&quot;
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e &quot;CREATE USER &#39;gitea&#39;@&#39;%&#39; IDENTIFIED BY &#39;your_strong_password&#39;;&quot;
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e &quot;GRANT ALL PRIVILEGES ON gitea.* TO &#39;gitea&#39;@&#39;%&#39;;
+</code></pre></div></p>
+<p>2. Open <code>docker-compose.override.yml</code> and add gitea:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span>
 <span class="nt">services</span><span class="p">:</span>
 
@@ -2426,12 +2432,12 @@
 <span class="w">            </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;${GITEA_SSH_PORT:-127.0.0.1:4000}:22&quot;</span>
 </code></pre></div>
-<p>2. Create <code>data/conf/nginx/site.gitea.custom</code>, add:
+<p>3. Create <code>data/conf/nginx/site.gitea.custom</code>, add:
 <div class="highlight"><pre><span></span><code>location /gitea/ {
         proxy_pass http://gitea:3000/;
 }
 </code></pre></div></p>
-<p>3. Open <code>mailcow.conf</code> and define the binding you want gitea to use for SSH. Example:</p>
+<p>4. Open <code>mailcow.conf</code> and define the binding you want gitea to use for SSH. Example:</p>
 <div class="highlight"><pre><span></span><code>GITEA_SSH_PORT=127.0.0.1:4000
 </code></pre></div>
 <p>5. Run the commands to bring up the gitea container and restart the nginx-mailcow container afterwards:</p>
@@ -2463,7 +2469,7 @@ docker-compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailc
 </div>
 </div>
 <p>Go head with step 7 (Remember to use https instead of http, <code>https://mx.example.org/gitea/</code>) </p>
-<p>7. Open <code>http://${MAILCOW_HOSTNAME}/gitea/</code>, for example <code>http://mx.example.org/gitea/</code>. For database details set <code>mysql</code> as database host. Use the value of DBNAME found in mailcow.conf as database name, DBUSER as database user and DBPASS as database password.</p>
+<p>7. Open <code>http://${MAILCOW_HOSTNAME}/gitea/</code>, for example <code>http://mx.example.org/gitea/</code>. For database details set <code>mysql</code> as database host. Use gitea as database name, gitea as database user and your_strong_password you previously definied at step 1 as database password.</p>
 <p>8. Once the installation is complete, login as admin and set "settings" -&gt; "authorization" -&gt; "enable SMTP". SMTP Host should be <code>postfix</code> with port <code>587</code>, set <code>Skip TLS Verify</code> as we are using an unlisted SAN ("postfix" is most likely not part of your certificate).</p>
 <p>9. Create <code>data/gitea/gitea/conf/app.ini</code> and set following values. You can consult <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">gitea cheat sheet</a> for their meaning and other possible values.</p>
 <div class="highlight"><pre><span></span><code><span class="k">[server]</span>
@@ -2493,7 +2499,7 @@ docker-compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailc
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-02-09 21:47:14</span>
       
     
   </small>
