@@ -2613,23 +2613,15 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
 
 services:
 
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: always
-    command: daemon --docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro   
-    network_mode: none
-
   dovecot-mailcow:
     labels:
-      - &quot;ofelia.enabled=true&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.tty=false&quot;
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.dovecot-expunge-trash.schedule: &quot;0 0 4 * * *&quot;
+      ofelia.job-exec.dovecot-expunge-trash.command: &quot;doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
+      ofelia.job-exec.dovecot-expunge-trash.tty: &quot;false&quot;
 </code></pre></div>
-<p>Der Job-Controller braucht nur Zugriff auf den Docker Control Socket, um das Verhalten von "exec" zu emulieren. Dann fügen wir unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler zu aktivieren und ihm in einem Cron-kompatiblen Scheduling-Format mitzuteilen, wann er laufen soll. Wenn Sie Probleme mit dem Scheduling-String haben, können Sie <a href="https://crontab.guru/">crontab guru</a> verwenden. 
-Diese docker-compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:</p>
+<p>Wir fügen unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler zu aktivieren und ihm in einem Cron-kompatiblen Scheduling-Format mitzuteilen, wann er laufen soll. Hinweis: Ofelia verwendet das <a href="https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc">Scheduling-Format</a> der Cron-Implementierung von Go, die mit einem Eintrag für Sekunden statt für Minuten beginnt.</p>
+<p>Diese docker-compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:</p>
 <div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
 common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
 </code></pre></div>
@@ -2641,7 +2633,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-02-12 13:03:45</span>
       
     
   </small>

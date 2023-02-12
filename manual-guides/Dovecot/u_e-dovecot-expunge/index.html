@@ -2613,23 +2613,15 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
 
 services:
 
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: always
-    command: daemon --docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro   
-    network_mode: none
-
   dovecot-mailcow:
     labels:
-      - &quot;ofelia.enabled=true&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
-      - &quot;ofelia.job-exec.dovecot-expunge-trash.tty=false&quot;
+      ofelia.enabled: &quot;true&quot;
+      ofelia.job-exec.dovecot-expunge-trash.schedule: &quot;0 0 4 * * *&quot;
+      ofelia.job-exec.dovecot-expunge-trash.command: &quot;doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
+      ofelia.job-exec.dovecot-expunge-trash.tty: &quot;false&quot;
 </code></pre></div>
-<p>The job controller just need access to the docker control socket to be able to emulate the behavior of "exec". Then we add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. If you struggle with that schedule string you can use <a href="https://crontab.guru/">crontab guru</a>. 
-This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
+<p>We add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. Note: Ofelia uses the <a href="https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc">scheduling format</a> of the Go cron implementation which starts with a field for seconds instead of minutes.</p>
+<p>This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:</p>
 <div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
 common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
 </code></pre></div>
@@ -2641,7 +2633,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-02-12 13:03:45</span>
       
     
   </small>
