@@ -111,24 +111,17 @@ version: '2.1'
 
 services:
   
-  ofelia:
-    image: mcuadros/ofelia:latest
-    restart: always
-    command: daemon --docker
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro   
-    network_mode: none
-
   dovecot-mailcow:
     labels:
-      - "ofelia.enabled=true"
-      - "ofelia.job-exec.dovecot-expunge-trash.schedule=0 4 * * *"
-      - "ofelia.job-exec.dovecot-expunge-trash.command=doveadm expunge -A mailbox 'Junk' savedbefore 2w"
-      - "ofelia.job-exec.dovecot-expunge-trash.tty=false"
+      ofelia.enabled: "true"
+      ofelia.job-exec.dovecot-expunge-trash.schedule: "0 0 4 * * *"
+      ofelia.job-exec.dovecot-expunge-trash.command: "doveadm expunge -A mailbox 'Junk' savedbefore 2w"
+      ofelia.job-exec.dovecot-expunge-trash.tty: "false"
 
 ```
 
-Der Job-Controller braucht nur Zugriff auf den Docker Control Socket, um das Verhalten von "exec" zu emulieren. Dann fügen wir unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler zu aktivieren und ihm in einem Cron-kompatiblen Scheduling-Format mitzuteilen, wann er laufen soll. Wenn Sie Probleme mit dem Scheduling-String haben, können Sie [crontab guru](https://crontab.guru/) verwenden. 
+Wir fügen unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler zu aktivieren und ihm in einem Cron-kompatiblen Scheduling-Format mitzuteilen, wann er laufen soll. Hinweis: Ofelia verwendet das [Scheduling-Format](https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc) der Cron-Implementierung von Go, die mit einem Eintrag für Sekunden statt für Minuten beginnt.
+
 Diese docker-compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:
 
 ```
