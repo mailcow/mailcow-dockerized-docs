@@ -1971,8 +1971,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deaktivieren-sie-die-passwortanderung" class="md-nav__link">
-    Deaktivieren Sie die Passwortänderung
+  <a href="#aktivieren-der-passwortanderung-in-sogo" class="md-nav__link">
+    Aktivieren der Passwortänderung in SOGo
   </a>
   
 </li>
@@ -2513,8 +2513,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deaktivieren-sie-die-passwortanderung" class="md-nav__link">
-    Deaktivieren Sie die Passwortänderung
+  <a href="#aktivieren-der-passwortanderung-in-sogo" class="md-nav__link">
+    Aktivieren der Passwortänderung in SOGo
   </a>
   
 </li>
@@ -2728,9 +2728,14 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
 </div>
 </div>
 </div>
-<h2 id="deaktivieren-sie-die-passwortanderung">Deaktivieren Sie die Passwortänderung<a class="headerlink" href="#deaktivieren-sie-die-passwortanderung" title="Permanent link">&para;</a></h2>
-<p>Bearbeiten Sie <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> Sie <code>SOGoPasswordChangeEnabled</code> auf <code>NO</code>. Bitte fügen Sie keinen neuen Parameter hinzu.</p>
-<p>Führen Sie folgenden Befehl aus, um die Änderungen zu aktivieren:</p>
+<h2 id="aktivieren-der-passwortanderung-in-sogo">Aktivieren der Passwortänderung in SOGo<a class="headerlink" href="#aktivieren-der-passwortanderung-in-sogo" title="Permanent link">&para;</a></h2>
+<p>Die Möglichkeit ihr Passwort in SOGo zu ändern wurde standardmäßig deaktiviert, da:</p>
+<ul>
+<li>es nicht die Passwortrichtlinien der mailcow UI beachten kann.</li>
+<li>es nicht funktioniert, wenn ein User sich direkt in SOGo angemeldet hat (über die mailcow UI) <code>In Webmail einloggen</code> (Auth Proxy)</li>
+</ul>
+<p>Sollten Sie diese Funktion dennoch aktiviert haben wollen bearbeiten Sie einfach <code>data/conf/sogo/sogo.conf</code> und <strong>ändern</strong> <code>SOGoPasswordChangeEnabled</code> zu <code>YES</code>. Bitte hier keine anderen Parameter außer <code>YES</code> oder <code>NO</code> verwenden.</p>
+<p>Anschließend SOGo neustarten:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2763,7 +2768,7 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-03-07 09:07:17</span>
       
     
   </small>

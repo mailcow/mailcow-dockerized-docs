@@ -1971,8 +1971,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#disable-password-changing" class="md-nav__link">
-    Disable password changing
+  <a href="#enable-password-changing" class="md-nav__link">
+    Enable password changing
   </a>
   
 </li>
@@ -2513,8 +2513,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#disable-password-changing" class="md-nav__link">
-    Disable password changing
+  <a href="#enable-password-changing" class="md-nav__link">
+    Enable password changing
   </a>
   
 </li>
@@ -2724,8 +2724,13 @@ After you replaced said file you need to restart SOGo and Memcached containers b
 </div>
 </div>
 </div>
-<h2 id="disable-password-changing">Disable password changing<a class="headerlink" href="#disable-password-changing" title="Permanent link">&para;</a></h2>
-<p>Edit <code>data/conf/sogo/sogo.conf</code> and <strong>change</strong> <code>SOGoPasswordChangeEnabled</code> to <code>NO</code>. Please do not add a new parameter.</p>
+<h2 id="enable-password-changing">Enable password changing<a class="headerlink" href="#enable-password-changing" title="Permanent link">&para;</a></h2>
+<p>The password change option in SOGo is disabled by default because it:</p>
+<ul>
+<li>doesn't take into account the password policy set in the mailcow UI</li>
+<li>doesn't work when the user is logged in into SOGo using the <code>Login to Webmail</code> function in the mailcow UI (Auth Proxy)</li>
+</ul>
+<p>If you still want enable this option edit <code>data/conf/sogo/sogo.conf</code> and <strong>change</strong> <code>SOGoPasswordChangeEnabled</code> to <code>YES</code>. Please do not add a new parameter.</p>
 <p>Run this command to activate the changes:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
@@ -2759,7 +2764,7 @@ After you replaced said file you need to restart SOGo and Memcached containers b
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-03-07 09:07:17</span>
       
     
   </small>
