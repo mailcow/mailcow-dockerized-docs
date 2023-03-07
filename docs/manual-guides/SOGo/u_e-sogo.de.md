@@ -200,11 +200,16 @@ SOGo neu starten:
     docker-compose restart sogo-mailcow
     ```
 
-## Deaktivieren Sie die Passwortänderung
+## Aktivieren der Passwortänderung in SOGo
 
-Bearbeiten Sie `data/conf/sogo/sogo.conf` und **ändern** Sie `SOGoPasswordChangeEnabled` auf `NO`. Bitte fügen Sie keinen neuen Parameter hinzu.
+Die Möglichkeit ihr Passwort in SOGo zu ändern wurde standardmäßig deaktiviert, da:
 
-Führen Sie folgenden Befehl aus, um die Änderungen zu aktivieren:
++ es nicht die Passwortrichtlinien der mailcow UI beachten kann.
++ es nicht funktioniert, wenn ein User sich direkt in SOGo angemeldet hat (über die mailcow UI) `In Webmail einloggen` (Auth Proxy)
+
+Sollten Sie diese Funktion dennoch aktiviert haben wollen bearbeiten Sie einfach `data/conf/sogo/sogo.conf` und **ändern** `SOGoPasswordChangeEnabled` zu `YES`. Bitte hier keine anderen Parameter außer `YES` oder `NO` verwenden.
+
+Anschließend SOGo neustarten:
 
 === "docker compose (Plugin)"
 
