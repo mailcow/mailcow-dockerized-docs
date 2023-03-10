@@ -234,7 +234,7 @@ services:
         #   websecure being port 443, check the traefik.toml file liked above.
         - traefik.http.routers.moo.entrypoints=websecure
         # Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network
-        - traefik.docker.network=web
+        - traefik.docker.network=traefik_web
 
     certdumper:
         image: humenius/traefik-certs-dumper
