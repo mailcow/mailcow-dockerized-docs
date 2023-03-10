@@ -2800,11 +2800,11 @@ For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow
 </div>
 </div>
 </div>
-<p>Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">this tiny container</a> which grabs the <code>acme.json</code> file trough a volume, and a variable <code>DOMAIN=example.org</code>, and with these, the container will output the <code>cert.pem</code> and <code>key.pem</code> files, for this we'll simply run the <code>traefik-certs-dumper</code> container binding the <code>/traefik</code> volume to the folder where our <code>acme.json</code> is saved, bind the <code>/output</code> volume to our mailcow <code>data/assets/ssl/</code> folder, and set up the <code>DOMAIN=example.org</code> variable to the domain we want the certs dumped from. </p>
+<p>Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">this tiny container</a> which grabs the <code>acme.json</code> file through a volume, and a variable <code>DOMAIN=example.org</code>, and with these, the container will output the <code>cert.pem</code> and <code>key.pem</code> files, for this we'll simply run the <code>traefik-certs-dumper</code> container binding the <code>/traefik</code> volume to the folder where our <code>acme.json</code> is saved, bind the <code>/output</code> volume to our mailcow <code>data/assets/ssl/</code> folder, and set up the <code>DOMAIN=example.org</code> variable to the domain we want the certs dumped from. </p>
 <p>This container will watch over the <code>acme.json</code> file for any changes, and regenerate the <code>cert.pem</code> and <code>key.pem</code> files directly into <code>data/assets/ssl/</code> being the path binded to the container's <code>/output</code> path.</p>
 <p>You can use the command line to run it, or use the docker-compose.yml shown <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">here</a>.</p>
 <p>After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how <a href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate">here</a>.</p>
-<p>Aaand that should be it 😊, you can check if the Traefik router works fine trough Traefik's dashboard / traefik logs / accessing the setted domain trough https, or / and check HTTPS, SMTP and IMAP trough the commands shown on the page linked before.</p>
+<p>Aaand that should be it 😊, you can check if the Traefik router works fine through Traefik's dashboard / traefik logs / accessing the setted domain through https, or / and check HTTPS, SMTP and IMAP through the commands shown on the page linked before.</p>
 <h3 id="caddy-v2-supported-by-the-community">Caddy v2 (supported by the community)<a class="headerlink" href="#caddy-v2-supported-by-the-community" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -2891,7 +2891,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-03-10 10:36:18</span>
       
     
   </small>
