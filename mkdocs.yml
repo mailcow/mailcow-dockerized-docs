@@ -26,6 +26,8 @@ theme:
     - navigation.tracking
     - announce.dismiss
     - content.tabs.link
+    - search.share
+    - search.highlight
 
 markdown_extensions:
   - abbr
@@ -378,10 +380,11 @@ plugins:
         'third_party-portainer.md': 'third_party/portainer/third_party-portainer.en.md'
         'third_party-roundcube.md': 'third_party/roundcube/third_party-roundcube.en.md'
   - search:
-      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+#      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang:
          - en
          - de
+  - social
 
 
 extra:
