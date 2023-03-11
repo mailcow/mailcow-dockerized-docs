@@ -2786,7 +2786,7 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <span class="w">        </span><span class="c1"># Websecure ist Port 443, siehe die Datei traefik.toml wie oben.</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.entrypoints=websecure</span>
 <span class="w">        </span><span class="c1"># Stellen Sie sicher, dass traefik das Web-Netzwerk verwendet, nicht das mailcowdockerized_mailcow-network</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.docker.network=web</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.docker.network=traefik_web</span>
 
 <span class="w">    </span><span class="nt">certdumper</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humenius/traefik-certs-dumper</span>
@@ -2920,7 +2920,7 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-03-11 18:09:21</span>
       
     
   </small>
