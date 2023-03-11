@@ -232,7 +232,7 @@ services:
         # Websecure ist Port 443, siehe die Datei traefik.toml wie oben.
         - traefik.http.routers.moo.entrypoints=websecure
         # Stellen Sie sicher, dass traefik das Web-Netzwerk verwendet, nicht das mailcowdockerized_mailcow-network
-        - traefik.docker.network=web
+        - traefik.docker.network=traefik_web
 
     certdumper:
         image: humenius/traefik-certs-dumper
