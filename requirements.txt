@@ -4,4 +4,4 @@ pygments==2.14
 mkdocs-static-i18n==0.53
 mkdocs-git-revision-date-localized-plugin==1.2.0
 pillow==9.4.0
-cairosvg==2.6.0
+cairosvg==2.7.0
