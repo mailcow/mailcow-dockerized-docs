@@ -15,21 +15,37 @@ imap_idle_notify_interval = 5 mins
 
 29 Minuten ist der maximale Wert, den der [entsprechende RFC](https://tools.ietf.org/html/rfc2177) erlaubt.
 
-!!! warning
+!!! warning "Warnung"
 	Dies ist keine Standardeinstellung in mailcow, da wir nicht wissen, wie diese Einstellung das Verhalten anderer Clients verändert. Seien Sie vorsichtig, wenn Sie dies ändern und ein anderes Verhalten beobachten.
 
 ### Dovecot neu laden
 Nun laden Sie Dovecot neu:
 
-```
-docker compose exec dovecot-mailcow dovecot reload
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+	docker compose exec dovecot-mailcow dovecot reload
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+	docker-compose exec dovecot-mailcow dovecot reload
+    ```
 
 !!! info
 	Sie können den Wert dieser Einstellung überprüfen mit 
-	```
-	docker compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"
-	```
+	=== "docker compose (Plugin)"
+
+		``` bash
+		docker compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"
+		```
+
+	=== "docker-compose (Standalone)"
+
+		``` bash
+		docker-compose exec dovecot-mailcow dovecot -a | grep "imap_idle_notify_interval"
+		```
 	Wenn Sie den Wert nicht geändert haben, sollte er auf 2m stehen. Wenn Sie ihn geändert haben, sollten Sie den neuen Wert sehen.
 
 

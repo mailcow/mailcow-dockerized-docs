@@ -20,11 +20,21 @@ rsync -aHhP --numeric-ids --delete /var/lib/docker/volumes/ root@target-machine.
 ```
 
 **4\.** Shut down mailcow and stop Docker on the source machine.
-```
-cd /opt/mailcow-dockerized
-docker compose down
-systemctl stop docker.service
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker compose down
+    systemctl stop docker.service
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker-compose down
+    systemctl stop docker.service
+    ```
 
 **5\.** Repeat step 3 with the same commands. This will be much quicker than the first time.
 
@@ -34,14 +44,31 @@ systemctl start docker.service
 ```
 
 **7\.** Now pull the mailcow Docker images on the target machine.
-```
-cd /opt/mailcow-dockerized
-docker compose pull
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker compose pull
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker-compose pull
+    ```
 
 **8\.** Start the whole mailcow stack and everything should be done!
-```
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker compose up -d
+    ```
 
 **9\.** Finally, change your DNS settings to point to the target server. Also check the `SNAT_TO_SOURCE` variable in your `mailcow.conf` file if you have changed your public IP address, otherwise SOGo may not work.

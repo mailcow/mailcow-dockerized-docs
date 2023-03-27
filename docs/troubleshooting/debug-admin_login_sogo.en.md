@@ -12,9 +12,18 @@ The feature is disabled by default. It can be enabled in the `mailcow.conf` by s
 ALLOW_ADMIN_EMAIL_LOGIN=y
 ```
 and recreating the affected containers with
-```
-docker compose up -d
-```
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+	docker-compose up -d
+    ```
 
 ## Drawbacks when enabled
 

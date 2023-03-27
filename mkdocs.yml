@@ -25,6 +25,9 @@ theme:
     - navigation.top
     - navigation.tracking
     - announce.dismiss
+    - content.tabs.link
+    - search.share
+    - search.highlight
 
 markdown_extensions:
   - abbr
@@ -41,6 +44,9 @@ markdown_extensions:
   - pymdownx.betterem
   - pymdownx.snippets
   - footnotes
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - 'Information & Support': 'index.md'
@@ -187,7 +193,7 @@ plugins:
           'Disable IPv6': 'IPv6 deaktivieren'
           'IP bindings': 'IP-Bindings'
           'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
-          'Sync job migration': 'Migration von Sync-Jobs'
+          'Sync job migration': 'Migration mit Sync Jobs'
           ### Models Section
           'Models': 'Modelle'
           'Password hashing': 'Passwort-Hashing'
@@ -215,13 +221,13 @@ plugins:
           'Recover accidentally deleted data' : 'Versehentlich gelöschte Daten wiederherstellen'
           ### Manual/Guides/Examples Section
           'Manual/Guides/Examples': 'Anleitungen/Beispiele'
-            ### Mailcow UI Subsection
+            ### mailcow UI Subsection
           'Configuration' : 'Konfiguration'
           'CSS overrides' : 'CSS-Überschreibungen'
           'Sub-addressing' : 'Sub-Adressierung'
           'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
           'Tags (for Domains and Mailboxes)' : 'Tags (für Domains und Mailboxen)'
-          'Two-Factor Authentication' : 'Zwei-Faktoren-Authentifizierung'
+          'Two-Factor Authentication' : 'Zwei-Faktor Authentifizierung'
             ### Postfix Subsection
           'Add trusted networks': 'Vertrauenswürdige Netzwerke hinzufügen'
           'Custom transport maps': 'Benutzerdefinierte Transportmaps'
@@ -374,10 +380,11 @@ plugins:
         'third_party-portainer.md': 'third_party/portainer/third_party-portainer.en.md'
         'third_party-roundcube.md': 'third_party/roundcube/third_party-roundcube.en.md'
   - search:
-      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+#      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang:
          - en
          - de
+  - social
 
 
 extra:

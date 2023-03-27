@@ -17,7 +17,7 @@ Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, 
 ### docker compose
 
 !!! danger "Achtung"
-    **mailcow benötigt eine Version von Docker Compose >= v2**. 
+    **mailcow benötigt eine Version von Docker Compose >= v2**.
     <br>Sollte die Installation von Docker über das obenstehende Skript erfolgt sein wird das Docker Compose Plugin bereits automatisch
     in einer Version >=2.0 installiert. <br>
     Ist die mailcow Installation älter oder Docker wurde auf einem anderen Weg installiert, muss das Compose Plugin bzw. die Standalone Version von Docker manuell installiert werden.
@@ -48,7 +48,7 @@ yum install docker-compose-plugin
     Diese Installation ist die alt bekannte Weise. Sie installiert Docker Compose als Standalone Programm und ist nicht auf die Art und weise der Docker Installation angewiesen.
 
 ```
-curl -L https://github.com/docker/compose/releases/download/v$(curl -Ls https://www.servercow.de/docker-compose/latest.php)/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+LATEST=$(curl -Ls -w %{url_effective} -o /dev/null https://github.com/docker/compose/releases/latest) && LATEST=${LATEST##*/} && curl -L https://github.com/docker/compose/releases/download/$LATEST/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
@@ -114,7 +114,7 @@ Möglicherweise müssen Sie einen vorinstallierten MTA stoppen, der Port 25/tcp 
 
 Einige Updates modifizieren mailcow.conf und fügen neue Parameter hinzu. Es ist schwer, in der Dokumentation den Überblick zu behalten. Bitte überprüfen Sie deren Beschreibung und fragen Sie, wenn Sie unsicher sind, in den bekannten Kanälen nach Rat.
 
-## Problembehandlungen 
+## Problembehandlungen
 
 ### Benutzer mit einer MTU ungleich 1500 (z.B. OpenStack)
 **Wenn Sie auf Probleme und seltsame Phänomene stoßen, überprüfen Sie bitte Ihre MTU.**
@@ -139,10 +139,19 @@ Sollten Sie jedoch kein IPv6-fähiges Netzwerk auf Ihrem Host haben und Sie sich
 
 ## mailcow starten
 Laden Sie die Images herunter und führen Sie die Compose-Datei aus. Der Parameter `-d` wird ihre mailcow dann im Hintergrund starten:
-```
-docker compose pull
-docker compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose pull
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 Geschafft!
 

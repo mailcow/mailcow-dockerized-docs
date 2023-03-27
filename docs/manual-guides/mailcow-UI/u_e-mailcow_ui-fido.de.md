@@ -6,7 +6,7 @@ Das UV-Flag (wie in "user verification") erzwingt, dass WebAuthn den Benutzer ve
 
 mailcow verwendet **Client-seitige Schlüsselverarbeitung**. Wir bitten den Authentifikator (d.h. YubiKey), die Registrierung in seinem Speicher zu speichern.
 
-Ein Benutzer muss keinen Benutzernamen eingeben. Die verfügbaren Anmeldedaten - falls vorhanden - werden dem Nutzer angezeigt, wenn er den "Schlüssel-Login" über das Mailcow UI Login auswählt.
+Ein Benutzer muss keinen Benutzernamen eingeben. Die verfügbaren Anmeldedaten - falls vorhanden - werden dem Nutzer angezeigt, wenn er den "Schlüssel-Login" über das mailcow UI Login auswählt.
 
 Beim Aufruf des Login-Prozesses werden dem Authentifikator keine Credential-IDs übergeben. Dies wird ihn dazu zwingen, die Anmeldeinformationen in seinem eigenen Speicher zu suchen.
 

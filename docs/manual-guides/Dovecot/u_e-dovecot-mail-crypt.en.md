@@ -3,7 +3,19 @@
 
 If you want to decode/encode existing maildir files, you can use the following script at your own risk:
 
-Enter Dovecot by running `docker compose exec dovecot-mailcow /bin/bash` in the mailcow-dockerized location.
+Enter Dovecot by running the following command in the mailcow-dockerized location:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+	docker compose exec dovecot-mailcow /bin/bash
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+	docker-compose exec dovecot-mailcow /bin/bash
+    ```
 
 ```
 # Decrypt /var/vmail

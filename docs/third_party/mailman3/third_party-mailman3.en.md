@@ -91,7 +91,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Install mailcow
 
-Follow the [mailcow installation](../../i_u_m/i_u_m_install.en.md). **Omit step 5 and do not pull and up with `docker compose`!**
+Follow the [mailcow installation](../../i_u_m/i_u_m_install.en.md). **Omit step 5 and do not pull and start!**
 
 #### Configure mailcow
 
@@ -273,19 +273,37 @@ You can change `LANGUAGE_CODE` and `SOCIALACCOUNT_PROVIDERS` to your needs.
 
 Run (as *root* or *sudo*)
 
-```
-a2ensite mailcow.conf
-a2ensite mailman.conf
-systemctl restart apache2
+=== "docker compose (Plugin)"
 
-cd /opt/docker-mailman
-docker compose pull
-docker compose up -d
+    ``` bash
+    a2ensite mailcow.conf
+    a2ensite mailman.conf
+    systemctl restart apache2
 
-cd /opt/mailcow-dockerized/
-docker compose pull
-./renew-ssl.sh
-```
+    cd /opt/docker-mailman
+    docker compose pull
+    docker compose up -d
+
+    cd /opt/mailcow-dockerized/
+    docker compose pull
+    ./renew-ssl.sh
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    a2ensite mailcow.conf
+    a2ensite mailman.conf
+    systemctl restart apache2
+
+    cd /opt/docker-mailman
+    docker-compose pull
+    docker-compose up -d
+
+    cd /opt/mailcow-dockerized/
+    docker-compose pull
+    ./renew-ssl.sh
+    ```
 
 **Wait a few minutes!** The containers have to create there databases and config files. This can last up to 1 minute and more.
 
@@ -295,10 +313,19 @@ docker compose pull
 
 When you create a new list and try to immediately send an e-mail, *postfix* responses with `User doesn't exist`, because *postfix* won't deliver it to *Mailman* yet. The configuration at `/opt/mailman/core/var/data/postfix_lmtp` is not instantly updated. If you need the list instantly, restart *postifx* manually:
 
-```
-cd /opt/mailcow-dockerized
-docker compose restart postfix-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd /opt/mailcow-dockerized
+    docker-compose restart postfix-mailcow
+    ```
 
 ## Update
 

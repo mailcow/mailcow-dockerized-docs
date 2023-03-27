@@ -2,6 +2,15 @@ Erstellen Sie eine Datei `data/conf/dovecot/extra.conf` - falls nicht vorhanden 
 
 Starten Sie `dovecot-mailcow` neu, um Ihre Änderungen zu übernehmen:
 
-```
-docker compose restart dovecot-mailcow
-```
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart dovecot-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart dovecot-mailcow
+    ```

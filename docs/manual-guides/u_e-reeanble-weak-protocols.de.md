@@ -19,8 +19,16 @@ ssl_min_protocol = TLSv1
 
 Starten Sie die betroffenen Dienste neu:
 
-```
-docker compose restart postfix-mailcow dovecot-mailcow
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart postfix-mailcow dovecot-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart postfix-mailcow dovecot-mailcow
+    ```
 
 Tipp: Sie können TLS 1.2 in Windows 7 aktivieren.

@@ -10,9 +10,18 @@ Die Funktion ist standardmäßig deaktiviert. Es kann in der `mailcow.conf` durc
 ALLOW_ADMIN_EMAIL_LOGIN=y
 ```
 und die betroffenen Container neu erstellen mit
-```
-docker compose up -d
-```
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+	docker-compose up -d
+    ```
 
 ## Nachteile bei Aktivierung
 
@@ -35,7 +44,7 @@ Jede SOGo, CardDAV, CalDAV und EAS http-Anfrage verursacht einen zusätzlichen, 
 - Wenn ein basic_auth-Header vorhanden ist, wird das Skript die Anmeldedaten anstelle von SOGo validieren und die folgenden Header bereitstellen:
 `x-webobjects-remote-user`, `Authorization` und `x-webobjects-auth-type`.
 
-- Wenn kein basic_auth-Header vorhanden ist, wird das Skript nach einer aktiven Mailcow-Admin-Sitzung für den angeforderten E-Mail-Benutzer suchen und die gleichen Header bereitstellen, aber mit dem Dovecot-Master-Passwort, das im `Authorization`-Header verwendet wird.
+- Wenn kein basic_auth-Header vorhanden ist, wird das Skript nach einer aktiven mailcow-Admin-Sitzung für den angeforderten E-Mail-Benutzer suchen und die gleichen Header bereitstellen, aber mit dem Dovecot-Master-Passwort, das im `Authorization`-Header verwendet wird.
 
 - Wenn beides fehlschlägt, werden die Header leer gesetzt, was SOGo dazu bringt, seine Standard-Authentifizierungsmethoden zu verwenden.
 
