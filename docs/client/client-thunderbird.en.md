@@ -21,6 +21,9 @@
   To use your calendars from the server, click on the arrow next to "Calendars" and click the <i>Connect</i> button on each calendar you would like to use.
 </li>
 <li>
-  Click <i>Finish to close the Account Setup window.
+  (Optional) If you want Thunderbird to sync all subfolders, go to the <i>Account Settings</i> menu and select <i>Server Settings</i>. In the <i>Server Settings</i> tab, click on the <i>Advanced</i> button. In the <i>Advanced Account Settings</i> window, uncheck the "Show only subscribed folders" checkbox. Click <i>OK</i> to save the changes.
 </li>
-</ol>
+<li>
+  Click <i>Finish</i> to close the Account Setup window.
+</li>
+</ol> 
