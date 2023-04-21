@@ -280,6 +280,7 @@ plugins:
         'b_n_r_accidental_deletion.md': 'backup_restore/b_n_r-accidental_deletion.en.md'
         'debug-reset-tls.md': 'troubleshooting/debug-reset_tls.en.md'
         # NEW DUE TO NEW LAYOUT
+        'mailcow-dockerized-docs/i_u_m/i_u_m_install.md': 'i_u_m/i_u_m_install.en.md' # https://github.com/mailcow/mailcow-dockerized/pull/5196
         'prerequisite-system.md': 'prerequisite/prerequisite-system.en.md'
         'prerequisite-dns.md': 'prerequisite/prerequisite-dns.en.md'
         'i_u_m_install.md': 'i_u_m/i_u_m_install.en.md'
