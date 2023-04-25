@@ -1,4 +1,4 @@
-mkdocs-material==9.1.7
+mkdocs-material==9.1.8
 mkdocs-redirects==1.2.0
 pygments==2.15.1
 mkdocs-static-i18n==0.56
