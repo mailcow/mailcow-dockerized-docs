@@ -2693,7 +2693,7 @@
 <h3 id="supported-os">Supported OS<a class="headerlink" href="#supported-os" title="Permanent link">&para;</a></h3>
 <p>Basically, mailcow can be used on any distribution that is supported by Docker CE (see <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).
 However, in some cases there may be incompatibilities between the operating systems and the mailcow components.</p>
-<p>The following table contains all operating systems officially supported and tested by us (<em>as of November 2022</em>):</p>
+<p>The following table contains all operating systems officially supported and tested by us (<em>as of April 2022</em>):</p>
 <table>
 <thead>
 <tr>
@@ -2703,7 +2703,7 @@ However, in some cases there may be incompatibilities between the operating syst
 </thead>
 <tbody>
 <tr>
-<td>Alpine 3.16 and older</td>
+<td>Alpine 3.17+ and older</td>
 <td><a href="https://www.alpinelinux.org/" title="Limited Compatibility">⚠️</a></td>
 </tr>
 <tr>
@@ -2719,8 +2719,12 @@ However, in some cases there may be incompatibilities between the operating syst
 <td><a href="https://ubuntu.com/" title="Fully Compatible">✅</a></td>
 </tr>
 <tr>
+<td>Alma Linux 8</td>
+<td><a href="https://almalinux.org/" title="Fully Compatible">✅</a></td>
+</tr>
+<tr>
 <td>Rocky Linux 9</td>
-<td><a href="https://rockylinux.org/" title="Compatibility pending">❔</a></td>
+<td><a href="https://rockylinux.org/" title="Fully Compatible">✅</a></td>
 </tr>
 </tbody>
 </table>
@@ -2731,7 +2735,10 @@ However, in some cases there may be incompatibilities between the operating syst
 ❔ = Pending.</p>
 </p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p><strong>Note: All other operating systems (not mentioned) may also work, but have not been officially tested.</strong></p>
+</div>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Please check if any of mailcow's standard ports are open and not in use by other applications:</p>
 <div class="highlight"><pre><span></span><code>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
@@ -2901,7 +2908,7 @@ You may want to <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#di
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 12:00:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-04-26 10:00:07</span>
       
     
   </small>

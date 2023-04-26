@@ -2695,7 +2695,7 @@ Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam
 <h3 id="unterstutzte-betriebssysteme">Unterstützte Betriebssysteme<a class="headerlink" href="#unterstutzte-betriebssysteme" title="Permanent link">&para;</a></h3>
 <p>Grundsätzlich kann mailcow auf jeder Distribution verwendet werden, die von Docker CE unterstützt wird (siehe <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).
 Es kann jedoch in vereinzelten Fällen zu einer Inkompatibilität der Betriebssysteme und den mailcow Komponenten kommen.</p>
-<p>Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (<em>Stand November 2022</em>):</p>
+<p>Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (<em>Stand April 2023</em>):</p>
 <table>
 <thead>
 <tr>
@@ -2721,8 +2721,12 @@ Es kann jedoch in vereinzelten Fällen zu einer Inkompatibilität der Betriebssy
 <td><a href="https://ubuntu.com/" title="Vollständig Kompatibel">✅</a></td>
 </tr>
 <tr>
+<td>Alma Linux 8</td>
+<td><a href="https://almalinux.org/" title="Vollständig Kompatibel">✅</a></td>
+</tr>
+<tr>
 <td>Rocky Linux 9</td>
-<td><a href="https://rockylinux.org/" title="Kompatibilität noch ausstehend">❔</a></td>
+<td><a href="https://rockylinux.org/" title="Vollständig Kompatibel">✅</a></td>
 </tr>
 </tbody>
 </table>
@@ -2733,7 +2737,10 @@ Es kann jedoch in vereinzelten Fällen zu einer Inkompatibilität der Betriebssy
 ❔ = Ausstehend.</p>
 </p>
 </div>
-<p><strong>Hinweis: Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Achtung</p>
+<p><strong>Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
+</div>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Bitte überprüfen Sie, ob alle Standard-Ports von mailcow offen sind und nicht von anderen Anwendungen genutzt werden:</p>
 <div class="highlight"><pre><span></span><code>ss -tlpn | grep -E -w &#39;25|80|110|143|443|465|587|993|995|4190&#39;
@@ -2903,7 +2910,7 @@ Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_st
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-11-03 12:00:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-04-26 10:00:07</span>
       
     
   </small>
