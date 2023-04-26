@@ -42,15 +42,16 @@ We can help to correctly plan your setup as part of our support.
 Basically, mailcow can be used on any distribution that is supported by Docker CE (see https://docs.docker.com/install/).
 However, in some cases there may be incompatibilities between the operating systems and the mailcow components.
 
-The following table contains all operating systems officially supported and tested by us (*as of November 2022*):
+The following table contains all operating systems officially supported and tested by us (*as of April 2022*):
 
 | OS                | Compatibility                            |
 | ----------------------- | ------------------------------------------------ |
-| Alpine 3.16 and older            | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
+| Alpine 3.17+ and older            | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
 | Centos 7              | [✅](https://www.centos.org/ "Fully Compatible") |
 | Debian 10, 11              | [✅](https://www.debian.org/index.html "Fully Compatible") |
 | Ubuntu 18.04, 20.04, 22.04                   | [✅](https://ubuntu.com/ "Fully Compatible")|
-| Rocky Linux 9 | [❔](https://rockylinux.org/ "Compatibility pending") |
+| Alma Linux 8 | [✅](https://almalinux.org/ "Fully Compatible") |
+| Rocky Linux 9 | [✅](https://rockylinux.org/ "Fully Compatible") |
 
 
 !!! info "Legend"
@@ -59,7 +60,8 @@ The following table contains all operating systems officially supported and test
         ❌ = In general **NOT Compatible**.<br>
         ❔ = Pending.
 
-**Note: All other operating systems (not mentioned) may also work, but have not been officially tested.**
+!!! warning
+    **Note: All other operating systems (not mentioned) may also work, but have not been officially tested.**
 
 ## Firewall & Ports
 
