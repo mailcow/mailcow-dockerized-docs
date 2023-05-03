@@ -128,6 +128,7 @@ nav:
       - 'Mail crypt': 'manual-guides/Dovecot/u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'manual-guides/Dovecot/u_e-dovecot-more.md'
       - 'Move Maildir (vmail)': 'manual-guides/Dovecot/u_e-dovecot-vmail-volume.md'
+      - 'Performance Optimizations': 'manual-guides/Dovecot/u_e-dovecot-performance.md'
       - 'Public folders': 'manual-guides/Dovecot/u_e-dovecot-public_folder.md'
       - 'Static master user': 'manual-guides/Dovecot/u_e-dovecot-static_master.md'
       - 'Vacation replies for catchall addresses': 'manual-guides/Dovecot/u_e-dovecot-catchall_vacation.md'
@@ -246,6 +247,7 @@ plugins:
           'More Examples with DOVEADM': 'Weitere Beispiele mit DOVEADM'
           'Move Maildir (vmail)': 'Maildir verschieben (vmail)'
           'Public folders': 'Öffentliche Ordner'
+          'Performance Optimizations': 'Performance Optimierungen'
           'Static master user': 'Statischer Hauptbenutzer'
           'Vacation replies for catchall addresses': 'Urlaubsantworten für Catchall-Adressen'
             ### Nginx Subsection
