@@ -12,10 +12,14 @@ theme:
   font: false
   palette:
    - scheme: default
+     primary: indigo
+     accent: deep-orange
      toggle:
        icon: material/weather-night
        name: Switch to dark mode
    - scheme: slate
+     primary: indigo
+     accent: orange
      toggle:
        icon: material/weather-sunny
        name: Switch to light mode
@@ -396,10 +400,6 @@ extra:
       link: https://github.com/mailcow
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/mailcow_email
-  theme:
-    palette:
-      primary: indigo
-      accent: orange
 extra_css: [ assets/stylesheets/extra.css ]
 extra_javascript:
   - assets/javascripts/client.js
