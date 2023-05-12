@@ -209,6 +209,7 @@ Configure the password plugin (be sure to adapt __**API_KEY**__ to you mailcow r
 
 ```bash
 cat <<EOCONFIG >data/web/rc/plugins/password/config.inc.php
+<?php
 \$config['password_driver'] = 'mailcow';
 \$config['password_confirm_current'] = true;
 \$config['password_mailcow_api_host'] = 'http://nginx';
