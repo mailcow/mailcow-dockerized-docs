@@ -15,7 +15,8 @@ source mailcow.conf
 Download Roundcube 1.6.x (check for latest release and adapt URL) to the web directory and extract it (here `rc/`):
 
 ```bash
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.1/roundcubemail-1.6.1-complete.tar.gz | tar -xvz --no-same-owner -C data/web --transform='s|^[^/]\+|rc|' -f -
+mkdir -m 755 data/web/rc
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.1/roundcubemail-1.6.1-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp
 ```
@@ -30,6 +31,7 @@ built in spell check, so you may not want/need this.
 apk update
 apk add aspell-en # or any other language
 ```
+
 ### Install mime type mappings
 Download the `mime.types` file as it is not included in the php-fpm container.
 
@@ -43,9 +45,9 @@ Create a database for roundcube in the mailcow mysql container.
 ```bash
 DBROUNDCUBE=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28)
 echo Database password for user roundcube is $DBROUNDCUBE
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcube;"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${DBROUNDCUBE}';"
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcube.* TO 'roundcube'@'%';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
 ```
 
 ### Roundcube configuration
@@ -67,21 +69,22 @@ Create a file `data/web/rc/config/config.inc.php` with the following content.
 ```bash
 cat <<EOCONFIG >data/web/rc/config/config.inc.php
 <?php
-\$config['db_dsnw'] = 'mysql://roundcube:${DBROUNDCUBE}@mysql/roundcube';
+\$config['db_dsnw'] = 'mysql://roundcube:${DBROUNDCUBE}@mysql/roundcubemail';
 \$config['imap_host'] = 'dovecot:143';
 \$config['smtp_host'] = 'postfix:588';
 \$config['smtp_user'] = '%u';
 \$config['smtp_pass'] = '%p';
 \$config['support_url'] = '';
 \$config['product_name'] = 'Roundcube Webmail';
-\$config['des_key'] = '$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 32)';
-\$config['plugins'] = array(
+\$config['cipher_method'] = 'AES-256-CBC';
+\$config['des_key'] = '$(LC_ALL=C </dev/urandom tr -dc "A-Za-z0-9 !#$%&()*+,-./:;<=>?@[\\]^_{|}~" 2> /dev/null | head -c 32)';
+\$config['plugins'] = [
   'archive',
   'managesieve',
   'acl',
   'markasjunk',
   'zipdownload',
-);
+];
 \$config['spellcheck_engine'] = 'aspell';
 \$config['mime_types'] = '/web/rc/config/mime.types';
 \$config['enable_installer'] = true;
@@ -97,13 +100,50 @@ docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config
 ```
 
 ### Initialize database
-Point your browser to `https://myserver/rc/installer` and follow the instructions until you can initialize the database
-in the last step. Initialize the database and leave the installer. It is not necessary to update the configuration with
+Point your browser to `https://myserver/rc/installer`. Check that the website shows no "NOT OK" check results on
+any of the steps, some "NOT AVAILABLE" are expected regarding different database extensions of which we only need MySQL.
+Initialize the database and leave the installer. It is not necessary to update the configuration with
 the downloaded one, unless you made some settings in the installer you would like to take over.
 
-### Important: Disable and remove installer
-**Delete the directory `data/web/rc/installer` after a successful installation, and set the `enable_installer` option
-installation `data/web/rc/config/config.inc.php`!**
+### Webserver configuration
+
+The roundcube directory includes some locations that we do not want to serve to web users. We add a configuration
+extension to nginx to only expose the public directory of roundcube.
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location /rc/ {
+  alias /web/rc/public_html/;
+}
+EOCONFIG
+```
+
+### Disable and remove installer
+
+Delete the directory `data/web/rc/installer` after a successful installation, and set the `enable_installer` option
+installation `data/web/rc/config/config.inc.php`!
+
+```bash
+rm -r data/web/rc/installer
+sed -i -e "s/\(\$config\['enable_installer'\].* = \)true/\1false/" data/web/rc/config/config.inc.php
+```
+
+### Update roundcube dependencies
+
+This step is not strictly necessary, but at least at the time of this writing the dependencies shipped with roundcube
+included versions with security vulnerabilities, so it may be a good idea to update the dependencies to the latest
+versions. For the same reason, it may be a good idea to run the composer update once in a while.
+
+```bash
+cp -n data/web/rc/composer.json-dist data/web/rc/composer.json
+docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+```
+
+You can also use `composer audit` to check for any reported security issues with the installed set of composer packages:
+
+```bash
+docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer audit
+```
 
 ### Allow plaintext authentication for the php-fpm container without using TLS
 
@@ -122,6 +162,25 @@ remote ${IPV6_NETWORK} {
 EOCONFIG
 
 docker compose restart dovecot-mailcow
+```
+
+### Ofelia job for roundcube housekeeping
+
+Roundcube needs to clean some stale information from the database every once in a while,
+for which we will create an ofelia job that runs the roundcube `cleandb.sh` script.
+
+To do this, add the following to `docker-compose.override.yml` (if you already have some
+adaptations for the php-fpm container, add the labels to the existing section):
+
+```yml
+version: '2.1'
+services:
+  php-fpm-mailcow:
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
+      ofelia.job-exec.roundcube_cleandb.user: "www-data"
+      ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
 ```
 
 ## Optional extra functionality
@@ -239,7 +298,7 @@ $MAILCOW_APPS = [
 ];
 ```
 
-## Let admins log into Roundcube without password
+### Let admins log into Roundcube without password
 
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
 
@@ -349,3 +408,34 @@ composer in the container:
 ```bash
 docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
 ```
+
+## Uninstalling roundcube
+
+For the uninstallation, it is also assumed that the commands are executed in the mailcow installation directory and
+that `mailcow.conf` has been sourced in the shell, see [Preparation](#Preparation) above.
+
+### Remove the web directory
+
+This deletes the roundcube installation and all plugins and dependencies that you may have installed,
+including those installed with composer.
+
+Note: This deletes also any custom configuration that you may have done in roundcube. If you want to preserve it, move it some
+place else instead of deleting it.
+
+```bash
+rm -r data/web/rc
+```
+
+### Remove the database
+
+Note: This clears all data stored for roundcube. If you want to preserve it, you could use `mysqldump` before deleting the data,
+or simply keep the database.
+
+```bash
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "DROP USER 'roundcube'@'%';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "DROP DATABASE roundcubemail;"
+```
+
+### Remove any custom configuration files we added to mailcow
+
+To determine these, please read through the installation steps and revert what you changed there.
