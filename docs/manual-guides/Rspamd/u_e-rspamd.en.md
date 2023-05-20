@@ -355,7 +355,7 @@ Restart Rspamd afterwards:
 
 ## Adding Rspamd modules
 
-Add your 3rd party module to `data/conf/rspamd/plugins.d/`
+Download the module and save it in the following path: `data/conf/rspamd/plugins.d/`.
 
 Next, add any necessary configuration for your module to `data/conf/rspamd/rspamd.conf.local`. \
 If you have a module named `my_plugin.lua`, configuration might look like the following:
