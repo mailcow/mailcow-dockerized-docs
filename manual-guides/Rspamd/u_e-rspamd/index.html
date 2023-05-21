@@ -1978,6 +1978,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#adding-rspamd-modules" class="md-nav__link">
+    Adding Rspamd modules
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2630,6 +2637,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#adding-rspamd-modules" class="md-nav__link">
+    Adding Rspamd modules
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2956,13 +2970,33 @@ quarantine_notify.py
 </div>
 </div>
 </div>
+<h2 id="adding-rspamd-modules">Adding Rspamd modules<a class="headerlink" href="#adding-rspamd-modules" title="Permanent link">&para;</a></h2>
+<p>Download the module and save it in the following path: <code>data/conf/rspamd/plugins.d/</code>.</p>
+<p>Next, add any necessary configuration for your module to <code>data/conf/rspamd/rspamd.conf.local</code>. \
+If you have a module named <code>my_plugin.lua</code>, configuration might look like the following:</p>
+<div class="highlight"><pre><span></span><code># rspamd.conf.local  
+my_plugin {
+    some_setting = &quot;some value&quot;;
+}
+</code></pre></div>
+<p>If your module does not require any additional configuration, simply add an empty configuration block, for example:</p>
+<div class="highlight"><pre><span></span><code># rspamd.conf.local  
+my_plugin { }
+</code></pre></div>
+<p>If you do not add a configuration block, the module will be automatically disabled, and the rspamd-mailcow container log will contain a message such as:</p>
+<div class="highlight"><pre><span></span><code>mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:01:32 #1(main) &lt;sh6j9z&gt;; cfg; rspamd_config_is_module_enabled: lua module my_plugin is enabled but has not been configured
+mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:01:32 #1(main) &lt;sh6j9z&gt;; cfg; rspamd_config_is_module_enabled: my_plugin disabling unconfigured lua module
+</code></pre></div>
+<p>If you have successfully configured your module, the rspamd-mailcow container logs should show:</p>
+<div class="highlight"><pre><span></span><code>mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:04:50 #1(main) &lt;8ayxpf&gt;; cfg; rspamd_init_lua_filters: init lua module my_plugin from /etc/rspamd/plugins.d//my_plugin.lua; digest: 5cb88961e5
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-21 12:02:24</span>
       
     
   </small>
