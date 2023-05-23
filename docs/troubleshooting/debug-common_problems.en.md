@@ -88,5 +88,54 @@ If `dhparams.pem` is missing, you can generate it with
 openssl dhparam -out data/assets/ssl/dhparams.pem 4096
 ```
 
+## Rspamd reports: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
+
+When migrating mailcow to another system (usually with a different CPU), Rspamd may report that it cannot load some (possibly all) `.hs` files because they were compiled for a different platform (CPU).
+
+This is related to Hyperscan[^2], an Intel technique for precompiling regex schemas that Rspamd uses.
+
+This feature provides a significant performance boost and is therefore heavily embedded in Rspamd.
+
+To fix this bug, all `.hs` and `.hsmp` files must be deleted from the rspamd directory:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd MAILCOW_ROOT # Usually /opt/mailcow-dockerized
+    docker compose exec rspamd-mailcow bash
+    rm -rf /var/lib/rspamd/*.hs
+    rm -rf /var/lib/rspamd/*.hsmp
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd MAILCOW_ROOT # Usually /opt/mailcow-dockerized
+    docker-compose exec rspamd-mailcow bash
+    rm -rf /var/lib/rspamd/*.hs
+    rm -rf /var/lib/rspamd/*.hsmp
+    ```
+
+Restart Rspamd afterwards:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
+
+Now Rspamd recompiles the said regex maps again with Hyperscan.
+
+!!! warning
+    The original Hyperscan works (as of May 2023) **ONLY** on x86. ARM64 is **not** expected to be officially supported by Intel[^3]
+
 
 [^1]: [netcat](https://linux.die.net/man/1/nc), [nmap](https://linux.die.net/man/1/nmap), [openssl](https://wiki.openssl.org/index.php/Manual:S_client(1)), [telnet](https://linux.die.net/man/1/telnet), etc.
+[^2]: [Hyperscan](https://github.com/intel/hyperscan)
+[^3]: [Status for Hyperscan on ARM64](https://github.com/intel/hyperscan/pull/287#issuecomment-746558138)

@@ -88,5 +88,54 @@ Wenn `dhparams.pem` fehlt, können Sie es mit Bash
 openssl dhparam -out data/assets/ssl/dhparams.pem 4096
 ```
 
+## Rspamd meldet: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
 
-[^1]: [netcat](https://linux.die.net/man/1/nc), [nmap](https://linux.die.net/man/1/nmap), [openssl](https://wiki.openssl.org/index.php/Manual:S_client(1)), [telnet](https://linux
+Bei einer Migration von mailcow auf ein anderes System (meistens mit einer anderen CPU) kann es unter umständen passieren, dass Rspamd meldet er könne einige (evtl. alle) `.hs` Dateien nicht laden, da diese für eine andere Plattform (CPU) kompiliert wurden.
+
+Dies hängt mit Hyperscan[^2] zusammen einer Intel Technik zum vorkompilieren von regex schemata, welche Rspamd einsetzt.
+
+Diese Funktion bringt einen erheblichen Performance Boost mit sich und ist deswegen stark in Rspamd verankert.
+
+Um diesen Fehler zu beheben müssen alle `.hs` und `.hsmp` Dateien aus dem Rspamd Verzeichnis gelöscht werden:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    cd MAILCOW_ROOT # Meistens /opt/mailcow-dockerized
+    docker compose exec rspamd-mailcow bash
+    rm -rf /var/lib/rspamd/*.hs
+    rm -rf /var/lib/rspamd/*.hsmp
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    cd MAILCOW_ROOT # Meistens /opt/mailcow-dockerized
+    docker-compose exec rspamd-mailcow bash
+    rm -rf /var/lib/rspamd/*.hs
+    rm -rf /var/lib/rspamd/*.hsmp
+    ```
+
+Anschließend Rspamd neustarten mit:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
+
+Nun kompiliert Rspamd die besagten Regex Maps wieder neu mit Hyperscan.
+
+!!! warning "Achtung"
+    Das originale Hyperscan funktioniert (Stand Mai 2023) **NUR** auf x86. ARM64 wird voraussichtlich **nicht** offiziell von Intel supported[^3]
+
+
+[^1]: [netcat](https://linux.die.net/man/1/nc), [nmap](https://linux.die.net/man/1/nmap), [openssl](https://wiki.openssl.org/index.php/Manual:S_client(1)), [telnet](https://linux.die.net/man/1/telnet), etc.
+[^2]: [Hyperscan](https://github.com/intel/hyperscan)
+[^3]: [Status für Hyperscan auf ARM64](https://github.com/intel/hyperscan/pull/287#issuecomment-746558138)
