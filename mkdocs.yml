@@ -1,6 +1,6 @@
 site_name: 'mailcow: dockerized documentation'
 site_url: https://docs.mailcow.email/
-copyright: "Copyright &copy; 2023 Servercow Team & Community"
+copyright: "Copyright &copy; 2023 mailcow Team & Community"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
@@ -12,14 +12,10 @@ theme:
   font: false
   palette:
    - scheme: default
-     primary: indigo
-     accent: deep-orange
      toggle:
        icon: material/weather-night
        name: Switch to dark mode
    - scheme: slate
-     primary: indigo
-     accent: orange
      toggle:
        icon: material/weather-sunny
        name: Switch to light mode
