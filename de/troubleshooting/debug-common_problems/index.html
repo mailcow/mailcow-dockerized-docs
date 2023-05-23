@@ -910,6 +910,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rspamd-meldet-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" class="md-nav__link">
+    Rspamd meldet: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2590,6 +2597,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rspamd-meldet-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" class="md-nav__link">
+    Rspamd meldet: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2663,11 +2677,58 @@ key.pem
 <p>Wenn <code>dhparams.pem</code> fehlt, können Sie es mit Bash</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>dhparam<span class="w"> </span>-out<span class="w"> </span>data/assets/ssl/dhparams.pem<span class="w"> </span><span class="m">4096</span>
 </code></pre></div>
+<h2 id="rspamd-meldet-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform">Rspamd meldet: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform<a class="headerlink" href="#rspamd-meldet-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" title="Permanent link">&para;</a></h2>
+<p>Bei einer Migration von mailcow auf ein anderes System (meistens mit einer anderen CPU) kann es unter umständen passieren, dass Rspamd meldet er könne einige (evtl. alle) <code>.hs</code> Dateien nicht laden, da diese für eine andere Plattform (CPU) kompiliert wurden.</p>
+<p>Dies hängt mit Hyperscan<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> zusammen einer Intel Technik zum vorkompilieren von regex schemata, welche Rspamd einsetzt.</p>
+<p>Diese Funktion bringt einen erheblichen Performance Boost mit sich und ist deswegen stark in Rspamd verankert.</p>
+<p>Um diesen Fehler zu beheben müssen alle <code>.hs</code> und <code>.hsmp</code> Dateien aus dem Rspamd Verzeichnis gelöscht werden:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>MAILCOW_ROOT<span class="w"> </span><span class="c1"># Meistens /opt/mailcow-dockerized</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hs
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hsmp
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>MAILCOW_ROOT<span class="w"> </span><span class="c1"># Meistens /opt/mailcow-dockerized</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hs
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hsmp
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Anschließend Rspamd neustarten mit:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Nun kompiliert Rspamd die besagten Regex Maps wieder neu mit Hyperscan.</p>
+<div class="admonition warning">
+<p class="admonition-title">Achtung</p>
+<p>Das originale Hyperscan funktioniert (Stand Mai 2023) <strong>NUR</strong> auf x86. ARM64 wird voraussichtlich <strong>nicht</strong> offiziell von Intel supported<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p><a href="https://linux.die.net/man/1/nc">netcat</a>, <a href="https://linux.die.net/man/1/nmap">nmap</a>, <a href="https://wiki.openssl.org/index.php/Manual:S_client(1)">openssl</a>, [telnet](<a href="https://linux">https://linux</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><a href="https://linux.die.net/man/1/nc">netcat</a>, <a href="https://linux.die.net/man/1/nmap">nmap</a>, <a href="https://wiki.openssl.org/index.php/Manual:S_client(1)">openssl</a>, <a href="https://linux.die.net/man/1/telnet">telnet</a>, etc.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://github.com/intel/hyperscan">Hyperscan</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://github.com/intel/hyperscan/pull/287#issuecomment-746558138">Status für Hyperscan auf ARM64</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -2677,7 +2738,7 @@ key.pem
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-23 11:30:53</span>
       
     
   </small>

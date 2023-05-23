@@ -910,6 +910,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rspamd-reports-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" class="md-nav__link">
+    Rspamd reports: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2590,6 +2597,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rspamd-reports-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" class="md-nav__link">
+    Rspamd reports: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2663,11 +2677,58 @@ key.pem
 <p>If <code>dhparams.pem</code> is missing, you can generate it with</p>
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>dhparam<span class="w"> </span>-out<span class="w"> </span>data/assets/ssl/dhparams.pem<span class="w"> </span><span class="m">4096</span>
 </code></pre></div>
+<h2 id="rspamd-reports-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform">Rspamd reports: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform<a class="headerlink" href="#rspamd-reports-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" title="Permanent link">&para;</a></h2>
+<p>When migrating mailcow to another system (usually with a different CPU), Rspamd may report that it cannot load some (possibly all) <code>.hs</code> files because they were compiled for a different platform (CPU).</p>
+<p>This is related to Hyperscan<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, an Intel technique for precompiling regex schemas that Rspamd uses.</p>
+<p>This feature provides a significant performance boost and is therefore heavily embedded in Rspamd.</p>
+<p>To fix this bug, all <code>.hs</code> and <code>.hsmp</code> files must be deleted from the rspamd directory:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>MAILCOW_ROOT<span class="w"> </span><span class="c1"># Usually /opt/mailcow-dockerized</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hs
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hsmp
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>MAILCOW_ROOT<span class="w"> </span><span class="c1"># Usually /opt/mailcow-dockerized</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rspamd-mailcow<span class="w"> </span>bash
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hs
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hsmp
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Restart Rspamd afterwards:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Now Rspamd recompiles the said regex maps again with Hyperscan.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The original Hyperscan works (as of May 2023) <strong>ONLY</strong> on x86. ARM64 is <strong>not</strong> expected to be officially supported by Intel<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p><a href="https://linux.die.net/man/1/nc">netcat</a>, <a href="https://linux.die.net/man/1/nmap">nmap</a>, <a href="https://wiki.openssl.org/index.php/Manual:S_client(1)">openssl</a>, <a href="https://linux.die.net/man/1/telnet">telnet</a>, etc.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://github.com/intel/hyperscan">Hyperscan</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://github.com/intel/hyperscan/pull/287#issuecomment-746558138">Status for Hyperscan on ARM64</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -2677,7 +2738,7 @@ key.pem
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-01 09:33:47</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-23 11:30:53</span>
       
     
   </small>
