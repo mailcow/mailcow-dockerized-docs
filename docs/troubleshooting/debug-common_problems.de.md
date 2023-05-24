@@ -90,13 +90,13 @@ openssl dhparam -out data/assets/ssl/dhparams.pem 4096
 
 ## Rspamd meldet: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
 
-Bei einer Migration von mailcow auf ein anderes System (meistens mit einer anderen CPU) kann es unter umständen passieren, dass Rspamd meldet er könne einige (evtl. alle) `.hs` Dateien nicht laden, da diese für eine andere Plattform (CPU) kompiliert wurden.
+Bei einer Migration von mailcow auf ein anderes System (meistens mit einer anderen CPU) kann es unter Umständen passieren, dass Rspamd meldet er könne einige (evtl. alle) `.hs` Dateien nicht laden, da diese für eine andere Plattform (CPU) kompiliert wurden.
 
-Dies hängt mit Hyperscan[^2] zusammen einer Intel Technik zum vorkompilieren von regex schemata, welche Rspamd einsetzt.
+Dies hängt mit Hyperscan[^2] zusammen einer Intel Technik zum vorkompilieren von regex Schemata, welche Rspamd einsetzt.
 
 Diese Funktion bringt einen erheblichen Performance Boost mit sich und ist deswegen stark in Rspamd verankert.
 
-Um diesen Fehler zu beheben müssen alle `.hs` und `.hsmp` Dateien aus dem Rspamd Verzeichnis gelöscht werden:
+Um diesen Fehler zu beheben, müssen alle `.hs` und `.hsmp` Dateien aus dem Rspamd Verzeichnis gelöscht werden:
 
 === "docker compose (Plugin)"
 
