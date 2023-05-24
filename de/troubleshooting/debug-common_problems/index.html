@@ -2692,10 +2692,10 @@ key.pem
 <div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>dhparam<span class="w"> </span>-out<span class="w"> </span>data/assets/ssl/dhparams.pem<span class="w"> </span><span class="m">4096</span>
 </code></pre></div>
 <h2 id="rspamd-meldet-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform">Rspamd meldet: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform<a class="headerlink" href="#rspamd-meldet-cannot-open-hyperscan-cache-file-varlibrspamdhs-compiled-for-a-different-platform" title="Permanent link">&para;</a></h2>
-<p>Bei einer Migration von mailcow auf ein anderes System (meistens mit einer anderen CPU) kann es unter umständen passieren, dass Rspamd meldet er könne einige (evtl. alle) <code>.hs</code> Dateien nicht laden, da diese für eine andere Plattform (CPU) kompiliert wurden.</p>
-<p>Dies hängt mit Hyperscan<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> zusammen einer Intel Technik zum vorkompilieren von regex schemata, welche Rspamd einsetzt.</p>
+<p>Bei einer Migration von mailcow auf ein anderes System (meistens mit einer anderen CPU) kann es unter Umständen passieren, dass Rspamd meldet er könne einige (evtl. alle) <code>.hs</code> Dateien nicht laden, da diese für eine andere Plattform (CPU) kompiliert wurden.</p>
+<p>Dies hängt mit Hyperscan<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> zusammen einer Intel Technik zum vorkompilieren von regex Schemata, welche Rspamd einsetzt.</p>
 <p>Diese Funktion bringt einen erheblichen Performance Boost mit sich und ist deswegen stark in Rspamd verankert.</p>
-<p>Um diesen Fehler zu beheben müssen alle <code>.hs</code> und <code>.hsmp</code> Dateien aus dem Rspamd Verzeichnis gelöscht werden:</p>
+<p>Um diesen Fehler zu beheben, müssen alle <code>.hs</code> und <code>.hsmp</code> Dateien aus dem Rspamd Verzeichnis gelöscht werden:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2752,7 +2752,7 @@ rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hsmp
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-23 11:30:53</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-24 11:30:08</span>
       
     
   </small>
