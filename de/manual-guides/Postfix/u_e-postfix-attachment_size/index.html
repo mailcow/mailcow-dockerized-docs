@@ -2466,15 +2466,22 @@
   <h1>Maximale Nachrichtengröße (Größe des Anhangs)</h1>
 
 <p>Öffnen Sie <code>data/conf/postfix/extra.cf</code> und setzen Sie das <code>message_size_limit</code> entsprechend in Bytes. Siehe <code>main.cf</code> für den Standardwert.</p>
-<p>Starten Sie Postfix neu:</p>
+<p>Sie müssen auch die Nachrichtengröße in den Konfigurationen von Rspamd und Clamav anpassen:</p>
+<ul>
+<li>in <code>data/conf/rspamd/local.d/options.inc</code> fügen Sie den <code>max_message</code> Parameter entsprechend den im Postfix gesetzten Wert hinzu. Ziehen Sie die <a href="https://rspamd.com/doc/configuration/options.html#:~:text=DoS%20(default%3A%201024)-,max_message,-maximum%20size%20of">Rspamd Docs</a> für den Standardwert zu rate.</li>
+<li>in <code>data/conf/rspamd/local.d/external_services.conf</code> ändern Sie den Wert <code>max_size</code> Parameter für <code>oletools</code></li>
+<li>in <code>data/conf/rspamd/local.d/antivirus.conf</code> ändern Sie den Wert <code>max_size</code> Parameter für <code>clamav</code></li>
+<li>in <code>data/conf/clamav/clamd.conf</code> ändern Sie den Wert <code>MaxScanSize</code> und <code>MaxFileSize</code> auf dieselbe Größe wie in der Postfix <code>extra.cf</code></li>
+</ul>
+<p>Starten Sie Postfix, Rspamd and Clamav neu:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow<span class="w"> </span>rspamd-mailcow<span class="w"> </span>clamd-mailcow
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow<span class="w"> </span>rspamd-mailcow<span class="w"> </span>clamd-mailcow
 </code></pre></div>
 </div>
 </div>
@@ -2485,7 +2492,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-25 12:26:58</span>
       
     
   </small>
