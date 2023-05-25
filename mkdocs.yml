@@ -47,6 +47,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - 'Information & Support': 'index.md'
@@ -177,7 +180,9 @@ plugins:
       default_language: en
       languages:
         en: English
-        de: Deutsch
+        de:           
+          name: Deutsch
+          site_name: "mailcow: dockerized Dokumentation"
       nav_translations:
       #### Begin of german translation
         de:

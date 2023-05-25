@@ -2,7 +2,7 @@
   ![mailcow Logo](assets/images/logo.svg){ width="150" }
 </figure>
 
-# mailcow: dockerized - 🐮 + 🐋 = 💕
+# mailcow: dockerized - :cow: + :whale: = :two_hearts:
 **Die Mailserver-Suite mit dem 'moo'**
 
 ## Was ist mailcow: dockerized?
