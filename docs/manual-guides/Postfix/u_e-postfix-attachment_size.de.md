@@ -9,11 +9,11 @@ Starten Sie Postfix neu:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose restart postfix-mailcow
+    docker compose restart postfix-mailcow rspamd-mailcow clamd-mailcow
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose restart postfix-mailcow
+    docker-compose restart postfix-mailcow rspamd-mailcow clamd-mailcow
     ```
