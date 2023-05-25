@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#mailcow-dockerized-" class="md-skip">
           Skip to content
         </a>
       
@@ -344,18 +344,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#help-mailcow" class="md-nav__link">
-    Help mailcow
+  <a href="#what-is-mailcow-dockerized" class="md-nav__link">
+    What is mailcow: dockerized?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-support" class="md-nav__link">
-    Get support
+  <a href="#support-the-mailcow-project" class="md-nav__link">
+    Support the mailcow project
   </a>
   
-    <nav class="md-nav" aria-label="Get support">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    Need help?
+  </a>
+  
+    <nav class="md-nav" aria-label="Need help?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -378,15 +385,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#demos" class="md-nav__link">
-    Demos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#interested-try-it-out-right-away" class="md-nav__link">
+    Interested? Try it out right away!
   </a>
   
 </li>
@@ -2529,18 +2529,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#help-mailcow" class="md-nav__link">
-    Help mailcow
+  <a href="#what-is-mailcow-dockerized" class="md-nav__link">
+    What is mailcow: dockerized?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-support" class="md-nav__link">
-    Get support
+  <a href="#support-the-mailcow-project" class="md-nav__link">
+    Support the mailcow project
   </a>
   
-    <nav class="md-nav" aria-label="Get support">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    Need help?
+  </a>
+  
+    <nav class="md-nav" aria-label="Need help?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2563,15 +2570,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#demos" class="md-nav__link">
-    Demos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#interested-try-it-out-right-away" class="md-nav__link">
+    Interested? Try it out right away!
   </a>
   
 </li>
@@ -2594,15 +2594,87 @@
   
 
 
-<h1 id="_1">🐮 + 🐋 = 💕<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="help-mailcow">Help mailcow<a class="headerlink" href="#help-mailcow" title="Permanent link">&para;</a></h2>
-<p>Please consider a support contract for a small monthly fee at <a href="https://www.servercow.de/mailcow?lang=en#support">Servercow EN</a> to support further development. <em>We</em> support <em>you</em> while <em>you</em> support <em>us</em>. :)</p>
-<p>If you are super awesome and would like to support without a contract, you can get a SAL license that confirms your awesomeness (a flexible one-time payment) at <a href="https://www.servercow.de/mailcow?lang=en#sal">Servercow EN</a>.</p>
-<h2 id="get-support">Get support<a class="headerlink" href="#get-support" title="Permanent link">&para;</a></h2>
+<figure>
+<p><img alt="mailcow Logo" src="assets/images/logo.svg" width="150" /></p>
+</figure>
+<h1 id="mailcow-dockerized-">mailcow: dockerized - 🐮 + 🐋 = 💕<a class="headerlink" href="#mailcow-dockerized-" title="Permanent link">&para;</a></h1>
+<p><strong>The mailserver suite with the 'moo'</strong></p>
+<h2 id="what-is-mailcow-dockerized">What is mailcow: dockerized?<a class="headerlink" href="#what-is-mailcow-dockerized" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Mailcow, MailCow or mailcow? What is the exact name of the project?</p>
+<p>Correct: <strong>mailcow</strong>, because mailcow is a registered word mark with a small m :grin:</p>
+</div>
+<p>mailcow: dockerized is an open source groupware/email suite based on docker.</p>
+<p>mailcow relies on many well known and long used components, which in combination result in an all around carefree email server.</p>
+<p>Each container represents a single application, connected in a bridged network.</p>
+<ul>
+<li><a href="https://letsencrypt.org/">ACME</a> (Automatic generation of Let's Encrypt certificates)</li>
+<li><a href="https://www.clamav.net/">ClamAV</a> (anti-virus scanner) (optional)</li>
+<li><a href="https://www.dovecot.org/">Dovecot</a> (IMAP/POP server for retrieving mail)</li>
+<li><a href="https://mariadb.org/">MariaDB</a> (database to store user information, etc.)</li>
+<li><a href="https://www.memcached.org/">Memcached</a> (cache for the SOGo webmailer)</li>
+<li><a href="https://www.netfilter.org/">Netfilter</a> (Fail2ban-like integration of <a href="https://github.com/mkuron">@mkuron</a>)</li>
+<li><a href="https://nginx.org/">Nginx</a> (Web server for the mailcow UI)</li>
+<li><a href="https://github.com/decalage2/oletools">Oletools</a> via <a href="https://github.com/HeinleinSupport/olefy">Olefy</a> (analyzing office documents for viruses, macros, etc.)</li>
+<li><a href="https://php.net/">PHP</a> (programming language for most web-based mailcow actions)</li>
+<li><a href="http://www.postfix.org/">Postfix</a> (Receiver/sender for mail traffic on the Internet)</li>
+<li><a href="https://redis.io/">Redis</a> (storage for spam information, DKIM keys, etc.)</li>
+<li><a href="https://www.rspamd.com/">Rspamd</a> (spam filter with automatic learning of spam mails)</li>
+<li><a href="https://sogo.nu/">SOGo</a> (integrated webmailer and cal/carddav interface)</li>
+<li><a href="https://solr.apache.org/">Solr</a> (full-text search for IMAP connections for quick email search) (optional)</li>
+<li><a href="https://unbound.net/">Unbound</a> (integrated DNS server to check DNSSEC etc.)</li>
+<li>A watchdog for basic monitoring of container health inside mailcow</li>
+</ul>
+<p>But the heart of mailcow is the graphical web interface, the <strong>mailcow UI</strong>.</p>
+<p>It offers a place for almost all settings and allows the comfortable creation of new domains and email addresses with just a few clicks.</p>
+<p>But also other or more tricky tasks can be done in it with ease:</p>
+<ul>
+<li><a href="http://dkim.org">DKIM</a> and <a href="http://arc-spec.org/">ARC</a> support/generation.</li>
+<li>Black and white lists per domain and per user.</li>
+<li>Spam score management per user (reject spam, flag spam, greylist).</li>
+<li>Allow mailbox users to create temporary spam aliases</li>
+<li>Prepend email tags to subject or move emails to subfolders (per user)</li>
+<li>Allow mailbox users to toggle TLS enforcement for inbound and outbound messages</li>
+<li>Users can reset caches on SOGo ActiveSync devices</li>
+<li>imapsync to periodically migrate or retrieve remote mailboxes</li>
+<li>TFA: Yubikey OTP and WebAuthn USB (Google Chrome and derivatives only), TOTP</li>
+<li>Add whitelist hosts to forward mail to mailcow</li>
+<li>Fail2ban-like integration</li>
+<li>Quarantine system</li>
+<li>Anti-virus scanning including macro scanning in Office documents</li>
+<li>Integrated basic monitoring</li>
+<li>And much more...</li>
+</ul>
+<p>The mailcow data (such as emails, user data, etc.) is stored in <strong>Docker volumes</strong> - take good care of these volumes:</p>
+<ul>
+<li>clamd-db-vol-1</li>
+<li>crypt-vol-1</li>
+<li>mysql-socket-vol-1</li>
+<li>mysql-vol-1</li>
+<li>postfix-vol-1</li>
+<li>redis-vol-1</li>
+<li>rspamd-vol-1</li>
+<li>sogo-userdata-backup-vol-1</li>
+<li>sogo-web-vol-1</li>
+<li>solr-vol-1</li>
+<li>vmail-index-vol-1</li>
+<li>vmail-vol-1</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The mails are compressed and encrypted. The key pair can be found in crypt-vol-1. Please don't forget to backup this and other volumes. #nobackupnopity</p>
+</div>
+<hr />
+<h2 id="support-the-mailcow-project">Support the mailcow project<a class="headerlink" href="#support-the-mailcow-project" title="Permanent link">&para;</a></h2>
+<p>Please consider a support contract for a small monthly fee at <a href="https://www.servercow.de/mailcow?lang=en#support">Servercow</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> to support further development. <em>We</em> support <em>you</em> while <em>you</em> support <em>us</em>. :)</p>
+<p>If you are super awesome and would like to support without a contract, you can get a SAL (Stay-Awesome License) that confirms your awesomeness (a flexible one-time payment) at <a href="https://www.servercow.de/mailcow?lang=en#sal">Servercow</a>.</p>
+<hr />
+<h2 id="need-help">Need help?<a class="headerlink" href="#need-help" title="Permanent link">&para;</a></h2>
 <p>There are two ways to achieve support for your mailcow installation.</p>
 <h3 id="commercial-support">Commercial support<a class="headerlink" href="#commercial-support" title="Permanent link">&para;</a></h3>
-<p>For professional and prioritized commercial support you can sign a basic support subscription at <a href="https://www.servercow.de/mailcow?lang=en#support">Servercow EN</a>. For custom inquiries or questions please contact us at <a href="mailto:info@servercow.de">info@servercow.de</a> instead.</p>
-<p>Furthermore we do also provide a fully featured and managed mailcow <a href="https://www.servercow.de/mailcow#managed">here</a>. This way we take care about the technical magic underneath and you can enjoy your whole mail experience in a hassle-free way.</p>
+<p>For professional and prioritized commercial support you can sign a basic support subscription at <a href="https://www.servercow.de/mailcow?lang=en#support">Servercow</a>. For custom inquiries or questions please contact us at <a href="mailto:info@servercow.de">info@servercow.de</a> instead.</p>
+<p>Furthermore we do also provide a fully featured and managed mailcow <a href="https://www.servercow.de/mailcow?lang=en#managed">here</a>. This way we take care about the technical magic underneath and you can enjoy your whole mail experience in a hassle-free way.</p>
 <h3 id="community-support-and-chat">Community support and chat<a class="headerlink" href="#community-support-and-chat" title="Permanent link">&para;</a></h3>
 <p>The other alternative is our free community-support on our various channels below. Please notice, that this support is driven by our awesome community around mailcow. This kind of support is best-effort, voluntary and there is no guarantee for anything.</p>
 <ul>
@@ -2624,88 +2696,42 @@
 <ul>
 <li>GitHub @ <a href="https://github.com/mailcow/mailcow-dockerized">mailcow/mailcow-dockerized</a></li>
 </ul>
-<h2 id="demos">Demos<a class="headerlink" href="#demos" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="interested-try-it-out-right-away">Interested? Try it out right away!<a class="headerlink" href="#interested-try-it-out-right-away" title="Permanent link">&para;</a></h2>
+<p>Have we got your interest? Get a first overview of the functionalities of mailcow and your mailcow UI in our official <strong>mailcow demos</strong>!</p>
 <p>Since September 2022 we´re providing two seperate Demo instances: </p>
 <ul>
 <li><strong><a href="https://demo.mailcow.email">demo.mailcow.email</a></strong> is the classic Demo based on the <strong>stable releases</strong>.</li>
 <li><strong><a href="https://nightly-demo.mailcow.email">nightly-demo.mailcow.email</a></strong> is the new <strong>nightly demo</strong> based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)</li>
 </ul>
-<p>Use the following credentials to login on both demos:</p>
+<div class="admonition abstract">
+<p class="admonition-title">Use these credentials for the demos</p>
 <ul>
 <li><strong>Administrator</strong>: admin / moohoo</li>
 <li><strong>Domain-Administrator</strong>: department / moohoo</li>
 <li><strong>Mailbox</strong>: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#100;&#101;&#109;&#111;&#64;&#52;&#52;&#48;&#48;&#52;&#52;&#46;&#120;&#121;&#122;">&#100;&#101;&#109;&#111;&#64;&#52;&#52;&#48;&#48;&#52;&#52;&#46;&#120;&#121;&#122;</a> / moohoo</li>
 </ul>
+<p><em>The login credentials work for both variants</em>.</p>
+</div>
 <div class="admonition success">
-<p class="admonition-title">Success</p>
+<p class="admonition-title">Always up to date</p>
 <p>The demo instances get the latest updates directly after releases from GitHub. Fully automatic, without any downtime!</p>
 </div>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The integrated <strong>mailcow UI</strong> allows administrative work on your mail server instance as well as separated domain administrator and mailbox user access:</p>
-<ul>
-<li><a href="http://dkim.org">DKIM</a> and <a href="http://arc-spec.org/">ARC</a> support</li>
-<li>Black- and whitelists per domain and per user</li>
-<li>Spam score management per-user (reject spam, mark spam, greylist)</li>
-<li>Allow mailbox users to create temporary spam aliases</li>
-<li>Prepend mail tags to subject or move mail to sub folder (per-user)</li>
-<li>Allow mailbox users to toggle incoming and outgoing TLS enforcement</li>
-<li>Allow users to reset SOGo ActiveSync device caches</li>
-<li>imapsync to migrate or pull remote mailboxes regularly</li>
-<li>TFA: Yubikey OTP and U2F USB (Google Chrome and derivatives only), TOTP</li>
-<li>Add domains, mailboxes, aliases, domain aliases and SOGo resources</li>
-<li>Add whitelisted hosts to forward mail to mailcow</li>
-<li>Fail2ban-like integration</li>
-<li>Quarantine system</li>
-<li>Antivirus scanning incl. macro scanning in office documents</li>
-<li>Integrated basic monitoring</li>
-<li>A lot more...</li>
-</ul>
-<p>mailcow: dockerized comes with multiple containers linked in one bridged network.
-Each container represents a single application.</p>
-<ul>
-<li><a href="https://letsencrypt.org/">ACME</a></li>
-<li><a href="https://www.clamav.net/">ClamAV</a> (optional)</li>
-<li><a href="https://www.dovecot.org/">Dovecot</a></li>
-<li><a href="https://mariadb.org/">MariaDB</a></li>
-<li><a href="https://www.memcached.org/">Memcached</a></li>
-<li><a href="https://www.netfilter.org/">Netfilter</a> (Fail2ban-like integration by <a href="https://github.com/mkuron">@mkuron</a>)</li>
-<li><a href="https://nginx.org/">Nginx</a></li>
-<li><a href="https://github.com/decalage2/oletools">Oletools</a> via <a href="https://github.com/HeinleinSupport/olefy">Olefy</a></li>
-<li><a href="https://php.net/">PHP</a></li>
-<li><a href="http://www.postfix.org/">Postfix</a></li>
-<li><a href="https://redis.io/">Redis</a></li>
-<li><a href="https://www.rspamd.com/">Rspamd</a></li>
-<li><a href="https://sogo.nu/">SOGo</a></li>
-<li><a href="https://solr.apache.org/">Solr</a> (optional)</li>
-<li><a href="https://unbound.net/">Unbound</a></li>
-<li>A Watchdog to provide basic monitoring</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Mails are stored compressed and encrypted. The key pair can be found in crypt-vol-1. Be sure to backup this volume!</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Servercow is a hosting/support division of The Infrastructure Company GmbH (mailcow maintainer).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
-<p><strong>Docker volumes</strong> to keep dynamic data - take care of them!</p>
-<ul>
-<li>clamd-db-vol-1</li>
-<li>crypt-vol-1</li>
-<li>mysql-socket-vol-1</li>
-<li>mysql-vol-1</li>
-<li>postfix-vol-1</li>
-<li>redis-vol-1</li>
-<li>rspamd-vol-1</li>
-<li>sogo-userdata-backup-vol-1</li>
-<li>sogo-web-vol-1</li>
-<li>solr-vol-1</li>
-<li>vmail-index-vol-1</li>
-<li>vmail-vol-1</li>
-</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-09-24 12:40:59</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-25 11:26:30</span>
       
     
   </small>
