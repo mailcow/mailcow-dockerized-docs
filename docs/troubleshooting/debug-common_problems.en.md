@@ -132,10 +132,6 @@ Restart Rspamd afterwards:
 
 Now Rspamd recompiles the said regex maps again with Hyperscan.
 
-!!! warning
-    The original Hyperscan works (as of May 2023) **ONLY** on x86. ARM64 is **not** expected to be officially supported by Intel[^3]
-
 
 [^1]: [netcat](https://linux.die.net/man/1/nc), [nmap](https://linux.die.net/man/1/nmap), [openssl](https://wiki.openssl.org/index.php/Manual:S_client(1)), [telnet](https://linux.die.net/man/1/telnet), etc.
 [^2]: [Hyperscan](https://github.com/intel/hyperscan)
-[^3]: [Status for Hyperscan on ARM64](https://github.com/intel/hyperscan/pull/287#issuecomment-746558138)
