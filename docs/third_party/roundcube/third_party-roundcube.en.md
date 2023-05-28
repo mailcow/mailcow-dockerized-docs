@@ -41,7 +41,10 @@ wget -O data/web/rc/config/mime.types http://svn.apache.org/repos/asf/httpd/http
 ```
 
 ### Create roundcube database
-Create a database for roundcube in the mailcow mysql container.
+Create a database for roundcube in the mailcow mysql container. This creates a new `roundcube` database user
+with a random password, which will be echoed to the shell and stored in a shell variable for use by later
+commands. Note that when you interrupt the process and continue in a new shell, you must set the `DBROUNDCUBE`
+shell variable manually to the password output by the following commands.
 
 ```bash
 DBROUNDCUBE=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28)
@@ -513,12 +516,18 @@ docker compose exec nginx-mailcow nginx -s reload
 ```
 
 ### Other changes
-You must also adapt the configuration of the roundcube password plugin according to the new instruction, specifically if
+You must also adapt the configuration of the roundcube password plugin according to this instruction, specifically if
 you use the password changing functionality, since the old instruction directly changed the password in the database,
 whereas this version of the instruction uses the mailcow API for the password change.
 
 Regarding other changes and additions (e.g., dovecot\_impersonate plugin), you can go through the current installation
 instructions and adapt your configuration accordingly or perform the listed installation steps for new additions.
+
+If you adapt the roundcube configuration according to the one now used in this instruction, mind not to change the
+`db_prefix`, `cipher_method` and `des_key` options unless you know what you are doing. Changing these may need additional
+steps to avoid breakage. Be sure to
+[allow plaintext authentication in dovecot](#Allow-plaintext-authentication-for-the-php-fpm-container-without-using-TLS)
+in this case as well.
 
 __NOTE:__ What will remain different between your installation and the current instructions is the use of a prefix on
 the roundcube database table names, i.e., the `db_prefix` option in roundcube's `config.inc.php` must remain set to the
