@@ -441,3 +441,85 @@ docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -
 ### Remove any custom configuration files we added to mailcow
 
 To determine these, please read through the installation steps and revert what you changed there.
+
+## Migration from older mailcow roundcube setup
+
+Older versions of this instruction used the mailcow database also for roundcube, with a configured name prefix
+`mailcow_rc1` on all roundcube tables.
+
+For the migration, it is also assumed that the commands are executed in the mailcow installation directory and
+that `mailcow.conf` has been sourced in the shell, see [Preparation](#Preparation) above. The commands of the different
+steps build on each other and must be executed in the same shell. Particularly, some steps set shell variables (most
+importantly the `DBROUNDCUBE` variable with the database password of the roundcube database user) used in later steps.
+
+### Create new roundcube database user and database
+
+Follow the [steps above](#Create-roundcube-database) to create the roundcube database user and the separate database.
+
+### Migrate roundcube data from mailcow database
+
+Before starting the database migration, we disable roundcube to avoid further changes to the roundcube database tables
+during the migration.
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location ^~ /rc/ {
+  return 503;
+}
+EOCONFIG
+docker compose exec nginx-mailcow nginx -s reload
+```
+
+Now we copy the roundcube data to the new database.
+```bash
+RCTABLES=$(docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "show tables like 'mailcow_rc1%';" | tr '\n\r' ' ')
+docker exec $(docker ps -f name=mysql-mailcow -q) /bin/bash -c "mysqldump -uroot -p${DBROOT} mailcow $RCTABLES | mysql -uroot -p${DBROOT} roundcubemail"
+```
+
+### Switch RCMCardDAV plugin to composer installation method
+
+This is optional but will align your installation with these instructions and enable you to upgrade RCMCardDAV
+using composer. This is simply done by deleting the carddav plugin from the installation and installing it using
+composer according to the [instructions above](#Integrate-CardDAV-addressbooks-in-Roundcube), which include the creation
+of a new RCMCardDAV v5 config. In case you modified your RCMCardDAV configuration file, you may want to backup it before
+deleting the plugin and carry over your changes to the new configuration afterwards as well.
+
+To delete the carddav plugin run the following command, the re-install according to the
+[instructions above](#Integrate-CardDAV-addressbooks-in-Roundcube):
+
+```bash
+rm -r data/web/rc/plugins/carddav
+```
+
+### Switch roundcube to new database
+
+First adapt the roundcube configuration to use the new database.
+```bash
+sed -i "/\$config\['db_dsnw'\].*$/d" data/web/rc/config/config.inc.php
+cat <<EOCONFIG >>data/web/rc/config/config.inc.php
+\$config['db_dsnw'] = 'mysql://roundcube:${DBROUNDCUBE}@mysql/roundcubemail';
+EOCONFIG
+```
+
+### Re-enable roundcube web access
+Execute the chown and chmod commands on sensitive roundcube directories listed in [Preparation](#Preparation), to
+make sure the nginx webserver cannot access files it is not supposed to serve.
+
+Then re-enable web access to roundcube by replacing our temporary roundcube custom config for the one described
+[above](#Webserver-configuration), and reload the nginx configuration:
+
+```bash
+docker compose exec nginx-mailcow nginx -s reload
+```
+
+### Other changes
+You must also adapt the configuration of the roundcube password plugin according to the new instruction, specifically if
+you use the password changing functionality, since the old instruction directly changed the password in the database,
+whereas this version of the instruction uses the mailcow API for the password change.
+
+Regarding other changes and additions (e.g., dovecot\_impersonate plugin), you can go through the current installation
+instructions and adapt your configuration accordingly or perform the listed installation steps for new additions.
+
+__NOTE:__ What will remain different between your installation and the current instructions is the use of a prefix on
+the roundcube database table names, i.e., the `db_prefix` option in roundcube's `config.inc.php` must remain set to the
+used prefix. This is not a problem and there is no need to change the table names.
