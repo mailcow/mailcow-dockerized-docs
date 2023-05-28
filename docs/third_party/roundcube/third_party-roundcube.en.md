@@ -125,7 +125,7 @@ EOCONFIG
 ### Disable and remove installer
 
 Delete the directory `data/web/rc/installer` after a successful installation, and set the `enable_installer` option
-installation `data/web/rc/config/config.inc.php`!
+to false in `data/web/rc/config/config.inc.php`!
 
 ```bash
 rm -r data/web/rc/installer
@@ -414,6 +414,11 @@ composer in the container:
 docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
 ```
 
+### Upgrade mime type mappings
+
+To upgrade the mime type mappings, re-download them using the command in the
+[installation instructions](#Install-mime-type-mappings).
+
 ## Uninstalling roundcube
 
 For the uninstallation, it is also assumed that the commands are executed in the mailcow installation directory and
@@ -532,3 +537,12 @@ in this case as well.
 __NOTE:__ What will remain different between your installation and the current instructions is the use of a prefix on
 the roundcube database table names, i.e., the `db_prefix` option in roundcube's `config.inc.php` must remain set to the
 used prefix. This is not a problem and there is no need to change the table names.
+
+### Removing roundcube tables from mailcow database
+
+After you have verified that the migration was successful and roundcube works using the separate database, you can remove
+the roundcube tables from the mailcow database using the following command:
+
+```bash
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SET SESSION foreign_key_checks = 0; DROP TABLE IF EXISTS $(echo $RCTABLES | sed -e 's/ \+/,/g');"
+```
