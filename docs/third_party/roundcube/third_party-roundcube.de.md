@@ -89,6 +89,14 @@ $config['plugins'] = array(
 );
 [...]
 ```
+Fügen Sie am Ende der Datei die folgenden Parameter hinzu:
+
+```php
+$config['password_driver'] = 'sql';
+$config['password_algorithm'] = 'ssha256';
+$config['password_algorithm_prefix'] = '{SSHA256}';
+$config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
+```
 
 Öffnen Sie `data/web/rc/plugins/password/password.php`, suchen Sie nach `case 'ssha':` und fügen Sie oben hinzu:
 
@@ -98,15 +106,6 @@ $config['plugins'] = array(
             $crypted = base64_encode( hash('sha256', $password . $salt, TRUE ) . $salt );
             $prefix  = '{SSHA256}';
             break;
-```
-
-Öffnen Sie `data/web/rc/plugins/password/config.inc.php` und ändern Sie die folgenden Parameter (oder fügen Sie sie am Ende der Datei hinzu):
-
-```php
-$config['password_driver'] = 'sql';
-$config['password_algorithm'] = 'ssha256';
-$config['password_algorithm_prefix'] = '{SSHA256}';
-$config['password_query'] = "UPDATE mailbox SET password = %P WHERE username = %u";
 ```
 
 ## CardDAV Adressbücher in Roundcube einbinden
