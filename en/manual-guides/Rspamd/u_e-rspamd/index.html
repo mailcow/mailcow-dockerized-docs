@@ -2841,11 +2841,6 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
 </div>
 </div>
 </div>
-<div class="highlight"><pre><span></span><code>source mailcow.conf
-docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39;;&quot;
-# or:
-# docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e &quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39; and object = &#39;only-this-mailbox@example.org&#39;;&quot;
-</code></pre></div>
 <h2 id="custom-reject-messages">Custom reject messages<a class="headerlink" href="#custom-reject-messages" title="Permanent link">&para;</a></h2>
 <p>The default spam reject message can be changed by adding a new file <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> with the following content:</p>
 <div class="highlight"><pre><span></span><code>reject_message = &quot;My custom reject message&quot;;
@@ -2988,13 +2983,13 @@ quarantine_notify.py
 <p>Download the module and save it in the following path: <code>data/conf/rspamd/plugins.d/</code>.</p>
 <p>Next, add any necessary configuration for your module to <code>data/conf/rspamd/rspamd.conf.local</code>. \
 If you have a module named <code>my_plugin.lua</code>, configuration might look like the following:</p>
-<div class="highlight"><pre><span></span><code># rspamd.conf.local  
+<div class="highlight"><pre><span></span><code># rspamd.conf.local
 my_plugin {
     some_setting = &quot;some value&quot;;
 }
 </code></pre></div>
 <p>If your module does not require any additional configuration, simply add an empty configuration block, for example:</p>
-<div class="highlight"><pre><span></span><code># rspamd.conf.local  
+<div class="highlight"><pre><span></span><code># rspamd.conf.local
 my_plugin { }
 </code></pre></div>
 <p>If you do not add a configuration block, the module will be automatically disabled, and the rspamd-mailcow container log will contain a message such as:</p>
@@ -3010,7 +3005,7 @@ mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:01:32 #1(main) &lt;sh6j9z&gt
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-21 12:02:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-04 17:17:24</span>
       
     
   </small>

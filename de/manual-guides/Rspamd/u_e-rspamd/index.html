@@ -2983,13 +2983,13 @@ quarantine_notify.py
 <p>Laden Sie das Modul herunter und speichern Sie es in folgenden Pfad ab: <code>data/conf/rspamd/plugins.d/</code>.</p>
 <p>Danach müssen Sie die Konfigurationsparameter des Modules in <code>data/conf/rspamd/rspamd.conf.local</code> hinzufügen.
 Falls das Modul <code>my_plugin.lua</code> heißt, sollte die Datei wie folgt aussehen:</p>
-<div class="highlight"><pre><span></span><code># rspamd.conf.local  
+<div class="highlight"><pre><span></span><code># rspamd.conf.local
 my_plugin {
     some_setting = &quot;some value&quot;;
 }
 </code></pre></div>
 <p>Falls Ihr Modul keine zusätzlichen Konfigurationen benötigt, reicht es aus einen leeren Konfigurationsblock hinzuzufügen. Wie im folgenden Beispiel zu sehen:</p>
-<div class="highlight"><pre><span></span><code># rspamd.conf.local  
+<div class="highlight"><pre><span></span><code># rspamd.conf.local
 my_plugin { }
 </code></pre></div>
 <p>Falls Sie keinen Konfigurationsblock hinzufügen, dann wird das Modul automatisch deaktiviert und im Logfile des rspamd-mailcow Containers sehen Sie folgende Nachricht:</p>
@@ -2997,15 +2997,15 @@ my_plugin { }
 mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:01:32 #1(main) &lt;sh6j9z&gt;; cfg; rspamd_config_is_module_enabled: my_plugin disabling unconfigured lua module
 </code></pre></div>
 <p>Falls Sie das Modul erfolgreich konfiguiert haben, dann sollte das Logfile des rspamd-mailcow Containers wie folgt aussehen:</p>
-<p>```
-mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:04:50 #1(main) &lt;8ayxpf&gt;; cfg; rspamd_init_lua_filters: init lua module my_plugin from /etc/rspamd/plugins.d//my_plugin.lua; digest: 5cb88961e5</p>
+<div class="highlight"><pre><span></span><code>mailcowdockerized-rspamd-mailcow-1  | 2023-05-20 14:04:50 #1(main) &lt;8ayxpf&gt;; cfg; rspamd_init_lua_filters: init lua module my_plugin from /etc/rspamd/plugins.d//my_plugin.lua; digest: 5cb88961e5
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-05-21 12:02:24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-04 17:17:24</span>
       
     
   </small>
