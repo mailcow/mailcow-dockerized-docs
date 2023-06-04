@@ -108,8 +108,8 @@ If redis-cli complains about...
 
 ...the key pattern was not found and thus no data is available to delete - it is fine.
 
-
 ## CLI tools
+
 === "docker compose (Plugin)"
 
     ``` bash
@@ -194,12 +194,6 @@ To reset custom defined thresholds, run:
     # or:
     docker-compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel' and object = 'only-this-mailbox@example.org';"
     ```
-```
-source mailcow.conf
-docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel';"
-# or:
-# docker compose exec mysql-mailcow mysql -umailcow -p$DBPASS mailcow -e "delete from filterconf where option = 'highspamlevel' or option = 'lowspamlevel' and object = 'only-this-mailbox@example.org';"
-```
 
 ## Custom reject messages
 
@@ -240,6 +234,7 @@ GLOBAL_RCPT_BL {
 ```
 
 3. Save the file and restart Rspamd:
+
 === "docker compose (Plugin)"
 
     ``` bash
@@ -361,7 +356,7 @@ Next, add any necessary configuration for your module to `data/conf/rspamd/rspam
 If you have a module named `my_plugin.lua`, configuration might look like the following:
 
 ```
-# rspamd.conf.local  
+# rspamd.conf.local
 my_plugin {
     some_setting = "some value";
 }
@@ -370,7 +365,7 @@ my_plugin {
 If your module does not require any additional configuration, simply add an empty configuration block, for example:
 
 ```
-# rspamd.conf.local  
+# rspamd.conf.local
 my_plugin { }
 ```
 
