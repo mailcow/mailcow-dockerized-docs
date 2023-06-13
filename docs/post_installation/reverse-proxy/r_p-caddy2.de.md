@@ -1,4 +1,5 @@
-### Caddy v2 (von der Community unterstützt)
+!!! warning "Wichtig"
+    Lesen Sie zuerst [die Übersicht](r_p.md).
 
 !!! warning "Warnung"
     Dies ist ein nicht unterstützter Communitybeitrag. Korrekturen sind immer erwünscht!

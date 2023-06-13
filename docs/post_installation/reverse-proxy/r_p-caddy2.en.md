@@ -1,4 +1,5 @@
-### Caddy v2 (supported by the community)
+!!! warning "Important"
+    First read [the overview](r_p.md).
 
 !!! warning
     This is an unsupported community contribution. Feel free to provide fixes.

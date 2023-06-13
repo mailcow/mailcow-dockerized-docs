@@ -1,4 +1,5 @@
-### HAProxy (von der Community unterstützt)
+!!! warning "Wichtig"
+    Lesen Sie zuerst [die Übersicht](r_p.md).
 
 !!! warning "Warnung"
     Dies ist ein nicht unterstützter Community Beitrag. Korrekturen sind immer erwünscht!
@@ -16,4 +17,3 @@ backend mailcow
   http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
   server mailcow 127.0.0.1:8080 check
 ```
-

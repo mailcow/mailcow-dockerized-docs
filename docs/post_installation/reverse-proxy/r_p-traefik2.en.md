@@ -1,4 +1,5 @@
-### Traefik v2 (community supported)
+!!! warning "Important"
+    First read [the overview](r_p.md).
 
 !!! warning
     This is an unsupported community contribution. Feel free to provide fixes.
@@ -105,4 +106,3 @@ You can use the command line to run it, or use the docker-compose.yml shown [her
 After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how [here](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate).
 
 Aaand that should be it 😊, you can check if the Traefik router works fine through Traefik's dashboard / traefik logs / accessing the setted domain through https, or / and check HTTPS, SMTP and IMAP through the commands shown on the page linked before.
-

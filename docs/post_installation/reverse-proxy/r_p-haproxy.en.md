@@ -1,4 +1,5 @@
-### HAProxy (community supported)
+!!! warning "Important"
+    First read [the overview](r_p.md).
 
 !!! warning
     This is an unsupported community contribution. Feel free to provide fixes.
@@ -16,4 +17,3 @@ backend mailcow
   http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
   server mailcow 127.0.0.1:8080 check
 ```
-
