@@ -235,7 +235,7 @@ docker restart $(docker ps -qaf name=nginx-mailcow)
 docker restart $(docker ps -qaf name=dovecot-mailcow)
 ```
 
-See [Post-hook script for non-mailcow ACME clients](../firststeps-rp/#optional-post-hook-script-for-non-mailcow-acme-clients) for a full example script.
+See [Post-hook script for non-mailcow ACME clients](../reverse-proxy/r_p/#optional-post-hook-script-for-non-mailcow-acme-clients) for a full example script.
 
 ### Test against staging ACME directory
 

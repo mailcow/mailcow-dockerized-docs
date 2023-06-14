@@ -68,7 +68,13 @@ nav:
     - 'IP bindings': 'post_installation/firststeps-ip_bindings.md'
     - 'Local MTA on Docker host': 'post_installation/firststeps-local_mta.md'
     - 'Logging': 'post_installation/firststeps-logging.md'
-    - 'Reverse Proxy': 'post_installation/firststeps-rp.md'
+    - 'Reverse Proxy': 
+      - 'Overview': 'post_installation/reverse-proxy/r_p.md'
+      - 'Apache 2.4': 'post_installation/reverse-proxy/r_p-apache24.md'
+      - 'Nginx': 'post_installation/reverse-proxy/r_p-nginx.md'
+      - 'HAProxy (community supported)': 'post_installation/reverse-proxy/r_p-haproxy.md'
+      - 'Traefik v2 (community supported)': 'post_installation/reverse-proxy/r_p-traefik2.md'
+      - 'Caddy v2 (community supported)': 'post_installation/reverse-proxy/r_p-caddy2.md'
     - 'Rspamd UI': 'post_installation/firststeps-rspamd_ui.md'
     - 'SNAT': 'post_installation/firststeps-snat.md'
     - 'Sync job migration': 'post_installation/firststeps-sync_jobs_migration.md'
@@ -199,6 +205,11 @@ plugins:
           'Disable IPv6': 'IPv6 deaktivieren'
           'IP bindings': 'IP-Bindings'
           'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
+            ### Reverse Proxy Subsection
+          'Overview': 'Übersicht'
+          'HAProxy (community supported)': 'HAProxy (von der Community unterstützt)'
+          'Traefik v2 (community supported)': 'Traefik v2 (von der Community unterstützt)'
+          'Caddy v2 (community supported)': 'Caddy v2 (von der Community unterstützt)'
           'Sync job migration': 'Migration mit Sync Jobs'
           ### Models Section
           'Models': 'Modelle'
@@ -270,7 +281,6 @@ plugins:
           'Run scripts before and after updates': 'Skripte vor und nach Aktualisierungen ausführen'
           ### Client Configuration Section
           'Client Configuration': 'Client-Konfiguration'
-          'Overview': 'Übersicht'
           'Manual configuration': 'Manuelle Konfiguration'
           ### Third party apps Section
           'Third party apps': 'Anwendungen von Drittanbietern'
@@ -300,7 +310,7 @@ plugins:
         'firststeps-ip_bindings.md': 'post_installation/firststeps-ip_bindings.en.md'
         'firststeps-local_mta.md': 'post_installation/firststeps-local_mta.en.md'
         'firststeps-logging.md': 'post_installation/firststeps-logging.en.md'
-        'firststeps-rp.md': 'post_installation/firststeps-rp.en.md'
+        'firststeps-rp.md': 'post_installation/reverse-proxy/r_p.en.md'
         'firststeps-rspamd_ui.md': 'post_installation/firststeps-rspamd_ui.en.md'
         'firststeps-snat.md': 'post_installation/firststeps-snat.en.md'
         'firststeps-sync_jobs_migration.md': 'post_installation/firststeps-sync_jobs_migration.en.md'
