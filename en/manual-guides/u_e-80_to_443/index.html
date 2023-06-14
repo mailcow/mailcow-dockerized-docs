@@ -586,10 +586,114 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+          Reverse Proxy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Reverse Proxy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../post_installation/firststeps-rp/" class="md-nav__link">
-        Reverse Proxy
+      <a href="../../post_installation/reverse-proxy/r_p/" class="md-nav__link">
+        Overview
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../post_installation/reverse-proxy/r_p-apache24/" class="md-nav__link">
+        Apache 2.4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../post_installation/reverse-proxy/r_p-nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../post_installation/reverse-proxy/r_p-haproxy/" class="md-nav__link">
+        HAProxy (community supported)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../post_installation/reverse-proxy/r_p-traefik2/" class="md-nav__link">
+        Traefik v2 (community supported)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../post_installation/reverse-proxy/r_p-caddy2/" class="md-nav__link">
+        Caddy v2 (community supported)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -2464,7 +2568,7 @@
   <h1>Redirect HTTP to HTTPS</h1>
 
 <p>Since February the 28th 2017 mailcow does come with port 80 and 443 enabled.</p>
-<p><strong>Do not use the config below for reverse proxy setups</strong>, please see our <a href="../../post_installation/firststeps-rp/">reverse proxy guide</a> for this, which includes a redirect from HTTP to HTTPS.</p>
+<p><strong>Do not use the config below for reverse proxy setups</strong>, please see our <a href="../../post_installation/reverse-proxy/r_p/">reverse proxy guide</a> for this, which includes a redirect from HTTP to HTTPS.</p>
 <p>Open <code>mailcow.conf</code> and set <code>HTTP_BIND=</code> - if not already set.</p>
 <p>Create a new file <code>data/conf/nginx/redirect.conf</code> and add the following server config to the file:</p>
 <div class="highlight"><pre><span></span><code>server {
@@ -2514,7 +2618,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-14 00:15:06</span>
       
     
   </small>

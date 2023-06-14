@@ -8,27 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://docs.mailcow.email/post_installation/firststeps-rp/">
+        <link rel="canonical" href="https://docs.mailcow.email/en/post_installation/reverse-proxy/r_p-nginx/">
       
       
-        <link rel="prev" href="../firststeps-logging/">
+        <link rel="prev" href="../r_p-apache24/">
       
       
-        <link rel="next" href="../firststeps-rspamd_ui/">
+        <link rel="next" href="../r_p-haproxy/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
-        <title>Reverse Proxy - mailcow: dockerized documentation</title>
+        <title>Nginx - mailcow: dockerized documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -38,9 +38,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -49,11 +49,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Reverse Proxy - mailcow: dockerized documentation" >
+        <meta  property="og:title"  content="Nginx - mailcow: dockerized documentation" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://docs.mailcow.email/assets/images/social/post_installation/firststeps-rp.en.png" >
+        <meta  property="og:image"  content="https://docs.mailcow.email/assets/images/social/post_installation/reverse-proxy/r_p-nginx.en.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -61,15 +61,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://docs.mailcow.email/post_installation/firststeps-rp/" >
+        <meta  property="og:url"  content="https://docs.mailcow.email/en/post_installation/reverse-proxy/r_p-nginx/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Reverse Proxy - mailcow: dockerized documentation" >
+        <meta  name="twitter:title"  content="Nginx - mailcow: dockerized documentation" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://docs.mailcow.email/assets/images/social/post_installation/firststeps-rp.en.png" >
+        <meta  name="twitter:image"  content="https://docs.mailcow.email/assets/images/social/post_installation/reverse-proxy/r_p-nginx.en.png" >
       
     
     
@@ -93,11 +93,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#apache-24" class="md-skip">
-          Skip to content
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -129,9 +124,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
+    <a href="../../../" title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
-  <img src="../../assets/images/logo.svg" alt="logo">
+  <img src="../../../../assets/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -147,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reverse Proxy
+              Nginx
             
           </span>
         </div>
@@ -191,13 +186,13 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="./" hreflang="en" class="md-select__link">
+                  <a href="../../../../post_installation/reverse-proxy/r_p-nginx/" hreflang="en" class="md-select__link">
                     English
                   </a>
                 </li>
               
                 <li class="md-select__item">
-                  <a href="../../de/post_installation/firststeps-rp/" hreflang="de" class="md-select__link">
+                  <a href="../../../../de/post_installation/reverse-proxy/r_p-nginx/" hreflang="de" class="md-select__link">
                     Deutsch
                   </a>
                 </li>
@@ -282,9 +277,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
+    <a href="../../../" title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
-  <img src="../../assets/images/logo.svg" alt="logo">
+  <img src="../../../../assets/images/logo.svg" alt="logo">
 
     </a>
     mailcow: dockerized documentation
@@ -312,7 +307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../" class="md-nav__link">
         Information & Support
       </a>
     </li>
@@ -354,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../prerequisite/prerequisite-system/" class="md-nav__link">
+      <a href="../../../prerequisite/prerequisite-system/" class="md-nav__link">
         Prepare your system
       </a>
     </li>
@@ -368,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../prerequisite/prerequisite-dns/" class="md-nav__link">
+      <a href="../../../prerequisite/prerequisite-dns/" class="md-nav__link">
         DNS setup
       </a>
     </li>
@@ -417,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_install/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_install/" class="md-nav__link">
         Installation
       </a>
     </li>
@@ -431,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_update/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_update/" class="md-nav__link">
         Update
       </a>
     </li>
@@ -445,7 +440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_migration/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_migration/" class="md-nav__link">
         Migration
       </a>
     </li>
@@ -459,7 +454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_deinstall/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_deinstall/" class="md-nav__link">
         Deinstallation
       </a>
     </li>
@@ -510,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-ssl/" class="md-nav__link">
+      <a href="../../firststeps-ssl/" class="md-nav__link">
         Advanced SSL
       </a>
     </li>
@@ -524,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-disable_ipv6/" class="md-nav__link">
+      <a href="../../firststeps-disable_ipv6/" class="md-nav__link">
         Disable IPv6
       </a>
     </li>
@@ -538,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-dmarc_reporting/" class="md-nav__link">
+      <a href="../../firststeps-dmarc_reporting/" class="md-nav__link">
         DMARC Reporting
       </a>
     </li>
@@ -552,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-ip_bindings/" class="md-nav__link">
+      <a href="../../firststeps-ip_bindings/" class="md-nav__link">
         IP bindings
       </a>
     </li>
@@ -566,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-local_mta/" class="md-nav__link">
+      <a href="../../firststeps-local_mta/" class="md-nav__link">
         Local MTA on Docker host
       </a>
     </li>
@@ -580,8 +575,65 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-logging/" class="md-nav__link">
+      <a href="../../firststeps-logging/" class="md-nav__link">
         Logging
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+          Reverse Proxy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Reverse Proxy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../r_p/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../r_p-apache24/" class="md-nav__link">
+        Apache 2.4
       </a>
     </li>
   
@@ -601,80 +653,9 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Reverse Proxy
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Reverse Proxy
+        Nginx
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#apache-24" class="md-nav__link">
-    Apache 2.4
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    Nginx
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#haproxy-community-supported" class="md-nav__link">
-    HAProxy (community supported)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#traefik-v2-community-supported" class="md-nav__link">
-    Traefik v2 (community supported)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#caddy-v2-supported-by-the-community" class="md-nav__link">
-    Caddy v2 (supported by the community)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-post-hook-script-for-non-mailcow-acme-clients" class="md-nav__link">
-    Optional: Post-hook script for non-mailcow ACME clients
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-additional-server-names-for-mailcow-ui" class="md-nav__link">
-    Adding additional server names for mailcow UI
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -687,7 +668,56 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-rspamd_ui/" class="md-nav__link">
+      <a href="../r_p-haproxy/" class="md-nav__link">
+        HAProxy (community supported)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../r_p-traefik2/" class="md-nav__link">
+        Traefik v2 (community supported)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../r_p-caddy2/" class="md-nav__link">
+        Caddy v2 (community supported)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firststeps-rspamd_ui/" class="md-nav__link">
         Rspamd UI
       </a>
     </li>
@@ -701,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-snat/" class="md-nav__link">
+      <a href="../../firststeps-snat/" class="md-nav__link">
         SNAT
       </a>
     </li>
@@ -715,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-sync_jobs_migration/" class="md-nav__link">
+      <a href="../../firststeps-sync_jobs_migration/" class="md-nav__link">
         Sync job migration
       </a>
     </li>
@@ -764,7 +794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/model-acl/" class="md-nav__link">
+      <a href="../../../models/model-acl/" class="md-nav__link">
         ACL
       </a>
     </li>
@@ -778,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/model-passwd/" class="md-nav__link">
+      <a href="../../../models/model-passwd/" class="md-nav__link">
         Password hashing
       </a>
     </li>
@@ -792,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/model-sender_rcv/" class="md-nav__link">
+      <a href="../../../models/model-sender_rcv/" class="md-nav__link">
         Sender and receiver model
       </a>
     </li>
@@ -841,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -855,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-admin_login_sogo/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-admin_login_sogo/" class="md-nav__link">
         Admin login to SOGo
       </a>
     </li>
@@ -869,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-rspamd_memory_leaks/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-rspamd_memory_leaks/" class="md-nav__link">
         Advanced: Find memory leaks in Rspamd
       </a>
     </li>
@@ -883,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-attach_service/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-attach_service/" class="md-nav__link">
         Attach to a Container
       </a>
     </li>
@@ -897,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-common_problems/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-common_problems/" class="md-nav__link">
         Common Problems
       </a>
     </li>
@@ -911,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-logs/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-logs/" class="md-nav__link">
         Logs
       </a>
     </li>
@@ -925,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-mysql_upgrade/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-mysql_upgrade/" class="md-nav__link">
         Manual MySQL upgrade
       </a>
     </li>
@@ -939,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-mysql_aria/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-mysql_aria/" class="md-nav__link">
         Recover crashed Aria storage engine
       </a>
     </li>
@@ -953,7 +983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-rm_volumes/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-rm_volumes/" class="md-nav__link">
         Remove Persistent Data
       </a>
     </li>
@@ -967,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-reset_pw/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-reset_pw/" class="md-nav__link">
         Reset Passwords (incl. SQL)
       </a>
     </li>
@@ -981,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-reset_tls/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-reset_tls/" class="md-nav__link">
         Reset TLS certificates
       </a>
     </li>
@@ -1057,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-backup/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-backup/" class="md-nav__link">
         Backup
       </a>
     </li>
@@ -1071,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-restore/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-restore/" class="md-nav__link">
         Restore
       </a>
     </li>
@@ -1092,7 +1122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-coldstandby/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-coldstandby/" class="md-nav__link">
         Cold-standby (rolling backup)
       </a>
     </li>
@@ -1133,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-backup_restore-maildir/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-backup_restore-maildir/" class="md-nav__link">
         Maildir
       </a>
     </li>
@@ -1147,7 +1177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-backup_restore-mysql/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-backup_restore-mysql/" class="md-nav__link">
         MySQL (mysqldump)
       </a>
     </li>
@@ -1195,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-accidental_deletion/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-accidental_deletion/" class="md-nav__link">
         Recover accidentally deleted data
       </a>
     </li>
@@ -1278,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         Blacklist / Whitelist
       </a>
     </li>
@@ -1292,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-config/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-config/" class="md-nav__link">
         Configuration
       </a>
     </li>
@@ -1306,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
         CSS overrides
       </a>
     </li>
@@ -1320,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/" class="md-nav__link">
         Netfilter
       </a>
     </li>
@@ -1334,7 +1364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/" class="md-nav__link">
         Pushover
       </a>
     </li>
@@ -1348,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/" class="md-nav__link">
         Spamfilter
       </a>
     </li>
@@ -1362,7 +1392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
         Sub-addressing
       </a>
     </li>
@@ -1376,7 +1406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tags/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tags/" class="md-nav__link">
         Tags (for Domains and Mailboxes)
       </a>
     </li>
@@ -1390,7 +1420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/" class="md-nav__link">
         Temporary email aliases
       </a>
     </li>
@@ -1404,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
         Two-Factor Authentication
       </a>
     </li>
@@ -1418,7 +1448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-fido/" class="md-nav__link">
+      <a href="../../../manual-guides/mailcow-UI/u_e-mailcow_ui-fido/" class="md-nav__link">
         WebAuthn / FIDO2
       </a>
     </li>
@@ -1466,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-trust_networks/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-trust_networks/" class="md-nav__link">
         Add trusted networks
       </a>
     </li>
@@ -1480,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-custom_transport/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-custom_transport/" class="md-nav__link">
         Custom transport maps
       </a>
     </li>
@@ -1494,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-extra_cf/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-extra_cf/" class="md-nav__link">
         Customize/Expand main.cf
       </a>
     </li>
@@ -1508,7 +1538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-disable_sender_verification/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-disable_sender_verification/" class="md-nav__link">
         Disable Sender Addresses Verification
       </a>
     </li>
@@ -1522,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-attachment_size/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-attachment_size/" class="md-nav__link">
         Max. message size (attachment size)
       </a>
     </li>
@@ -1536,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-relayhost/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-relayhost/" class="md-nav__link">
         Relayhosts
       </a>
     </li>
@@ -1550,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-pflogsumm/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-pflogsumm/" class="md-nav__link">
         Statistics with pflogsumm
       </a>
     </li>
@@ -1564,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-postscreen_whitelist/" class="md-nav__link">
+      <a href="../../../manual-guides/Postfix/u_e-postfix-postscreen_whitelist/" class="md-nav__link">
         Whitelist IP in Postscreen
       </a>
     </li>
@@ -1612,7 +1642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Unbound/u_e-unbound-fwd/" class="md-nav__link">
+      <a href="../../../manual-guides/Unbound/u_e-unbound-fwd/" class="md-nav__link">
         Using an external DNS service
       </a>
     </li>
@@ -1660,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-extra_conf/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-extra_conf/" class="md-nav__link">
         Customize/Expand dovecot.conf
       </a>
     </li>
@@ -1674,7 +1704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-any_acl/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-any_acl/" class="md-nav__link">
         Enable "any" ACL settings
       </a>
     </li>
@@ -1688,7 +1718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-expunge/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-expunge/" class="md-nav__link">
         Expunge a Users mails
       </a>
     </li>
@@ -1702,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-fts/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-fts/" class="md-nav__link">
         FTS (Solr)
       </a>
     </li>
@@ -1716,7 +1746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-idle_interval/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-idle_interval/" class="md-nav__link">
         IMAP IDLE interval
       </a>
     </li>
@@ -1730,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-mail-crypt/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-mail-crypt/" class="md-nav__link">
         Mail crypt
       </a>
     </li>
@@ -1744,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-more/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-more/" class="md-nav__link">
         More Examples with DOVEADM
       </a>
     </li>
@@ -1758,7 +1788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-vmail-volume/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-vmail-volume/" class="md-nav__link">
         Move Maildir (vmail)
       </a>
     </li>
@@ -1772,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-performance/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-performance/" class="md-nav__link">
         Performance Optimizations
       </a>
     </li>
@@ -1786,7 +1816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-public_folder/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-public_folder/" class="md-nav__link">
         Public folders
       </a>
     </li>
@@ -1800,7 +1830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-static_master/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-static_master/" class="md-nav__link">
         Static master user
       </a>
     </li>
@@ -1814,7 +1844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-catchall_vacation/" class="md-nav__link">
+      <a href="../../../manual-guides/Dovecot/u_e-dovecot-catchall_vacation/" class="md-nav__link">
         Vacation replies for catchall addresses
       </a>
     </li>
@@ -1862,7 +1892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Nginx/u_e-nginx_webmail-site/" class="md-nav__link">
+      <a href="../../../manual-guides/Nginx/u_e-nginx_webmail-site/" class="md-nav__link">
         Create subdomain webmail.example.org
       </a>
     </li>
@@ -1876,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Nginx/u_e-nginx_custom/" class="md-nav__link">
+      <a href="../../../manual-guides/Nginx/u_e-nginx_custom/" class="md-nav__link">
         Custom sites
       </a>
     </li>
@@ -1924,7 +1954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Watchdog/u_e-watchdog-thresholds/" class="md-nav__link">
+      <a href="../../../manual-guides/Watchdog/u_e-watchdog-thresholds/" class="md-nav__link">
         Thresholds
       </a>
     </li>
@@ -1945,7 +1975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Redis/u_e-redis/" class="md-nav__link">
+      <a href="../../../manual-guides/Redis/u_e-redis/" class="md-nav__link">
         Redis
       </a>
     </li>
@@ -1959,7 +1989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Rspamd/u_e-rspamd/" class="md-nav__link">
+      <a href="../../../manual-guides/Rspamd/u_e-rspamd/" class="md-nav__link">
         Rspamd
       </a>
     </li>
@@ -2000,7 +2030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/ClamAV/u_e-clamav-whitelist/" class="md-nav__link">
+      <a href="../../../manual-guides/ClamAV/u_e-clamav-whitelist/" class="md-nav__link">
         Whitelist
       </a>
     </li>
@@ -2014,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
+      <a href="../../../manual-guides/ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
         Additional Databases
       </a>
     </li>
@@ -2035,7 +2065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/SOGo/u_e-sogo/" class="md-nav__link">
+      <a href="../../../manual-guides/SOGo/u_e-sogo/" class="md-nav__link">
         SOGo
       </a>
     </li>
@@ -2076,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-cust_dockerfiles/" class="md-nav__link">
+      <a href="../../../manual-guides/Docker/u_e-docker-cust_dockerfiles/" class="md-nav__link">
         Customize Dockerfiles
       </a>
     </li>
@@ -2097,7 +2127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-why_unbound/" class="md-nav__link">
+      <a href="../../../manual-guides/u_e-why_unbound/" class="md-nav__link">
         Why unbound?
       </a>
     </li>
@@ -2111,7 +2141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-autodiscover_config/" class="md-nav__link">
+      <a href="../../../manual-guides/u_e-autodiscover_config/" class="md-nav__link">
         Autodiscover / Autoconfig
       </a>
     </li>
@@ -2125,7 +2155,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-80_to_443/" class="md-nav__link">
+      <a href="../../../manual-guides/u_e-80_to_443/" class="md-nav__link">
         Redirect HTTP to HTTPS
       </a>
     </li>
@@ -2139,7 +2169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-reeanble-weak-protocols/" class="md-nav__link">
+      <a href="../../../manual-guides/u_e-reeanble-weak-protocols/" class="md-nav__link">
         Re-enable TLS 1.0 and TLS 1.1
       </a>
     </li>
@@ -2153,7 +2183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-update-hooks/" class="md-nav__link">
+      <a href="../../../manual-guides/u_e-update-hooks/" class="md-nav__link">
         Run scripts before and after updates
       </a>
     </li>
@@ -2202,7 +2232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client/" class="md-nav__link">
+      <a href="../../../client/client/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -2216,7 +2246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-android/" class="md-nav__link">
+      <a href="../../../client/client-android/" class="md-nav__link">
         Android
       </a>
     </li>
@@ -2230,7 +2260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-apple/" class="md-nav__link">
+      <a href="../../../client/client-apple/" class="md-nav__link">
         Apple macOS / iOS
       </a>
     </li>
@@ -2244,7 +2274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-emclient/" class="md-nav__link">
+      <a href="../../../client/client-emclient/" class="md-nav__link">
         eM Client
       </a>
     </li>
@@ -2258,7 +2288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-kontact/" class="md-nav__link">
+      <a href="../../../client/client-kontact/" class="md-nav__link">
         KDE Kontact
       </a>
     </li>
@@ -2272,7 +2302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-outlook/" class="md-nav__link">
+      <a href="../../../client/client-outlook/" class="md-nav__link">
         Microsoft Outlook
       </a>
     </li>
@@ -2286,7 +2316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-thunderbird/" class="md-nav__link">
+      <a href="../../../client/client-thunderbird/" class="md-nav__link">
         Mozilla Thunderbird
       </a>
     </li>
@@ -2300,7 +2330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-windows/" class="md-nav__link">
+      <a href="../../../client/client-windows/" class="md-nav__link">
         Windows Mail
       </a>
     </li>
@@ -2314,7 +2344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-manual/" class="md-nav__link">
+      <a href="../../../client/client-manual/" class="md-nav__link">
         Manual configuration
       </a>
     </li>
@@ -2363,7 +2393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/borgmatic/third_party-borgmatic/" class="md-nav__link">
+      <a href="../../../third_party/borgmatic/third_party-borgmatic/" class="md-nav__link">
         Borgmatic Backup
       </a>
     </li>
@@ -2377,7 +2407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/checkmk/u_e-checkmk/" class="md-nav__link">
+      <a href="../../../third_party/checkmk/u_e-checkmk/" class="md-nav__link">
         CheckMK
       </a>
     </li>
@@ -2391,7 +2421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/exchange_onprem/third_party-exchange_onprem/" class="md-nav__link">
+      <a href="../../../third_party/exchange_onprem/third_party-exchange_onprem/" class="md-nav__link">
         Exchange Hybrid Setup
       </a>
     </li>
@@ -2405,7 +2435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/gitea/third_party-gitea/" class="md-nav__link">
+      <a href="../../../third_party/gitea/third_party-gitea/" class="md-nav__link">
         Gitea
       </a>
     </li>
@@ -2419,7 +2449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/gogs/third_party-gogs/" class="md-nav__link">
+      <a href="../../../third_party/gogs/third_party-gogs/" class="md-nav__link">
         Gogs
       </a>
     </li>
@@ -2433,7 +2463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/mailman3/third_party-mailman3/" class="md-nav__link">
+      <a href="../../../third_party/mailman3/third_party-mailman3/" class="md-nav__link">
         Mailman 3
       </a>
     </li>
@@ -2447,7 +2477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/mailpiler/third_party-mailpiler_integration/" class="md-nav__link">
+      <a href="../../../third_party/mailpiler/third_party-mailpiler_integration/" class="md-nav__link">
         Mailpiler Integration
       </a>
     </li>
@@ -2461,7 +2491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/nextcloud/third_party-nextcloud/" class="md-nav__link">
+      <a href="../../../third_party/nextcloud/third_party-nextcloud/" class="md-nav__link">
         Nextcloud
       </a>
     </li>
@@ -2475,7 +2505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/portainer/third_party-portainer/" class="md-nav__link">
+      <a href="../../../third_party/portainer/third_party-portainer/" class="md-nav__link">
         Portainer
       </a>
     </li>
@@ -2489,7 +2519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/roundcube/third_party-roundcube/" class="md-nav__link">
+      <a href="../../../third_party/roundcube/third_party-roundcube/" class="md-nav__link">
         Roundcube
       </a>
     </li>
@@ -2521,63 +2551,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#apache-24" class="md-nav__link">
-    Apache 2.4
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    Nginx
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#haproxy-community-supported" class="md-nav__link">
-    HAProxy (community supported)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#traefik-v2-community-supported" class="md-nav__link">
-    Traefik v2 (community supported)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#caddy-v2-supported-by-the-community" class="md-nav__link">
-    Caddy v2 (supported by the community)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-post-hook-script-for-non-mailcow-acme-clients" class="md-nav__link">
-    Optional: Post-hook script for non-mailcow ACME clients
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-additional-server-names-for-mailcow-ui" class="md-nav__link">
-    Adding additional server names for mailcow UI
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2594,103 +2567,12 @@
   
 
 
-  <h1>Reverse Proxy</h1>
+  <h1>Nginx</h1>
 
-<p>You don't need to change the Nginx site that comes with mailcow: dockerized.
-mailcow: dockerized trusts the default gateway IP 172.22.1.1 as proxy.</p>
-<p>1. Make sure you change HTTP_BIND and HTTPS_BIND in <code>mailcow.conf</code> to a local address and set the ports accordingly, for example:
-<div class="highlight"><pre><span></span><code><span class="nv">HTTP_BIND</span><span class="o">=</span><span class="m">127</span>.0.0.1
-<span class="nv">HTTP_PORT</span><span class="o">=</span><span class="m">8080</span>
-<span class="nv">HTTPS_BIND</span><span class="o">=</span><span class="m">127</span>.0.0.1
-<span class="nv">HTTPS_PORT</span><span class="o">=</span><span class="m">8443</span>
-</code></pre></div></p>
-<p>This will also change the bindings inside the Nginx container! This is important, if you decide to use a proxy within Docker.</p>
-<p><strong>IMPORTANT:</strong> Do not use port 8081, 9081 or 65510!</p>
-<p>Recreate affected containers by running the command:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-</div>
-</div>
-<p><strong>Important information, please read them carefully!</strong></p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>If you plan to use a reverse proxy and want to use another server name that is <strong>not</strong> MAILCOW_HOSTNAME, you need to read <strong>Adding additional server names for mailcow UI</strong> at the bottom of this page.</p>
-</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Make sure you run <code>generate_config.sh</code> before you enable any site configuration examples below.
-The script <code>generate_config.sh</code> copies snake-oil certificates to the correct location, so the services will not fail to start due to missing files.</p>
+<p class="admonition-title">Important</p>
+<p>First read <a href="../r_p/">the overview</a>.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you enable TLS SNI (<code>ENABLE_TLS_SNI</code> in mailcow.conf), the certificate paths in your reverse proxy <strong>must</strong> match the correct paths in data/assets/ssl/{hostname}. The certificates will be split into <code>data/assets/ssl/{hostname1,hostname2,etc}</code> and therefore will not work when you copy the examples from below pointing to <code>data/assets/ssl/cert.pem</code> etc.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Using the site configs below will <strong>forward ACME requests to mailcow</strong> and let it handle certificates itself.
-The downside of using mailcow as ACME client behind a reverse proxy is, that you will need to reload your webserver after acme-mailcow changed/renewed/created the certificate. You can either reload your webserver daily or write a script to watch the file for changes.
-On many servers logrotate will reload the webserver daily anyway.</p>
-<p>If you want to use a local certbot installation, you will need to change the SSL certificate parameters accordingly.
-<strong>Make sure you run a post-hook script</strong> when you decide to use external ACME clients. You will find an example at the bottom of this page.</p>
-</div>
-<p>2. Configure your local webserver as reverse proxy:</p>
-<h3 id="apache-24">Apache 2.4<a class="headerlink" href="#apache-24" title="Permanent link">&para;</a></h3>
-<p>Required modules:
-<div class="highlight"><pre><span></span><code>a2enmod rewrite proxy proxy_http headers ssl
-</code></pre></div></p>
-<p>Let's Encrypt will follow our rewrite, certificate requests in mailcow will work fine.</p>
-<p><strong>Take care of highlighted lines.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
-<span class="hll"><span class="w">  </span><span class="nb">ServerName</span><span class="w"> </span>CHANGE_TO_MAILCOW_HOSTNAME
-</span><span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autodiscover.*
-<span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autoconfig.*
-<span class="w">  </span><span class="nb">RewriteEngine</span><span class="w"> </span><span class="k">on</span>
-
-<span class="w">  </span><span class="nb">RewriteCond</span><span class="w"> </span>%{HTTPS}<span class="w"> </span><span class="k">off</span>
-<span class="w">  </span><span class="nb">RewriteRule</span><span class="w"> </span>^/?(.*)<span class="w"> </span>https://%{HTTP_HOST}/$1<span class="w"> </span>[R=301,L]
-
-<span class="hll"><span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/
-</span><span class="w">  </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span>
-<span class="w">  </span><span class="nb">ProxyAddHeaders</span><span class="w"> </span><span class="k">On</span>
-<span class="w">  </span><span class="nb">RequestHeader</span><span class="w"> </span>set<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span><span class="s2">&quot;http&quot;</span>
-<span class="nt">&lt;/VirtualHost&gt;</span>
-<span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
-<span class="hll"><span class="w">  </span><span class="nb">ServerName</span><span class="w"> </span>CHANGE_TO_MAILCOW_HOSTNAME
-</span><span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autodiscover.*
-<span class="w">  </span><span class="nb">ServerAlias</span><span class="w"> </span>autoconfig.*
-
-<span class="w">  </span><span class="c"># You should proxy to a plain HTTP session to offload SSL processing</span>
-<span class="hll"><span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/Microsoft-Server-ActiveSync</span><span class="w"> </span>http://127.0.0.1:8080/Microsoft-Server-ActiveSync<span class="w"> </span>connectiontimeout=4000
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span><span class="sx">/Microsoft-Server-ActiveSync</span><span class="w"> </span>http://127.0.0.1:8080/Microsoft-Server-ActiveSync
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/
-</span><span class="hll"><span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8080/
-</span><span class="w">  </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span>
-<span class="w">  </span><span class="nb">ProxyAddHeaders</span><span class="w"> </span><span class="k">On</span>
-<span class="w">  </span><span class="nb">RequestHeader</span><span class="w"> </span>set<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span><span class="s2">&quot;https&quot;</span>
-
-<span class="hll"><span class="w">  </span><span class="nb">SSLCertificateFile</span><span class="w"> </span>MAILCOW_PATH/data/assets/ssl/cert.pem
-</span><span class="hll"><span class="w">  </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span>MAILCOW_PATH/data/assets/ssl/key.pem
-</span>
-<span class="w">  </span><span class="c"># If you plan to proxy to a HTTPS host:</span>
-<span class="w">  </span><span class="c">#SSLProxyEngine On</span>
-
-<span class="w">  </span><span class="c"># If you plan to proxy to an untrusted HTTPS host:</span>
-<span class="w">  </span><span class="c">#SSLProxyVerify none</span>
-<span class="w">  </span><span class="c">#SSLProxyCheckPeerCN off</span>
-<span class="w">  </span><span class="c">#SSLProxyCheckPeerName off</span>
-<span class="w">  </span><span class="c">#SSLProxyCheckPeerExpire off</span>
-<span class="nt">&lt;/VirtualHost&gt;</span>
-</code></pre></div>
-<h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <p>Let's Encrypt will follow our rewrite, certificate requests will work fine.</p>
 <p><strong>Take care of highlighted lines.</strong></p>
 <div class="highlight"><pre><span></span><code>server {
@@ -2745,203 +2627,13 @@ server {
   }
 }
 </code></pre></div>
-<h3 id="haproxy-community-supported">HAProxy (community supported)<a class="headerlink" href="#haproxy-community-supported" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is an unsupported community contribution. Feel free to provide fixes.</p>
-</div>
-<p><strong>Important/Fixme</strong>: This example only forwards HTTPS traffic and does not use mailcows built-in ACME client.</p>
-<div class="highlight"><pre><span></span><code>frontend https-in
-  bind :::443 v4v6 ssl crt mailcow.pem
-  default_backend mailcow
-
-backend mailcow
-  option forwardfor
-  http-request set-header X-Forwarded-Proto https if { ssl_fc }
-  http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
-  server mailcow 127.0.0.1:8080 check
-</code></pre></div>
-<h3 id="traefik-v2-community-supported">Traefik v2 (community supported)<a class="headerlink" href="#traefik-v2-community-supported" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is an unsupported community contribution. Feel free to provide fixes.</p>
-</div>
-<p><strong>Important</strong>: This config only covers the "reverseproxing" of the webpannel (nginx-mailcow) using Traefik v2, if you also want to reverseproxy the mail services such as dovecot, postfix... you'll just need to adapt the following config to each container and create an <a href="https://docs.traefik.io/routing/entrypoints/">EntryPoint</a> on your <code>traefik.toml</code> or <code>traefik.yml</code> (depending which config you use) for each port. </p>
-<p>For this section we'll assume you have your Traefik 2 <code>[certificatesresolvers]</code> properly configured on your traefik configuration file, and also using acme, also, the following example uses Lets Encrypt, but feel free to change it to your own cert resolver. You can find a basic Traefik 2 toml config file with all the above implemented which can be used for this example here <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a> if you need one, or a hint on how to adapt your config.</p>
-<p>So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
-For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow.conf</code>, and run the following command to apply the changes:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Then we'll create a <code>docker-compose.override.yml</code> file in order to override the main <code>docker-compose.yml</code> found in your mailcow root folder. </p>
-<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span>
-
-<span class="nt">services</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nginx-mailcow</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">networks</span><span class="p">:</span>
-<span class="w">        </span><span class="c1"># Add Traefik&#39;s network</span>
-<span class="w">        </span><span class="nt">web</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.enable=true</span>
-<span class="w">        </span><span class="c1"># Creates a router called &quot;moo&quot; for the container, and sets up a rule to link the container to certain rule,</span>
-<span class="w">        </span><span class="c1">#   in this case, a Host rule with our MAILCOW_HOSTNAME var.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)</span>
-<span class="w">        </span><span class="c1"># Enables tls over the router we created before.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls=true</span>
-<span class="w">        </span><span class="c1"># Specifies which kind of cert resolver we&#39;ll use, in this case le (Lets Encrypt).</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls.certresolver=le</span>
-<span class="w">        </span><span class="c1"># Creates a service called &quot;moo&quot; for the container, and specifies which internal port of the container</span>
-<span class="w">        </span><span class="c1">#   should traefik route the incoming data to.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}</span>
-<span class="w">        </span><span class="c1"># Specifies which entrypoint (external port) should traefik listen to, for this container.</span>
-<span class="w">        </span><span class="c1">#   websecure being port 443, check the traefik.toml file liked above.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.entrypoints=websecure</span>
-<span class="w">        </span><span class="c1"># Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.docker.network=traefik_web</span>
-
-<span class="w">    </span><span class="nt">certdumper</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">humenius/traefik-certs-dumper</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">network_mode</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
-<span class="w">          </span><span class="c1"># Mount the volume which contains Traefik&#39;s `acme.json&#39; file</span>
-<span class="w">          </span><span class="c1">#   Configure the external name in the volume definition</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acme:/traefik:ro</span>
-<span class="w">          </span><span class="c1"># Mount mailcow&#39;s SSL folder</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/:/output:rw</span>
-<span class="w">          </span><span class="c1"># Mount docker socket to restart containers</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock:ro</span>
-<span class="w">    </span><span class="w w-Error">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-<span class="w">        </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">          </span><span class="c1"># only change this, if you&#39;re using another domain for mailcow&#39;s web frontend compared to the standard config</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOMAIN=${MAILCOW_HOSTNAME}</span>
-
-<span class="nt">networks</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">web</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="c1"># Name of the external network</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik_web</span>
-
-<span class="nt">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">acme</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="c1"># Name of the external docker volume which contains Traefik&#39;s `acme.json&#39; file</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik_acme</span>
-</code></pre></div>
-<p>Start the new containers with:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">this tiny container</a> which grabs the <code>acme.json</code> file through a volume, and a variable <code>DOMAIN=example.org</code>, and with these, the container will output the <code>cert.pem</code> and <code>key.pem</code> files, for this we'll simply run the <code>traefik-certs-dumper</code> container binding the <code>/traefik</code> volume to the folder where our <code>acme.json</code> is saved, bind the <code>/output</code> volume to our mailcow <code>data/assets/ssl/</code> folder, and set up the <code>DOMAIN=example.org</code> variable to the domain we want the certs dumped from. </p>
-<p>This container will watch over the <code>acme.json</code> file for any changes, and regenerate the <code>cert.pem</code> and <code>key.pem</code> files directly into <code>data/assets/ssl/</code> being the path binded to the container's <code>/output</code> path.</p>
-<p>You can use the command line to run it, or use the docker-compose.yml shown <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">here</a>.</p>
-<p>After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how <a href="https://mailcow.github.io/mailcow-dockerized-docs/firststeps-ssl/#how-to-use-your-own-certificate">here</a>.</p>
-<p>Aaand that should be it 😊, you can check if the Traefik router works fine through Traefik's dashboard / traefik logs / accessing the setted domain through https, or / and check HTTPS, SMTP and IMAP through the commands shown on the page linked before.</p>
-<h3 id="caddy-v2-supported-by-the-community">Caddy v2 (supported by the community)<a class="headerlink" href="#caddy-v2-supported-by-the-community" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is an unsupported community contribution. Feel free to provide fixes.</p>
-</div>
-<p>The configuration of Caddy with mailcow is very simple.</p>
-<p>In the caddyfile you just have to create a section for the mailserver.</p>
-<p>For example
-<div class="highlight"><pre><span></span><code><span class="hll">MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
-</span>        log {
-<span class="hll">                output file /var/log/caddy/MAILCOW_HOSTNAME.log {
-</span>                        roll_disabled
-                        roll_size 512M
-                        roll_uncompressed
-                        roll_local_time
-                        roll_keep 3
-                        roll_keep_for 48h
-                }
-        }
-
-<span class="hll">        reverse_proxy 127.0.0.1:HTTP_BIND
-</span>}
-</code></pre></div></p>
-<p>This allows Caddy to automatically create the certificates and accept traffic for these mentioned domains and forward them to mailcow.</p>
-<p><strong>Important</strong>: The ACME client of mailcow must be disabled, otherwise mailcow will fail.</p>
-<p>Since Caddy takes care of the certificates itself, we can use the following script to include the Caddy generated certificates into mailcow:</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="nv">MD5SUM_CURRENT_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem<span class="k">)</span><span class="o">)</span>
-<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt<span class="k">)</span><span class="o">)</span>
-
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$MD5SUM_CURRENT_CERT</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="nv">$MD5SUM_NEW_CERT</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span>cp<span class="w"> </span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem
-<span class="w">        </span>cp<span class="w"> </span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.key<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/key.pem
-<span class="w">        </span><span class="nv">postfix_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>postfix-mailcow<span class="k">)</span>
-<span class="w">        </span><span class="nv">dovecot_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>dovecot-mailcow<span class="k">)</span>
-<span class="w">        </span><span class="nv">nginx_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>nginx-mailcow<span class="k">)</span>
-<span class="w">        </span>docker<span class="w"> </span>restart<span class="w"> </span><span class="si">${</span><span class="nv">postfix_c</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">dovecot_c</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">nginx_c</span><span class="si">}</span>
-
-<span class="k">else</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Certs not copied from Caddy (Not needed)&quot;</span>
-<span class="k">fi</span>
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Attention</p>
-<p>Caddy's certificate path varies depending on the installation type.<br>
-In this installation example, Caddy was installed using the Caddy repo (<a href="https://caddyserver.com/docs/install#debian-ubuntu-raspbian">more informations here</a>).<br>
-<br>
-To find out the Caddy certificate path on your system, just run a <code>find / -name "certificates"</code>.</p>
-</div>
-<p>This script could be called as a cronjob every hour:</p>
-<div class="highlight"><pre><span></span><code><span class="m">0</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/bin/bash<span class="w"> </span>/path/to/script/deploy-certs.sh<span class="w">  </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-</code></pre></div>
-<h3 id="optional-post-hook-script-for-non-mailcow-acme-clients">Optional: Post-hook script for non-mailcow ACME clients<a class="headerlink" href="#optional-post-hook-script-for-non-mailcow-acme-clients" title="Permanent link">&para;</a></h3>
-<p>Using a local certbot (or any other ACME client) requires to restart some containers, you can do this with a post-hook script.
-Make sure you change the paths accordingly:
-<div class="highlight"><pre><span></span><code>#!/bin/bash
-cp /etc/letsencrypt/live/my.domain.tld/fullchain.pem /opt/mailcow-dockerized/data/assets/ssl/cert.pem
-cp /etc/letsencrypt/live/my.domain.tld/privkey.pem /opt/mailcow-dockerized/data/assets/ssl/key.pem
-postfix_c=$(docker ps -qaf name=postfix-mailcow)
-dovecot_c=$(docker ps -qaf name=dovecot-mailcow)
-nginx_c=$(docker ps -qaf name=nginx-mailcow)
-docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
-</code></pre></div></p>
-<h3 id="adding-additional-server-names-for-mailcow-ui">Adding additional server names for mailcow UI<a class="headerlink" href="#adding-additional-server-names-for-mailcow-ui" title="Permanent link">&para;</a></h3>
-<p>If you plan to use a server name that is not <code>MAILCOW_HOSTNAME</code> in your reverse proxy, make sure to populate that name in mailcow.conf via <code>ADDITIONAL_SERVER_NAMES</code> first. Names must be separated by commas and <strong>must not</strong> contain spaces. If you skip this step, mailcow may respond to your reverse proxy with an incorrect site.</p>
-<div class="highlight"><pre><span></span><code>ADDITIONAL_SERVER_NAMES=webmail.domain.tld,other.example.tld
-</code></pre></div>
-<p>Run the following command to apply:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-</div>
-</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-03-11 18:09:21</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-14 00:42:41</span>
       
     
   </small>
@@ -3031,12 +2723,12 @@ docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "search.share", "search.highlight"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "search.share", "search.highlight"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
-        <script src="../../assets/javascripts/client.js"></script>
+        <script src="../../../../assets/javascripts/client.js"></script>
       
     
   </body>
