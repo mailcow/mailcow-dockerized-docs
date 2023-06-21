@@ -212,7 +212,7 @@ version: '2'
 services:
   mailman-core:
     environment:
-    - DATABASE_URL=postgres://mailman:DBPASS@database/mailmandb
+    - DATABASE_URL=postgresql://mailman:DBPASS@database/mailmandb
     - HYPERKITTY_API_KEY=HYPERKITTY_KEY
     - TZ=Europe/Berlin
     - MTA=postfix
@@ -222,7 +222,7 @@ services:
 
   mailman-web:
     environment:
-    - DATABASE_URL=postgres://mailman:DBPASS@database/mailmandb
+    - DATABASE_URL=postgresql://mailman:DBPASS@database/mailmandb
     - HYPERKITTY_API_KEY=HYPERKITTY_KEY
     - TZ=Europe/Berlin
     - SECRET_KEY=DJANGO_KEY
