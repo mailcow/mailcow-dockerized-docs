@@ -3126,7 +3126,7 @@ cd docker-mailman
 services:
   mailman-core:
     environment:
-    - DATABASE_URL=postgres://mailman:DBPASS@database/mailmandb
+    - DATABASE_URL=postgresql://mailman:DBPASS@database/mailmandb
     - HYPERKITTY_API_KEY=HYPERKITTY_KEY
     - TZ=Europe/Berlin
     - MTA=postfix
@@ -3136,7 +3136,7 @@ services:
 
   mailman-web:
     environment:
-    - DATABASE_URL=postgres://mailman:DBPASS@database/mailmandb
+    - DATABASE_URL=postgresql://mailman:DBPASS@database/mailmandb
     - HYPERKITTY_API_KEY=HYPERKITTY_KEY
     - TZ=Europe/Berlin
     - SECRET_KEY=DJANGO_KEY
@@ -3244,7 +3244,7 @@ docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mai
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-21 19:40:55</span>
       
     
   </small>
