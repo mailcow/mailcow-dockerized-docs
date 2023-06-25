@@ -5,6 +5,29 @@ i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute
 do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
 continuing with the subsequent commands.
 
+### Note on composer usage
+
+This guide uses composer to update roundcube dependencies or install / update roundcube plugins.
+
+The roundcube-plugin-installer composer plugin has a [design issue](https://github.com/roundcube/plugin-installer/issues/38)
+that can lead to composer errors when packages are upgraded or uninstalled in the composer execution.
+
+The error message will typically tell you that a `require` in `autoload_real.php` failed because a file could not be
+opened. Example:
+
+```
+In autoload_real.php line 43:
+  require(/web/rc/vendor/composer/../guzzlehttp/promises/src/functions_include.php): Failed to open stream: No such file or directory
+```
+
+Unfortunately these occur quite frequently, but they can be worked around by updating the autoloader and re-running the
+failed command:
+
+```bash
+docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer dump-autoload -o
+# Now execute the command that failed again
+```
+
 ### Preparation
 First we load `mailcow.conf` so we have access to the mailcow configuration settings for the following commands.
 
@@ -41,7 +64,7 @@ wget -O data/web/rc/config/mime.types http://svn.apache.org/repos/asf/httpd/http
 ```
 
 ### Create roundcube database
-Create a database for roundcube in the mailcow mysql container. This creates a new `roundcube` database user
+Create a database for roundcube in the mailcow MySQL container. This creates a new `roundcube` database user
 with a random password, which will be echoed to the shell and stored in a shell variable for use by later
 commands. Note that when you interrupt the process and continue in a new shell, you must set the `DBROUNDCUBE`
 shell variable manually to the password output by the following commands.
@@ -64,9 +87,9 @@ Create a file `data/web/rc/config/config.inc.php` with the following content.
       of office notification.
     - The acl plugin allows to manage access control lists on IMAP folders, including the ability to share IMAP folders
       to other users.
-    - The markasjunk plugin adds buttons to mark selected messages (or messages in the junk folder not as junk) and
-      moves them to the junk folder or back to the inbox. The sieve filters included with mailcow will take care that
-      action triggers a learn as spam/ham action in rspamd, so no further configuration of the plugin is needed.
+    - The markasjunk plugin adds buttons to mark selected messages as junk (or messages in the junk folder not as junk)
+      and moves them to the junk folder or back to the inbox. The sieve filters included with mailcow will take care
+      that action triggers a learn as spam/ham action in rspamd, so no further configuration of the plugin is needed.
     - The zipdownload plugin allows to download multiple message attachments or messages as a zip file.
   - If you didn't install spell check in the above step, remove `spellcheck_engine` parameter.
 
@@ -80,7 +103,7 @@ cat <<EOCONFIG >data/web/rc/config/config.inc.php
 \$config['smtp_pass'] = '%p';
 \$config['support_url'] = '';
 \$config['product_name'] = 'Roundcube Webmail';
-\$config['cipher_method'] = 'AES-256-CBC';
+\$config['cipher_method'] = 'chacha20-poly1305';
 \$config['des_key'] = '$(LC_ALL=C </dev/urandom tr -dc "A-Za-z0-9 !#$%&()*+,-./:;<=>?@[\\]^_{|}~" 2> /dev/null | head -c 32)';
 \$config['plugins'] = [
   'archive',
@@ -125,7 +148,7 @@ EOCONFIG
 ### Disable and remove installer
 
 Delete the directory `data/web/rc/installer` after a successful installation, and set the `enable_installer` option
-to false in `data/web/rc/config/config.inc.php`!
+to false in `data/web/rc/config/config.inc.php`:
 
 ```bash
 rm -r data/web/rc/installer
@@ -221,6 +244,22 @@ cat <<EOCONFIG >data/web/rc/plugins/password/config.inc.php
 EOCONFIG
 ```
 
+Note: If you have changed the mailcow nginx configuration to redirect http requests to https
+(e.g., as described [here](https://docs.mailcow.email/manual-guides/u_e-80_to_443/)), then
+directly talking to the nginx container via http will not work because nginx is not a hostname contained
+in the certificate. In such cases, set `password_mailcow_api_host` in the above configuration to the
+public URI instead:
+
+```bash
+cat <<EOCONFIG >data/web/rc/plugins/password/config.inc.php
+<?php
+\$config['password_driver'] = 'mailcow';
+\$config['password_confirm_current'] = true;
+\$config['password_mailcow_api_host'] = 'https://${MAILCOW_HOSTNAME}';
+\$config['password_mailcow_api_token'] = '**API_KEY**';
+EOCONFIG
+```
+
 ### Integrate CardDAV addressbooks in Roundcube
 
 Install the latest v5 version (the config below is compatible with v5 releases) using composer.
@@ -254,6 +293,10 @@ other users.
 
 If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks
 are accessible, append `$config['address_book_type'] = '';` to the config file `data/web/rc/config/config.inc.php`.
+
+Note: RCMCardDAV uses additional database tables. After installing (or upgrading) RCMCardDAV, it is required to log
+in roundcube (log out first if already logged in) because the database table creation / changes are performed only
+during the login to roundcube.
 
 ### Forward the client network address to dovecot
 
@@ -351,7 +394,7 @@ Copy the contents of the following files from this [Snippet](https://gitlab.com/
 * `data/web/inc/lib/RoundcubeAutoLogin.php`
 * `data/web/rc-auth.php`
 
-## Finish
+## Finish installation
 Finally, restart mailcow
 
 === "docker compose (Plugin)"
@@ -370,7 +413,7 @@ Finally, restart mailcow
 
 ## Upgrading Roundcube
 
-Upgrading Roundcube is rather simple, go to the [Github releases](https://github.com/roundcube/roundcubemail/releases)
+Upgrading Roundcube is rather simple, go to the [GitHub releases](https://github.com/roundcube/roundcubemail/releases)
 page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below
 commands and change the URL and Roundcube folder name if needed.
 
@@ -397,11 +440,11 @@ composer update --no-dev -o
 rm -rf /tmp/roundcube*
 
 # If you're going from 1.5 to 1.6 please run the config file changes below
-sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'tls:\/\/dovecot:143'\;/" /web/rc/config/config.inc.php
+sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'dovecot:143'\;/" /web/rc/config/config.inc.php
 sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
-sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'tls:\/\/postfix:587'\;/" /web/rc/config/config.inc.php
+sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'postfix:588'\;/" /web/rc/config/config.inc.php
 sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
-sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'tls:\/\/dovecot:4190'\;/" /web/rc/config/config.inc.php
+sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
 sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
 ```
 
@@ -478,10 +521,46 @@ EOCONFIG
 docker compose exec nginx-mailcow nginx -s reload
 ```
 
-Now we copy the roundcube data to the new database.
+Now we copy the roundcube data to the new database. We strip the database table prefix in the process, you may need to
+adjust `mailcow\_rc1` in case you used a different prefix. It is also possible to keep the prefix (then also keep the
+respective `db_prefix` roundcube setting).
+
 ```bash
 RCTABLES=$(docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "show tables like 'mailcow_rc1%';" | tr '\n\r' ' ')
-docker exec $(docker ps -f name=mysql-mailcow -q) /bin/bash -c "mysqldump -uroot -p${DBROOT} mailcow $RCTABLES | mysql -uroot -p${DBROOT} roundcubemail"
+docker exec $(docker ps -f name=mysql-mailcow -q) /bin/bash -c "mysqldump -uroot -p${DBROOT} mailcow $RCTABLES | sed 's/mailcow_rc1//' | mysql -uroot -p${DBROOT} roundcubemail"
+```
+
+### Update roundcube configuration
+
+Run the following to remove the no longer required `db_prefix` option. We also enable logging of roundcube by removing
+the settings `log_dir` and `temp_dir` that were part of the old setup instructions.
+
+```bash
+sed -i "/\$config\['db_prefix'\].*$/d" data/web/rc/config/config.inc.php
+sed -i "/\$config\['log_dir'\].*$/d" data/web/rc/config/config.inc.php
+sed -i "/\$config\['temp_dir'\].*$/d" data/web/rc/config/config.inc.php
+```
+
+We need to adapt the nginx configuration for roundcube to not expose the non-public folders of roundcube, specifically
+those containing temporary files and log files:
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location /rc/ {
+  alias /web/rc/public_html/;
+}
+EOCONFIG
+```
+
+We can also update the `cipher_method` to a more secure one but mind that data previously encrypted by roundcube cannot
+be decrypted anymore afterwards. This specifically affects stored CardDAV passwords if you use RCMCardDAV and your
+users added custom addressbooks (the preset will be fixed automatically upon next login of the user). If you want to
+change the `cipher_method`, run:
+
+```bash
+cat <<EOCONFIG >>data/web/rc/config/config.inc.php
+\$config['cipher_method'] = 'chacha20-poly1305';
+EOCONFIG
 ```
 
 ### Switch RCMCardDAV plugin to composer installation method
@@ -492,7 +571,7 @@ composer according to the [instructions above](#Integrate-CardDAV-addressbooks-i
 of a new RCMCardDAV v5 config. In case you modified your RCMCardDAV configuration file, you may want to backup it before
 deleting the plugin and carry over your changes to the new configuration afterwards as well.
 
-To delete the carddav plugin run the following command, the re-install according to the
+To delete the carddav plugin run the following command, then re-install according to the
 [instructions above](#Integrate-CardDAV-addressbooks-in-Roundcube):
 
 ```bash
@@ -525,18 +604,15 @@ You must also adapt the configuration of the roundcube password plugin according
 you use the password changing functionality, since the old instruction directly changed the password in the database,
 whereas this version of the instruction uses the mailcow API for the password change.
 
-Regarding other changes and additions (e.g., dovecot\_impersonate plugin), you can go through the current installation
-instructions and adapt your configuration accordingly or perform the listed installation steps for new additions.
+Regarding other changes and additions (e.g., roundcube-dovecot\_client\_ip plugin), you can go through the current
+installation instructions and adapt your configuration accordingly or perform the listed installation steps for new
+additions.
 
-If you adapt the roundcube configuration according to the one now used in this instruction, mind not to change the
-`db_prefix`, `cipher_method` and `des_key` options unless you know what you are doing. Changing these may need additional
-steps to avoid breakage. Be sure to
-[allow plaintext authentication in dovecot](#Allow-plaintext-authentication-for-the-php-fpm-container-without-using-TLS)
-in this case as well.
-
-__NOTE:__ What will remain different between your installation and the current instructions is the use of a prefix on
-the roundcube database table names, i.e., the `db_prefix` option in roundcube's `config.inc.php` must remain set to the
-used prefix. This is not a problem and there is no need to change the table names.
+Specifically, consider the following sections:
+  - [Ofelia job for roundcube housekeeping](#Ofelia-job-for-roundcube-housekeeping)
+  - [Allow plaintext authentication in dovecot](#Allow-plaintext-authentication-for-the-php-fpm-container-without-using-TLS),
+    if you adapt the roundcube configuration to contact dovecot via non-encrypted IMAP connection.
+  - [Forward the client network address to dovecot](#Forward-the-client-network-address-to-dovecot)
 
 ### Removing roundcube tables from mailcow database
 
