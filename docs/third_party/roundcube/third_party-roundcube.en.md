@@ -232,7 +232,7 @@ $config['plugins'] = array(
 );
 ```
 
-Configure the password plugin (be sure to adapt __**API_KEY**__ to you mailcow read/write API key):
+Configure the password plugin (be sure to adapt __\*\*API_KEY\*\*__ to you mailcow read/write API key):
 
 ```bash
 cat <<EOCONFIG >data/web/rc/plugins/password/config.inc.php

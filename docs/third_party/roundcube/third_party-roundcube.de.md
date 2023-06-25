@@ -15,7 +15,7 @@ Das roundcube-plugin-installer composer Plugin hat eine [Design-Schwäche](https
 die dazu führen kann, dass composer bei Operationen fehlschlägt, im Rahmen derer Pakete aktualisiert oder deinstalliert
 werden.
 
-Die Fehlermeldung in diesem Falle besagt, dass eine `require`-Anweisung in `autoload_real/php` fehlgeschlagen ist, weil
+Die Fehlermeldung in diesem Falle besagt, dass eine `require`-Anweisung in `autoload_real.php` fehlgeschlagen ist, weil
 eine Datei nicht gefunden werden konnte. Beispiel:
 
 ```
@@ -235,7 +235,7 @@ services:
 Das Ändern des mailcow Passworts aus der Roundcube-Benutzeroberfläche wird durch das password-Plugin ermöglicht. Wir
 konfigurieren dieses zur Verwendung der mailcow-API zur Passwort-Aktualisierung, was es zunächst erfordert, die API zu
 aktivieren und den API-Schlüssel zu ermitteln (Lese-/Schreib-Zugriff notwendig). Die API kann in der
-mailcow-Administrationsoberfläche aktiviert werden, so Sie auch den API-Schlüssel finden.
+mailcow-Administrationsoberfläche aktiviert werden, wo Sie auch den API-Schlüssel finden.
 
 Öffnen Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das Passwort-Plugin, indem Sie es dem
 `$config['plugins']`-Array hinzufügen, zum Beispiel:
@@ -251,7 +251,7 @@ $config['plugins'] = array(
 );
 ```
 
-Konfigurieren Sie das password-Plugin (stellen Sie sicher, __**API_KEY**__ auf Ihren mailcow Lese-/Schreib-API-Schlüssel
+Konfigurieren Sie das password-Plugin (stellen Sie sicher, __\*\*API_KEY\*\*__ auf Ihren mailcow Lese-/Schreib-API-Schlüssel
 anzupassen):
 
 ```bash
@@ -598,7 +598,7 @@ EOCONFIG
 ### Umstellung des RCMCardDAV-Plugins auf die Installation mittels composer
 
 Dieser Schritt ist optional, aber er gleicht Ihre Installation an die aktuelle Fassung der Anweisungen an und ermöglicht
-die Aktualisierung von RCMCardDAV mittels composer. Dies wird einfach dadurch erreicht, indem das carddav-Plugin aus dem
+die Aktualisierung von RCMCardDAV mittels composer. Dies wird einfach dadurch erreicht, dass das carddav-Plugin aus dem
 Installationsverzeichnis gelöscht und entsprechend der [Anweisungen oben](#CardDAV-Adressbücher-in-Roundcube-einbinden)
 installiert wird, einschließlich der Erstellung einer neuen RCMCardDAV v5-Konfiguration. Falls Sie das RCMCardDAV
 angepasst haben, sollten Sie dieses sichern, bevor Sie das Plugin löschen, und Ihre Anpassungen später in die neue
