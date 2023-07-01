@@ -3,5 +3,5 @@ mkdocs-redirects==1.2.0
 pygments==2.15.1
 mkdocs-static-i18n==0.56
 mkdocs-git-revision-date-localized-plugin==1.2.0
-pillow==9.5.0
+pillow==10.0.0
 cairosvg==2.7.0
