@@ -17,7 +17,7 @@
         <link rel="next" href="../prerequisite-dns/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.20">
     
     
       
@@ -2880,74 +2880,74 @@ Verwenden Sie stattdessen die FORWARD-Kette.</p>
 <thead>
 <tr>
 <th>Dienst</th>
-<th align="center">Protokoll</th>
-<th align="left">Port</th>
-<th align="left">Container</th>
+<th style="text-align: center;">Protokoll</th>
+<th style="text-align: left;">Port</th>
+<th style="text-align: left;">Container</th>
 <th>Variable</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Postfix SMTP</td>
-<td align="center">TCP</td>
-<td align="left">25</td>
-<td align="left">postfix-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">postfix-mailcow</td>
 <td><code>${SMTP_PORT}</code></td>
 </tr>
 <tr>
 <td>Postfix SMTPS</td>
-<td align="center">TCP</td>
-<td align="left">465</td>
-<td align="left">postfix-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">465</td>
+<td style="text-align: left;">postfix-mailcow</td>
 <td><code>${SMTPS_PORT}</code></td>
 </tr>
 <tr>
 <td>Postfix Submission</td>
-<td align="center">TCP</td>
-<td align="left">587</td>
-<td align="left">postfix-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">587</td>
+<td style="text-align: left;">postfix-mailcow</td>
 <td><code>${SUBMISSION_PORT}</code></td>
 </tr>
 <tr>
 <td>Dovecot IMAP</td>
-<td align="center">TCP</td>
-<td align="left">143</td>
-<td align="left">dovecot-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">dovecot-mailcow</td>
 <td><code>${IMAP_PORT}</code></td>
 </tr>
 <tr>
 <td>Dovecot IMAPS</td>
-<td align="center">TCP</td>
-<td align="left">993</td>
-<td align="left">dovecot-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">993</td>
+<td style="text-align: left;">dovecot-mailcow</td>
 <td><code>${IMAPS_PORT}</code></td>
 </tr>
 <tr>
 <td>Dovecot POP3</td>
-<td align="center">TCP</td>
-<td align="left">110</td>
-<td align="left">dovecot-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">110</td>
+<td style="text-align: left;">dovecot-mailcow</td>
 <td><code>${POP_PORT}</code></td>
 </tr>
 <tr>
 <td>Dovecot POP3S</td>
-<td align="center">TCP</td>
-<td align="left">995</td>
-<td align="left">dovecot-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">995</td>
+<td style="text-align: left;">dovecot-mailcow</td>
 <td><code>${POPS_PORT}</code></td>
 </tr>
 <tr>
 <td>Dovecot ManageSieve</td>
-<td align="center">TCP</td>
-<td align="left">4190</td>
-<td align="left">dovecot-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">4190</td>
+<td style="text-align: left;">dovecot-mailcow</td>
 <td><code>${SIEVE_PORT}</code></td>
 </tr>
 <tr>
 <td>HTTP(S)</td>
-<td align="center">TCP</td>
-<td align="left">80/443</td>
-<td align="left">nginx-mailcow</td>
+<td style="text-align: center;">TCP</td>
+<td style="text-align: left;">80/443</td>
+<td style="text-align: left;">nginx-mailcow</td>
 <td><code>${HTTP_PORT}</code> / <code>${HTTPS_PORT}</code></td>
 </tr>
 </tbody>
