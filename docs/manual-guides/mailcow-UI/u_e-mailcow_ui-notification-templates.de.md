@@ -7,7 +7,7 @@ Für die Templates der Benachrichtungs-Emails können die folgenden Variablen ve
 | username       	| E-Mail Adresse des Empfängers                                                                        	|
 | counter        	| Anzahl der Nachrichten in der Quarantäne, über die in dieser Mail benachrichtigt wird                	|
 | hostname       	| Name der Mailcow Instanz (Siehe auch die Umgebungsvariable _MAILCOW_HOSTNAME_)                       	|
-| quarantine_acl 	| Einstellung der Quarantäne ACL des Benutzers (Erlaubnis zur Bearbeitung der Mails in der Quarantäne) 	|
+| quarantine_acl 	| Einstellung der Quarantäne ACL des Benutzers (Berechtigung zur Bearbeitung von Mails in der Quarantäne) 	|
 | meta           	| Array/Liste aller Nachrichten/Einträge in der Quarantäne, über die benachrichtigt wird               	|
 | meta.qhash     	| Hashwert des Quarantäne Eintrags (Bspw für Direktlink zur Nachricht in der Quarantäne)               	|
 | meta.id        	| ID eines Quarantäne Eintrags                                                                         	|
