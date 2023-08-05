@@ -242,7 +242,7 @@ plugins:
             ### mailcow UI Subsection
           'Configuration' : 'Konfiguration'
           'CSS overrides' : 'CSS-Überschreibungen'
-          'Notification templates': 'Benachrichtigungs-Templates'
+          'Notification templates': 'Templates für Benachrichtigungen'
           'Sub-addressing' : 'Sub-Adressierung'
           'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
           'Tags (for Domains and Mailboxes)' : 'Tags (für Domains und Mailboxen)'
