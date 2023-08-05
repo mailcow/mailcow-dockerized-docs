@@ -110,6 +110,7 @@ nav:
       - 'Configuration': 'manual-guides/mailcow-UI/u_e-mailcow_ui-config.md'
       - 'CSS overrides': 'manual-guides/mailcow-UI/u_e-mailcow_ui-css.md'
       - 'Netfilter': 'manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter.md'
+      - 'Notification templates': 'manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates.md'
       - 'Pushover': 'manual-guides/mailcow-UI/u_e-mailcow_ui-pushover.md'
       - 'Spamfilter': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter.md'
       - 'Sub-addressing': 'manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing.md'
@@ -241,6 +242,7 @@ plugins:
             ### mailcow UI Subsection
           'Configuration' : 'Konfiguration'
           'CSS overrides' : 'CSS-Überschreibungen'
+          'Notification templates': 'Benachrichtigungs-Templates'
           'Sub-addressing' : 'Sub-Adressierung'
           'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
           'Tags (for Domains and Mailboxes)' : 'Tags (für Domains und Mailboxen)'
@@ -339,6 +341,7 @@ plugins:
         'u_e-mailcow_ui-config.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-config.en.md'
         'u_e-mailcow_ui-css.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-css.en.md'
         'u_e-mailcow_ui-netfilter.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter.en.md'
+        'u_e-mailcow_ui-notification-templates.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates.en.md'
         'u_e-mailcow_ui-pushover.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-pushover.en.md'
         'u_e-mailcow_ui-spamfilter.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter.en.md'
         'u_e-mailcow_ui-sub_addressing.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing.en.md'
