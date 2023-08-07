@@ -5,7 +5,7 @@ Für die Templates der Benachrichtungs-Emails können die folgenden Variablen ve
 
 ## Quarantäne Template 
 
-Die bereitgestellten Variablen können auch auf Github aus dem Script [dovecot/quarantine_notify.py](https://github.com/mailcow/mailcow-dockerized/blob/master/data/Dockerfiles/dovecot/quarantine_notify.py#L94) entnommen werden.
+Die bereitgestellten Variablen können auch auf GitHub aus dem Script [dovecot/quarantine_notify.py](https://github.com/mailcow/mailcow-dockerized/blob/master/data/Dockerfiles/dovecot/quarantine_notify.py#L94) entnommen werden.
 
 !!! info 
     Das Template für die Qarantäne Mails kann man als Administrator in der Benutzeroberfläche in den globalen Quarantäne-Einstellungen bearbeiten und dort ebenso das Standard Template wiederherstellen. 
