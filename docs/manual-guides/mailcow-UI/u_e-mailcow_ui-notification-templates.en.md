@@ -9,7 +9,7 @@ The provided variables can also be obtained on GitHub from the script [dovecot/q
 
 !!! info 
     As an administrator, you can edit the template for the quarantine mails in the mailcow user interface in the global quarantine settings and restore the default template there as well. 
-    Code examples can be found in the default template. It can also be viewed on [Github](https://github.com/mailcow/mailcow-dockerized/blob/master/data/assets/templates/quarantine.tpl).
+    Code examples can be found in the default template. It can also be viewed on [GitHub](https://github.com/mailcow/mailcow-dockerized/blob/master/data/assets/templates/quarantine.tpl).
 
 | Name           	| Content                                                                                        	|
 |----------------	|------------------------------------------------------------------------------------------------	|
