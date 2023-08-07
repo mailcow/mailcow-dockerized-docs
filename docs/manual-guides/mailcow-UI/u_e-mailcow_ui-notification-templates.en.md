@@ -33,7 +33,7 @@ The provided variables can also be obtained on GitHub from the script [dovecot/q
 
 !!! info 
     The template for the quota mails can be edited as an administrator in the mailcow user interface in the quota settings and there also restore the default template. 
-    Code examples can be found in the default template. It can also be viewed on [Github](https://github.com/mailcow/mailcow-dockerized/blob/master/data/assets/templates/quota.tpl).
+    Code examples can be found in the default template. It can also be viewed on [GitHub](https://github.com/mailcow/mailcow-dockerized/blob/master/data/assets/templates/quota.tpl).
 
 | Name           	| Content                                                                                              	|
 |----------------	|------------------------------------------------------------------------------------------------------	|
