@@ -9,7 +9,7 @@ Die bereitgestellten Variablen können auch auf GitHub aus dem Script [dovecot/q
 
 !!! info 
     Das Template für die Qarantäne Mails kann man als Administrator in der Benutzeroberfläche in den globalen Quarantäne-Einstellungen bearbeiten und dort ebenso das Standard Template wiederherstellen. 
-    Code Beispiele kann man dem Standard Template entnehmen. Es kann auch auf [Github](https://github.com/mailcow/mailcow-dockerized/blob/master/data/assets/templates/quarantine.tpl) eingesehen werden.
+    Code Beispiele kann man dem Standard Template entnehmen. Es kann auch auf [GitHub](https://github.com/mailcow/mailcow-dockerized/blob/master/data/assets/templates/quarantine.tpl) eingesehen werden.
 
 
 | Name           	| Inhalt                                                                                               	|
