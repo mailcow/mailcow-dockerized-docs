@@ -1,4 +1,4 @@
-Mailcow uses the template engine [Jinja](https://jinja.palletsprojects.com/) for the notification mails.
+mailcow uses the template engine [Jinja](https://jinja.palletsprojects.com/) for the notification mails.
 Placeholders can be used to create dynamic content with these templates by replacing them with passed variables during execution. A documentation about the development of Jinja templates can be found [here](https://jinja.palletsprojects.com/en/3.1.x/templates/).
 
 The following variables can be used for the notification email templates:
