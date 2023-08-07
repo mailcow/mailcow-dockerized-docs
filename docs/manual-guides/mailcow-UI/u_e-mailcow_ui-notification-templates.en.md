@@ -29,7 +29,7 @@ The provided variables can also be obtained on GitHub from the script [dovecot/q
 
 ## Quota template
 
-The provided variables can also be obtained on Github from the script [dovecot/quota_notify.py](https://github.com/mailcow/mailcow-dockerized/blob/master/data/Dockerfiles/dovecot/quota_notify.py#L45).
+The provided variables can also be obtained on GitHub from the script [dovecot/quota_notify.py](https://github.com/mailcow/mailcow-dockerized/blob/master/data/Dockerfiles/dovecot/quota_notify.py#L45).
 
 !!! info 
     The template for the quota mails can be edited as an administrator in the mailcow user interface in the quota settings and there also restore the default template. 
