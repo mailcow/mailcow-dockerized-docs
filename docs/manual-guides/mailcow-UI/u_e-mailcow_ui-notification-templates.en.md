@@ -5,7 +5,7 @@ The following variables can be used for the notification email templates:
 
 ## Quarantine template
 
-The provided variables can also be obtained on Github from the script [dovecot/quarantine_notify.py](https://github.com/mailcow/mailcow-dockerized/blob/master/data/Dockerfiles/dovecot/quarantine_notify.py#L94).
+The provided variables can also be obtained on GitHub from the script [dovecot/quarantine_notify.py](https://github.com/mailcow/mailcow-dockerized/blob/master/data/Dockerfiles/dovecot/quarantine_notify.py#L94).
 
 !!! info 
     As an administrator, you can edit the template for the quarantine mails in the mailcow user interface in the global quarantine settings and restore the default template there as well. 
