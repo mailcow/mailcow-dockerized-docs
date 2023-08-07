@@ -1,4 +1,4 @@
-Mailcow verwendet für die Benachrichtigungs-Mails die Template-Engine [Jinja](https://jinja.palletsprojects.com/).
+mailcow verwendet für die Benachrichtigungs-Mails die Template-Engine [Jinja](https://jinja.palletsprojects.com/).
 Durch Platzhalter können mit diesen Templates dynamische Inhalte erzeugt werden, indem bei der Ausführung diese Platzhalter mit übergeben Variablen ersetzt werden. Eine Doku zur Entwicklung von Jinja Templates findet sich [hier](https://jinja.palletsprojects.com/en/3.1.x/templates/). 
 
 Für die Templates der Benachrichtungs-Emails können die folgenden Variablen verwendet werden:
