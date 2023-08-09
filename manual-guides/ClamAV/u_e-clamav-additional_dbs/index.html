@@ -2104,6 +2104,26 @@
     Enable SecuriteInfo databases
   </a>
   
+    <nav class="md-nav" aria-label="Enable SecuriteInfo databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-todo-in-clamav" class="md-nav__link">
+    Work todo in ClamAV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-todo-in-rspamd" class="md-nav__link">
+    Work todo in Rspamd
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2652,6 +2672,26 @@
     Enable SecuriteInfo databases
   </a>
   
+    <nav class="md-nav" aria-label="Enable SecuriteInfo databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-todo-in-clamav" class="md-nav__link">
+    Work todo in ClamAV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-todo-in-rspamd" class="md-nav__link">
+    Work todo in Rspamd
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2694,6 +2734,7 @@
 <li><a href="http://rbluri.interserver.net/">InterServer</a> - free to use ClamAV DBs, but they do not fit well for email scanning</li>
 </ul>
 <h3 id="enable-securiteinfo-databases">Enable SecuriteInfo databases<a class="headerlink" href="#enable-securiteinfo-databases" title="Permanent link">&para;</a></h3>
+<h4 id="work-todo-in-clamav">Work todo in ClamAV<a class="headerlink" href="#work-todo-in-clamav" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Sign up for a free account at <a href="https://www.securiteinfo.com/clients/customers/signup">https://www.securiteinfo.com/clients/customers/signup</a></li>
 <li>You will receive an email to activate your account and then a follow-up email with your login name</li>
@@ -2752,6 +2793,54 @@ MaxZipTypeRcg 50M
 <li>With the current DB set (including default DBs) ClamAV will consume about 1.3Gb of RAM on your server.</li>
 <li>If you modified  <code>message_size_limit</code> in Postfix you need to adapt <code>MaxSize</code> settings in ClamAV as well.</li>
 </ul>
+<h4 id="work-todo-in-rspamd">Work todo in Rspamd<a class="headerlink" href="#work-todo-in-rspamd" title="Permanent link">&para;</a></h4>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>mailcow with Version <strong><code>&gt;= 2023-07</code></strong> is needed for this following guide to work, as it includes the predefined scores for SecuriteInfo Signatures!</p>
+</div>
+<p>Now you have added the ClamAV signatures, but you will notice that Rspamd does not use them correctly or mercilessly labels EVERYTHING as VIRUS.</p>
+<p>However, we can tame Rspamd with a little bit of manual work so that it doesn't get completely out of hand.</p>
+<p>For this we proceed as follows:</p>
+<ol>
+<li>Add the following inside <code>data/conf/rspamd/antivirus.conf</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>patterns {
+  # Extra Signatures (Securite) Not shipped with mailcow.
+  CLAM_SECI_SPAM = &quot;^SecuriteInfo\.com\.Spam.*&quot;;
+  CLAM_SECI_JPG = &quot;^SecuriteInfo\.com\.JPG.*&quot;;
+  CLAM_SECI_PDF = &quot;^SecuriteInfo\.com\.PDF.*&quot;;
+  CLAM_SECI_HTML = &quot;^SecuriteInfo\.com\.HTML.*&quot;;
+  CLAM_SECI_JS = &quot;^SecuriteInfo\.com\.JS.*&quot;;
+}
+</code></pre></div>
+<ol>
+<li>Restart Rspamd afterwards:</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Now Rspamd will apply the weighting we specified to each signature instead of marking everything with a value of 2000 as VIRUS and thus rejecting it.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can change the weights at any time:</p>
+<p><code>data/conf/rspamd/local.d/composites.conf</code>.</p>
+<p>You can also manually set/adjust the strings of the ClamAV to be registered.</p>
+<p>Just use the scheme given in the <code>antivirus.conf</code> of Rspamd.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that the files <code>antivirus.conf</code> and <code>composites.conf</code> can be overwritten by a mailcow update.</p>
+</div>
+<hr />
 <h3 id="enable-interserver-databases">Enable InterServer databases<a class="headerlink" href="#enable-interserver-databases" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Add to <code>data/conf/clamav/freshclam.conf</code>:
@@ -2762,7 +2851,7 @@ DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
 </code></pre></div></li>
 <li>Restart ClamAV container:</li>
 </ol>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>clamd-mailcow
@@ -2780,7 +2869,7 @@ DatabaseCustomURL http://sigs.interserver.net/whitelist.fp
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-12-15 15:31:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-09 14:48:25</span>
       
     
   </small>
