@@ -8,6 +8,7 @@ Die Standard ClamAV Datenbanken haben keine hohe Trefferquote, können aber durc
 - [InterServer](http://rbluri.interserver.net/) - kostenlose ClamAV DBs. Für E-Mail Zwecke eher ungeeignet.
 
 ### SecuriteInfo Datenbank aktivieren
+#### Arbeiten im ClamAV
 
 1. Kostenfreien Account auf https://www.securiteinfo.com/clients/customers/signup erstellen.
 2. Sie erhalten eine E-Mail um Ihren Account zu aktivieren gefolgt von einer E-Mail mit Ihrem Login Namen.
@@ -62,6 +63,61 @@ MaxZipTypeRcg 50M
 - Die Liste der Datenbanken genutzt in diesem Beispiel sollten für die meisten Fälle passen. SecuriteInfo bietet jedoch noch andere Datenbanken an. Bitte schauen Sie sich das SecuriteInfo FAQ für weitere Informationen an.
 - Mit den neu eingestellten Datenbanken (und den Standard Datenbanken) ClamAV verbraucht ClamAV etwa 1,3 GB RAM des Servers.
 - Sollten Sie `message_size_limit` in Postfix verändert haben müssen Sie die `MaxSize` Einstellung in ClamAV auf den selben Wert eintragen.
+
+#### Arbeiten im Rspamd
+
+!!! danger "Achtung"
+    mailcow mit der Version **`>= 2023-07`** wird benötigt, damit die folgende Anleitung funktioniert, da sie die vordefinierten Scores für SecuriteInfo-Signaturen enthält!
+
+Nun haben Sie zwar die ClamAV-Signaturen hinzugefügt, werden aber feststellen, dass Rspamd diese nicht korrekt verwendet bzw. ALLES gnadenlos als VIRUS abstempelt.
+
+Wir können Rspamd aber mit ein wenig Handarbeit zähmen, so dass er nicht völlig aus dem Ruder läuft.
+
+Dazu gehen wir wie folgt vor:
+
+1. Fügen Sie folgendes in `data/conf/rspamd/antivirus.conf` ein:
+
+```
+patterns {
+  # Extra Signatures (Securite) Not shipped with mailcow.
+  CLAM_SECI_SPAM = "^SecuriteInfo\.com\.Spam.*";
+  CLAM_SECI_JPG = "^SecuriteInfo\.com\.JPG.*";
+  CLAM_SECI_PDF = "^SecuriteInfo\.com\.PDF.*";
+  CLAM_SECI_HTML = "^SecuriteInfo\.com\.HTML.*";
+  CLAM_SECI_JS = "^SecuriteInfo\.com\.JS.*";
+}
+```
+
+2. Starten Sie den Rspamd neu:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
+
+Nun wird Rspamd die von uns angegebene Gewichtung für die einzelnen Signaturen anwenden, anstatt alles mit einem Wert von 2000 als VIRUS zu markieren und damit abzulehnen.
+
+!!! info
+
+    Sie können die Gewichtungen jederzeit ändern:
+
+    `data/conf/rspamd/local.d/composites.conf`
+
+    Auch die zu registrierenden Strings des ClamAV können Sie manuell einstellen/anpassen.
+
+    Nutzen Sie dazu einfach das gerade eben vorgegebene Schema in der `antivirus.conf` des Rspamd.
+
+
+!!! warning "Achtung"
+    Bitte beachten Sie, dass die Dateien `antivirus.conf` und `composites.conf` durch ein mailcow-Update überschrieben werden können.
+
 
 ### InterServer Datenbanken aktivieren
 

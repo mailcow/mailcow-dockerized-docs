@@ -9,6 +9,8 @@ Default ClamAV databases do not have great detection levels, but it can be enhan
 
 ### Enable SecuriteInfo databases
 
+#### Work todo in ClamAV
+
 1. Sign up for a free account at https://www.securiteinfo.com/clients/customers/signup
 2. You will receive an email to activate your account and then a follow-up email with your login name
 3. Login and navigate to your customer account: https://www.securiteinfo.com/clients/customers/account
@@ -63,6 +65,61 @@ Please note:
 - With the current DB set (including default DBs) ClamAV will consume about 1.3Gb of RAM on your server.
 - If you modified  `message_size_limit` in Postfix you need to adapt `MaxSize` settings in ClamAV as well.
 
+#### Work todo in Rspamd
+
+!!! danger
+    mailcow with Version **`>= 2023-07`** is needed for this following guide to work, as it includes the predefined scores for SecuriteInfo Signatures!
+
+Now you have added the ClamAV signatures, but you will notice that Rspamd does not use them correctly or mercilessly labels EVERYTHING as VIRUS.
+
+However, we can tame Rspamd with a little bit of manual work so that it doesn't get completely out of hand.
+
+For this we proceed as follows:
+
+1. Add the following inside `data/conf/rspamd/antivirus.conf`:
+
+```
+patterns {
+  # Extra Signatures (Securite) Not shipped with mailcow.
+  CLAM_SECI_SPAM = "^SecuriteInfo\.com\.Spam.*";
+  CLAM_SECI_JPG = "^SecuriteInfo\.com\.JPG.*";
+  CLAM_SECI_PDF = "^SecuriteInfo\.com\.PDF.*";
+  CLAM_SECI_HTML = "^SecuriteInfo\.com\.HTML.*";
+  CLAM_SECI_JS = "^SecuriteInfo\.com\.JS.*";
+}
+```
+
+2. Restart Rspamd afterwards:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart rspamd-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart rspamd-mailcow
+    ```
+
+Now Rspamd will apply the weighting we specified to each signature instead of marking everything with a value of 2000 as VIRUS and thus rejecting it.
+
+
+!!! info
+
+    You can change the weights at any time:
+
+    `data/conf/rspamd/local.d/composites.conf`.
+
+    You can also manually set/adjust the strings of the ClamAV to be registered.
+
+    Just use the scheme given in the `antivirus.conf` of Rspamd.
+
+!!! warning
+    Please note that the files `antivirus.conf` and `composites.conf` can be overwritten by a mailcow update.
+
+---
 ### Enable InterServer databases
 
 1. Add to `data/conf/clamav/freshclam.conf`:
