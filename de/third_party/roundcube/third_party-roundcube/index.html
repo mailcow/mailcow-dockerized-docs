@@ -3460,6 +3460,20 @@ folgenden Konfigurationsblock beinhaltet:</p>
 </code></pre></div>
 <h3 id="administratoren-ohne-passwort-in-roundcube-einloggen-lassen">Administratoren ohne Passwort in Roundcube einloggen lassen<a class="headerlink" href="#administratoren-ohne-passwort-in-roundcube-einloggen-lassen" title="Permanent link">&para;</a></h3>
 <p>Installieren Sie zunächst das Plugin <a href="https://github.com/corbosman/dovecot_impersonate/">dovecot_impersonate</a> und fügen Sie Roundcube als App hinzu (siehe oben).</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc/plugins<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/corbosman/dovecot_impersonate.git
+</code></pre></div>
+<p>Editieren Sie <code>data/web/rc/config/config.inc.php</code> und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array <code>$config['plugins']</code> hinzufügen,
+zum Beispiel:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$config[&#39;plugins&#39;] = array(</span>
+<span class="x">  &#39;archive&#39;,</span>
+<span class="x">  &#39;managesieve&#39;,</span>
+<span class="x">  &#39;acl&#39;,</span>
+<span class="x">  &#39;markasjunk&#39;,</span>
+<span class="x">  &#39;zipdownload&#39;,</span>
+<span class="x">  &#39;password&#39;,</span>
+<span class="x">  &#39;dovecot_impersonate&#39;</span>
+<span class="x">);</span>
+</code></pre></div>
 <p>Editieren Sie <code>mailcow.conf</code> und fügen Sie folgendes hinzu:</p>
 <div class="highlight"><pre><span></span><code># Erlaube Admins, sich in Roundcube als Email-Benutzer einzuloggen (ohne Passwort)
 # Roundcube mit Plugin dovecot_impersonate muss zuerst installiert werden
@@ -3475,7 +3489,7 @@ services:
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/js/site/mailbox.js</code> und den folgenden Code nach <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487"><code>if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }</code></a></p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-xs &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">btnSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39; btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-sm btn-xs-half btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/mailbox.php</code> und fügen Sie diese Zeile zum Array <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43"><code>$template_data</code></a> hinzu:</p>
@@ -3672,7 +3686,7 @@ entfernen:</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-07-05 17:30:09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-17 20:13:02</span>
       
     
   </small>
