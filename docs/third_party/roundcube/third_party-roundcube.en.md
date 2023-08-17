@@ -350,6 +350,25 @@ $MAILCOW_APPS = [
 
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
 
+```bash
+docker exec -it -w /web/rc/plugins $(docker ps -f name=php-fpm-mailcow -q) git clone https://github.com/corbosman/dovecot_impersonate.git
+```
+
+Open `data/web/rc/config/config.inc.php` and enable the dovecot_impersonate plugin by adding it to the `$config['plugins']` array,
+for example:
+
+```php
+$config['plugins'] = array(
+  'archive',
+  'managesieve',
+  'acl',
+  'markasjunk',
+  'zipdownload',
+  'password',
+  'dovecot_impersonate'
+);
+```
+
 Edit `mailcow.conf` and add the following:
 
 ```
@@ -373,7 +392,7 @@ Edit `data/web/js/site/mailbox.js` and the following code after [`if (ALLOW_ADMI
 
 ```js
 if (ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE) {
-  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-xs ' + btnSize + ' btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
+  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-sm btn-xs-half btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
 }
 ```
 
