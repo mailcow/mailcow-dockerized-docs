@@ -75,7 +75,7 @@ Wir können Rspamd aber mit ein wenig Handarbeit zähmen, so dass er nicht völl
 
 Dazu gehen wir wie folgt vor:
 
-1. Fügen Sie folgendes in `data/conf/rspamd/antivirus.conf` ein:
+1. Fügen Sie folgendes in `data/conf/rspamd/local.d/antivirus.conf` ein:
 
 ```
 patterns {
