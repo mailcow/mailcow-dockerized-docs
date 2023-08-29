@@ -65,3 +65,11 @@ code {
 
   --md-typeset-a-color: #6390e5;
 }
+
+.mastodon {
+  color: #8c8dff;
+}
+
+.telegram {
+  color: #0088cc;
+}
