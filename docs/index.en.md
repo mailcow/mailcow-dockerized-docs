@@ -99,19 +99,29 @@ Furthermore we do also provide a fully featured and managed mailcow [here](https
 
 The other alternative is our free community-support on our various channels below. Please notice, that this support is driven by our awesome community around mailcow. This kind of support is best-effort, voluntary and there is no guarantee for anything.
 
-- Our mailcow community @ [community.mailcow.email](https://community.mailcow.email)
+- :material-forum: [mailcow Community @ community.mailcow.email](https://community.mailcow.email)
 
-- Telegram (Support) @ [t.me/mailcow](https://t.me/mailcow).
+- :fontawesome-brands-telegram:{ .telegram } [Telegram (Support) @ t.me/mailcow](https://t.me/mailcow)
 
-- Telegram (Off-Topic) @ [t.me/mailcowOfftopic](https://t.me/mailcowOfftopic).
-
-- Twitter [@mailcow_email](https://twitter.com/mailcow_email)
+- :fontawesome-brands-telegram:{ .telegram } [Telegram (Off-Topic) @ t.me/mailcowOfftopic](https://t.me/mailcowOfftopic)
 
 Telegram desktop clients are available for [multiple platforms](https://desktop.telegram.org). You can search the groups history for keywords.
 
 For **bug tracking, feature requests and code contributions** only:
 
-- GitHub @ [mailcow/mailcow-dockerized](https://github.com/mailcow/mailcow-dockerized)
+- :fontawesome-brands-github: [mailcow/mailcow-dockerized @ GitHub](https://github.com/mailcow/mailcow-dockerized)
+
+### News and release informations
+
+For announcements and release informations you can find us on:
+
+- :fontawesome-brands-x-twitter: [mailcow @ X/Twitter](https://twitter.com/mailcow)
+
+- :fontawesome-brands-mastodon:{ .mastodon }  [@doncow @ mailcow.social](https://mailcow.social/@doncow)
+
+Or alternatively on our blog:
+
+- :fontawesome-solid-globe: [mailcow.email](https://mailcow.email)
 
 ---
 ## Interested? Try it out right away!
