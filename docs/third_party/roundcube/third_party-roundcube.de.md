@@ -1,10 +1,10 @@
 ## Installation von Roundcube
-
-Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
-Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches `mailcow.conf` usw. enthält. Bitte führen Sie
-die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
-ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
-nachfolgenden Kommandos fortfahren.
+!!! note "Beachten Sie"
+    Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
+    Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches `mailcow.conf` usw. enthält. Bitte führen Sie
+    die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
+    ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
+    nachfolgenden Kommandos fortfahren.
 
 ### Hinweise zur Verwendung von composer
 
@@ -505,12 +505,12 @@ docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer upda
 ### Aktualisierung des MIME-Typ-Verzeichnisses
 
 Um das MIME-Typ-Verzeichnis zu aktualisieren, laden Sie dieses erneut mit dem Kommando aus den
-[Installations-Anweisungen](#Installation-des-MIME-Typ-Verzeichnisses) herunter.
+[Installations-Anweisungen](#installation-des-mime-typ-verzeichnisses) herunter.
 
 ## Deinstallation von Roundcube
 
 Für die Deinstallation wird ebenfalls angenommen, dass die Kommandos im mailcow-Installationsverzeichnis ausgeführt
-werden und dass `mailcow.conf` in die Shell geladen wurde, siehe Abschnitt [Vorbereitung](#Vorbereitung) oben.
+werden und dass `mailcow.conf` in die Shell geladen wurde, siehe Abschnitt [Vorbereitung](#vorbereitung) oben.
 
 ### Entfernen des Web-Verzeichnisses
 
@@ -545,14 +545,14 @@ zuvor durchgeführt haben, rückgängig.
 `mailcow_rc1` für alle Roundcube-Tabellen.
 
 Zur Migration wird ebenfalls angenommen, dass alle Kommandos im mailcow-Installationsverzeichnis ausgeführt werden und
-`mailcow.conf` in die Shell geladen wurde, siehe [Vorbereitung](#Vorbereitung) oben. Dies Kommandos der verschiedenen
+`mailcow.conf` in die Shell geladen wurde, siehe [Vorbereitung](#vorbereitung) oben. Dies Kommandos der verschiedenen
 Schritte bauen aufeinander auf und müssen innerhalb derselben Shell ausgeführt werden. Insbesondere setzen einige
 Schritte Shell-Variablen (besonders die `DBROUNDCUBE`-Variable mit dem Datenbank-Passwort für den
 roundcube-Datenbankbenutzer), die in späteren Schritten verwendet werden.
 
 ### Anlegen eines neuen roundcube-Datenbankbenutzers und der Datenbank
 
-Folgen Sie den [Anweisungen oben](#Anlegen-der-Roundcube-Datenbank) um den roundcube-Datenbankbenutzer und die getrennte
+Folgen Sie den [Anweisungen oben](#anlegen-der-roundcube-datenbank) um den roundcube-Datenbankbenutzer und die getrennte
 Datenbank anzulegen.
 
 ### Migration der Roundcube-Daten aus der mailcow-Datenbank
@@ -618,13 +618,13 @@ EOCONFIG
 
 Dieser Schritt ist optional, aber er gleicht Ihre Installation an die aktuelle Fassung der Anweisungen an und ermöglicht
 die Aktualisierung von RCMCardDAV mittels composer. Dies wird einfach dadurch erreicht, dass das carddav-Plugin aus dem
-Installationsverzeichnis gelöscht und entsprechend der [Anweisungen oben](#CardDAV-Adressbücher-in-Roundcube-einbinden)
+Installationsverzeichnis gelöscht und entsprechend der [Anweisungen oben](#carddav-adressbücher-in-roundcube-einbinden)
 installiert wird, einschließlich der Erstellung einer neuen RCMCardDAV v5-Konfiguration. Falls Sie das RCMCardDAV
 angepasst haben, sollten Sie dieses sichern, bevor Sie das Plugin löschen, und Ihre Anpassungen später in die neue
 Konfigurationsdatei übernehmen.
 
 Um das carddav-Plugin zu löschen, führen Sie folgendes Kommando aus, danach befolgen Sie zur Neuinstallation die
-[Anweisungen oben](#CardDAV-Adressbücher-in-Roundcube-einbinden):
+[Anweisungen oben](#carddav-adressbucher-in-roundcube-einbinden):
 
 ```bash
 rm -r data/web/rc/plugins/carddav
@@ -642,12 +642,12 @@ EOCONFIG
 
 ### Roundcube Web-Zugriff reaktivieren
 
-Führen Sie chown und chmod auf den sensitiven Roundcube-Verzeichnissen, welche in [Vorbereitung](#Vorbereitung)
+Führen Sie chown und chmod auf den sensitiven Roundcube-Verzeichnissen, welche in [Vorbereitung](#vorbereitung)
 aufgeführt sind aus, um sicherzustellen, dass der nginx-Webserver nicht auf Dateien zugreifen darf, die er nicht
 ausliefern soll.
 
 Dann reaktivieren Sie den Web-Zugriff für Roundcube, indem Sie die temporäre Roundcube-Konfigurations-Erweiterung für
-nginx durch die [oben](#Webserver-Konfiguration) beschriebene ersetzen, und laden anschließend die nginx-Konfiguration
+nginx durch die [oben](#webserver-konfiguration) beschriebene ersetzen, und laden anschließend die nginx-Konfiguration
 neu:
 
 ```bash
@@ -666,9 +666,9 @@ Funktionalitäten ausführen.
 
 Insbesondere beachten Sie folgende Abschnitte:
 
-  - [Ofelia-Job für Roundcube-Aufräumtätigkeiten](#Ofelia-Job-für-Roundcube-Aufräumtätigkeiten)
-  - [Ermöglichen der Klartext-Authentifizierung für den php-fpm-Container ohne die Verwendung von TLS](#Ermöglichen-der-Klartext-Authentifizierung-für-den-php-fpm-Container-ohne-die-Verwendung-von-TLS)
-  - [Übermittlung der Client-Netzwerkadresse an Dovecot](#Übermittlung-der-Client-Netzwerkadresse-an-Dovecot)
+  - [Ofelia-Job für Roundcube-Aufräumtätigkeiten](#ofelia-job-fur-roundcube-aufraumtatigkeiten)
+  - [Ermöglichen der Klartext-Authentifizierung für den php-fpm-Container ohne die Verwendung von TLS](#ermoglichen-der-klartext-authentifizierung-fur-den-php-fpm-container-ohne-die-verwendung-von-tls)
+  - [Übermittlung der Client-Netzwerkadresse an Dovecot](#ubermittlung-der-client-netzwerkadresse-an-dovecot)
 
 ### Entfernen der Roundcube-Tabellen aus der mailcow-Datenbank
 

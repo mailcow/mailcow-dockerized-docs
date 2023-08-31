@@ -1,9 +1,9 @@
 ## Installing Roundcube
-
-Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
-i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
-do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
-continuing with the subsequent commands.
+!!! note
+    Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
+    i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
+    do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
+    continuing with the subsequent commands.
 
 ### Note on composer usage
 
@@ -479,12 +479,12 @@ docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer upda
 ### Upgrade mime type mappings
 
 To upgrade the mime type mappings, re-download them using the command in the
-[installation instructions](#Install-mime-type-mappings).
+[installation instructions](#install-mime-type-mappings).
 
 ## Uninstalling roundcube
 
 For the uninstallation, it is also assumed that the commands are executed in the mailcow installation directory and
-that `mailcow.conf` has been sourced in the shell, see [Preparation](#Preparation) above.
+that `mailcow.conf` has been sourced in the shell, see [Preparation](#preparation) above.
 
 ### Remove the web directory
 
@@ -518,13 +518,13 @@ Older versions of this instruction used the mailcow database also for roundcube,
 `mailcow_rc1` on all roundcube tables.
 
 For the migration, it is also assumed that the commands are executed in the mailcow installation directory and
-that `mailcow.conf` has been sourced in the shell, see [Preparation](#Preparation) above. The commands of the different
+that `mailcow.conf` has been sourced in the shell, see [Preparation](#preparation) above. The commands of the different
 steps build on each other and must be executed in the same shell. Particularly, some steps set shell variables (most
 importantly the `DBROUNDCUBE` variable with the database password of the roundcube database user) used in later steps.
 
 ### Create new roundcube database user and database
 
-Follow the [steps above](#Create-roundcube-database) to create the roundcube database user and the separate database.
+Follow the [steps above](#create-roundcube-database) to create the roundcube database user and the separate database.
 
 ### Migrate roundcube data from mailcow database
 
@@ -586,12 +586,12 @@ EOCONFIG
 
 This is optional but will align your installation with these instructions and enable you to upgrade RCMCardDAV
 using composer. This is simply done by deleting the carddav plugin from the installation and installing it using
-composer according to the [instructions above](#Integrate-CardDAV-addressbooks-in-Roundcube), which include the creation
+composer according to the [instructions above](#integrate-carddav-addressbooks-in-roundcube), which include the creation
 of a new RCMCardDAV v5 config. In case you modified your RCMCardDAV configuration file, you may want to backup it before
 deleting the plugin and carry over your changes to the new configuration afterwards as well.
 
 To delete the carddav plugin run the following command, then re-install according to the
-[instructions above](#Integrate-CardDAV-addressbooks-in-Roundcube):
+[instructions above](#integrate-carddav-addressbooks-in-roundcube):
 
 ```bash
 rm -r data/web/rc/plugins/carddav
@@ -608,11 +608,11 @@ EOCONFIG
 ```
 
 ### Re-enable roundcube web access
-Execute the chown and chmod commands on sensitive roundcube directories listed in [Preparation](#Preparation), to
+Execute the chown and chmod commands on sensitive roundcube directories listed in [Preparation](#preparation), to
 make sure the nginx webserver cannot access files it is not supposed to serve.
 
 Then re-enable web access to roundcube by replacing our temporary roundcube custom config for the one described
-[above](#Webserver-configuration), and reload the nginx configuration:
+[above](#webserver-configuration), and reload the nginx configuration:
 
 ```bash
 docker compose exec nginx-mailcow nginx -s reload
@@ -628,10 +628,10 @@ installation instructions and adapt your configuration accordingly or perform th
 additions.
 
 Specifically, consider the following sections:
-  - [Ofelia job for roundcube housekeeping](#Ofelia-job-for-roundcube-housekeeping)
-  - [Allow plaintext authentication in dovecot](#Allow-plaintext-authentication-for-the-php-fpm-container-without-using-TLS),
+  - [Ofelia job for roundcube housekeeping](#ofelia-job-for-roundcube-housekeeping)
+  - [Allow plaintext authentication in dovecot](#allow-plaintext-authentication-for-the-php-fpm-container-without-using-tls),
     if you adapt the roundcube configuration to contact dovecot via non-encrypted IMAP connection.
-  - [Forward the client network address to dovecot](#Forward-the-client-network-address-to-dovecot)
+  - [Forward the client network address to dovecot](#forward-the-client-network-address-to-dovecot)
 
 ### Removing roundcube tables from mailcow database
 
