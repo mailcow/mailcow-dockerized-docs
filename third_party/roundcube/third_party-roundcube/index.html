@@ -3993,10 +3993,13 @@
   <h1>Roundcube</h1>
 
 <h2 id="installing-roundcube">Installing Roundcube<a class="headerlink" href="#installing-roundcube" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
 i.e., the directory containing <code>mailcow.conf</code> etc. Please do not blindly execute the commands but understand what they
 do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
 continuing with the subsequent commands.</p>
+</div>
 <h3 id="note-on-composer-usage">Note on composer usage<a class="headerlink" href="#note-on-composer-usage" title="Permanent link">&para;</a></h3>
 <p>This guide uses composer to update roundcube dependencies or install / update roundcube plugins.</p>
 <p>The roundcube-plugin-installer composer plugin has a <a href="https://github.com/roundcube/plugin-installer/issues/38">design issue</a>
@@ -4353,10 +4356,10 @@ composer in the container:</p>
 </code></pre></div>
 <h3 id="upgrade-mime-type-mappings">Upgrade mime type mappings<a class="headerlink" href="#upgrade-mime-type-mappings" title="Permanent link">&para;</a></h3>
 <p>To upgrade the mime type mappings, re-download them using the command in the
-<a href="#Install-mime-type-mappings">installation instructions</a>.</p>
+<a href="#install-mime-type-mappings">installation instructions</a>.</p>
 <h2 id="uninstalling-roundcube">Uninstalling roundcube<a class="headerlink" href="#uninstalling-roundcube" title="Permanent link">&para;</a></h2>
 <p>For the uninstallation, it is also assumed that the commands are executed in the mailcow installation directory and
-that <code>mailcow.conf</code> has been sourced in the shell, see <a href="#Preparation">Preparation</a> above.</p>
+that <code>mailcow.conf</code> has been sourced in the shell, see <a href="#preparation">Preparation</a> above.</p>
 <h3 id="remove-the-web-directory">Remove the web directory<a class="headerlink" href="#remove-the-web-directory" title="Permanent link">&para;</a></h3>
 <p>This deletes the roundcube installation and all plugins and dependencies that you may have installed,
 including those installed with composer.</p>
@@ -4376,11 +4379,11 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 <p>Older versions of this instruction used the mailcow database also for roundcube, with a configured name prefix
 <code>mailcow_rc1</code> on all roundcube tables.</p>
 <p>For the migration, it is also assumed that the commands are executed in the mailcow installation directory and
-that <code>mailcow.conf</code> has been sourced in the shell, see <a href="#Preparation">Preparation</a> above. The commands of the different
+that <code>mailcow.conf</code> has been sourced in the shell, see <a href="#preparation">Preparation</a> above. The commands of the different
 steps build on each other and must be executed in the same shell. Particularly, some steps set shell variables (most
 importantly the <code>DBROUNDCUBE</code> variable with the database password of the roundcube database user) used in later steps.</p>
 <h3 id="create-new-roundcube-database-user-and-database">Create new roundcube database user and database<a class="headerlink" href="#create-new-roundcube-database-user-and-database" title="Permanent link">&para;</a></h3>
-<p>Follow the <a href="#Create-roundcube-database">steps above</a> to create the roundcube database user and the separate database.</p>
+<p>Follow the <a href="#create-roundcube-database">steps above</a> to create the roundcube database user and the separate database.</p>
 <h3 id="migrate-roundcube-data-from-mailcow-database">Migrate roundcube data from mailcow database<a class="headerlink" href="#migrate-roundcube-data-from-mailcow-database" title="Permanent link">&para;</a></h3>
 <p>Before starting the database migration, we disable roundcube to avoid further changes to the roundcube database tables
 during the migration.</p>
@@ -4423,11 +4426,11 @@ change the <code>cipher_method</code>, run:</p>
 <h3 id="switch-rcmcarddav-plugin-to-composer-installation-method">Switch RCMCardDAV plugin to composer installation method<a class="headerlink" href="#switch-rcmcarddav-plugin-to-composer-installation-method" title="Permanent link">&para;</a></h3>
 <p>This is optional but will align your installation with these instructions and enable you to upgrade RCMCardDAV
 using composer. This is simply done by deleting the carddav plugin from the installation and installing it using
-composer according to the <a href="#Integrate-CardDAV-addressbooks-in-Roundcube">instructions above</a>, which include the creation
+composer according to the <a href="#integrate-carddav-addressbooks-in-roundcube">instructions above</a>, which include the creation
 of a new RCMCardDAV v5 config. In case you modified your RCMCardDAV configuration file, you may want to backup it before
 deleting the plugin and carry over your changes to the new configuration afterwards as well.</p>
 <p>To delete the carddav plugin run the following command, then re-install according to the
-<a href="#Integrate-CardDAV-addressbooks-in-Roundcube">instructions above</a>:</p>
+<a href="#integrate-carddav-addressbooks-in-roundcube">instructions above</a>:</p>
 <div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-r<span class="w"> </span>data/web/rc/plugins/carddav
 </code></pre></div>
 <h3 id="switch-roundcube-to-new-database">Switch roundcube to new database<a class="headerlink" href="#switch-roundcube-to-new-database" title="Permanent link">&para;</a></h3>
@@ -4438,10 +4441,10 @@ cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;&gt;data/web/rc/
 <span class="s">EOCONFIG</span>
 </code></pre></div></p>
 <h3 id="re-enable-roundcube-web-access">Re-enable roundcube web access<a class="headerlink" href="#re-enable-roundcube-web-access" title="Permanent link">&para;</a></h3>
-<p>Execute the chown and chmod commands on sensitive roundcube directories listed in <a href="#Preparation">Preparation</a>, to
+<p>Execute the chown and chmod commands on sensitive roundcube directories listed in <a href="#preparation">Preparation</a>, to
 make sure the nginx webserver cannot access files it is not supposed to serve.</p>
 <p>Then re-enable web access to roundcube by replacing our temporary roundcube custom config for the one described
-<a href="#Webserver-configuration">above</a>, and reload the nginx configuration:</p>
+<a href="#webserver-configuration">above</a>, and reload the nginx configuration:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>nginx-mailcow<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
 </code></pre></div>
 <h3 id="other-changes">Other changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
@@ -4452,10 +4455,10 @@ whereas this version of the instruction uses the mailcow API for the password ch
 installation instructions and adapt your configuration accordingly or perform the listed installation steps for new
 additions.</p>
 <p>Specifically, consider the following sections:
-  - <a href="#Ofelia-job-for-roundcube-housekeeping">Ofelia job for roundcube housekeeping</a>
-  - <a href="#Allow-plaintext-authentication-for-the-php-fpm-container-without-using-TLS">Allow plaintext authentication in dovecot</a>,
+  - <a href="#ofelia-job-for-roundcube-housekeeping">Ofelia job for roundcube housekeeping</a>
+  - <a href="#allow-plaintext-authentication-for-the-php-fpm-container-without-using-tls">Allow plaintext authentication in dovecot</a>,
     if you adapt the roundcube configuration to contact dovecot via non-encrypted IMAP connection.
-  - <a href="#Forward-the-client-network-address-to-dovecot">Forward the client network address to dovecot</a></p>
+  - <a href="#forward-the-client-network-address-to-dovecot">Forward the client network address to dovecot</a></p>
 <h3 id="removing-roundcube-tables-from-mailcow-database">Removing roundcube tables from mailcow database<a class="headerlink" href="#removing-roundcube-tables-from-mailcow-database" title="Permanent link">&para;</a></h3>
 <p>After you have verified that the migration was successful and roundcube works using the separate database, you can remove
 the roundcube tables from the mailcow database using the following command:</p>
@@ -4467,7 +4470,7 @@ the roundcube tables from the mailcow database using the following command:</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-17 20:13:02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-31 11:57:19</span>
       
     
   </small>
