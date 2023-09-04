@@ -68,7 +68,7 @@ systemctl start docker.service
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker compose up -d
+    docker-compose up -d
     ```
 
 **9\.** Zum Schluss ändern Sie Ihre DNS-Einstellungen so, dass sie auf den Zielserver zeigen. Prüfen und ändern Sie gegebenenfalls die `SNAT_TO_SOURCE` Variable in der `mailcow.conf` im mailcow-dockerized Ordner, da andernfalls SOGo nicht richtig funktioniert, wenn die ausgehende IP eine andere ist.
