@@ -65,29 +65,26 @@ Als nächstes müssen wir die borgmatic-Konfiguration erstellen.
 ```shell
 source mailcow.conf
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
-location:
-    source_directories:
-        - /mnt/source
-    repositories:
-        - ssh://user@rsync.net:22/./mailcow
-    exclude_patterns:
-        - '/mnt/source/postfix/public/'
-        - '/mnt/source/postfix/private/'
-        - '/mnt/source/rspamd/rspamd.sock'
+source_directories:
+    - /mnt/source
+repositories:
+    - path: ssh://user@rsync.net:22/./mailcow
+      label: rsync
+exclude_patterns:
+    - '/mnt/source/postfix/public/'
+    - '/mnt/source/postfix/private/'
+    - '/mnt/source/rspamd/rspamd.sock'
 
-retention:
-    keep_hourly: 24
-    keep_daily: 7
-    keep_weekly: 4
-    keep_monthly: 6
-    prefix: ""
+keep_hourly: 24
+keep_daily: 7
+keep_weekly: 4
+keep_monthly: 6
 
-hooks:
-    mysql_databases:
-        - name: ${DBNAME}
-          username: ${DBUSER}
-          password: ${DBPASS}
-          options: --default-character-set=utf8mb4
+mysql_databases:
+    - name: ${DBNAME}
+        username: ${DBUSER}
+        password: ${DBPASS}
+        options: --default-character-set=utf8mb4
 EOF
 ```
 
@@ -103,9 +100,6 @@ Schauen Sie in der [borgmatic Dokumentation](https://torsion.org/borgmatic/) nac
 Konfigurationsoptionen. Wenn Sie ein lokales Dateisystem als Backup-Ziel verwenden, stellen Sie sicher, dass Sie es in den
 Container einbinden. Der Container definiert zu diesem Zweck ein Volume namens `/mnt/borg-repository`.
 
-!!! note
-    Wenn Sie rsync.net nicht verwenden, können Sie wahrscheinlich das Element `remote_path` aus Ihrer Konfiguration streichen.
-	
 ### Erstellen Sie einen crontab
 
 Erstellen Sie eine neue Textdatei in `data/conf/borgmatic/etc/crontab.txt` mit folgendem Inhalt:
