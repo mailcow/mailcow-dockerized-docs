@@ -65,24 +65,21 @@ Als nächstes müssen wir die borgmatic-Konfiguration erstellen.
 ```shell
 source mailcow.conf
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
-location:
     source_directories:
         - /mnt/source
     repositories:
-        - ssh://user@rsync.net:22/./mailcow
+    - path: ssh://user@rsync.net:22/./mailcow
+      label: rsync
     exclude_patterns:
         - '/mnt/source/postfix/public/'
         - '/mnt/source/postfix/private/'
         - '/mnt/source/rspamd/rspamd.sock'
 
-retention:
     keep_hourly: 24
     keep_daily: 7
     keep_weekly: 4
     keep_monthly: 6
-    prefix: ""
 
-hooks:
     mysql_databases:
         - name: ${DBNAME}
           username: ${DBUSER}
