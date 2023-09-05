@@ -2,8 +2,6 @@
 
 An update script in your mailcow-dockerized directory will take care of updates.
 
-But use it with caution! If you think you made a lot of changes to the mailcow code, you should use the manual update guide below.
-
 Run the update script:
 ```
 ./update.sh

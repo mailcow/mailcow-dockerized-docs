@@ -2,8 +2,6 @@
 
 Ein Update-Skript in Ihrem mailcow-dockerized Verzeichnis kümmert sich um Updates.
 
-Aber benutzen Sie es mit Bedacht! Wenn Sie denken, dass Sie viele Änderungen am mailcow-Code vorgenommen haben, sollten Sie die manuelle Update-Anleitung unten verwenden.
-
 Führen sie das Update-Skript aus:
 ```
 ./update.sh
