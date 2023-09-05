@@ -3775,29 +3775,26 @@ müssen Sie das <code>ro</code>-Flag entfernen, bevor Sie die Daten wiederherste
 <p>Als nächstes müssen wir die borgmatic-Konfiguration erstellen.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
 cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
-<span class="s">location:</span>
-<span class="s">    source_directories:</span>
-<span class="s">        - /mnt/source</span>
-<span class="s">    repositories:</span>
-<span class="s">        - ssh://user@rsync.net:22/./mailcow</span>
-<span class="s">    exclude_patterns:</span>
-<span class="s">        - &#39;/mnt/source/postfix/public/&#39;</span>
-<span class="s">        - &#39;/mnt/source/postfix/private/&#39;</span>
-<span class="s">        - &#39;/mnt/source/rspamd/rspamd.sock&#39;</span>
+<span class="s">source_directories:</span>
+<span class="s">    - /mnt/source</span>
+<span class="s">repositories:</span>
+<span class="s">    - path: ssh://user@rsync.net:22/./mailcow</span>
+<span class="s">      label: rsync</span>
+<span class="s">exclude_patterns:</span>
+<span class="s">    - &#39;/mnt/source/postfix/public/&#39;</span>
+<span class="s">    - &#39;/mnt/source/postfix/private/&#39;</span>
+<span class="s">    - &#39;/mnt/source/rspamd/rspamd.sock&#39;</span>
 
-<span class="s">retention:</span>
-<span class="s">    keep_hourly: 24</span>
-<span class="s">    keep_daily: 7</span>
-<span class="s">    keep_weekly: 4</span>
-<span class="s">    keep_monthly: 6</span>
-<span class="s">    prefix: &quot;&quot;</span>
+<span class="s">keep_hourly: 24</span>
+<span class="s">keep_daily: 7</span>
+<span class="s">keep_weekly: 4</span>
+<span class="s">keep_monthly: 6</span>
 
-<span class="s">hooks:</span>
-<span class="s">    mysql_databases:</span>
-<span class="s">        - name: ${DBNAME}</span>
-<span class="s">          username: ${DBUSER}</span>
-<span class="s">          password: ${DBPASS}</span>
-<span class="s">          options: --default-character-set=utf8mb4</span>
+<span class="s">mysql_databases:</span>
+<span class="s">    - name: ${DBNAME}</span>
+<span class="s">        username: ${DBUSER}</span>
+<span class="s">        password: ${DBPASS}</span>
+<span class="s">        options: --default-character-set=utf8mb4</span>
 <span class="s">EOF</span>
 </code></pre></div>
 <p>Das Erstellen der Datei auf diese Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus <code>mailcow.conf</code> übernommen werden.</p>
@@ -3809,10 +3806,6 @@ Jahr.</p>
 <p>Schauen Sie in der <a href="https://torsion.org/borgmatic/">borgmatic Dokumentation</a> nach, wie Sie andere Arten von Repositories oder
 Konfigurationsoptionen. Wenn Sie ein lokales Dateisystem als Backup-Ziel verwenden, stellen Sie sicher, dass Sie es in den
 Container einbinden. Der Container definiert zu diesem Zweck ein Volume namens <code>/mnt/borg-repository</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Wenn Sie rsync.net nicht verwenden, können Sie wahrscheinlich das Element <code>remote_path</code> aus Ihrer Konfiguration streichen.</p>
-</div>
 <h3 id="erstellen-sie-einen-crontab">Erstellen Sie einen crontab<a class="headerlink" href="#erstellen-sie-einen-crontab" title="Permanent link">&para;</a></h3>
 <p>Erstellen Sie eine neue Textdatei in <code>data/conf/borgmatic/etc/crontab.txt</code> mit folgendem Inhalt:</p>
 <div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --stats -v 0 2&gt;&amp;1
@@ -4014,7 +4007,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:34:22</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-09-05 16:13:05</span>
       
     
   </small>
