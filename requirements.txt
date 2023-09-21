@@ -1,7 +1,7 @@
 mkdocs-material==9.3.2
 mkdocs-redirects==1.2.1
 pygments==2.16.1
-mkdocs-static-i18n==1.0.5
+mkdocs-static-i18n==1.0.6
 mkdocs-git-revision-date-localized-plugin==1.2.0
 pillow==10.0.1
 cairosvg==2.7.1
