@@ -90,6 +90,13 @@ EOF
 
 Das Erstellen der Datei auf diese Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus `mailcow.conf` übernommen werden.
 
+!!! warning
+    Ab borgmatic 1.8.0 (erschienen am 19. Juli 2023) wurde der Aufbau der Konfigurationsdatei
+    [geändert](https://github.com/borgmatic-collective/borgmatic/releases/tag/1.8.0). Sie können die Docker-Logs
+    des Borgmatic-Containers auf Deprecation-Warnmeldungen prüfen, um festzustellen, ob Sie betroffen sind und Ihre
+    Konfigurationsdatei für eine ältere Version von borgmatic erstellt wurde. In diesem Fall sollten Sie eine neue
+    `config.yaml`-Datei wie oben beschrieben erstellen, um Probleme mit zukünftigen Versionen von borgmatic zu vermeiden.
+
 Diese Datei ist ein minimales Beispiel für die Verwendung von borgmatic mit einem Konto `user` beim Cloud-Speicheranbieter `rsync.net` für
 ein Repository namens `mailcow` (siehe `repositories` Einstellung). Es wird sowohl das maildir als auch die MySQL-Datenbank sichern, was alles ist
 was alles ist, was Sie brauchen, um Ihr mailcow Setup nach einem Vorfall wiederherzustellen. Die Aufbewahrungseinstellungen werden ein Archiv für

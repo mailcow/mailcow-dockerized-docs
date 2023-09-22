@@ -91,6 +91,13 @@ EOF
 
 Creating the file in this way ensures the correct MySQL credentials are pulled in from `mailcow.conf`.
 
+!!! warning
+    Starting with borgmatic 1.8.0 (released July 19th, 2023), the configuration file syntax was
+    [changed](https://github.com/borgmatic-collective/borgmatic/releases/tag/1.8.0). You can check the Docker logs
+    of the borgmatic container for deprecation warnings to see if you are affected, i.e. if your config file was
+    generated for an older borgmatic version. In this case, you should create a new `config.yaml` file as described
+    above to avoid problems with future borgmatic releases.
+
 This file is a minimal example for using borgmatic with an account `user` on the cloud storage provider `rsync.net` for
 a repository called `mailcow` (see `repositories` setting). It will backup both the maildir and MySQL database, which is
 all you should need to restore your mailcow setup after an incident. The retention settings will keep one archive for
