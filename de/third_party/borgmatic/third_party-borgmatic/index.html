@@ -3798,6 +3798,14 @@ cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/
 <span class="s">EOF</span>
 </code></pre></div>
 <p>Das Erstellen der Datei auf diese Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus <code>mailcow.conf</code> übernommen werden.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ab borgmatic 1.8.0 (erschienen am 19. Juli 2023) wurde der Aufbau der Konfigurationsdatei
+<a href="https://github.com/borgmatic-collective/borgmatic/releases/tag/1.8.0">geändert</a>. Sie können die Docker-Logs
+des Borgmatic-Containers auf Deprecation-Warnmeldungen prüfen, um festzustellen, ob Sie betroffen sind und Ihre
+Konfigurationsdatei für eine ältere Version von borgmatic erstellt wurde. In diesem Fall sollten Sie eine neue
+<code>config.yaml</code>-Datei wie oben beschrieben erstellen, um Probleme mit zukünftigen Versionen von borgmatic zu vermeiden.</p>
+</div>
 <p>Diese Datei ist ein minimales Beispiel für die Verwendung von borgmatic mit einem Konto <code>user</code> beim Cloud-Speicheranbieter <code>rsync.net</code> für
 ein Repository namens <code>mailcow</code> (siehe <code>repositories</code> Einstellung). Es wird sowohl das maildir als auch die MySQL-Datenbank sichern, was alles ist
 was alles ist, was Sie brauchen, um Ihr mailcow Setup nach einem Vorfall wiederherzustellen. Die Aufbewahrungseinstellungen werden ein Archiv für
@@ -4007,7 +4015,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-09-05 16:13:05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-09-23 12:34:45</span>
       
     
   </small>
