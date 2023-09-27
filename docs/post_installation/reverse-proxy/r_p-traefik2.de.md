@@ -100,6 +100,6 @@ Dieser Container überwacht die Datei `acme.json` auf Änderungen und generiert 
 
 Sie können es über die Kommandozeile ausführen oder das [hier](https://hub.docker.com/r/humenius/traefik-certs-dumper) gezeigte docker-compose.yml verwenden.
 
-Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden).
+Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://docs.mailcow.email/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden).
 
 Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.

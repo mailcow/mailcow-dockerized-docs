@@ -29,5 +29,5 @@ The static master username will be expanded to `DOVECOT_MASTER_USER@mailcow.loca
 
 To login as `test@example.org` this would equal to `test@example.org*mymasteruser@mailcow.local` with the specified password above.
 
-A login to SOGo is not possible with this username. A click-to-login function for SOGo is available for admins as described [here](https://mailcow.github.io/mailcow-dockerized-docs/debug-admin_login_sogo/)
+A login to SOGo is not possible with this username. A click-to-login function for SOGo is available for admins as described [here](https://docs.mailcow.email/debug-admin_login_sogo/)
 No master user is required.
