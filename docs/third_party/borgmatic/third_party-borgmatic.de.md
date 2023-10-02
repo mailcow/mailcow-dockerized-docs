@@ -82,9 +82,9 @@ keep_monthly: 6
 
 mysql_databases:
     - name: ${DBNAME}
-        username: ${DBUSER}
-        password: ${DBPASS}
-        options: --default-character-set=utf8mb4
+      username: ${DBUSER}
+      password: ${DBPASS}
+      options: --default-character-set=utf8mb4
 EOF
 ```
 
