@@ -3527,7 +3527,7 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
 <p>Da Traefik 2 ein acme v2 Format verwendet, um ALLE Zertifikaten von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (<a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">https://hub.docker.com/r/humenius/traefik-certs-dumper</a>), der die Datei <code>acme.json</code> über ein Volume und eine Variable <code>DOMAIN=example. org</code>, und damit wird der Container die <code>cert.pem</code> und <code>key.pem</code> Dateien ausgeben, dafür lassen wir einfach den <code>traefik-certs-dumper</code> Container laufen, binden das <code>/traefik</code> Volume an den Ordner, in dem unsere <code>acme.json</code> gespeichert ist, binden das <code>/output</code> Volume an unseren mailcow <code>data/assets/ssl/</code> Ordner, und setzen die <code>DOMAIN=example.org</code> Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. </p>
 <p>Dieser Container überwacht die Datei <code>acme.json</code> auf Änderungen und generiert die Dateien <code>cert.pem</code> und <code>key.pem</code> direkt in <code>data/assets/ssl/</code>, wobei der Pfad mit dem <code>/output</code>-Pfad des Containers verbunden ist.</p>
 <p>Sie können es über die Kommandozeile ausführen oder das <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">hier</a> gezeigte docker-compose.yml verwenden.</p>
-<p>Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie <a href="https://mailcow.github.io/mailcow-dockerized-docs/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden">hier</a>.</p>
+<p>Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie <a href="https://docs.mailcow.email/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden">hier</a>.</p>
 <p>Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.</p>
 
   <hr>
@@ -3535,7 +3535,7 @@ Dazu müssen wir <code>SKIP_LETS_ENCRYPT=y</code> in unserer <code>mailcow.conf<
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-14 00:42:41</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-10-06 20:38:22</span>
       
     
   </small>
