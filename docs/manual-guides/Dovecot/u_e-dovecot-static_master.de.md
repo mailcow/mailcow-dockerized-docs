@@ -30,5 +30,5 @@ Der statische Master-Benutzername wird zu `DOVECOT_MASTER_USER@mailcow.local` er
 
 Um sich als `test@example.org` anzumelden, würde dies `test@example.org*mymasteruser@mailcow.local` mit dem oben angegebenen Passwort entsprechen.
 
-Eine Anmeldung bei SOGo ist mit diesem Benutzernamen nicht möglich. Für Admins steht eine Click-to-Login-Funktion für SOGo zur Verfügung, wie [hier] beschrieben (https://mailcow.github.io/mailcow-dockerized-docs/debug-admin_login_sogo/)
+Eine Anmeldung bei SOGo ist mit diesem Benutzernamen nicht möglich. Für Admins steht eine Click-to-Login-Funktion für SOGo zur Verfügung, wie [hier] beschrieben (https://docs.mailcow.email/debug-admin_login_sogo/)
 Es wird kein Hauptbenutzer benötigt.
