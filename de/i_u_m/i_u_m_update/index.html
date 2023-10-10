@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.5">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.bd3936ea.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6a10b989.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
@@ -3738,16 +3738,18 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 <h3 id="wie-bekomme-ich-nightly-updates">Wie bekomme ich Nightly Updates?<a class="headerlink" href="#wie-bekomme-ich-nightly-updates" title="Permanent link">&para;</a></h3>
 <p>Der Vorgang ist relativ simpel. Mit dem 2022-08 Update (ein Update auf die Version voraussgesetzt) ist es möglich die <code>update.sh</code> mit dem Parameter <code>--nightly</code> zu starten.</p>
 <div class="admonition danger">
-<p class="admonition-title">Achtung<p>Bitte machen Sie vorher ein Backup oder folgen Sie dem Abschnitt <a href="#best-practice-nightly-update">Best Practice Nightly Update</a> bevor Sie auf die Nightly Builds von mailcow wechseln. Wir sind für keinerlei Datenverluste/korruptionen verantwortlich, also arbeiten Sie mit bedacht!</p>
-</p>
+<p class="admonition-title">Achtung</p>
+<pre><code>Bitte machen Sie vorher ein Backup oder folgen Sie dem Abschnitt [Best Practice Nightly Update](#best-practice-nightly-update) bevor Sie auf die Nightly Builds von mailcow wechseln. Wir sind für keinerlei Datenverluste/korruptionen verantwortlich, also arbeiten Sie mit bedacht!
+</code></pre>
 </div>
 <p>Das Skript wird nun den Branch wechseln mit <code>git checkout nightly</code> d.h. es wird auch wieder nach den IPv6 Einstellungen fragen. Das ist aber normal.</p>
 <p>Sollte alles problemlos geklappt haben (wofür wir ja auch vorsichtshalber ein Backup vorher gemacht haben) sollte nun in der mailcow UI unten rechts die aktuelle Versionsnummer samt Datumsstempel abgebildet sein: <br>
 <img alt="nightly footer" src="../../../assets/images/i_u_m/nightly_footer.png" /></p>
 <h3 id="best-practice-nightly-update">Best Practice Nightly Update<a class="headerlink" href="#best-practice-nightly-update" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
-<p class="admonition-title">Info<p>Wir empfehlen die Benutzung des Nightly Updates nur dann, wenn Ihr eine weitere Maschine oder VM besitzt und diese <strong>NICHT</strong> Produktiv nutzt.</p>
-</p>
+<p class="admonition-title">Info</p>
+<pre><code>Wir empfehlen die Benutzung des Nightly Updates nur dann, wenn Ihr eine weitere Maschine oder VM besitzt und diese **NICHT** Produktiv nutzt.
+</code></pre>
 </div>
 <ol>
 <li>Das <a href="../../backup_restore/b_n_r-coldstandby/">Cold-Standby Skript</a> nutzen um die Maschine <strong>vor</strong> dem Schwenk auf die Nightly Builds auf ein anderes System zu kopieren.</li>
@@ -3868,7 +3870,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.94c44541.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       
