@@ -279,6 +279,15 @@ Run the command below to activate your changes:
     docker-compose up -d
     ```
 
+### Use CAA records with the `accounturi` parameter
+
+Let's Encrypt allows restricting certificate issuance to specific account IDs via the `accounturi` parameter in CAA records. You can use the
+`generate_caa_record.py` helper script to generate a CAA record with `accounturi`, which you can then enter with your DNS provider:
+
+```bash
+./helper-scrips/generate_caa_record.py --account-key data/assets/ssl/acme/account.pem --contact your_acme_email@example.com
+```
+
 ### Check your configuration
 
 Run the command below to find out why a validation fails:

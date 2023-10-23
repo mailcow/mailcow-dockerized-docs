@@ -279,6 +279,15 @@ Führen Sie den folgenden Befehl aus, um Ihre Änderungen zu aktivieren:
     docker-compose up -d
     ```
 
+### CAA-Einträge mit dem `accounturi`-Parameter
+
+Let's Encrypt ermöglicht es, mithilfe des `accounturi`-Paramaters in CAA-Einträgen die Zertifikatsausstellung auf spezifische Account-IDs zu beschränken.
+Sie können das Helper-Skript `generate_caa_record.py` verwenden, um einen CAA-Eintrag mit `accounturi` zu erstellen, welchen Sie dann bei Ihrem DNS-Anbieter eintragen können:
+
+```bash
+./helper-scrips/generate_caa_record.py --account-key data/assets/ssl/acme/account.pem --contact ihre_acme_email@beispiel.de
+```
+
 ### Überprüfen Sie Ihre Konfiguration
 
 Führen Sie den folgenden Befehl aus, um herauszufinden, warum eine Validierung fehlschlägt:
