@@ -28,7 +28,7 @@ After you modified `data/conf/sogo/custom-theme.js` and made changes to your new
 
 5\. only if you use Firefox: write by hands in dev console `allow pasting` and press enter
 
-6\. paste java script snipet in dev console:
+6\. paste java script snippet in dev console:
 ```
 copy([].slice.call(document.styleSheets)
   .map(e => e.ownerNode)
