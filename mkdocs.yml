@@ -119,7 +119,7 @@ nav:
       - 'Two-Factor Authentication': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.md'
       - 'WebAuthn / FIDO2': 'manual-guides/mailcow-UI/u_e-mailcow_ui-fido.md'
     - 'Postfix':
-      - 'Add trusted networks': 'manual-guides/Postfix/u_e-postfix-trust_networks.md'
+      - 'Unauthenticated Relaying': 'manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.md'
       - 'Custom transport maps': 'manual-guides/Postfix/u_e-postfix-custom_transport.md'
       - 'Customize/Expand main.cf': 'manual-guides/Postfix/u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'manual-guides/Postfix/u_e-postfix-disable_sender_verification.md'
@@ -255,7 +255,7 @@ plugins:
               'Tags (for Domains and Mailboxes)' : 'Tags (für Domains und Mailboxen)'
               'Two-Factor Authentication' : 'Zwei-Faktor Authentifizierung'
                 ### Postfix Subsection
-              'Add trusted networks': 'Vertrauenswürdige Netzwerke hinzufügen'
+              'Unauthenticated Relaying': 'Unauthentifiziertes Relaying'
               'Custom transport maps': 'Benutzerdefinierte Transportmaps'
               'Customize/Expand main.cf': 'main.cf anpassen/erweitern'
               'Disable Sender Addresses Verification': 'Überprüfung der Absenderadressen deaktivieren'
@@ -356,7 +356,7 @@ plugins:
         'u_e-mailcow_ui-tags.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tags.en.md'
         'u_e-mailcow_ui-tfa.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.en.md'
         'u_e-mailcow_ui-fido.md': 'manual-guides/mailcow-UI/u_e-mailcow_ui-fido.en.md'
-        'u_e-postfix-trust_networks.md': 'manual-guides/Postfix/u_e-postfix-trust_networks.en.md'
+        'u_e-postfix-trust_networks.md': 'manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.en.md'
         'u_e-postfix-custom_transport.md': 'manual-guides/Postfix/u_e-postfix-custom_transport.en.md'
         'u_e-postfix-extra_cf.md': 'manual-guides/Postfix/u_e-postfix-extra_cf.en.md'
         'u_e-postfix-disable_sender_verification.md': 'manual-guides/Postfix/u_e-postfix-disable_sender_verification.en.md'
@@ -407,6 +407,7 @@ plugins:
         'third_party-nextcloud.md': 'third_party/nextcloud/third_party-nextcloud.en.md'
         'third_party-portainer.md': 'third_party/portainer/third_party-portainer.en.md'
         'third_party-roundcube.md': 'third_party/roundcube/third_party-roundcube.en.md'
+        'unauthenticated-relaying.md': 'manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.en.md'
   - search:
 #      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang:
