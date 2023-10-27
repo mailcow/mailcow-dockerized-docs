@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-trust_networks/">
+        <link rel="canonical" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/">
       
       
         <link rel="prev" href="../../mailcow-UI/u_e-mailcow_ui-fido/">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Vertrauenswürdige Netzwerke hinzufügen - mailcow: dockerized Dokumentation</title>
+        <title>Unauthentifiziertes Relaying - mailcow: dockerized Dokumentation</title>
       
     
     
@@ -53,11 +53,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Vertrauenswürdige Netzwerke hinzufügen - mailcow: dockerized Dokumentation" >
+        <meta  property="og:title"  content="Unauthentifiziertes Relaying - mailcow: dockerized Dokumentation" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://docs.mailcow.email/assets/images/social/manual-guides/Postfix/u_e-postfix-trust_networks.de.png" >
+        <meta  property="og:image"  content="https://docs.mailcow.email/assets/images/social/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.de.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -65,15 +65,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-trust_networks/" >
+        <meta  property="og:url"  content="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Vertrauenswürdige Netzwerke hinzufügen - mailcow: dockerized Dokumentation" >
+        <meta  name="twitter:title"  content="Unauthentifiziertes Relaying - mailcow: dockerized Dokumentation" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://docs.mailcow.email/assets/images/social/manual-guides/Postfix/u_e-postfix-trust_networks.de.png" >
+        <meta  name="twitter:image"  content="https://docs.mailcow.email/assets/images/social/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.de.png" >
       
     
     
@@ -97,11 +97,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#unauthentifiziertes-relaying" class="md-skip">
-          Zum Inhalt
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -153,7 +148,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Vertrauenswürdige Netzwerke hinzufügen
+              Unauthentifiziertes Relaying
             
           </span>
         </div>
@@ -197,7 +192,7 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../../manual-guides/Postfix/u_e-postfix-trust_networks/" hreflang="en" class="md-select__link">
+            <a href="../../../../manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -1962,70 +1957,15 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Vertrauenswürdige Netzwerke hinzufügen
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Vertrauenswürdige Netzwerke hinzufügen
+    Unauthentifiziertes Relaying
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#unauthentifiziertes-relaying" class="md-nav__link">
-    Unauthentifiziertes Relaying
-  </a>
-  
-    <nav class="md-nav" aria-label="Unauthentifiziertes Relaying">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ipv4-hostssubnetze" class="md-nav__link">
-    IPv4-Hosts/Subnetze
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ipv6-hostssubnets" class="md-nav__link">
-    IPv6-Hosts/Subnets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -3475,41 +3415,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#unauthentifiziertes-relaying" class="md-nav__link">
-    Unauthentifiziertes Relaying
-  </a>
-  
-    <nav class="md-nav" aria-label="Unauthentifiziertes Relaying">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ipv4-hostssubnetze" class="md-nav__link">
-    IPv4-Hosts/Subnetze
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ipv6-hostssubnets" class="md-nav__link">
-    IPv6-Hosts/Subnets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3526,22 +3431,31 @@
   
 
 
-  <h1>Vertrauenswürdige Netzwerke hinzufügen</h1>
+  <h1>Unauthentifiziertes Relaying</h1>
 
-<p>Standardmäßig betrachtet mailcow <strong>alle Netzwerke als nicht vertrauenswürdig</strong>, ausgenommen seine eigenen IPV4_NETWORK und IPV6_NETWORK Bereiche. Obwohl dies in den meisten Fällen vernünftig ist, kann es Umstände geben, unter denen man diese Einschränkung lockern muss.</p>
+<p>Standardmäßig betrachtet mailcow's Postfix <strong>alle Netzwerke als nicht vertrauenswürdig</strong>, ausgenommen seine eigenen IPV4_NETWORK und IPV6_NETWORK Bereiche, die in <code>mailcow.conf</code> festgelegt sind. Obwohl dies in den meisten Fällen vernünftig ist, kann es Umstände geben, unter denen Sie einen Host oder ein Subnetz als <strong>unauthentifizierten Relayer</strong> hinzufügen möchten.</p>
 <p>Standardmäßig verwendet mailcow <code>mynetworks_style = subnet</code> um interne Subnetze zu bestimmen und lässt <code>mynetworks</code> unkonfiguriert.</p>
-<p>Wenn Sie sich entscheiden, <code>mynetworks</code> zu setzen, ignoriert Postfix die mynetworks_style Einstellung. Das bedeutet, dass Sie die Bereiche IPV4_NETWORK und IPV6_NETWORK sowie die Loopback-Subnetze manuell hinzufügen müssen!</p>
-<h2 id="unauthentifiziertes-relaying">Unauthentifiziertes Relaying<a class="headerlink" href="#unauthentifiziertes-relaying" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warnung</p>
-<p>Eine falsche Einstellung von <code>mynetworks</code> erlaubt es Ihrem Server, als offenes Relay verwendet zu werden. Wenn dies missbraucht wird, <strong>beeinträchtigt</strong> dies Ihre Fähigkeit, E-Mails zu versenden, und es kann einige Zeit dauern, bis dies behoben ist.</p>
+<p>Wenn Sie sich entscheiden, <code>mynetworks</code> selbständig in der <code>extra.conf</code> von Postfix zu setzen, ignoriert Postfix die mynetworks_style Einstellung. Das bedeutet, dass Sie die von mailcow intern benutzen IPv4- und IPv6-Adressen (in der <code>mailcow.conf</code> angegeben als IPV4_NETWORK bzw. IPV6_NETWORK), sowie die Loopback-Subnetze manuell hinzufügen müssen!</p>
+<div class="admonition abstract">
+<p class="admonition-title">Erläuterung</p>
+<p>Die Einstellung <code>mynetworks</code> erlaubt es eingetragenen Hosts bzw. Subnets <strong>OHNE</strong> Authentifizierung E-Mails an den Postfix MTA zu schicken. Insbesondere dann praktisch, wenn bspw. Monitoring E-Mails von Linux Servern im selben Netzwerk ohne extra Authentifizierung verschickt werden sollen.</p>
 </div>
-<h3 id="ipv4-hostssubnetze">IPv4-Hosts/Subnetze<a class="headerlink" href="#ipv4-hostssubnetze" title="Permanent link">&para;</a></h3>
-<p>Um das Subnetz <code>192.168.2.0/24</code> zu den vertrauenswürdigen Netzwerken hinzuzufügen, können Sie die folgende Konfiguration verwenden, abhängig von Ihren IPV4_NETWORK und IPV6_NETWORK Bereichen:</p>
+<div class="admonition danger">
+<p class="admonition-title">Achtung</p>
+<p>Eine falsche Einstellung von <code>mynetworks</code> erlaubt es Ihrem Server, als offenes Relay verwendet zu werden. Wenn dies missbraucht wird, <strong>beeinträchtigt</strong> dies Ihre Fähigkeit, E-Mails zu versenden, und es kann einige Zeit dauern, bis dies abgeklungen ist.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Beispiel</p>
+<p>Als Beispiel nehmen wir das Subnetz <code>192.168.2.0/24</code>, welches wir unauthentifiziert Relayen lassen wollen.</p>
+</div>
 <p>Bearbeiten Sie <code>data/conf/postfix/extra.cf</code>:</p>
 <div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
 </code></pre></div>
-<p>Führen Sie folgenden Befehl aus aus, um Ihre neuen Einstellungen zu übernehmen:</p>
+<div class="admonition warning">
+<p class="admonition-title">Vorsicht</p>
+<p>Die Subnetze vor unserem angehangenen Beispiel Subnetz <strong>MÜSSEN</strong> vor oder nach den eigens eingetragenen Werten stehen, da sonst einige mailcow Komponenten wie bspw. der Watchdog oder einige Sieve Filter (wie bspw. Abwesenheitsagenten) nicht funktionieren und Fehler beim Betriebsablauf entstehen.</p>
+</div>
+<p>Führen Sie nach Ihren Änderungen folgenden Befehl aus aus, um Ihre neuen Einstellungen zu übernehmen:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -3554,24 +3468,9 @@
 </div>
 </div>
 </div>
-<h3 id="ipv6-hostssubnets">IPv6-Hosts/Subnets<a class="headerlink" href="#ipv6-hostssubnets" title="Permanent link">&para;</a></h3>
-<p>Das Hinzufügen von IPv6-Hosts erfolgt auf die gleiche Weise wie bei IPv4, allerdings muss das Subnetz in eckige Klammern <code>[]</code> gesetzt und die Netzmaske angehängt werden.</p>
-<p>Um das Subnetz 2001:db8::/32 zu den vertrauenswürdigen Netzwerken hinzuzufügen, können Sie die folgende Konfiguration verwenden, abhängig von Ihren IPV4_NETWORK- und IPV6_NETWORK-Bereichen:</p>
-<p>Bearbeiten Sie <code>data/conf/postfix/extra.cf</code>:</p>
-<div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 [2001:db8::]/32
-</code></pre></div>
-<p>Führen Sie folgenden Befehl aus, um Ihre neuen Einstellungen zu übernehmen:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
-</code></pre></div>
-</div>
-</div>
+<div class="admonition tip">
+<p class="admonition-title">Gut zu wissen!</p>
+<p>IPv6 Adressen <strong>MÜSSEN</strong> in diesem Fall mit <code>[]</code> (Eckigen Klammern) als <code>mynetworks</code> Parameter eingetragen werden, da diese sonst nicht verarbeitet werden können.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -3583,7 +3482,7 @@
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-10-27 14:28:35</span>
       
     
   </small>

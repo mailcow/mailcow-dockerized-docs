@@ -344,11 +344,11 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-relayhost/"/>
     </url>
     <url>
-        <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-trust_networks/</loc>
+        <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/</loc>
         <lastmod>2023-10-27</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-trust_networks/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-trust_networks/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Redis/u_e-redis/</loc>
@@ -1100,11 +1100,11 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-relayhost/"/>
     </url>
     <url>
-        <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-trust_networks/</loc>
+        <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/</loc>
         <lastmod>2023-10-27</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-trust_networks/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-trust_networks/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Redis/u_e-redis/</loc>
