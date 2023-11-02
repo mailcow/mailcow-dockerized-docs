@@ -3811,7 +3811,7 @@ Konfiguration ein:
 <span class="w">  </span><span class="nt">borg-config-vol-1</span><span class="p">:</span>
 </code></pre></div></p>
 <p>Stellen Sie sicher, dass Sie die <code>BORG_PASSPHRASE</code> in eine sichere Passphrase Ihrer Wahl ändern.</p>
-<p>Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen, 
+<p>Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen,
 müssen Sie das <code>ro</code>-Flag entfernen, bevor Sie die Daten wiederherstellen. Dies wird im Abschnitt über die Wiederherstellung von Backups beschrieben.</p>
 <h3 id="erstellen-sie-dataconfborgmaticetcconfigyaml">Erstellen Sie <code>data/conf/borgmatic/etc/config.yaml</code><a class="headerlink" href="#erstellen-sie-dataconfborgmaticetcconfigyaml" title="Permanent link">&para;</a></h3>
 <p>Als nächstes müssen wir die borgmatic-Konfiguration erstellen.</p>
@@ -3834,9 +3834,9 @@ cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/
 
 <span class="s">mysql_databases:</span>
 <span class="s">    - name: ${DBNAME}</span>
-<span class="s">        username: ${DBUSER}</span>
-<span class="s">        password: ${DBPASS}</span>
-<span class="s">        options: --default-character-set=utf8mb4</span>
+<span class="s">      username: ${DBUSER}</span>
+<span class="s">      password: ${DBPASS}</span>
+<span class="s">      options: --default-character-set=utf8mb4</span>
 <span class="s">EOF</span>
 </code></pre></div>
 <p>Das Erstellen der Datei auf diese Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus <code>mailcow.conf</code> übernommen werden.</p>
@@ -4057,7 +4057,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-09-23 12:34:45</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-11-02 11:22:42</span>
       
     
   </small>
