@@ -55,7 +55,7 @@ volumes:
 
 Stellen Sie sicher, dass Sie die `BORG_PASSPHRASE` in eine sichere Passphrase Ihrer Wahl ändern.
 
-Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen, 
+Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen,
 müssen Sie das `ro`-Flag entfernen, bevor Sie die Daten wiederherstellen. Dies wird im Abschnitt über die Wiederherstellung von Backups beschrieben.
 
 ### Erstellen Sie `data/conf/borgmatic/etc/config.yaml`
@@ -82,9 +82,9 @@ keep_monthly: 6
 
 mysql_databases:
     - name: ${DBNAME}
-        username: ${DBUSER}
-        password: ${DBPASS}
-        options: --default-character-set=utf8mb4
+      username: ${DBUSER}
+      password: ${DBPASS}
+      options: --default-character-set=utf8mb4
 EOF
 ```
 
@@ -182,7 +182,7 @@ Zustand befindet:
 
     ``` bash
     docker-compose restart borgmatic-mailcow
-    ``` 
+    ```
 
 ## Wiederherstellung von einem Backup
 
