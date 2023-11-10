@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="de" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.mailcow.email/de/post_installation/firststeps-rspamd_ui/">
+        <link rel="canonical" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-tweaks/">
       
       
-        <link rel="prev" href="../reverse-proxy/r_p-caddy2/">
+        <link rel="prev" href="../u_e-rspamd-general/">
       
       
-        <link rel="next" href="../firststeps-snat/">
+        <link rel="next" href="../u-e-rspamd-work-with-spamdata/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Rspamd UI - mailcow: dockerized Dokumentation</title>
+        <title>Tweaks - mailcow: dockerized documentation</title>
       
     
     
@@ -53,11 +53,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Rspamd UI - mailcow: dockerized Dokumentation" >
+        <meta  property="og:title"  content="Tweaks - mailcow: dockerized documentation" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://docs.mailcow.email/assets/images/social/post_installation/firststeps-rspamd_ui.de.png" >
+        <meta  property="og:image"  content="https://docs.mailcow.email/assets/images/social/manual-guides/Rspamd/u-e-rspamd-tweaks.en.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -65,15 +65,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://docs.mailcow.email/de/post_installation/firststeps-rspamd_ui/" >
+        <meta  property="og:url"  content="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-tweaks/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Rspamd UI - mailcow: dockerized Dokumentation" >
+        <meta  name="twitter:title"  content="Tweaks - mailcow: dockerized documentation" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://docs.mailcow.email/assets/images/social/post_installation/firststeps-rspamd_ui.de.png" >
+        <meta  name="twitter:image"  content="https://docs.mailcow.email/assets/images/social/manual-guides/Rspamd/u-e-rspamd-tweaks.en.png" >
       
     
     
@@ -98,20 +98,25 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#spam-filter-thresholds-global" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
         <aside class="md-banner">
           <div class="md-banner__inner md-grid md-typeset">
             
-              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
               </button>
             
             
 
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
 
 
           </div>
@@ -128,8 +133,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
-    <a href="../../" title="mailcow: dockerized Dokumentation" class="md-header__button md-logo" aria-label="mailcow: dockerized Dokumentation" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
   <img src="../../../assets/images/logo.svg" alt="logo">
 
@@ -142,13 +147,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            mailcow: dockerized Dokumentation
+            mailcow: dockerized documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rspamd UI
+              Tweaks
             
           </span>
         </div>
@@ -185,20 +190,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Sprache wechseln">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../post_installation/firststeps-rspamd_ui/" hreflang="en" class="md-select__link">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="./" hreflang="de" class="md-select__link">
+            <a href="../../../de/manual-guides/Rspamd/u-e-rspamd-tweaks/" hreflang="de" class="md-select__link">
               Deutsch
             </a>
           </li>
@@ -217,21 +222,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Suche">
+      <nav class="md-search__options" aria-label="Search">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Teilen" aria-label="Teilen" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
@@ -242,7 +247,7 @@
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Suche wird initialisiert
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -253,7 +258,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/mailcow/mailcow-dockerized" title="Zum Repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/mailcow/mailcow-dockerized" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -289,16 +294,16 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../" title="mailcow: dockerized Dokumentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized Dokumentation" data-md-component="logo">
+    <a href="../../.." title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
   <img src="../../../assets/images/logo.svg" alt="logo">
 
     </a>
-    mailcow: dockerized Dokumentation
+    mailcow: dockerized documentation
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/mailcow/mailcow-dockerized" title="Zum Repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/mailcow/mailcow-dockerized" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -317,11 +322,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Informationen & Support
+    Information & Support
   </span>
   
 
@@ -352,7 +357,7 @@
             
   
   <span class="md-ellipsis">
-    Voraussetzungen
+    Prerequisites
   </span>
   
 
@@ -362,7 +367,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Voraussetzungen
+            Prerequisites
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -372,11 +377,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../prerequisite/prerequisite-system/" class="md-nav__link">
+      <a href="../../../prerequisite/prerequisite-system/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Systemvoraussetzungen
+    Prepare your system
   </span>
   
 
@@ -392,11 +397,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../prerequisite/prerequisite-dns/" class="md-nav__link">
+      <a href="../../../prerequisite/prerequisite-dns/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    DNS Einstellungen
+    DNS setup
   </span>
   
 
@@ -435,7 +440,7 @@
             
   
   <span class="md-ellipsis">
-    Installation, Update und Migration
+    Installation, Update & Migration
   </span>
   
 
@@ -445,7 +450,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Installation, Update und Migration
+            Installation, Update & Migration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -455,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_install/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -475,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_update/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_update/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -495,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_migration/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_migration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../i_u_m/i_u_m_deinstall/" class="md-nav__link">
+      <a href="../../../i_u_m/i_u_m_deinstall/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -540,37 +545,35 @@
       
   
   
-    
-  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Post-Installationsaufgaben
+    Post Installation Tasks
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Post-Installationsaufgaben
+            Post Installation Tasks
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -580,11 +583,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-ssl/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-ssl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Erweitertes SSL
+    Advanced SSL
   </span>
   
 
@@ -600,11 +603,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-disable_ipv6/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-disable_ipv6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IPv6 deaktivieren
+    Disable IPv6
   </span>
   
 
@@ -620,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-dmarc_reporting/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-dmarc_reporting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -640,11 +643,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-ip_bindings/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-ip_bindings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IP-Bindings
+    IP bindings
   </span>
   
 
@@ -660,11 +663,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-local_mta/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-local_mta/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Lokaler MTA auf Docker-Host
+    Local MTA on Docker host
   </span>
   
 
@@ -680,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-logging/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-logging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -736,11 +739,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../reverse-proxy/r_p/" class="md-nav__link">
+      <a href="../../../post_installation/reverse-proxy/r_p/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Übersicht
+    Overview
   </span>
   
 
@@ -756,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reverse-proxy/r_p-apache24/" class="md-nav__link">
+      <a href="../../../post_installation/reverse-proxy/r_p-apache24/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -776,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reverse-proxy/r_p-nginx/" class="md-nav__link">
+      <a href="../../../post_installation/reverse-proxy/r_p-nginx/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -796,11 +799,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../reverse-proxy/r_p-haproxy/" class="md-nav__link">
+      <a href="../../../post_installation/reverse-proxy/r_p-haproxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HAProxy (von der Community unterstützt)
+    HAProxy (community supported)
   </span>
   
 
@@ -816,11 +819,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../reverse-proxy/r_p-traefik2/" class="md-nav__link">
+      <a href="../../../post_installation/reverse-proxy/r_p-traefik2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Traefik v2 (von der Community unterstützt)
+    Traefik v2 (community supported)
   </span>
   
 
@@ -836,11 +839,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../reverse-proxy/r_p-caddy2/" class="md-nav__link">
+      <a href="../../../post_installation/reverse-proxy/r_p-caddy2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Caddy v2 (von der Community unterstützt)
+    Caddy v2 (community supported)
   </span>
   
 
@@ -862,37 +865,9 @@
                 
   
   
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Rspamd UI
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
     <li class="md-nav__item">
-      <a href="../firststeps-snat/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-snat/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -912,11 +887,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../firststeps-sync_jobs_migration/" class="md-nav__link">
+      <a href="../../../post_installation/firststeps-sync_jobs_migration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Migration mit Sync Jobs
+    Sync job migration
   </span>
   
 
@@ -955,7 +930,7 @@
             
   
   <span class="md-ellipsis">
-    Modelle
+    Models
   </span>
   
 
@@ -965,7 +940,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Modelle
+            Models
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -975,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/model-acl/" class="md-nav__link">
+      <a href="../../../models/model-acl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -995,11 +970,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/model-passwd/" class="md-nav__link">
+      <a href="../../../models/model-passwd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Passwort-Hashing
+    Password hashing
   </span>
   
 
@@ -1015,11 +990,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/model-sender_rcv/" class="md-nav__link">
+      <a href="../../../models/model-sender_rcv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sender- und Empfängermodell
+    Sender and receiver model
   </span>
   
 
@@ -1058,7 +1033,7 @@
             
   
   <span class="md-ellipsis">
-    Allgemeine Fehlersuche
+    General Troubleshooting
   </span>
   
 
@@ -1068,7 +1043,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Allgemeine Fehlersuche
+            General Troubleshooting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1078,11 +1053,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Einführung
+    Introduction
   </span>
   
 
@@ -1098,11 +1073,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-admin_login_sogo/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-admin_login_sogo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Admin-Anmeldung bei SOGo
+    Admin login to SOGo
   </span>
   
 
@@ -1118,11 +1093,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-rspamd_memory_leaks/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-rspamd_memory_leaks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Fortgeschritten: Memory-Leaks in Rspamd finden
+    Advanced: Find memory leaks in Rspamd
   </span>
   
 
@@ -1138,11 +1113,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-attach_service/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-attach_service/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    In einen Container wechseln (CLI)
+    Attach to a Container
   </span>
   
 
@@ -1158,11 +1133,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-common_problems/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-common_problems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Häufig auftretende Probleme
+    Common Problems
   </span>
   
 
@@ -1178,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-logs/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1198,11 +1173,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-mysql_upgrade/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-mysql_upgrade/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Manuelles MySQL-Upgrade
+    Manual MySQL upgrade
   </span>
   
 
@@ -1218,11 +1193,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-mysql_aria/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-mysql_aria/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Abgestürzte Aria-Speicher-Engine wiederherstellen
+    Recover crashed Aria storage engine
   </span>
   
 
@@ -1238,11 +1213,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-rm_volumes/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-rm_volumes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Persistente Daten löschen
+    Remove Persistent Data
   </span>
   
 
@@ -1258,11 +1233,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-reset_pw/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-resend-quarantine-notifications/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Passwörter zurücksetzen (inkl. SQL)
+    Resend Quarantine Notifications
   </span>
   
 
@@ -1278,11 +1253,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/debug-reset_tls/" class="md-nav__link">
+      <a href="../../../troubleshooting/debug-reset_pw/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    TLS-Zertifikate zurücksetzen
+    Reset Passwords (incl. SQL)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../troubleshooting/debug-reset_tls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reset TLS certificates
   </span>
   
 
@@ -1321,7 +1316,7 @@
             
   
   <span class="md-ellipsis">
-    Sichern & Wiederherstellen
+    Backup & Restore
   </span>
   
 
@@ -1331,7 +1326,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Sichern & Wiederherstellen
+            Backup & Restore
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1357,7 +1352,7 @@
             
   
   <span class="md-ellipsis">
-    Sicherung und Wiederherstellung von Komponenten
+    Component backup & restore
   </span>
   
 
@@ -1367,7 +1362,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_1">
             <span class="md-nav__icon md-icon"></span>
-            Sicherung und Wiederherstellung von Komponenten
+            Component backup & restore
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1377,11 +1372,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-backup/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sicherung
+    Backup
   </span>
   
 
@@ -1397,11 +1392,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-restore/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-restore/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Wiederherstellung
+    Restore
   </span>
   
 
@@ -1425,11 +1420,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-coldstandby/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-coldstandby/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Cold-standby (rollende Sicherung)
+    Cold-standby (rolling backup)
   </span>
   
 
@@ -1461,7 +1456,7 @@
             
   
   <span class="md-ellipsis">
-    Manuelle Sicherung
+    Manual backups
   </span>
   
 
@@ -1471,7 +1466,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_3">
             <span class="md-nav__icon md-icon"></span>
-            Manuelle Sicherung
+            Manual backups
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1481,11 +1476,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-backup_restore-maildir/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-backup_restore-maildir/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Mail-Verzeichnis
+    Maildir
   </span>
   
 
@@ -1501,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-backup_restore-mysql/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-backup_restore-mysql/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1545,7 +1540,7 @@
             
   
   <span class="md-ellipsis">
-    Interne mailcow Sicherungen
+    mailcow-internal backups
   </span>
   
 
@@ -1555,7 +1550,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_4">
             <span class="md-nav__icon md-icon"></span>
-            Interne mailcow Sicherungen
+            mailcow-internal backups
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1565,11 +1560,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../backup_restore/b_n_r-accidental_deletion/" class="md-nav__link">
+      <a href="../../../backup_restore/b_n_r-accidental_deletion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Versehentlich gelöschte Daten wiederherstellen
+    Recover accidentally deleted data
   </span>
   
 
@@ -1598,35 +1593,37 @@
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Anleitungen/Beispiele
+    Manual/Guides/Examples
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            Anleitungen/Beispiele
+            Manual/Guides/Examples
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1672,7 +1669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1692,11 +1689,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-config/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Konfiguration
+    Configuration
   </span>
   
 
@@ -1712,11 +1709,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    CSS-Überschreibungen
+    CSS overrides
   </span>
   
 
@@ -1732,7 +1729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-netfilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1752,11 +1749,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-notification-templates/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Templates für Benachrichtigungen
+    Notification templates
   </span>
   
 
@@ -1772,7 +1769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-pushover/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1792,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-spamfilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1812,11 +1809,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-sub_addressing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sub-Adressierung
+    Sub-addressing
   </span>
   
 
@@ -1832,11 +1829,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tags/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-tags/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Tags (für Domains und Mailboxen)
+    Tags (for Domains and Mailboxes)
   </span>
   
 
@@ -1852,11 +1849,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-spamalias/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Temporäre E-Mail-Aliase
+    Temporary email aliases
   </span>
   
 
@@ -1872,11 +1869,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-tfa/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Zwei-Faktor Authentifizierung
+    Two-Factor Authentication
   </span>
   
 
@@ -1892,7 +1889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-fido/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-fido/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1956,11 +1953,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-unauthenticated-relaying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unauthentifiziertes Relaying
+    Unauthenticated Relaying
   </span>
   
 
@@ -1976,11 +1973,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-custom_transport/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-custom_transport/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Benutzerdefinierte Transportmaps
+    Custom transport maps
   </span>
   
 
@@ -1996,11 +1993,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-extra_cf/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-extra_cf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    main.cf anpassen/erweitern
+    Customize/Expand main.cf
   </span>
   
 
@@ -2016,11 +2013,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-disable_sender_verification/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-disable_sender_verification/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Überprüfung der Absenderadressen deaktivieren
+    Disable Sender Addresses Verification
   </span>
   
 
@@ -2036,11 +2033,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-attachment_size/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-attachment_size/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Maximale Nachrichtengröße (Größe des Anhangs)
+    Max. message size (attachment size)
   </span>
   
 
@@ -2056,7 +2053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-relayhost/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-relayhost/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2076,11 +2073,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-pflogsumm/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-pflogsumm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Statistik mit pflogsumm
+    Statistics with pflogsumm
   </span>
   
 
@@ -2096,11 +2093,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Postfix/u_e-postfix-postscreen_whitelist/" class="md-nav__link">
+      <a href="../../Postfix/u_e-postfix-postscreen_whitelist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IP in Postscreen auf die Whitelist setzen
+    Whitelist IP in Postscreen
   </span>
   
 
@@ -2160,11 +2157,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Unbound/u_e-unbound-fwd/" class="md-nav__link">
+      <a href="../../Unbound/u_e-unbound-fwd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Verwendung eines externen DNS-Dienstes
+    Using an external DNS service
   </span>
   
 
@@ -2224,11 +2221,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-extra_conf/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-extra_conf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Anpassen/Erweitern von dovecot.conf
+    Customize/Expand dovecot.conf
   </span>
   
 
@@ -2244,11 +2241,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-any_acl/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-any_acl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Aktivierung von "any" ACL-Einstellungen
+    Enable "any" ACL settings
   </span>
   
 
@@ -2264,11 +2261,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-expunge/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-expunge/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Löschen der Mails eines Benutzers
+    Expunge a Users mails
   </span>
   
 
@@ -2284,7 +2281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-fts/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-fts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2304,11 +2301,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-idle_interval/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-idle_interval/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IMAP IDLE-Intervall
+    IMAP IDLE interval
   </span>
   
 
@@ -2324,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-mail-crypt/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-mail-crypt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2344,11 +2341,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-more/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-more/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Weitere Beispiele mit DOVEADM
+    More Examples with DOVEADM
   </span>
   
 
@@ -2364,11 +2361,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-vmail-volume/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-vmail-volume/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Maildir verschieben (vmail)
+    Move Maildir (vmail)
   </span>
   
 
@@ -2384,11 +2381,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-performance/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Performance Optimierungen
+    Performance Optimizations
   </span>
   
 
@@ -2404,11 +2401,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-public_folder/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-public_folder/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Öffentliche Ordner
+    Public folders
   </span>
   
 
@@ -2424,11 +2421,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-static_master/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-static_master/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Statischer Hauptbenutzer
+    Static master user
   </span>
   
 
@@ -2444,11 +2441,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Dovecot/u_e-dovecot-catchall_vacation/" class="md-nav__link">
+      <a href="../../Dovecot/u_e-dovecot-catchall_vacation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Urlaubsantworten für Catchall-Adressen
+    Vacation replies for catchall addresses
   </span>
   
 
@@ -2508,11 +2505,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Nginx/u_e-nginx_webmail-site/" class="md-nav__link">
+      <a href="../../Nginx/u_e-nginx_webmail-site/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Subdomäne webmail.example.org erstellen
+    Create subdomain webmail.example.org
   </span>
   
 
@@ -2528,11 +2525,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Nginx/u_e-nginx_custom/" class="md-nav__link">
+      <a href="../../Nginx/u_e-nginx_custom/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Benutzerdefinierte Seiten
+    Custom sites
   </span>
   
 
@@ -2592,7 +2589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Watchdog/u_e-watchdog-thresholds/" class="md-nav__link">
+      <a href="../../Watchdog/u_e-watchdog-thresholds/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2620,7 +2617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Redis/u_e-redis/" class="md-nav__link">
+      <a href="../../Redis/u_e-redis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2638,17 +2635,200 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../manual-guides/Rspamd/u_e-rspamd/" class="md-nav__link">
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Rspamd
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            Rspamd
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-rspamd-general/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General Settings
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tweaks
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Tweaks
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spam-filter-thresholds-global" class="md-nav__link">
+    Spam filter thresholds (global)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-reject-messages" class="md-nav__link">
+    Custom reject messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discard-instead-of-reject" class="md-nav__link">
+    Discard instead of reject
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u-e-rspamd-work-with-spamdata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Work with Spam Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-rspamd-disable-greylisting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disable Greylisting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u-e-rspamd-add-additional-modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Add Additional Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2696,7 +2876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/ClamAV/u_e-clamav-whitelist/" class="md-nav__link">
+      <a href="../../ClamAV/u_e-clamav-whitelist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2716,11 +2896,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
+      <a href="../../ClamAV/u_e-clamav-additional_dbs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Weitere Datenbanken
+    Additional Databases
   </span>
   
 
@@ -2744,7 +2924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/SOGo/u_e-sogo/" class="md-nav__link">
+      <a href="../../SOGo/u_e-sogo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2800,11 +2980,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/Docker/u_e-docker-cust_dockerfiles/" class="md-nav__link">
+      <a href="../../Docker/u_e-docker-cust_dockerfiles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Dockerfiles anpassen
+    Customize Dockerfiles
   </span>
   
 
@@ -2828,11 +3008,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-why_unbound/" class="md-nav__link">
+      <a href="../../u_e-why_unbound/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Warum unbound?
+    Why unbound?
   </span>
   
 
@@ -2848,7 +3028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-autodiscover_config/" class="md-nav__link">
+      <a href="../../u_e-autodiscover_config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2868,11 +3048,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-80_to_443/" class="md-nav__link">
+      <a href="../../u_e-80_to_443/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HTTP auf HTTPS umleiten
+    Redirect HTTP to HTTPS
   </span>
   
 
@@ -2888,11 +3068,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-reeanble-weak-protocols/" class="md-nav__link">
+      <a href="../../u_e-reeanble-weak-protocols/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    TLS 1.0 und TLS 1.1 wieder aktivieren
+    Re-enable TLS 1.0 and TLS 1.1
   </span>
   
 
@@ -2908,11 +3088,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/u_e-update-hooks/" class="md-nav__link">
+      <a href="../../u_e-update-hooks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Skripte vor und nach Aktualisierungen ausführen
+    Run scripts before and after updates
   </span>
   
 
@@ -2951,7 +3131,7 @@
             
   
   <span class="md-ellipsis">
-    Client-Konfiguration
+    Client Configuration
   </span>
   
 
@@ -2961,7 +3141,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
-            Client-Konfiguration
+            Client Configuration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2971,11 +3151,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client/" class="md-nav__link">
+      <a href="../../../client/client/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Übersicht
+    Overview
   </span>
   
 
@@ -2991,7 +3171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-android/" class="md-nav__link">
+      <a href="../../../client/client-android/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3011,7 +3191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-apple/" class="md-nav__link">
+      <a href="../../../client/client-apple/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3031,7 +3211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-emclient/" class="md-nav__link">
+      <a href="../../../client/client-emclient/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3051,7 +3231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-kontact/" class="md-nav__link">
+      <a href="../../../client/client-kontact/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3071,7 +3251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-outlook/" class="md-nav__link">
+      <a href="../../../client/client-outlook/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3091,7 +3271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-thunderbird/" class="md-nav__link">
+      <a href="../../../client/client-thunderbird/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3111,7 +3291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-windows/" class="md-nav__link">
+      <a href="../../../client/client-windows/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3131,11 +3311,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/client-manual/" class="md-nav__link">
+      <a href="../../../client/client-manual/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Manuelle Konfiguration
+    Manual configuration
   </span>
   
 
@@ -3174,7 +3354,7 @@
             
   
   <span class="md-ellipsis">
-    Anwendungen von Drittanbietern
+    Third party apps
   </span>
   
 
@@ -3184,7 +3364,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
-            Anwendungen von Drittanbietern
+            Third party apps
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3194,11 +3374,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/borgmatic/third_party-borgmatic/" class="md-nav__link">
+      <a href="../../../third_party/borgmatic/third_party-borgmatic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Borgmatic-Sicherung
+    Borgmatic Backup
   </span>
   
 
@@ -3214,7 +3394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/checkmk/u_e-checkmk/" class="md-nav__link">
+      <a href="../../../third_party/checkmk/u_e-checkmk/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3234,7 +3414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/exchange_onprem/third_party-exchange_onprem/" class="md-nav__link">
+      <a href="../../../third_party/exchange_onprem/third_party-exchange_onprem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3254,7 +3434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/gitea/third_party-gitea/" class="md-nav__link">
+      <a href="../../../third_party/gitea/third_party-gitea/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3274,7 +3454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/gogs/third_party-gogs/" class="md-nav__link">
+      <a href="../../../third_party/gogs/third_party-gogs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3294,7 +3474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/mailman3/third_party-mailman3/" class="md-nav__link">
+      <a href="../../../third_party/mailman3/third_party-mailman3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3314,7 +3494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/mailpiler/third_party-mailpiler_integration/" class="md-nav__link">
+      <a href="../../../third_party/mailpiler/third_party-mailpiler_integration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3334,7 +3514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/nextcloud/third_party-nextcloud/" class="md-nav__link">
+      <a href="../../../third_party/nextcloud/third_party-nextcloud/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3354,7 +3534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/portainer/third_party-portainer/" class="md-nav__link">
+      <a href="../../../third_party/portainer/third_party-portainer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3374,7 +3554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../third_party/roundcube/third_party-roundcube/" class="md-nav__link">
+      <a href="../../../third_party/roundcube/third_party-roundcube/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3408,10 +3588,39 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spam-filter-thresholds-global" class="md-nav__link">
+    Spam filter thresholds (global)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-reject-messages" class="md-nav__link">
+    Custom reject messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discard-instead-of-reject" class="md-nav__link">
+    Discard instead of reject
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3429,23 +3638,126 @@
   
 
 
-  <h1>Rspamd UI</h1>
+  <h1>Tweaks</h1>
 
-<p><a href="https://rspamd.com/">Rspamd</a> ist ein einfach zu benutzendes Spam-Filter-Tool, das derzeit mit mailcow installiert ist.</p>
+<h2 id="spam-filter-thresholds-global">Spam filter thresholds (global)<a class="headerlink" href="#spam-filter-thresholds-global" title="Permanent link">&para;</a></h2>
+<p>Each user is able to change <a href="../../mailcow-UI/u_e-mailcow_ui-spamfilter/">their spam rating individually</a>. To define a new <strong>server-wide</strong> limit, edit <code>data/conf/rspamd/local.d/actions.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">reject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span>
+<span class="n">add_header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="n">greylist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+</code></pre></div>
+<p>Save the file and restart "rspamd-mailcow":</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Existing settings of users will not be overwritten!</p>
+</div>
+<p>To reset custom defined thresholds, run:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-umailcow<span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span>mailcow<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39;;&quot;</span>
+<span class="c1"># or:</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-umailcow<span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span>mailcow<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39; and object = &#39;only-this-mailbox@example.org&#39;;&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-umailcow<span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span>mailcow<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39;;&quot;</span>
+<span class="c1"># or:</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-umailcow<span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span>mailcow<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;delete from filterconf where option = &#39;highspamlevel&#39; or option = &#39;lowspamlevel&#39; and object = &#39;only-this-mailbox@example.org&#39;;&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="custom-reject-messages">Custom reject messages<a class="headerlink" href="#custom-reject-messages" title="Permanent link">&para;</a></h2>
+<p>The default spam reject message can be changed by adding a new file <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> with the following content:</p>
+<div class="highlight"><pre><span></span><code>reject_message = &quot;My custom reject message&quot;;
+</code></pre></div>
+<p>Save the file and restart Rspamd:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>While the above works for rejected mails with a high spam score, prefilter reject actions will ignore this setting. For these maps, the multimap module in Rspamd needs to be adjusted:</p>
 <ol>
-<li>Gehen Sie zum mailcow Web-Admin-Interface</li>
-<li>Navigieren Sie zur Registerkarte Zugang.(Zugang &gt; Rspamd UI)</li>
-<li>Ändern Sie das Rspamd UI Passwort</li>
-<li>Gehen Sie in einem Browser zu https://${MAILCOW_HOSTNAME}/rspamd und melden Sie sich an!</li>
+<li>
+<p>Find prefilet reject symbol for which you want change message, to do it run: <code>grep -R "SYMBOL_YOU_WANT_TO_ADJUST" /opt/mailcow-dockerized/data/conf/rspamd/</code></p>
+</li>
+<li>
+<p>Add your custom message as new line:</p>
+<div class="highlight"><pre><span></span><code>GLOBAL_RCPT_BL {
+type = &quot;rcpt&quot;;
+map = &quot;${LOCAL_CONFDIR}/custom/global_rcpt_blacklist.map&quot;;
+regexp = true;
+prefilter = true;
+action = &quot;reject&quot;;
+message = &quot;Sending mail to this recipient is prohibited by postmaster@your.domain&quot;;
+}
+</code></pre></div>
+</li>
+<li>
+<p>Save the file and restart Rspamd:</p>
+</li>
 </ol>
-<p>Weitere Konfigurationsoptionen und Dokumentation finden Sie hier: <a href="https://rspamd.com/webui/">https://rspamd.com/webui/</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="discard-instead-of-reject">Discard instead of reject<a class="headerlink" href="#discard-instead-of-reject" title="Permanent link">&para;</a></h2>
+<p>If you want to silently drop a message, create or edit the file <code>data/conf/rspamd/override.d/worker-proxy.custom.inc</code> and add the following content:</p>
+<div class="highlight"><pre><span></span><code>discard_on_reject = true;
+</code></pre></div>
+<p>Restart Rspamd:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>rspamd-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
-      Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-01-29 23:04:38</span>
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-11-08 15:04:42</span>
       
     
   </small>
@@ -3467,7 +3779,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-  Zurück zum Seitenanfang
+  Back to top
 </button>
         
       </main>
@@ -3550,7 +3862,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
