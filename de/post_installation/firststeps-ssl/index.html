@@ -733,6 +733,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#caa-eintrage-mit-dem-accounturi-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAA-Einträge mit dem accounturi-Parameter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#uberprufen-sie-ihre-konfiguration" class="md-nav__link">
     <span class="md-ellipsis">
       Überprüfen Sie Ihre Konfiguration
@@ -3803,6 +3812,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#caa-eintrage-mit-dem-accounturi-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAA-Einträge mit dem accounturi-Parameter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#uberprufen-sie-ihre-konfiguration" class="md-nav__link">
     <span class="md-ellipsis">
       Überprüfen Sie Ihre Konfiguration
@@ -4066,6 +4084,11 @@ docker restart $(docker ps -qaf name=dovecot-mailcow)
 </div>
 </div>
 </div>
+<h3 id="caa-eintrage-mit-dem-accounturi-parameter">CAA-Einträge mit dem <code>accounturi</code>-Parameter<a class="headerlink" href="#caa-eintrage-mit-dem-accounturi-parameter" title="Permanent link">&para;</a></h3>
+<p>Let's Encrypt ermöglicht es, mithilfe des <code>accounturi</code>-Paramaters in CAA-Einträgen die Zertifikatsausstellung auf spezifische Account-IDs zu beschränken.
+Sie können das Helper-Skript <code>generate_caa_record.py</code> verwenden, um einen CAA-Eintrag mit <code>accounturi</code> zu erstellen, welchen Sie dann bei Ihrem DNS-Anbieter eintragen können:</p>
+<div class="highlight"><pre><span></span><code>./helper-scripts/generate_caa_record.py<span class="w"> </span>--account-key<span class="w"> </span>data/assets/ssl/acme/account.pem<span class="w"> </span>--contact<span class="w"> </span>ihre_acme_email@beispiel.de
+</code></pre></div>
 <h3 id="uberprufen-sie-ihre-konfiguration">Überprüfen Sie Ihre Konfiguration<a class="headerlink" href="#uberprufen-sie-ihre-konfiguration" title="Permanent link">&para;</a></h3>
 <p>Führen Sie den folgenden Befehl aus, um herauszufinden, warum eine Validierung fehlschlägt:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">docker compose (Plugin)</label><label for="__tabbed_12_2">docker-compose (Standalone)</label></div>
@@ -4105,7 +4128,7 @@ bash<span class="w"> </span>helper-scripts/expiry-dates.sh
   <small>
     
       Letztes Update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-09 14:53:39</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-11-21 11:40:10</span>
       
     
   </small>

@@ -733,6 +733,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#use-caa-records-with-the-accounturi-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use CAA records with the accounturi parameter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#check-your-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Check your configuration
@@ -3803,6 +3812,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#use-caa-records-with-the-accounturi-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use CAA records with the accounturi parameter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#check-your-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Check your configuration
@@ -4066,6 +4084,11 @@ docker restart $(docker ps -qaf name=dovecot-mailcow)
 </div>
 </div>
 </div>
+<h3 id="use-caa-records-with-the-accounturi-parameter">Use CAA records with the <code>accounturi</code> parameter<a class="headerlink" href="#use-caa-records-with-the-accounturi-parameter" title="Permanent link">&para;</a></h3>
+<p>Let's Encrypt allows restricting certificate issuance to specific account IDs via the <code>accounturi</code> parameter in CAA records. You can use the
+<code>generate_caa_record.py</code> helper script to generate a CAA record with <code>accounturi</code>, which you can then enter with your DNS provider:</p>
+<div class="highlight"><pre><span></span><code>./helper-scripts/generate_caa_record.py<span class="w"> </span>--account-key<span class="w"> </span>data/assets/ssl/acme/account.pem<span class="w"> </span>--contact<span class="w"> </span>your_acme_email@example.com
+</code></pre></div>
 <h3 id="check-your-configuration">Check your configuration<a class="headerlink" href="#check-your-configuration" title="Permanent link">&para;</a></h3>
 <p>Run the command below to find out why a validation fails:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">docker compose (Plugin)</label><label for="__tabbed_12_2">docker-compose (Standalone)</label></div>
@@ -4105,7 +4128,7 @@ bash<span class="w"> </span>helper-scripts/expiry-dates.sh
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-09 14:53:39</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-11-21 11:40:10</span>
       
     
   </small>
