@@ -1,7 +1,7 @@
 !!! info
 	You need the mailcow Version 2022-05 at least for this feature.<br>
 	If you don´t have the Version installed please consider a update.<br>
-	For more informations about a mailcow update please take a look at the [Update](../../i_u_m/i_u_m_update.md) section here in the docs.
+	For more informations about a mailcow update please take a look at the [Update](../../maintenance/update.md) section here in the docs.
 	
 ### What are Tags designed for?
 With the Tags you can easily sort your Domains and Mailboxes by the tags instead of their name.

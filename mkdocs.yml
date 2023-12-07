@@ -37,6 +37,7 @@ theme:
     - navigation.tracking
     - announce.dismiss
     - content.tabs.link
+    - content.tooltips
     - search.share
     - search.highlight
 
@@ -66,14 +67,24 @@ markdown_extensions:
 
 nav:
   - 'Information & Support': 'index.md'
-  - 'Prerequisites':
-    - 'Prepare your system': 'prerequisite/prerequisite-system.md'
-    - 'DNS setup': 'prerequisite/prerequisite-dns.md'
-  - 'Installation, Update & Migration':
-    - 'Installation': 'i_u_m/i_u_m_install.md'
-    - 'Update': 'i_u_m/i_u_m_update.md'
-    - 'Migration': 'i_u_m/i_u_m_migration.md'
-    - 'Deinstallation': 'i_u_m/i_u_m_deinstall.md'
+  - 'Get started':
+    - 'Prepare your system': 'getstarted/prerequisite-system.md'
+    - 'DNS setup': 'getstarted/prerequisite-dns.md'
+    - 'Install mailcow': 'getstarted/install.md'
+  - 'Maintaining mailcow':
+    - 'Update': 'maintenance/update.md'
+    - 'Migration': 'maintenance/migration.md'
+    - 'Deinstallation': 'maintenance/deinstall.md'
+  - 'Backup & Restore':
+    - 'Component backup & restore':
+      - 'Backup': 'backup_restore/b_n_r-backup.md'
+      - 'Restore': 'backup_restore/b_n_r-restore.md'
+    - 'Cold-standby (rolling backup)': 'backup_restore/b_n_r-coldstandby.md'
+    - 'Manual backups':
+      - 'Maildir': 'backup_restore/b_n_r-backup_restore-maildir.md'
+      - 'MySQL (mysqldump)': 'backup_restore/b_n_r-backup_restore-mysql.md'
+    - 'mailcow-internal backups':
+      - 'Recover accidentally deleted data': 'backup_restore/b_n_r-accidental_deletion.md'
   - 'Post Installation Tasks':
     - 'Advanced SSL': 'post_installation/firststeps-ssl.md'
     - 'Disable IPv6': 'post_installation/firststeps-disable_ipv6.md'
@@ -107,16 +118,6 @@ nav:
     - 'Resend Quarantine Notifications': 'troubleshooting/debug-resend-quarantine-notifications.md'
     - 'Reset Passwords (incl. SQL)': 'troubleshooting/debug-reset_pw.md'
     - 'Reset TLS certificates': 'troubleshooting/debug-reset_tls.md'
-  - 'Backup & Restore':
-    - 'Component backup & restore':
-      - 'Backup': 'backup_restore/b_n_r-backup.md'
-      - 'Restore': 'backup_restore/b_n_r-restore.md'
-    - 'Cold-standby (rolling backup)': 'backup_restore/b_n_r-coldstandby.md'
-    - 'Manual backups':
-      - 'Maildir': 'backup_restore/b_n_r-backup_restore-maildir.md'
-      - 'MySQL (mysqldump)': 'backup_restore/b_n_r-backup_restore-mysql.md'
-    - 'mailcow-internal backups':
-      - 'Recover accidentally deleted data': 'backup_restore/b_n_r-accidental_deletion.md'
   - 'Manual/Guides/Examples':
     - 'mailcow UI':
       - 'Blacklist / Whitelist': 'manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl.md'
@@ -219,12 +220,23 @@ plugins:
           nav_translations:
           #### Begin of german translation
               'Information & Support': 'Informationen & Support'
-              ### Prerequisites Section
-              'Prerequisites': 'Voraussetzungen'
+              ### Getstarted Section
+              'Get started': 'Loslegen'
               'Prepare your system': 'Systemvoraussetzungen'
               'DNS setup': 'DNS Einstellungen'
-              ### Installation Section
-              'Installation, Update & Migration': 'Installation, Update und Migration'
+              'Install mailcow': 'mailcow Installieren'
+              ### Maintaining Section
+              'Maintaining mailcow': 'mailcow warten (Updates usw.)'
+              ### Backup & Restore Section
+              'Backup & Restore': 'Sichern & Wiederherstellen'
+              'Component backup & restore' : 'Sicherung und Wiederherstellung von Komponenten'
+              'Backup': 'Sicherung'
+              'Restore': 'Wiederherstellung'
+              'Cold-standby (rolling backup)' : 'Cold-standby (rollende Sicherung)'
+              'Manual backups' : 'Manuelle Sicherung'
+              'Maildir' : 'Mail-Verzeichnis'
+              'mailcow-internal backups' : 'Interne mailcow Sicherungen'
+              'Recover accidentally deleted data' : 'Versehentlich gelöschte Daten wiederherstellen'
               ### Post Installation Tasks Section
               'Post Installation Tasks': 'Post-Installationsaufgaben'
               'Advanced SSL': 'Erweitertes SSL'
@@ -254,16 +266,6 @@ plugins:
               'Resend Quarantine Notifications' : 'Erneutes Senden von Quarantäne-Benachrichtigungen'
               'Reset Passwords (incl. SQL)': 'Passwörter zurücksetzen (inkl. SQL)'
               'Reset TLS certificates': 'TLS-Zertifikate zurücksetzen'
-              ### Backup & Restore Section
-              'Backup & Restore': 'Sichern & Wiederherstellen'
-              'Component backup & restore' : 'Sicherung und Wiederherstellung von Komponenten'
-              'Backup': 'Sicherung'
-              'Restore': 'Wiederherstellung'
-              'Cold-standby (rolling backup)' : 'Cold-standby (rollende Sicherung)'
-              'Manual backups' : 'Manuelle Sicherung'
-              'Maildir' : 'Mail-Verzeichnis'
-              'mailcow-internal backups' : 'Interne mailcow Sicherungen'
-              'Recover accidentally deleted data' : 'Versehentlich gelöschte Daten wiederherstellen'
               ### Manual/Guides/Examples Section
               'Manual/Guides/Examples': 'Anleitungen/Beispiele'
                 ### mailcow UI Subsection
@@ -365,16 +367,16 @@ plugins:
         'firststeps-snat.md': 'post_installation/firststeps-snat.en.md'
         'firststeps-ssl.md': 'post_installation/firststeps-ssl.en.md'
         'firststeps-sync_jobs_migration.md': 'post_installation/firststeps-sync_jobs_migration.en.md'
-        'i_u_m_deinstall.md': 'i_u_m/i_u_m_deinstall.en.md'
-        'i_u_m_install.md': 'i_u_m/i_u_m_install.en.md'
-        'i_u_m_migration.md': 'i_u_m/i_u_m_migration.en.md'
-        'i_u_m_update.md': 'i_u_m/i_u_m_update.en.md'
-        'mailcow-dockerized-docs/i_u_m/i_u_m_install.md': 'i_u_m/i_u_m_install.en.md' # https://github.com/mailcow/mailcow-dockerized/pull/5196
+        'deinstall.md': 'maintenance/deinstall.en.md'
+        'install.md': 'getstarted/install.en.md'
+        'migration.md': 'maintenance/migration.en.md'
+        'update.md': 'maintenance/update.en.md'
+        'mailcow-dockerized-docs/i_u_m/i_u_m_install.md': 'getstarted/install.en.md' # https://github.com/mailcow/mailcow-dockerized/pull/5196
         'model-acl.md': 'models/model-acl.en.md'
         'model-passwd.md': 'models/model-passwd.en.md'
         'model-sender_rcv.md': 'models/model-sender_rcv.en.md'
-        'prerequisite-dns.md': 'prerequisite/prerequisite-dns.en.md'
-        'prerequisite-system.md': 'prerequisite/prerequisite-system.en.md'
+        'prerequisite-dns.md': 'getstarted/prerequisite-dns.en.md'
+        'prerequisite-system.md': 'getstarted/prerequisite-system.en.md'
         'third_party-borgmatic.md': 'third_party/borgmatic/third_party-borgmatic.en.md'
         'third_party-exchange_onprem.md': 'third_party/exchange_onprem/third_party-exchange_onprem.en.md'
         'third_party-gitea.md': 'third_party/gitea/third_party-gitea.en.md'
@@ -433,14 +435,14 @@ plugins:
         'client.md': 'client/client.en.md'
         'debug.md': 'troubleshooting/debug.en.md'
         'disable-greylisting.md': 'manual-guides/Rspamd/u_e-rspamd-disable-greylisting.en.md'
-        'install.md': 'i_u_m/i_u_m_install.en.md'
-        'migration.md': 'i_u_m/i_u_m_migration.en.md'
+        'install.md': 'getstarted/install.en.md'
+        'migration.md': 'maintenance/migration.en.md'
         'restore.md': 'backup_restore/b_n_r-restore.en.md'
         'rspamd-ui.md': 'manual-guides/Rspamd/u_e-rspamd-general.en.md'
         'rspamd.md': 'manual-guides/Rspamd/u_e-rspamd-general.en.md'
         'unauthenticated-relaying.md': 'manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.en.md'
-        'uninstall.md': 'i_u_m/i_u_m_deinstall.en.md'
-        'update.md': 'i_u_m/i_u_m_update.en.md'
+        'uninstall.md': 'maintenance/deinstall.en.md'
+        'update.md': 'maintenance/update.en.md'
   - search:
 #      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang:

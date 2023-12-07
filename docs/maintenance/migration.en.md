@@ -5,7 +5,7 @@
     Alternatively, you can use the `./helper-scripts/backup_and_restore.sh` script to create a full backup on the source machine, then install mailcow on the target machine as usual, copy over your `mailcow.conf` and use the same script to restore your backup to the target machine.
 
 **1\.**
-Follow the [installation guide](i_u_m_install.en.md) to install Docker and Compose.
+Follow the [installation guide](../getstarted/install.en.md) to install Docker and Compose.
 
 **2\.** Stop Docker and assure Docker has stopped:
 ```

@@ -5,7 +5,7 @@
     Alternativ können Sie das Skript `./helper-scripts/backup_and_restore.sh` verwenden, um ein vollständiges Backup auf der Quellmaschine zu erstellen, dann installieren Sie mailcow auf der Zielmaschine wie gewohnt, kopieren Sie Ihre `mailcow.conf` und verwenden Sie das gleiche Skript, um Ihr Backup auf der Zielmaschine wiederherzustellen.
 
 **1\.**
-Befolgen Sie die [Installationsanleitung](i_u_m_install.de.md) von Docker und Compose.
+Befolgen Sie die [Installationsanleitung](../getstarted/install.de.md) von Docker und Compose.
 
 **2\.** Stoppen Sie Docker und stellen Sie sicher, dass Docker gestoppt wurde:
 ```

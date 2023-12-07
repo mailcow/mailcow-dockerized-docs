@@ -6,22 +6,25 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 !!! info
     - mailcow: dockerized erfordert, dass [einige Ports](#standard-ports) für eingehende Verbindungen offen sind, also stellen Sie sicher, dass Ihre Firewall diese nicht blockiert.
     - Stellen Sie sicher, dass keine andere Anwendung die Konfiguration von mailcow stört, wie z.B. ein anderer Maildienst
-    - Ein korrektes DNS-Setup ist entscheidend für jedes gute Mailserver-Setup, also stellen Sie bitte sicher, dass Sie zumindest die [basics](../prerequisite/prerequisite-dns.de.md#die-minimale-dns-konfiguration) abgedeckt haben, bevor Sie beginnen!
+    - Ein korrektes DNS-Setup ist entscheidend für jedes gute Mailserver-Setup, also stellen Sie bitte sicher, dass Sie zumindest die [basics](../getstarted/prerequisite-dns.de.md#die-minimale-dns-konfiguration) abgedeckt haben, bevor Sie beginnen!
     - Stellen Sie sicher, dass Ihr System ein korrektes Datum und eine korrekte [Zeiteinstellung](#datum-und-uhrzeit) hat. Dies ist entscheidend für verschiedene Komponenten wie die Zwei-Faktor-TOTP-Authentifizierung.
 
 ## Minimale Systemressourcen
 
-!!! failure "Nicht unterstützt"
-	**OpenVZ, Virtuozzo und LXC**
+!!! success "Kompatibilität hergestellt"
+    Seit XXX ist mailcow endlich auch auf ARM64 Plattformen verfügbar! Komplett! Ohne Einschränkungen der Funktionalität!
 
 Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:
 
-| Ressource | mailcow: dockerized |
+| Ressource | Minimale Anforderung |
 | ----------------------- | ------------------------------------------------ |
 | CPU | 1 GHz |
 | RAM | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
 | Festplatte | 20 GiB (ohne Emails) |
-| Systemtyp | x86_64 |
+| Architektur | x86_64, ARM64 :warning:{ title="Frisch Released, Fehler können noch existieren"} |
+
+!!! failure "Nicht unterstützt"
+	**OpenVZ, Virtuozzo und LXC**
 
 ClamAV und Solr können sehr viel Arbeitspeicher verbrauchen. Sie können diese in der `mailcow.conf` durch die Einstellungen `SKIP_CLAMD=y` und `SKIP_SOLR=y` jedoch auch deaktivieren.
 
@@ -199,4 +202,4 @@ Sie können außerdem die [cloud-init Netzwerkänderungen deaktivieren.](https:/
 
 ## MTU
 
-Besonders relevant für OpenStack-Benutzer: Überprüfen Sie Ihre MTU und setzen Sie sie entsprechend in docker-compose.yml. Siehe [Problebehandlungen](../i_u_m/i_u_m_install.de.md#benutzer-mit-einer-mtu-ungleich-1500-zb-openstack) in unseren Installationsanleitungen.
+Besonders relevant für OpenStack-Benutzer: Überprüfen Sie Ihre MTU und setzen Sie sie entsprechend in docker-compose.yml. Siehe [Problebehandlungen](../getstarted/install.de.md#benutzer-mit-einer-mtu-ungleich-1500-zb-openstack) in unseren Installationsanleitungen.
