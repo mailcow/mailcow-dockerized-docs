@@ -110,7 +110,7 @@ Neben den offensichtlichen neuerungen welche sowieso im nächsten Major Update e
 Der Vorgang ist relativ simpel. Mit dem 2022-08 Update (ein Update auf die Version voraussgesetzt) ist es möglich die `update.sh` mit dem Parameter `--nightly` zu starten.
 
 !!! danger "Achtung"
-        Bitte machen Sie vorher ein Backup oder folgen Sie dem Abschnitt [Best Practice Nightly Update](#best-practice-nightly-update) bevor Sie auf die Nightly Builds von mailcow wechseln. Wir sind für keinerlei Datenverluste/korruptionen verantwortlich, also arbeiten Sie mit bedacht!
+    Bitte machen Sie vorher ein Backup oder folgen Sie dem Abschnitt [Best Practice Nightly Update](#best-practice-nightly-update) bevor Sie auf die Nightly Builds von mailcow wechseln. Wir sind für keinerlei Datenverluste/korruptionen verantwortlich, also arbeiten Sie mit bedacht!
 
 Das Skript wird nun den Branch wechseln mit `git checkout nightly` d.h. es wird auch wieder nach den IPv6 Einstellungen fragen. Das ist aber normal.
 
@@ -119,7 +119,7 @@ Sollte alles problemlos geklappt haben (wofür wir ja auch vorsichtshalber ein B
 
 ### Best Practice Nightly Update
 !!! info
-        Wir empfehlen die Benutzung des Nightly Updates nur dann, wenn Ihr eine weitere Maschine oder VM besitzt und diese **NICHT** Produktiv nutzt.
+    Wir empfehlen die Benutzung des Nightly Updates nur dann, wenn Ihr eine weitere Maschine oder VM besitzt und diese **NICHT** Produktiv nutzt.
 
 1. Das [Cold-Standby Skript](../backup_restore/b_n_r-coldstandby.de.md) nutzen um die Maschine **vor** dem Schwenk auf die Nightly Builds auf ein anderes System zu kopieren.
 2. Das `update.sh` Skript auf der neuen Maschine mit dem Parameter `--nightly` ausführen und bestätigen.
