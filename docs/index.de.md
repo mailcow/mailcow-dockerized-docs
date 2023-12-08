@@ -7,7 +7,7 @@
 
 ## Was ist mailcow: dockerized?
 
-!!! question "Frage"
+??? question "Frage"
 	Mailcow, MailCow oder doch mailcow? Wie heißt das Projekt nun genau?
 
 	Richtig: **mailcow**, denn mailcow ist eine eingetragene Wortmarke mit kleinem m :grin:
