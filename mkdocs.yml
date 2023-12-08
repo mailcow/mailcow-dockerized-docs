@@ -444,10 +444,14 @@ plugins:
         'uninstall.md': 'maintenance/deinstall.en.md'
         'update.md': 'maintenance/update.en.md'
   - search:
-#      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang:
          - en
          - de
+      pipeline:
+        - stemmer
+        - stopWordFilter
+        - trimmer
   - social
   - glightbox
 
