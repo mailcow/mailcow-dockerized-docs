@@ -52,6 +52,7 @@ Bearbeiten Sie diese Datei und ändern Sie die exportierten Variablen:
 export REMOTE_SSH_KEY=/pfad/zum/keyfile
 export REMOTE_SSH_PORT=22
 export REMOTE_SSH_HOST=mailcow-backup.host.name
+#export REMOTE_HOST_DIFFERENT_ARCH=y # Uncomment if you want to create your coldstandby on a different arch.
 ```
 
 Der Schlüssel muss im Besitz von root sein und darf nur von diesem gelesen werden können.
@@ -62,6 +63,14 @@ Das Ziel muss über Docker und docker compose **v2** verfügen.
 Das Skript wird Fehler automatisch erkennen und sich beenden.
 
 Sie können die Verbindung testen, indem Sie `ssh mailcow-backup.host.name -p22 -i /path/to/keyfile` ausführen.
+
+??? warning "Wichtig für den Wechsel auf eine andere Architektur"
+
+    Wenn Sie planen mit dem Cold Standby Skript eine Migration von x86 auf ARM64 bzw. umgekehrt zu machen, kommentieren Sie einfach die Variable `REMOTE_HOST_DIFFERENT_ARCH` ein bzw. ändern Sie den Wert von `n` (für nein) auf `y` (für yes bzw. ja). Das Skript wird sich dementsprechend verhalten und betroffene Volumes im Sync auslassen.
+
+    Dies hat den Hintergrund, dass Rspamd Regexp Einträge von unseren Konfigurationen auf die entsprechende Plattform Kompiliert und bei einem Plattform Wechsel diese Cache Dateien nicht gelesen werden können. Rspamd würde daraufhin abstürzen und eine sinnvolle Nutzung mailcow's damit nicht ermöglichen. Deswegen lassen wir das Rspamd Volume bei der Aktivierung dieser Variable aus.
+
+    **Keine Sorge!** Rspamd wird trotzdem nach der Migration korrekt funktionieren, da es diese Cache Dateien selbstständig für die neue Plattform generiert.
 
 ## Backup und Aktualisierung des Cold-Standby
 
