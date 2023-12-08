@@ -50,6 +50,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.mark
+  - pymdownx.details
   - pymdownx.tilde
   - pymdownx.extra
   - pymdownx.betterem
