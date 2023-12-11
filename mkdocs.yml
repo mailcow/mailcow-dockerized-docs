@@ -38,6 +38,7 @@ theme:
     - announce.dismiss
     - content.tabs.link
     - content.tooltips
+    - content.code.copy
     - search.share
     - search.highlight
 
