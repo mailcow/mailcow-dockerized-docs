@@ -98,7 +98,7 @@ Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens 
 
 **nightly (instabile Updates)**: Diese Updates sind **NICHT** für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.
 
-## NEU: Nightly Updates beziehen
+## Nightly Updates beziehen
 ### Infos zu den Nightly Updates
 Seit dem 2022-08 Update gibt es die Möglichkeit die Update quellen zu ändern. Bisher diente der master Branch auf GitHub als einzige (offizieller) Update Quelle. Mit dem August 2022 Update gibt es aber nun noch den Nightly Branch welcher instabile und größere Änderungen zum testen und Feedback geben enthält.
 
