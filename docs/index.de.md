@@ -16,24 +16,27 @@ mailcow: dockerized ist eine Open-Source Groupware/E-Mail Suite auf Docker Basis
 
 Dabei setzt mailcow auf viele bekannte und lang bewertete Komponenten, welche im Zusammenspiel einen Rund um Sorglosen E-Mail Server ergeben.
 
-Jeder Container repräsentiert eine einzelne Anwendung, die in einem überbrückten (Bridged) Netzwerk verbunden sind.
+Jeder Container repräsentiert eine einzelne Anwendung, die in einem überbrückten (Bridged) Netzwerk verbunden sind:
 
-- [ACME](https://letsencrypt.org/) (Automatische Generation von Let's Encrypt Zertifikaten)
-- [ClamAV](https://www.clamav.net/) (Antiviren Scanner) (optional)
-- [Dovecot](https://www.dovecot.org/) (IMAP/POP Server zum Abrufen der E-Mails)
-- [MariaDB](https://mariadb.org/) (Datenbank zum Speichern der Nutzer Informationen u.w.)
-- [Memcached](https://www.memcached.org/) (Cache für den Webmailer SOGo)
-- [Netfilter](https://www.netfilter.org/) (Fail2ban-ähnliche Integration von [@mkuron](https://github.com/mkuron))
-- [Nginx](https://nginx.org/) (Webserver für die mailcow UI)
-- [Oletools](https://github.com/decalage2/oletools) über [Olefy](https://github.com/HeinleinSupport/olefy) (Analyse von Office Dokumenten nach Viren, Makros etc.)
-- [PHP](https://php.net/) (Programmiersprache der meisten Webbasierten mailcow Aktionen)
-- [Postfix](http://www.postfix.org/) (Empfänger/Sender für den E-Mail-Verkehr im Internet)
-- [Redis](https://redis.io/) (Speicher für Spaminformationen, DKIM Schlüssel u.w.)
-- [Rspamd](https://www.rspamd.com/) (Spamfilter mit automatischem Lernen von Spammails)
-- [SOGo](https://sogo.nu/) (Integrierter Webmailer und Cal-/Carddav Schnittstelle)
-- [Solr](https://solr.apache.org/) (Voll-Text-Suche für IMAP Verbindungen zum schnellen durchsuchen von E-Mails) (optional)
-- [Unbound](https://unbound.net/) (Integrierter DNS-Server zum Verifizieren von DNSSEC u.w)
-- Ein Watchdog für die grundlegende Überwachung des Containerstatus innerhalb von mailcow
+<div class="grid cards" markdown>
+
+- :simple-letsencrypt: [__ACME__](https://letsencrypt.org/) Automatische Generation von Let's Encrypt Zertifikaten
+- :fontawesome-solid-file-shield: [__ClamAV__](https://www.clamav.net/) Antiviren Scanner (optional)
+- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP Server zum Abrufen der E-Mails
+- :simple-mariadb: [__MariaDB__](https://mariadb.org/) Datenbank zum Speichern der Nutzer Informationen u.w.
+- :fontawesome-solid-memory: [__Memcached__](https://www.memcached.org/) Cache für den Webmailer SOGo
+- :fontawesome-solid-ban: __Netfilter__ Fail2ban-ähnliche Integration von [@mkuron](https://github.com/mkuron)
+- :simple-nginx: [__Nginx__](https://nginx.org/) Webserver für Komponenten des Stacks
+- :material-microsoft-office: [__Olefy__](https://github.com/HeinleinSupport/olefy) Analyse von Office Dokumenten nach Viren, Makros etc.
+- :simple-php: [__PHP__](https://php.net/) Programmiersprache der meisten Webbasierten mailcow Applikationen
+- :material-email-newsletter: [__Postfix__](http://www.postfix.org/) MTA (Mail Transfer Agent) für den E-Mail-Verkehr im Internet
+- :simple-redis: [__Redis__](https://redis.io/) Speicher für Spaminformationen, DKIM Schlüssel u.w.
+- :fontawesome-solid-trash-can: [__Rspamd__](https://www.rspamd.com/) Spamfilter mit automatischem Lernen von Spammails
+- :material-calendar: [__SOGo__](https://sogo.nu/) Integrierter Webmailer und Cal-/Carddav Schnittstelle
+- :simple-apachesolr: [__Solr__](https://solr.apache.org/) Voll-Text-Suche für IMAP Verbindungen zum schnellen durchsuchen von E-Mails (Deprecated) (Optional)
+- :material-dns: [__Unbound__](https://unbound.net/) Integrierter DNS-Server zum Verifizieren von DNSSEC u.w
+- :material-watch: __Watchdog__ Für die grundlegende Überwachung der Containerstatus innerhalb von mailcow
+</div>
 
 Doch das Herzstück bzw. das, was mailcow besonders macht, ist die grafische Weboberfläche, die **mailcow UI**.
 
