@@ -447,7 +447,7 @@ plugins:
          - en
          - de
   - social
-
+  - glightbox
 
 extra:
   social:
