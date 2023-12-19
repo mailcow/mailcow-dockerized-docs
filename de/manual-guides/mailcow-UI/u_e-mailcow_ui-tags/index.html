@@ -77,7 +77,18 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -3825,11 +3836,11 @@ Für weitere Informationen bezüglich dem Update Prozess schauen Sie <a href="..
 <h3 id="wo-lassen-sich-die-tags-finden">Wo lassen sich die Tags finden?<a class="headerlink" href="#wo-lassen-sich-die-tags-finden" title="Permanent link">&para;</a></h3>
 <p>Die Tags befinden sich in der Domain/Mailbox Sektion der mailcow UI.
 Um sie zu sehen, klicken Sie einfach auf das kleine Plus-Symbol auf der linken Seite Ihrer Domain/Mailbox (das folgende Bild zeigt das Domain-Ribbon-Menü):
-<img alt="Domain/Mailbox Tags Ribbon" src="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" /></p>
+<a class="glightbox" href="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Domain/Mailbox Tags Ribbon" src="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" /></a></p>
 <h3 id="wie-kann-ich-ein-tag-hinzufugenentfernen">Wie kann ich ein Tag hinzufügen/entfernen?<a class="headerlink" href="#wie-kann-ich-ein-tag-hinzufugenentfernen" title="Permanent link">&para;</a></h3>
 <p>Sie können bei der Erstellung einer neuen Domain/eines neuen Postfachs einfach ein Tag hinzufügen/entfernen. Sie können sie auch hinzufügen/entfernen, wenn Sie Ihre gewünschte Domain/Mailbox bearbeiten.</p>
 <p>Es sieht ähnlich aus wie hier (das folgende Bild zeigt den Bereich zur Bearbeitung der Domäne):</p>
-<p><img alt="Domain/Mailbox Tags" src="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" /></p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Domain/Mailbox Tags" src="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" /></a></p>
 <h3 id="wie-kann-ich-nach-einem-tag-suchen">Wie kann ich nach einem Tag suchen?<a class="headerlink" href="#wie-kann-ich-nach-einem-tag-suchen" title="Permanent link">&para;</a></h3>
 <p>Geben Sie einfach den Tag-Namen in die Suchleiste im Bereich Domain/Postfach ein und warten Sie, bis der Vorgang abgeschlossen ist.</p>
 <p>Sie können sogar angeben, ob Sie nur nach Tags suchen möchten.</p>
@@ -3970,5 +3981,5 @@ Um sie zu sehen, klicken Sie einfach auf das kleine Plus-Symbol auf der linken S
         <script src="../../../../assets/javascripts/client.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

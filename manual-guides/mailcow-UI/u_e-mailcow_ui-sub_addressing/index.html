@@ -77,7 +77,18 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -3761,7 +3772,7 @@
   <h1>Sub-addressing</h1>
 
 <p>Mailbox users can tag their mail address like in <code>me+facebook@example.org</code>. They can control the tag handling in the users <strong>mailcow UI</strong> panel under <code>Mailbox &gt; Settings</code>.
-<img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></p>
+<a class="glightbox" href="../../../assets/images/manual-guides/mailcow-tagging.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></a></p>
 <p><em><code>sub-addressing</code> (RFC 5233) or <code>plus addressing</code> also known as tagging (do not mix with <a href="../u_e-mailcow_ui-tags/">Tags</a>)</em></p>
 <h3 id="available-actions">Available Actions<a class="headerlink" href="#available-actions" title="Permanent link">&para;</a></h3>
 <p>1. Move this message to a sub folder "facebook" (will be created lower case if not existing)</p>
@@ -3918,5 +3929,5 @@ index e047136e..933c4137 100644
         <script src="../../../assets/javascripts/client.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

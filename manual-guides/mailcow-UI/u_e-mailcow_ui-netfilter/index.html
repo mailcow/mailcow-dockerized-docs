@@ -77,7 +77,18 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -1853,6 +1864,15 @@
   <a href="#change-netfilter-regex" class="md-nav__link">
     <span class="md-ellipsis">
       Change Netfilter Regex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#provide-netfilter-decisions-via-url-as-source-for-firewall-block-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provide Netfilter decisions via URL as source for firewall block rules
     </span>
   </a>
   
@@ -3758,6 +3778,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#provide-netfilter-decisions-via-url-as-source-for-firewall-block-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provide Netfilter decisions via URL as source for firewall block rules
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3781,7 +3810,7 @@
 <h2 id="change-netfilter-ban-settings">Change Netfilter Ban Settings<a class="headerlink" href="#change-netfilter-ban-settings" title="Permanent link">&para;</a></h2>
 <p>To change the Netfilter settings in general please navigate to: <code>Configuration -&gt; Configuration &amp; Details -&gt; Configuration -&gt; Fail2ban parameters</code>.</p>
 <p>You should now see a familar interface:</p>
-<p><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" /></p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" /></a></p>
 <p>Here you can set several options regarding the bans itself. 
 For example the max. Ban time or the max. attempts before a ban is executed.</p>
 <h2 id="change-netfilter-regex">Change Netfilter Regex<a class="headerlink" href="#change-netfilter-regex" title="Permanent link">&para;</a></h2>
@@ -3792,12 +3821,30 @@ If you are not sure what you are doing there, we can only advise you not to atte
 </div>
 <p>In addition to the ban settings, you can also define what exactly should be used from the mailcow container logs to ban a possible attacker.</p>
 <p>To do this, you must first expand the regex field, which will look something like this:</p>
-<p><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" /></p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" /></a></p>
 <p>There you can now create various new filter rules.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>As updates progress, it is possible that new Netfilter regex rules will be added or removed. <br>
 If this is the case, it is recommended to reset the Netfilter regex rules by clicking on <code>Reset to default</code>.</p>
+</div>
+<h2 id="provide-netfilter-decisions-via-url-as-source-for-firewall-block-rules">Provide Netfilter decisions via URL as source for firewall block rules<a class="headerlink" href="#provide-netfilter-decisions-via-url-as-source-for-firewall-block-rules" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>However, the option is deactivated by default and must first be activated by you.</p>
+</div>
+<p>Since the 2023-12 update, mailcow offers the possibility to export the netfilter decisions as an external endpoint in order to be able to integrate the data from it into an external firewall system, quasi as a blocklist source.</p>
+<details class="question">
+<summary>What does this function do for me?</summary>
+<p>With this functionality, you can forward the IPs marked as blocked by Netfilter to an endpoint, which can then process these IPs. For example, an OPNsense firewall can dynamically load this list.</p>
+</details>
+<p>Let's take a look at these settings:</p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Image of the new Netfilter settings, box behind the item Manage Fail2Ban externally. Marking on the URL to the respective banlist. Arrow points to Reload button for the generation of a new URL" src="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png" /></a></p>
+<p>To activate the general function, the checkbox <code>Manage Fail2Ban externally</code> must be checked.</p>
+<p>As soon as this is done, the URL (point 2) can be copied and pasted into the respective endpoint.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>The URL can be regenerated if required. To do this, click on the symbol next to Copy <code>Reload symbol</code>.</p>
 </div>
 
 
@@ -3819,7 +3866,7 @@ If this is the case, it is recommended to reset the Netfilter regex rules by cli
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2022-05-05 21:41:23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-12-19 10:50:12</span>
   </span>
 
     
@@ -3936,5 +3983,5 @@ If this is the case, it is recommended to reset the Netfilter regex rules by cli
         <script src="../../../assets/javascripts/client.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

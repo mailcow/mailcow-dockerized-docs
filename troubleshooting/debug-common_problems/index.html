@@ -77,7 +77,18 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -3923,7 +3934,7 @@
 <p>Here we list common problems and possible solutions:</p>
 <h2 id="mail-loops-back-to-myself">Mail loops back to myself<a class="headerlink" href="#mail-loops-back-to-myself" title="Permanent link">&para;</a></h2>
 <p>Please check in your mailcow UI if you made the domain a <strong>backup MX</strong>:</p>
-<p><img alt="Check your MX Backup settings" src="../../assets/images/troubleshooting/mailcow-backupmx.png" /></p>
+<p><a class="glightbox" href="../../assets/images/troubleshooting/mailcow-backupmx.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Check your MX Backup settings" src="../../assets/images/troubleshooting/mailcow-backupmx.png" /></a></p>
 <h2 id="i-can-receive-but-not-send-mails">I can receive but not send mails<a class="headerlink" href="#i-can-receive-but-not-send-mails" title="Permanent link">&para;</a></h2>
 <p>There are a lot of things that could prevent you from sending mail:</p>
 <ul>
@@ -4158,5 +4169,5 @@ rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/rspamd/*.hsmp
         <script src="../../assets/javascripts/client.js"></script>
       
     
-  </body>
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
