@@ -3856,15 +3856,15 @@ exit
 <h2 id="screenshots">Screenshots<a class="headerlink" href="#screenshots" title="Permanent link">&para;</a></h2>
 <h3 id="keine-updates-verfugbar">Keine Updates verfügbar<a class="headerlink" href="#keine-updates-verfugbar" title="Permanent link">&para;</a></h3>
 <p>Sofern keine Updates vorhanden sind, wird <code>OK</code> ausgegeben.</p>
-<p><a class="glightbox" href="../../../../assets/images/checkmk/no_updates_available.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="No update available" src="../../../../assets/images/checkmk/no_updates_available.png" /></a></p>
+<p><a class="glightbox" href="../../../../assets/images/checkmk/no_updates_available.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="No update available" src="../../../../assets/images/checkmk/no_updates_available.png" /></a></p>
 <h3 id="neue-updates-verfugbar">Neue Updates verfügbar<a class="headerlink" href="#neue-updates-verfugbar" title="Permanent link">&para;</a></h3>
 <p>Sofern Updates vorhanden sind, wird <code>WARN</code> ausgegeben.</p>
-<p><a class="glightbox" href="../../../../assets/images/checkmk/updates_available.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Updates available" src="../../../../assets/images/checkmk/updates_available.png" /></a></p>
+<p><a class="glightbox" href="../../../../assets/images/checkmk/updates_available.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Updates available" src="../../../../assets/images/checkmk/updates_available.png" /></a></p>
 <p>Sollte stattdessen <code>CRIT</code> gewünscht sein, ist die 7. Zeile durch folgendes zu ersetzen:</p>
 <div class="highlight"><pre><span></span><code>  echo &quot;2 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master&quot;
 </code></pre></div>
 <h3 id="detailierter-check-output">Detailierter Check-Output<a class="headerlink" href="#detailierter-check-output" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../../../../assets/images/checkmk/long_check_output.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Long check output" src="../../../../assets/images/checkmk/long_check_output.png" /></a></p>
+<p><a class="glightbox" href="../../../../assets/images/checkmk/long_check_output.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Long check output" src="../../../../assets/images/checkmk/long_check_output.png" /></a></p>
 <ul>
 <li>Hier wird ein Link zu den GitHub Commits von mailcow ausgegeben, sofern Updates verfügbar sind.</li>
 <li>Metriken werden ebenfalls ausgegeben (nicht nur bei vorhandenen Updates):</li>

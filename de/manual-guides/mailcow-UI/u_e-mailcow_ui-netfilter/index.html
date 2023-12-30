@@ -3810,7 +3810,7 @@
 <h2 id="netfilter-ban-einstellungen-andern">Netfilter Ban-Einstellungen ändern<a class="headerlink" href="#netfilter-ban-einstellungen-andern" title="Permanent link">&para;</a></h2>
 <p>Um die Netfilter Ban-Einstellungen zu ändern navigieren Sie zu dem Menü Punkt: <code>Konfiguration -&gt; Server-Konfiguration -&gt; Konfiguration -&gt; Fail2ban-Parameter</code>.</p>
 <p>Sie sollten dann dieses Fenster sehen:</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" /></a></p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png" /></a></p>
 <p>Hier können Sie verschiedene Optionen für die Banns selbst festlegen. 
 Zum Beispiel die max. Ban-Zeit oder die max. Versuche bevor ein Ban ausgeführt wird.</p>
 <h2 id="netfilter-regex-andern">Netfilter Regex ändern<a class="headerlink" href="#netfilter-regex-andern" title="Permanent link">&para;</a></h2>
@@ -3821,7 +3821,7 @@ Sollten Sie sich nicht sicher sein, was Sie dort tun, können wir Ihnen nur von 
 </div>
 <p>Sie können neben den Sperreinstellungen ebenfalls definieren, was genau aus den Logs der mailcow Container verwendet werden soll um einen möglichen Angreifer zu sperren.</p>
 <p>Dafür müssen Sie das Regex Feld erst einmal aufklappen, was dann in etwa so aussieht:</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" /></a></p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png" /></a></p>
 <p>Dort können Sie nun verschiedenste neue Filter-Regeln anlegen.</p>
 <div class="admonition info">
 <p class="admonition-title">Hinweis</p>
@@ -3839,7 +3839,7 @@ Sollte das der Fall sein empfiehlt es sich mit einem Klick auf <code>Zurücksetz
 <p>Mit dieser Funktionalität können Sie die von Netfilter als gesperrt Markierten IPs an einen Endpunkt weitergeben, welcher diese IPs dann verarbeiten kann. Bspw. eine OPNsense Firewall kann diese Liste dynamisch reinladen.</p>
 </details>
 <p>Schauen wir uns doch mal diese Einstellungen dazu an:</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Bild der neuen Netfilter Einstellungen, Kasten hinterlegt den Punkt Fail2Ban extern verwalten. Markierung auf der URL zu der jeweiligen Banliste. Pfeil zeigt auf Neuladen knopf für die Generation einer neuen URL" src="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png" /></a></p>
+<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Bild der neuen Netfilter Einstellungen, Kasten hinterlegt den Punkt Fail2Ban extern verwalten. Markierung auf der URL zu der jeweiligen Banliste. Pfeil zeigt auf Neuladen knopf für die Generation einer neuen URL" src="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png" /></a></p>
 <p>Um die generelle Funktion zu aktivieren muss der Haken bei <code>Fail2Ban extern verwalten</code> gesetzt werden.</p>
 <p>Sobald dies getan ist kann die URL (Punkt 2) kopiert werden und in den jeweiligen Endpunkt eingesetzt werden.</p>
 <div class="admonition warning">
