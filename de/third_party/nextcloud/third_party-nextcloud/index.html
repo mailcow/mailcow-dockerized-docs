@@ -3998,6 +3998,16 @@
 Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im php-fpm-mailcow Container platziert werden.</p>
 <p>Führen Sie z.B. folgenden Befehl aus, um die fehlenden Indizes hinzuzufügen:</p>
 <p><code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"</code></p>
+<p>Das Update kann bei Bedarf auch per CLI durchgeführt werden.
+Dies ist mit folgedem Befehl im interaktiven Modus möglich:</p>
+<p><code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar"</code></p>
+<p>Um das Update ohne Rückfragen auszuführen, z.B. durch einen CRON Job, kann folgender Befehl verwendet werden: </p>
+<div class="admonition danger">
+<p class="admonition-title">Achtung</p>
+<p>Wir empfehlen dieses Vorgehen nicht! Es könnte über die Zeit kaputt gehen und irreperable Schäden an der Nextcloud Instanz erzeugen.<br>
+<strong>NUTZUNG AUF EIGENE GEFAHR!!</strong></p>
+</div>
+<p><code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar --no-interaction"</code></p>
 <hr />
 <h2 id="fehlersuche-und-fehlerbehebung">Fehlersuche und Fehlerbehebung<a class="headerlink" href="#fehlersuche-und-fehlerbehebung" title="Permanent link">&para;</a></h2>
 <p>Es kann vorkommen, dass Sie die Nextcloud-Instanz von Ihrem Netzwerk aus nicht erreichen können. Dies kann daran liegen, dass der Eintrag Ihres Subnetzes im Array 'trusted_proxies' fehlt. Sie können Änderungen in der Nextcloud config.php in <code>data/web/nextcloud/config/*</code> vornehmen.</p>
@@ -4041,7 +4051,7 @@ Es wird angezeigt, welche Befehle ausgeführt werden müssen, diese müssen im p
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-01-08 14:53:31</span>
   </span>
 
     
