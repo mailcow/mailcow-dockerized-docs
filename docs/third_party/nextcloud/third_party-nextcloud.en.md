@@ -192,6 +192,19 @@ It shows which commands have to be executed, these have to be placed in the php-
 As an an example run the following command to add the missing indices.
 `docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"`
 
+The update can also been done by CLI with the following command: 
+
+`docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar"`
+
+
+This can also been done in an non interactive way (e.g. CRON) with this command: 
+
+!!! danger
+    We do not recommend this! Serios damage can be caused or the update process brakes over time.<br>
+    **USE AT OWN RISK!!**
+
+`docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar --no-interaction"`
+
 ---
 
 ## Debugging & Troubleshooting
