@@ -305,16 +305,15 @@ new operations can be performed:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+    docker compose exec borgmatic-mailcow borg break-lock
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec borgmatic-mailcow borg break-lock user@rsync.net:mailcow
+    docker-compose exec borgmatic-mailcow borg break-lock
     ```
 
-Where `user@rsync.net:mailcow` is the URI to your repository.
 
 Now would be a good time to do a manual archiving run to ensure it can be successfully performed.
 
