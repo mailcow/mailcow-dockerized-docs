@@ -199,6 +199,10 @@ The update can also been done by CLI with the following command:
 
 This can also been done in an non interactive way (e.g. CRON) with this command: 
 
+!!! danger
+    We do not recommend this! Serios damage can be caused or the update process brakes over time.<br>
+    **USE AT OWN RISK!!**
+
 `docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar --no-interaction"`
 
 ---

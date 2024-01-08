@@ -202,6 +202,10 @@ Dies ist mit folgedem Befehl im interaktiven Modus möglich:
 
 Um das Update ohne Rückfragen auszuführen, z.B. durch einen CRON Job, kann folgender Befehl verwendet werden: 
 
+!!! danger "Achtung"
+    Wir empfehlen dieses Vorgehen nicht! Es könnte über die Zeit kaputt gehen und irreperable Schäden an der Nextcloud Instanz erzeugen.<br>
+    **NUTZUNG AUF EIGENE GEFAHR!!**
+
 `docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar --no-interaction"`
 
 ---
