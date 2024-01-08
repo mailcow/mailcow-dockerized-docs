@@ -5,7 +5,7 @@ Mit der Fähigkeit von Gitea, sich über SMTP zu authentifizieren, ist es trivia
 source mailcow.conf
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE gitea;"
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'gitea'@'%' IDENTIFIED BY 'your_strong_password';"
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON gitea.* TO 'gitea'@'%';
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON gitea.* TO 'gitea'@'%';"
 ```
 
 2\. Öffnen Sie `docker-compose.override.yml` und fügen Sie Gitea hinzu:
