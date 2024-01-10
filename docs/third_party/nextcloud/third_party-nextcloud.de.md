@@ -37,7 +37,9 @@ services:
       ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""
 ```
 
-Nachdem diese Zeilen hinzugefügt wurden muss der folgende Befehl ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen. 
+Zusätzlich muss eine bestimmte Funktion für den php-fpm Worker aktiviert werden. Tun Sie dies in dem Sie die Datei `data/conf/phpfpm/php-fpm.d/pools.conf` bearbeiten und `shell_exec` aus allen Punkten samt dem `,` entfernen.
+
+Nachdem die beiden Schritte erledigt wurden muss der folgende Befehl ausgeführt werden, um das Docker Image mit den entsprechenden Labels zu versehen und den Stack neuzustarten.
 
 === "docker compose (Plugin)"
 
