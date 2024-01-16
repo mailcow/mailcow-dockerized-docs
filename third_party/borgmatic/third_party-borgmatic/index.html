@@ -4165,9 +4165,12 @@ configuration:</p>
 <p>For security reasons we mount the maildir as read-only. If you later want to restore data you will need to remove
 the <code>ro</code> flag prior to restoring the data. This is described in the section on restoring backups.</p>
 <h3 id="create-dataconfborgmaticetcconfigyaml">Create <code>data/conf/borgmatic/etc/config.yaml</code><a class="headerlink" href="#create-dataconfborgmaticetcconfigyaml" title="Permanent link">&para;</a></h3>
-<p>Next, we need to create the borgmatic configuration.</p>
+<p>Next, we need to create the borgmatic configuration. Creating the file in this way ensures the correct MySQL credentials are pulled in from <code>mailcow.conf</code>.</p>
+<p>First we load <code>mailcow.conf</code> so we have access to the mailcow configuration settings for the following command.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
-cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
+</code></pre></div>
+<p>The next command then creates the borgmatic configuration file containing the correct credentials. Make sure to copy all the following lines!</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
 <span class="s">source_directories:</span>
 <span class="s">    - /mnt/source</span>
 <span class="s">repositories:</span>
@@ -4190,7 +4193,6 @@ cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/
 <span class="s">      options: --default-character-set=utf8mb4</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<p>Creating the file in this way ensures the correct MySQL credentials are pulled in from <code>mailcow.conf</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Starting with borgmatic 1.8.0 (released July 19th, 2023), the configuration file syntax was
@@ -4200,8 +4202,10 @@ generated for an older borgmatic version. In this case, you should create a new 
 above to avoid problems with future borgmatic releases.</p>
 </div>
 <p>This file is a minimal example for using borgmatic with an account <code>user</code> on the cloud storage provider <code>rsync.net</code> for
-a repository called <code>mailcow</code> (see <code>repositories</code> setting). It will backup both the maildir and MySQL database, which is
-all you should need to restore your mailcow setup after an incident. The retention settings will keep one archive for
+a repository called <code>mailcow</code> (see <code>repositories</code> setting). This must be changed accordingly.</p>
+<p>It will backup both the maildir and MySQL database, which is
+all you should need to restore your mailcow setup after an incident.</p>
+<p>The retention settings will keep one archive for
 each hour of the past 24 hours, one per day of the week, one per week of the month and one per month of the past half
 year.</p>
 <p>Check the <a href="https://torsion.org/borgmatic/">borgmatic documentation</a> on how to use other types of repositories or
@@ -4423,7 +4427,7 @@ repository, so a manual backup isn't as essential.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-12-16 20:07:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-01-16 21:19:02</span>
   </span>
 
     

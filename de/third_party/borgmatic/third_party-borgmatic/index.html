@@ -4117,19 +4117,18 @@
 
 <h1 id="borgmatic-backup">Borgmatic Backup<a class="headerlink" href="#borgmatic-backup" title="Permanent link">&para;</a></h1>
 <h2 id="einfuhrung">Einführung<a class="headerlink" href="#einfuhrung" title="Permanent link">&para;</a></h2>
-<p>Borgmatic ist ein großartiger Weg, um Backups auf Ihrem mailcow-Setup durchzuführen, da es Ihre Daten sicher verschlüsselt und extrem einfach zu
-einzurichten.</p>
+<p>Borgmatic ist ein großartiger Weg, um Backups auf Ihrem mailcow-Setup durchzuführen, da es Ihre Daten sicher verschlüsselt und extrem einfach einzurichten ist.</p>
 <p>Aufgrund seiner Deduplizierungsfähigkeiten können Sie eine große Anzahl von Backups speichern, ohne große Mengen an Speicherplatz zu verschwenden.
-So können Sie Backups in sehr kurzen Abständen durchführen, um einen minimalen Datenverlust zu gewährleisten, wenn die Notwendigkeit besteht
+So können Sie Backups in sehr kurzen Abständen durchführen, um einen minimalen Datenverlust zu gewährleisten, wenn die Notwendigkeit besteht,
 Daten aus einer Sicherung wiederherzustellen.</p>
 <p>Dieses Dokument führt Sie durch den Prozess zur Aktivierung kontinuierlicher Backups für mailcow mit borgmatic. Die borgmatic
 Funktionalität wird durch das <a href="https://github.com/borgmatic-collective/docker-borgmatic">borgmatic Docker Image</a> bereitgestellt. Schauen Sie sich
-die <code>README</code> in diesem Repository, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
+die <code>README</code> in diesem Repository an, um mehr über die anderen Optionen (wie z.B. Push-Benachrichtigungen) zu erfahren, die verfügbar sind.
 Diese Anleitung behandelt nur die Grundlagen.</p>
 <h2 id="einrichten-von-borgmatic">Einrichten von borgmatic<a class="headerlink" href="#einrichten-von-borgmatic" title="Permanent link">&para;</a></h2>
 <h3 id="erstellen-oder-andern-sie-docker-composeoverrideyml">Erstellen oder ändern Sie <code>docker-compose.override.yml</code><a class="headerlink" href="#erstellen-oder-andern-sie-docker-composeoverrideyml" title="Permanent link">&para;</a></h3>
 <p>Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie <code>docker-compose.override.yml</code> und fügen Sie die folgende
-Konfiguration ein:
+Konfiguration ein:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.1&#39;</span>
 
 <span class="nt">services</span><span class="p">:</span>
@@ -4160,14 +4159,17 @@ Konfiguration ein:
 <span class="nt">volumes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">borg-cache-vol-1</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">borg-config-vol-1</span><span class="p">:</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>Stellen Sie sicher, dass Sie die <code>BORG_PASSPHRASE</code> in eine sichere Passphrase Ihrer Wahl ändern.</p>
 <p>Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen,
 müssen Sie das <code>ro</code>-Flag entfernen, bevor Sie die Daten wiederherstellen. Dies wird im Abschnitt über die Wiederherstellung von Backups beschrieben.</p>
 <h3 id="erstellen-sie-dataconfborgmaticetcconfigyaml">Erstellen Sie <code>data/conf/borgmatic/etc/config.yaml</code><a class="headerlink" href="#erstellen-sie-dataconfborgmaticetcconfigyaml" title="Permanent link">&para;</a></h3>
-<p>Als nächstes müssen wir die borgmatic-Konfiguration erstellen.</p>
+<p>Als nächstes müssen wir die borgmatic-Konfiguration erzeugen. Das Erstellen der Datei auf die hier beschriebene Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus <code>mailcow.conf</code> übernommen werden.</p>
+<p>Zunächst laden wir <code>mailcow.conf</code>, um Zugriff auf die mailcow-Einstellungen innerhalb des nachfolgenden Kommandos zu erhalten.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
-cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
+</code></pre></div>
+<p>Das nächste Kommando erzeugt dann die borgmatic-Konfigurationsdatei mit den korrekten Zugangsdaten. Vergewissern Sie sich, alle folgenden Zeilen zu kopieren!</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
 <span class="s">source_directories:</span>
 <span class="s">    - /mnt/source</span>
 <span class="s">repositories:</span>
@@ -4190,7 +4192,6 @@ cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/
 <span class="s">      options: --default-character-set=utf8mb4</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<p>Das Erstellen der Datei auf diese Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus <code>mailcow.conf</code> übernommen werden.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Ab borgmatic 1.8.0 (erschienen am 19. Juli 2023) wurde der Aufbau der Konfigurationsdatei
@@ -4200,22 +4201,21 @@ Konfigurationsdatei für eine ältere Version von borgmatic erstellt wurde. In d
 <code>config.yaml</code>-Datei wie oben beschrieben erstellen, um Probleme mit zukünftigen Versionen von borgmatic zu vermeiden.</p>
 </div>
 <p>Diese Datei ist ein minimales Beispiel für die Verwendung von borgmatic mit einem Konto <code>user</code> beim Cloud-Speicheranbieter <code>rsync.net</code> für
-ein Repository namens <code>mailcow</code> (siehe <code>repositories</code> Einstellung). Es wird sowohl das maildir als auch die MySQL-Datenbank sichern, was alles ist
-was alles ist, was Sie brauchen, um Ihr mailcow Setup nach einem Vorfall wiederherzustellen. Die Aufbewahrungseinstellungen werden ein Archiv für
-jede Stunde der letzten 24 Stunden, eines pro Tag der Woche, eines pro Woche des Monats und eines pro Monat des letzten halben
-Jahr.</p>
+ein Repository namens <code>mailcow</code> (siehe Einstellung <code>repositories</code>). Dies muss entsprechend angepasst werden.</p>
+<p>Es wird sowohl das maildir als auch die MySQL-Datenbank gesichert, was alles ist, was Sie brauchen, um Ihre mailcow nach einem Vorfall wiederherzustellen.</p>
+<p>Im Backup wird jeweils ein Archiv für jede der letzten 24 Stunden, eines für jeden der letzten 7 Wochentage, eines für jede der letzten 4 Wochen und eines pro Monat des letzten halben Jahrs behalten.</p>
 <p>Schauen Sie in der <a href="https://torsion.org/borgmatic/">borgmatic Dokumentation</a> nach, wie Sie andere Arten von Repositories oder
-Konfigurationsoptionen. Wenn Sie ein lokales Dateisystem als Backup-Ziel verwenden, stellen Sie sicher, dass Sie es in den
+Konfigurationsoptionen nutzen können. Wenn Sie ein lokales Dateisystem als Backup-Ziel verwenden, stellen Sie sicher, dass Sie es in den
 Container einbinden. Der Container definiert zu diesem Zweck ein Volume namens <code>/mnt/borg-repository</code>.</p>
 <h3 id="erstellen-sie-einen-crontab">Erstellen Sie einen crontab<a class="headerlink" href="#erstellen-sie-einen-crontab" title="Permanent link">&para;</a></h3>
 <p>Erstellen Sie eine neue Textdatei in <code>data/conf/borgmatic/etc/crontab.txt</code> mit folgendem Inhalt:</p>
 <div class="highlight"><pre><span></span><code>14 * * * * PATH=$PATH:/usr/local/bin /usr/local/bin/borgmatic --stats -v 0 2&gt;&amp;1
 </code></pre></div>
-<p>Diese Datei erwartet eine crontab-Syntax. Das hier gezeigte Beispiel veranlasst das Backup, jede Stunde um 14 Minuten nach
+<p>Diese Datei erwartet eine crontab-Syntax. Das hier gezeigte Beispiel veranlasst das Backup, jede Stunde um 14 Minuten
 nach der vollen Stunde auszuführen und am Ende einige nette Statistiken zu protokollieren.</p>
 <h3 id="ssh-schlussel-in-ordner-ablegen">SSH-Schlüssel in Ordner ablegen<a class="headerlink" href="#ssh-schlussel-in-ordner-ablegen" title="Permanent link">&para;</a></h3>
-<p>Legen Sie die SSH-Schlüssel, die Sie für entfernte Repository-Verbindungen verwenden wollen, in <code>data/conf/borgmatic/ssh</code> ab. OpenSSH erwartet die
-übliche <code>id_rsa</code>, <code>id_ed25519</code> oder ähnliches in diesem Verzeichnis zu finden. Stellen Sie sicher, dass die Datei <code>chmod 600</code> ist und nicht von der Welt gelesen werden kann
+<p>Legen Sie die SSH-Schlüssel, die Sie für Verbindungen zu entfernten Repositories verwenden wollen, in <code>data/conf/borgmatic/ssh</code> ab. OpenSSH erwartet die
+übliche <code>id_rsa</code>, <code>id_ed25519</code> oder ähnliches in diesem Verzeichnis zu finden. Stellen Sie sicher, dass die Datei <code>chmod 600</code> und nicht für alle lesbar ist,
 oder OpenSSH wird sich weigern, den SSH-Schlüssel zu benutzen.</p>
 <h3 id="den-container-hochfahren">Den Container hochfahren<a class="headerlink" href="#den-container-hochfahren" title="Permanent link">&para;</a></h3>
 <p>Für den nächsten Schritt müssen wir den Container in einem konfigurierten Zustand hochfahren und laufen lassen. Um das zu tun, führen Sie aus:</p>
@@ -4247,10 +4247,10 @@ initialisiert wurde.</p>
 </div>
 </div>
 </div>
-<p>Sie werden aufgefordert, den SSH-Hostschlüssel Ihres entfernten Repository-Servers zu authentifizieren. Prüfen Sie, ob er übereinstimmt und bestätigen
+<p>Sie werden aufgefordert, den SSH-Hostschlüssel Ihres entfernten Repository-Servers zu authentifizieren. Prüfen Sie, ob er übereinstimmt
 und bestätigen Sie die Aufforderung mit <code>yes</code>. Das Repository wird mit der Passphrase initialisiert, die Sie zuvor in der Umgebungsvariable <code>BORG_PASSPHRASE</code> gesetzt haben.</p>
-<p>Bei Verwendung einer der <code>repokey</code>-Verschlüsselungsmethoden wird der Verschlüsselungsschlüssel im Repository selbst gespeichert und nicht auf dem
-dem Client, so dass in dieser Hinsicht keine weiteren Maßnahmen erforderlich sind. Wenn Sie sich für die Verwendung einer <code>keyfile</code> anstelle von
+<p>Bei Verwendung einer der <code>repokey</code>-Verschlüsselungsmethoden wird der Verschlüsselungsschlüssel im Repository selbst gespeichert und nicht auf
+dem Client, so dass in dieser Hinsicht keine weiteren Maßnahmen erforderlich sind. Wenn Sie sich für die Verwendung eines <code>keyfile</code> anstelle von
 <code>repokey</code> entscheiden, stellen Sie sicher, dass Sie den Schlüssel exportieren und separat sichern. Lesen Sie den Abschnitt <a href="#exportieren-von-schlusseln">Exportieren von Schlüsseln</a>
 um zu erfahren, wie Sie den Schlüssel abrufen können.</p>
 <h3 id="container-neustarten">Container neustarten<a class="headerlink" href="#container-neustarten" title="Permanent link">&para;</a></h3>
@@ -4269,8 +4269,8 @@ Zustand befindet:</p>
 </div>
 </div>
 <h2 id="wiederherstellung-von-einem-backup">Wiederherstellung von einem Backup<a class="headerlink" href="#wiederherstellung-von-einem-backup" title="Permanent link">&para;</a></h2>
-<p>Das Wiederherstellen eines Backups setzt voraus, dass Sie mit einer neuen Installation von mailcow beginnen, und dass Sie derzeit keine
-keine benutzerdefinierten Daten in ihrem maildir oder ihrer mailcow Datenbank.</p>
+<p>Das Wiederherstellen eines Backups setzt voraus, dass Sie mit einer neuen Installation von mailcow beginnen, und dass Sie derzeit
+keine benutzerdefinierten Daten in ihrem maildir oder ihrer mailcow-Datenbank haben.</p>
 <h3 id="wiederherstellen-von-maildir">Wiederherstellen von maildir<a class="headerlink" href="#wiederherstellen-von-maildir" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warnung</p>
@@ -4278,13 +4278,13 @@ keine benutzerdefinierten Daten in ihrem maildir oder ihrer mailcow Datenbank.</
 Dateien von einem Backup wiederherzustellen.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Wenn Sie SELinux im Erzwingungsmodus verwenden</p>
-<p>Wenn Sie mailcow auf einem Host mit SELinux im Enforcing-Modus verwenden, müssen Sie es vorübergehend deaktivieren während
-während der Extraktion des Archivs vorübergehend deaktivieren, da das mailcow-Setup das vmail-Volumen als privat kennzeichnet, das ausschließlich dem Dovecot-Container
-ausschließlich. SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
+<p class="admonition-title">Wenn Sie SELinux im Enforcing-Modus verwenden</p>
+<p>Wenn Sie mailcow auf einem Host mit SELinux im Enforcing-Modus verwenden, müssen Sie ihn
+während der Extraktion des Archivs vorübergehend deaktivieren, da das mailcow-Setup das vmail-Volume als privat kennzeichnet, das ausschließlich dem Dovecot-Container gehört.
+SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
 dieses Volume zu schreiben.</p>
 </div>
-<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker-compose.override.yml</code> beschreibbar machen, indem Sie das
+<p>Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in <code>docker-compose.override.yml</code> beschreibbar machen, indem Sie
 das <code>ro</code>-Flag aus dem Volume entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
@@ -4304,7 +4304,7 @@ Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup
 <h3 id="mysql-wiederherstellen">MySQL wiederherstellen<a class="headerlink" href="#mysql-wiederherstellen" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warnung</p>
-<p>Die Ausführung dieses Befehls löscht und erstellt die mailcow-Datenbank neu! Führen sie diesen Befehl nicht aus, es sei denn sie beabsichtigen, die mailcow-Datenbank von einem Backup wiederherzustellen.</p>
+<p>Die Ausführung dieses Befehls löscht und erstellt die mailcow-Datenbank neu! Führen Sie diesen Befehl nicht aus, es sei denn Sie beabsichtigen, die mailcow-Datenbank von einem Backup wiederherzustellen.</p>
 </div>
 <p>Um die MySQL-Datenbank aus dem letzten Archiv wiederherzustellen, verwenden Sie diesen Befehl:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
@@ -4322,7 +4322,7 @@ Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup
 <p>Alternativ können Sie auch einen beliebigen Archivnamen aus der Liste der Archive angeben (siehe
 <a href="#auflistung-aller-verfugbaren-archive">Auflistung aller verfügbaren Archive</a>)</p>
 <h3 id="nach-der-wiederherstellung">Nach der Wiederherstellung<a class="headerlink" href="#nach-der-wiederherstellung" title="Permanent link">&para;</a></h3>
-<p>Nach der Wiederherstellung müssen Sie mailcow neu starten. Wenn Sie SELinux "Erzwingen" deaktiviert haben, wäre jetzt ein guter Zeitpunkt, um
+<p>Nach der Wiederherstellung müssen Sie mailcow neu starten. Wenn Sie den Enforcing-Modus von SELinux deaktiviert haben, wäre jetzt ein guter Zeitpunkt, um
 ihn wieder zu aktivieren.</p>
 <p>Um mailcow neu zu starten, verwenden Sie den folgenden Befehl:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
@@ -4367,7 +4367,7 @@ eine Weile dauern kann, wenn Sie viele Dateien haben.</p>
 </div>
 </div>
 <h3 id="sperre-aufheben">Sperre aufheben<a class="headerlink" href="#sperre-aufheben" title="Permanent link">&para;</a></h3>
-<p>Wenn borg während eines Archivierungslaufs unterbrochen wird, hinterlässt es eine veraltete Sperre, die gelöscht werden muss, bevor
+<p>Wenn borg während eines Archivierungslaufs unterbrochen wird, hinterlässt es eine Sperre, die gelöscht werden muss, bevor
 neue Operationen durchgeführt werden können:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
@@ -4385,9 +4385,9 @@ neue Operationen durchgeführt werden können:</p>
 <h3 id="exportieren-von-schlusseln">Exportieren von Schlüsseln<a class="headerlink" href="#exportieren-von-schlusseln" title="Permanent link">&para;</a></h3>
 <p>Wenn Sie eine der <code>keyfile</code>-Methoden zur Verschlüsselung verwenden, <strong>MÜSSEN</strong> Sie sich selbst um die Sicherung der Schlüsseldateien kümmern. Die
 Schlüsseldateien werden erzeugt, wenn Sie das Repository initialisieren. Die <code>repokey</code>-Methoden speichern die Schlüsseldatei innerhalb des
-Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
+Repositories, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
 <p>Beachten Sie, dass Sie in beiden Fällen auch die Passphrase haben müssen, um die Archive zu entschlüsseln.</p>
-<p>Um die <code>keyfile</code> zu holen, führen Sie aus:</p>
+<p>Um das <code>keyfile</code> zu holen, führen Sie aus:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">docker compose (Plugin)</label><label for="__tabbed_10_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4421,7 +4421,7 @@ Repository, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-12-16 20:07:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-01-16 21:19:02</span>
   </span>
 
     
