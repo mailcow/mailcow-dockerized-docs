@@ -572,11 +572,13 @@ docker compose exec nginx-mailcow nginx -s reload
 Nun kopieren wir die Roundcube-Daten in die neue Datenbank. Wir entfernen das Datenbank-Tabellen-Präfix in diesem
 Schritt, welches Sie ggf. anpassen müssen, wenn Sie ein anderes Präfix als `mailcow_rc1` verwendet haben. Es ist auch
 möglich, das Präfix beizubehalten (in diesem Fall behalten Sie auch die zugehörige Roundcube-Einstellung `db_prefix`
-bei).
+bei). Ändern Sie dann die Datenbank-Fremdschlüssel.
 
 ```bash
 RCTABLES=$(docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "show tables like 'mailcow_rc1%';" | tr '\n\r' ' ')
 docker exec $(docker ps -f name=mysql-mailcow -q) /bin/bash -c "mysqldump -uroot -p${DBROOT} mailcow $RCTABLES | sed 's/mailcow_rc1//' | mysql -uroot -p${DBROOT} roundcubemail"
+FOREIGNKEYS=$(docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SELECT CONCAT('ALTER TABLE \`', TABLE_NAME, '\` ', 'DROP FOREIGN KEY \`', CONSTRAINT_NAME, '\`;', 'ALTER TABLE \`', TABLE_NAME, '\` ', 'ADD FOREIGN KEY \`', CONSTRAINT_NAME, '\` (', COLUMN_NAME, ') ', 'REFERENCES \`', REPLACE(REFERENCED_TABLE_NAME, 'mailcow_rc1', ''), '\` (', REFERENCED_COLUMN_NAME, ');') FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'roundcubemail' AND REFERENCED_TABLE_NAME IS NOT NULL;")
+docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} roundcubemail -e "$FOREIGNKEYS"
 ```
 
 ### Aktualisierung der Roundcube-Konfiguration
