@@ -12,7 +12,7 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 ## Minimum System Resources
 
 !!! success "Compatibility established"
-    Since XXX mailcow is finally available on ARM64 platforms! Completely! Without any restrictions in functionality!
+    Since Update 2024-01 mailcow is finally available on ARM64 platforms! Completely! Without any restrictions in functionality!
 
 Please make sure that your system has at least the following resources:
 
@@ -49,7 +49,7 @@ The following table contains all operating systems officially supported and test
 
 | OS                | Compatibility                            |
 | ----------------------- | ------------------------------------------------ |
-| Alpine ab 3.17           | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
+| Alpine since 3.17           | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
 | Centos 7              | [✅](https://www.centos.org/ "Fully Compatible") |
 | Debian 10, 11, 12              | [✅](https://www.debian.org/index.html "Fully Compatible") |
 | Ubuntu 18.04, 20.04, 22.04                   | [✅](https://ubuntu.com/ "Fully Compatible")|
@@ -58,10 +58,10 @@ The following table contains all operating systems officially supported and test
 
 
 !!! info "Legend"
-        ✅ = Works **out of the box** using the instructions.<br>
-        ⚠️ = Requires some **manual adjustments** otherwise usable.<br>
-        ❌ = In general **NOT Compatible**.<br>
-        ❔ = Pending.
+    ✅ = Works **out of the box** using the instructions.<br>
+    ⚠️ = Requires some **manual adjustments** otherwise usable.<br>
+    ❌ = In general **NOT Compatible**.<br>
+    ❔ = Pending.
 
 !!! warning
     **Note: All other operating systems (not mentioned) may also work, but have not been officially tested.**

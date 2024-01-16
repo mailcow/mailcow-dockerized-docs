@@ -12,7 +12,7 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 ## Minimale Systemressourcen
 
 !!! success "Kompatibilität hergestellt"
-    Seit XXX ist mailcow endlich auch auf ARM64 Plattformen verfügbar! Komplett! Ohne Einschränkungen der Funktionalität!
+    Seit dem 2024-01 Update ist mailcow endlich auch auf ARM64 Plattformen verfügbar! Komplett! Ohne Einschränkungen der Funktionalität!
 
 Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:
 
@@ -60,10 +60,10 @@ Die folgende Tabelle enthält alle von uns offiziell unterstützten und getestet
 
 
 !!! info "Legende"
-        ✅ = Funktioniert **out of the box** anhand der Anleitung.<br>
-        ⚠️ = Erfordert einige **manuelle Anpassungen**, sonst aber nutzbar.<br>
-        ❌ = Generell **NICHT Kompatibel**.<br>
-        ❔ = Ausstehend.
+    ✅ = Funktioniert **out of the box** anhand der Anleitung.<br>
+    ⚠️ = Erfordert einige **manuelle Anpassungen**, sonst aber nutzbar.<br>
+    ❌ = Generell **NICHT Kompatibel**.<br>
+    ❔ = Ausstehend.
 
 !!! warning "Achtung"
     **Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.**
