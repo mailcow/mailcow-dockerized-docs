@@ -61,10 +61,17 @@ the `ro` flag prior to restoring the data. This is described in the section on r
 
 ### Create `data/conf/borgmatic/etc/config.yaml`
 
-Next, we need to create the borgmatic configuration.
+Next, we need to create the borgmatic configuration. Creating the file in this way ensures the correct MySQL credentials are pulled in from `mailcow.conf`.
 
-```shell
+First we load `mailcow.conf` so we have access to the mailcow configuration settings for the following command.
+
+```bash
 source mailcow.conf
+```
+
+The next command then creates the borgmatic configuration file containing the correct credentials. Make sure to copy all the following lines!
+
+```bash
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
 source_directories:
     - /mnt/source
@@ -89,8 +96,6 @@ mysql_databases:
 EOF
 ```
 
-Creating the file in this way ensures the correct MySQL credentials are pulled in from `mailcow.conf`.
-
 !!! warning
     Starting with borgmatic 1.8.0 (released July 19th, 2023), the configuration file syntax was
     [changed](https://github.com/borgmatic-collective/borgmatic/releases/tag/1.8.0). You can check the Docker logs
@@ -99,8 +104,12 @@ Creating the file in this way ensures the correct MySQL credentials are pulled i
     above to avoid problems with future borgmatic releases.
 
 This file is a minimal example for using borgmatic with an account `user` on the cloud storage provider `rsync.net` for
-a repository called `mailcow` (see `repositories` setting). It will backup both the maildir and MySQL database, which is
-all you should need to restore your mailcow setup after an incident. The retention settings will keep one archive for
+a repository called `mailcow` (see `repositories` setting). This must be changed accordingly.
+
+It will backup both the maildir and MySQL database, which is
+all you should need to restore your mailcow setup after an incident.
+
+The retention settings will keep one archive for
 each hour of the past 24 hours, one per day of the week, one per week of the month and one per month of the past half
 year.
 
