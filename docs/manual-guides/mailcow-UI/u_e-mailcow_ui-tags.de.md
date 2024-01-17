@@ -1,7 +1,7 @@
 !!! info "Hinweis"
 	Um diese Funktion nutzen zu können ist das Update 2022-05 (oder höher) erforderlich!<br>
 	Sollten Sie das Update nicht installiert haben, denken Sie bitte über ein Update nach.<br>
-	Für weitere Informationen bezüglich dem Update Prozess schauen Sie [hier](../../i_u_m/i_u_m_update.md).
+	Für weitere Informationen bezüglich dem Update Prozess schauen Sie [hier](../../maintenance/update.md).
 	
 ### Wofür wurden die Tags implementiert?
 Mit den Tags ist es deutlich einfacher gezielt nach Domains bzw. Mailboxen zu suchen (wenn diese einen Tag haben).

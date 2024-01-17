@@ -32,7 +32,7 @@ Diese Anleitung basiert auf verschiedenen Schritten:
 
 ### DNS-Einrichtung
 
-Der größte Teil der Konfiguration ist in *mailcow*s [DNS Konfiguration](../../prerequisite/prerequisite-dns.de.md) enthalten. Nachdem diese Einrichtung abgeschlossen ist, fügen Sie eine weitere Subdomain für *Mailman* hinzu, z.B. `lists.example.org`, die auf denselben Server zeigt:
+Der größte Teil der Konfiguration ist in *mailcow*s [DNS Konfiguration](../../getstarted/prerequisite-dns.de.md) enthalten. Nachdem diese Einrichtung abgeschlossen ist, fügen Sie eine weitere Subdomain für *Mailman* hinzu, z.B. `lists.example.org`, die auf denselben Server zeigt:
 
 ```
 # Name Typ Wert
@@ -90,7 +90,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Installieren Sie mailcow
 
-Folgen Sie der [mailcow installation](../../i_u_m/i_u_m_install.de.md). **Schritt 5 auslassen und nicht mit starten!**
+Folgen Sie der [mailcow installation](../../getstarted/install.de.md). **Schritt 5 auslassen und nicht mit starten!**
 
 #### mailcow konfigurieren
 
@@ -328,7 +328,7 @@ Wenn man eine neue Liste anlegt und versucht, sofort eine E-Mail zu versenden, a
 
 ## Update
 
-**mailcow** hat sein eigenes Update-Skript in `/opt/mailcow-dockerized/update.sh`, [siehe die Dokumentation](../../i_u_m/i_u_m_update.de.md).
+**mailcow** hat sein eigenes Update-Skript in `/opt/mailcow-dockerized/update.sh`, [siehe die Dokumentation](../../maintenance/update.de.md).
 
 Für **Mailman** holen Sie sich einfach die neueste Version aus dem [github repository](https://github.com/maxking/docker-mailman).
 

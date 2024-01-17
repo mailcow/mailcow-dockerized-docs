@@ -32,7 +32,7 @@ This guide is based on different steps:
 
 ### DNS setup
 
-Most of the configuration is covered by *mailcow*s [DNS setup](../../prerequisite/prerequisite-dns.en.md). After finishing this setup add another subdomain for *Mailman*, e.g. `lists.example.org` that points to the same server:
+Most of the configuration is covered by *mailcow*s [DNS setup](../../getstarted/prerequisite-dns.en.md). After finishing this setup add another subdomain for *Mailman*, e.g. `lists.example.org` that points to the same server:
 
 ```
 # Name    Type       Value
@@ -91,7 +91,7 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Install mailcow
 
-Follow the [mailcow installation](../../i_u_m/i_u_m_install.en.md). **Omit step 5 and do not pull and start!**
+Follow the [mailcow installation](../../getstarted/install.en.md). **Omit step 5 and do not pull and start!**
 
 #### Configure mailcow
 
@@ -329,7 +329,7 @@ When you create a new list and try to immediately send an e-mail, *postfix* resp
 
 ## Update
 
-**mailcow** has it's own update script in `/opt/mailcow-dockerized/update.sh`, [see the docs](../../i_u_m/i_u_m_update.en.md).
+**mailcow** has it's own update script in `/opt/mailcow-dockerized/update.sh`, [see the docs](../../maintenance/update.en.md).
 
 For **Mailman** just fetch the newest version from the [github repository](https://github.com/maxking/docker-mailman).
 

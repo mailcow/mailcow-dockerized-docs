@@ -98,7 +98,7 @@ You can hook into the update mechanism by adding scripts called `pre_commit_hook
 
 **nightly (unstable updates)**: These updates are **NOT** suitable for production use and are for testing only. The nightly updates are ahead of the stable updates, since in these updates we test newer and more extensive features before they go live for all users.
 
-## NEW: Get Nightly Updates
+## Get Nightly Updates
 ### Info about the Nightly Updates
 Since the 2022-08 update there is the possibility to change the update sources. Until now, the master branch on GitHub served as the only (official) update source. With the August 2022 update, however, there is now the Nightly Branch which contains unstable and major changes for testing and feedback.
 
@@ -110,7 +110,7 @@ Besides the obvious changes that will be included in the next major update anywa
 The process is relatively simple. With the 2022-08 update (assuming an update to the version) it is possible to run `update.sh` with the parameter `--nightly`.
 
 !!! danger
-        Please make a backup before or follow the [Best Practice Nightly Update](#best-practice-nightly-update) section before switching to mailcow nightly builds. We are not responsible for any data loss/corruption, so work with caution!
+    Please make a backup before or follow the [Best Practice Nightly Update](#best-practice-nightly-update) section before switching to mailcow nightly builds. We are not responsible for any data loss/corruption, so work with caution!
 
 The script will now change the branch with `git checkout nightly`, which means it will ask for the IPv6 settings again. But this is normal.
 
@@ -119,7 +119,7 @@ If everything worked fine (for which we made a backup before) the mailcow UI sho
 
 ### Best Practice Nightly Update
 !!! info
-        We recommend using the Nightly Update only if you have another machine or VM and **NOT** use it productively.
+    We recommend using the Nightly Update only if you have another machine or VM and **NOT** use it productively.
 
 1. use the [cold standby script](../backup_restore/b_n_r-coldstandby.en.md) to copy the machine **before** the switch to the nightly builds on another system.
 2. run the `update.sh` script on the new machine with the parameter `--nightly` and confirm.

@@ -63,6 +63,14 @@ The script will detect errors automatically and exit.
 
 You may want to test the connection by running `ssh mailcow-backup.host.name -p22 -i /path/to/keyfile`.
 
+??? warning "Important for switching to a different architecture"
+
+    If you plan to use the Cold Standby script to migrate from x86 to ARM64 or vice versa, simply let the script run normally. The script will automatically recognize whether there are differences between the source and the target in terms of architecture and will behave accordingly and omit affected volumes from the sync.
+
+    The reason for this is that Rspamd compiles regexp entries from our configurations to the corresponding platform and these cache files cannot be read when changing platforms. Rspamd would then crash and make it impossible to use mailcow in a meaningful way. We therefore omit the Rspamd volume when activating this variable.
+
+    **Don't worry!** Rspamd will still work correctly after the migration as it generates these cache files automatically for the new platform.
+
 ## Backup and refresh the cold-standby
 
 Run the first backup, this may take a while depending on the connection:

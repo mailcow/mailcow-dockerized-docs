@@ -4,7 +4,8 @@
 
 Sie können das mitgelieferte Skript `helper-scripts/backup_and_restore.sh` verwenden, um mailcow automatisch zu sichern.
 
-Bitte kopieren Sie dieses Skript nicht an einen anderen Ort.
+!!! danger "Achtung"
+    **Bitte kopieren Sie dieses Skript nicht an einen anderen Ort.**
 
 Um ein Backup zu starten, geben Sie "backup" als ersten Parameter an und entweder eine oder mehrere zu sichernde Komponenten als folgende Parameter.
 Sie können auch "all" als zweiten Parameter verwenden, um alle Komponenten zu sichern. Fügen Sie `--delete-days n` an, um Sicherungen zu löschen, die älter als n Tage sind.

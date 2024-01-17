@@ -4,7 +4,8 @@
 
 You can use the provided script `helper-scripts/backup_and_restore.sh` to backup mailcow automatically.
 
-Please do not copy this script to another location.
+!!! danger
+    **Please do not copy this script to another location.**
 
 To run a backup, write "backup" as first parameter and either one or more components to backup as following parameters.
 You can also use "all" as second parameter to backup all components. Append `--delete-days n` to delete backups older than n days.
