@@ -4,7 +4,7 @@ Wenn Sie Ihren Fehler innerhalb von ein paar Stunden bemerken, können Sie die D
 
 ### SOGo
 
-Wir erstellen automatisch tägliche Backups (24 Stunden Intervall ab dem Hochfahren -d) in `/var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/`.
+Wir erstellen automatisch tägliche Backups (24 Stunden Intervall ab dem ausführen von up -d) in `/var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/`.
 
 **Stellen Sie sicher, dass der Benutzer, den Sie wiederherstellen wollen, in Ihrem mailcow-Backend existiert**. Legen Sie diesen neu an, falls nicht mehr existent.
 

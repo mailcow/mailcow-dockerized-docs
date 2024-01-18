@@ -67,7 +67,7 @@ You may want to test the connection by running `ssh mailcow-backup.host.name -p2
 
     If you plan to use the Cold Standby script to migrate from x86 to ARM64 or vice versa, simply let the script run normally. The script will automatically recognize whether there are differences between the source and the target in terms of architecture and will behave accordingly and omit affected volumes from the sync.
 
-    The reason for this is that Rspamd compiles regexp entries from our configurations to the corresponding platform and these cache files cannot be read when changing platforms. Rspamd would then crash and make it impossible to use mailcow in a meaningful way. We therefore omit the Rspamd volume when activating this variable.
+    The reason for this is that Rspamd compiles regexp entries from our configurations to the corresponding platform and these cache files cannot be read when changing platforms. Rspamd would then crash and make it impossible to use mailcow in a meaningful way. Therefore the `rspamd-vol-1` (Rspamd volume) will be ommited during the usage of the Cold-standby script.
 
     **Don't worry!** Rspamd will still work correctly after the migration as it generates these cache files automatically for the new platform.
 

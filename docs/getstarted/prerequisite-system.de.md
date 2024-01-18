@@ -141,7 +141,7 @@ Wenn man einen restriktiveren Portbereich anwenden will, muss man zuerst die Kon
 
 {mailcow-dockerized}/data/conf/unbound/unbound.conf:
 ```
-ausgehender-Port-vermeiden: 0-32767
+outgoing-port-avoid: 0-32767
 ```
 
 Nun können die Firewall-Regeln wie folgt angepasst werden:
