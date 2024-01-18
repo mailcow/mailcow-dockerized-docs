@@ -3870,8 +3870,8 @@ Das Ziel muss über Docker und docker compose <strong>v2</strong> verfügen.</p>
 <details class="warning">
 <summary>Wichtig für den Wechsel auf eine andere Architektur</summary>
 <p>Wenn Sie planen mit dem Cold Standby Skript eine Migration von x86 auf ARM64 bzw. umgekehrt zu machen, lassen Sie das Skript einfach normal laufen. Das Skript wird automatisch erkennen, ob es unterschiede zwischen der Quelle und dem Ziel im Bezug auf die Architektur gibt und sich dementsprechend verhalten und betroffene Volumes im Sync auslassen.</p>
-<p>Dies hat den Hintergrund, dass Rspamd Regexp Einträge von unseren Konfigurationen auf die entsprechende Plattform Kompiliert und bei einem Plattform Wechsel diese Cache Dateien nicht gelesen werden können. Rspamd würde daraufhin abstürzen und eine sinnvolle Nutzung mailcow's damit nicht ermöglichen. Deswegen lassen wir das Rspamd Volume bei der Aktivierung dieser Variable aus.</p>
-<p><strong>Keine Sorge!</strong> Rspamd wird trotzdem nach der Migration korrekt funktionieren, da es diese Cache Dateien selbstständig für die neue Plattform generiert.</p>
+<p>Dies hat den Hintergrund, dass Rspamd Regexp Einträge von unseren Konfigurationen auf die entsprechende Plattform kompiliert und bei einem Plattform Wechsel diese Cache Dateien nicht gelesen werden können. Rspamd würde daraufhin abstürzen und eine sinnvolle Nutzung mailcow's damit nicht ermöglichen. Deswegen wird das <code>rspamd-vol-1</code> (Rspamd Volume) im Cold Standby ausgelassen.</p>
+<p><strong>Keine Sorge!</strong> Rspamd wird trotzdem nach der Migration korrekt funktionieren, da diese Cache Dateien selbstständig für die neue Plattform generiert werden.</p>
 </details>
 <h2 id="backup-und-aktualisierung-des-cold-standby">Backup und Aktualisierung des Cold-Standby<a class="headerlink" href="#backup-und-aktualisierung-des-cold-standby" title="Permanent link">&para;</a></h2>
 <p>Starten Sie das erste Backup, dies kann je nach Verbindung eine Weile dauern:</p>
@@ -3917,7 +3917,7 @@ Das Ziel muss über Docker und docker compose <strong>v2</strong> verfügen.</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-12-12 10:34:49</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-01-18 12:17:12</span>
   </span>
 
     
