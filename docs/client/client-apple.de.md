@@ -24,5 +24,5 @@ Unter iOS wird auch Exchange ActiveSync als Alternative zum obigen Verfahren unt
 
 1. Öffnen Sie die App *Einstellungen*, tippen Sie auf *Mail*, tippen Sie auf *Konten*, tippen Sie auf *Konto hinzufügen*, wählen Sie *Exchange*.
 2. Geben Sie Ihre E-Mail Adresse<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> ein und tippen Sie auf *Weiter*.
-3. Geben Sie Ihr Passwort ein und tippen Sie erneut auf *Weiter*.
+3. Geben Sie Ihr Passwort ein und tippen Sie erneut auf *Weiter*. Wenn die 2-Faktor-Authentifizierung aktiviert ist, müssen Sie ein App-Password anstelle Ihres normalen Passwortes benutzen.
 4. Tippen Sie abschließend auf *Speichern*.

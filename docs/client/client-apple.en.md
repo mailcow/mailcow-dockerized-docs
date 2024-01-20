@@ -24,5 +24,5 @@ On iOS, Exchange ActiveSync is also supported as an alternative to the procedure
 
 1. Open the *Settings* app, tap *Mail*, tap *Accounts*, tap *Add Acccount*, select *Exchange*.
 2. Enter your email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and tap *Next*.
-3. Enter your password, tap *Next* again.
+3. Enter your password, tap *Next* again. With 2-Factor-Authentication enabled, you have to use an App password instead of your regular password.
 4. Finally, tap *Save*.
