@@ -117,7 +117,7 @@ Nur für **Bug Tracking, Feature Requests und Codebeiträge**:
 
 Für Ankündigungen oder Release Informationen sind wir auf folgenden Plattformen vertreten:
 
-- :fontawesome-brands-x-twitter: [mailcow @ X/Twitter](https://twitter.com/mailcow)
+- :fontawesome-brands-x-twitter: [mailcow @ X/Twitter](https://twitter.com/mailcow_email)
 
 - :fontawesome-brands-mastodon:{ .mastodon }  [@doncow @ mailcow.social](https://mailcow.social/@doncow)
 
