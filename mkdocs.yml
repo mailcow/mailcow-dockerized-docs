@@ -1,6 +1,6 @@
 site_name: 'mailcow: dockerized documentation'
 site_url: https://docs.mailcow.email/
-copyright: "Copyright &copy; 2023 mailcow Team & Community"
+copyright: "Copyright &copy; <script>document.write(new Date().getFullYear())</script> mailcow Team & Community"
 repo_name: mailcow/mailcow-dockerized
 repo_url: https://github.com/mailcow/mailcow-dockerized
 edit_uri: ../mailcow-dockerized-docs/edit/master/docs/
