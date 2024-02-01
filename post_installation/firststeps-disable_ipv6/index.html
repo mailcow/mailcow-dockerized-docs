@@ -117,7 +117,8 @@
             
             
 
-  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
+  <!-- <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center> -->
+  <center><h4 style="color:red">ATTENTION! ATTENTION!! ATTENTION!!!</h4><h4>Important change for all those who have deactivated IPv6 and using Docker version >=25! <a style="color:#6390e5;" href="https://docs.mailcow.email/post_installation/firststeps-disable_ipv6/">Read the updated instructions here!</a></h4></center>
 
 
           </div>
@@ -3708,6 +3709,10 @@
 
   <h1>Disable IPv6</h1>
 
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>For installations that use Docker version <strong>&gt;= 25</strong> (to check use <code>docker version</code>), the behavior of the IPv6 address allocation has changed. A simple <code>enable_ipv6: false</code> is <strong>NOT</strong> sufficient anymore to disable IPv6 completely in the stack. Whether this is a bug or intentional remains open (<a href="https://github.com/moby/moby/issues/47202">see open issue at Docker</a>). <strong>In any case, a manual adjustment is necessary if IPv6 was deactivated in the past!!!</strong></p>
+</div>
 <p>This is <strong>ONLY</strong> recommended if you do not have an IPv6 enabled network on your host!</p>
 <p>If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.</p>
@@ -3715,11 +3720,16 @@ Additionally, you can  also disable the startup of container "ipv6nat-mailcow", 
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.</p>
 <p>To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). </p>
 <p><strong>1.</strong> Modify docker-compose.yml</p>
-<p>Change <code>enable_ipv6: true</code> to <code>enable_ipv6: false</code>:</p>
+<p>Change <code>enable_ipv6: true</code> to <code>enable_ipv6: false</code> and comment out the IPv6 subnet:</p>
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
     [...]
     enable_ipv6: true # &lt;&lt;&lt; set to false
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
+        - subnet: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64} # &lt;&lt;&lt; comment out with #
     [...]
 </code></pre></div>
 <p><strong>2.</strong> Disable ipv6nat-mailcow</p>
@@ -3818,7 +3828,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-09 15:44:30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-01 10:51:56</span>
   </span>
 
     
@@ -3856,7 +3866,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2023 mailcow Team & Community
+      Copyright &copy; <script>document.write(new Date().getFullYear())</script> mailcow Team & Community
     </div>
   
   
