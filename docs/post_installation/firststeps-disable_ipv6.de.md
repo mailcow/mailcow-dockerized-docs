@@ -1,5 +1,5 @@
 !!! danger "ACHTUNG"
-    Bei Installationen, welche Docker Version **>= 25** (zum überprüfen nutzt `docker version`) verwenden hat sich das Verhalten der IPv6-Adressen Allokation verändert. Ein simples `enable_ipv6: false` reicht **NICHT** mehr aus, um IPv6 komplett im Stack zu deaktivieren. Ob es ein Bug oder so gewollt ist ist derzeit noch offen ([siehe offenes Issue bei Docker](https://github.com/moby/moby/issues/47202)). **Jedenfalls ist eine manuelle Anpassung notwendig, wenn IPv6 in der Vergangenheit deaktiviert wurde!!**
+    Bei Installationen, welche eine Docker Version <b>zwischen 25.0.0 und 25.0.2</b> (zum überprüfen nutzt `docker version`) verwenden hat sich das Verhalten der IPv6-Adressen Allokation durch einen Bug verändert. Ein simples `enable_ipv6: false` reicht damit **NICHT** mehr aus, um IPv6 komplett im Stack zu deaktivieren. <br>Dies war ein Bug im Docker Daemon, welcher mit Version 25.0.3 gefixt wurde.
 
 Dies wird **NUR** empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben!
 
@@ -13,7 +13,7 @@ Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit 
 
 **1.** Ändern Sie docker-compose.yml
 
-Ändern Sie `enable_ipv6: true` in `enable_ipv6: false` und kommentieren Sie das IPv6 Subnetz aus:
+Ändern Sie `enable_ipv6: true` in `enable_ipv6: false`:
 
 ```
 networks:
@@ -24,7 +24,6 @@ networks:
       driver: default
       config:
         - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
-        - subnet: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64} # <<< Auskommentieren mit #
     [...]
 ```
 

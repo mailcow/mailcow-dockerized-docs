@@ -1,5 +1,5 @@
 !!! danger
-    For installations that use Docker version **>= 25** (to check use `docker version`), the behavior of the IPv6 address allocation has changed. A simple `enable_ipv6: false` is **NOT** sufficient anymore to disable IPv6 completely in the stack. Whether this is a bug or intentional remains open ([see open issue at Docker](https://github.com/moby/moby/issues/47202)). **In any case, a manual adjustment is necessary if IPv6 was deactivated in the past!!!**
+    In installations using a Docker version <b>between 25.0.0 and 25.0.2</b> (to check, use `docker version`) the behavior of IPv6 address allocation has changed due to a bug. Simply using `enable_ipv6: false` is **NO LONGER** sufficient to completely disable IPv6 in the stack. <br>This was a bug in the Docker Daemon, which has been fixed with version 25.0.3.
 
 This is **ONLY** recommended if you do not have an IPv6 enabled network on your host!
 
