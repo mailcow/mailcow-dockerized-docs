@@ -118,7 +118,7 @@
             
 
   <!-- <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center> -->
-  <center><h4 style="color:red">ACHTUNG! ACHTUNG!! ACHTUNG!!!</h4><h4>Wichtige Änderung für alle, die IPv6 deaktiviert haben und Docker Version >=25 nutzen! <a style="color:#6390e5;" href="https://docs.mailcow.email/de/post_installation/firststeps-disable_ipv6/">Lese die aktualisiere Anleitung hier!</a></h4></center>
+  <center><h4 style="color:red">ACHTUNG! ACHTUNG!! ACHTUNG!!!</h4><h4>Alle Docker Versionen zwischen 25.0.0 bis 25.0.2 sind von einem <a style="color:#6390e5;" href="https://github.com/moby/moby/pull/47306">Bug im Docker Daemon in Bezug auf IPv6</a> betroffen, welches bei deaktiviertem IPv6 im Docker Network für Probleme gesorgt hat. <br>Bitte Updated Docker mindestens auf Version 25.0.3 um den Fehler zu korrigieren und keine unnötigen Workarounds einbauen zu müssen!</h4></center>
 
 
           </div>
@@ -3667,7 +3667,7 @@
 
 <div class="admonition danger">
 <p class="admonition-title">ACHTUNG</p>
-<p>Bei Installationen, welche Docker Version <strong>&gt;= 25</strong> (zum überprüfen nutzt <code>docker version</code>) verwenden hat sich das Verhalten der IPv6-Adressen Allokation verändert. Ein simples <code>enable_ipv6: false</code> reicht <strong>NICHT</strong> mehr aus, um IPv6 komplett im Stack zu deaktivieren. Ob es ein Bug oder so gewollt ist ist derzeit noch offen (<a href="https://github.com/moby/moby/issues/47202">siehe offenes Issue bei Docker</a>). <strong>Jedenfalls ist eine manuelle Anpassung notwendig, wenn IPv6 in der Vergangenheit deaktiviert wurde!!</strong></p>
+<p>Bei Installationen, welche eine Docker Version <b>zwischen 25.0.0 und 25.0.2</b> (zum überprüfen nutzt <code>docker version</code>) verwenden hat sich das Verhalten der IPv6-Adressen Allokation durch einen Bug verändert. Ein simples <code>enable_ipv6: false</code> reicht damit <strong>NICHT</strong> mehr aus, um IPv6 komplett im Stack zu deaktivieren. <br>Dies war ein Bug im Docker Daemon, welcher mit Version 25.0.3 gefixt wurde.</p>
 </div>
 <p>Dies wird <strong>NUR</strong> empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben!</p>
 <p>Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
@@ -3676,7 +3676,7 @@ Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivi
 zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.</p>
 <p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). </p>
 <p><strong>1.</strong> Ändern Sie docker-compose.yml</p>
-<p>Ändern Sie <code>enable_ipv6: true</code> in <code>enable_ipv6: false</code> und kommentieren Sie das IPv6 Subnetz aus:</p>
+<p>Ändern Sie <code>enable_ipv6: true</code> in <code>enable_ipv6: false</code>:</p>
 <div class="highlight"><pre><span></span><code>networks:
   mailcow-network:
     [...]
@@ -3685,7 +3685,6 @@ zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider schei
       driver: default
       config:
         - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
-        - subnet: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64} # &lt;&lt;&lt; Auskommentieren mit #
     [...]
 </code></pre></div>
 <p><strong>2.</strong> ipv6nat-mailcow deaktivieren</p>
@@ -3784,7 +3783,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-01 10:51:56</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-16 14:58:38</span>
   </span>
 
     
