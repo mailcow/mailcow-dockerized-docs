@@ -75,7 +75,6 @@ The next command then creates the borgmatic configuration file containing the co
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
 source_directories:
     - /mnt/source
-    - /mnt/source
     - /mnt/source/vmail
     - /mnt/source/crypt
     - /mnt/source/redis
