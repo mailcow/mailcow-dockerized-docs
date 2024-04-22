@@ -52,7 +52,7 @@ services:
         - traefik.docker.network=traefik_web
 
     certdumper:
-        image: humenius/traefik-certs-dumper
+        image: ghcr.io/kereis/traefik-certs-dumper
         command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
         network_mode: none
         volumes:
