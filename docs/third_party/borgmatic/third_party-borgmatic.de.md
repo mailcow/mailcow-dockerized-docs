@@ -73,7 +73,6 @@ Das nächste Kommando erzeugt dann die borgmatic-Konfigurationsdatei mit den kor
 ```bash
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
 source_directories:
-    - /mnt/source
     - /mnt/source/vmail
     - /mnt/source/crypt
     - /mnt/source/redis
