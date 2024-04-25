@@ -74,7 +74,11 @@ The next command then creates the borgmatic configuration file containing the co
 ```bash
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
 source_directories:
-    - /mnt/source
+    - /mnt/source/vmail
+    - /mnt/source/crypt
+    - /mnt/source/redis
+    - /mnt/source/rspamd
+    - /mnt/source/postfix
 repositories:
     - path: ssh://user@rsync.net:22/./mailcow
       label: rsync
