@@ -453,7 +453,9 @@ plugins:
         - stemmer
         - stopWordFilter
         - trimmer
-  - social
+  - social:
+      cards_layout_options:
+        font_family: Roboto
   - glightbox
 
 extra:
