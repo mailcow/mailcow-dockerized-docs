@@ -285,7 +285,7 @@ Let's Encrypt ermöglicht es, mithilfe des `accounturi`-Paramaters in CAA-Eintr�
 Sie können das Helper-Skript `generate_caa_record.py` verwenden, um einen CAA-Eintrag mit `accounturi` zu erstellen, welchen Sie dann bei Ihrem DNS-Anbieter eintragen können:
 
 ```bash
-./helper-scripts/generate_caa_record.py --account-key data/assets/ssl/acme/account.pem --contact ihre_acme_email@beispiel.de
+./helper-scripts/generate_caa_record.py --account-key data/assets/ssl/acme/account.pem --contact mailto:ihre_acme_email@beispiel.de
 ```
 
 ### Überprüfen Sie Ihre Konfiguration
