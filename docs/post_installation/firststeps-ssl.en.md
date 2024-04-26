@@ -285,7 +285,7 @@ Let's Encrypt allows restricting certificate issuance to specific account IDs vi
 `generate_caa_record.py` helper script to generate a CAA record with `accounturi`, which you can then enter with your DNS provider:
 
 ```bash
-./helper-scripts/generate_caa_record.py --account-key data/assets/ssl/acme/account.pem --contact your_acme_email@example.com
+./helper-scripts/generate_caa_record.py --account-key data/assets/ssl/acme/account.pem --contact mailto:your_acme_email@example.com
 ```
 
 ### Check your configuration
