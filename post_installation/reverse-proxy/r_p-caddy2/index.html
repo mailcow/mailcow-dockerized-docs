@@ -3696,12 +3696,16 @@
 <p><strong>Important</strong>: The ACME client of mailcow must be disabled, otherwise mailcow will fail.</p>
 <p>Since Caddy takes care of the certificates itself, we can use the following script to include the Caddy generated certificates into mailcow:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">MAILCOW_HOSTNAME</span><span class="o">=</span>your.domain.tld
+<span class="nv">CADDY_CERTS_DIR</span><span class="o">=</span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
 <span class="nv">MD5SUM_CURRENT_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem<span class="k">)</span><span class="o">)</span>
-<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt<span class="k">)</span><span class="o">)</span>
+<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.crt<span class="k">)</span><span class="o">)</span>
 
 <span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$MD5SUM_CURRENT_CERT</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="nv">$MD5SUM_NEW_CERT</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span>cp<span class="w"> </span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.crt<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem
-<span class="w">        </span>cp<span class="w"> </span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/your.domain.tld/your.domain.tld.key<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/key.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.crt<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.key<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/key.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.crt<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/<span class="nv">$MAILCOW_HOSTNAME</span>/cert.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.key<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/<span class="nv">$MAILCOW_HOSTNAME</span>/key.pem
 <span class="w">        </span><span class="nv">postfix_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>postfix-mailcow<span class="k">)</span>
 <span class="w">        </span><span class="nv">dovecot_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>dovecot-mailcow<span class="k">)</span>
 <span class="w">        </span><span class="nv">nginx_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>nginx-mailcow<span class="k">)</span>
@@ -3741,7 +3745,7 @@ To find out the Caddy certificate path on your system, just run a <code>find / -
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-06-14 00:42:41</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-11 14:23:07</span>
   </span>
 
     
