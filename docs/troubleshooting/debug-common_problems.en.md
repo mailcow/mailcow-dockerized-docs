@@ -85,7 +85,7 @@ key.pem
 If `dhparams.pem` is missing, you can generate it with
 
 ```bash
-openssl dhparam -out data/assets/ssl/dhparams.pem 4096
+sudo openssl dhparam -out data/assets/ssl/dhparams.pem 4096
 ```
 
 ## Rspamd reports: cannot open hyperscan cache file /var/lib/rspamd/{...}.hs: compiled for a different platform
