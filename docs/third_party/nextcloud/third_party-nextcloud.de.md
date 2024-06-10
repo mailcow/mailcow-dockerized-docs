@@ -1,5 +1,10 @@
 ## Nextcloud mit dem Helper-Skript verwalten
 
+!!! danger "Deprecation Hinweis"
+    Diese Anleitung ist deprecated und betrifft das Nextcloud Helper-Skript, welches innerhalb mailcows gebündelt ist. Ab **Dezember 2024** wird diese **Installationsart** aus mailcow **entfernt** und **kein Support** dafür geleistet. Sollten Sie noch besagte Installation nutzen, migrieren Sie ihre Nextcloud Installation in eine eigenständige Nextcloud Instanz (entweder auch per Docker oder Nativ).
+
+    *Die Anleitung für die Nutzung von mailcow als Authentifizierungsquelle innerhalb Nextcloud's wird auch nach der Entfernung des Skriptes im Dezember 2024 erhalten und funktional bleiben.*
+
 Nextcloud kann mit dem [helper script](https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh), das in mailcow enthalten ist, eingerichtet (Parameter `-i`) und entfernt (Parameter `-p`) werden. Um Nextcloud zu installieren, navigieren Sie einfach zu Ihrem mailcow-dockerized Root-Ordner und führen Sie das Helper-Skript wie folgt aus:
 
 `./helper-scripts/nextcloud.sh -i`
@@ -28,7 +33,6 @@ Zur Verwendung der empfohlenen Einstellung (Cron) zur Verarbeitung der Hintergru
  hinzugefügt werden:
 
 ```yaml
-version: '2.1'
 services:
   php-fpm-mailcow:
     labels:

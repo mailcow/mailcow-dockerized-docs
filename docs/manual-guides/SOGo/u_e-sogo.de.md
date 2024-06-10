@@ -46,9 +46,7 @@ copy([].slice.call(document.styleSheets)
 
 10\. Anhängen/Erstellen von `docker-compose.override.yml` mit:
 ```
-Version: '2.1'
-
-Dienste:
+services:
   sogo-mailcow:
     volumes:
       - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z

@@ -42,7 +42,6 @@ To disable the ipv6nat-mailcow container as well, go to your mailcow directory a
 Open the file in your favourite text editor and fill in the following:
 
 ```
-version: '2.1'
 services:
 
     ipv6nat-mailcow:

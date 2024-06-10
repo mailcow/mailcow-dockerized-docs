@@ -113,8 +113,6 @@ SNAT6_TO_SOURCE=dead:beef # Ändern Sie dies in Ihre globale IPv6
 Erstelle die Datei `/opt/mailcow-dockerized/docker-compose.override.yml` (z.B. mit `nano`) und füge die folgenden Zeilen hinzu:
 
 ```
-version: '2.1'
-
 services:
   postfix-mailcow:
     volumes:
@@ -207,8 +205,6 @@ Erstellen Sie einen langen Schlüssel für *Django*, z. B. mit dem Linux-Befehl 
 Erstellen Sie die Datei `/opt/docker-mailman/docker compose.override.yaml` und ersetzen Sie `HYPERKITTY_KEY`, `DBPASS` und `DJANGO_KEY` durch die generierten Werte:
 
 ```
-version: '2'
-
 services:
   mailman-core:
     environment:

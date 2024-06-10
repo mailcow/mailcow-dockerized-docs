@@ -2,7 +2,6 @@ In order to enable Portainer, the docker-compose.yml and site.conf for Nginx mus
 
 1\. Create a new file `docker-compose.override.yml` in the mailcow-dockerized root folder and insert the following configuration
 ```yaml
-version: '2.1'
 services:
     portainer-mailcow:
       image: portainer/portainer-ce

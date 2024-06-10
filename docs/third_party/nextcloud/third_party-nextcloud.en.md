@@ -1,5 +1,10 @@
 ## Manage Nextcloud using the helper script
 
+!!! danger "Deprecation notice"
+    This guide about the mailcow Nextcloud helper-script is deprecated. Until **December 2024** this **installationscript** will be **removed** from mailcow and **no further support** will be granted. If you are using a Nextcloud installation based on this script you should migrate all your datas to a standalone Nextcloud instance (either inside Docker or natively) in the near future.
+
+    *The Authentication guide (below further) will still be intact after the script removal in December 2024.*
+
 Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [helper script](https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh) included with mailcow. In order to install Nextcloud simply navigate to your mailcow-dockerized root folder and run the helper script as follows:
 
 `./helper-scripts/nextcloud.sh -i`
@@ -27,7 +32,6 @@ For more informaton refer to: [Advanced SSL](../../post_installation/firststeps-
 To use the recommended setting (cron) to execute the background jobs following lines need to be added to the `docker-compose.override.yml`:
 
 ```yaml
-version: '2.1'
 services:
   php-fpm-mailcow:
     labels:

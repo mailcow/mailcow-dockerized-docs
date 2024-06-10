@@ -45,7 +45,6 @@ Here is the good news: Since Docker has some great logging drivers, you can inte
 Create a `docker-compose.override.yml` and add, for example, this block to use the "gelf" logging plugin for `postfix-mailcow`:
 
 ```
-version: '2.1'
 services:
   postfix-mailcow: # or any other
     logging:
@@ -57,7 +56,6 @@ services:
 Another example for **Syslog**:
 
 ```
-version: '2.1'
 services:
 
   postfix-mailcow: # or any other

@@ -22,8 +22,6 @@ In the mailcow-dockerized root folder create or edit `docker-compose.override.ym
 configuration:
 
 ```yaml
-version: '2.1'
-
 services:
   borgmatic-mailcow:
     image: ghcr.io/borgmatic-collective/borgmatic

@@ -107,8 +107,6 @@ Um dies mit einem Docker-Job-Scheduler zu archivieren, verwenden Sie diese docke
 
 
 ```
-version: '2.1'
-
 services:
   
   dovecot-mailcow:

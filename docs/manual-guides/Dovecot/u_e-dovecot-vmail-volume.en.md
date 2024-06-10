@@ -19,7 +19,6 @@ Start mailcow afterwards.
 If you want to use another folder for the vmail-volume, you can create a `docker-compose.override.yml` file and add the following content:
 
 ```
-version: '2.1'
 volumes:
   vmail-vol-1:
     driver_opts:

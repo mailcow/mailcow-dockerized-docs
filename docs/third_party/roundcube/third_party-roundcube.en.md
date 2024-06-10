@@ -200,7 +200,6 @@ To do this, add the following to `docker-compose.override.yml` (if you already h
 adaptations for the php-fpm container, add the labels to the existing section):
 
 ```yml
-version: '2.1'
 services:
   php-fpm-mailcow:
     labels:
@@ -381,7 +380,6 @@ ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
 Edit `docker-compose.override.yml` and crate/extend the section for `php-fpm-mailcow`:
 
 ```yml
-version: '2.1'
 services:
   php-fpm-mailcow:
     environment:

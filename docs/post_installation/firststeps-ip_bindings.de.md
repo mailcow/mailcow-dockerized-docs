@@ -60,7 +60,6 @@ Bearbeiten Sie die Datei "docker-compose.override.yml" und erstellen Sie sie mit
 Es wird eine **beispielhafte** IPv6 **2001:db8:dead:beef::123** in [] angegeben. Das erste Suffix `:PORT1` definiert den externen Port, während das zweite Suffix `:PORT2` zu dem entsprechenden Port innerhalb des Containers führt und <u>**nicht**</u> verändert werden darf.
 
 ```
-version: '2.1'
 services:
 
     dovecot-mailcow:

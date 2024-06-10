@@ -21,8 +21,6 @@ Im mailcow-dockerized Stammverzeichnis erstellen oder bearbeiten Sie `docker-com
 Konfiguration ein:
 
 ```yaml
-version: '2.1'
-
 services:
   borgmatic-mailcow:
     image: ghcr.io/borgmatic-collective/borgmatic

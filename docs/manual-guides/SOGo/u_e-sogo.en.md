@@ -46,8 +46,6 @@ copy([].slice.call(document.styleSheets)
 
 10\. append/create `docker-compose.override.yml` with:
 ```
-version: '2.1'
-
 services:
   sogo-mailcow:
     volumes:

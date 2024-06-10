@@ -11,7 +11,6 @@ docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -
 2\. Öffne `docker-compose.override.yml` und füge Gogs hinzu:
 
 ```yaml
-version: '2.1'
 services:
 
     gogs-mailcow:

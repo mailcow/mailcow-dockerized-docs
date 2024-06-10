@@ -19,7 +19,6 @@ Starten Sie anschließend mailcow.
 Wenn man einen anderen Ordner für das vmail-Volume verwenden möchte, kann man eine `docker-compose.override.yml` Datei erstellen und den folgenden Inhalt hinzufügen:
 
 ```yaml
-version: '2.1'
 volumes:
   vmail-vol-1:
     driver_opts:

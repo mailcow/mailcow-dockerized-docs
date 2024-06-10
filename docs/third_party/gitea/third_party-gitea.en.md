@@ -11,7 +11,6 @@ docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -
 2\. Open `docker-compose.override.yml` and add gitea:
 
 ```yaml
-version: '2.1'
 services:
 
 		gitea-mailcow:

@@ -37,8 +37,6 @@ reporting {
 Create or modify `docker-compose.override.yml` in the mailcow-dockerized base directory:
 
 ```
-version: '2.1'
-
 services:
   rspamd-mailcow:
     environment:
@@ -169,7 +167,7 @@ To change schedule:
 1. Edit `docker-compose.override.yml`:
 
 ```
-version: '2.1'
+
 
 services:
   rspamd-mailcow:

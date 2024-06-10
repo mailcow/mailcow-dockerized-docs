@@ -41,7 +41,6 @@ Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mai
 Öffnen Sie die Datei in Ihrem bevorzugten Texteditor und tragen Sie folgendes ein:
 
 ```
-version: '2.1'
 services:
 
     ipv6nat-mailcow:

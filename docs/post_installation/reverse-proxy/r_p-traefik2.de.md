@@ -26,8 +26,6 @@ Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und den 
 Dann erstellen wir eine `docker-compose.override.yml` Datei, um die Hauptdatei `docker-compose.yml` zu überschreiben, die sich im mailcow-Stammverzeichnis befindet. 
 
 ```yaml
-version: '2.1'
-
 services:
     nginx-mailcow:
       networks:

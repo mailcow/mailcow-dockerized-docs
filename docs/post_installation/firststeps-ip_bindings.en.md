@@ -60,7 +60,6 @@ Edit to create a file  `docker-compose.override.yml` with the following content.
 An **example** IPv6 **2001:db8:dead:beef::123** is given. The first suffix `:PORT1` defines the external port, while the second suffix `:PORT2` routes to the corresponding port inside the container and must <u>**not**</u> be changed.
 
 ```
-version: '2.1'
 services:
 
     dovecot-mailcow:

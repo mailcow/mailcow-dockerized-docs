@@ -2,7 +2,6 @@ Um Portainer zu aktivieren, müssen die docker-compose.yml und site.conf für Ng
 
 1\. Erstellen Sie eine neue Datei `docker-compose.override.yml` im mailcow-dockerized Stammverzeichnis und fügen Sie die folgende Konfiguration ein
 ```yaml
-version: '2.1'
 services:
     portainer-mailcow:
       image: portainer/portainer-ce
