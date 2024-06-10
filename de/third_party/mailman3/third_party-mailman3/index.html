@@ -4238,9 +4238,7 @@ SNAT6_TO_SOURCE=dead:beef # Ändern Sie dies in Ihre globale IPv6
 </code></pre></div>
 <h4 id="mailman-integration-hinzufugen">Mailman-Integration hinzufügen<a class="headerlink" href="#mailman-integration-hinzufugen" title="Permanent link">&para;</a></h4>
 <p>Erstelle die Datei <code>/opt/mailcow-dockerized/docker-compose.override.yml</code> (z.B. mit <code>nano</code>) und füge die folgenden Zeilen hinzu:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2.1&#39;
-
-services:
+<div class="highlight"><pre><span></span><code>services:
   postfix-mailcow:
     volumes:
       - /opt/mailman:/opt/mailman
@@ -4308,9 +4306,7 @@ cd docker-mailman
 <p>Erstellen Sie ein langes Passwort für die Datenbank, z. B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie dieses Passwort zunächst als DBPASS.</p>
 <p>Erstellen Sie einen langen Schlüssel für <em>Django</em>, z. B. mit dem Linux-Befehl <code>cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c30; echo</code>. Speichern Sie diesen Schlüssel für einen Moment als DJANGO_KEY.</p>
 <p>Erstellen Sie die Datei <code>/opt/docker-mailman/docker compose.override.yaml</code> und ersetzen Sie <code>HYPERKITTY_KEY</code>, <code>DBPASS</code> und <code>DJANGO_KEY</code> durch die generierten Werte:</p>
-<div class="highlight"><pre><span></span><code>version: &#39;2&#39;
-
-services:
+<div class="highlight"><pre><span></span><code>services:
   mailman-core:
     environment:
     - DATABASE_URL=postgresql://mailman:DBPASS@database/mailmandb
@@ -4445,7 +4441,7 @@ docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mai
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-12-07 16:45:22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-10 12:09:59</span>
   </span>
 
     
