@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 📥
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
         with:
           token: '${{ secrets.GHPAGES_ACTION_CHECKOUT_TOKEN_PAT }}'
           fetch-depth: '0' # https://github.com/timvink/mkdocs-git-revision-date-localized-plugin#note-when-using-build-environments
