@@ -22,7 +22,7 @@ Jeder Container repräsentiert eine einzelne Anwendung, die in einem überbrück
 
 - :simple-letsencrypt: [__ACME__](https://letsencrypt.org/) Automatische Generation von Let's Encrypt Zertifikaten
 - :fontawesome-solid-file-shield: [__ClamAV__](https://www.clamav.net/) Antiviren Scanner (optional)
-- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP Server zum Abrufen der E-Mails
+- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP Server zum Abrufen der E-Mails mit integrierter Full-Text Search Engine "Flatcurve"
 - :simple-mariadb: [__MariaDB__](https://mariadb.org/) Datenbank zum Speichern der Nutzer Informationen u.w.
 - :fontawesome-solid-memory: [__Memcached__](https://www.memcached.org/) Cache für den Webmailer SOGo
 - :fontawesome-solid-ban: __Netfilter__ Fail2ban-ähnliche Integration von [@mkuron](https://github.com/mkuron)

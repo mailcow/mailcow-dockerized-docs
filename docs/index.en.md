@@ -22,7 +22,7 @@ Each container represents a single application, connected in a bridged network:
 
 - :simple-letsencrypt: [__ACME__](https://letsencrypt.org/) Automatic generation of Let's Encrypt certificates
 - :fontawesome-solid-file-shield: [__ClamAV__](https://www.clamav.net/) Antivirus scanner (optional)
-- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP server for retrieving e-mails
+- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP server for retrieving e-mails with integrated Full-Text Search Engine "Flatcurve"
 - :simple-mariadb: [__MariaDB__](https://mariadb.org/) Database for storing user information etc.
 - :fontawesome-solid-memory: [__Memcached__](https://www.memcached.org/) Cache for the webmailer SOGo
 - :fontawesome-solid-ban: __Netfilter__ Fail2ban-like integration of [@mkuron](https://github.com/mkuron)
