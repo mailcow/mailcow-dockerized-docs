@@ -45,12 +45,11 @@ We can help to correctly plan your setup as part of our support.
 Basically, mailcow can be used on any distribution that is supported by Docker CE (see https://docs.docker.com/install/).
 However, in some cases there may be incompatibilities between the operating systems and the mailcow components.
 
-The following table contains all operating systems officially supported and tested by us (*as of June 2023*):
+The following table contains all operating systems officially supported and tested by us (*as of June 2024*):
 
 | OS                | Compatibility                            |
 | ----------------------- | ------------------------------------------------ |
 | Alpine since 3.17           | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
-| Centos 7              | [✅](https://www.centos.org/ "Fully Compatible") |
 | Debian 10, 11, 12              | [✅](https://www.debian.org/index.html "Fully Compatible") |
 | Ubuntu 18.04, 20.04, 22.04                   | [✅](https://ubuntu.com/ "Fully Compatible")|
 | Alma Linux 8 | [✅](https://almalinux.org/ "Fully Compatible") |
