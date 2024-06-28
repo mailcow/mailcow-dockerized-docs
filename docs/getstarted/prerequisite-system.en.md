@@ -50,8 +50,8 @@ The following table contains all operating systems officially supported and test
 | OS                | Compatibility                            |
 | ----------------------- | ------------------------------------------------ |
 | Alpine since 3.17           | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
-| Debian 10, 11, 12              | [✅](https://www.debian.org/index.html "Fully Compatible") |
-| Ubuntu 18.04, 20.04, 22.04                   | [✅](https://ubuntu.com/ "Fully Compatible")|
+| Debian 11, 12              | [✅](https://www.debian.org/index.html "Fully Compatible") |
+| Ubuntu 20.04 - 24.04                   | [✅](https://ubuntu.com/ "Fully Compatible")|
 | Alma Linux 8 | [✅](https://almalinux.org/ "Fully Compatible") |
 | Rocky Linux 9 | [✅](https://rockylinux.org/ "Fully Compatible") |
 
