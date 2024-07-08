@@ -71,6 +71,7 @@ _pop3s._tcp         IN SRV     0        1      995      mail.example.org. (your 
 _sieve._tcp         IN SRV     0        1      4190     mail.example.org. (your ${MAILCOW_HOSTNAME})
 _smtps._tcp         IN SRV     0        1      465      mail.example.org. (your ${MAILCOW_HOSTNAME})
 _submission._tcp    IN SRV     0        1      587      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_submissions._tcp   IN SRV     0        1      465      mail.example.org. (your ${MAILCOW_HOSTNAME})
 ```
 
 ## Testing
