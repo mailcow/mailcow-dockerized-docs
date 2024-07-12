@@ -2,1568 +2,1568 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://docs.mailcow.email/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-accidental_deletion/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-accidental_deletion/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-accidental_deletion/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-backup/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-backup_restore-maildir/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup_restore-maildir/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup_restore-maildir/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-backup_restore-mysql/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup_restore-mysql/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup_restore-mysql/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-coldstandby/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-coldstandby/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-coldstandby/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-restore/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-restore/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-restore/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-android/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-android/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-android/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-apple/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-apple/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-apple/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-emclient/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-emclient/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-emclient/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-kontact/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-kontact/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-kontact/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-manual/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-manual/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-manual/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-outlook/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-outlook/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-outlook/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-thunderbird/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-thunderbird/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-thunderbird/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client-windows/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-windows/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-windows/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/client/client/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/getstarted/install/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/getstarted/install/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/getstarted/install/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/getstarted/prerequisite-dns/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/getstarted/prerequisite-dns/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/getstarted/prerequisite-dns/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/getstarted/prerequisite-system/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/getstarted/prerequisite-system/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/getstarted/prerequisite-system/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/maintenance/deinstall/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/maintenance/deinstall/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/maintenance/deinstall/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/maintenance/migration/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/maintenance/migration/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/maintenance/migration/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/maintenance/update/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/maintenance/update/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/maintenance/update/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/u_e-80_to_443/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-80_to_443/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-80_to_443/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/u_e-autodiscover_config/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-autodiscover_config/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-autodiscover_config/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/u_e-reeanble-weak-protocols/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-reeanble-weak-protocols/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-reeanble-weak-protocols/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/u_e-update-hooks/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-update-hooks/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-update-hooks/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/u_e-why_unbound/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-why_unbound/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-why_unbound/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/ClamAV/u_e-clamav-additional_dbs/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/ClamAV/u_e-clamav-additional_dbs/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/ClamAV/u_e-clamav-additional_dbs/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/ClamAV/u_e-clamav-whitelist/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/ClamAV/u_e-clamav-whitelist/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/ClamAV/u_e-clamav-whitelist/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Docker/u_e-docker-cust_dockerfiles/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Docker/u_e-docker-cust_dockerfiles/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Docker/u_e-docker-cust_dockerfiles/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-any_acl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-any_acl/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-any_acl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-catchall_vacation/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-catchall_vacation/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-catchall_vacation/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-expunge/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-expunge/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-expunge/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-extra_conf/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-extra_conf/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-extra_conf/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-fts/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-fts/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-fts/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-idle_interval/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-mail-crypt/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-mail-crypt/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-mail-crypt/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-more/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-more/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-more/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-performance/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-performance/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-performance/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-public_folder/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-public_folder/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-public_folder/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-static_master/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-static_master/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-static_master/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-vmail-volume/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-vmail-volume/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-vmail-volume/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Nginx/u_e-nginx_custom/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Nginx/u_e-nginx_custom/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Nginx/u_e-nginx_custom/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Nginx/u_e-nginx_webmail-site/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Nginx/u_e-nginx_webmail-site/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Nginx/u_e-nginx_webmail-site/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-attachment_size/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-attachment_size/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-attachment_size/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-custom_transport/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-custom_transport/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-custom_transport/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-disable_sender_verification/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-disable_sender_verification/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-disable_sender_verification/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-extra_cf/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-extra_cf/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-extra_cf/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-pflogsumm/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-pflogsumm/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-pflogsumm/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-relayhost/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-relayhost/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-relayhost/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Redis/u_e-redis/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Redis/u_e-redis/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Redis/u_e-redis/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-add-additional-modules/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-add-additional-modules/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-add-additional-modules/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-tweaks/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-tweaks/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-tweaks/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-work-with-spamdata/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-work-with-spamdata/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-work-with-spamdata/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Rspamd/u_e-rspamd-disable-greylisting/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u_e-rspamd-disable-greylisting/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u_e-rspamd-disable-greylisting/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Rspamd/u_e-rspamd-general/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u_e-rspamd-general/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u_e-rspamd-general/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/SOGo/u_e-sogo/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/SOGo/u_e-sogo/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/SOGo/u_e-sogo/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Unbound/u_e-unbound-fwd/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Unbound/u_e-unbound-fwd/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Unbound/u_e-unbound-fwd/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/Watchdog/u_e-watchdog-thresholds/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Watchdog/u_e-watchdog-thresholds/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Watchdog/u_e-watchdog-thresholds/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-config/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-config/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-config/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-css/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-css/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-css/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-fido/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-fido/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-fido/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/models/model-acl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/models/model-acl/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/models/model-acl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/models/model-passwd/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/models/model-passwd/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/models/model-passwd/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/models/model-sender_rcv/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/models/model-sender_rcv/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/models/model-sender_rcv/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-disable_ipv6/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-disable_ipv6/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-disable_ipv6/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-dmarc_reporting/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-dmarc_reporting/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-dmarc_reporting/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-ip_bindings/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-ip_bindings/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-ip_bindings/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-local_mta/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-local_mta/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-local_mta/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-logging/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-logging/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-logging/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-snat/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-snat/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-snat/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-ssl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-ssl/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-ssl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/firststeps-sync_jobs_migration/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-sync_jobs_migration/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-sync_jobs_migration/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-apache24/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-apache24/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-apache24/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-caddy2/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-caddy2/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-caddy2/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-haproxy/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-haproxy/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-haproxy/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-nginx/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-nginx/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-nginx/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik2/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik2/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik2/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/borgmatic/third_party-borgmatic/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/borgmatic/third_party-borgmatic/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/borgmatic/third_party-borgmatic/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/checkmk/u_e-checkmk/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/checkmk/u_e-checkmk/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/checkmk/u_e-checkmk/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/exchange_onprem/third_party-exchange_onprem/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/exchange_onprem/third_party-exchange_onprem/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/exchange_onprem/third_party-exchange_onprem/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/gitea/third_party-gitea/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/gitea/third_party-gitea/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/gitea/third_party-gitea/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/gogs/third_party-gogs/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/gogs/third_party-gogs/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/gogs/third_party-gogs/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/mailman3/third_party-mailman3/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/mailman3/third_party-mailman3/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/mailman3/third_party-mailman3/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/mailpiler/third_party-mailpiler_integration/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/mailpiler/third_party-mailpiler_integration/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/mailpiler/third_party-mailpiler_integration/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/nextcloud/third_party-nextcloud/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/nextcloud/third_party-nextcloud/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/nextcloud/third_party-nextcloud/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/portainer/third_party-portainer/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/portainer/third_party-portainer/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/portainer/third_party-portainer/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/third_party/roundcube/third_party-roundcube/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/roundcube/third_party-roundcube/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/roundcube/third_party-roundcube/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-admin_login_sogo/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-admin_login_sogo/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-admin_login_sogo/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-attach_service/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-attach_service/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-attach_service/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-common_problems/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-common_problems/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-common_problems/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-logs/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-logs/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-logs/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-mysql_aria/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-mysql_aria/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-mysql_aria/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-mysql_upgrade/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-mysql_upgrade/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-mysql_upgrade/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-resend-quarantine-notifications/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-resend-quarantine-notifications/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-resend-quarantine-notifications/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-reset_pw/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-reset_pw/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-reset_pw/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-reset_tls/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-reset_tls/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-reset_tls/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-rm_volumes/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-rm_volumes/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-rm_volumes/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug-rspamd_memory_leaks/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-rspamd_memory_leaks/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-rspamd_memory_leaks/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/troubleshooting/debug/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug/"/>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-accidental_deletion/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-accidental_deletion/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-accidental_deletion/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-backup/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-backup_restore-maildir/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup_restore-maildir/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup_restore-maildir/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-backup_restore-mysql/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup_restore-mysql/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup_restore-mysql/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-coldstandby/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-coldstandby/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-coldstandby/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-restore/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-restore/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-restore/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-android/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-android/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-android/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-apple/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-apple/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-apple/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-emclient/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-emclient/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-emclient/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-kontact/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-kontact/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-kontact/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-manual/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-manual/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-manual/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-outlook/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-outlook/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-outlook/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-thunderbird/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-thunderbird/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-thunderbird/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client-windows/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client-windows/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client-windows/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/client/client/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/client/client/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/client/client/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/getstarted/install/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/getstarted/install/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/getstarted/install/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/getstarted/prerequisite-dns/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/getstarted/prerequisite-dns/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/getstarted/prerequisite-dns/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/getstarted/prerequisite-system/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/getstarted/prerequisite-system/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/getstarted/prerequisite-system/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/maintenance/deinstall/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/maintenance/deinstall/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/maintenance/deinstall/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/maintenance/migration/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/maintenance/migration/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/maintenance/migration/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/maintenance/update/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/maintenance/update/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/maintenance/update/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/u_e-80_to_443/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-80_to_443/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-80_to_443/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/u_e-autodiscover_config/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-autodiscover_config/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-autodiscover_config/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/u_e-reeanble-weak-protocols/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-reeanble-weak-protocols/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-reeanble-weak-protocols/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/u_e-update-hooks/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-update-hooks/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-update-hooks/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/u_e-why_unbound/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/u_e-why_unbound/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/u_e-why_unbound/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/ClamAV/u_e-clamav-additional_dbs/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/ClamAV/u_e-clamav-additional_dbs/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/ClamAV/u_e-clamav-additional_dbs/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/ClamAV/u_e-clamav-whitelist/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/ClamAV/u_e-clamav-whitelist/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/ClamAV/u_e-clamav-whitelist/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Docker/u_e-docker-cust_dockerfiles/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Docker/u_e-docker-cust_dockerfiles/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Docker/u_e-docker-cust_dockerfiles/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-any_acl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-any_acl/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-any_acl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-catchall_vacation/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-catchall_vacation/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-catchall_vacation/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-expunge/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-expunge/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-expunge/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-extra_conf/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-extra_conf/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-extra_conf/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-fts/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-fts/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-fts/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-mail-crypt/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-mail-crypt/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-mail-crypt/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-more/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-more/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-more/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-performance/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-performance/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-performance/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-public_folder/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-public_folder/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-public_folder/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-static_master/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-static_master/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-static_master/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-vmail-volume/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-vmail-volume/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-vmail-volume/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Nginx/u_e-nginx_custom/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Nginx/u_e-nginx_custom/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Nginx/u_e-nginx_custom/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Nginx/u_e-nginx_webmail-site/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Nginx/u_e-nginx_webmail-site/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Nginx/u_e-nginx_webmail-site/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-attachment_size/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-attachment_size/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-attachment_size/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-custom_transport/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-custom_transport/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-custom_transport/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-disable_sender_verification/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-disable_sender_verification/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-disable_sender_verification/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-extra_cf/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-extra_cf/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-extra_cf/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-pflogsumm/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-pflogsumm/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-pflogsumm/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-postscreen_whitelist/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-relayhost/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-relayhost/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-relayhost/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Postfix/u_e-postfix-unauthenticated-relaying/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Redis/u_e-redis/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Redis/u_e-redis/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Redis/u_e-redis/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-add-additional-modules/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-add-additional-modules/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-add-additional-modules/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-tweaks/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-tweaks/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-tweaks/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-work-with-spamdata/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u-e-rspamd-work-with-spamdata/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u-e-rspamd-work-with-spamdata/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Rspamd/u_e-rspamd-disable-greylisting/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u_e-rspamd-disable-greylisting/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u_e-rspamd-disable-greylisting/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Rspamd/u_e-rspamd-general/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Rspamd/u_e-rspamd-general/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Rspamd/u_e-rspamd-general/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/SOGo/u_e-sogo/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/SOGo/u_e-sogo/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/SOGo/u_e-sogo/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Unbound/u_e-unbound-fwd/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Unbound/u_e-unbound-fwd/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Unbound/u_e-unbound-fwd/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Watchdog/u_e-watchdog-thresholds/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Watchdog/u_e-watchdog-thresholds/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Watchdog/u_e-watchdog-thresholds/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-config/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-config/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-config/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-css/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-css/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-css/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-fido/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-fido/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-fido/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-pushover/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-spamfilter/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-sub_addressing/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-tags/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/mailcow-UI/u_e-mailcow_ui-tfa/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/models/model-acl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/models/model-acl/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/models/model-acl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/models/model-passwd/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/models/model-passwd/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/models/model-passwd/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/models/model-sender_rcv/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/models/model-sender_rcv/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/models/model-sender_rcv/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-disable_ipv6/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-disable_ipv6/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-disable_ipv6/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-dmarc_reporting/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-dmarc_reporting/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-dmarc_reporting/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-ip_bindings/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-ip_bindings/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-ip_bindings/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-local_mta/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-local_mta/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-local_mta/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-logging/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-logging/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-logging/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-snat/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-snat/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-snat/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-ssl/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-ssl/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-ssl/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/firststeps-sync_jobs_migration/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-sync_jobs_migration/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-sync_jobs_migration/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-apache24/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-apache24/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-apache24/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-caddy2/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-caddy2/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-caddy2/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-haproxy/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-haproxy/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-haproxy/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-nginx/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-nginx/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-nginx/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik2/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik2/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik2/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/borgmatic/third_party-borgmatic/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/borgmatic/third_party-borgmatic/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/borgmatic/third_party-borgmatic/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/checkmk/u_e-checkmk/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/checkmk/u_e-checkmk/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/checkmk/u_e-checkmk/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/exchange_onprem/third_party-exchange_onprem/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/exchange_onprem/third_party-exchange_onprem/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/exchange_onprem/third_party-exchange_onprem/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/gitea/third_party-gitea/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/gitea/third_party-gitea/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/gitea/third_party-gitea/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/gogs/third_party-gogs/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/gogs/third_party-gogs/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/gogs/third_party-gogs/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/mailman3/third_party-mailman3/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/mailman3/third_party-mailman3/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/mailman3/third_party-mailman3/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/mailpiler/third_party-mailpiler_integration/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/mailpiler/third_party-mailpiler_integration/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/mailpiler/third_party-mailpiler_integration/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/nextcloud/third_party-nextcloud/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/nextcloud/third_party-nextcloud/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/nextcloud/third_party-nextcloud/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/portainer/third_party-portainer/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/portainer/third_party-portainer/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/portainer/third_party-portainer/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/roundcube/third_party-roundcube/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/roundcube/third_party-roundcube/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/roundcube/third_party-roundcube/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-admin_login_sogo/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-admin_login_sogo/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-admin_login_sogo/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-attach_service/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-attach_service/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-attach_service/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-common_problems/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-common_problems/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-common_problems/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-logs/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-logs/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-logs/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-mysql_aria/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-mysql_aria/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-mysql_aria/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-mysql_upgrade/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-mysql_upgrade/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-mysql_upgrade/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-resend-quarantine-notifications/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-resend-quarantine-notifications/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-resend-quarantine-notifications/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-reset_pw/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-reset_pw/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-reset_pw/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-reset_tls/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-reset_tls/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-reset_tls/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-rm_volumes/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-rm_volumes/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-rm_volumes/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug-rspamd_memory_leaks/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug-rspamd_memory_leaks/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug-rspamd_memory_leaks/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/troubleshooting/debug/</loc>
-        <lastmod>2024-07-09</lastmod>
+        <lastmod>2024-07-12</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/troubleshooting/debug/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/troubleshooting/debug/"/>
