@@ -1,4 +1,4 @@
-SOGo wird verwendet, um über einen Webbrowser auf Ihre Mails zuzugreifen und Ihre Kontakte oder Kalender hinzuzufügen und zu teilen. Für eine ausführlichere Dokumentation zu SOGo besuchen Sie bitte die [Dokumentation von SOGo](http://wiki.sogo.nu/).
+SOGo wird verwendet, um über einen Webbrowser auf Ihre Mails zuzugreifen und Ihre Kontakte oder Kalender hinzuzufügen und zu teilen. Für eine ausführlichere Dokumentation zu SOGo besuchen Sie bitte die [Dokumentation von SOGo](https://www.sogo.nu/files/docs/SOGoInstallationGuide.html).
 
 ## Benutzerdefiniertes SOGo-Thema (CSS) anwenden
 mailcow-Builds nach dem 28. Januar 2021 können das CSS-Thema von SOGo ändern, indem sie `data/conf/sogo/custom-theme.js` bearbeiten.
