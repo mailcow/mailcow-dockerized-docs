@@ -16,13 +16,13 @@ Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nich
 
 Um ein Backup unbeaufsichtigt durchzuführen, definieren Sie MAILCOW_BACKUP_LOCATION als Umgebungsvariable, bevor Sie das Skript starten:
 
-```
+```bash
 MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 ```
 
 !!! tip "Tipp"
     Beide oben genannten Variablen können auch kombiniert werden! Bsp:
-    ```
+    ```bash
     MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
     ```
 
@@ -30,6 +30,9 @@ MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backu
 
 !!! danger "Achtung"
     **Bitte kopieren Sie dieses Skript nicht an einen anderen Ort.**
+
+!!! danger "Achtung für ältere Installationen"
+    Bitte schauen Sie **VOR** der Wiederherstellung Ihres mailcow Systemes auf einen neuen Server und einem sauberen mailcow-dockerized Ordner, ob in Ihrer mailcow.conf der Wert `MAILDIR_SUB` gesetzt ist. Falls dieser nicht gesetzt ist, so setzen Sie diesen auch bitte in Ihrer neuen mailcow nicht, bzw. entfernen diesen, da sonst **KEINE** E-Mails angezeigt werden. Dovecot lädt E-Mails aus dem besagtem Unterordner des Maildir Volumes unter `$DOCKER_VOLUME_PFAD/mailcowdockerized_vmail-vol-1` und bei Änderung im Vergleich zum Ursprungszustand sind dort keine Mails vorhanden.
 
 Um eine Wiederherstellung durchzuführen, **starten Sie mailcow**, verwenden Sie das Skript mit "restore" als ersten Parameter.
 

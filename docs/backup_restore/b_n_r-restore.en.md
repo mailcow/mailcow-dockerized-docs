@@ -16,20 +16,23 @@ You should not rename those folders to not break the restore process.
 
 To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variable before starting the script:
 
-```
+```bash
 MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
 ```
 
 !!! tip
-        Both variables mentioned above can also be combined! Ex:
-        ```
-        MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
-        ```
+    Both variables mentioned above can also be combined! Ex:
+    ```bash
+    MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
+    ```
 
 #### Restoring Data
 
 !!! danger
     **Please do not copy this script to another location.**
+
+!!! danger "Danger for older installations"
+    Before restoring your mailcow system on a new server and a clean mailcow-dockerized folder, please check if the value `MAILDIR_SUB` is set in your mailcow.conf. If this value is not set, do not set it in your new mailcow or remove it, otherwise **NO** emails will be displayed. Dovecot loads emails from the mentioned subfolder of the Maildir volume under `$DOCKER_VOLUME_PATH/mailcowdockerized_vmail-vol-1` and if there is any change compared to the original state, no emails will be available there.
 
 To run a restore, **start mailcow**, use the script with "restore" as first parameter.
 
