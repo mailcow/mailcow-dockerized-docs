@@ -124,6 +124,7 @@ nav:
       - 'Blacklist / Whitelist': 'manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl.md'
       - 'Configuration': 'manual-guides/mailcow-UI/u_e-mailcow_ui-config.md'
       - 'CSS overrides': 'manual-guides/mailcow-UI/u_e-mailcow_ui-css.md'
+      - 'Forgot Password Feature': 'manual-guides/mailcow-UI/u_e-mailcow_ui-forgot_password.md'
       - 'Netfilter': 'manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter.md'
       - 'Notification templates': 'manual-guides/mailcow-UI/u_e-mailcow_ui-notification-templates.md'
       - 'Pushover': 'manual-guides/mailcow-UI/u_e-mailcow_ui-pushover.md'
@@ -272,6 +273,7 @@ plugins:
                 ### mailcow UI Subsection
               'Configuration' : 'Konfiguration'
               'CSS overrides' : 'CSS-Überschreibungen'
+              'Forgot Password Feature' : 'Passwort vergessen Funktion'
               'Notification templates': 'Templates für Benachrichtigungen'
               'Sub-addressing' : 'Sub-Adressierung'
               'Temporary email aliases' : 'Temporäre E-Mail-Aliase'
