@@ -3684,6 +3684,9 @@
 <p>Bearbeiten Sie <code>data/conf/postfix/extra.cf</code>:</p>
 <div class="highlight"><pre><span></span><code>mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
 </code></pre></div>
+<p>Bearbeiten Sie zusätzlich noch <code>data/conf/rspamd/local.d/options.inc</code>:</p>
+<div class="highlight"><pre><span></span><code>local_addrs = [127.0.0.0/8, ::ffff:127.0.0.0/104, ::1/128, fe80::/10, 172.22.1.0/24, fd4d:6169:6c63:6f77::/64, 192.168.2.0/24];
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Vorsicht</p>
 <p>Die Subnetze vor unserem angehangenen Beispiel Subnetz <strong>MÜSSEN</strong> vor oder nach den eigens eingetragenen Werten stehen, da sonst einige mailcow Komponenten wie bspw. der Watchdog oder einige Sieve Filter (wie bspw. Abwesenheitsagenten) nicht funktionieren und Fehler beim Betriebsablauf entstehen.</p>
@@ -3692,11 +3695,11 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow<span class="w"> </span>rspamd-mailcow
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow<span class="w"> </span>rspamd-mailcow
 </code></pre></div>
 </div>
 </div>
@@ -3729,7 +3732,7 @@
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-10-27 14:28:35</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-31 16:13:31</span>
   </span>
 
     
