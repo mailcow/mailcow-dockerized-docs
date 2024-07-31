@@ -20,9 +20,9 @@ Mit der Passwort-vergessen-Funktion ist es Mailbox-Nutzern möglich, durch die A
 
 Damit dieses Feature für einen Benutzer aktiviert und nutzbar ist, sind folgende Dinge zu beachten:
 
-1. Der mailcow Administrator muss eine Absender E-Mail [(siehe unten)](#server-einstellungen) hinterlegt haben. Die Absender E-Mail muss nicht als Mailbox existieren, die Domain allerdings muss auf mailcow komplett eingerichtet sein, so dass mit dieser das Senden und vor allem die Zustellung von E-Mails sichergestellt ist.
+1. Der mailcow Administrator muss eine Absender E-Mail und einen Betreff [(siehe unten)](#server-einstellungen) eingestellt haben. Die Absender E-Mail muss nicht als Mailbox existieren, die Domain allerdings muss auf mailcow komplett eingerichtet sein, so dass mit dieser das Senden und vor allem die Zustellung von E-Mails sichergestellt ist.
 2. Der Mailbox-Benutzer muss eine Backup-E-Mail in seinen Optionen hinterlegt haben. Dies kann der User selber tun (wenn die dazugehörige ACL nicht deaktiviert ist) oder der Administrator.
-3. Die Backup-E-Mail **muss eine andere E-Mail** sein, als die des Mailkontos, für welches das Passwort zurückgesetzt werden soll.
+3. Die Backup-E-Mail **sollte eine andere E-Mail** sein, als die des Mailkontos, für welches das Passwort zurückgesetzt werden soll.
 4. Ebenfalls muss diese Backup-E-Mail externe E-Mails empfangen dürfen und sollte (wenn möglich) bei einem anderen Anbieter liegen und nicht direkt auf dem mailcow-Server sein. (Dieser Punkt ist allerdings optional und dient nur als Empfehlung).
 5. Der Nutzer muss Zugriff auf das Postfach der Backup-E-Mail haben, da die Links nur eine begrenzte Zeit gültig sind.
 
