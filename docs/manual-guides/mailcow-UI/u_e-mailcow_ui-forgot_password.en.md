@@ -20,10 +20,11 @@ With the "Forgot Password" function, mailbox users can request a link to reset t
 
 To activate and use this feature for a user, the following must be noted:
 
-1. The mailbox user must have a backup email address set in their options. This can be done by the user themselves (if the corresponding ACL is not disabled) or by the administrator.
-2. The backup email **must be different** from the email address of the account for which the password is to be reset.
-3. The backup email must also be able to receive external emails and should, if possible, be from a different provider and not directly on the mailcow server (this point is optional and serves only as a recommendation).
-4. The user must have access to the backup email's mailbox since the links are only valid for a limited time.
+1. The mailcow administrator must have configured a sender email [(see below)](#server-settings). The sender email does not need to exist as a mailbox; however, the domain must be fully set up in mailcow to ensure that sending and especially delivery of emails is guaranteed.
+2. The mailbox user must have a backup email address set in their options. This can be done by the user themselves (if the corresponding ACL is not disabled) or by the administrator.
+3. The backup email **must be different** from the email address of the account for which the password is to be reset.
+4. The backup email must also be able to receive external emails and should, if possible, be from a different provider and not directly on the mailcow server (this point is optional and serves only as a recommendation).
+5. The user must have access to the backup email's mailbox since the links are only valid for a limited time.
 
 ---
 
