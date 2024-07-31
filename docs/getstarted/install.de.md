@@ -3,7 +3,7 @@
 
 ## Docker und Docker Compose Installation
 
-Sie benötigen Docker (eine Version >= `20.10.2` ist erforderlich) und Docker Compose (eine Version `>= 2.0` ist erforderlich).
+Sie benötigen Docker (eine Version >= `24.0.0` ist erforderlich) und Docker Compose (eine Version `>= 2.0` ist erforderlich).
 
 Erfahren Sie, wie Sie [Docker](https://docs.docker.com/install/) und [Docker Compose](https://docs.docker.com/compose/install/) installieren.
 

@@ -2,7 +2,7 @@
     The installation is exactly the same on x86 and ARM64 platforms!
 
 ## Docker and Docker Compose Installation
-You need Docker (a version >= `20.10.2` is required) and Docker Compose (a version `>= 2.0` is required).
+You need Docker (a version >= `24.0.0` is required) and Docker Compose (a version `>= 2.0` is required).
 
  Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
