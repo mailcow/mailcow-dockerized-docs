@@ -19,6 +19,13 @@ Edit `data/conf/postfix/extra.cf`:
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
 ```
 
+Edit `data/conf/rspamd/local.d/options.inc` aswell:
+
+```
+local_addrs = [127.0.0.0/8, ::ffff:127.0.0.0/104, ::1/128, fe80::/10, 172.22.1.0/24, fd4d:6169:6c63:6f77::/64, 192.168.2.0/24];
+```
+
+
 !!! warning
     The subnets before our attached example subnet **MUST** exists before or after your entered values. Otherwise some mailcow components such as Watchdog or some Sieve Filters (such as Absence Agents) will not work and errors will occur during operation.
 
@@ -27,13 +34,13 @@ Run the following command to apply your new settings:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose restart postfix-mailcow
+    docker compose restart postfix-mailcow rspamd-mailcow
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose restart postfix-mailcow
+    docker-compose restart postfix-mailcow rspamd-mailcow
     ```
 
 !!! tip "Good to know!"
