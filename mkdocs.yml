@@ -88,7 +88,7 @@ nav:
       - 'Recover accidentally deleted data': 'backup_restore/b_n_r-accidental_deletion.md'
   - 'Post Installation Tasks':
     - 'Advanced SSL': 'post_installation/firststeps-ssl.md'
-    - 'Authorize Watchdog and Bounces': 'post_installation/firststeps-authorize_watchdog_and_bounces.md'
+    - 'Authorize Watchdog and Bounce Mails': 'post_installation/firststeps-authorize_watchdog_and_bounces.md'
     - 'Disable IPv6': 'post_installation/firststeps-disable_ipv6.md'
     - 'DMARC Reporting': 'post_installation/firststeps-dmarc_reporting.md'
     - 'IP bindings': 'post_installation/firststeps-ip_bindings.md'
@@ -243,6 +243,7 @@ plugins:
               ### Post Installation Tasks Section
               'Post Installation Tasks': 'Post-Installationsaufgaben'
               'Advanced SSL': 'Erweitertes SSL'
+              'Authorize Watchdog and Bounce Mails': 'Authorisieren der Watchdog und Bounce Mails'
               'Disable IPv6': 'IPv6 deaktivieren'
               'IP bindings': 'IP-Bindings'
               'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
