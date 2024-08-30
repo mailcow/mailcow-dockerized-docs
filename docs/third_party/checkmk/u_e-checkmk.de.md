@@ -31,7 +31,7 @@ fi
 exit
 ````
 
-Sofern das mailcow-Installationsverzeichnis nicht `/opt/` ist, kann der Pfad in der zweite Zeile angepasst werden.
+Sofern das mailcow-Installationsverzeichnis nicht `/opt/` ist, kann der Pfad in der zweiten Zeile angepasst werden.
 
 Danach für den mailcow-Host in checkmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen `mailcow_update` auswählbar sein.
 
