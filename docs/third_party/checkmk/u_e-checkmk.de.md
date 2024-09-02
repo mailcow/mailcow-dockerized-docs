@@ -1,7 +1,22 @@
-mailcow bietet mittels dem eigenen Update-Script die Möglichkeit zu prüfen ob Updates vorhanden sind.
+mailcow bietet mittels des eigenen Update-Scripts die Möglichkeit zu prüfen, ob Updates vorhanden sind.
 
 Sofern mailcow-Updates mittels checkmk abgefragt werden soll, kann man im `local`-Verzeichnis des checkmk-Agents (normalerweise `/usr/lib/check_mk_agent/local/`) eine ausführbare Datei mit dem Namen `mailcow_update` und nachfolgendem Inhalt erstellen:
 
+````
+#!/bin/bash
+cd /opt/mailcow-dockerized/ && ./update.sh --check-tags >/dev/null
+status=$?
+if [ $status -eq 3 ]; then
+  echo "0 \"mailcow_update\" mailcow_update=0;1;;0;1 No newer tags available."
+elif [ $status -eq 0 ]; then
+  echo "1 \"mailcow_update\" mailcow_update=1;1;;0;1 New tag is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/releases/latest"
+else
+  echo "3 \"mailcow_update\" - Unknown output from update script ..."
+fi
+exit
+````
+
+Um **jeden** neu verfügbaren Code als Update angezeigt zu bekommen, kann die ausführbare Datei mit folgendem Inhalt erstellt werden:
 ````
 #!/bin/bash
 cd /opt/mailcow-dockerized/ && ./update.sh -c >/dev/null
@@ -16,7 +31,7 @@ fi
 exit
 ````
 
-Sofern das mailcow-Installationsverzeichnis nicht `/opt/` ist, ist das in der 2. Zeile anzupassen.
+Sofern das mailcow-Installationsverzeichnis nicht `/opt/` ist, kann der Pfad in der zweiten Zeile angepasst werden.
 
 Danach für den mailcow-Host in checkmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen `mailcow_update` auswählbar sein.
 
@@ -27,27 +42,27 @@ Der Check `mailcow_update` wird jedes Mal ausgeführt, wenn der checkmk Agent de
 
 ### Keine Updates verfügbar
 
-Sofern keine Updates vorhanden sind, wird `OK` ausgegeben.
+Sofern keine Updates / keine neuen Tags vorhanden sind, wird `OK` ausgegeben.
 
 ![No update available](../../assets/images/checkmk/no_updates_available.png)
 
 ### Neue Updates verfügbar
 
-Sofern Updates vorhanden sind, wird `WARN` ausgegeben.
+Sofern Updates / Neue Tags vorhanden sind, wird `WARN` ausgegeben.
 
 ![Updates available](../../assets/images/checkmk/updates_available.png)
 
 Sollte stattdessen `CRIT` gewünscht sein, ist die 7. Zeile durch folgendes zu ersetzen:
 
 ````
-  echo "2 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
+echo "2 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
 ````
 
 ### Detailierter Check-Output
 
 ![Long check output](../../assets/images/checkmk/long_check_output.png)
 
-- Hier wird ein Link zu den GitHub Commits von mailcow ausgegeben, sofern Updates verfügbar sind.
+- Hier wird ein Link zu den GitHub Commits / des letzten Release von mailcow ausgegeben, sofern Updates verfügbar sind.
 - Metriken werden ebenfalls ausgegeben (nicht nur bei vorhandenen Updates):
   - 0 = Keine Updates verfügbar
   - 1 = Neue Updates verfügbar

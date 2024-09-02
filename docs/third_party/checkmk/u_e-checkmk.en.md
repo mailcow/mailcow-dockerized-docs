@@ -1,7 +1,21 @@
 mailcow provides the ability to check for updates using its own update script.
 
 If you want to check for mailcow updates using checkmk, you can create an executable file in the `local` directory of the checkmk agent (typically `/usr/lib/check_mk_agent/local/`) with the name `mailcow_update` and the following content:
+````
+#!/bin/bash
+cd /opt/mailcow-dockerized/ && ./update.sh --check-tags >/dev/null
+status=$?
+if [ $status -eq 3 ]; then
+  echo "0 \"mailcow_update\" mailcow_update=0;1;;0;1 No newer tags available."
+elif [ $status -eq 0 ]; then
+  echo "1 \"mailcow_update\" mailcow_update=1;1;;0;1 New tag is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/releases/latest"
+else
+  echo "3 \"mailcow_update\" - Unknown output from update script ..."
+fi
+exit
+````
 
+To check for **every** updated code, just create the executable with the following content:
 ````
 #!/bin/bash
 cd /opt/mailcow-dockerized/ && ./update.sh -c >/dev/null
@@ -27,20 +41,20 @@ This will run the `mailcow_update` everytime checkmk agent is checked, you can c
 
 ### No updates available
 
-If there are no updates available, `OK` is displayed.
+If there are no updates / newer tag available, `OK` is displayed.
 
 ![No update available](../../assets/images/checkmk/no_updates_available.png)
 
 ### New updates available
 
-If updates are available, `WARN` is displayed.
+If updates / newer tags are available, `WARN` is displayed.
 
 ![Updates available](../../assets/images/checkmk/updates_available.png)
 
 If `CRIT` is desired instead, replace the 7th line with the following:
 
 ````
-  echo "2 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
+echo "2 \"mailcow_update\" mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master"
 ````
 
 ### Detailed check output
