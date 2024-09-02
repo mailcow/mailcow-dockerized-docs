@@ -3831,8 +3831,21 @@
 
   <h1>CheckMK</h1>
 
-<p>mailcow bietet mittels dem eigenen Update-Script die Möglichkeit zu prüfen ob Updates vorhanden sind.</p>
+<p>mailcow bietet mittels des eigenen Update-Scripts die Möglichkeit zu prüfen, ob Updates vorhanden sind.</p>
 <p>Sofern mailcow-Updates mittels checkmk abgefragt werden soll, kann man im <code>local</code>-Verzeichnis des checkmk-Agents (normalerweise <code>/usr/lib/check_mk_agent/local/</code>) eine ausführbare Datei mit dem Namen <code>mailcow_update</code> und nachfolgendem Inhalt erstellen:</p>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+cd /opt/mailcow-dockerized/ &amp;&amp; ./update.sh --check-tags &gt;/dev/null
+status=$?
+if [ $status -eq 3 ]; then
+  echo &quot;0 \&quot;mailcow_update\&quot; mailcow_update=0;1;;0;1 No newer tags available.&quot;
+elif [ $status -eq 0 ]; then
+  echo &quot;1 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 New tag is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/releases/latest&quot;
+else
+  echo &quot;3 \&quot;mailcow_update\&quot; - Unknown output from update script ...&quot;
+fi
+exit
+</code></pre></div>
+<p>Um <strong>jeden</strong> neu verfügbaren Code als Update angezeigt zu bekommen, kann die ausführbare Datei mit folgendem Inhalt erstellt werden:
 <div class="highlight"><pre><span></span><code>#!/bin/bash
 cd /opt/mailcow-dockerized/ &amp;&amp; ./update.sh -c &gt;/dev/null
 status=$?
@@ -3844,25 +3857,25 @@ else
   echo &quot;3 \&quot;mailcow_update\&quot; - Unknown output from update script ...&quot;
 fi
 exit
-</code></pre></div>
-<p>Sofern das mailcow-Installationsverzeichnis nicht <code>/opt/</code> ist, ist das in der 2. Zeile anzupassen.</p>
+</code></pre></div></p>
+<p>Sofern das mailcow-Installationsverzeichnis nicht <code>/opt/</code> ist, kann der Pfad in der zweiten Zeile angepasst werden.</p>
 <p>Danach für den mailcow-Host in checkmk die Services neu inventarisieren und es sollte ein neuer Check mit Namen <code>mailcow_update</code> auswählbar sein.</p>
 <p>Der Check <code>mailcow_update</code> wird jedes Mal ausgeführt, wenn der checkmk Agent den mailcow Server überprüft. Sie können das Ergebnis zwischenspeichern, indem Sie das Skript in einem Unterordner mit dem Namen der Anzahl von Sekunden ablegen, für die Sie es zwischenspeichern möchten. \
 <code>/usr/lib/check_mk_agent/local/3600/</code> speichert die Antwort für 3600 Sekunden (1 Stunde).</p>
 <h2 id="screenshots">Screenshots<a class="headerlink" href="#screenshots" title="Permanent link">&para;</a></h2>
 <h3 id="keine-updates-verfugbar">Keine Updates verfügbar<a class="headerlink" href="#keine-updates-verfugbar" title="Permanent link">&para;</a></h3>
-<p>Sofern keine Updates vorhanden sind, wird <code>OK</code> ausgegeben.</p>
+<p>Sofern keine Updates / keine neuen Tags vorhanden sind, wird <code>OK</code> ausgegeben.</p>
 <p><a class="glightbox" href="../../../../assets/images/checkmk/no_updates_available.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="No update available" src="../../../../assets/images/checkmk/no_updates_available.png" /></a></p>
 <h3 id="neue-updates-verfugbar">Neue Updates verfügbar<a class="headerlink" href="#neue-updates-verfugbar" title="Permanent link">&para;</a></h3>
-<p>Sofern Updates vorhanden sind, wird <code>WARN</code> ausgegeben.</p>
+<p>Sofern Updates / Neue Tags vorhanden sind, wird <code>WARN</code> ausgegeben.</p>
 <p><a class="glightbox" href="../../../../assets/images/checkmk/updates_available.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Updates available" src="../../../../assets/images/checkmk/updates_available.png" /></a></p>
 <p>Sollte stattdessen <code>CRIT</code> gewünscht sein, ist die 7. Zeile durch folgendes zu ersetzen:</p>
-<div class="highlight"><pre><span></span><code>  echo &quot;2 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master&quot;
+<div class="highlight"><pre><span></span><code>echo &quot;2 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master&quot;
 </code></pre></div>
 <h3 id="detailierter-check-output">Detailierter Check-Output<a class="headerlink" href="#detailierter-check-output" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../../../../assets/images/checkmk/long_check_output.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Long check output" src="../../../../assets/images/checkmk/long_check_output.png" /></a></p>
 <ul>
-<li>Hier wird ein Link zu den GitHub Commits von mailcow ausgegeben, sofern Updates verfügbar sind.</li>
+<li>Hier wird ein Link zu den GitHub Commits / des letzten Release von mailcow ausgegeben, sofern Updates verfügbar sind.</li>
 <li>Metriken werden ebenfalls ausgegeben (nicht nur bei vorhandenen Updates):</li>
 <li>0 = Keine Updates verfügbar</li>
 <li>1 = Neue Updates verfügbar</li>
@@ -3887,7 +3900,7 @@ exit
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-02 15:41:24</span>
   </span>
 
     

@@ -3832,7 +3832,20 @@
   <h1>CheckMK</h1>
 
 <p>mailcow provides the ability to check for updates using its own update script.</p>
-<p>If you want to check for mailcow updates using checkmk, you can create an executable file in the <code>local</code> directory of the checkmk agent (typically <code>/usr/lib/check_mk_agent/local/</code>) with the name <code>mailcow_update</code> and the following content:</p>
+<p>If you want to check for mailcow updates using checkmk, you can create an executable file in the <code>local</code> directory of the checkmk agent (typically <code>/usr/lib/check_mk_agent/local/</code>) with the name <code>mailcow_update</code> and the following content:
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+cd /opt/mailcow-dockerized/ &amp;&amp; ./update.sh --check-tags &gt;/dev/null
+status=$?
+if [ $status -eq 3 ]; then
+  echo &quot;0 \&quot;mailcow_update\&quot; mailcow_update=0;1;;0;1 No newer tags available.&quot;
+elif [ $status -eq 0 ]; then
+  echo &quot;1 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 New tag is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/releases/latest&quot;
+else
+  echo &quot;3 \&quot;mailcow_update\&quot; - Unknown output from update script ...&quot;
+fi
+exit
+</code></pre></div></p>
+<p>To check for <strong>every</strong> updated code, just create the executable with the following content:
 <div class="highlight"><pre><span></span><code>#!/bin/bash
 cd /opt/mailcow-dockerized/ &amp;&amp; ./update.sh -c &gt;/dev/null
 status=$?
@@ -3844,20 +3857,20 @@ else
   echo &quot;3 \&quot;mailcow_update\&quot; - Unknown output from update script ...&quot;
 fi
 exit
-</code></pre></div>
+</code></pre></div></p>
 <p>If the mailcow installation directory is not <code>/opt/</code>, adjust this in the 2nd line.</p>
 <p>After that re-inventory the services for your mailcow host in checmk and a new check named <code>mailcow_update</code> should be selectable.</p>
 <p>This will run the <code>mailcow_update</code> everytime checkmk agent is checked, you can cache the result by placing the script in a subfolder named the number of seconds you wish to cache it. \
 <code>/usr/lib/check_mk_agent/local/3600/</code> will cache the response for an 3600 seconds (1 hour).</p>
 <h2 id="screenshots">Screenshots<a class="headerlink" href="#screenshots" title="Permanent link">&para;</a></h2>
 <h3 id="no-updates-available">No updates available<a class="headerlink" href="#no-updates-available" title="Permanent link">&para;</a></h3>
-<p>If there are no updates available, <code>OK</code> is displayed.</p>
+<p>If there are no updates / newer tag available, <code>OK</code> is displayed.</p>
 <p><a class="glightbox" href="../../../assets/images/checkmk/no_updates_available.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="No update available" src="../../../assets/images/checkmk/no_updates_available.png" /></a></p>
 <h3 id="new-updates-available">New updates available<a class="headerlink" href="#new-updates-available" title="Permanent link">&para;</a></h3>
-<p>If updates are available, <code>WARN</code> is displayed.</p>
+<p>If updates / newer tags are available, <code>WARN</code> is displayed.</p>
 <p><a class="glightbox" href="../../../assets/images/checkmk/updates_available.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Updates available" src="../../../assets/images/checkmk/updates_available.png" /></a></p>
 <p>If <code>CRIT</code> is desired instead, replace the 7th line with the following:</p>
-<div class="highlight"><pre><span></span><code>  echo &quot;2 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master&quot;
+<div class="highlight"><pre><span></span><code>echo &quot;2 \&quot;mailcow_update\&quot; mailcow_update=1;1;;0;1 Updated code is available.\nThe changes can be found here: https://github.com/mailcow/mailcow-dockerized/commits/master&quot;
 </code></pre></div>
 <h3 id="detailed-check-output">Detailed check output<a class="headerlink" href="#detailed-check-output" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../../../assets/images/checkmk/long_check_output.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Long check output" src="../../../assets/images/checkmk/long_check_output.png" /></a></p>
@@ -3887,7 +3900,7 @@ exit
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-01-13 18:16:08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-02 15:41:24</span>
   </span>
 
     
