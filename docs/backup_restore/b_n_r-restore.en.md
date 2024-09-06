@@ -1,29 +1,41 @@
 ### Restore
 #### Variables for backup/restore script
 ##### Multithreading
-With the 2022-10 update it is possible to run the script with multithreading support. This can be used for backups as well as for restores.
+With the 2024-09a update it is possible to run the script with multithreading support. This can be used for backups as well as for restores.
 
-To start the backup/restore with multithreading you have to add `THREADS` as an environment variable in front of the command to execute the script.
+To start the backup/restore with multithreading you have to add `--threads <num>` or short one `-t <num>` flag.
 
 ```
-THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
+/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -r /opt/backups -c all -t 14
 ```
-The number after the `=` character indicates the number of threads. Please keep your core count -2 to leave enough CPU power for mailcow itself.
+The number after the `-t` character indicates the number of threads. Please keep your core count -2 to leave enough CPU power for mailcow itself.
 
 ##### Backup path
-The script will ask you for a backup location. Inside of this location it will create folders in the format "mailcow_DATE".
-You should not rename those folders to not break the restore process.
+You should pass the path of the backup directory right after `-r`|`--restore` flag, It will search through the directory to find all backups,
+and then it will prompt you to choose the backup you want to restore.
 
-To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variable before starting the script:
+To run a restore unattended, define MAILCOW_RESTORE_LOCATION as environment variable before starting the script:
 
 ```bash
-MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
+MAILCOW_RESTORE_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
+```
+
+Or, pass `-r`|`--restore` with the restore path as argument to the script:
+
+```bash
+/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -r /opt/backup -c all
 ```
 
 !!! tip
     Both variables mentioned above can also be combined! Ex:
     ```bash
-    MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
+    MAILCOW_RESTORE_LOCATION=/opt/backup MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
+    ```
+
+!!! tip
+    You should specify the component(s) you want to restore with `-c` or `--component`, or just `-c all`! Ex:
+    ```bash
+    MAILCOW_RESTORE_LOCATION=/opt/backup MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c vmail -c crypt -c mysql
     ```
 
 #### Restoring Data
@@ -34,24 +46,18 @@ MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backu
 !!! danger "Danger for older installations"
     Before restoring your mailcow system on a new server and a clean mailcow-dockerized folder, please check if the value `MAILDIR_SUB` is set in your mailcow.conf. If this value is not set, do not set it in your new mailcow or remove it, otherwise **NO** emails will be displayed. Dovecot loads emails from the mentioned subfolder of the Maildir volume under `$DOCKER_VOLUME_PATH/mailcowdockerized_vmail-vol-1` and if there is any change compared to the original state, no emails will be available there.
 
-To run a restore, **start mailcow**, use the script with "restore" as first parameter.
+To run a restore, **start mailcow**, use the script with "--restore" or "-r" with path to backups directory:
 
-```
+```bash
 # Syntax:
-# ./helper-scripts/backup_and_restore.sh restore
-
-```
-
-The script will ask you for a backup location containing the mailcow_DATE folders:
-
-``` { .bash .no-copy }
-Backup location (absolute path, starting with /): /opt/backup
+./helper-scripts/backup_and_restore.sh -r /opt/backup -c all
 ```
 
 All available backups in the specified folder (in our example `/opt/backup`) are then displayed:
 
 ``` { .bash .no-copy }
 Found project name mailcowdockerized
+Using /opt/backup as restore location...
 [ 1 ] - /opt/backup/mailcow-2023-12-11-13-27-14/
 [ 2 ] - /opt/backup/mailcow-2023-12-11-14-02-06/
 ```
@@ -62,26 +68,31 @@ Now you can enter the number of your backup that you want to restore, in this ex
 Select a restore point: 2
 ```
 
-The script will now display all the backed up components that you can restore, in our case we have selected `all` for the backup process, so this will now appear here:
+The script will now display all the backed up components that the script will restore them.
+in our case we have selected `all` for the backup process, so this will now appear here:
 
 ``` { .bash .no-copy }
-[ 0 ] - all
+Matching available components to restore:
 [ 1 ] - Crypt data
 [ 2 ] - Rspamd data
 [ 3 ] - Mail directory (/var/vmail)
 [ 4 ] - Redis DB
 [ 5 ] - Postfix data
 [ 6 ] - SQL DB
+
+
+Restoring will start in 5 seconds. Press Ctrl+C to stop.
 ```
 
-Again, we select the component that we want to restore. Option 0 restores **EVERYTHING**.
+Now, wait 5 seconds before the above components will be restored! If you want to abort
+press `Ctrl+C` to stop the restore process.
 
 ??? warning "If you want to restore to a different architecture..."
     If you have made the backup on a different architecture, e.g. x86, and now want to restore this backup to ARM64, the backup of Rspamd is displayed as incompatible and cannot be selected individually. When restoring with the 0 key, the restoration of Rspamd is also skipped.
 
     Example of incompatible Rspamd backup in the selection menu:
 
-    ``` { .bash .no-copy } 
+    ``` { .bash .no-copy }
     [...]
     [ NaN ] - Rspamd data (incompatible Arch, cannot restore it)
     [...]
