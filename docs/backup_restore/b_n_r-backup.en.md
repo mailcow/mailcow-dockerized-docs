@@ -1,6 +1,16 @@
-### Backup
+### Foreword
 
-#### Manual
+!!! danger "Warning"
+
+    The syntax of the backup script has drastically changed with the 2024-09 update as part of the script's redevelopment. If automated backup processes are running on your system, please adjust them accordingly.
+
+    Important to note is the relocation of the `--delete-days` parameter to the new and separately executable function `-d`.
+
+    Also important: the new `--yes` variable, which is used for automation.
+
+    Please refer to this documentation for the updated syntax.
+
+### Manual
 
 You can use the provided script `helper-scripts/backup_and_restore.sh` to backup mailcow automatically.
 

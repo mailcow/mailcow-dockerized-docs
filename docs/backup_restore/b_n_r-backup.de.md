@@ -1,5 +1,3 @@
-## Sicherung
-
 ### Vorwort
 
 !!! danger "Achtung"
