@@ -1,90 +1,100 @@
-### Wiederherstellung
-#### Variablen für Backup/Restore Skript
+#### Variablen für das Backup/Wiederherstellungsskript
 ##### Multithreading
-Seit dem 2022-10 Update ist es möglich das Skript mit Multithreading Support laufen zu lassen. Dies lässt sich sowohl für Backups aber auch für Restores nutzen.
-
-Um das Backup/den Restore mit Multithreading zu starten muss `THREADS` als Umgebungsvariable vor dem Befehl zum starten hinzugefügt werden.
-
-```
-THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
-```
-Die Anzahl hinter dem `=` Zeichen gibt dabei dann die Thread Anzahl an. Nehmen Sie bitte immer ihre Kernanzahl -2 um mailcow selber noch genug CPU Leistung zu lassen.
-
-##### Backup Pfad
-Das Skript wird Sie nach einem Speicherort für die Sicherung fragen. Innerhalb dieses Speicherortes wird es Ordner im Format "mailcow_DATE" erstellen.
-Sie sollten diese Ordner nicht umbenennen, um den Wiederherstellungsprozess nicht zu stören.
-
-Um ein Backup unbeaufsichtigt durchzuführen, definieren Sie MAILCOW_BACKUP_LOCATION als Umgebungsvariable, bevor Sie das Skript starten:
+Um die Sicherung/Wiederherstellung mit Multithreading zu starten, müssen Sie den Parameter `--threads <num>` oder die Kurzform `-t <num>` hinzufügen.
 
 ```bash
-MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -r /opt/backups -c all -t 14
 ```
 
-!!! tip "Tipp"
-    Beide oben genannten Variablen können auch kombiniert werden! Bsp:
-    ```bash
-    MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh restore
-    ```
+!!! info "Hinweis"
+    Die Zahl nach dem `-t` Zeichen gibt die Anzahl der Threads an. Bitte reduzieren Sie Ihre Kernanzahl um 2, um genügend CPU-Leistung für mailcow selbst zu lassen.
 
-#### Wiederherstellung der Daten
+##### Backup-Pfad
+Sie sollten den Pfad des Backup-Verzeichnisses direkt nach dem Parameter `-r`|`--restore` angeben. Das Skript durchsucht das Verzeichnis nach allen Backups und fordert Sie anschließend auf, das Backup auszuwählen, das Sie wiederherstellen möchten.
+
+Um eine Wiederherstellung unbeaufsichtigt durchzuführen, definieren Sie die Umgebungsvariable `MAILCOW_RESTORE_LOCATION`, bevor Sie das Skript starten:
+
+```bash
+MAILCOW_RESTORE_LOCATION=/opt/backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
+```
 
 !!! danger "Achtung"
+    Bitte genau hinsehen: Die Variable hier heißt `MAILCOW_RESTORE_LOCATION`
+
+Oder übergeben Sie den Parameter `-r`|`--restore` mit dem Wiederherstellungspfad als Argument an das Skript:
+
+```bash
+/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -r /opt/backups -c all
+```
+
+!!! tip
+    Beide oben genannten Variablen können auch kombiniert werden! Beispiel:
+    ```bash
+    MAILCOW_RESTORE_LOCATION=/opt/backups MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
+    ```
+
+!!! tip
+    Sie sollten die Komponente(n), die Sie wiederherstellen möchten, mit `-c` oder `--component` angeben, oder einfach `-c all` verwenden! Beispiel:
+    ```bash
+    MAILCOW_RESTORE_LOCATION=/opt/backups MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c vmail -c crypt -c mysql
+    ```
+
+#### Daten wiederherstellen
+
+!!! danger
     **Bitte kopieren Sie dieses Skript nicht an einen anderen Ort.**
 
-!!! danger "Achtung für ältere Installationen"
-    Bitte schauen Sie **VOR** der Wiederherstellung Ihres mailcow Systemes auf einen neuen Server und einem sauberen mailcow-dockerized Ordner, ob in Ihrer mailcow.conf der Wert `MAILDIR_SUB` gesetzt ist. Falls dieser nicht gesetzt ist, so setzen Sie diesen auch bitte in Ihrer neuen mailcow nicht, bzw. entfernen diesen, da sonst **KEINE** E-Mails angezeigt werden. Dovecot lädt E-Mails aus dem besagtem Unterordner des Maildir Volumes unter `$DOCKER_VOLUME_PFAD/mailcowdockerized_vmail-vol-1` und bei Änderung im Vergleich zum Ursprungszustand sind dort keine Mails vorhanden.
+!!! danger "Gefahr für ältere Installationen"
+    Bevor Sie Ihr mailcow-System auf einem neuen Server und einem sauberen mailcow-dockerized-Ordner wiederherstellen, überprüfen Sie bitte, ob der Wert `MAILDIR_SUB` in Ihrer mailcow.conf gesetzt ist. Wenn dieser Wert nicht gesetzt ist, setzen Sie ihn nicht auf Ihrem neuen mailcow Server oder entfernen Sie ihn, da sonst **KEINE** E-Mails angezeigt werden. Dovecot lädt E-Mails aus dem angegebenen Unterordner des Maildir-Volumes unter `$DOCKER_VOLUME_PATH/mailcowdockerized_vmail-vol-1` und wenn es im Vergleich zum Originalzustand eine Änderung gibt, werden keine E-Mails verfügbar sein.
 
-Um eine Wiederherstellung durchzuführen, **starten Sie mailcow**, verwenden Sie das Skript mit "restore" als ersten Parameter.
+Um eine Wiederherstellung durchzuführen, **starten Sie mailcow**, und verwenden Sie das Skript mit `--restore` oder `-r` zusammen mit dem Pfad zum Backup-Verzeichnis:
 
-``` { .yaml .no-copy }
+```bash
 # Syntax:
-# ./helper-scripts/backup_and_restore.sh restore
-
+./helper-scripts/backup_and_restore.sh -r /opt/backups -c all
 ```
 
-Das Skript wird Sie nach einem Speicherort für die Sicherung der mailcow_DATE-Ordner fragen:
-
-``` { .bash .no-copy }
-Backup location (absolute path, starting with /): /opt/backup
-```
-
-Anschließend werden alle verfügbaren Backups in dem angegebenen Ordner (in unserem Beispiel `/opt/backup`) angezeigt:
+Alle verfügbaren Backups im angegebenen Ordner (in unserem Beispiel `/opt/backups`) werden dann angezeigt:
 
 ``` { .bash .no-copy }
 Found project name mailcowdockerized
-[ 1 ] - /opt/backup/mailcow-2023-12-11-13-27-14/
-[ 2 ] - /opt/backup/mailcow-2023-12-11-14-02-06/
+Using /opt/backups as restore location...
+[ 1 ] - /opt/backups/mailcow-2023-12-11-13-27-14/
+[ 2 ] - /opt/backups/mailcow-2023-12-11-14-02-06/
 ```
 
-Nun können Sie die Nummer Ihres Backups angeben, welches Sie Wiederherstellen wollen, in diesem Beispiel die 2:
+Nun können Sie die Nummer des Backups eingeben, das Sie wiederherstellen möchten, in diesem Beispiel das zweite Backup:
 
 ``` { .bash .no-copy }
 Select a restore point: 2
 ```
 
-Das Skript wird nun alle gesicherten Komponenten Anzeigen, die Sie wiederherstellen können, in unserem Fall haben wir beim Backup Prozess `all` also Alles gewählt, dementsprechend taucht das hier nun auf:
+Das Skript zeigt nun alle gesicherten Komponenten an, die es wiederherstellen wird.
+In unserem Fall haben wir `all` für den Backup-Prozess ausgewählt, daher werden diese Komponenten hier angezeigt:
 
 ``` { .bash .no-copy }
-[ 0 ] - all
+Matching available components to restore:
 [ 1 ] - Crypt data
 [ 2 ] - Rspamd data
 [ 3 ] - Mail directory (/var/vmail)
 [ 4 ] - Redis DB
 [ 5 ] - Postfix data
 [ 6 ] - SQL DB
+
+Restoring will start in 5 seconds. Press Ctrl+C to stop.
 ```
 
-Auch hier wählen wir nun wieder die Komponente aus, die wir wiederherstellen wollen. Option 0 stellt **ALLES** wieder her.
+Nun warten Sie 5 Sekunden, bevor die oben genannten Komponenten wiederhergestellt werden! Wenn Sie den Wiederherstellungsprozess abbrechen möchten, drücken Sie `Ctrl+C`, um den Prozess zu stoppen.
 
-??? warning "Wenn Sie auf eine andere Architektur wiederherstellen wollen..."
-    Sollten Sie das Backup auf einer anderen Architektur bspw. x86 gemacht haben und wollen dieses Backup nun auf ARM64 wiederherstellen, so wird das Backup von Rspamd als inkompatibel angezeigt und ist nicht einzeln anwählbar. Bei der Wiederherstellung mit Aufruf der Taste 0 wird die Wiederherstellung von Rspamd ebenfalls übersprungen.
+??? warning "Wenn Sie auf eine andere Architektur wiederherstellen möchten..."
+    Wenn Sie das Backup auf einer anderen Architektur erstellt haben, z. B. x86, und dieses Backup jetzt auf ARM64 wiederherstellen möchten, wird das Backup von Rspamd als inkompatibel angezeigt und kann nicht einzeln ausgewählt werden. Beim Wiederherstellen aller Komponenten wird die Wiederherstellung von Rspamd ebenfalls übersprungen.
 
-    Beispiel für inkompatibles Rspamd Backup im Auswahl Menü:
+    Beispiel eines inkompatiblen Rspamd-Backups im Auswahlmenü:
 
-    ``` { .bash .no-copy } 
+    ``` { .bash .no-copy }
     [...]
     [ NaN ] - Rspamd data (incompatible Arch, cannot restore it)
     [...]
     ```
 
-Nun wird mailcow die von Ihnen ausgewählten Sicherungen wiederherstellen. Bitte beachten Sie, dass je nach Größe der Sicherungen die Wiederherstellung eine gewisse Zeit in Anspruch nehmen kann.
+Nun wird mailcow die von Ihnen ausgewählten Backups wiederherstellen. Bitte beachten Sie, dass die Wiederherstellung je nach Größe der Backups einige Zeit in Anspruch nehmen kann.

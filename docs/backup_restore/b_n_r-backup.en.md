@@ -20,13 +20,6 @@ to select the component(s) which you want to backup.
 # Also, there's short version of the flags:
 ./helper-scripts/backup_and_restore.sh -b /opt/backups -c all
 
-# To delete backups older than 3 days from /opt/backups:
-./helper-scripts/backup_and_restore.sh --delete /opt/backups 3
-
-# To delete backups older than 30 days from /opt/backups
-# with no prompts or any confirmation (good for automation):
-./helper-scripts/backup_and_restore.sh --delete /opt/backups 30 --yes
-
 # Backup vmail, crypt and mysql data
 ./helper-scripts/backup_and_restore.sh -b /opt/backups -c vmail -c crypt -c mysql
 
@@ -37,8 +30,6 @@ to select the component(s) which you want to backup.
 
 #### Variables for backup/restore script
 ##### Multithreading
-With the 2024-09a update it is possible to run the script with multithreading support. This can be used for backups as well as for restores.
-
 To start the backup/restore with multithreading you have to add `--threads <num>` or short one `-t <num>` flag.
 
 ```
@@ -53,21 +44,21 @@ You should not rename those folders to not break the restore process.
 To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variable before starting the script:
 
 ```
-MAILCOW_BACKUP_LOCATION=/opt/backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
+MAILCOW_BACKUP_LOCATION=/opt/backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all --yes
 ```
 
+!!! danger
+    Please look closeley: The variable here is called `MAILCOW_BACKUP_LOCATION`
+
 !!! tip
-        Both variables mentioned above can also be combined! Ex:
-        ```
-        MAILCOW_BACKUP_LOCATION=/opt/backups MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
-        ```
+    Both variables mentioned above can also be combined! Ex:
+
+    ```bash
+    MAILCOW_BACKUP_LOCATION=/opt/backups MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all --yes
+    ```
 
 !!! tip
         Please note: If you specified `MAILCOW_BACKUP_LOCATION` environment variable then there's no need to pass the `-b`|`--backup` flag
-
-#### Delete older backups
-
-
 
 #### Cronjob
 
@@ -75,7 +66,7 @@ You can run the backup script regularly via cronjob. Make sure `MAILCOW_BACKUP_L
 
 ```
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c mysql -c crypt -c redis --yes
+5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/opt/backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh --backup -c mysql -c crypt -c redis --yes
 ```
 
 Per default cron sends the full result of each backup operation by email. If you want cron to only mail on error (non-zero exit code) you may want to use the following snippet. Pathes need to be modified according to your setup (this script is a user contribution).

@@ -1,14 +1,13 @@
 ### Restore
 #### Variables for backup/restore script
 ##### Multithreading
-With the 2024-09a update it is possible to run the script with multithreading support. This can be used for backups as well as for restores.
-
 To start the backup/restore with multithreading you have to add `--threads <num>` or short one `-t <num>` flag.
 
 ```
 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -r /opt/backups -c all -t 14
 ```
-The number after the `-t` character indicates the number of threads. Please keep your core count -2 to leave enough CPU power for mailcow itself.
+!!! info
+    The number after the `-t` character indicates the number of threads. Please keep your core count -2 to leave enough CPU power for mailcow itself.
 
 ##### Backup path
 You should pass the path of the backup directory right after `-r`|`--restore` flag, It will search through the directory to find all backups,
@@ -19,6 +18,9 @@ To run a restore unattended, define MAILCOW_RESTORE_LOCATION as environment vari
 ```bash
 MAILCOW_RESTORE_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all
 ```
+
+!!! danger
+    Please look closeley: The variable here is called `MAILCOW_RESTORE_LOCATION`
 
 Or, pass `-r`|`--restore` with the restore path as argument to the script:
 
@@ -88,7 +90,7 @@ Now, wait 5 seconds before the above components will be restored! If you want to
 press `Ctrl+C` to stop the restore process.
 
 ??? warning "If you want to restore to a different architecture..."
-    If you have made the backup on a different architecture, e.g. x86, and now want to restore this backup to ARM64, the backup of Rspamd is displayed as incompatible and cannot be selected individually. When restoring with the 0 key, the restoration of Rspamd is also skipped.
+    If you have made the backup on a different architecture, e.g. x86, and now want to restore this backup to ARM64, the backup of Rspamd is displayed as incompatible and cannot be selected individually. When restoring all components, the restoration of Rspamd is also skipped.
 
     Example of incompatible Rspamd backup in the selection menu:
 
