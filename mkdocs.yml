@@ -200,7 +200,6 @@ nav:
     - 'Gogs': 'third_party/gogs/third_party-gogs.md'
     - 'Mailman 3': 'third_party/mailman3/third_party-mailman3.md'
     - 'Mailpiler Integration': 'third_party/mailpiler/third_party-mailpiler_integration.md'
-    - 'Nextcloud': 'third_party/nextcloud/third_party-nextcloud.md'
     - 'Portainer': 'third_party/portainer/third_party-portainer.md'
     - 'Roundcube': 'third_party/roundcube/third_party-roundcube.md'
 
@@ -389,7 +388,6 @@ plugins:
         'third_party-gogs.md': 'third_party/gogs/third_party-gogs.en.md'
         'third_party-mailman3.md': 'third_party/mailman3/third_party-mailman3.en.md'
         'third_party-mailpiler_integration.md': 'third_party/mailpiler/third_party-mailpiler_integration.en.md'
-        'third_party-nextcloud.md': 'third_party/nextcloud/third_party-nextcloud.en.md'
         'third_party-portainer.md': 'third_party/portainer/third_party-portainer.en.md'
         'third_party-roundcube.md': 'third_party/roundcube/third_party-roundcube.en.md'
         'u_e-80_to_443.md': 'manual-guides/u_e-80_to_443.en.md'
