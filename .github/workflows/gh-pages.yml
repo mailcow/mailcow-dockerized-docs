@@ -30,7 +30,7 @@ jobs:
           bash .github/workflows/fix_redirects.sh
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.6.4
+        uses: JamesIves/github-pages-deploy-action@v4.6.5
         with:
           token: '${{ secrets.GHPAGES_ACTION_DEPLOY_TOKEN_PAT }}'
           git-config-name: '${{ secrets.GHPAGES_ACTION_DEPLOY_GITNAME_PAT }}'
