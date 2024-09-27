@@ -3711,7 +3711,8 @@
 <p><strong>WICHTIG</strong>: Diese Anleitung gilt nur für Konfigurationen, bei denen SNI nicht aktiviert ist. Wenn SNI aktiviert ist, muss der Zertifikatspfad angepasst werden. Etwas wie <code>ssl_certificate,key /etc/ssl/mail/webmail.example.org/cert.pem,key.pem;</code> wird genügen. <strong>Aber</strong>: Das Zertifikat sollte <strong>zuerst</strong> bezogen werden und erst wenn das Zertifikat existiert, sollte eine Site Config erstellt werden. Nginx wird nicht starten, wenn es das Zertifikat und den Schlüssel nicht finden kann.</p>
 <p>Um eine Subdomain <code>webmail.example.org</code> zu erstellen und sie auf SOGo umzuleiten, müssen Sie eine <strong>neue</strong> Nginx-Site erstellen. Achten Sie dabei auf "CHANGE_TO_MAILCOW_HOSTNAME"!</p>
 <p><strong>nano data/conf/nginx/webmail.conf</strong></p>
-<div class="highlight"><pre><span></span><code>server {
+<p>``` hl_lines="9 17"
+server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   index index.php index.html;
@@ -3719,45 +3720,45 @@
   root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
-<span class="hll">  server_name webmail.example.org;
-</span>  server_tokens off;
+  server_name webmail.example.org;
+  server_tokens off;
   location ^~ /.well-known/acme-challenge/ {
     allow all;
-    default_type &quot;text/plain&quot;;
+    default_type "text/plain";
+  }</p>
+<p>location / {
+    return 301 <a href="https://CHANGE_TO_MAILCOW_HOSTNAME/SOGo">https://CHANGE_TO_MAILCOW_HOSTNAME/SOGo</a>;
   }
-
-  location / {
-<span class="hll">    return 301 https://CHANGE_TO_MAILCOW_HOSTNAME/SOGo;
-</span>  }
 }
+<div class="highlight"><pre><span></span><code>Speichern Sie und starten Sie Nginx neu: 
+
+=== &quot;docker compose (Plugin)&quot;
+
+    ``` bash
+    docker compose restart nginx-mailcow
+    ```
+
+=== &quot;docker-compose (Standalone)&quot;
+
+    ``` bash
+    docker-compose restart nginx-mailcow
+    ```
+
+Öffnen Sie nun `mailcow.conf` und suchen Sie `ADDITIONAL_SAN`.
+Fügen Sie `webmail.example.org` zu diesem Array hinzu, verwenden Sie keine Anführungszeichen!
 </code></pre></div>
-<p>Speichern Sie und starten Sie Nginx neu: </p>
+ADDITIONAL_SAN=webmail.example.org
+```</p>
+<p>Führen Sie den Befehl aus:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
-</code></pre></div>
+<p><code>bash
+docker compose up -d</code></p>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Öffnen Sie nun <code>mailcow.conf</code> und suchen Sie <code>ADDITIONAL_SAN</code>.
-Fügen Sie <code>webmail.example.org</code> zu diesem Array hinzu, verwenden Sie keine Anführungszeichen!</p>
-<div class="highlight"><pre><span></span><code>ADDITIONAL_SAN=webmail.example.org
-</code></pre></div>
-<p>Führen Sie den Befehl aus:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
+<p><code>bash
+docker-compose up -d</code></p>
 </div>
 </div>
 </div>

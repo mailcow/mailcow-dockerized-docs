@@ -2709,15 +2709,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#neue-website-mit-proxy-zu-einem-entfernten-location" class="md-nav__link">
-    <span class="md-ellipsis">
-      Neue Website mit Proxy zu einem entfernten Location
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#konfig-erweiterung-in-mailcows-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       Konfig-Erweiterung in mailcows Nginx
@@ -3784,15 +3775,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#neue-website-mit-proxy-zu-einem-entfernten-location" class="md-nav__link">
-    <span class="md-ellipsis">
-      Neue Website mit Proxy zu einem entfernten Location
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#konfig-erweiterung-in-mailcows-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       Konfig-Erweiterung in mailcows Nginx
@@ -3829,7 +3811,8 @@
 <p>Eine gute Vorlage, um damit zu beginnen:</p>
 <div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>server {
+<p>``` hl_lines="16"
+server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -3844,29 +3827,27 @@
   # Location: data/web
   root /web;
   # Location: data/web/mysite.com
-<span class="hll">  #root /web/mysite.com
-</span>  include /etc/nginx/conf.d/listen_plain.active;
+  #root /web/mysite.com
+  include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name mysite.example.org;
-  server_tokens off;
-
-  # This allows acme to be validated even with a different web root
+  server_tokens off;</p>
+<p># This allows acme to be validated even with a different web root
   location ^~ /.well-known/acme-challenge/ {
-    default_type &quot;text/plain&quot;;
+    default_type "text/plain";
     rewrite /.well-known/acme-challenge/(.*) /$1 break;
     root /web/.well-known/acme-challenge/;
-  }
-
-  if ($scheme = http) {
+  }</p>
+<p>if ($scheme = http) {
     return 301 https://$server_name$request_uri;
   }
 }
+<div class="highlight"><pre><span></span><code>## Neue Website mit Proxy zu einem entfernten Location
+Ein weiteres Beispiel mit einer Reverse-Proxy-Konfiguration:
 </code></pre></div>
-<h2 id="neue-website-mit-proxy-zu-einem-entfernten-location">Neue Website mit Proxy zu einem entfernten Location<a class="headerlink" href="#neue-website-mit-proxy-zu-einem-entfernten-location" title="Permanent link">&para;</a></h2>
-<p>Ein weiteres Beispiel mit einer Reverse-Proxy-Konfiguration:</p>
-<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>server {
+nano data/conf/nginx/my_custom_site.conf
+<div class="highlight"><pre><span></span><code>``` hl_lines=&quot;16 28&quot;
+server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -3881,8 +3862,8 @@
   root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
-<span class="hll">  server_name example.domain.tld;
-</span>  server_tokens off;
+  server_name example.domain.tld;
+  server_tokens off;
 
   location ^~ /.well-known/acme-challenge/ {
     allow all;
@@ -3893,8 +3874,8 @@
     return 301 https://$host$request_uri;
   }
 
-<span class="hll">  location / {
-</span>    proxy_pass http://service:3000/;
+  location / {
+    proxy_pass http://service:3000/;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -3902,7 +3883,7 @@
     client_max_body_size 0;
   }
 }
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="konfig-erweiterung-in-mailcows-nginx">Konfig-Erweiterung in mailcows Nginx<a class="headerlink" href="#konfig-erweiterung-in-mailcows-nginx" title="Permanent link">&para;</a></h2>
 <p>Der Dateiname, der für eine neue Site verwendet wird, ist nicht wichtig, solange der Dateiname eine .conf-Erweiterung trägt.</p>
 <p>Es ist auch möglich, die Konfiguration der Standarddatei <code>site.conf</code> Datei zu erweitern:</p>

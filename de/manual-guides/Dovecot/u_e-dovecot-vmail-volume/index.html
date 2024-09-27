@@ -3839,22 +3839,22 @@ ln<span class="w"> </span>-s<span class="w"> </span>/mnt/volume-xy/vmail_data<sp
 <ul>
 <li>Finden Sie den aktuellen vmail-Ordner anhand seines "Mountpoint"-Attributs: <code>docker volume inspect mailcowdockerized_vmail-vol-1</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code>[
+<p><code>hl_lines="10"
+[
     {
-        &quot;CreatedAt&quot;: &quot;2019-06-16T22:08:34+02:00&quot;,
-        &quot;Driver&quot;: &quot;local&quot;,
-        &quot;Labels&quot;: {
-            &quot;com.docker.compose.project&quot;: &quot;mailcowdockerized&quot;,
-            &quot;com.docker.compose.version&quot;: &quot;1.23.2&quot;,
-            &quot;com.docker.compose.volume&quot;: &quot;vmail-vol-1&quot;
+        "CreatedAt": "2019-06-16T22:08:34+02:00",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.project": "mailcowdockerized",
+            "com.docker.compose.version": "1.23.2",
+            "com.docker.compose.volume": "vmail-vol-1"
         },
-<span class="hll">        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data&quot;,
-</span>        &quot;Name&quot;: &quot;mailcowdockerized_vmail-vol-1&quot;,
-        &quot;Options&quot;: null,
-        &quot;Scope&quot;: &quot;local&quot;
+        "Mountpoint": "/var/lib/docker/volumes/mailcowdockerized_vmail-vol-1/_data",
+        "Name": "mailcowdockerized_vmail-vol-1",
+        "Options": null,
+        "Scope": "local"
     }
-]
-</code></pre></div>
+]</code></p>
 <ul>
 <li>Kopieren Sie den Inhalt des <code>Mountpoint</code>-Ordners an den neuen Speicherort (z.B. <code>/data/mailcow/vmail</code>) mit <code>cp -a</code>, <code>rsync -a</code> oder einem ähnlichen, nicht strikten Kopierbefehl</li>
 <li>Stoppen Sie mailcow durch Ausführen des kommenden Befehls aus Ihrem mailcow-Stammverzeichnis (z.B. <code>/opt/mailcow-dockerized</code>):</li>
@@ -3862,12 +3862,12 @@ ln<span class="w"> </span>-s<span class="w"> </span>/mnt/volume-xy/vmail_data<sp
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-</code></pre></div>
+<p><code>bash
+docker compose down</code></p>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down<span class="w">    </span>
-</code></pre></div>
+<p><code>bash
+docker-compose down</code></p>
 </div>
 </div>
 </div>
@@ -3879,12 +3879,12 @@ ln<span class="w"> </span>-s<span class="w"> </span>/mnt/volume-xy/vmail_data<sp
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
+<p><code>bash
+docker compose up -d</code></p>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
+<p><code>bash  
+docker-compose up -d</code></p>
 </div>
 </div>
 </div>
