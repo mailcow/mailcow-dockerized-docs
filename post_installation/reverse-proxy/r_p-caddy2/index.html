@@ -104,11 +104,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#binbash" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -1200,8 +1195,6 @@
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
-      
-        
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
@@ -3696,8 +3689,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -3715,6 +3706,8 @@
   
 
 
+  <h1>Caddy v2 (community supported)</h1>
+
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
 <p>First read <a href="../r_p/">the overview</a>.</p>
@@ -3726,46 +3719,44 @@
 <p>The configuration of Caddy with mailcow is very simple.</p>
 <p>In the caddyfile you just have to create a section for the mailserver.</p>
 <p>For example
-``` hl_lines="1 3 13"</p>
-<p>MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
-        log {
-                output file /var/log/caddy/MAILCOW_HOSTNAME.log {
-                        roll_disabled
+<div class="highlight"><pre><span></span><code><span class="hll">MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
+</span>        log {
+<span class="hll">                output file /var/log/caddy/MAILCOW_HOSTNAME.log {
+</span>                        roll_disabled
                         roll_size 512M
                         roll_uncompressed
                         roll_local_time
                         roll_keep 3
                         roll_keep_for 48h
                 }
-        }</p>
-<pre><code>    reverse_proxy 127.0.0.1:HTTP_BIND
-</code></pre>
-<p>}
-<code>This allows Caddy to automatically create the certificates and accept traffic for these mentioned domains and forward them to mailcow.
+        }
 
-**Important**: The ACME client of mailcow must be disabled, otherwise mailcow will fail.
+<span class="hll">        reverse_proxy 127.0.0.1:HTTP_BIND
+</span>}
+</code></pre></div></p>
+<p>This allows Caddy to automatically create the certificates and accept traffic for these mentioned domains and forward them to mailcow.</p>
+<p><strong>Important</strong>: The ACME client of mailcow must be disabled, otherwise mailcow will fail.</p>
+<p>Since Caddy takes care of the certificates itself, we can use the following script to include the Caddy generated certificates into mailcow:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">MAILCOW_HOSTNAME</span><span class="o">=</span>your.domain.tld
+<span class="nv">CADDY_CERTS_DIR</span><span class="o">=</span>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
+<span class="nv">MD5SUM_CURRENT_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem<span class="k">)</span><span class="o">)</span>
+<span class="nv">MD5SUM_NEW_CERT</span><span class="o">=(</span><span class="k">$(</span>md5sum<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.crt<span class="k">)</span><span class="o">)</span>
 
-Since Caddy takes care of the certificates itself, we can use the following script to include the Caddy generated certificates into mailcow:</code>bash</p>
-<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
-<p>MAILCOW_HOSTNAME=your.domain.tld
-CADDY_CERTS_DIR=/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory
-MD5SUM_CURRENT_CERT=($(md5sum /opt/mailcow-dockerized/data/assets/ssl/cert.pem))
-MD5SUM_NEW_CERT=($(md5sum $CADDY_CERTS_DIR/$MAILCOW_HOSTNAME/$MAILCOW_HOSTNAME.crt))
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$MD5SUM_CURRENT_CERT</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="nv">$MD5SUM_NEW_CERT</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.crt<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/cert.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.key<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/key.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.crt<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/<span class="nv">$MAILCOW_HOSTNAME</span>/cert.pem
+<span class="w">        </span>cp<span class="w"> </span><span class="nv">$CADDY_CERTS_DIR</span>/<span class="nv">$MAILCOW_HOSTNAME</span>/<span class="nv">$MAILCOW_HOSTNAME</span>.key<span class="w"> </span>/opt/mailcow-dockerized/data/assets/ssl/<span class="nv">$MAILCOW_HOSTNAME</span>/key.pem
+<span class="w">        </span><span class="nv">postfix_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>postfix-mailcow<span class="k">)</span>
+<span class="w">        </span><span class="nv">dovecot_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>dovecot-mailcow<span class="k">)</span>
+<span class="w">        </span><span class="nv">nginx_c</span><span class="o">=</span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-qaf<span class="w"> </span><span class="nv">name</span><span class="o">=</span>nginx-mailcow<span class="k">)</span>
+<span class="w">        </span>docker<span class="w"> </span>restart<span class="w"> </span><span class="si">${</span><span class="nv">postfix_c</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">dovecot_c</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">nginx_c</span><span class="si">}</span>
 
-if [ $MD5SUM_CURRENT_CERT != $MD5SUM_NEW_CERT ]; then
-        cp $CADDY_CERTS_DIR/$MAILCOW_HOSTNAME/$MAILCOW_HOSTNAME.crt /opt/mailcow-dockerized/data/assets/ssl/cert.pem
-        cp $CADDY_CERTS_DIR/$MAILCOW_HOSTNAME/$MAILCOW_HOSTNAME.key /opt/mailcow-dockerized/data/assets/ssl/key.pem
-        cp $CADDY_CERTS_DIR/$MAILCOW_HOSTNAME/$MAILCOW_HOSTNAME.crt /opt/mailcow-dockerized/data/assets/ssl/$MAILCOW_HOSTNAME/cert.pem
-        cp $CADDY_CERTS_DIR/$MAILCOW_HOSTNAME/$MAILCOW_HOSTNAME.key /opt/mailcow-dockerized/data/assets/ssl/$MAILCOW_HOSTNAME/key.pem
-        postfix_c=$(docker ps -qaf name=postfix-mailcow)
-        dovecot_c=$(docker ps -qaf name=dovecot-mailcow)
-        nginx_c=$(docker ps -qaf name=nginx-mailcow)
-        docker restart ${postfix_c} ${dovecot_c} ${nginx_c}
-
-else
-        echo "Certs not copied from Caddy (Not needed)"
-fi
-```</p>
+<span class="k">else</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Certs not copied from Caddy (Not needed)&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Attention</p>
 <p>Caddy's certificate path varies depending on the installation type.<br>

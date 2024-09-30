@@ -2709,6 +2709,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#new-site-with-proxy-to-a-remote-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      New site with proxy to a remote location
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#config-expansion-in-mailcows-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       Config expansion in mailcows Nginx
@@ -3775,6 +3784,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#new-site-with-proxy-to-a-remote-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      New site with proxy to a remote location
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#config-expansion-in-mailcows-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       Config expansion in mailcows Nginx
@@ -3811,8 +3829,7 @@
 <p>A good template to begin with:</p>
 <div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
 </code></pre></div>
-<p>``` hl_lines="16"
-server {
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -3827,28 +3844,29 @@ server {
   # Location: data/web
   root /web;
   # Location: data/web/mysite.com
-  #root /web/mysite.com
-  include /etc/nginx/conf.d/listen_plain.active;
+<span class="hll">  #root /web/mysite.com
+</span>  include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
   server_name mysite.example.org;
-  server_tokens off;</p>
-<p># This allows acme to be validated even with a different web root
+  server_tokens off;
+
+  # This allows acme to be validated even with a different web root
   location ^~ /.well-known/acme-challenge/ {
-    default_type "text/plain";
+    default_type &quot;text/plain&quot;;
     rewrite /.well-known/acme-challenge/(.*) /$1 break;
     root /web/.well-known/acme-challenge/;
-  }</p>
-<p>if ($scheme = http) {
+  }
+
+  if ($scheme = http) {
     return 301 https://$server_name$request_uri;
   }
 }
-<div class="highlight"><pre><span></span><code>## New site with proxy to a remote location
-
-Another example with a reverse proxy configuration:
 </code></pre></div>
-nano data/conf/nginx/my_custom_site.conf
-<div class="highlight"><pre><span></span><code>``` hl_lines=&quot;16 28&quot;
-server {
+<h2 id="new-site-with-proxy-to-a-remote-location">New site with proxy to a remote location<a class="headerlink" href="#new-site-with-proxy-to-a-remote-location" title="Permanent link">&para;</a></h2>
+<p>Another example with a reverse proxy configuration:</p>
+<div class="highlight"><pre><span></span><code>nano data/conf/nginx/my_custom_site.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>server {
   ssl_certificate /etc/ssl/mail/cert.pem;
   ssl_certificate_key /etc/ssl/mail/key.pem;
   ssl_protocols TLSv1.2 TLSv1.3;
@@ -3863,8 +3881,8 @@ server {
   root /web;
   include /etc/nginx/conf.d/listen_plain.active;
   include /etc/nginx/conf.d/listen_ssl.active;
-  server_name example.domain.tld;
-  server_tokens off;
+<span class="hll">  server_name example.domain.tld;
+</span>  server_tokens off;
 
   location ^~ /.well-known/acme-challenge/ {
     allow all;
@@ -3875,8 +3893,8 @@ server {
     return 301 https://$host$request_uri;
   }
 
-  location / {
-    proxy_pass http://service:3000/;
+<span class="hll">  location / {
+</span>    proxy_pass http://service:3000/;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -3884,7 +3902,7 @@ server {
     client_max_body_size 0;
   }
 }
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="config-expansion-in-mailcows-nginx">Config expansion in mailcows Nginx<a class="headerlink" href="#config-expansion-in-mailcows-nginx" title="Permanent link">&para;</a></h2>
 <p>The filename used for a new site is not important, as long as the filename carries a .conf extension.</p>
 <p>It is also possible to extend the configuration of the default file <code>site.conf</code> file:</p>
