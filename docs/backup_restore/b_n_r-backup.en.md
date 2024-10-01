@@ -1,64 +1,82 @@
-### Backup
+### Foreword
 
-#### Manual
+!!! danger "Warning"
+
+    The syntax of the backup script has drastically changed with the 2024-09 update as part of the script's redevelopment. If automated backup processes are running on your system, please adjust them accordingly.
+
+    Important to note is the relocation of the `--delete-days` parameter to the new and separately executable function `-d`.
+
+    Also important: the new `--yes` variable, which is used for automation.
+
+    Please refer to this documentation for the updated syntax.
+
+### Manual
 
 You can use the provided script `helper-scripts/backup_and_restore.sh` to backup mailcow automatically.
 
 !!! danger
     **Please do not copy this script to another location.**
 
-To run a backup, write "backup" as first parameter and either one or more components to backup as following parameters.
-You can also use "all" as second parameter to backup all components. Append `--delete-days n` to delete backups older than n days.
+To run a backup, use flag "-b" or "--backup" along with "/path/to/backup/folder", also pass "-c" or "--component"
+to select the component(s) which you want to backup.
 
 ```
-# Syntax:
-# ./helper-scripts/backup_and_restore.sh backup (vmail|crypt|redis|rspamd|postfix|mysql|all|--delete-days)
+# For syntax and usage help:
+# ./helper-scripts/backup_and_restore.sh --help
 
-# Backup all, delete backups older than 3 days
-./helper-scripts/backup_and_restore.sh backup all --delete-days 3
+# Backup all components to "/opt/backups" folder with no prompts (good for automation):
+./helper-scripts/backup_and_restore.sh --backup /opt/backups --component all --yes
 
-# Backup vmail, crypt and mysql data, delete backups older than 30 days
-./helper-scripts/backup_and_restore.sh backup vmail crypt mysql --delete-days 30
+# Also, there's short version of the flags:
+./helper-scripts/backup_and_restore.sh -b /opt/backups -c all
+
+# Backup vmail, crypt and mysql data
+./helper-scripts/backup_and_restore.sh -b /opt/backups -c vmail -c crypt -c mysql
 
 # Backup vmail
-./helper-scripts/backup_and_restore.sh backup vmail
+./helper-scripts/backup_and_restore.sh -b /opt/backups -c vmail
 
 ```
 
 #### Variables for backup/restore script
 ##### Multithreading
-With the 2022-10 update it is possible to run the script with multithreading support. This can be used for backups as well as for restores.
-
-To start the backup/restore with multithreading you have to add `THREADS` as an environment variable in front of the command to execute the script.
+To start the backup/restore with multithreading you have to add `--threads <num>` or short one `-t <num>` flag.
 
 ```
-THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -b /opt/backups -c all -t 14
 ```
-The number after the `=` character indicates the number of threads. Please keep your core count -2 to leave enough CPU power for mailcow itself.
+Please keep your core count -2 to leave enough CPU power for mailcow itself, such as if you have 16 cores, then pass `-t 14`.
 
 ##### Backup path
-The script will ask you for a backup location. Inside of this location it will create folders in the format "mailcow_DATE".
+You should pass the backup path right after `-b`|`--backup` flag, Inside of this location it will create folders in the format "mailcow_DATE".
 You should not rename those folders to not break the restore process.
 
 To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variable before starting the script:
 
 ```
-MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+MAILCOW_BACKUP_LOCATION=/opt/backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all --yes
 ```
 
+!!! danger
+    Please look closeley: The variable here is called `MAILCOW_BACKUP_LOCATION`
+
 !!! tip
-        Both variables mentioned above can also be combined! Ex:
-        ```
-        MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
-        ```
+    Both variables mentioned above can also be combined! Ex:
+
+    ```bash
+    MAILCOW_BACKUP_LOCATION=/opt/backups MAILCOW_BACKUP_RESTORE_THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c all --yes
+    ```
+
+!!! tip
+        Please note: If you specified `MAILCOW_BACKUP_LOCATION` environment variable then there's no need to pass the `-b`|`--backup` flag
 
 #### Cronjob
 
-You can run the backup script regularly via cronjob. Make sure `BACKUP_LOCATION` exists:
+You can run the backup script regularly via cronjob. Make sure `MAILCOW_BACKUP_LOCATION` exists:
 
 ```
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/mnt/mailcow_backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/opt/backups /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh --backup -c mysql -c crypt -c redis --yes
 ```
 
 Per default cron sends the full result of each backup operation by email. If you want cron to only mail on error (non-zero exit code) you may want to use the following snippet. Pathes need to be modified according to your setup (this script is a user contribution).
@@ -68,28 +86,28 @@ This following script may be placed in `/etc/cron.daily/mailcow-backup` - do not
 ```
 #!/bin/sh
 
-# Backup mailcow data
+# Backup mailcow Docs
 # https://docs.mailcow.email/backup_restore/b_n_r-backup/
 
 set -e
 
 OUT="$(mktemp)"
 export MAILCOW_BACKUP_LOCATION="/opt/backup"
+export MAILCOW_BACKUP_RESTORE_THREADS="2"
 SCRIPT="/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh"
-PARAMETERS="backup all"
-OPTIONS="--delete-days 30"
+PARAMETERS=(-c all)
+OPTIONS=(--yes)
 
 # run command
 set +e
-"${SCRIPT}" ${PARAMETERS} ${OPTIONS} 2>&1 > "$OUT"
+"${SCRIPT}" "${PARAMETERS[@]}" "${OPTIONS[@]}" 2>&1 > "$OUT"
 RESULT=$?
 
-if [ $RESULT -ne 0 ]
-    then
-            echo "${SCRIPT} ${PARAMETERS} ${OPTIONS} encounters an error:"
-            echo "RESULT=$RESULT"
-            echo "STDOUT / STDERR:"
-            cat "$OUT"
+if [ $RESULT -ne 0 ]; then
+  echo "${SCRIPT} ${PARAMETERS[@]} ${OPTIONS[@]} encounters an error:"
+  echo "RESULT=$RESULT"
+  echo "STDOUT / STDERR:"
+  cat "$OUT"
 fi
 ```
 
@@ -105,7 +123,8 @@ Create cronjobs:
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 25 1 * * * rsync -aH --delete /opt/mailcow-dockerized /external_share/backups/mailcow-dockerized
 40 2 * * * rsync -aH --delete /var/lib/docker/volumes /external_share/backups/var_lib_docker_volumes
-5 4 * * * cd /opt/mailcow-dockerized/; BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup mysql crypt redis --delete-days 3
+5 4 * * * cd /opt/mailcow-dockerized/; MAILCOW_BACKUP_LOCATION=/external_share/backups/backup_script /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh -c mysql -c crypt -c redis --yes
+5 4 * * * cd /opt/mailcow-dockerized/; /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh --delete /external_share/backups/backup_script 3 --yes
 # If you want to, use the acl util to backup permissions of some/all folders/files: getfacl -Rn /path
 ```
 
