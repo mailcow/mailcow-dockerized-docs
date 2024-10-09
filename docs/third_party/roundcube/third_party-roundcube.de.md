@@ -320,7 +320,7 @@ Erzeugung der Datenbank-Tabellen bzw. Änderungen nur bei der Anmeldung in Round
 ### Übermittlung der Client-Netzwerkadresse an Dovecot
 
 Normalerweise sieht der IMAP-Server Dovecot die Netzwerkadresse des php-fpm-Containers wenn Roundcube zu diesem
-Verbindungen aufbaut. Durch Verwendung einer IMAP-Erweiterung und dem `roundcube-dovecot_client_ip` Roundcube-Plugin ist
+Verbindungen aufbaut. Durch Verwendung einer IMAP-Erweiterung und dem `dovecot_client_ip` Roundcube-Plugin ist
 es möglich, dass Roundcube Dovecot die Client-Netzwerkadresse übermittelt, so dass in den Log-Dateien die
 Client-Netzwerkadresse erscheint. Dies führt dazu, dass Login-Versuche an Roundcube in den Dovecot-Logs genauso wie
 direkte Client-Verbindungen zu Dovecot aufgezeichnet werden, und fehlgeschlagene Login-Versuche an Roundcube
@@ -330,8 +330,17 @@ Clients führen.
 
 Hierzu muss das Roundcube-Plugin installiert werden:
 
+
 ```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "takerukoushirou/roundcube-dovecot_client_ip:~1"
+docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "foorschtbar/dovecot_client_ip:~2"
+```
+
+Bearbeiten Sie die Datei `data/web/rc/config/config.inc.php` und fügen Sie den folgenden Inhalt ein:
+
+```bash
+cat <<EOCONFIG >>data/web/rc/config/config.inc.php
+\$config['dovecot_client_ip_trusted_proxies'] = ['${IPV4_NETWORK}.0/24', '${IPV6_NETWORK}'];
+EOCONFIG
 ```
 
 Weiterhin müssen wir Dovecot konfigurieren, so dass der php-fpm-Container als Teil eines vertrauenswürdigen Netzwerks

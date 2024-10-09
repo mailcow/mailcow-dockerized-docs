@@ -300,7 +300,7 @@ during the login to roundcube.
 ### Forward the client network address to dovecot
 
 Normally, the IMAP server dovecot will see the network address of the php-fpm container when roundcube interacts with the IMAP
-server. Using an IMAP extension and the `roundcube-dovecot_client_ip` roundcube plugin, it is possible for roundcube to tell
+server. Using an IMAP extension and the `dovecot_client_ip` roundcube plugin, it is possible for roundcube to tell
 dovecot the client IP, so it will also show up in the logs as the remote IP. When doing this, login attempts will show in the
 dovecot logs like any direct client connections to dovecot, and such failed logins into roundcube will be treated in the same
 manner as failed direct IMAP logins, causing blocking of the client with the netfilter container or other mechanisms that may
@@ -309,7 +309,15 @@ already be in place to handle bruteforce attacks on the IMAP server.
 For this, the roundcube plugin must be installed.
 
 ```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "takerukoushirou/roundcube-dovecot_client_ip:~1"
+docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "foorschtbar/dovecot_client_ip:~2"
+```
+
+Edit the file `data/web/rc/config/config.inc.php` and insert the following content:
+
+```bash
+cat <<EOCONFIG >>data/web/rc/config/config.inc.php
+\$config['dovecot_client_ip_trusted_proxies'] = ['${IPV4_NETWORK}.0/24', '${IPV6_NETWORK}'];
+EOCONFIG
 ```
 
 Furthermore, we must configure dovecot to treat the php-fpm container as part of a trusted network so it is allowed to override
@@ -623,7 +631,7 @@ You must also adapt the configuration of the roundcube password plugin according
 you use the password changing functionality, since the old instruction directly changed the password in the database,
 whereas this version of the instruction uses the mailcow API for the password change.
 
-Regarding other changes and additions (e.g., roundcube-dovecot\_client\_ip plugin), you can go through the current
+Regarding other changes and additions (e.g., dovecot_client_ip plugin), you can go through the current
 installation instructions and adapt your configuration accordingly or perform the listed installation steps for new
 additions.
 
