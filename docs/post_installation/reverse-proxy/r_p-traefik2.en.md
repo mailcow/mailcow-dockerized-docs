@@ -52,7 +52,7 @@ services:
 
     certdumper:
         image: ghcr.io/kereis/traefik-certs-dumper
-	command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
+        command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
         network_mode: none
         volumes:
           # Mount the volume which contains Traefik's `acme.json' file
