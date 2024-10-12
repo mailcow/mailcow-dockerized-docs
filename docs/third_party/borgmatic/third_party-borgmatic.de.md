@@ -40,7 +40,10 @@ services:
       - ./data/conf/borgmatic/ssh:/root/.ssh:Z
     environment:
       - TZ=${TZ}
-      - BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere
+      - BORG_PASSPHRASE=${BORG_PASSPHRASE}
+      - DBNAME=${DBNAME}
+      - DBUSER=${DBUSER}
+      - DBPASS=${DBPASS}
     networks:
       mailcow-network:
         aliases:
@@ -51,22 +54,16 @@ volumes:
   borg-config-vol-1:
 ```
 
-Stellen Sie sicher, dass Sie die `BORG_PASSPHRASE` in eine sichere Passphrase Ihrer Wahl ändern.
+Fügen Sie `BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere` zu Ihrer `mailcow.conf` hinzu und stellen Sie sicher, dass Sie die `BORG_PASSPHRASE` in eine sichere Passphrase Ihrer Wahl ändern.
 
 Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen,
 müssen Sie das `ro`-Flag entfernen, bevor Sie die Daten wiederherstellen. Dies wird im Abschnitt über die Wiederherstellung von Backups beschrieben.
 
 ### Erstellen Sie `data/conf/borgmatic/etc/config.yaml`
 
-Als nächstes müssen wir die borgmatic-Konfiguration erzeugen. Das Erstellen der Datei auf die hier beschriebene Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus `mailcow.conf` übernommen werden.
+Als nächstes müssen wir die borgmatic-Konfiguration erzeugen. Borgmatic unterstützt Umgebungsvariableninterpolation, dadurch erhalten wir die korrekten MySQL-Zugangsdaten über Docker bzw. über unsere `mailcow.conf`, ohne dass diese in der Konfigurationsdatei offengelegt werden.
 
-Zunächst laden wir `mailcow.conf`, um Zugriff auf die mailcow-Einstellungen innerhalb des nachfolgenden Kommandos zu erhalten.
-
-```bash
-source mailcow.conf
-```
-
-Das nächste Kommando erzeugt dann die borgmatic-Konfigurationsdatei mit den korrekten Zugangsdaten. Vergewissern Sie sich, alle folgenden Zeilen zu kopieren!
+Vergewissern Sie sich, alle folgenden Zeilen zu kopieren!
 
 ```bash
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
