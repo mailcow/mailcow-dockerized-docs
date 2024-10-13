@@ -41,7 +41,10 @@ services:
       - ./data/conf/borgmatic/ssh:/root/.ssh:Z
     environment:
       - TZ=${TZ}
-      - BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere
+      - BORG_PASSPHRASE=${BORG_PASSPHRASE}
+      - DBNAME=${DBNAME}
+      - DBUSER=${DBUSER}
+      - DBPASS=${DBPASS}
     networks:
       mailcow-network:
         aliases:
@@ -52,22 +55,16 @@ volumes:
   borg-config-vol-1:
 ```
 
-Ensure that you change the `BORG_PASSPHRASE` to a secure passphrase of your choosing.
+Append `BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere` to your `mailcow.conf` and ensure that you change the `BORG_PASSPHRASE` to a secure passphrase of your choosing.
 
 For security reasons we mount the maildir as read-only. If you later want to restore data you will need to remove
 the `ro` flag prior to restoring the data. This is described in the section on restoring backups.
 
 ### Create `data/conf/borgmatic/etc/config.yaml`
 
-Next, we need to create the borgmatic configuration. Creating the file in this way ensures the correct MySQL credentials are pulled in from `mailcow.conf`.
+Next, we need to create the borgmatic configuration. Borgmatic supports environment variable interpolation, this way we can get the correct MySQL credentials from Docker or more specifically from our `mailcow.conf` without exposing them in our config.
 
-First we load `mailcow.conf` so we have access to the mailcow configuration settings for the following command.
-
-```bash
-source mailcow.conf
-```
-
-The next command then creates the borgmatic configuration file containing the correct credentials. Make sure to copy all the following lines!
+Make sure to copy all the following lines!
 
 ```bash
 cat <<EOF > data/conf/borgmatic/etc/config.yaml
