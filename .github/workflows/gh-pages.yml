@@ -19,10 +19,13 @@ jobs:
         run: |
           sudo apt-get -y update
           sudo apt-get -y install python3-pip
+          python -m venv venv
+          source ./venv/bin/activate
           pip install -r requirements.txt
 
       - name: Build site 🔧
         run: |
+          source ./venv/bin/activate
           mkdocs build --verbose --clean
 
       - name: Fixing redirects 🚧
