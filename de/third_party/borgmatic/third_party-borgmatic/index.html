@@ -4144,7 +4144,10 @@ Konfiguration ein:</p>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/conf/borgmatic/ssh:/root/.ssh:Z</span>
 <span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TZ=${TZ}</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BORG_PASSPHRASE=${BORG_PASSPHRASE}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DBNAME=${DBNAME}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DBUSER=${DBUSER}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DBPASS=${DBPASS}</span>
 <span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">mailcow-network</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">aliases</span><span class="p">:</span>
@@ -4154,15 +4157,12 @@ Konfiguration ein:</p>
 <span class="w">  </span><span class="nt">borg-cache-vol-1</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">borg-config-vol-1</span><span class="p">:</span>
 </code></pre></div>
-<p>Stellen Sie sicher, dass Sie die <code>BORG_PASSPHRASE</code> in eine sichere Passphrase Ihrer Wahl ändern.</p>
+<p>Fügen Sie <code>BORG_PASSPHRASE=YouBetterPutSomethingRealGoodHere</code> zu Ihrer <code>mailcow.conf</code> hinzu und stellen Sie sicher, dass Sie die <code>BORG_PASSPHRASE</code> in eine sichere Passphrase Ihrer Wahl ändern.</p>
 <p>Aus Sicherheitsgründen mounten wir das maildir als schreibgeschützt. Wenn Sie später Daten wiederherstellen wollen,
 müssen Sie das <code>ro</code>-Flag entfernen, bevor Sie die Daten wiederherstellen. Dies wird im Abschnitt über die Wiederherstellung von Backups beschrieben.</p>
 <h3 id="erstellen-sie-dataconfborgmaticetcconfigyaml">Erstellen Sie <code>data/conf/borgmatic/etc/config.yaml</code><a class="headerlink" href="#erstellen-sie-dataconfborgmaticetcconfigyaml" title="Permanent link">&para;</a></h3>
-<p>Als nächstes müssen wir die borgmatic-Konfiguration erzeugen. Das Erstellen der Datei auf die hier beschriebene Weise stellt sicher, dass die korrekten MySQL-Zugangsdaten aus <code>mailcow.conf</code> übernommen werden.</p>
-<p>Zunächst laden wir <code>mailcow.conf</code>, um Zugriff auf die mailcow-Einstellungen innerhalb des nachfolgenden Kommandos zu erhalten.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
-</code></pre></div>
-<p>Das nächste Kommando erzeugt dann die borgmatic-Konfigurationsdatei mit den korrekten Zugangsdaten. Vergewissern Sie sich, alle folgenden Zeilen zu kopieren!</p>
+<p>Als nächstes müssen wir die borgmatic-Konfiguration erzeugen. Borgmatic unterstützt Umgebungsvariableninterpolation, dadurch erhalten wir die korrekten MySQL-Zugangsdaten über Docker bzw. über unsere <code>mailcow.conf</code>, ohne dass diese in der Konfigurationsdatei offengelegt werden.</p>
+<p>Vergewissern Sie sich, alle folgenden Zeilen zu kopieren!</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; data/conf/borgmatic/etc/config.yaml</span>
 <span class="s">source_directories:</span>
 <span class="s">    - /mnt/source/vmail</span>
@@ -4419,7 +4419,7 @@ Repositories, so dass eine manuelle Sicherung nicht so wichtig ist.</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-10 12:09:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-13 17:35:10</span>
   </span>
 
     
