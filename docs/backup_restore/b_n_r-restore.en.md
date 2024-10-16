@@ -31,6 +31,9 @@ MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backu
 !!! danger
     **Please do not copy this script to another location.**
 
+!!! warning
+    To restore a backup on a new system, **mailcow must be initialized and running!** Therefore, reinstall mailcow according to the instructions and wait to proceed with the restoration until mailcow is up and running in an empty state.
+
 !!! danger "Danger for older installations"
     Before restoring your mailcow system on a new server and a clean mailcow-dockerized folder, please check if the value `MAILDIR_SUB` is set in your mailcow.conf. If this value is not set, do not set it in your new mailcow or remove it, otherwise **NO** emails will be displayed. Dovecot loads emails from the mentioned subfolder of the Maildir volume under `$DOCKER_VOLUME_PATH/mailcowdockerized_vmail-vol-1` and if there is any change compared to the original state, no emails will be available there.
 
