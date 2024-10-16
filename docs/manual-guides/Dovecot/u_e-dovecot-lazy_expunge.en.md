@@ -2,7 +2,7 @@
     This guide is still a work in progress, and errors may occur! Use this feature with caution!
 
 !!! info
-    This feature is compatible with mailcow versions starting from 2024-10. Older versions are theoretically capable of using it as well, but due to internal changes, the implementation is more complicated.
+    This feature is compatible with mailcow versions starting from 2024-10. Older versions are theoretically capable of using it as well, but due to internal changes, the implementation is more complicated, so it won't be stated here as unsupported.
 
 ## Introduction
 Dovecot has supported a feature called *Lazy Expunge* for [quite some time](https://doc.dovecot.org/2.3/configuration_manual/lazy_expunge_plugin/), which allows server administrators to temporarily retain deleted emails from a user account even after they have been deleted.
