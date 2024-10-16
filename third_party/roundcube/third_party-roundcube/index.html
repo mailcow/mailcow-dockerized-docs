@@ -4681,13 +4681,18 @@ in roundcube (log out first if already logged in) because the database table cre
 during the login to roundcube.</p>
 <h3 id="forward-the-client-network-address-to-dovecot">Forward the client network address to dovecot<a class="headerlink" href="#forward-the-client-network-address-to-dovecot" title="Permanent link">&para;</a></h3>
 <p>Normally, the IMAP server dovecot will see the network address of the php-fpm container when roundcube interacts with the IMAP
-server. Using an IMAP extension and the <code>roundcube-dovecot_client_ip</code> roundcube plugin, it is possible for roundcube to tell
+server. Using an IMAP extension and the <code>dovecot_client_ip</code> roundcube plugin, it is possible for roundcube to tell
 dovecot the client IP, so it will also show up in the logs as the remote IP. When doing this, login attempts will show in the
 dovecot logs like any direct client connections to dovecot, and such failed logins into roundcube will be treated in the same
 manner as failed direct IMAP logins, causing blocking of the client with the netfilter container or other mechanisms that may
 already be in place to handle bruteforce attacks on the IMAP server.</p>
 <p>For this, the roundcube plugin must be installed.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>--update-no-dev<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;takerukoushirou/roundcube-dovecot_client_ip:~1&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>--update-no-dev<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;foorschtbar/dovecot_client_ip:~2&quot;</span>
+</code></pre></div>
+<p>Edit the file <code>data/web/rc/config/config.inc.php</code> and insert the following content:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;&gt;data/web/rc/config/config.inc.php</span>
+<span class="s">\$config[&#39;dovecot_client_ip_trusted_proxies&#39;] = [&#39;${IPV4_NETWORK}.0/24&#39;, &#39;${IPV6_NETWORK}&#39;];</span>
+<span class="s">EOCONFIG</span>
 </code></pre></div>
 <p>Furthermore, we must configure dovecot to treat the php-fpm container as part of a trusted network so it is allowed to override
 the client IP in the IMAP session. Note that this also enables plaintext authentication for the listed network ranges, so the
@@ -4912,7 +4917,7 @@ make sure the nginx webserver cannot access files it is not supposed to serve.</
 <p>You must also adapt the configuration of the roundcube password plugin according to this instruction, specifically if
 you use the password changing functionality, since the old instruction directly changed the password in the database,
 whereas this version of the instruction uses the mailcow API for the password change.</p>
-<p>Regarding other changes and additions (e.g., roundcube-dovecot_client_ip plugin), you can go through the current
+<p>Regarding other changes and additions (e.g., dovecot_client_ip plugin), you can go through the current
 installation instructions and adapt your configuration accordingly or perform the listed installation steps for new
 additions.</p>
 <p>Specifically, consider the following sections:
@@ -4945,7 +4950,7 @@ the roundcube tables from the mailcow database using the following command:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-01 19:12:46</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-16 10:53:17</span>
   </span>
 
     

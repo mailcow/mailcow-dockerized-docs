@@ -4698,7 +4698,7 @@ ist es notwendig, sich in Roundcube neu anzumelden (melden Sie sich vorher ab, w
 Erzeugung der Datenbank-Tabellen bzw. Änderungen nur bei der Anmeldung in Roundcube durchgeführt werden.</p>
 <h3 id="ubermittlung-der-client-netzwerkadresse-an-dovecot">Übermittlung der Client-Netzwerkadresse an Dovecot<a class="headerlink" href="#ubermittlung-der-client-netzwerkadresse-an-dovecot" title="Permanent link">&para;</a></h3>
 <p>Normalerweise sieht der IMAP-Server Dovecot die Netzwerkadresse des php-fpm-Containers wenn Roundcube zu diesem
-Verbindungen aufbaut. Durch Verwendung einer IMAP-Erweiterung und dem <code>roundcube-dovecot_client_ip</code> Roundcube-Plugin ist
+Verbindungen aufbaut. Durch Verwendung einer IMAP-Erweiterung und dem <code>dovecot_client_ip</code> Roundcube-Plugin ist
 es möglich, dass Roundcube Dovecot die Client-Netzwerkadresse übermittelt, so dass in den Log-Dateien die
 Client-Netzwerkadresse erscheint. Dies führt dazu, dass Login-Versuche an Roundcube in den Dovecot-Logs genauso wie
 direkte Client-Verbindungen zu Dovecot aufgezeichnet werden, und fehlgeschlagene Login-Versuche an Roundcube
@@ -4706,7 +4706,12 @@ analog zu fehlgeschlagenen direkten IMAP-Logins durch den netfilter-Container od
 zur Behandlung von Bruteforce-Attacken auf den IMAP-Server aufgegriffen werden und z. B. zu einer Blockierung des
 Clients führen.</p>
 <p>Hierzu muss das Roundcube-Plugin installiert werden:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>--update-no-dev<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;takerukoushirou/roundcube-dovecot_client_ip:~1&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>--update-no-dev<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;foorschtbar/dovecot_client_ip:~2&quot;</span>
+</code></pre></div>
+<p>Bearbeiten Sie die Datei <code>data/web/rc/config/config.inc.php</code> und fügen Sie den folgenden Inhalt ein:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;&gt;data/web/rc/config/config.inc.php</span>
+<span class="s">\$config[&#39;dovecot_client_ip_trusted_proxies&#39;] = [&#39;${IPV4_NETWORK}.0/24&#39;, &#39;${IPV6_NETWORK}&#39;];</span>
+<span class="s">EOCONFIG</span>
 </code></pre></div>
 <p>Weiterhin müssen wir Dovecot konfigurieren, so dass der php-fpm-Container als Teil eines vertrauenswürdigen Netzwerks
 betrachtet wird und somit die Client-Netzwerkadresse innerhalb einer IMAP-Sitzung überschreiben darf. Beachten Sie, dass
@@ -4978,7 +4983,7 @@ entfernen:</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-01 19:12:46</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-16 10:53:17</span>
   </span>
 
     
