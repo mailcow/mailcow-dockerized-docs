@@ -105,7 +105,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#method-1-via-mobileconfig" class="md-skip">
+        <a href="#method-1-configuration-profile" class="md-skip">
           Skip to content
         </a>
       
@@ -3310,27 +3310,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#method-1-via-mobileconfig" class="md-nav__link">
+  <a href="#method-1-configuration-profile" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 1 via Mobileconfig
+      Method 1: Configuration Profile
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#method-11-imap-smtp-and-calcarddav" class="md-nav__link">
+  <a href="#method-11-imap-and-smtp" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 1.1: IMAP, SMTP and Cal/CardDAV
+      Method 1.1: IMAP and SMTP
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#method-12-imap-smtp-no-dav" class="md-nav__link">
+  <a href="#method-12-imap-smtp-and-calcarddav" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 1.2: IMAP, SMTP (no DAV)
+      Method 1.2: IMAP, SMTP and Cal/CardDAV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-13-imap-and-smtp-with-app-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1.3: IMAP and SMTP with App Password
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-14-imap-smtp-and-calcarddav-with-app-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1.4: IMAP, SMTP and Cal/CardDAV with App Password
     </span>
   </a>
   
@@ -3339,7 +3357,7 @@
         <li class="md-nav__item">
   <a href="#method-2-exchange-activesync-emulation" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 2 (Exchange ActiveSync emulation)
+      Method 2: Exchange ActiveSync emulation
     </span>
   </a>
   
@@ -3764,27 +3782,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#method-1-via-mobileconfig" class="md-nav__link">
+  <a href="#method-1-configuration-profile" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 1 via Mobileconfig
+      Method 1: Configuration Profile
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#method-11-imap-smtp-and-calcarddav" class="md-nav__link">
+  <a href="#method-11-imap-and-smtp" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 1.1: IMAP, SMTP and Cal/CardDAV
+      Method 1.1: IMAP and SMTP
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#method-12-imap-smtp-no-dav" class="md-nav__link">
+  <a href="#method-12-imap-smtp-and-calcarddav" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 1.2: IMAP, SMTP (no DAV)
+      Method 1.2: IMAP, SMTP and Cal/CardDAV
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-13-imap-and-smtp-with-app-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1.3: IMAP and SMTP with App Password
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-14-imap-smtp-and-calcarddav-with-app-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method 1.4: IMAP, SMTP and Cal/CardDAV with App Password
     </span>
   </a>
   
@@ -3793,7 +3829,7 @@
         <li class="md-nav__item">
   <a href="#method-2-exchange-activesync-emulation" class="md-nav__link">
     <span class="md-ellipsis">
-      Method 2 (Exchange ActiveSync emulation)
+      Method 2: Exchange ActiveSync emulation
     </span>
   </a>
   
@@ -3819,28 +3855,59 @@
 
   <h1>Apple macOS / iOS</h1>
 
-<h2 id="method-1-via-mobileconfig">Method 1 via Mobileconfig<a class="headerlink" href="#method-1-via-mobileconfig" title="Permanent link">&para;</a></h2>
-<p>Email, contacts and calendars can be configured automatically on Apple devices by installing a profile. To download a profile you must login to the mailcow UI first.</p>
-<h2 id="method-11-imap-smtp-and-calcarddav">Method 1.1: IMAP, SMTP and Cal/CardDAV<a class="headerlink" href="#method-11-imap-smtp-and-calcarddav" title="Permanent link">&para;</a></h2>
-<p>This method configures IMAP, CardDAV and CalDAV.</p>
+<h2 id="method-1-configuration-profile">Method 1: Configuration Profile<a class="headerlink" href="#method-1-configuration-profile" title="Permanent link">&para;</a></h2>
+<p>Email, contacts and calendars can be configured automatically on Apple devices by installing a configuration profile. To download such a profile you must login to the mailcow UI with the desired email account first.</p>
+<h2 id="method-11-imap-and-smtp">Method 1.1: IMAP and SMTP<a class="headerlink" href="#method-11-imap-and-smtp" title="Permanent link">&para;</a></h2>
+<p>This method configures IMAP and SMTP to access an email account.</p>
 <ol>
-<li>Download and open <span class="client_variables_unavailable">the file from <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php">mailcow.mobileconfig</a></span>.</li>
-<li>Enter the unlock code (iPhone) or computer password (Mac).</li>
-<li>Enter your email password three times when prompted.</li>
+<li>Open <span class="client_variables_unavailable"> <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email">mailcow.mobileconfig</a></span> to download a customized configuration profile.</li>
+<li>Open the profile on your Mac, iPhone or iPad and follow Apple's instructions for your operating system version to install the profile:<ul>
+<li><a href="https://support.apple.com/en-us/guide/mac-help/mh35561/mac">Steps for macOS</a></li>
+<li><a href="https://support.apple.com/en-us/102400">Steps for iOS</a></li>
+</ul>
+</li>
+<li>Since the profile is not digitally signed, you must confirm the respective notification during installation. Enter the password for your email account when asked.</li>
 </ol>
-<h2 id="method-12-imap-smtp-no-dav">Method 1.2: IMAP, SMTP (no DAV)<a class="headerlink" href="#method-12-imap-smtp-no-dav" title="Permanent link">&para;</a></h2>
-<p>This method configures IMAP and SMTP only.</p>
+<h2 id="method-12-imap-smtp-and-calcarddav">Method 1.2: IMAP, SMTP and Cal/CardDAV<a class="headerlink" href="#method-12-imap-smtp-and-calcarddav" title="Permanent link">&para;</a></h2>
+<p>This method configures CardDAV (address book) and CalDAV (calendar) in addition to the email account.</p>
 <ol>
-<li>Download and open <span class="client_variables_unavailable">the file from <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email">mailcow.mobileconfig</a></span>.</li>
-<li>Enter the unlock code (iPhone) or computer password (Mac).</li>
-<li>Enter your email password when prompted.</li>
+<li>Open <span class="client_variables_unavailable"> <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php">mailcow.mobileconfig</a></span> to download a customized configuration profile.</li>
+<li>Open the profile on your Mac, iPhone or iPad and follow Apple's instructions for your operating system version to install the profile:<ul>
+<li><a href="https://support.apple.com/en-us/guide/mac-help/mh35561/mac">Steps for macOS</a></li>
+<li><a href="https://support.apple.com/en-us/102400">Steps for iOS</a></li>
+</ul>
+</li>
+<li>Since the profile is not digitally signed, you must confirm the respective notification during installation. Enter the password for your email account when asked.</li>
 </ol>
-<h2 id="method-2-exchange-activesync-emulation">Method 2 (Exchange ActiveSync emulation)<a class="headerlink" href="#method-2-exchange-activesync-emulation" title="Permanent link">&para;</a></h2>
-<p>On iOS, Exchange ActiveSync is also supported as an alternative to the procedure above. It has the advantage of supporting push email (i.e. you are immediately notified of incoming messages), but has some limitations, e.g. it does not support more than three email addresses per contact in your address book. Follow the steps below if you decide to use Exchange instead.</p>
+<h2 id="method-13-imap-and-smtp-with-app-password">Method 1.3: IMAP and SMTP with App Password<a class="headerlink" href="#method-13-imap-and-smtp-with-app-password" title="Permanent link">&para;</a></h2>
+<p>This method configures IMAP and SMTP to access an email account. A new app password is generated and added to the profile so that no password needs to be entered when setting up your device. Please do not share the file as it grants full access to your mailbox.</p>
 <ol>
-<li>Open the <em>Settings</em> app, tap <em>Mail</em>, tap <em>Accounts</em>, tap <em>Add Acccount</em>, select <em>Exchange</em>.</li>
+<li>Open <span class="client_variables_unavailable"> <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email&amp;app_password</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email&app_password">mailcow.mobileconfig</a></span> to download a customized configuration profile.</li>
+<li>Open the profile on your Mac, iPhone or iPad and follow Apple's instructions for your operating system version to install the profile:<ul>
+<li><a href="https://support.apple.com/en-us/guide/mac-help/mh35561/mac">Steps for macOS</a></li>
+<li><a href="https://support.apple.com/en-us/102400">Steps for iOS</a></li>
+</ul>
+</li>
+<li>Since the profile is not digitally signed, you must confirm the respective notification during installation. Enter the password for your email account when asked.</li>
+</ol>
+<h2 id="method-14-imap-smtp-and-calcarddav-with-app-password">Method 1.4: IMAP, SMTP and Cal/CardDAV with App Password<a class="headerlink" href="#method-14-imap-smtp-and-calcarddav-with-app-password" title="Permanent link">&para;</a></h2>
+<p>This method configures CardDAV (address book) and CalDAV (calendar) in addition to the email account. A new app password is generated and added to the profile so that no password needs to be entered when setting up your device. Please do not share the file as it grants full access to your mailbox.</p>
+<ol>
+<li>Open <span class="client_variables_unavailable"> <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?app_password</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?app_password">mailcow.mobileconfig</a></span> to download a customized configuration profile.</li>
+<li>Open the profile on your Mac, iPhone or iPad and follow Apple's instructions for your operating system version to install the profile:<ul>
+<li><a href="https://support.apple.com/en-us/guide/mac-help/mh35561/mac">Steps for macOS</a></li>
+<li><a href="https://support.apple.com/en-us/102400">Steps for iOS</a></li>
+</ul>
+</li>
+<li>Since the profile is not digitally signed, you must confirm the respective notification during installation. Enter the password for your email account when asked.</li>
+</ol>
+<h2 id="method-2-exchange-activesync-emulation">Method 2: Exchange ActiveSync emulation<a class="headerlink" href="#method-2-exchange-activesync-emulation" title="Permanent link">&para;</a></h2>
+<p>On iOS/iPadOS, Exchange ActiveSync is also supported as an alternative to the procedure above. It has the advantage of supporting push email (i.e. you are immediately notified of incoming messages), but has some limitations, e.g. it does not support more than three email addresses per contact in your address book. Follow the steps below if you decide to use Exchange instead.</p>
+<ol>
+<li>Follow <a href="https://support.apple.com/en-us/guide/iphone/iph44d1ae58a/ios">Apple's instructions</a> for your version of iOS/iPadOS and select <em>Microsoft Exchange</em> as email service.</li>
 <li>Enter your email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and tap <em>Next</em>.</li>
-<li>Enter your password, tap <em>Next</em> again. With 2-Factor-Authentication enabled, you have to use an App password instead of your regular password.</li>
+<li>Select <em>Manual Configuration</em> when asked if your mail address should be sent to Microsoft.</li>
+<li>Enter your password, tap <em>Next</em> again. With Two-factor authentication enabled, you have to use an app password instead of your regular password.</li>
 <li>Finally, tap <em>Save</em>.</li>
 </ol>
 
@@ -3863,7 +3930,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-01-20 12:45:21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-16 10:55:17</span>
   </span>
 
     
