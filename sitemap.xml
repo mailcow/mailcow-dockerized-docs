@@ -246,6 +246,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-fts/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-harden_ciphers/</loc>
+        <lastmod>2024-10-22</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-harden_ciphers/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-harden_ciphers/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-idle_interval/</loc>
         <lastmod>2024-10-22</lastmod>
         <changefreq>daily</changefreq>
@@ -1049,6 +1056,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-fts/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-fts/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-harden_ciphers/</loc>
+        <lastmod>2024-10-22</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-harden_ciphers/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-harden_ciphers/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/</loc>
