@@ -140,6 +140,7 @@ nav:
       - 'Custom transport maps': 'manual-guides/Postfix/u_e-postfix-custom_transport.md'
       - 'Customize/Expand main.cf': 'manual-guides/Postfix/u_e-postfix-extra_cf.md'
       - 'Disable Sender Addresses Verification': 'manual-guides/Postfix/u_e-postfix-disable_sender_verification.md'
+      - 'Hardening Ciphers': 'manual-guides/Postfix/u_e-postfix-harden_ciphers.md'
       - 'Max. message size (attachment size)': 'manual-guides/Postfix/u_e-postfix-attachment_size.md'
       - 'Relayhosts': 'manual-guides/Postfix/u_e-postfix-relayhost.md'
       - 'Statistics with pflogsumm': 'manual-guides/Postfix/u_e-postfix-pflogsumm.md'
@@ -285,6 +286,7 @@ plugins:
               'Unauthenticated Relaying': 'Unauthentifiziertes Relaying'
               'Custom transport maps': 'Benutzerdefinierte Transportmaps'
               'Customize/Expand main.cf': 'main.cf anpassen/erweitern'
+              'Hardening Ciphers': "Ciphers verstärken"
               'Disable Sender Addresses Verification': 'Überprüfung der Absenderadressen deaktivieren'
               'Max. message size (attachment size)': 'Maximale Nachrichtengröße (Größe des Anhangs)'
               'Statistics with pflogsumm': 'Statistik mit pflogsumm'
