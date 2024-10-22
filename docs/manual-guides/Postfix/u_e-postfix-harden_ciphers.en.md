@@ -14,7 +14,3 @@ smtpd_tls_mandatory_ciphers = high
 ```
 
 Such a configuration will pass current (2024-10-21) configuration checks against services like Internet.nl.
-
-Postfix will complain about duplicate values once after starting `postfix-mailcow`, this is intended.
-
-Syslog-ng was configured to hide those warnings while Postfix is running, to not spam the log files with unnecessary information every time a service is used.

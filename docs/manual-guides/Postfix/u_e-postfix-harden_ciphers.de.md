@@ -14,7 +14,3 @@ smtpd_tls_mandatory_ciphers = high
 ```
 
 Eine solche Konfiguration wird die aktuellen (2024-10-21) Konfigurationsprüfungen bei Diensten wie Internet.nl bestehen.
-
-Postfix wird beim Starten von postfix-mailcow einmal über doppelte Werte klagen, was beabsichtigt ist.
-
-Syslog-ng wurde so konfiguriert, dass diese Warnungen unterdrückt werden, während Postfix läuft, um zu verhindern, dass die Log-Dateien bei jeder Nutzung eines Dienstes mit unnötigen Informationen überflutet werden.
