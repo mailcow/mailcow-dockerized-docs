@@ -14,3 +14,5 @@ smtpd_tls_mandatory_ciphers = high
 ```
 
 Eine solche Konfiguration wird die aktuellen (2024-10-21) Konfigurationsprüfungen bei Diensten wie Internet.nl bestehen.
+
+Falls Sie auch die Cipher für Dovecot anpassen wollen finden Sie [hier](../Dovecot/u_e-dovecot-harden_ciphers.de.md) eine entsprechende Anleitung.

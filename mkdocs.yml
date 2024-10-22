@@ -152,6 +152,7 @@ nav:
       - 'Enable "any" ACL settings': 'manual-guides/Dovecot/u_e-dovecot-any_acl.md'
       - 'Expunge a Users mails': 'manual-guides/Dovecot/u_e-dovecot-expunge.md'
       - 'Full-Text Search': 'manual-guides/Dovecot/u_e-dovecot-fts.md'
+      - 'Hardening Ciphers': 'manual-guides/Dovecot/u_e-dovecot-harden_ciphers.md'
       - 'IMAP IDLE interval': 'manual-guides/Dovecot/u_e-dovecot-idle_interval.md'
       - 'Mail crypt': 'manual-guides/Dovecot/u_e-dovecot-mail-crypt.md'
       - 'More Examples with DOVEADM': 'manual-guides/Dovecot/u_e-dovecot-more.md'
@@ -296,6 +297,7 @@ plugins:
                 ### Dovecot Subsection
               'Customize/Expand dovecot.conf': 'Anpassen/Erweitern von dovecot.conf'
               'Enable "any" ACL settings': 'Aktivierung von "any" ACL-Einstellungen'
+              'Hardening Ciphers': "Ciphers verstärken"
               'Expunge a Users mails': 'Löschen der Mails eines Benutzers'
               'Full-Text Search': 'Volltext Suche (FTS)'
               'IMAP IDLE interval': 'IMAP IDLE-Intervall'
