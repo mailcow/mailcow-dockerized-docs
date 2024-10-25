@@ -37,7 +37,7 @@ Recreate affected containers by running the command:
     The script `generate_config.sh` copies snake-oil certificates to the correct location, so the services will not fail to start due to missing files.
 
 !!! warning
-    If you enable TLS SNI (`ENABLE_TLS_SNI` in mailcow.conf), the certificate paths in your reverse proxy **must** match the correct paths in `data/assets/ssl/{hostname}`. The certificates will be split into `data/assets/ssl/{hostname1,hostname2,etc}` and therefore will not work when you copy the examples from below pointing to `data/assets/ssl/cert.pem` etc.
+    If you enable TLS SNI (`ENABLE_SSL_SNI` in mailcow.conf), the certificate paths in your reverse proxy **must** match the correct paths in `data/assets/ssl/{hostname}`. The certificates will be split into `data/assets/ssl/{hostname1,hostname2,etc}` and therefore will not work when you copy the examples from below pointing to `data/assets/ssl/cert.pem` etc.
 
 !!! info
     Using the site configuration examples will **forward ACME requests to mailcow** and let it handle certificates itself.
