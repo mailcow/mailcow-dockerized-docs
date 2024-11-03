@@ -15,6 +15,7 @@ Nachstehend finden Sie eine Liste von **empfohlenen DNS-Einträgen**. Einige sin
 ## Reverse DNS Ihrer IP-Adresse
 
 Stellen Sie sicher, dass der PTR-Eintrag Ihrer IP-Adresse mit dem FQDN Ihres mailcow-Hosts übereinstimmt: `${MAILCOW_HOSTNAME}` [^1]. Dieser Eintrag wird normalerweise bei dem Provider gesetzt, von dem Sie die IP-Adresse (Server) gemietet haben.
+Bitte beachten Sie, dies sowohl für Ihre IPv4 als auch Ihre IPv6 Adressen (falls verwendet) sicherzustellen!
 
 ## Die minimale DNS-Konfiguration
 
