@@ -15,6 +15,7 @@ Below you can find a list of **recommended DNS records**. While some are mandato
 ## Reverse DNS of your IP address
 
 Make sure that the PTR record of your IP address matches the FQDN of your mailcow host: `${MAILCOW_HOSTNAME}` [^1]. This record is usually set at the provider you leased the IP address (server) from.
+Please make sure that you create the record for IPv4 and IPv6 address (if you are using IPv6)!
 
 ## The minimal DNS configuration
 
