@@ -260,6 +260,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-lazy_expunge/</loc>
+        <lastmod>2024-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-lazy_expunge/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-lazy_expunge/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-mail-crypt/</loc>
         <lastmod>2024-11-06</lastmod>
         <changefreq>daily</changefreq>
@@ -1070,6 +1077,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-idle_interval/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-lazy_expunge/</loc>
+        <lastmod>2024-11-06</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-lazy_expunge/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/manual-guides/Dovecot/u_e-dovecot-lazy_expunge/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/manual-guides/Dovecot/u_e-dovecot-mail-crypt/</loc>
