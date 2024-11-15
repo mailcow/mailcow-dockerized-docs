@@ -42,8 +42,8 @@ A company with 15 phones (EAS enabled) and about 50 concurrent IMAP connections 
 We can help to correctly plan your setup as part of our support.
 
 ### Supported OS
-Basically, mailcow can be used on any distribution that is supported by Docker CE (see https://docs.docker.com/install/).
-However, in some cases there may be incompatibilities between the operating systems and the mailcow components.
+!!! danger "Important"
+    mailcow is using Docker as a base component, due to some technical differences across multiple platforms we do **not support all**, even if they can run Docker.
 
 The following table contains all operating systems officially supported and tested by us (*as of June 2024*):
 

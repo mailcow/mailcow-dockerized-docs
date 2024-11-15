@@ -44,8 +44,8 @@ Ein Unternehmen mit 15 Smartphones (EAS aktiviert) und etwa 50 gleichzeitigen IM
 Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Setups helfen.
 
 ### Unterstützte Betriebssysteme
-Grundsätzlich kann mailcow auf jeder Distribution verwendet werden, die von Docker CE unterstützt wird (siehe https://docs.docker.com/install/).
-Es kann jedoch in vereinzelten Fällen zu einer Inkompatibilität der Betriebssysteme und den mailcow Komponenten kommen.
+!!! danger "Wichtig"
+    mailcow nutzt Docker als Basis. Aufgrund von diversen technischen Unterschieden innerhalb der einzelnen Systeme **unterstützen** wir **nicht alle** Systeme, wo theoretisch Docker drauf läuft!
 
 Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Juni 2024*):
 
