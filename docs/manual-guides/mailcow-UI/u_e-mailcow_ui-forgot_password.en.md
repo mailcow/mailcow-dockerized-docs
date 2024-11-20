@@ -52,7 +52,7 @@ For administrators, there is a new ACL that can be set either per mailbox afterw
 
 The mailcow administrator can also edit the template for the "Forgot Password" emails, similar to the quota and quarantine emails, to customize how the emails are sent. **By default, the template is always in English**.
 
-This can be accessed under the tab: `System -> Configuration -> Settings -> Password Settings`:
+This can be accessed under the tab: `System -> Configuration -> Options -> Password Settings`:
 
 ![New mailcow UI settings section where the administrator can customize the email templates for the Forgot Password feature](../../assets/images/manual-guides/mailcow-forgot-password_server_settings.png)
 
