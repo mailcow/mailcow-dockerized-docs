@@ -264,7 +264,7 @@ EOCONFIG
 ```
 
 Hinweis: Sollten Sie die mailcow nginx-Konfiguration so angepasst haben, dass http-Anfragen auf https umgeleitet werden
-(wie z. B. [hier](https://docs.mailcow.email/manual-guides/u_e-80_to_443/) beschrieben), dann wird die direkte
+(wie z. B. [hier](../../manual-guides/u_e-80_to_443.md) beschrieben), dann wird die direkte
 Verbindung zum nginx-Container via HTTP nicht funktionieren, da nginx kein im Zertifikat enthaltener Hostname ist. In
 solchen Fällen setzen Sie `password_mailcow_api_host` stattdessen auf die öffentliche URI:
 
@@ -627,7 +627,7 @@ EOCONFIG
 
 Dieser Schritt ist optional, aber er gleicht Ihre Installation an die aktuelle Fassung der Anweisungen an und ermöglicht
 die Aktualisierung von RCMCardDAV mittels composer. Dies wird einfach dadurch erreicht, dass das carddav-Plugin aus dem
-Installationsverzeichnis gelöscht und entsprechend der [Anweisungen oben](#carddav-adressbücher-in-roundcube-einbinden)
+Installationsverzeichnis gelöscht und entsprechend der [Anweisungen oben](#carddav-adressbucher-in-roundcube-einbinden)
 installiert wird, einschließlich der Erstellung einer neuen RCMCardDAV v5-Konfiguration. Falls Sie das RCMCardDAV
 angepasst haben, sollten Sie dieses sichern, bevor Sie das Plugin löschen, und Ihre Anpassungen später in die neue
 Konfigurationsdatei übernehmen.

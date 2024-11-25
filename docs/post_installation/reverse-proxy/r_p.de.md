@@ -30,7 +30,7 @@ Erzeugen Sie die betroffenen Container neu, indem Sie den folgenden Befehl ausf�
 ## Wichtige Informationen, bitte lesen Sie diese sorgf채ltig durch!
 
 !!! info
-    Wenn Sie planen, einen Reverse-Proxy zu verwenden und einen anderen Servernamen als **MAILCOW_HOSTNAME** verwenden wollen, m체ssen Sie [Zus채tzliche Servernamen f체r mailcow UI](#hinzuf체gen-weiterer-servernamen-f체r-mailcow-ui) hierunter.
+    Wenn Sie planen, einen Reverse-Proxy zu verwenden und einen anderen Servernamen als **MAILCOW_HOSTNAME** verwenden wollen, m체ssen Sie [Zus채tzliche Servernamen f체r mailcow UI](#hinzufugen-weiterer-servernamen-fur-mailcow-ui) hierunter.
 
 !!! warning "Warnung"
     Stellen Sie sicher, dass Sie `generate_config.sh` ausf체hren, bevor Sie die Konfigurationsbeispiele aktivieren.
@@ -45,7 +45,7 @@ Erzeugen Sie die betroffenen Container neu, indem Sie den folgenden Befehl ausf�
     Auf vielen Servern wird logrotate den Webserver sowieso t채glich neu laden.
 
     Wenn Sie eine lokale Certbot-Installation verwenden m철chten, m체ssen Sie die SSL-Zertifikatsparameter entsprechend 채ndern.
-    **Stellen Sie sicher, dass Sie ein Post-Hook-Skript** ausf체hren, wenn Sie sich entscheiden, externe ACME-Clients zu verwenden. [Ein Beispiel](#optional-post-hook-skript-f체r-nicht-mailcow-acme-clients) finden Sie hierunter.
+    **Stellen Sie sicher, dass Sie ein Post-Hook-Skript** ausf체hren, wenn Sie sich entscheiden, externe ACME-Clients zu verwenden. [Ein Beispiel](#optional-post-hook-skript-fur-nicht-mailcow-acme-clients) finden Sie hierunter.
 
 
 Konfigurieren Sie Ihren lokalen Webserver als Reverse Proxy anhand folgender Konfigurationsbeispiele:
