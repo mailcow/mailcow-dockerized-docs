@@ -22,7 +22,7 @@ Each container represents a single application, connected in a bridged network:
 
 - :simple-letsencrypt: [__ACME__](https://letsencrypt.org/) Automatic generation of Let's Encrypt certificates
 - :fontawesome-solid-file-shield: [__ClamAV__](https://www.clamav.net/) Antivirus scanner (optional)
-- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP server for retrieving e-mails with integrated Full-Text Search Engine "Flatcurve"
+- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP server for retrieving e-mails with integrated Full-Text Search Engine ["Flatcurve"](https://slusarz.github.io/dovecot-fts-flatcurve/)
 - :simple-mariadb: [__MariaDB__](https://mariadb.org/) Database for storing user information etc.
 - :fontawesome-solid-memory: [__Memcached__](https://www.memcached.org/) Cache for the webmailer SOGo
 - :fontawesome-solid-ban: __Netfilter__ Fail2ban-like integration of [@mkuron](https://github.com/mkuron)
@@ -33,7 +33,6 @@ Each container represents a single application, connected in a bridged network:
 - :simple-redis: [__Redis__](https://redis.io/) Storage for spam information, DKIM key, etc.
 - :fontawesome-solid-trash-can: [__Rspamd__](https://www.rspamd.com/) Spam filter with automatic learning of spam mails
 - :material-calendar: [__SOGo__](https://sogo.nu/) Integrated webmailer and Cal-/Carddav interface
-- :simple-apachesolr: [__Solr__](https://solr.apache.org/) Full text search for IMAP connections to quickly search emails (Deprecated) (Optional)
 - :material-dns: [__Unbound__](https://unbound.net/) Integrated DNS server for verifying DNSSEC etc.
 - :material-watch: __Watchdog__ For basic monitoring of the container status within mailcow
 </div>
@@ -71,7 +70,6 @@ The mailcow data (such as emails, user data, etc.) is stored in **Docker volumes
 - rspamd-vol-1
 - sogo-userdata-backup-vol-1
 - sogo-web-vol-1
-- solr-vol-1
 - vmail-index-vol-1
 - vmail-vol-1
 

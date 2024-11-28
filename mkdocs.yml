@@ -57,7 +57,9 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.extra
   - pymdownx.betterem
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
   - footnotes
   - pymdownx.superfences
   - pymdownx.tabbed:

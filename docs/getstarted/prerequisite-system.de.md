@@ -11,26 +11,24 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 
 ## Minimale Systemressourcen
 
-Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:
+Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt, um problemlos zu laufen:
 
-| Ressource   | Minimale Anforderung                                   |
-| ----------- | ------------------------------------------------------ |
-| CPU         | 1 GHz                                                  |
-| RAM         | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
-| Festplatte  | 20 GiB (ohne Emails)                                   |
-| Architektur | x86_64, ARM64                                          |
+| Ressource | Minimale Anforderung |
+| ----------------------- | ------------------------------------------------ |
+| CPU | 1 GHz |
+| RAM | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
+| Festplatte | 20 GiB (ohne Emails) |
+| Architektur | x86_64, ARM64 |
 
-!!! failure "Nicht unterstützt"
+!!! failure "Nicht unterstützte Plattformen"
 	**OpenVZ, Virtuozzo und LXC**
 
-ClamAV und Solr können sehr viel Arbeitspeicher verbrauchen. Sie können diese in der `mailcow.conf` durch die Einstellungen `SKIP_CLAMD=y` und `SKIP_SOLR=y` jedoch auch deaktivieren.
+### Arbeitsspeicher
+ClamAV und die FTS-Engine (Flatcurve) können viel RAM nutzen, lassen sich aber über die Parameter `SKIP_CLAMD=y` und `SKIP_FTS=y` in der mailcow.conf deaktivieren.
 
-!!! info 
-	Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. 
-	mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. 
-	Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.
+mailcow ist eine umfassende Groupware mit zahlreichen Features wie Webserver, Webmailer, ActiveSync, Antivirus, Antispam, Indexierung, Dokumentenscanner, Datenbank und Cache, weshalb es mehr Ressourcen benötigt als ein einfacher MTA.
 
-Ein einzelner SOGo-Worker **kann** ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 Arbeiter erzeugt.
+Ein einzelner SOGo-Worker **kann** ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 SOGo-Worker erzeugt.
 
 #### Beispiele für die RAM Planung
 
@@ -42,7 +40,7 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 
 ### Unterstützte Betriebssysteme
 !!! danger "Wichtig"
-    mailcow nutzt Docker als Basis. Aufgrund von diversen technischen Unterschieden innerhalb der einzelnen Systeme **unterstützen** wir **nicht alle** Systeme, wo theoretisch Docker drauf läuft!
+    mailcow nutzt Docker als Grundlage. Aufgrund verschiedener technischer Unterschiede zwischen den einzelnen Systemen **werden nicht alle** Plattformen unterstützt, auf denen Docker theoretisch lauffähig ist.
 
 Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Dezember 2024*):
 
@@ -61,8 +59,10 @@ Die folgende Tabelle enthält alle von uns offiziell unterstützten und getestet
     ❌ = Generell **NICHT Kompatibel**.<br>
     ❔ = Ausstehend.
 
-!!! warning "Achtung"
-    **Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.**
+!!! danger "Achtung"
+    Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden und erhalten KEINEN Support, weder Community noch Bezahlt!
+
+    **BENUTZUNG AUF EIGENE GEFAHR!!**
 
 ## Firewall & Ports
 
