@@ -16,11 +16,11 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 
 Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:
 
-| Ressource | Minimale Anforderung |
-| ----------------------- | ------------------------------------------------ |
-| CPU | 1 GHz |
-| RAM | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
-| Festplatte | 20 GiB (ohne Emails) |
+| Ressource   | Minimale Anforderung                                                             |
+| ----------- | -------------------------------------------------------------------------------- |
+| CPU         | 1 GHz                                                                            |
+| RAM         | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration)                           |
+| Festplatte  | 20 GiB (ohne Emails)                                                             |
 | Architektur | x86_64, ARM64 :warning:{ title="Frisch Released, Fehler können noch existieren"} |
 
 !!! failure "Nicht unterstützt"
@@ -49,13 +49,13 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 
 Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Juni 2024*):
 
-| Betriebssystem                | Kompatibilität                            |
-| ----------------------- | ------------------------------------------------ |
-| Alpine 3.16 und älter            | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel") |
-| Debian 11, 12              | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
-| Ubuntu 20.04 - 24.04                   | [✅](https://ubuntu.com/ "Vollständig Kompatibel")|
-| Alma Linux 8 | [✅](https://almalinux.org/ "Vollständig Kompatibel") |
-| Rocky Linux 9 | [✅](https://rockylinux.org/ "Vollständig Kompatibel") |
+| Betriebssystem        | Kompatibilität                                                     |
+| --------------------- | ------------------------------------------------------------------ |
+| Alpine 3.16 und älter | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel")       |
+| Debian 11, 12         | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
+| Ubuntu 20.04 - 24.04  | [✅](https://ubuntu.com/ "Vollständig Kompatibel")                  |
+| Alma Linux 8          | [✅](https://almalinux.org/ "Vollständig Kompatibel")               |
+| Rocky Linux 9         | [✅](https://rockylinux.org/ "Vollständig Kompatibel")              |
 
 
 !!! info "Legende"
@@ -86,25 +86,45 @@ netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 
 Wenn dieser Befehl irgendwelche Ergebnisse liefert, entfernen oder stoppen Sie bitte die Anwendung, die auf diesem Port läuft. Sie können mailcows Ports auch über die Konfigurationsdatei `mailcow.conf` anpassen.
 
-### Standard Ports
+### Eingehende Ports
 
 Wenn Sie eine Firewall vor mailcow haben, stellen Sie bitte sicher, dass diese Ports für eingehende Verbindungen offen sind:
 
-| Dienst | Protokoll | Port | Container | Variable |
-| --------------------|:--------:|:-------|:------------------|----------------------------------|
-| Postfix SMTP | TCP | 25 | postfix-mailcow | `${SMTP_PORT}` |
-| Postfix SMTPS | TCP | 465 | postfix-mailcow | `${SMTPS_PORT}` |
-| Postfix Submission | TCP | 587 | postfix-mailcow | `${SUBMISSION_PORT}` |
-| Dovecot IMAP | TCP | 143 | dovecot-mailcow | `${IMAP_PORT}` |
-| Dovecot IMAPS | TCP | 993 | dovecot-mailcow | `${IMAPS_PORT}` |
-| Dovecot POP3 | TCP | 110 | dovecot-mailcow | `${POP_PORT}` |
-| Dovecot POP3S | TCP | 995 | dovecot-mailcow | `${POPS_PORT}` |
-| Dovecot ManageSieve | TCP | 4190 | dovecot-mailcow | `${SIEVE_PORT}` |
-| HTTP(S) | TCP | 80/443 | nginx-mailcow | `${HTTP_PORT}` / `${HTTPS_PORT}` |
+| Dienst              | Protokoll | Port   | Container       | Variable                         |
+| ------------------- | :-------: | :----- | :-------------- | -------------------------------- |
+| Postfix SMTP        |    TCP    | 25     | postfix-mailcow | `${SMTP_PORT}`                   |
+| Postfix SMTPS       |    TCP    | 465    | postfix-mailcow | `${SMTPS_PORT}`                  |
+| Postfix Submission  |    TCP    | 587    | postfix-mailcow | `${SUBMISSION_PORT}`             |
+| Dovecot IMAP        |    TCP    | 143    | dovecot-mailcow | `${IMAP_PORT}`                   |
+| Dovecot IMAPS       |    TCP    | 993    | dovecot-mailcow | `${IMAPS_PORT}`                  |
+| Dovecot POP3        |    TCP    | 110    | dovecot-mailcow | `${POP_PORT}`                    |
+| Dovecot POP3S       |    TCP    | 995    | dovecot-mailcow | `${POPS_PORT}`                   |
+| Dovecot ManageSieve |    TCP    | 4190   | dovecot-mailcow | `${SIEVE_PORT}`                  |
+| HTTP(S)             |    TCP    | 80/443 | nginx-mailcow   | `${HTTP_PORT}` / `${HTTPS_PORT}` |
 
 Um einen Dienst an eine IP-Adresse zu binden, können Sie die IP-Adresse wie folgt voranstellen: `SMTP_PORT=1.2.3.4:25`
 
 **Wichtig**: Sie können keine IP:PORT-Bindungen in HTTP_PORT und HTTPS_PORT verwenden. Bitte verwenden Sie stattdessen `HTTP_PORT=1234` und `HTTP_BIND=1.2.3.4`.
+
+### Ausgehende Ports/Hosts
+
+Für die Nutzung von mailcow werden einige ausgehende Verbindungen benötigt. Stellen Sie sicher, dass mailcow mit folgenden Hosts oder auf folgenden Ports nach außen kommunizieren kann:
+
+| Dienst           | Protokoll     | Port    | Ziel                                  | Grund                                                                                            |
+| ---------------- | ------------- | ------- | ------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Clamd            | TCP           | 873     | rsync.sanesecurity.net                | Download ClamAV Signaturen (Prebundled in mailcow)                                               |
+| Dovecot          | TCP           | 443     | spamassassin.heinlein-support.de      | Herunterladen von Spamassasin Regeln, die Rspamd verarbeitet, Download erfolgt über Dovecot      |
+| mailcow Prozesse | TCP           | 80/443  | github.com                            | Download von mailcow Updates (Code Basiert)                                                      |
+| mailcow Prozesse | TCP           | 443     | hub.docker.com                        | Download von Docker Images (direkt von Docker Hub)                                               |
+| mailcow Prozesse | TCP           | 443     | asn-check.mailcow.email               | API Abfrage auf Prüfung BAD ASN (für Spamhaus Free Blocklists)                                   |
+| mailcow Prozesse | TCP           | 80      | ip4.mailcow.email & ip6.mailcow.email | Ermittelung der eigenen öffentlichen IP Adresse zur Anzeige in UI (**optional**)                 |
+| Postfix          | TCP           | 25, 465 | Beliebig / Any                        | Ausgehende Verbindung MTA                                                                        |
+| Rspamd           | TCP           | 80      | fuzzy.mailcow.email                   | Download von Bad Subject Regex Maps (Trainiert von Servercow)                                    |
+| Rspamd           | TCP           | 443     | bazaar.abuse.ch                       | Download von Mailware MD5 Prüfsummen zur Erkennung von Rspamd                                    |
+| Rspamd           | TCP           | 443     | urlhaus.abuse.ch                      | Download von Malware Downloads Links zur Erkennung in Rspamd                                     |
+| Rspamd           | UDP           | 11445   | fuzzy.mailcow.email                   | Anbindung an Globalen mailcow Fuzzy (Trainiert von Servercow + Community)                        |
+| Rspamd           | UDP           | 11335   | fuzzy1.rspamd.com & fuzzy2.rspamd.com | Anbindung an Globalen Rspamd Fuzzy (Trainiert vom Rspamd Team)                                   |
+| Unbound          | TCP **&** UDP | 53      | Beliebig / Any                        | DNS Auflösung für mailcow Stack (Zur Validierung von DNSSEC und Abruf von Spamlistinformationen) |
 
 ### Wichtig für Hetzner Firewalls
 
