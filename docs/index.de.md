@@ -131,7 +131,7 @@ Oder alternativ auf unserem Blog:
 
 Haben wir Ihr Interesse geweckt? Verschaffen Sie sich in unseren offiziellen **mailcow Demos** einen ersten Überblick über die Funktionalitäten von mailcow und Ihrer mailcow UI!
 
-Seit September 2022 stellen wir zwei verschiedene Demos bereit: 
+Wir stellen zwei verschiedene Demos bereit: 
 
 + **[demo.mailcow.email](https://demo.mailcow.email)** ist die altbekannte Demo, welche sich am **Stabilen Stand** der mailcow orrientiert (master Branch auf GitHub). 
 + **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** ist die neue **Nightly Demo**, welche Testfunktionen beherbergt. (Also insbesondere für alle interessant, die keine Möglichkeit haben sich eine Testinstanz selbst zu erstellen.) (nightly Branch auf GitHub)

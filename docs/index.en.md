@@ -131,7 +131,7 @@ Or alternatively on our blog:
 
 Have we got your interest? Get a first overview of the functionalities of mailcow and your mailcow UI in our official **mailcow demos**!
 
-Since September 2022 we´re providing two seperate Demo instances: 
+We´re providing two seperate Demo instances: 
 
 + **[demo.mailcow.email](https://demo.mailcow.email)** is the classic Demo based on the **stable releases**.
 + **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** is the new **nightly demo** based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)

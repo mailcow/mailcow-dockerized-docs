@@ -10,10 +10,6 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
     - Make sure that your system has a correct date and [time setup](#date-and-time). This is crucial for various components like two factor TOTP authentication.
 
 ## Minimum System Resources
-
-!!! success "Compatibility established"
-    Since Update 2024-01 mailcow is finally available on ARM64 platforms! Completely! Without any restrictions in functionality!
-
 Please make sure that your system has at least the following resources:
 
 | Resource     | Minimal Requirement                             |
