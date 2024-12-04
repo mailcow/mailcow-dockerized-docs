@@ -16,12 +16,12 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
 
 Please make sure that your system has at least the following resources:
 
-| Resource     | Minimal Requirement                                                      |
-| ------------ | ------------------------------------------------------------------------ |
-| CPU          | 1 GHz                                                                    |
-| RAM          | **Minimum** 6 GiB + 1 GiB swap (default config)                          |
-| Disk         | 20 GiB (without emails)                                                  |
-| Architecture | x86_64, ARM64 :warning:{ title="Recently released. Issues may persist."} |
+| Resource     | Minimal Requirement                             |
+| ------------ | ----------------------------------------------- |
+| CPU          | 1 GHz                                           |
+| RAM          | **Minimum** 6 GiB + 1 GiB swap (default config) |
+| Disk         | 20 GiB (without emails)                         |
+| Architecture | x86_64, ARM64                                   |
 
 !!! failure "Not supported"
 	**OpenVZ, Virtuozzo and LXC**

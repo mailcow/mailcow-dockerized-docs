@@ -16,12 +16,12 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 
 Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:
 
-| Ressource   | Minimale Anforderung                                                             |
-| ----------- | -------------------------------------------------------------------------------- |
-| CPU         | 1 GHz                                                                            |
-| RAM         | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration)                           |
-| Festplatte  | 20 GiB (ohne Emails)                                                             |
-| Architektur | x86_64, ARM64 :warning:{ title="Frisch Released, Fehler können noch existieren"} |
+| Ressource   | Minimale Anforderung                                   |
+| ----------- | ------------------------------------------------------ |
+| CPU         | 1 GHz                                                  |
+| RAM         | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
+| Festplatte  | 20 GiB (ohne Emails)                                   |
+| Architektur | x86_64, ARM64                                          |
 
 !!! failure "Nicht unterstützt"
 	**OpenVZ, Virtuozzo und LXC**
