@@ -484,9 +484,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#standard-ports" class="md-nav__link">
+  <a href="#eingehende-ports" class="md-nav__link">
     <span class="md-ellipsis">
-      Standard Ports
+      Eingehende Ports
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ausgehende-portshosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ausgehende Ports/Hosts
     </span>
   </a>
   
@@ -3927,9 +3936,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#standard-ports" class="md-nav__link">
+  <a href="#eingehende-ports" class="md-nav__link">
     <span class="md-ellipsis">
-      Standard Ports
+      Eingehende Ports
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ausgehende-portshosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ausgehende Ports/Hosts
     </span>
   </a>
   
@@ -4120,7 +4138,7 @@ Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Besc
 Verwenden Sie stattdessen die FORWARD-Kette.</p>
 </div>
 <p>Wenn dieser Befehl irgendwelche Ergebnisse liefert, entfernen oder stoppen Sie bitte die Anwendung, die auf diesem Port läuft. Sie können mailcows Ports auch über die Konfigurationsdatei <code>mailcow.conf</code> anpassen.</p>
-<h3 id="standard-ports">Standard Ports<a class="headerlink" href="#standard-ports" title="Permanent link">&para;</a></h3>
+<h3 id="eingehende-ports">Eingehende Ports<a class="headerlink" href="#eingehende-ports" title="Permanent link">&para;</a></h3>
 <p>Wenn Sie eine Firewall vor mailcow haben, stellen Sie bitte sicher, dass diese Ports für eingehende Verbindungen offen sind:</p>
 <table>
 <thead>
@@ -4200,6 +4218,112 @@ Verwenden Sie stattdessen die FORWARD-Kette.</p>
 </table>
 <p>Um einen Dienst an eine IP-Adresse zu binden, können Sie die IP-Adresse wie folgt voranstellen: <code>SMTP_PORT=1.2.3.4:25</code></p>
 <p><strong>Wichtig</strong>: Sie können keine IP:PORT-Bindungen in HTTP_PORT und HTTPS_PORT verwenden. Bitte verwenden Sie stattdessen <code>HTTP_PORT=1234</code> und <code>HTTP_BIND=1.2.3.4</code>.</p>
+<h3 id="ausgehende-portshosts">Ausgehende Ports/Hosts<a class="headerlink" href="#ausgehende-portshosts" title="Permanent link">&para;</a></h3>
+<p>Für die Nutzung von mailcow werden einige ausgehende Verbindungen benötigt. Stellen Sie sicher, dass mailcow mit folgenden Hosts oder auf folgenden Ports nach außen kommunizieren kann:</p>
+<table>
+<thead>
+<tr>
+<th>Dienst</th>
+<th>Protokoll</th>
+<th>Port</th>
+<th>Ziel</th>
+<th>Grund</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clamd</td>
+<td>TCP</td>
+<td>873</td>
+<td>rsync.sanesecurity.net</td>
+<td>Download ClamAV Signaturen (Prebundled in mailcow)</td>
+</tr>
+<tr>
+<td>Dovecot</td>
+<td>TCP</td>
+<td>443</td>
+<td>spamassassin.heinlein-support.de</td>
+<td>Herunterladen von Spamassasin Regeln, die Rspamd verarbeitet, Download erfolgt über Dovecot</td>
+</tr>
+<tr>
+<td>mailcow Prozesse</td>
+<td>TCP</td>
+<td>80/443</td>
+<td>github.com</td>
+<td>Download von mailcow Updates (Code Basiert)</td>
+</tr>
+<tr>
+<td>mailcow Prozesse</td>
+<td>TCP</td>
+<td>443</td>
+<td>hub.docker.com</td>
+<td>Download von Docker Images (direkt von Docker Hub)</td>
+</tr>
+<tr>
+<td>mailcow Prozesse</td>
+<td>TCP</td>
+<td>443</td>
+<td>asn-check.mailcow.email</td>
+<td>API Abfrage auf Prüfung BAD ASN (für Spamhaus Free Blocklists)</td>
+</tr>
+<tr>
+<td>mailcow Prozesse</td>
+<td>TCP</td>
+<td>80</td>
+<td>ip4.mailcow.email &amp; ip6.mailcow.email</td>
+<td>Ermittelung der eigenen öffentlichen IP Adresse zur Anzeige in UI (<strong>optional</strong>)</td>
+</tr>
+<tr>
+<td>Postfix</td>
+<td>TCP</td>
+<td>25, 465</td>
+<td>Beliebig / Any</td>
+<td>Ausgehende Verbindung MTA</td>
+</tr>
+<tr>
+<td>Rspamd</td>
+<td>TCP</td>
+<td>80</td>
+<td>fuzzy.mailcow.email</td>
+<td>Download von Bad Subject Regex Maps (Trainiert von Servercow)</td>
+</tr>
+<tr>
+<td>Rspamd</td>
+<td>TCP</td>
+<td>443</td>
+<td>bazaar.abuse.ch</td>
+<td>Download von Mailware MD5 Prüfsummen zur Erkennung von Rspamd</td>
+</tr>
+<tr>
+<td>Rspamd</td>
+<td>TCP</td>
+<td>443</td>
+<td>urlhaus.abuse.ch</td>
+<td>Download von Malware Downloads Links zur Erkennung in Rspamd</td>
+</tr>
+<tr>
+<td>Rspamd</td>
+<td>UDP</td>
+<td>11445</td>
+<td>fuzzy.mailcow.email</td>
+<td>Anbindung an Globalen mailcow Fuzzy (Trainiert von Servercow + Community)</td>
+</tr>
+<tr>
+<td>Rspamd</td>
+<td>UDP</td>
+<td>11335</td>
+<td>fuzzy1.rspamd.com &amp; fuzzy2.rspamd.com</td>
+<td>Anbindung an Globalen Rspamd Fuzzy (Trainiert vom Rspamd Team)</td>
+</tr>
+<tr>
+<td>Unbound</td>
+<td>TCP <strong>&amp;</strong> UDP</td>
+<td>53</td>
+<td>Beliebig / Any</td>
+<td>DNS Auflösung für mailcow Stack (Zur Validierung von DNSSEC und Abruf von Spamlistinformationen)</td>
+</tr>
+</tbody>
+</table>
 <h3 id="wichtig-fur-hetzner-firewalls">Wichtig für Hetzner Firewalls<a class="headerlink" href="#wichtig-fur-hetzner-firewalls" title="Permanent link">&para;</a></h3>
 <p>Ich zitiere <a href="https://github.com/chermsen">https://github.com/chermsen</a> über <a href="https://github.com/mailcow/mailcow-dockerized/issues/497#issuecomment-469847380">https://github.com/mailcow/mailcow-dockerized/issues/497#issuecomment-469847380</a> (DANKE!):</p>
 <p>Für alle, die mit der Hetzner-Firewall zu kämpfen haben:</p>
@@ -4288,7 +4412,7 @@ Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_st
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-11-15 16:51:13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-12-04 11:10:49</span>
   </span>
 
     
