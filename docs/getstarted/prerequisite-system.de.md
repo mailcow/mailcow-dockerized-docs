@@ -44,14 +44,14 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 !!! danger "Wichtig"
     mailcow nutzt Docker als Basis. Aufgrund von diversen technischen Unterschieden innerhalb der einzelnen Systeme **unterstützen** wir **nicht alle** Systeme, wo theoretisch Docker drauf läuft!
 
-Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Juni 2024*):
+Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand December 2024*):
 
 | Betriebssystem        | Kompatibilität                                                     |
 | --------------------- | ------------------------------------------------------------------ |
 | Alpine 3.16 und älter | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel")       |
 | Debian 11, 12         | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
 | Ubuntu 20.04 - 24.04  | [✅](https://ubuntu.com/ "Vollständig Kompatibel")                  |
-| Alma Linux 8          | [✅](https://almalinux.org/ "Vollständig Kompatibel")               |
+| Alma Linux 8, 9       | [✅](https://almalinux.org/ "Vollständig Kompatibel")               |
 | Rocky Linux 9         | [✅](https://rockylinux.org/ "Vollständig Kompatibel")              |
 
 

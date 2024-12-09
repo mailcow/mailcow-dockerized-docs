@@ -41,14 +41,14 @@ We can help to correctly plan your setup as part of our support.
 !!! danger "Important"
     mailcow is using Docker as a base component, due to some technical differences across multiple platforms we do **not support all**, even if they can run Docker.
 
-The following table contains all operating systems officially supported and tested by us (*as of June 2024*):
+The following table contains all operating systems officially supported and tested by us (*as of December 2024*):
 
 | OS                   | Compatibility                                             |
 | -------------------- | --------------------------------------------------------- |
 | Alpine since 3.17    | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
 | Debian 11, 12        | [✅](https://www.debian.org/index.html "Fully Compatible") |
 | Ubuntu 20.04 - 24.04 | [✅](https://ubuntu.com/ "Fully Compatible")               |
-| Alma Linux 8         | [✅](https://almalinux.org/ "Fully Compatible")            |
+| Alma Linux 8, 9      | [✅](https://almalinux.org/ "Fully Compatible")            |
 | Rocky Linux 9        | [✅](https://rockylinux.org/ "Fully Compatible")           |
 
 
