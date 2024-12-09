@@ -44,7 +44,7 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 !!! danger "Wichtig"
     mailcow nutzt Docker als Basis. Aufgrund von diversen technischen Unterschieden innerhalb der einzelnen Systeme **unterstützen** wir **nicht alle** Systeme, wo theoretisch Docker drauf läuft!
 
-Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand December 2024*):
+Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Dezember 2024*):
 
 | Betriebssystem        | Kompatibilität                                                     |
 | --------------------- | ------------------------------------------------------------------ |
