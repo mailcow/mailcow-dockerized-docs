@@ -102,7 +102,7 @@ To create a cron job you may execute `crontab -e` and insert something like the 
 
 ### via Docker job scheduler
 
-To archive this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
+To achieve this with a docker job scheduler use this docker-compose.override.yml with your mailcow: 
 
 ```
 services:
