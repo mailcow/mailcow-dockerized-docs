@@ -86,11 +86,12 @@ keep_daily: 7
 keep_weekly: 4
 keep_monthly: 6
 
-mysql_databases:
+mariadb_databases:
     - name: ${DBNAME}
       username: ${DBUSER}
       password: ${DBPASS}
-      options: --default-character-set=utf8mb4
+      options: "--default-character-set=utf8mb4 --skip-ssl"
+      list_options: "--skip-ssl"
 EOF
 ```
 
@@ -100,6 +101,11 @@ EOF
     des Borgmatic-Containers auf Deprecation-Warnmeldungen prüfen, um festzustellen, ob Sie betroffen sind und Ihre
     Konfigurationsdatei für eine ältere Version von borgmatic erstellt wurde. In diesem Fall sollten Sie eine neue
     `config.yaml`-Datei wie oben beschrieben erstellen, um Probleme mit zukünftigen Versionen von borgmatic zu vermeiden.
+
+!!! warning
+    Ab borgmatic 1.9.4 (erschienen am 11. Dezember 2024) versuchen die enthaltenen MariaDB-Tools standardmäßig, verschlüsselte Verbindungen
+    herzustellen. Bearbeiten Sie die `config.yaml` und fügen Sie `--skip-ssl` zu `options:` und `list_options:` wie oben gezeigt hinzu.
+    Ändern Sie außerdem `mysql_databases:` in `mariadb_databases:`, um Probleme mit zukünftigen Versionen von borgmatic und MariaDB zu vermeiden.
 
 Diese Datei ist ein minimales Beispiel für die Verwendung von borgmatic mit einem Konto `user` beim Cloud-Speicheranbieter `rsync.net` für
 ein Repository namens `mailcow` (siehe Einstellung `repositories`). Dies muss entsprechend angepasst werden.
