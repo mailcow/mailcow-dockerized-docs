@@ -6,10 +6,10 @@ This is **ONLY** recommended if you do not have an IPv6 enabled network on your 
 If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.
 
-Instead of editing docker-compose.yml directly, it is preferable to create an override file for it 
+Instead of editing docker-compose.yml directly, it is preferable to create an override file for it
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.
 
-To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). 
+To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file).
 
 **1.** Modify docker-compose.yml
 
@@ -30,7 +30,7 @@ networks:
 
 **2.** Disable ipv6nat-mailcow
 
-To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": 
+To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml":
 
 **NOTE:** If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!
 
@@ -116,12 +116,28 @@ Restart Postfix:
 
 **5.** If your docker daemon completly disabled IPv6:
 
-Fix the following NGINX, Dovecot and php-fpm config files
+Fix the following Dovecot and php-fpm config files
 
 ```
-sed -i '/::/d' data/conf/nginx/templates/listen*
-sed -i '/::/d' data/conf/nginx/dynmaps.conf
 sed -i 's/,\[::\]//g' data/conf/dovecot/dovecot.conf
 sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 ```
+
+**6.** Disable IPv6 listeners for NGINX
+
+Set `DISABLE_IPv6=y` in `mailcow.conf`
+
+For this change to be effective, you need to recreate the `nginx-mailcow` Container
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
 

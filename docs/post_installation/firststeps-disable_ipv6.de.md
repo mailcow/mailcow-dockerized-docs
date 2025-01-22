@@ -6,10 +6,10 @@ Dies wird **NUR** empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host
 Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
 Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivieren, da er nicht benötigt wird, wenn Sie IPv6 nicht verwenden.
 
-Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
+Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen
 zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.
 
-Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). 
+Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei).
 
 **1.** Ändern Sie docker-compose.yml
 
@@ -29,7 +29,7 @@ networks:
 
 **2.** ipv6nat-mailcow deaktivieren
 
-Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml": 
+Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml":
 
 **HINWEIS:** Wenn Sie bereits eine Override-Datei haben, erstellen Sie diese natürlich nicht neu, sondern fügen Sie die untenstehenden Zeilen entsprechend in Ihre bestehende Datei ein!
 
@@ -116,11 +116,27 @@ Starten Sie Postfix neu:
 
 **5.** Wenn im Docker Daemon IPv6 komplett deaktiviert ist:
 
-Folgende NGINX, Dovecot und Php-fpm Konfigurationsdateien anpassen
+Folgende Dovecot und Php-fpm Konfigurationsdateien anpassen
 
 ```
-sed -i '/::/d' data/conf/nginx/templates/listen*
-sed -i '/::/d' data/conf/nginx/dynmaps.conf
 sed -i 's/,\[::\]//g' data/conf/dovecot/dovecot.conf
 sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 ```
+
+**6.** IPv6 Listener für NGINX deaktivieren
+
+Setze `DISABLE_IPv6=y` in der Datei `mailcow.conf`.
+
+Damit diese Änderung wirksam wird, muss der Container `nginx-mailcow` neu erstellt werden.
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
