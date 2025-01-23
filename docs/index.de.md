@@ -22,7 +22,7 @@ Jeder Container repräsentiert eine einzelne Anwendung, die in einem überbrück
 
 - :simple-letsencrypt: [__ACME__](https://letsencrypt.org/) Automatische Generation von Let's Encrypt Zertifikaten
 - :fontawesome-solid-file-shield: [__ClamAV__](https://www.clamav.net/) Antiviren Scanner (optional)
-- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP Server zum Abrufen der E-Mails mit integrierter Full-Text Search Engine "Flatcurve"
+- :simple-dovecot: [__Dovecot__](https://www.dovecot.org/) IMAP/POP Server zum Abrufen der E-Mails mit integrierter Full-Text Search Engine ["Flatcurve"](https://slusarz.github.io/dovecot-fts-flatcurve/)
 - :simple-mariadb: [__MariaDB__](https://mariadb.org/) Datenbank zum Speichern der Nutzer Informationen u.w.
 - :fontawesome-solid-memory: [__Memcached__](https://www.memcached.org/) Cache für den Webmailer SOGo
 - :fontawesome-solid-ban: __Netfilter__ Fail2ban-ähnliche Integration von [@mkuron](https://github.com/mkuron)
@@ -33,7 +33,6 @@ Jeder Container repräsentiert eine einzelne Anwendung, die in einem überbrück
 - :simple-redis: [__Redis__](https://redis.io/) Speicher für Spaminformationen, DKIM Schlüssel u.w.
 - :fontawesome-solid-trash-can: [__Rspamd__](https://www.rspamd.com/) Spamfilter mit automatischem Lernen von Spammails
 - :material-calendar: [__SOGo__](https://sogo.nu/) Integrierter Webmailer und Cal-/Carddav Schnittstelle
-- :simple-apachesolr: [__Solr__](https://solr.apache.org/) Voll-Text-Suche für IMAP Verbindungen zum schnellen durchsuchen von E-Mails (Deprecated) (Optional)
 - :material-dns: [__Unbound__](https://unbound.net/) Integrierter DNS-Server zum Verifizieren von DNSSEC u.w
 - :material-watch: __Watchdog__ Für die grundlegende Überwachung der Containerstatus innerhalb von mailcow
 </div>
@@ -71,7 +70,6 @@ Die mailcow Daten (wie bspw. E-Mails, Userdaten etc.) werden in **Docker-Volumes
 - rspamd-vol-1
 - sogo-userdata-backup-vol-1
 - sogo-web-vol-1
-- solr-vol-1
 - vmail-index-vol-1
 - vmail-vol-1
 

@@ -53,11 +53,14 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.mark
+  - pymdownx.caret
   - pymdownx.details
   - pymdownx.tilde
   - pymdownx.extra
   - pymdownx.betterem
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
   - footnotes
   - pymdownx.superfences
   - pymdownx.tabbed:
