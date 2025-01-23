@@ -3776,9 +3776,9 @@
 <p>This is <strong>ONLY</strong> recommended if you do not have an IPv6 enabled network on your host!</p>
 <p>If you really need to, you can disable the usage of IPv6 in the compose file.
 Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.</p>
-<p>Instead of editing docker-compose.yml directly, it is preferable to create an override file for it 
+<p>Instead of editing docker-compose.yml directly, it is preferable to create an override file for it
 and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.</p>
-<p>To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file). </p>
+<p>To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file).</p>
 <p><strong>1.</strong> Modify docker-compose.yml</p>
 <p>Change <code>enable_ipv6: true</code> to <code>enable_ipv6: false</code> and comment out the IPv6 subnet:</p>
 <div class="highlight"><pre><span></span><code>networks:
@@ -3793,7 +3793,7 @@ and implement your changes to the service there. Unfortunately, this right now o
     [...]
 </code></pre></div>
 <p><strong>2.</strong> Disable ipv6nat-mailcow</p>
-<p>To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml": </p>
+<p>To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml":</p>
 <p><strong>NOTE:</strong> If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!</p>
 <div class="highlight"><pre><span></span><code># cd /opt/mailcow-dockerized
 # touch docker-compose.override.yml
@@ -3860,12 +3860,25 @@ inet_protocols = ipv4
 </div>
 </div>
 <p><strong>5.</strong> If your docker daemon completly disabled IPv6:</p>
-<p>Fix the following NGINX, Dovecot and php-fpm config files</p>
-<div class="highlight"><pre><span></span><code>sed -i &#39;/::/d&#39; data/conf/nginx/templates/listen*
-sed -i &#39;/::/d&#39; data/conf/nginx/dynmaps.conf
-sed -i &#39;s/,\[::\]//g&#39; data/conf/dovecot/dovecot.conf
+<p>Fix the following Dovecot and php-fpm config files</p>
+<div class="highlight"><pre><span></span><code>sed -i &#39;s/,\[::\]//g&#39; data/conf/dovecot/dovecot.conf
 sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
 </code></pre></div>
+<p><strong>6.</strong> Disable IPv6 listeners for NGINX</p>
+<p>Set <code>DISABLE_IPv6=y</code> in <code>mailcow.conf</code></p>
+<p>For this change to be effective, you need to recreate the <code>nginx-mailcow</code> Container</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -3886,7 +3899,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-11-06 11:41:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2025-01-22 15:02:00</span>
   </span>
 
     

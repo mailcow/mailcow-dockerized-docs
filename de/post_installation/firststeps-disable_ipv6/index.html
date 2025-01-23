@@ -3776,9 +3776,9 @@
 <p>Dies wird <strong>NUR</strong> empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben!</p>
 <p>Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
 Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivieren, da er nicht benötigt wird, wenn Sie IPv6 nicht verwenden.</p>
-<p>Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen 
+<p>Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen
 zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.</p>
-<p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei). </p>
+<p>Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei).</p>
 <p><strong>1.</strong> Ändern Sie docker-compose.yml</p>
 <p>Ändern Sie <code>enable_ipv6: true</code> in <code>enable_ipv6: false</code>:</p>
 <div class="highlight"><pre><span></span><code>networks:
@@ -3792,7 +3792,7 @@ zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider schei
     [...]
 </code></pre></div>
 <p><strong>2.</strong> ipv6nat-mailcow deaktivieren</p>
-<p>Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml": </p>
+<p>Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml":</p>
 <p><strong>HINWEIS:</strong> Wenn Sie bereits eine Override-Datei haben, erstellen Sie diese natürlich nicht neu, sondern fügen Sie die untenstehenden Zeilen entsprechend in Ihre bestehende Datei ein!</p>
 <div class="highlight"><pre><span></span><code># cd /opt/mailcow-dockerized
 # touch docker-compose.override.yml
@@ -3859,12 +3859,25 @@ inet_protocols = ipv4
 </div>
 </div>
 <p><strong>5.</strong> Wenn im Docker Daemon IPv6 komplett deaktiviert ist:</p>
-<p>Folgende NGINX, Dovecot und Php-fpm Konfigurationsdateien anpassen</p>
-<div class="highlight"><pre><span></span><code>sed -i &#39;/::/d&#39; data/conf/nginx/templates/listen*
-sed -i &#39;/::/d&#39; data/conf/nginx/dynmaps.conf
-sed -i &#39;s/,\[::\]//g&#39; data/conf/dovecot/dovecot.conf
+<p>Folgende Dovecot und Php-fpm Konfigurationsdateien anpassen</p>
+<div class="highlight"><pre><span></span><code>sed -i &#39;s/,\[::\]//g&#39; data/conf/dovecot/dovecot.conf
 sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
 </code></pre></div>
+<p><strong>6.</strong> IPv6 Listener für NGINX deaktivieren</p>
+<p>Setze <code>DISABLE_IPv6=y</code> in der Datei <code>mailcow.conf</code>.</p>
+<p>Damit diese Änderung wirksam wird, muss der Container <code>nginx-mailcow</code> neu erstellt werden.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -3885,7 +3898,7 @@ sed -i &#39;s/\[::\]://g&#39; data/conf/phpfpm/php-fpm.d/pools.conf
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-11-06 11:41:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2025-01-22 15:02:00</span>
   </span>
 
     
