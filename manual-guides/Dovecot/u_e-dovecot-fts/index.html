@@ -105,7 +105,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fts-solr-deprecated" class="md-skip">
+        <a href="#fts-related-dovecot-commands" class="md-skip">
           Skip to content
         </a>
       
@@ -2459,39 +2459,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fts-solr-deprecated" class="md-nav__link">
-    <span class="md-ellipsis">
-      FTS Solr (Deprecated)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fts-flatcurve-experimental-since-2024-06" class="md-nav__link">
-    <span class="md-ellipsis">
-      FTS Flatcurve (Experimental since 2024-06)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FTS Flatcurve (Experimental since 2024-06)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#activating-the-experimental-flatcurve-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Activating the Experimental Flatcurve Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fts-related-dovecot-commands" class="md-nav__link">
     <span class="md-ellipsis">
       FTS-Related Dovecot Commands
@@ -2502,9 +2469,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#check-fts-database-for-errors-and-repair-if-necessary" class="md-nav__link">
+  <a href="#check-and-repair-fts-database-for-errors" class="md-nav__link">
     <span class="md-ellipsis">
-      Check FTS Database for Errors and Repair if Necessary
+      Check and Repair FTS Database for Errors
     </span>
   </a>
   
@@ -2523,6 +2490,81 @@
   <a href="#delete-fts-database" class="md-nav__link">
     <span class="md-ellipsis">
       Delete FTS Database
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fts-specific-options-in-mailcowconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS-Specific Options in mailcow.conf
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FTS-Specific Options in mailcow.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skip_fts-disable-full-text-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      SKIP_FTS (Disable Full-Text Search)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fts_procs-number-of-indexing-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS_PROCS (Number of Indexing Processes)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fts_heap-max-memory-per-indexing-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS_HEAP (Max Memory Per Indexing Process)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Configuration Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-substring-search-more-detailed-full-text-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Substring Search (More Detailed Full-Text Search)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-tweaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Tweaks
     </span>
   </a>
   
@@ -3868,39 +3910,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fts-solr-deprecated" class="md-nav__link">
-    <span class="md-ellipsis">
-      FTS Solr (Deprecated)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fts-flatcurve-experimental-since-2024-06" class="md-nav__link">
-    <span class="md-ellipsis">
-      FTS Flatcurve (Experimental since 2024-06)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FTS Flatcurve (Experimental since 2024-06)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#activating-the-experimental-flatcurve-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Activating the Experimental Flatcurve Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fts-related-dovecot-commands" class="md-nav__link">
     <span class="md-ellipsis">
       FTS-Related Dovecot Commands
@@ -3911,9 +3920,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#check-fts-database-for-errors-and-repair-if-necessary" class="md-nav__link">
+  <a href="#check-and-repair-fts-database-for-errors" class="md-nav__link">
     <span class="md-ellipsis">
-      Check FTS Database for Errors and Repair if Necessary
+      Check and Repair FTS Database for Errors
     </span>
   </a>
   
@@ -3932,6 +3941,81 @@
   <a href="#delete-fts-database" class="md-nav__link">
     <span class="md-ellipsis">
       Delete FTS Database
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fts-specific-options-in-mailcowconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS-Specific Options in mailcow.conf
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FTS-Specific Options in mailcow.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skip_fts-disable-full-text-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      SKIP_FTS (Disable Full-Text Search)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fts_procs-number-of-indexing-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS_PROCS (Number of Indexing Processes)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fts_heap-max-memory-per-indexing-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTS_HEAP (Max Memory Per Indexing Process)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Configuration Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-substring-search-more-detailed-full-text-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Substring Search (More Detailed Full-Text Search)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-tweaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Tweaks
     </span>
   </a>
   
@@ -3962,49 +4046,13 @@
 
   <h1>Full-Text Search</h1>
 
-<h2 id="fts-solr-deprecated">FTS Solr (Deprecated)<a class="headerlink" href="#fts-solr-deprecated" title="Permanent link">&para;</a></h2>
-<div class="admonition danger">
-<p class="admonition-title">Warning</p>
-<p>Solr will only be supported until December 2024 and will then be removed from mailcow and replaced with Flatcurve.</p>
+<div class="admonition success">
+<p class="admonition-title">New Full-Text Search Engine</p>
+<p>As of January 2025, Solr has been replaced by Flatcurve. All existing <abbr title="Full Text Search">FTS</abbr> indices are therefore <strong>obsolete</strong> and can be removed.</p>
+<p>mailcow references the old solr-vol-1 and prompts during every update process to remove it if it still exists.</p>
 </div>
-<p>Solr is used for setups with memory &gt;= 3.5 GiB to enable full-text search in Dovecot.</p>
-<p>Please note that applications like Solr <em>may</em> need to be maintained from time to time.</p>
-<p>Additionally, Solr consumes a lot of RAM, depending on your server's usage. Please avoid using it on machines with less than 3 GiB RAM.</p>
-<p>The default heap size (1024 M) is defined in <code>mailcow.conf</code>.</p>
-<p>Since we run in Docker and create our containers with the "restart: always" flag, an OOM situation will at least only trigger a container restart.</p>
-<h2 id="fts-flatcurve-experimental-since-2024-06">FTS Flatcurve (Experimental since 2024-06)<a class="headerlink" href="#fts-flatcurve-experimental-since-2024-06" title="Permanent link">&para;</a></h2>
-<p>Flatcurve will soon replace the current FTS engine Solr to allow full-text search to function better on lower-performance systems.</p>
-<p>Starting with the June 2024 update, experimental support for Flatcurve as a full-text search has been implemented, which can only be activated via a <code>mailcow.conf</code> variable during the experimental phase.</p>
-<div class="admonition info">
-<p class="admonition-title">Note</p>
-<p>During the transition period, mailcow will specify the configuration for the FTS engine within Dovecot and overwrite any custom changes (unless explicitly defined in the <code>extra.conf</code>). This will no longer be the case with the full release of the engine within mailcow.</p>
-</div>
-<h3 id="activating-the-experimental-flatcurve-usage">Activating the Experimental Flatcurve Usage<a class="headerlink" href="#activating-the-experimental-flatcurve-usage" title="Permanent link">&para;</a></h3>
-<p>Activation is simple and requires only two small steps:</p>
-<ol>
-<li>
-<p>Edit <code>mailcow.conf</code> and add the following value:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">FLATCURVE_EXPERIMENTAL</span><span class="o">=</span>y
-</code></pre></div>
-</li>
-<li>
-<p>Restart mailcow:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-<p>mailcow will now use Flatcurve as the FTS backend.</p>
-<p>Unlike Solr, Flatcurve <strong>does not</strong> require an additional Docker volume. Flatcurve stores its FTS databases in the <code>vmail-index</code> volume and results in a similar folder structure as:</p>
+<p>Flatcurve is the new full-text search engine that works better even on less powerful systems. Additionally, it is expected to become the default full-text search engine for Dovecot in the long term.</p>
+<p>Unlike Solr, Flatcurve does <strong>not</strong> require an additional Docker volume. Flatcurve stores its <abbr title="Full Text Search">FTS</abbr> databases in the <code>vmail-index</code> volume, resulting in a similar folder structure as:</p>
 <div class="highlight"><pre><span></span><code>/var/vmail_index/tester@develcow.de/.INBOX/
 ├── dovecot.index
 ├── dovecot.index.cache
@@ -4016,20 +4064,17 @@
         ├── postlist.glass
         └── termlist.glass
 </code></pre></div>
-<p>Each subfolder on the IMAP server thus receives its own <code>fts-flatcurve</code> folder with the respective indices of the mails in the folder.</p>
-<div class="admonition info">
-<p class="admonition-title">Note</p>
-<p>The Solr container will still remain during the transition period (expected until December 2024) to allow for a smooth transition.</p>
+<p>Each subfolder in the IMAP server thus receives its own <code>fts-flatcurve</code> folder with the respective indices of the folder's emails.</p>
+<div class="admonition danger">
+<p class="admonition-title">Important</p>
+<p>If you have been using Solr, a complete reindexing is required, as the two <abbr title="Full Text Search">FTS</abbr> engines are <strong>not</strong> <strong>compatible</strong> with each other.</p>
+<p><strong>An automatic indexing of the mailbox is activated as soon as 20 or more emails are received or a full-text search is performed.</strong></p>
+<p>We recommend performing a manual reindexing only under supervision, as excessive system load cannot be ruled out despite low system requirements.</p>
+<p><a href="#reindex-fts-database">Learn more about how to trigger a reindexing further down</a>.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you decide to switch the FTS engine, a complete reindexing is necessary, as the two systems are not compatible with each other.
-<a href="#reindex-fts-database">Learn below how to initiate a reindexing</a>.</p>
-<p>However, we recommend performing this reindexing only under supervision, as excessive system load cannot be ruled out despite low system requirements!</p>
-</div>
-<h2 id="fts-related-dovecot-commands">FTS-Related Dovecot Commands<a class="headerlink" href="#fts-related-dovecot-commands" title="Permanent link">&para;</a></h2>
-<h3 id="check-fts-database-for-errors-and-repair-if-necessary">Check FTS Database for Errors and Repair if Necessary<a class="headerlink" href="#check-fts-database-for-errors-and-repair-if-necessary" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<h2 id="fts-related-dovecot-commands"><abbr title="Full Text Search">FTS</abbr>-Related Dovecot Commands<a class="headerlink" href="#fts-related-dovecot-commands" title="Permanent link">&para;</a></h2>
+<h3 id="check-and-repair-fts-database-for-errors">Check and Repair <abbr title="Full Text Search">FTS</abbr> Database for Errors<a class="headerlink" href="#check-and-repair-fts-database-for-errors" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Single user</span>
@@ -4047,23 +4092,23 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
 </div>
 </div>
 </div>
-<p>Dovecot Wiki: "Scans which mails are present in the full-text search index and compares them with the mails actually present in the mailboxes. This removes mails from the index that have already been deleted and ensures that the next doveadm index indexes all missing mails (if any)."</p>
-<p>This does <strong>not</strong> reindex a mailbox. It essentially repairs a given index.</p>
-<h3 id="reindex-fts-database">Reindex FTS Database<a class="headerlink" href="#reindex-fts-database" title="Permanent link">&para;</a></h3>
-<p>If you want to reindex the data immediately, you can run the following command, where <code>*</code> can also be a mailbox mask like 'Sent'. You do not have to run these commands, but it will speed things up a bit:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<p>Dovecot Wiki: "Scans which emails are present in the full-text search index and compares them with the emails actually present in the mailboxes. This removes emails from the index that have already been deleted and ensures that the next doveadm index indexes all missing emails (if any)."</p>
+<p>This does <strong>not</strong> reindex a mailbox but merely repairs an existing index.</p>
+<h3 id="reindex-fts-database">Reindex <abbr title="Full Text Search">FTS</abbr> Database<a class="headerlink" href="#reindex-fts-database" title="Permanent link">&para;</a></h3>
+<p>If you want to reindex the data immediately, you can use the following command, where <code>*</code> can also be a mailbox mask such as 'Sent'. These commands are optional but can speed up the process:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Single user</span>
 docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@domain<span class="w"> </span><span class="s1">&#39;*&#39;</span>
-<span class="c1"># All users, but obviously slower and more dangerous</span>
+<span class="c1"># All users, slower and riskier</span>
 docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span><span class="s1">&#39;*&#39;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Single user</span>
 docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@domain<span class="w"> </span><span class="s1">&#39;*&#39;</span>
-<span class="c1"># All users, but obviously slower and more dangerous</span>
+<span class="c1"># All users, slower and riskier</span>
 docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-A<span class="w"> </span><span class="s1">&#39;*&#39;</span>
 </code></pre></div>
 </div>
@@ -4071,15 +4116,15 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
 </div>
 <div class="admonition info">
 <p class="admonition-title">Note</p>
-<p>The indexing <strong>will</strong> take some time.</p>
-<p>Depending on the FTS engine, there is a possibility of excessive system usage, even leading to system crashes in rare cases. <strong>So, monitor the indexing process and your system load closely!</strong></p>
+<p>Indexing <strong>will</strong> take some time.</p>
+<p>Excessive system load, up to and including system crashes in rare cases, is possible. <strong>Monitor the indexing process and your system load closely!</strong></p>
 </div>
-<p>Since reindexing can be somewhat fragile and particularly sensitive to system resources, we have not integrated it into the mailcow UI.</p>
-<p><strong>You must manually handle any errors when reindexing a mailbox via CLI.</strong></p>
-<h3 id="delete-fts-database">Delete FTS Database<a class="headerlink" href="#delete-fts-database" title="Permanent link">&para;</a></h3>
-<p>mailcow will automatically delete a user's index data when the corresponding mailbox is deleted.</p>
-<p>Alternatively, the index for Flatcurve can be manually deleted via CLI:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<p>Since reindexing can be resource-intensive, it has not been integrated into the mailcow UI.</p>
+<p><strong>You must manually address any errors during reindexing via the CLI.</strong></p>
+<h3 id="delete-fts-database">Delete <abbr title="Full Text Search">FTS</abbr> Database<a class="headerlink" href="#delete-fts-database" title="Permanent link">&para;</a></h3>
+<p>mailcow automatically deletes a user's index data when the corresponding mailbox is deleted.</p>
+<p>Alternatively, you can manually remove the index for Flatcurve via CLI:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># Single user</span>
@@ -4097,6 +4142,82 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
 </div>
 </div>
 </div>
+<h2 id="fts-specific-options-in-mailcowconf"><abbr title="Full Text Search">FTS</abbr>-Specific Options in mailcow.conf<a class="headerlink" href="#fts-specific-options-in-mailcowconf" title="Permanent link">&para;</a></h2>
+<p>mailcow provides low default settings for the new <abbr title="Full Text Search">FTS</abbr> engine to ensure functionality even on less powerful systems.</p>
+<p>For more powerful systems, you can adjust some parameters to enable more efficient indexing.</p>
+<h3 id="skip_fts-disable-full-text-search"><code>SKIP_FTS</code> (Disable Full-Text Search)<a class="headerlink" href="#skip_fts-disable-full-text-search" title="Permanent link">&para;</a></h3>
+<p>In mailcow.conf, you can completely disable full-text search. This is still recommended for low-end systems which are struggeling to run mailcow and the indexing process(es) at the same time.</p>
+<p>Flatcurve is less resource-intensive than Solr but requires more storage and possibly more CPU power (depending on the setup).</p>
+<div class="admonition abstract">
+<p class="admonition-title">mailcow Default</p>
+<p><ins>By default,</ins> this parameter is set to <strong>n</strong>, meaning full-text search is enabled.</p>
+</div>
+<details class="success">
+<summary>Best Practice</summary>
+<p>Initially, leave the indexing enabled. If the new <abbr title="Full Text Search">FTS</abbr> engine uses too many resources, you can change the setting later.</p>
+</details>
+<h3 id="fts_procs-number-of-indexing-processes"><code>FTS_PROCS</code> (Number of Indexing Processes)<a class="headerlink" href="#fts_procs-number-of-indexing-processes" title="Permanent link">&para;</a></h3>
+<p>With the <code>FTS_PROCS</code> variable in mailcow.conf, you can adjust the number of indexing processes that can run simultaneously.</p>
+<div class="admonition abstract">
+<p class="admonition-title">mailcow Default</p>
+<p><ins>By default,</ins> this value is limited to <strong>1 thread</strong>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title"><strong>CAUTION</strong></p>
+<p>Indexing processes are single-threaded applications that fully utilize a CPU thread. Systems with few cores should use a lower number to avoid overloading the system.</p>
+</div>
+<details class="success">
+<summary>Best Practice</summary>
+<p>Plan for about <strong>half of your system's CPU threads</strong> for the indexing processes. For odd numbers of CPU threads, use the lower count to leave sufficient resources for the main system.</p>
+<p><strong>Dual-core</strong> or <strong>single-core systems</strong> should disable full-text search.</p>
+</details>
+<h3 id="fts_heap-max-memory-per-indexing-process"><code>FTS_HEAP</code> (Max Memory Per Indexing Process)<a class="headerlink" href="#fts_heap-max-memory-per-indexing-process" title="Permanent link">&para;</a></h3>
+<p>With <code>FTS_HEAP</code> in mailcow.conf, you can set the memory allocated per indexing process.</p>
+<div class="admonition abstract">
+<p class="admonition-title">mailcow Default</p>
+<p><ins>By default,</ins> this value is limited to <strong>128 MB</strong> <mark>per process</mark>.</p>
+</div>
+<details class="success">
+<summary>Best Practice</summary>
+<p>Ideally, allocate <strong>512 MB</strong> of memory per process. Systems with less than 8 GB RAM should stick to <strong>128 MB</strong> or increase to 256 MB, but reduce the number of processes to avoid <abbr title="Out Of Memory">OOM</abbr> errors.</p>
+<p>While Dovecot continues to operate when RAM is exhausted per worker, it may become significantly slower.</p>
+</details>
+<h2 id="advanced-configuration-options">Advanced Configuration Options<a class="headerlink" href="#advanced-configuration-options" title="Permanent link">&para;</a></h2>
+<p>Flatcurve integration allows for customizing <abbr title="Full Text Search">FTS</abbr> options as needed.</p>
+<div class="admonition notice">
+<p class="admonition-title">Note</p>
+<p>Every setup is unique, so there is no universal "right" or "wrong" configuration.</p>
+<p><strong>Experience with the engine varies by system.</strong></p>
+</div>
+<p>For example, you can enable more detailed full-text search (substring search), which provides more accurate results but requires more storage and longer indexing times.</p>
+<h3 id="enable-substring-search-more-detailed-full-text-search">Enable Substring Search (More Detailed Full-Text Search)<a class="headerlink" href="#enable-substring-search-more-detailed-full-text-search" title="Permanent link">&para;</a></h3>
+<p>Edit the file <code>data/conf/dovecot/conf.d/fts.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>plugin {
+    [...]
+
+    fts_flatcurve_substring_search=yes # Can be yes or no
+}
+</code></pre></div>
+<p>Restart Dovecot to apply the changes:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>dovecot-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>dovecot-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="additional-tweaks">Additional Tweaks<a class="headerlink" href="#additional-tweaks" title="Permanent link">&para;</a></h3>
+<p>We welcome community contributions for useful tweaks over time.</p>
+<p>Meanwhile, you can refer to the official Dovecot and Flatcurve documentation for an overview of available parameters:</p>
+<ul>
+<li><a href="https://doc.dovecot.org/2.3/settings/plugin/fts-plugin/" target="_blank">Dovecot <abbr title="Full Text Search">FTS</abbr> Module Documentation</a></li>
+<li><a href="https://slusarz.github.io/dovecot-fts-flatcurve/configuration.html" target="_blank">Flatcurve <abbr title="Full Text Search">FTS</abbr> Engine Documentation</a></li>
+</ul>
 
 
 
@@ -4117,7 +4238,7 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-26 10:34:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2025-01-20 15:29:28</span>
   </span>
 
     

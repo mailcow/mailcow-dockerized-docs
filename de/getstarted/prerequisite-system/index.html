@@ -451,11 +451,26 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#arbeitsspeicher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbeitsspeicher
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arbeitsspeicher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#beispiele-fur-die-ram-planung" class="md-nav__link">
     <span class="md-ellipsis">
       Beispiele für die RAM Planung
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3903,11 +3918,26 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#arbeitsspeicher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arbeitsspeicher
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arbeitsspeicher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#beispiele-fur-die-ram-planung" class="md-nav__link">
     <span class="md-ellipsis">
       Beispiele für die RAM Planung
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -4029,7 +4059,7 @@
 </ul>
 </div>
 <h2 id="minimale-systemressourcen">Minimale Systemressourcen<a class="headerlink" href="#minimale-systemressourcen" title="Permanent link">&para;</a></h2>
-<p>Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt:</p>
+<p>Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt, um problemlos zu laufen:</p>
 <table>
 <thead>
 <tr>
@@ -4057,17 +4087,13 @@
 </tbody>
 </table>
 <div class="admonition failure">
-<p class="admonition-title">Nicht unterstützt</p>
+<p class="admonition-title">Nicht unterstützte Plattformen</p>
 <p><strong>OpenVZ, Virtuozzo und LXC</strong></p>
 </div>
-<p>ClamAV und Solr können sehr viel Arbeitspeicher verbrauchen. Sie können diese in der <code>mailcow.conf</code> durch die Einstellungen <code>SKIP_CLAMD=y</code> und <code>SKIP_SOLR=y</code> jedoch auch deaktivieren.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Wir sind uns bewusst, dass ein reiner MTA auf 128 MiB RAM laufen kann. 
-mailcow ist eine ausgewachsene und gebrauchsfertige Groupware mit vielen Extras, die das Leben einfacher machen. 
-Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam, Indexierung (Solr), Dokumentenscanner (Oletools), SQL (MariaDB), Cache (Redis), MDA, MTA, verschiedenen Webdiensten etc.</p>
-</div>
-<p>Ein einzelner SOGo-Worker <strong>kann</strong> ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 Arbeiter erzeugt.</p>
+<h3 id="arbeitsspeicher">Arbeitsspeicher<a class="headerlink" href="#arbeitsspeicher" title="Permanent link">&para;</a></h3>
+<p>ClamAV und die <abbr title="Full Text Search">FTS</abbr>-Engine (Flatcurve) können viel RAM nutzen, lassen sich aber über die Parameter <code>SKIP_CLAMD=y</code> und <code>SKIP_FTS=y</code> in der mailcow.conf deaktivieren.</p>
+<p>mailcow ist eine umfassende Groupware mit zahlreichen Features wie Webserver, Webmailer, ActiveSync, Antivirus, Antispam, Indexierung, Dokumentenscanner, Datenbank und Cache, weshalb es mehr Ressourcen benötigt als ein einfacher MTA.</p>
+<p>Ein einzelner SOGo-Worker <strong>kann</strong> ~350 MiB RAM belegen, bevor er geleert wird. Je mehr ActiveSync-Verbindungen Sie verwenden möchten, desto mehr RAM wird benötigt. In der Standardkonfiguration werden 20 SOGo-Worker erzeugt.</p>
 <h4 id="beispiele-fur-die-ram-planung">Beispiele für die RAM Planung<a class="headerlink" href="#beispiele-fur-die-ram-planung" title="Permanent link">&para;</a></h4>
 <p>Ein Unternehmen mit 15 Smartphones (EAS aktiviert) und etwa 50 gleichzeitigen IMAP-Verbindungen sollte 16 GiB RAM einplanen.</p>
 <p>6 GiB RAM + 1 GiB Swap sind für die meisten privaten Installationen ausreichend, während 8 GiB RAM für ~5 bis 10 Benutzer empfohlen werden.</p>
@@ -4075,7 +4101,7 @@ Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam
 <h3 id="unterstutzte-betriebssysteme">Unterstützte Betriebssysteme<a class="headerlink" href="#unterstutzte-betriebssysteme" title="Permanent link">&para;</a></h3>
 <div class="admonition danger">
 <p class="admonition-title">Wichtig</p>
-<p>mailcow nutzt Docker als Basis. Aufgrund von diversen technischen Unterschieden innerhalb der einzelnen Systeme <strong>unterstützen</strong> wir <strong>nicht alle</strong> Systeme, wo theoretisch Docker drauf läuft!</p>
+<p>mailcow nutzt Docker als Grundlage. Aufgrund verschiedener technischer Unterschiede zwischen den einzelnen Systemen <strong>werden nicht alle</strong> Plattformen unterstützt, auf denen Docker theoretisch lauffähig ist.</p>
 </div>
 <p>Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (<em>Stand Dezember 2024</em>):</p>
 <table>
@@ -4115,9 +4141,10 @@ Diese kommt mit einem Webserver, Webmailer, ActiveSync (MS), Antivirus, Antispam
 ❌ = Generell <strong>NICHT Kompatibel</strong>.<br>
 ❔ = Ausstehend.</p>
 </div>
-<div class="admonition warning">
+<div class="admonition danger">
 <p class="admonition-title">Achtung</p>
-<p><strong>Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden.</strong></p>
+<p>Andere (nicht genannte Betriebssysteme) können auch funktionieren, sind jedoch nicht offiziell getestet worden und erhalten KEINEN Support, weder Community noch Bezahlt!</p>
+<p><strong>BENUTZUNG AUF EIGENE GEFAHR!!</strong></p>
 </div>
 <h2 id="firewall-ports">Firewall &amp; Ports<a class="headerlink" href="#firewall-ports" title="Permanent link">&para;</a></h2>
 <p>Bitte überprüfen Sie, ob alle Standard-Ports von mailcow offen sind und nicht von anderen Anwendungen genutzt werden:</p>
@@ -4408,7 +4435,7 @@ Sie können außerdem die <a href="https://wiki.hetzner.de/index.php/Cloud_IP_st
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-12-09 08:32:30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-11-28 11:15:27</span>
   </span>
 
     
