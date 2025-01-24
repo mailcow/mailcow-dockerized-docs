@@ -76,7 +76,7 @@ However, we can tame Rspamd with a little bit of manual work so that it doesn't 
 
 For this we proceed as follows:
 
-1. Add the following inside `data/conf/rspamd/local.d/antivirus.conf`:
+1. Add the following inside the existing `clamav { ... }` block in `data/conf/rspamd/local.d/antivirus.conf`:
 
 ```
 patterns {
