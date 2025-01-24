@@ -4253,6 +4253,7 @@ the <code>ro</code> flag prior to restoring the data. This is described in the s
 <span class="s">      password: ${DBPASS}</span>
 <span class="s">      options: &quot;--default-character-set=utf8mb4 --skip-ssl&quot;</span>
 <span class="s">      list_options: &quot;--skip-ssl&quot;</span>
+<span class="s">      restore_options: &quot;--skip-ssl&quot;</span>
 <span class="s">EOF</span>
 </code></pre></div>
 <div class="admonition warning">
@@ -4266,8 +4267,8 @@ above to avoid problems with future borgmatic releases.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Starting with borgmatic 1.9.4 (released December 11th, 2024), the included MariaDB tools try to force encrypted connections
-by default. Edit your <code>config.yaml</code> and add <code>--skip-ssl</code> to <code>options:</code> and <code>list_options:</code> as shown above. Also make
-sure to change <code>mysql_databases:</code> to <code>mariadb_databases:</code> to avoid problems with future borgmatic and MariaDB releases.</p>
+by default. Edit your <code>config.yaml</code> and add <code>--skip-ssl</code> to <code>options</code>, <code>restore_options</code>, and <code>list_options</code> as shown above. Also make
+sure to change <code>mysql_databases</code> to <code>mariadb_databases</code> to avoid problems with future borgmatic and MariaDB releases.</p>
 </div>
 <p>This file is a minimal example for using borgmatic with an account <code>user</code> on the cloud storage provider <code>rsync.net</code> for
 a repository called <code>mailcow</code> (see <code>repositories</code> setting). This must be changed accordingly.</p>
@@ -4495,7 +4496,7 @@ repository, so a manual backup isn't as essential.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-12-23 17:39:34</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2025-01-24 18:15:48</span>
   </span>
 
     
