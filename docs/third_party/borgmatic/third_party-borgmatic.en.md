@@ -93,6 +93,7 @@ mariadb_databases:
       password: ${DBPASS}
       options: "--default-character-set=utf8mb4 --skip-ssl"
       list_options: "--skip-ssl"
+      restore_options: "--skip-ssl"
 EOF
 ```
 
@@ -105,8 +106,8 @@ EOF
 
 !!! warning
     Starting with borgmatic 1.9.4 (released December 11th, 2024), the included MariaDB tools try to force encrypted connections
-    by default. Edit your `config.yaml` and add `--skip-ssl` to `options:` and `list_options:` as shown above. Also make
-    sure to change `mysql_databases:` to `mariadb_databases:` to avoid problems with future borgmatic and MariaDB releases.
+    by default. Edit your `config.yaml` and add `--skip-ssl` to `options`, `restore_options`, and `list_options` as shown above. Also make
+    sure to change `mysql_databases` to `mariadb_databases` to avoid problems with future borgmatic and MariaDB releases.
 
 This file is a minimal example for using borgmatic with an account `user` on the cloud storage provider `rsync.net` for
 a repository called `mailcow` (see `repositories` setting). This must be changed accordingly.
