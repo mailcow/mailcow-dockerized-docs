@@ -119,6 +119,7 @@ Some outgoing connections are required to use mailcow. Ensure that mailcow can c
 | Rspamd            | UDP           | 11445   | fuzzy.mailcow.email                   | Connection to global mailcow fuzzy (trained by Servercow + community)                        |
 | Rspamd            | UDP           | 11335   | fuzzy1.rspamd.com & fuzzy2.rspamd.com | Connection to global Rspamd fuzzy (trained by the Rspamd team)                               |
 | Unbound           | TCP **&** UDP | 53      | Any                                   | DNS resolution for the mailcow stack (for DNSSEC validation and retrieval of spam list info) |
+| Unbound           | ICMP (Ping)   |         | 1.1.1.1, 8.8.8.8, 9.9.9.9             | Basic internet connectivity check                                                            |
 
 ### Important for Hetzner firewalls
 
