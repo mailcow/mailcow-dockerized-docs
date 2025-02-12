@@ -1,97 +1,3 @@
-## Manage Nextcloud using the helper script
-
-!!! danger "Deprecation notice"
-    This guide about the mailcow Nextcloud helper-script is deprecated. Until **December 2024** this **installationscript** will be **removed** from mailcow and **no further support** will be granted. If you are using a Nextcloud installation based on this script you should migrate all your datas to a standalone Nextcloud instance (either inside Docker or natively) in the near future.
-
-    *The Authentication guide (below further) will still be intact after the script removal in December 2024.*
-
-Nextcloud can be set up (parameter `-i`) and removed (parameter `-p`) with the [helper script](https://github.com/mailcow/mailcow-dockerized/raw/master/helper-scripts/nextcloud.sh) included with mailcow. In order to install Nextcloud simply navigate to your mailcow-dockerized root folder and run the helper script as follows:
-
-`./helper-scripts/nextcloud.sh -i`
-
-In case you have forgotten the password (e.g. for admin) and can't request a new one [via the password reset link on the login screen](https://docs.nextcloud.com/server/20/admin_manual/configuration_user/reset_admin_password.html?highlight=reset) calling the helper script with `-r` as parameter allows you to set a new password. Only use this option if your Nextcloud isn't configured to use mailcow for authentication as described in the next section.
-
-In order for mailcow to generate a a certificate for the nextcloud domain you need to add "nextcloud.domain.tld" to ADDITIONAL_SAN in mailcow.conf and runthe following to apply:
-
-=== "docker compose (Plugin)"
-
-    ``` bash
-    docker compose up -d
-    ```
-
-=== "docker-compose (Standalone)"
-
-    ``` bash
-    docker-compose up -d
-    ```
-
-For more informaton refer to: [Advanced SSL](../../post_installation/firststeps-ssl.en.md).
-
-## Background jobs
-
-To use the recommended setting (cron) to execute the background jobs following lines need to be added to the `docker-compose.override.yml`:
-
-```yaml
-services:
-  php-fpm-mailcow:
-    labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.nextcloud-cron.schedule: "@every 5m"
-      ofelia.job-exec.nextcloud-cron.command: "su www-data -s /bin/bash -c \"/usr/local/bin/php -f /web/nextcloud/cron.php\""
-```
-
-In addition, a specific function must be activated for the php-fpm worker. Do this by editing the file `data/conf/phpfpm/php-fpm.d/pools.conf` and removing `shell_exec` from all items including the `,`.
-
-After the two steps have been completed, the following command must be executed to provide the Docker image with the corresponding labels and restart the stack.
-
-After adding these lines the following command must be executed to update the docker image:
-
-=== "docker compose (Plugin)"
-
-    ``` bash
-    docker compose up -d
-    ```
-
-=== "docker-compose (Standalone)"
-
-    ``` bash
-    docker-compose up -d
-    ```
-
-And also the docker scheduler image must be restarted to pick up the new job definition by executing:
-
-=== "docker compose (Plugin)"
-
-    ``` bash
-    docker compose restart ofelia-mailcow
-    ```
-
-=== "docker-compose (Standalone)"
-
-    ``` bash
-    docker-compose restart ofelia-mailcow
-    ```
-
-To check if the job was successfully picked up by `ofelia` the command:
-
-=== "docker compose (Plugin)"
-
-    ``` bash
-    docker compose logs ofelia-mailcow
-    ```
-
-=== "docker-compose (Standalone)"
-
-    ``` bash
-    docker-compose logs ofelia-mailcow
-    ```
-
-It should contain a line similar to `New job registered "nextcloud-cron" - ...`.
-
-By adding these lines the background jobs will be executed every 5 minutes. To verify that the execution works correctly, the only way is to see it in the basic
- settings when logged in as an admin in Nextcloud. If everything is correct the first scheduled execution will change the background jobs processing setting to
- `(X) Cron` and the timestamp after `Last job ran` will be updated every 5 minutes.
-
 ## Configure Nextcloud to use mailcow for authentication
 
 The following describes how set up authentication via mailcow using the OAuth2 protocol. We will only assume that you have already set up Nextcloud at _cloud.example.com_ and that your mailcow is running at _mail.example.com_. It does not matter if your Nextcloud is running on a different server, you can still use mailcow for authentication.
@@ -105,7 +11,7 @@ The following describes how set up authentication via mailcow using the OAuth2 p
 4\. Scroll down and click the _Add OAuth2 client_ button. Specify the redirect URI as `https://cloud.example.com/index.php/apps/sociallogin/custom_oauth2/mailcow` and click _Add_. Save the client ID and secret for later.
 
 !!! info
-    Some installations, including those setup using the helper script of mailcow, need to remove index.php/ from the URL to get a successful redirect: `https://cloud.example.com/apps/sociallogin/custom_oauth2/mailcow`
+    Some installations, including those setup using the removed helper script of mailcow, need to remove index.php/ from the URL to get a successful redirect: `https://cloud.example.com/apps/sociallogin/custom_oauth2/mailcow`
 
 5\. Log into Nextcloud as administrator.
 
