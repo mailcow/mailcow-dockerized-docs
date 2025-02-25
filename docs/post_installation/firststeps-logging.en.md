@@ -166,7 +166,7 @@ Create `/etc/logrotate.d/mailcow` with the following content:
 }
 ```
 
-With this configuration, logrotate will run daily and keep a maximum of 7 archives. As the log file is permanently occupied by the mailcow daemon, `copytruncate` ensures that the current content of `mailcow.log` is being copied to the new rotated file and the file is being truncated afterwards. This is necessary as otherwise the logs will continue to be written to the old (already rotated) file.
+With this configuration, logrotate will run daily and keep a maximum of 7 archives. As the log file is permanently occupied by the Docker daemon, `copytruncate` ensures that the current content of `mailcow.log` is being copied to the new rotated file and the file is being truncated afterwards. This is necessary as otherwise the logs will continue to be written to the old (already rotated) file.
 
 As an alternative to `copytruncate`, the `postrotate` snippet which is commented out by default, can be used. To do this, comment the `copytruncate` and uncomment the lines below. After rotating the log files, the rsyslog daemon ([source](https://www.cloudinsidr.com/content/set-up-logrotate-for-postfix/)) and the Docker container with postfix-mailcow are being restarted. The last two steps are necessary as otherwise the logs will continue to be written to the old (already rotated) file. If a logging driver other than syslog is used for logging, the command (`systemctl restart rsyslog`) must be modified accordingly or the line must be removed from the example above.
 
