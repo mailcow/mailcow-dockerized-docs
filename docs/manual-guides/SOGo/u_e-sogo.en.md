@@ -154,7 +154,7 @@ After you replaced said file you need to restart SOGo and Memcached containers b
     ```
 
 ## Change logo
-mailcow builds after 21 December 2018 can change SOGo's logo by replacing or creating (if missing) `data/conf/sogo/sogo-full.svg`.
+mailcow builds after 21 December 2018 can change SOGo's logo by replacing `data/conf/sogo/custom-fulllogo.svg`.
 After you replaced said file you need to restart SOGo and Memcached containers by executing:
 
 === "docker compose (Plugin)"

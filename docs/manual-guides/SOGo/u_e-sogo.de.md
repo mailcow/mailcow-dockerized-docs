@@ -149,7 +149,7 @@ Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container 
     ```
 
 ## Logo ändern
-mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei `data/conf/sogo/sogo-full.svg` ersetzen oder erstellen (falls sie fehlt).
+mailcow-Builds nach dem 21. Dezember 2018 können das SOGo-Logo ändern, indem sie die Datei `data/conf/sogo/custom-fulllogo.svg` ersetzen.
 Nachdem Sie diese Datei ersetzt haben, müssen Sie SOGo und Memcached Container neu starten, indem Sie folgendes ausführen:
 
 === "docker compose (Plugin)"
