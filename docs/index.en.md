@@ -78,6 +78,31 @@ The mailcow data (such as emails, user data, etc.) is stored in **Docker volumes
 
 ---
 
+## Try out mailcow (Demos)
+
+Have we got your interest? Get a first overview of the functionalities of mailcow and your mailcow UI in our official **mailcow demos**!
+
+We´re providing two seperate Demo instances: 
+
++ **[demo.mailcow.email](https://demo.mailcow.email)** is the classic Demo based on the **stable releases**.
++ **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** is the **nightly demo** based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)
+
+!!! abstract "Use these credentials for the demos"
+	| Login Type | Username | Password | URL Endpoint (currently only available for Nightly demo) |
+	| --- | --- | --- | --- |
+	| **Administrator** | admin | moohoo | `/admin` |
+	| **Domain-Administrator** | department | moohoo | `/domainadmin` |
+	| **Normal User** | demo@440044.xyz | moohoo | `/` |
+
+	*The login credentials work on both Demos*.
+
+	**For the Nightly Demo please be aware of the URL Endpoint when logging in.** 
+
+!!! success "Always up to date"
+	The demo instances get the latest updates directly after releases from GitHub. Fully automatic, without any downtime!
+
+---
+
 ## Support the mailcow project
 
 Please consider a support contract for a small monthly fee at [Servercow](https://www.servercow.de/mailcow?lang=en#support)[^1] to support further development. _We_ support _you_ while _you_ support _us_. :)
@@ -123,25 +148,5 @@ For announcements and release informations you can find us on:
 Or alternatively on our blog:
 
 - :fontawesome-solid-globe: [mailcow.email](https://mailcow.email)
-
----
-## Interested? Try it out right away!
-
-Have we got your interest? Get a first overview of the functionalities of mailcow and your mailcow UI in our official **mailcow demos**!
-
-We´re providing two seperate Demo instances: 
-
-+ **[demo.mailcow.email](https://demo.mailcow.email)** is the classic Demo based on the **stable releases**.
-+ **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** is the new **nightly demo** based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)
-
-!!! abstract "Use these credentials for the demos"
-	- **Administrator**: admin / moohoo
-	- **Domain-Administrator**: department / moohoo
-	- **Mailbox**: demo@440044.xyz / moohoo
-	
-	*The login credentials work for both variants*.
-
-!!! success "Always up to date"
-	The demo instances get the latest updates directly after releases from GitHub. Fully automatic, without any downtime!
 
 [^1]: Servercow is a hosting/support division of The Infrastructure Company GmbH (mailcow maintainer).

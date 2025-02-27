@@ -77,6 +77,32 @@ Die mailcow Daten (wie bspw. E-Mails, Userdaten etc.) werden in **Docker-Volumes
 	Die Mails werden komprimiert und verschlüsselt gespeichert. Das Schlüsselpaar ist in crypt-vol-1 zu finden. Bitte vergessen Sie nicht, dieses und andere Volumes zu sichern. #KeinBackupkeinMitleid
 ---
 
+## mailcow ausprobieren (Demos)
+
+Haben wir Ihr Interesse geweckt? Verschaffen Sie sich in unseren offiziellen **mailcow Demos** einen ersten Überblick über die Funktionalitäten von mailcow und Ihrer mailcow UI!
+
+Wir stellen zwei verschiedene Demos bereit: 
+
++ **[demo.mailcow.email](https://demo.mailcow.email)** ist die altbekannte Demo, welche sich am **Stabilen Stand** der mailcow orrientiert (master Branch auf GitHub). 
++ **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** ist die **Nightly Demo**, welche Testfunktionen beherbergt. (Also insbesondere für alle interessant, die keine Möglichkeit haben sich eine Testinstanz selbst zu erstellen.) (nightly Branch auf GitHub)
+
+!!! abstract "Nutzen Sie diese Anmeldedaten für die Demos"
+
+	| Login Typ | Benutzername | Passwort | URL Endpunkt (aktuell nur Nightly Demo) |
+	| --- | --- | --- | --- |
+	| **Administrator** | admin | moohoo | `/admin` |
+	| **Domänen-Administrator** | department | moohoo | `/domainadmin` |
+	| **Normaler Benutzer** | demo@440044.xyz | moohoo | `/` |
+
+	*Die Anmeldedaten für die Logins funktionieren bei beiden Varianten.*
+
+	**Für die Nightly Demo beachten Sie bitte den URL Endpunkt für das Einloggen.** 
+
+!!! success "Immer auf dem neusten Stand"
+	Die Demo Instanzen erhalten die neusten Updates direkt nach Release von GitHub. Vollautomatisch, ohne Downtime!
+
+---
+
 ## Unterstützen Sie das mailcow Projekt
 
 Bitte erwägen Sie einen Supportvertrag gegen eine geringe monatliche Gebühr unter [Servercow](https://www.servercow.de/mailcow?#support)[^1], um die weitere Entwicklung zu unterstützen. _Wir_ unterstützen _Sie_, während _Sie_ _uns_ unterstützen. :)
@@ -122,27 +148,5 @@ Für Ankündigungen oder Release Informationen sind wir auf folgenden Plattforme
 Oder alternativ auf unserem Blog:
 
 - :fontawesome-solid-globe: [mailcow.email](https://mailcow.email)
-
----
-
-## Neugierig? Gleich ausprobieren!
-
-Haben wir Ihr Interesse geweckt? Verschaffen Sie sich in unseren offiziellen **mailcow Demos** einen ersten Überblick über die Funktionalitäten von mailcow und Ihrer mailcow UI!
-
-Wir stellen zwei verschiedene Demos bereit: 
-
-+ **[demo.mailcow.email](https://demo.mailcow.email)** ist die altbekannte Demo, welche sich am **Stabilen Stand** der mailcow orrientiert (master Branch auf GitHub). 
-+ **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** ist die neue **Nightly Demo**, welche Testfunktionen beherbergt. (Also insbesondere für alle interessant, die keine Möglichkeit haben sich eine Testinstanz selbst zu erstellen.) (nightly Branch auf GitHub)
-
-!!! abstract "Nutzen Sie diese Anmeldedaten für die Demos"
-
-	- **Administrator**: admin / moohoo
-	- **Domänen-Administrator**: department / moohoo
-	- **Mailbox**: demo@440044.xyz / moohoo
-
-	*Die Anmeldedaten für die Logins funktionieren bei beiden Varianten*
-
-!!! success "Immer auf dem neusten Stand"
-	Die Demo Instanzen erhalten die neusten Updates direkt nach Release von GitHub. Vollautomatisch, ohne Downtime!
 
 [^1]: Servercow ist eine Hosting/Support Sparte der The Infrastructure Company GmbH (mailcow Maintainer)
