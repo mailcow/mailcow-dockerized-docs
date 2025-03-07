@@ -320,13 +320,13 @@ new operations can be performed:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec borgmatic-mailcow borg break-lock
+    docker compose exec borgmatic-mailcow borgmatic break-lock
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec borgmatic-mailcow borg break-lock
+    docker-compose exec borgmatic-mailcow borgmatic break-lock
     ```
 
 
