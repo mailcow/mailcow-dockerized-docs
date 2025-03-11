@@ -18,7 +18,7 @@ theme:
       name: Switch to light mode
   # Palette toggle for light mode
   - media: "(prefers-color-scheme: light)"
-    scheme: default 
+    scheme: default
     toggle:
       icon: material/brightness-7
       name: Switch to dark mode
@@ -29,7 +29,7 @@ theme:
     toggle:
       icon: material/brightness-4
       name: Switch to system preference
-  
+
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
   features:
@@ -97,7 +97,7 @@ nav:
     - 'IP bindings': 'post_installation/firststeps-ip_bindings.md'
     - 'Local MTA on Docker host': 'post_installation/firststeps-local_mta.md'
     - 'Logging': 'post_installation/firststeps-logging.md'
-    - 'Reverse Proxy': 
+    - 'Reverse Proxy':
       - 'Overview': 'post_installation/reverse-proxy/r_p.md'
       - 'Apache 2.4': 'post_installation/reverse-proxy/r_p-apache24.md'
       - 'Nginx': 'post_installation/reverse-proxy/r_p-nginx.md'
@@ -138,6 +138,9 @@ nav:
       - 'Temporary email aliases': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias.md'
       - 'Two-Factor Authentication': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.md'
       - 'WebAuthn / FIDO2': 'manual-guides/mailcow-UI/u_e-mailcow_ui-fido.md'
+      - 'LDAP': 'manual-guides/mailcow-UI/u_e-mailcow_ui-ldap.md'
+      - 'Keycloak': 'manual-guides/mailcow-UI/u_e-mailcow_ui-keycloak.md'
+      - 'Generic-OIDC': 'manual-guides/mailcow-UI/u_e-mailcow_ui-generic-oidc.md'
     - 'Postfix':
       - 'Unauthenticated Relaying': 'manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.md'
       - 'Custom transport maps': 'manual-guides/Postfix/u_e-postfix-custom_transport.md'
@@ -210,7 +213,7 @@ nav:
     - 'Portainer': 'third_party/portainer/third_party-portainer.md'
     - 'Roundcube': 'third_party/roundcube/third_party-roundcube.md'
 
-plugins: 
+plugins:
   - i18n: # <--- Translation plugin
       docs_structure: suffix
       fallback_to_default: true
