@@ -42,9 +42,16 @@ Once you have configured an **Generic-OIDC Identity Provider**, you can change t
 3. From the **Identity Provider** dropdown, select **Generic-OIDC**.  
 4. Save the changes.  
 
-!!! note "Notice"
+!!! info "Notice"
 
     The existing SQL password is **not overwritten**. If you switch the authentication source back to **mailcow**, the user will be able to log in with their previous password.  
+
+---
+
+### **Authentication for External Mail Clients (IMAP, SIEVE, POP3, SMTP)**  
+
+Before users can use external mail clients, they must first log in to the mailcow UI and navigate to the **Mailbox Settings**.  
+In the **App Passwords** tab, they can generate a new app password, which must then be used for authentication in the external mail client.
 
 ---
 
@@ -66,5 +73,3 @@ If users are unable to log in, follow these steps to diagnose and resolve the is
 
 4. **Confirm Attribute Mapping**  
     - Make sure a matching **Attribute Mapping** is configured for the users.  
-
-If you’re experiencing issues with **`Periodic Full Sync`** or **`Import Users`**, review the logs under `System > Information > Logs > Crontasks`  

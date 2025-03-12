@@ -13,25 +13,25 @@ Um einen **Identity Provider** zu konfigurieren, melde Sie sich als Administrato
 * `Attribut Mapping`:
     * `Attribut`: Definiert den Attributwert, der zugeordnet werden soll.  
     * `Vorlage`: Gibt an, welche Mailbox-Vorlage für den definierten Attributwert angewendet werden soll.  
-* `Ignoriere SSL Errors`: Wenn aktiviert, wird die Überprüfung des SSL-Zertifikats deaktiviert.  
+* `Ignoriere SSL Fehler`: Wenn aktiviert, wird die Überprüfung des SSL-Zertifikats deaktiviert.  
 
 ---
 
 ### **Automatische Benutzerbereitstellung**  
 
-Wenn ein Benutzer in **mailcow** nicht existiert und sich über die **mailcow UI** anmeldet, wird er **automatisch erstellt**, sofern eine passende **Attribut Mapping** konfiguriert ist.  
+Wenn ein Benutzer in **mailcow** nicht existiert und sich über die **mailcow UI** anmeldet, wird er **automatisch erstellt**, sofern ein passendes **Attribut Mapping** konfiguriert ist.  
 
 #### **Funktionsweise**  
 1. Bei der Anmeldung initialisiert **mailcow** einen **Authorization Code Flow** und ruft bei Erfolg das **OIDC-Token** des Benutzers ab.  
 2. **mailcow** sucht dann im User Info Endpoint nach dem Wert von `mailcow_template` und ruft ihn ab.  
-3. Wenn der Wert mit einem Attribut in der **Attribut Mapping** übereinstimmt, wird die entsprechende **Mailbox-Vorlage** angewendet.  
+3. Wenn der Wert mit einem Attribut in dem **Attribut Mapping** übereinstimmt, wird die entsprechende **Mailbox-Vorlage** angewendet.  
 
 #### **Beispielkonfiguration**  
 - Der Benutzer hat das Attribut `mailcow_template` mit dem Wert `default`, das vom **User Info Endpoint** abgerufen werden kann.  
 - Unter **Attribut Mapping** setzt du `Attribut` auf `default` und wählst eine geeignete **Mailbox-Vorlage** aus.  
 
 #### **Updates bei der Anmeldung**  
-Jedes Mal, wenn sich ein Benutzer über die **mailcow UI** anmeldet, überprüft **mailcow**, ob sich die zugewiesene **Vorlage** geändert hat. Falls ja, werden die Mailbox-Einstellungen entsprechend aktualisiert.  
+Jedes Mal, wenn sich ein Benutzer über die **mailcow UI** anmeldet, überprüft **mailcow**, ob sich die zugewiesene **Mailbox-Vorlage** geändert hat. Falls ja, werden die Mailbox-Einstellungen entsprechend aktualisiert.  
 
 ---
 
@@ -44,17 +44,22 @@ Nachdem ein **Generic-OIDC Identity Provider** konfiguriert wurde, kann die Auth
 3. Wählen Sie im **Identity Provider**-Dropdown **Generic-OIDC** aus.  
 4. Speichern Sie die Änderungen. 
 
-!!! note "Hinweis"
+!!! info "Hinweis"
 
     Das bestehende SQL-Passwort wird **nicht überschrieben**. Falls die Authentifizierungsquelle wieder auf **mailcow** umgestellt wird, kann der Benutzer sich weiterhin mit seinem vorherigen Passwort anmelden.  
 
 ---
 
+### **Authentifizierung für externe Mail-Clients (IMAP, SIEVE, POP3, SMTP)**  
+
+Bevor Benutzer externe Mail-Clients nutzen können, müssen sie sich zunächst in die mailcow UI einloggen und zu den **Mailbox-Einstellungen** navigieren.  
+Im Tab **App-Passwörter** können sie ein neues App-Passwort erstellen, das anschließend zur Authentifizierung im externen Mail-Client verwendet werden kann.
+
+---
+
 ### **Fehlersuche**  
 
-Wenn Benutzer sich nicht anmelden können, überprüfen Sie zuerst die Logs unter:  
-`System > Information > Logs > mailcow UI`.  
-
+Wenn Benutzer sich nicht anmelden können, überprüfen Sie zuerst die Logs unter: `System > Information > Logs > mailcow UI`.  
 Danach können Sie diesen Schritten zur Fehlerbehebung folgen:  
 
 1. **Verbindung testen**  
@@ -62,7 +67,7 @@ Danach können Sie diesen Schritten zur Fehlerbehebung folgen:
     - Klicken Sie den **Verbindung Testen** Button und stellen Sie sicher, dass er erfolgreich abgeschlossen wird.  
 
 2. **Client-Daten überprüfen**  
-    - Gehe zu `System > Konfiguration > Zugriff > Identity Provider`.  
+    - Gehen Sie zu `System > Konfiguration > Zugriff > Identity Provider`.  
     - Stelle sicher, dass **Client-ID** und **Client-Secret** mit den Daten des OIDC-Provider's übereinstimmen.  
 
 3. **Mail Domain des Benutzers prüfen**  
@@ -71,6 +76,3 @@ Danach können Sie diesen Schritten zur Fehlerbehebung folgen:
 
 3. **Attribut Mapping prüfen**  
     - Stellen Sie sicher, dass eine passendes **Attribut Mapping** für die Benutzer konfiguriert ist.  
-
-Falls Probleme mit `Periodic Full Sync` oder `Import Users` auftreten, überprüfen Sie die Logs unter:  
-`System > Information > Logs > Crontasks`. 

@@ -56,7 +56,7 @@ Once you have configured an **LDAP Identity Provider**, you can change the authe
 3. From the **Identity Provider** dropdown, select **LDAP**.  
 4. Save the changes.  
 
-!!! note "Notice"
+!!! info "Notice"
 
     The existing SQL password is **not overwritten**. If you switch the authentication source back to **mailcow**, the user will be able to log in with their previous password.  
 

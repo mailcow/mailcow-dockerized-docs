@@ -17,9 +17,9 @@ Um einen **Identity Provider** zu konfigurieren, melden Sie sich als Administrat
 * `Attribut Mapping`:
     * `Attribut`: Definiert den LDAP-Attributwert, der zugeordnet werden soll.  
     * `Vorlage`: Gibt an, welche Mailbox-Vorlage für den definierten LDAP-Attributwert angewendet werden soll.  
-* `Periodic Full Sync`: Wenn aktiviert, wird regelmäßig eine vollständige Synchronisation aller LDAP-Benutzer durchgeführt.  
-* `Import Users`: Wenn aktiviert, werden neue Benutzer automatisch aus LDAP in mailcow importiert.  
-* `Sync / Import interval (min)`: Definiert das Zeitintervall (in Minuten) für den "Periodic Full Sync" und den "Import Users".  
+* `Vollsynchronisation`: Wenn aktiviert, wird regelmäßig eine vollständige Synchronisation aller LDAP-Benutzer durchgeführt.  
+* `Importiere Benutzer`: Wenn aktiviert, werden neue Benutzer automatisch aus LDAP in mailcow importiert.  
+* `Sync / Import interval (min)`: Definiert das Zeitintervall (in Minuten) für den "Vollsynchronisation" und den "Importiere Benutzer".  
 
 ---
 
@@ -34,13 +34,8 @@ Wenn ein Benutzer in **mailcow** ^^nicht^^ existiert und sich über **Mail-Proto
 
 #### **Beispielkonfiguration**  
 - Der Benutzer hat das LDAP-Attribut **`otherMailbox`** mit dem Wert **`default`**.  
-- In **mailcow** wird das **`Attribut Feld`** auf **`otherMailbox`** gesetzt.  
+- In **mailcow** wird das **`Attribut Feld`** auf **`othermailbox`** gesetzt.  
 - Unter **Attribut Mapping** wird das **`Attribut`** auf **`default`** gesetzt und eine geeignete Mailbox-Vorlage ausgewählt.
-
-!!! info "Hinweis"
-	Der Attribut Wert (in dem Fall `default`) muss von mailcow auf eine Mailbox Vorlage gemappt werden, damit neue Mailboxen mit dieser Vorlage erstellt werden.
-
-	Es sind mehrere Mappings möglich.
 
 #### **Updates bei der Anmeldung**  
 Jedes Mal, wenn sich ein Benutzer anmeldet, überprüft **mailcow**, ob sich die zugewiesene Vorlage geändert hat. Falls ja, werden die Mailbox-Einstellungen entsprechend aktualisiert.  
@@ -64,7 +59,7 @@ Nachdem ein **LDAP Identity Provider** konfiguriert wurde, kann die Authentifizi
 3. Wählen Sie im **Identity Provider**-Dropdown **LDAP** aus.  
 4. Speichern Sie die Änderungen.    
 
-!!! note "Hinweis"
+!!! info "Hinweis"
 
     Das bestehende SQL-Passwort wird **nicht überschrieben**. Falls die Authentifizierungsquelle wieder auf **mailcow** umgestellt wird, kann der Benutzer sich wieder mit seinem vorherigen Passwort anmelden.  
 

@@ -63,9 +63,16 @@ With the **Mailpassword Flow**, automatic user provisioning also works for login
 #### **How It Works**  
 1. On login, **mailcow** uses the **Keycloak Admin REST API** to retrieve the user’s attributes.  
 2. **mailcow** looks for the **`mailcow_password`** attribute.  
-3. The **`mailcow_password`** value should contain a **compatible hashed password**, which will be used for verification.  
+3. The **`mailcow_password`** value should contain a [**compatible hashed password**](../../models/model-passwd.md), which will be used for verification.  
 
 This ensures seamless authentication and mailbox creation for both UI and mail protocol logins.  
+
+#### **Generate a BLF-CRYPT Hashed Password**  
+The following command creates a bcrypt-hashed password and prefixes it with `{BLF-CRYPT}`:  
+
+```bash
+mkpasswd -m bcrypt | sed 's/^/{BLF-CRYPT}/'
+```
 
 ---
 
@@ -78,9 +85,19 @@ Once you have configured an **Keycloak Identity Provider**, you can change the a
 3. From the **Identity Provider** dropdown, select **Keycloak**.  
 4. Save the changes.  
 
-!!! note "Notice"
+!!! info "Notice"
 
     The existing SQL password is **not overwritten**. If you switch the authentication source back to **mailcow**, the user will be able to log in with their previous password.  
+
+---
+
+### **Authentication for External Mail Clients (IMAP, SIEVE, POP3, SMTP)**  
+!!! info "Notice"
+
+    This does not necessarily apply to users utilizing the Mailpassword Flow.
+
+Before users can use external mail clients, they must first log in to the mailcow UI and navigate to the **Mailbox Settings**.  
+In the **App Passwords** tab, they can generate a new app password, which must then be used for authentication in the external mail client.
 
 ---
 
