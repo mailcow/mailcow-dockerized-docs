@@ -25,12 +25,14 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-d
 # - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
 ./update.sh --skip-ping-check
 
-# - Wechselt die Update Quellen der mailcow auf nightly (unstabile) Inhalte.
-NUR ZUM TESTEN VERWENDEN!! KEIN PRODUKTIV BETRIEB!!!
+# - Wechselt die Update Quellen der mailcow auf nightly Inhalte.
 ./update.sh --nightly
 
-# - Wechselt die Update Quellen der mailcow auf stable (stabile) Inhalte (standard).
+# - Wechselt die Update Quellen der mailcow auf stable Inhalte (standard).
 ./update.sh --stable
+
+# - Wechselt die Update Quellen der mailcow auf legacy Inhalte.
+./update.sh --legacy
 
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
 ./update.sh --force
@@ -94,9 +96,25 @@ Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens 
 
 ## Update-Varianten
 
-**stable (stabile Updates)**: Diese Updates sind für den Produktivbetrieb geeignet. Sie erscheinen in einem Zyklus von mindest 1x im Monat.
+**stable**: Diese Updates sind für den Produktivbetrieb geeignet.
 
-**nightly (instabile Updates)**: Diese Updates sind **NICHT** für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.
+**legacy**: Diese Updates sind für den Produktivbetrieb geeignet und basieren auf der 2025-02 mailcow. Support endet Februar 2026.
+
+**nightly**: Diese Updates sind **NICHT** für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.
+
+
+## Legacy Updates beziehen
+### Infos zu den Legacy Updates
+Seit dem 2025-03 Update gibt es die Möglichkeit updates für die Legacy Version zu beziehen. Diese Version basiert auf der mailcow 2025-02 und wird ausschließlich Sicherheitsupdates erhalten.
+
+!!! danger "Achtung"
+    Der Support für die Legacy Version endet **Februar 2026**
+
+### Wie bekomme ich Legacy Updates?
+Um auf die Legacy Updates zu wechseln muss das update Skript ausgeführt werden:
+```
+./update.sh --legacy
+```
 
 ## Nightly Updates beziehen
 ### Infos zu den Nightly Updates
@@ -104,7 +122,7 @@ Seit dem 2022-08 Update gibt es die Möglichkeit die Update quellen zu ändern. 
 
 Dabei bekommt der Nightly Branch immer dann neue Updates, wenn irgendetwas am mailcow Projekt fertig gemacht wurde was in die neue Hauptversion reinkommt.
 
-Neben den offensichtlichen neuerungen welche sowieso im nächsten Major Update enthalten sein werden enthält er ebenfalls erstmal exklusive Features welche eine längere Testzeit brauchen (bspw. das UI Update auf Bootstrap 5).
+Neben den offensichtlichen neuerungen welche sowieso im nächsten Major Update enthalten sein werden enthält er ebenfalls erstmal exklusive Features welche eine längere Testzeit brauchen.
 
 ### Wie bekomme ich Nightly Updates?
 Der Vorgang ist relativ simpel. Mit dem 2022-08 Update (ein Update auf die Version voraussgesetzt) ist es möglich die `update.sh` mit dem Parameter `--nightly` zu starten.

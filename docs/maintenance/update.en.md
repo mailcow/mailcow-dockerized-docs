@@ -26,11 +26,13 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerize
 ./update.sh --skip-ping-check
 
 # - Switch your mailcow updates to the unstable (nightly) branch.
-FOR TESTING PURPOSES ONLY!!!! NOT READY FOR PRODUCTION!!!
 ./update.sh --nightly
 
 # - Switch your mailcow updates to the stable (master) branch. Default unless you changed it with --nightly.
 ./update.sh --stable
+
+# - Switch your mailcow updates to the legacy branch.
+./update.sh --legacy
 
 # - Force update (unattended, but unsupported, use at own risk)
 ./update.sh --force
@@ -96,7 +98,22 @@ You can hook into the update mechanism by adding scripts called `pre_commit_hook
 
 **stable (stable updates)**: These updates are suitable for productive usage. They appear in a cycle of at least 1x per month.
 
+**legacy**: These updates are suitable for productive operation and are based on the 2025-02 mailcow. Support ends February 2026.
+
 **nightly (unstable updates)**: These updates are **NOT** suitable for production use and are for testing only. The nightly updates are ahead of the stable updates, since in these updates we test newer and more extensive features before they go live for all users.
+
+## Get Legacy Updates
+### Info about the Legacy Updates
+Since the 2025-03 update, it is possible to obtain updates for the legacy version. This version is based on mailcow 2025-02 and will only receive security updates.
+
+!!! danger "Attention"
+    Support for the legacy version ends **February 2026**
+
+### How do I get legacy updates?
+To switch to the legacy updates, the update script must be executed:
+```
+./update.sh --legacy
+```
 
 ## Get Nightly Updates
 ### Info about the Nightly Updates
@@ -104,7 +121,7 @@ Since the 2022-08 update there is the possibility to change the update sources. 
 
 The Nightly Branch always gets new updates when something is finished on the mailcow project that will be included in the new main version.
 
-Besides the obvious changes that will be included in the next major update anyway, it also contains exclusive features that need a longer testing time (e.g. the UI update to Bootstrap 5).
+Besides the obvious changes that will be included in the next major update anyway, it also contains exclusive features that need a longer testing time.
 
 ### How do I get Nightly Updates?
 The process is relatively simple. With the 2022-08 update (assuming an update to the version) it is possible to run `update.sh` with the parameter `--nightly`.
