@@ -88,15 +88,13 @@ We´re providing two seperate Demo instances:
 + **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** is the **nightly demo** based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)
 
 !!! abstract "Use these credentials for the demos"
-	| Login Type | Username | Password | URL Endpoint (currently only available for Nightly demo) |
+	| Login Type | Username | Password | URL Endpoint |
 	| --- | --- | --- | --- |
 	| **Administrator** | admin | moohoo | `/admin` |
 	| **Domain-Administrator** | department | moohoo | `/domainadmin` |
 	| **Normal User** | demo@440044.xyz | moohoo | `/` |
 
 	*The login credentials work on both Demos*.
-
-	**For the Nightly Demo please be aware of the URL Endpoint when logging in.** 
 
 !!! success "Always up to date"
 	The demo instances get the latest updates directly after releases from GitHub. Fully automatic, without any downtime!

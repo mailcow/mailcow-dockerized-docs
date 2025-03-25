@@ -88,15 +88,13 @@ Wir stellen zwei verschiedene Demos bereit:
 
 !!! abstract "Nutzen Sie diese Anmeldedaten für die Demos"
 
-	| Login Typ | Benutzername | Passwort | URL Endpunkt (aktuell nur Nightly Demo) |
+	| Login Typ | Benutzername | Passwort | URL Endpunkt |
 	| --- | --- | --- | --- |
 	| **Administrator** | admin | moohoo | `/admin` |
 	| **Domänen-Administrator** | department | moohoo | `/domainadmin` |
 	| **Normaler Benutzer** | demo@440044.xyz | moohoo | `/` |
 
 	*Die Anmeldedaten für die Logins funktionieren bei beiden Varianten.*
-
-	**Für die Nightly Demo beachten Sie bitte den URL Endpunkt für das Einloggen.** 
 
 !!! success "Immer auf dem neusten Stand"
 	Die Demo Instanzen erhalten die neusten Updates direkt nach Release von GitHub. Vollautomatisch, ohne Downtime!
