@@ -4391,7 +4391,38 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </div>
 </div>
 <p>Done!</p>
-<p>You can now access <strong>https://${MAILCOW_HOSTNAME}</strong> with the default credentials <code>admin</code> + password <code>moohoo</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Post 2025-03 (LDAP Patch)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Logins have been separated since 2025-03.</p>
+</div>
+<ul>
+<li>
+<p><strong>Administrators</strong>:<br />
+You can now log in as an administrator using the default credentials <code>admin</code> and the password <code>moohoo</code> at:<br />
+<strong><code>https://${MAILCOW_HOSTNAME}/admin</code></strong></p>
+</li>
+<li>
+<p><strong>Regular mailbox users</strong>:<br />
+Continue logging in at the usual URL:<br />
+<strong><code>https://${MAILCOW_HOSTNAME}</code></strong> (FQDN only)</p>
+</li>
+<li>
+<p><strong>Domain administrators</strong>:<br />
+Log in at the dedicated URL:<br />
+<strong><code>https://${MAILCOW_HOSTNAME}/domainadmin</code></strong></p>
+</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Pre 2025-03 (LDAP Patch)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<p>You can now access <strong><code>https://${MAILCOW_HOSTNAME}</code></strong>  using the default credentials <code>admin</code> and the password <code>moohoo</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>If you are not using mailcow behind a reverse proxy, you should <a href="../../manual-guides/u_e-80_to_443/">redirect all HTTP requests to HTTPS</a>.</p>
@@ -4418,7 +4449,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="July 16, 2024 22:32:14">2024-07-16 22:32:14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="March 25, 2025 10:50:58">2025-03-25 10:50:58</span>
   </span>
 
     
