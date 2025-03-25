@@ -623,6 +623,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#get-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Legacy Updates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Legacy Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info-about-the-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Info about the Legacy Updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-get-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I get legacy updates?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-nightly-updates" class="md-nav__link">
     <span class="md-ellipsis">
       Get Nightly Updates
@@ -4177,6 +4210,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#get-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Legacy Updates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Legacy Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#info-about-the-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Info about the Legacy Updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-get-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I get legacy updates?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-nightly-updates" class="md-nav__link">
     <span class="md-ellipsis">
       Get Nightly Updates
@@ -4260,11 +4326,13 @@ Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerize
 ./update.sh --skip-ping-check
 
 # - Switch your mailcow updates to the unstable (nightly) branch.
-FOR TESTING PURPOSES ONLY!!!! NOT READY FOR PRODUCTION!!!
 ./update.sh --nightly
 
 # - Switch your mailcow updates to the stable (master) branch. Default unless you changed it with --nightly.
 ./update.sh --stable
+
+# - Switch your mailcow updates to the legacy branch.
+./update.sh --legacy
 
 # - Force update (unattended, but unsupported, use at own risk)
 ./update.sh --force
@@ -4318,12 +4386,24 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </ul>
 <h2 id="update-variants">Update variants<a class="headerlink" href="#update-variants" title="Permanent link">&para;</a></h2>
 <p><strong>stable (stable updates)</strong>: These updates are suitable for productive usage. They appear in a cycle of at least 1x per month.</p>
+<p><strong>legacy</strong>: These updates are suitable for productive operation and are based on the 2025-02 mailcow. Support ends February 2026.</p>
 <p><strong>nightly (unstable updates)</strong>: These updates are <strong>NOT</strong> suitable for production use and are for testing only. The nightly updates are ahead of the stable updates, since in these updates we test newer and more extensive features before they go live for all users.</p>
+<h2 id="get-legacy-updates">Get Legacy Updates<a class="headerlink" href="#get-legacy-updates" title="Permanent link">&para;</a></h2>
+<h3 id="info-about-the-legacy-updates">Info about the Legacy Updates<a class="headerlink" href="#info-about-the-legacy-updates" title="Permanent link">&para;</a></h3>
+<p>Since the 2025-03 update, it is possible to obtain updates for the legacy version. This version is based on mailcow 2025-02 and will only receive security updates.</p>
+<div class="admonition danger">
+<p class="admonition-title">Attention</p>
+<p>Support for the legacy version ends <strong>February 2026</strong></p>
+</div>
+<h3 id="how-do-i-get-legacy-updates">How do I get legacy updates?<a class="headerlink" href="#how-do-i-get-legacy-updates" title="Permanent link">&para;</a></h3>
+<p>To switch to the legacy updates, the update script must be executed:
+<div class="highlight"><pre><span></span><code>./update.sh --legacy
+</code></pre></div></p>
 <h2 id="get-nightly-updates">Get Nightly Updates<a class="headerlink" href="#get-nightly-updates" title="Permanent link">&para;</a></h2>
 <h3 id="info-about-the-nightly-updates">Info about the Nightly Updates<a class="headerlink" href="#info-about-the-nightly-updates" title="Permanent link">&para;</a></h3>
 <p>Since the 2022-08 update there is the possibility to change the update sources. Until now, the master branch on GitHub served as the only (official) update source. With the August 2022 update, however, there is now the Nightly Branch which contains unstable and major changes for testing and feedback.</p>
 <p>The Nightly Branch always gets new updates when something is finished on the mailcow project that will be included in the new main version.</p>
-<p>Besides the obvious changes that will be included in the next major update anyway, it also contains exclusive features that need a longer testing time (e.g. the UI update to Bootstrap 5).</p>
+<p>Besides the obvious changes that will be included in the next major update anyway, it also contains exclusive features that need a longer testing time.</p>
 <h3 id="how-do-i-get-nightly-updates">How do I get Nightly Updates?<a class="headerlink" href="#how-do-i-get-nightly-updates" title="Permanent link">&para;</a></h3>
 <p>The process is relatively simple. With the 2022-08 update (assuming an update to the version) it is possible to run <code>update.sh</code> with the parameter <code>--nightly</code>.</p>
 <div class="admonition danger">
@@ -4363,7 +4443,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="December 11, 2023 14:46:00">2023-12-11 14:46:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="March 25, 2025 07:33:24">2025-03-25 07:33:24</span>
   </span>
 
     

@@ -623,6 +623,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#legacy-updates-beziehen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Updates beziehen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy Updates beziehen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infos-zu-den-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infos zu den Legacy Updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wie-bekomme-ich-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wie bekomme ich Legacy Updates?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nightly-updates-beziehen" class="md-nav__link">
     <span class="md-ellipsis">
       Nightly Updates beziehen
@@ -4177,6 +4210,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#legacy-updates-beziehen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Updates beziehen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy Updates beziehen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infos-zu-den-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infos zu den Legacy Updates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wie-bekomme-ich-legacy-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wie bekomme ich Legacy Updates?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nightly-updates-beziehen" class="md-nav__link">
     <span class="md-ellipsis">
       Nightly Updates beziehen
@@ -4259,12 +4325,14 @@ Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-d
 # - Überspringt den ICMP Check auf die öffentlichen DNS Resolver (Bitte nur nutzen, wenn keinerlei ICMP Verbindungen von und zur mailcow erlaubt sind)
 ./update.sh --skip-ping-check
 
-# - Wechselt die Update Quellen der mailcow auf nightly (unstabile) Inhalte.
-NUR ZUM TESTEN VERWENDEN!! KEIN PRODUKTIV BETRIEB!!!
+# - Wechselt die Update Quellen der mailcow auf nightly Inhalte.
 ./update.sh --nightly
 
-# - Wechselt die Update Quellen der mailcow auf stable (stabile) Inhalte (standard).
+# - Wechselt die Update Quellen der mailcow auf stable Inhalte (standard).
 ./update.sh --stable
+
+# - Wechselt die Update Quellen der mailcow auf legacy Inhalte.
+./update.sh --legacy
 
 # - Erzwinge Update (unbeaufsichtigt, aber nicht unterstützt, Benutzung auf eigenes Risiko)
 ./update.sh --force
@@ -4317,13 +4385,25 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 <li>Fehlerkorrekturen eines Hauptupdates werden bei uns als "Revisionen" wie a,b,c (Beispiele: <code>2022-05a</code>, <code>2022-05b</code> usw.) erscheinen.</li>
 </ul>
 <h2 id="update-varianten">Update-Varianten<a class="headerlink" href="#update-varianten" title="Permanent link">&para;</a></h2>
-<p><strong>stable (stabile Updates)</strong>: Diese Updates sind für den Produktivbetrieb geeignet. Sie erscheinen in einem Zyklus von mindest 1x im Monat.</p>
-<p><strong>nightly (instabile Updates)</strong>: Diese Updates sind <strong>NICHT</strong> für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.</p>
+<p><strong>stable</strong>: Diese Updates sind für den Produktivbetrieb geeignet.</p>
+<p><strong>legacy</strong>: Diese Updates sind für den Produktivbetrieb geeignet und basieren auf der 2025-02 mailcow. Support endet Februar 2026.</p>
+<p><strong>nightly</strong>: Diese Updates sind <strong>NICHT</strong> für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.</p>
+<h2 id="legacy-updates-beziehen">Legacy Updates beziehen<a class="headerlink" href="#legacy-updates-beziehen" title="Permanent link">&para;</a></h2>
+<h3 id="infos-zu-den-legacy-updates">Infos zu den Legacy Updates<a class="headerlink" href="#infos-zu-den-legacy-updates" title="Permanent link">&para;</a></h3>
+<p>Seit dem 2025-03 Update gibt es die Möglichkeit updates für die Legacy Version zu beziehen. Diese Version basiert auf der mailcow 2025-02 und wird ausschließlich Sicherheitsupdates erhalten.</p>
+<div class="admonition danger">
+<p class="admonition-title">Achtung</p>
+<p>Der Support für die Legacy Version endet <strong>Februar 2026</strong></p>
+</div>
+<h3 id="wie-bekomme-ich-legacy-updates">Wie bekomme ich Legacy Updates?<a class="headerlink" href="#wie-bekomme-ich-legacy-updates" title="Permanent link">&para;</a></h3>
+<p>Um auf die Legacy Updates zu wechseln muss das update Skript ausgeführt werden:
+<div class="highlight"><pre><span></span><code>./update.sh --legacy
+</code></pre></div></p>
 <h2 id="nightly-updates-beziehen">Nightly Updates beziehen<a class="headerlink" href="#nightly-updates-beziehen" title="Permanent link">&para;</a></h2>
 <h3 id="infos-zu-den-nightly-updates">Infos zu den Nightly Updates<a class="headerlink" href="#infos-zu-den-nightly-updates" title="Permanent link">&para;</a></h3>
 <p>Seit dem 2022-08 Update gibt es die Möglichkeit die Update quellen zu ändern. Bisher diente der master Branch auf GitHub als einzige (offizieller) Update Quelle. Mit dem August 2022 Update gibt es aber nun noch den Nightly Branch welcher instabile und größere Änderungen zum testen und Feedback geben enthält.</p>
 <p>Dabei bekommt der Nightly Branch immer dann neue Updates, wenn irgendetwas am mailcow Projekt fertig gemacht wurde was in die neue Hauptversion reinkommt.</p>
-<p>Neben den offensichtlichen neuerungen welche sowieso im nächsten Major Update enthalten sein werden enthält er ebenfalls erstmal exklusive Features welche eine längere Testzeit brauchen (bspw. das UI Update auf Bootstrap 5).</p>
+<p>Neben den offensichtlichen neuerungen welche sowieso im nächsten Major Update enthalten sein werden enthält er ebenfalls erstmal exklusive Features welche eine längere Testzeit brauchen.</p>
 <h3 id="wie-bekomme-ich-nightly-updates">Wie bekomme ich Nightly Updates?<a class="headerlink" href="#wie-bekomme-ich-nightly-updates" title="Permanent link">&para;</a></h3>
 <p>Der Vorgang ist relativ simpel. Mit dem 2022-08 Update (ein Update auf die Version voraussgesetzt) ist es möglich die <code>update.sh</code> mit dem Parameter <code>--nightly</code> zu starten.</p>
 <div class="admonition danger">
@@ -4363,7 +4443,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="11. Dezember 2023 14:46:00">2023-12-11 14:46:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="25. März 2025 07:33:24">2025-03-25 07:33:24</span>
   </span>
 
     
