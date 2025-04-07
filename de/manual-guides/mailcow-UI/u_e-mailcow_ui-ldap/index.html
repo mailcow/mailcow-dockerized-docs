@@ -2281,6 +2281,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#eigenes-ca-zertifikat-fur-tlsssl-verbindungen-nutzen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eigenes CA Zertifikat für TLS/SSL Verbindungen nutzen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fehlersuche" class="md-nav__link">
     <span class="md-ellipsis">
       Fehlersuche
@@ -4314,6 +4323,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#eigenes-ca-zertifikat-fur-tlsssl-verbindungen-nutzen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eigenes CA Zertifikat für TLS/SSL Verbindungen nutzen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fehlersuche" class="md-nav__link">
     <span class="md-ellipsis">
       Fehlersuche
@@ -4350,7 +4368,7 @@
 <li><code>Host</code>: Die Adresse Ihres LDAP-Servers. Sie können entweder eine einzelne Hostadresse oder eine durch Kommas getrennte Liste von Hosts angeben, die als Fallbacks verwendet werden können.  </li>
 <li><code>Port</code>: Der Port, über den die Verbindung zum LDAP-Server hergestellt wird.  </li>
 <li><code>Benutze SSL</code>: Aktiviert eine LDAPS-Verbindung. Wenn der Port auf <code>389</code> gesetzt ist, wird er automatisch auf <code>636</code> geändert.  </li>
-<li><code>Benutze TLS</code>: Aktiviert eine TLS-Verbindung. <strong>TLS wird gegenüber SSL empfohlen</strong>. SSL-Ports können nicht verwendet werden.  </li>
+<li><code>Benutze TLS</code>: Aktiviert eine TLS-Verbindung. SSL-Ports können nicht verwendet werden.  </li>
 <li><code>Ignoriere SSL Fehler</code>: Wenn aktiviert, wird die Überprüfung des SSL-Zertifikats deaktiviert.  </li>
 <li><code>Base DN</code>: Der Distinguished Name (DN), von dem aus Suchanfragen durchgeführt werden.  </li>
 <li><code>Username Feld</code>: Das LDAP-Attribut, das zur Identifizierung von Benutzern bei der Authentifizierung verwendet wird. Standardwert: <code>mail</code>.  </li>
@@ -4400,6 +4418,32 @@
 <div class="admonition info">
 <p class="admonition-title">Hinweis</p>
 <p>Das bestehende SQL-Passwort wird <strong>nicht überschrieben</strong>. Falls die Authentifizierungsquelle wieder auf <strong>mailcow</strong> umgestellt wird, kann der Benutzer sich wieder mit seinem vorherigen Passwort anmelden.  </p>
+</div>
+<hr />
+<h3 id="eigenes-ca-zertifikat-fur-tlsssl-verbindungen-nutzen"><strong>Eigenes CA Zertifikat für TLS/SSL Verbindungen nutzen</strong><a class="headerlink" href="#eigenes-ca-zertifikat-fur-tlsssl-verbindungen-nutzen" title="Permanent link">&para;</a></h3>
+<p>Um ein eigenes CA-Zertifikat für die TLS/SSL-Verbindung zum LDAP-Server zu verwenden, muss eine <code>docker-compose.override.yml</code> erstellt werden.<br />
+Das CA-Zertifikat sollte unter <code>data/assets/ssl/ldap-ca.crt</code> abgelegt werden.<br />
+Die <code>docker-compose.override.yml</code> sieht dann wie folgt aus:<br />
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+
+<span class="w">  </span><span class="nt">php-fpm-mailcow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LDAPTLS_CACERT=/etc/ssl/certs/ldap-ca.crt</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/ldap-ca.crt:/etc/ssl/certs/ldap-ca.crt:z</span>
+</code></pre></div></p>
+<p>Danach den PHP-FPM Container neu erstellen mit:  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
 </div>
 <hr />
 <h3 id="fehlersuche"><strong>Fehlersuche</strong><a class="headerlink" href="#fehlersuche" title="Permanent link">&para;</a></h3>
@@ -4455,7 +4499,7 @@ Danach können Sie diesen Schritten zur Fehlerbehebung folgen:  </p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="12. März 2025 09:26:32">2025-03-12 09:26:32</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="7. April 2025 08:54:50">2025-04-07 08:54:50</span>
   </span>
 
     

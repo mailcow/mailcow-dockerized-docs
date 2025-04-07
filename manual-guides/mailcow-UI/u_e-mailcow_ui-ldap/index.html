@@ -2281,6 +2281,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-your-own-ca-certificate-for-tlsssl-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use your own CA certificate for TLS/SSL connections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       Troubleshooting
@@ -4314,6 +4323,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#use-your-own-ca-certificate-for-tlsssl-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use your own CA certificate for TLS/SSL connections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
       Troubleshooting
@@ -4349,7 +4367,7 @@
 <li><code>Host</code>: The address of your LDAP server. You can provide a single hostname or a comma-separated list of hosts for fallback in case the primary server is unreachable.</li>
 <li><code>Port</code>: The port used to connect to the LDAP server.</li>
 <li><code>Use SSL</code>: enable LDAPS connection. If Port is set to <code>389</code> it will be overriden to <code>636</code>.</li>
-<li><code>Use TLS</code>: enable TLS connection. <strong>TLS is recommended over SSL</strong>. SSL Ports cannot be used.</li>
+<li><code>Use TLS</code>: enable TLS connection. SSL Ports cannot be used.</li>
 <li><code>Ignore SSL Errors</code>: If enabled, SSL certificate validation will be bypassed.</li>
 <li><code>Base DN</code>: The Distinguished Name (DN) from which searches will be performed.</li>
 <li><code>Username Field</code>: The LDAP attribute used to identify users during authentication. Defaults to <code>mail</code>.</li>
@@ -4399,6 +4417,32 @@
 <div class="admonition info">
 <p class="admonition-title">Notice</p>
 <p>The existing SQL password is <strong>not overwritten</strong>. If you switch the authentication source back to <strong>mailcow</strong>, the user will be able to log in with their previous password.  </p>
+</div>
+<hr />
+<h3 id="use-your-own-ca-certificate-for-tlsssl-connections"><strong>Use your own CA certificate for TLS/SSL connections</strong><a class="headerlink" href="#use-your-own-ca-certificate-for-tlsssl-connections" title="Permanent link">&para;</a></h3>
+<p>To use your own CA certificate for the TLS/SSL connection to the LDAP server, a <code>docker-compose.override.yml</code> must be created.<br />
+The CA certificate should be stored under <code>data/assets/ssl/ldap-ca.crt</code>.<br />
+The <code>docker-compose.override.yml</code> then looks like this:<br />
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+
+<span class="w">  </span><span class="nt">php-fpm-mailcow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LDAPTLS_CACERT=/etc/ssl/certs/ldap-ca.crt</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/ldap-ca.crt:/etc/ssl/certs/ldap-ca.crt:z</span>
+</code></pre></div></p>
+<p>Then recreate the PHP-FPM container with:  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
 </div>
 <hr />
 <h3 id="troubleshooting"><strong>Troubleshooting</strong><a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
@@ -4453,7 +4497,7 @@ Then, follow these steps to diagnose and resolve the issue:  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="March 12, 2025 09:26:32">2025-03-12 09:26:32</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="April 7, 2025 08:54:50">2025-04-07 08:54:50</span>
   </span>
 
     
