@@ -1,3 +1,6 @@
+!!! warning "Warning"
+    **Mailbox users who have enabled two-factor authentication must create app passwords for external applications such as mail clients.**
+
 So far three methods for _Two-Factor Authentication_ are implemented: WebAuthn (replacing U2F since February 2022), Yubi OTP, and TOTP
 
 -   For WebAuthn to work, you need an encrypted connection to the server (HTTPS) as well as a FIDO security key.
