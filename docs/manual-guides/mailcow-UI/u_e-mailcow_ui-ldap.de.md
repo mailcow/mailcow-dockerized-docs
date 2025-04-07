@@ -65,6 +65,36 @@ Nachdem ein **LDAP Identity Provider** konfiguriert wurde, kann die Authentifizi
 
 ---
 
+### **Eigenes CA Zertifikat für TLS/SSL Verbindungen nutzen**  
+
+Um ein eigenes CA-Zertifikat für die TLS/SSL-Verbindung zum LDAP-Server zu verwenden, muss eine `docker-compose.override.yml` erstellt werden.  
+Das CA-Zertifikat sollte unter `data/assets/ssl/ldap-ca.crt` abgelegt werden.  
+Die `docker-compose.override.yml` sieht dann wie folgt aus:  
+```yaml
+services:
+
+  php-fpm-mailcow:
+    environment:
+      - LDAPTLS_CACERT=/etc/ssl/certs/ldap-ca.crt
+    volumes:
+      - ./data/assets/ssl/ldap-ca.crt:/etc/ssl/certs/ldap-ca.crt:z
+```
+
+Danach den PHP-FPM Container neu erstellen mit:  
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+---
+
 ### **Fehlersuche**  
 
 Wenn Benutzer sich nicht anmelden können, überprüfen Sie zuerst die Logs unter: `System > Information > Logs > mailcow UI`.  
