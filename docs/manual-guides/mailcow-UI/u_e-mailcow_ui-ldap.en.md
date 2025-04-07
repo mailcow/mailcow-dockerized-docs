@@ -5,7 +5,7 @@ To add or edit your **Identity Provider** configuration, log in to your *mailcow
 * `Host`: The address of your LDAP server. You can provide a single hostname or a comma-separated list of hosts for fallback in case the primary server is unreachable.
 * `Port`: The port used to connect to the LDAP server.
 * `Use SSL`: enable LDAPS connection. If Port is set to `389` it will be overriden to `636`.
-* `Use TLS`: enable TLS connection. **TLS is recommended over SSL**. SSL Ports cannot be used.
+* `Use TLS`: enable TLS connection. SSL Ports cannot be used.
 * `Ignore SSL Errors`: If enabled, SSL certificate validation will be bypassed.
 * `Base DN`: The Distinguished Name (DN) from which searches will be performed.
 * `Username Field`: The LDAP attribute used to identify users during authentication. Defaults to `mail`.

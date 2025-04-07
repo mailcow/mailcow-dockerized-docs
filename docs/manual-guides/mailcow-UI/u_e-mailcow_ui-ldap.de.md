@@ -6,7 +6,7 @@ Um einen **Identity Provider** zu konfigurieren, melden Sie sich als Administrat
 * `Host`: Die Adresse Ihres LDAP-Servers. Sie können entweder eine einzelne Hostadresse oder eine durch Kommas getrennte Liste von Hosts angeben, die als Fallbacks verwendet werden können.  
 * `Port`: Der Port, über den die Verbindung zum LDAP-Server hergestellt wird.  
 * `Benutze SSL`: Aktiviert eine LDAPS-Verbindung. Wenn der Port auf `389` gesetzt ist, wird er automatisch auf `636` geändert.  
-* `Benutze TLS`: Aktiviert eine TLS-Verbindung. **TLS wird gegenüber SSL empfohlen**. SSL-Ports können nicht verwendet werden.  
+* `Benutze TLS`: Aktiviert eine TLS-Verbindung. SSL-Ports können nicht verwendet werden.  
 * `Ignoriere SSL Fehler`: Wenn aktiviert, wird die Überprüfung des SSL-Zertifikats deaktiviert.  
 * `Base DN`: Der Distinguished Name (DN), von dem aus Suchanfragen durchgeführt werden.  
 * `Username Feld`: Das LDAP-Attribut, das zur Identifizierung von Benutzern bei der Authentifizierung verwendet wird. Standardwert: `mail`.  
