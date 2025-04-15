@@ -85,7 +85,6 @@ Restart both Traefik and Mailcow to apply the changes:
 ```bash
 # Restart Mailcow
 cd /path/to/mailcow-dockerized
-docker-compose down
 docker-compose up -d
 ```
 
