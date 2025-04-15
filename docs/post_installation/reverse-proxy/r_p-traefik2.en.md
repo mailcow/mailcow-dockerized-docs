@@ -4,7 +4,7 @@ This tutorial explains how to set up Mailcow with Traefik as a reverse proxy to 
 
 ## Prerequisites
 
-- Traefik v3.x installed and running
+- Traefik v2.x installed and running
 - Domain names configured to point to your server according to [this guide](https://docs.mailcow.email/getstarted/prerequisite-dns/)
 
 ## Overview
