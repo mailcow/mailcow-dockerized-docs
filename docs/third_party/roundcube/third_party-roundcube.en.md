@@ -402,10 +402,12 @@ if (ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE) {
 }
 ```
 
-Edit `data/web/mailbox.php` and add this line to array [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/mailbox.php#L33-L43):
+Add the following line to the array $template_data:
+* `data/web/admin/mailbox.php` [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/admin/mailbox.php#L43-L56)
+* `data/web/domainadmin/mailbox.php` [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/domainadmin/mailbox.php#L43-L56)
 
 ```php
-  'allow_admin_email_login_roundcube' => (preg_match("/^(yes|y)+$/i", $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"])) ? 'true' : 'false',
+  'allow_admin_email_login_roundcube' => (preg_match("/^([yY][eE][sS]|[yY])+$/", $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"])) ? 'true' : 'false',
 ```
 
 Edit `data/web/templates/mailbox.twig` and add this code to the bottom of the [javascript section](https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57):
