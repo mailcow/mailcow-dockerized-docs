@@ -160,24 +160,24 @@ Geschafft!
 
 === "Post 2025-03 (LDAP-Patch)"
 
-!!! warning "Wichtig"
-    Die Logins sind seit 2025-03 getrennt.
+    !!! warning "Wichtig"
+        Die Logins sind seit 2025-03 getrennt.
 
-- **Administratoren**:  
-  Sie können sich jetzt als Administrator mit den Standard-Zugangsdaten `admin` und dem Passwort `moohoo` unter folgender Adresse anmelden:  
-  **`https://${MAILCOW_HOSTNAME}/admin`**
+    - **Administratoren**:  
+      Sie können sich jetzt als Administrator mit den Standard-Zugangsdaten `admin` und dem Passwort `moohoo` unter folgender Adresse anmelden:  
+      **`https://${MAILCOW_HOSTNAME}/admin`**
 
-- **Normale Mailbox-Benutzer**:  
-  Loggen sich wie gewohnt hier ein:  
-  **`https://${MAILCOW_HOSTNAME}`** (nur FQDN)
+    - **Normale Mailbox-Benutzer**:  
+      Loggen sich wie gewohnt hier ein:  
+      **`https://${MAILCOW_HOSTNAME}`** (nur FQDN)
 
-- **Domänen-Administratoren**:  
-  Bitte nutzen Sie die separate Login-Adresse:  
-  **`https://${MAILCOW_HOSTNAME}/domainadmin`**
+    - **Domänen-Administratoren**:  
+      Bitte nutzen Sie die separate Login-Adresse:  
+      **`https://${MAILCOW_HOSTNAME}/domainadmin`**
 
 === "Pre 2025-03 (LDAP-Patch)"
 
-Sie können nun unter  **`https://${MAILCOW_HOSTNAME}`**  mit den Standard-Zugangsdaten `admin` und dem Passwort `moohoo` zugreifen.
+    Sie können nun unter  **`https://${MAILCOW_HOSTNAME}`**  mit den Standard-Zugangsdaten `admin` und dem Passwort `moohoo` zugreifen.
 
 !!! info
     Wenn Sie mailcow nicht hinter einem Reverse Proxy verwenden, sollten Sie [alle HTTP-Anfragen auf HTTPS umleiten](../manual-guides/u_e-80_to_443.md).
