@@ -83,6 +83,7 @@ nav:
     - 'Component backup & restore':
       - 'Backup': 'backup_restore/b_n_r-backup.md'
       - 'Restore': 'backup_restore/b_n_r-restore.md'
+      - 'Export': 'backup_restore/b_n_r-backup-export.md'
     - 'Cold-standby (rolling backup)': 'backup_restore/b_n_r-coldstandby.md'
     - 'Manual backups':
       - 'Maildir': 'backup_restore/b_n_r-backup_restore-maildir.md'
@@ -244,6 +245,7 @@ plugins:
               'Component backup & restore' : 'Sicherung und Wiederherstellung von Komponenten'
               'Backup': 'Sicherung'
               'Restore': 'Wiederherstellung'
+              'Export': 'Exportieren'
               'Cold-standby (rolling backup)' : 'Cold-standby (rollende Sicherung)'
               'Manual backups' : 'Manuelle Sicherung'
               'Maildir' : 'Mail-Verzeichnis'
