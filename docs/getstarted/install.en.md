@@ -160,24 +160,24 @@ Done!
 
 === "Post 2025-03 (LDAP Patch)"
 
-!!! warning "Important"
-    Logins have been separated since 2025-03.
+    !!! warning "Important"
+        Logins have been separated since 2025-03.
 
-- **Administrators**:  
-You can now log in as an administrator using the default credentials `admin` and the password `moohoo` at:  
-**`https://${MAILCOW_HOSTNAME}/admin`**
+    - **Administrators**:  
+    You can now log in as an administrator using the default credentials `admin` and the password `moohoo` at:  
+    **`https://${MAILCOW_HOSTNAME}/admin`**
 
-- **Regular mailbox users**:  
-Continue logging in at the usual URL:  
-**`https://${MAILCOW_HOSTNAME}`** (FQDN only)
+    - **Regular mailbox users**:  
+    Continue logging in at the usual URL:  
+    **`https://${MAILCOW_HOSTNAME}`** (FQDN only)
 
-- **Domain administrators**:  
-Log in at the dedicated URL:  
-**`https://${MAILCOW_HOSTNAME}/domainadmin`**
+    - **Domain administrators**:  
+    Log in at the dedicated URL:  
+    **`https://${MAILCOW_HOSTNAME}/domainadmin`**
 
 === "Pre 2025-03 (LDAP Patch)"
 
-You can now access **`https://${MAILCOW_HOSTNAME}`**  using the default credentials `admin` and the password `moohoo`.
+    You can now access **`https://${MAILCOW_HOSTNAME}`**  using the default credentials `admin` and the password `moohoo`.
 
 
 !!! info

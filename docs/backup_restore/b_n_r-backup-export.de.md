@@ -14,8 +14,8 @@ Darüber hinaus ist die Funktion zum Export von Backups bereits integriert.
 
 Weitere Informationen zum Backup und Export mit Borgmatic finden Sie im Kapitel [Borgmatic Backup](https://docs.mailcow.email/de/third_party/borgmatic/third_party-borgmatic/).
 
-#### Export via Nextcloud / sFTP
-Mit dem Backup-Skript [mailcow-backup.sh](https://github.com/the1andoni/mailcow-backup.sh) können Backups auch per FTP oder Nextcloud exportiert werden.
+#### Export via WebDAV / sFTP
+Mit dem Backup-Skript [mailcow-backup.sh](https://github.com/the1andoni/mailcow-backupV2) können Backups auch per FTP oder WebDAV exportiert werden.
 
 !!! note
     Diese Funktion wird von der Community entwickelt. Der Link verweist auf ein externes (nicht mailcow-eigenes) GitHub-Repository.
