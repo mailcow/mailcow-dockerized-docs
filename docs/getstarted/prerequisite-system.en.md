@@ -4,7 +4,7 @@ Before you run **mailcow: dockerized**, there are a few requirements that you sh
     Do **not** try to install mailcow on a Synology/QNAP device (any NAS), OpenVZ, LXC or other container platforms. KVM, ESX, Hyper-V and other full virtualization platforms are supported.
 
 !!! info
-    - mailcow: dockerized requires [some ports](#default-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
+    - mailcow: dockerized requires [some ports](#incoming-ports) to be open for incoming connections, so make sure that your firewall is not blocking these.
     - Make sure that no other application is interfering with mailcow's configuration, such as another mail service
     - A correct DNS setup is crucial to every good mailserver setup, so please make sure you got at least the [basics](../getstarted/prerequisite-dns.en.md#the-minimal-dns-configuration) covered before you begin!
     - Make sure that your system has a correct date and [time setup](#date-and-time). This is crucial for various components like two factor TOTP authentication.
@@ -43,13 +43,13 @@ We can help to correctly plan your setup as part of our support.
 
 The following table contains all operating systems officially supported and tested by us (*as of December 2024*):
 
-| OS                   | Compatibility                                             |
-| -------------------- | --------------------------------------------------------- |
-| Alpine since 3.17    | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
-| Debian 11, 12        | [✅](https://www.debian.org/index.html "Fully Compatible") |
-| Ubuntu 20.04 - 24.04 | [✅](https://ubuntu.com/ "Fully Compatible")               |
-| Alma Linux 8, 9      | [✅](https://almalinux.org/ "Fully Compatible")            |
-| Rocky Linux 9        | [✅](https://rockylinux.org/ "Fully Compatible")           |
+| OS                      | Compatibility                                             |
+| ----------------------- | --------------------------------------------------------- |
+| Alpine since 3.19       | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
+| Debian 11, 12           | [✅](https://www.debian.org/index.html "Fully Compatible") |
+| Ubuntu 22.04 (or newer) | [✅](https://ubuntu.com/ "Fully Compatible")               |
+| Alma Linux 8, 9         | [✅](https://almalinux.org/ "Fully Compatible")            |
+| Rocky Linux 9           | [✅](https://rockylinux.org/ "Fully Compatible")           |
 
 
 !!! info "Legend"

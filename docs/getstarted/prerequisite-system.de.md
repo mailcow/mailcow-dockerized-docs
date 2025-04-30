@@ -4,7 +4,7 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
     Versuchen Sie **nicht**, mailcow auf einem Synology/QNAP-Gerät (jedes NAS), OpenVZ, LXC oder anderen Container-Plattformen zu installieren. KVM, ESX, Hyper-V und andere vollständige Virtualisierungsplattformen werden unterstützt.
 
 !!! info
-    - mailcow: dockerized erfordert, dass [einige Ports](#standard-ports) für eingehende Verbindungen offen sind, also stellen Sie sicher, dass Ihre Firewall diese nicht blockiert.
+    - mailcow: dockerized erfordert, dass [einige Ports](#eingehende-ports) für eingehende Verbindungen offen sind, also stellen Sie sicher, dass Ihre Firewall diese nicht blockiert.
     - Stellen Sie sicher, dass keine andere Anwendung die Konfiguration von mailcow stört, wie z.B. ein anderer Maildienst
     - Ein korrektes DNS-Setup ist entscheidend für jedes gute Mailserver-Setup, also stellen Sie bitte sicher, dass Sie zumindest die [basics](../getstarted/prerequisite-dns.de.md#die-minimale-dns-konfiguration) abgedeckt haben, bevor Sie beginnen!
     - Stellen Sie sicher, dass Ihr System ein korrektes Datum und eine korrekte [Zeiteinstellung](#datum-und-uhrzeit) hat. Dies ist entscheidend für verschiedene Komponenten wie die Zwei-Faktor-TOTP-Authentifizierung.
@@ -13,12 +13,12 @@ Bevor Sie **mailcow: dockerized** ausführen, sollten Sie einige Voraussetzungen
 
 Bitte stellen Sie sicher, dass Ihr System mindestens über die folgenden Ressourcen verfügt, um problemlos zu laufen:
 
-| Ressource | Minimale Anforderung |
-| ----------------------- | ------------------------------------------------ |
-| CPU | 1 GHz |
-| RAM | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
-| Festplatte | 20 GiB (ohne Emails) |
-| Architektur | x86_64, ARM64 |
+| Ressource   | Minimale Anforderung                                   |
+| ----------- | ------------------------------------------------------ |
+| CPU         | 1 GHz                                                  |
+| RAM         | **Minimum** 6 GiB + 1 GiB Swap (Standardkonfiguration) |
+| Festplatte  | 20 GiB (ohne Emails)                                   |
+| Architektur | x86_64, ARM64                                          |
 
 !!! failure "Nicht unterstützte Plattformen"
 	**OpenVZ, Virtuozzo und LXC**
@@ -42,15 +42,15 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 !!! danger "Wichtig"
     mailcow nutzt Docker als Grundlage. Aufgrund verschiedener technischer Unterschiede zwischen den einzelnen Systemen **werden nicht alle** Plattformen unterstützt, auf denen Docker theoretisch lauffähig ist.
 
-Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Dezember 2024*):
+Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Mai 2025*):
 
-| Betriebssystem        | Kompatibilität                                                     |
-| --------------------- | ------------------------------------------------------------------ |
-| Alpine 3.16 und älter | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel")       |
-| Debian 11, 12         | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
-| Ubuntu 20.04 - 24.04  | [✅](https://ubuntu.com/ "Vollständig Kompatibel")                  |
-| Alma Linux 8, 9       | [✅](https://almalinux.org/ "Vollständig Kompatibel")               |
-| Rocky Linux 9         | [✅](https://rockylinux.org/ "Vollständig Kompatibel")              |
+| Betriebssystem            | Kompatibilität                                                     |
+| ------------------------- | ------------------------------------------------------------------ |
+| Alpine 3.19 und älter     | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel")       |
+| Debian 11, 12             | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
+| Ubuntu 22.04 (oder neuer) | [✅](https://ubuntu.com/ "Vollständig Kompatibel")                  |
+| Alma Linux 8, 9           | [✅](https://almalinux.org/ "Vollständig Kompatibel")               |
+| Rocky Linux 9             | [✅](https://rockylinux.org/ "Vollständig Kompatibel")              |
 
 
 !!! info "Legende"
