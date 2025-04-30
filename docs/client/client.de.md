@@ -21,5 +21,4 @@ Da Sie diese Seite aufgerufen haben, nachdem Sie sich in Ihren mailcow-Server ei
 - [KDE Kontact / KMail](client-kontact.md)
 - [Microsoft Outlook](client-outlook.md)
 - [Mozilla Thunderbird](client-thunderbird.md)
-- [Windows Mail](client-windows.md)
 - [Manual configuration](client-manual.md)

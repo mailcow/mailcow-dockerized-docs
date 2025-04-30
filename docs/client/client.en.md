@@ -21,5 +21,4 @@ Since you accessed this page after logging into your mailcow server, all of the 
 - [KDE Kontact / KMail](client-kontact.md)
 - [Microsoft Outlook](client-outlook.md)
 - [Mozilla Thunderbird](client-thunderbird.md)
-- [Windows Mail](client-windows.md)
 - [Manual configuration](client-manual.md)
