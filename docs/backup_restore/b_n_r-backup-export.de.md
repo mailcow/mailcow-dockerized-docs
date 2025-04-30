@@ -8,7 +8,7 @@ Allgemeine Informationen zum Thema Sicherungen finden Sie im Kapitel [Sicherung]
 In diesem Kapitel werden die Möglichkeiten zum Export von Backups erläutert.
 
 #### Borgmatic Backup
-Borgmatic ist eine ausgezeichnete Lösung, um Backups auf Ihrem Mailcow-Setup durchzuführen. Es bietet eine sichere Verschlüsselung Ihrer Daten und ist äußerst einfach einzurichten.
+Borgmatic ist eine ausgezeichnete Lösung, um Backups auf Ihrem mailcow-Setup durchzuführen. Es bietet eine sichere Verschlüsselung Ihrer Daten und ist äußerst einfach einzurichten.
 
 Darüber hinaus ist die Funktion zum Export von Backups bereits integriert.
 
@@ -17,7 +17,10 @@ Weitere Informationen zum Backup und Export mit Borgmatic finden Sie im Kapitel 
 #### Export via Nextcloud / sFTP
 Mit dem Backup-Skript [mailcow-backup.sh](https://github.com/the1andoni/mailcow-backup.sh) können Backups auch per FTP oder Nextcloud exportiert werden.
 
-Das Skript sammelt mithilfe der Mailcow-eigenen Backup-Funktion alle erforderlichen Daten und verpackt diese in ein komprimiertes Verzeichnis.
+!!! note
+    Diese Funktion wird von der Community entwickelt. Der Link verweist auf ein externes (nicht mailcow-eigenes) GitHub-Repository.
+
+Das Skript sammelt mithilfe der mailcow-eigenen Backup-Funktion alle erforderlichen Daten und verpackt diese in ein komprimiertes Verzeichnis.
 
 Für die Einrichtung der Backups wird empfohlen, die Dokumentation des entsprechenden Repositories zu konsultieren.
 
