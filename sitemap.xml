@@ -15,6 +15,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-accidental_deletion/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/backup_restore/b_n_r-backup-export/</loc>
+        <lastmod>2025-04-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup-export/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup-export/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/backup_restore/b_n_r-backup/</loc>
         <lastmod>2025-04-30</lastmod>
         <changefreq>daily</changefreq>
@@ -853,6 +860,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-accidental_deletion/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-accidental_deletion/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-backup-export/</loc>
+        <lastmod>2025-04-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/backup_restore/b_n_r-backup-export/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/backup_restore/b_n_r-backup-export/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/backup_restore/b_n_r-backup/</loc>
