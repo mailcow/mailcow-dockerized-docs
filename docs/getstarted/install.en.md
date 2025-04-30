@@ -9,11 +9,27 @@ You need Docker (a version >= `24.0.0` is required) and Docker Compose (a versio
 Quick installation for most operation systems:
 
 ### Docker
-```
+
+!!! danger "Important"
+    Always use the latest available Docker Engine from Docker Inc. — do not use the version provided by your distribution's default repository.
+
+#### On Debian/Ubuntu systems:
+
+``` bash
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# After the installation process is finished, you may need to enable the service and make sure it is started (e.g. CentOS 7)
 systemctl enable --now docker
 ```
+
+#### On RHEL-based systems (e.g. Rocky Linux 9):
+
+``` bash
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+systemctl enable --now docker
+```
+
+!!! info "Note"
+    The convenience "get Docker" script does not reliably work on RHEL systems, so a manual setup is required there.
 
 ### docker compose
 
@@ -33,10 +49,10 @@ apt update
 apt install docker-compose-plugin
 ```
 
-On Centos 7 systems:
+On RHEL based systems:
 ```
-yum update
-yum install docker-compose-plugin
+dnf update
+dnf install docker-compose-plugin
 ```
 
 !!! danger

@@ -10,12 +10,27 @@ Erfahren Sie, wie Sie [Docker](https://docs.docker.com/install/) und [Docker Com
 Schnelle Installation für die meisten Betriebssysteme:
 
 ### Docker
-```
+
+!!! danger "Wichtig"
+    Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit den Paket Quellen ihrer Linux Distribution ausgeliefert wird.
+
+#### Auf Debian/Ubuntu-Systemen:
+
+``` bash
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
-# Nachdem der Installationsprozess abgeschlossen ist, müssen Sie eventuell den Dienst aktivieren und sicherstellen, dass er gestartet ist (z. B. CentOS 7)
 systemctl enable --now docker
 ```
-Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, die mit Ihrem Distros-Repository ausgeliefert wird.
+
+#### Auf RHEL-basierten Systemen (z. B. Rocky Linux 9):
+
+``` bash
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+systemctl enable --now docker
+```
+
+!!! info "Hinweis"
+    Das praktische get Docker Skript funktioniert für RHEL Systeme nicht zuverlässig, daher muss bei diesen eine manuelle Einbindung erfolgen.
 
 ### docker compose
 
@@ -31,15 +46,17 @@ Bitte verwenden Sie die neueste verfügbare Docker-Engine und nicht die Engine, 
     Diese Vorgehensweise mit den Paketquellen ist nur dann möglich, wenn das Docker Repository eingebunden wurde. Dies kann entweder durch die Anleitung oben (siehe [Docker](#docker)) oder durch eine manuelle Einbindung passieren.
 
 Auf Debian/Ubuntu Systemen:
-```
+
+``` bash
 apt update
 apt install docker-compose-plugin
 ```
 
-Auf Centos 7 Systemen:
-```
-yum update
-yum install docker-compose-plugin
+Auf RHEL-basierten Systemen (z. B. Rocky Linux 9):
+
+``` bash
+dnf update
+dnf install docker-compose-plugin
 ```
 
 !!! danger "Achtung"
