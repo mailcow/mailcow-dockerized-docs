@@ -694,6 +694,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/third_party/abuseipdb/third_party-abuseipdb/</loc>
+        <lastmod>2025-04-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/abuseipdb/third_party-abuseipdb/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/abuseipdb/third_party-abuseipdb/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/third_party/borgmatic/third_party-borgmatic/</loc>
         <lastmod>2025-04-30</lastmod>
         <changefreq>daily</changefreq>
@@ -1539,6 +1546,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/third_party/abuseipdb/third_party-abuseipdb/</loc>
+        <lastmod>2025-04-30</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/abuseipdb/third_party-abuseipdb/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/abuseipdb/third_party-abuseipdb/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/borgmatic/third_party-borgmatic/</loc>
