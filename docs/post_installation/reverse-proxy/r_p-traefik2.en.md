@@ -1,6 +1,12 @@
-# Configuring Mailcow with Traefik: Complete Tutorial
+!!! warning "Important"
+    First read [the overview](r_p.md).
 
-This tutorial explains how to set up Mailcow with Traefik as a reverse proxy to handle HTTPS connections, domain routing, and certificate management.
+!!! warning
+    This is an unsupported community contribution. Feel free to provide fixes.
+
+# Configuring mailcow with Traefik: Complete Tutorial
+
+This tutorial explains how to set up mailcow with Traefik as a reverse proxy to handle HTTPS connections, domain routing, and certificate management.
 
 ## Prerequisites
 
@@ -9,19 +15,19 @@ This tutorial explains how to set up Mailcow with Traefik as a reverse proxy to 
 
 ## Overview
 
-Traefik will handle all incoming web traffic and route appropriate requests to Mailcow. This setup allows Traefik to:
+Traefik will handle all incoming web traffic and route appropriate requests to mailcow. This setup allows Traefik to:
 
 - Manage SSL certificates
 - Handle autodiscover and autoconfig services
 - Handle frontend UI
 - Pass ACME challenge responses for certificate validation of the mail server
 
-## Step 1: Update Mailcow Configuration
+## Step 1: Update mailcow Configuration
 
-First, modify your `mailcow.conf` or `.env` file to disable Mailcow's built-in SSL handling:
+First, modify your `mailcow.conf` or `.env` file to disable mailcow's built-in SSL handling:
 
 ```bash
-# Disable Mailcow autodiscover SAN
+# Disable mailcow autodiscover SAN
 AUTODISCOVER_SAN=n
 ```
 
@@ -73,24 +79,24 @@ http:
 **Important notes about this configuration:**
  
 - Replace `mx.domain.com`, `mail.domain.com`, `autoconfig.domain.com`, and `autodiscover.domain.com` with your actual domain names
-- Update `10.0.0.16` with the actual IP address of your Mailcow server
+- Update `10.0.0.16` with the actual IP address of your mailcow server
 - `entryPoints: "websecure"` - replace it with your actual Traefik https entrypoint
 - `certResolver: cloudflare` - replace it with your actual certificate resolver
 
 
 ## Step 3: Restart Services
 
-Restart both Traefik and Mailcow to apply the changes:
+Restart both Traefik and mailcow to apply the changes:
 
 ```bash
-# Restart Mailcow
+# Restart mailcow
 cd /path/to/mailcow-dockerized
 docker-compose up -d
 ```
 
 ## Testing Your Configuration
 
-1. Visit `https://mail.domain.com` to check if the Mailcow web interface loads properly
+1. Visit `https://mail.domain.com` to check if the mailcow web interface loads properly
 2. Configure an email client to test autodiscover functionality
 3. Monitor Traefik logs for any routing or certificate errors
 
@@ -102,10 +108,10 @@ docker-compose up -d
 - Check the logs of the `mailcow_acme` container
 
 ### Routing Problems
-- Verify network connectivity between Traefik and Mailcow
-- Check that the Mailcow IP address is correct in Traefik configuration
+- Verify network connectivity between Traefik and mailcow
+- Check that the mailcow IP address is correct in Traefik configuration
 - Make sure all required ports are open in firewalls
 
 ### Service Access Issues
 - Verify the `Host` rules match your actual domain names
-- Check that Mailcow services are running and accessible on port 80 internally
+- Check that mailcow services are running and accessible on port 80 internally
