@@ -1,103 +1,117 @@
 !!! warning "Wichtig"
     Lesen Sie zuerst [die Übersicht](r_p.md).
 
-!!! warning "Warnung"
-    Dies ist ein nicht unterstützter Community Beitrag. Korrekturen sind immer erwünscht!
+!!! warning
+    Dies ist ein nicht unterstützter Community-Beitrag. Korrekturen sind willkommen.
 
-**Wichtig**: Diese Konfiguration deckt nur das "Reverseproxing" des Webpanels (nginx-mailcow) unter Verwendung von Traefik v2 ab. Wenn Sie auch die Mail-Dienste wie dovecot, postfix... reproxen wollen, müssen Sie die folgende Konfiguration an jeden Container anpassen und einen [EntryPoint](https://docs.traefik.io/routing/entrypoints/) in Ihrer `traefik.toml` oder `traefik.yml` (je nachdem, welche Konfiguration Sie verwenden) für jeden Port erstellen. 
+# Konfigurieren von mailcow mit Traefik: Vollständiges Tutorial
 
-In diesem Abschnitt gehen wir davon aus, dass Sie Ihren Traefik 2 `[certificatesresolvers]` in Ihrer Traefik-Konfigurationsdatei richtig konfiguriert haben und auch acme verwenden. Das folgende Beispiel verwendet Lets Encrypt, aber Sie können es gerne auf Ihren eigenen Zertifikatsresolver ändern. Eine grundlegende Traefik 2 toml-Konfigurationsdatei mit allen oben genannten Elementen, die für dieses Beispiel verwendet werden kann, finden Sie hier [traefik.toml](https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml), falls Sie eine solche Datei benötigen oder einen Hinweis, wie Sie Ihre Konfiguration anpassen können.
+Dieses Tutorial erklärt, wie man mailcow mit Traefik als Reverse-Proxy einrichtet, um HTTPS-Verbindungen, Domain-Routing und Zertifikatsmanagement zu handhaben.
 
-Zuallererst werden wir den acme-mailcow-Container deaktivieren, da wir die von traefik bereitgestellten Zertifikate verwenden werden.
-Dazu müssen wir `SKIP_LETS_ENCRYPT=y` in unserer `mailcow.conf` setzen und den folgenden Befehl ausführen, um die Änderungen zu übernehmen:
+## Voraussetzungen
 
-=== "docker compose (Plugin)"
+- Traefik v2.x installiert und lauffähig
+- Domainnamen konfiguriert, die auf Ihren Server zeigen, gemäß [diesem Leitfaden](https://docs.mailcow.email/getstarted/prerequisite-dns/)
 
-    ``` bash
-    docker compose up -d
-    ```
+## Überblick
 
-=== "docker-compose (Standalone)"
+Traefik übernimmt den gesamten eingehenden Webverkehr und leitet die entsprechenden Anfragen an mailcow weiter. Diese Konfiguration ermöglicht es Traefik:
 
-    ``` bash
-    docker-compose up -d
-    ```
+- SSL-Zertifikate zu verwalten
+- Autodiscover- und Autoconfig-Dienste bereitzustellen
+- Die Frontend-Benutzeroberfläche zu bedienen
+- ACME-Challenge-Antworten für die Zertifikatsvalidierung des Mail-Servers zu übernehmen
 
-Dann erstellen wir eine `docker-compose.override.yml` Datei, um die Hauptdatei `docker-compose.yml` zu überschreiben, die sich im mailcow-Stammverzeichnis befindet. 
+## Schritt 1: Aktualisieren der mailcow-Konfiguration
 
-```yaml
-services:
-    nginx-mailcow:
-      networks:
-        # Traefiks Netzwerk hinzufügen
-        web:
-      labels:
-        - traefik.enable=true
-        # Erstellt einen Router namens "moo" für den Container und richtet eine Regel ein, um den Container mit einer bestimmten Regel zu verknüpfen,
-        # in diesem Fall eine Host-Regel mit unserer MAILCOW_HOSTNAME-Variable.
-        - traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)
-        # Aktiviert tls über den zuvor erstellten Router.
-        - traefik.http.routers.moo.tls=true
-        # Gibt an, welche Art von Cert-Resolver wir verwenden werden, in diesem Fall le (Lets Encrypt).
-        - traefik.http.routers.moo.tls.certresolver=le
-        # Erzeugt einen Dienst namens "moo" für den Container und gibt an, welchen internen Port des Containers
-        # Traefik die eingehenden Daten weiterleiten soll.
-        - traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}
-        # Gibt an, welchen Eingangspunkt (externer Port) traefik für diesen Container abhören soll.
-        # Websecure ist Port 443, siehe die Datei traefik.toml wie oben.
-        - traefik.http.routers.moo.entrypoints=websecure
-        # Stellen Sie sicher, dass traefik das Web-Netzwerk verwendet, nicht das mailcowdockerized_mailcow-network
-        - traefik.docker.network=traefik_web
+Ändern Sie zunächst Ihre `mailcow.conf` oder `.env` Datei, um die SSL-Handhabung von mailcow zu deaktivieren:
 
-    certdumper:
-        image: ghcr.io/kereis/traefik-certs-dumper
-        command: --restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1
-        network_mode: none
-        volumes:
-          # Binden Sie das Volume, das Traefiks `acme.json' Datei enthält, ein
-          - acme:/traefik:ro
-          # SSL-Ordner von mailcow einhängen
-          - ./data/assets/ssl/:/output:rw
-          # Binden Sie den Docker Socket ein, damit traefik-certs-dumper die Container neu starten kann
-          - /var/run/docker.sock:/var/run/docker.sock:ro
-        restart: always
-        environment:
-          # Ändern Sie dies nur, wenn Sie eine andere Domain für mailcows Web-Frontend verwenden als in der Standard-Konfiguration
-          - DOMAIN=${MAILCOW_HOSTNAME}
-
-networks:
-  web:
-    external: true
-    # Name des externen Netzwerks
-    name: traefik_web
-
-volumes:
-  acme:
-    external: true
-    # Name des externen Docker Volumes, welches Traefiks `acme.json' Datei enthält
-    name: traefik_acme
+```bash
+# Deaktiviere mailcow Autodiscover SAN
+AUTODISCOVER_SAN=n
 ```
 
-Starten Sie die neuen Container mit:
+## Schritt 2: Konfigurieren der dynamischen Traefik-Konfiguration
 
-=== "docker compose (Plugin)"
+Erstellen oder aktualisieren Sie Ihre dynamische Traefik-Konfigurationsdatei mit dem folgenden Inhalt:
 
-    ``` bash
-    docker compose up -d
-    ```
+```yaml
+http:
+  routers:
+    mailcow-acme:
+      entryPoints: web
+      rule: "(Host(`mx.domain.com`) && PathPrefix(`/.well-known/acme-challenge/`))" # Der Host sollte gleich Ihrem MAILCOW_HOSTNAME sein
+      service: mailcow-acme
+      tls: false
 
-=== "docker-compose (Standalone)"
+    mailcow-frontend:
+      entryPoints: "websecure"
+      rule: "Host(`mail.domain.com`)"
+      service: mailcow-frontend
+      tls:
+        certResolver: cloudflare
 
-    ``` bash
-    docker-compose up -d
-    ```
+    mailcow-autoconfig:
+      entryPoints: "websecure"
+      rule: "Host(`autoconfig.domain.com`)" 
+      service: mailcow-frontend
+      tls:
+        certResolver: cloudflare
 
-Da Traefik 2 ein acme v2 Format verwendet, um ALLE Zertifikaten von allen Domains zu speichern, müssen wir einen Weg finden, die Zertifikate auszulagern. Zum Glück haben wir [diesen kleinen Container] (https://hub.docker.com/r/humenius/traefik-certs-dumper), der die Datei `acme.json` über ein Volume und eine Variable `DOMAIN=example. org`, und damit wird der Container die `cert.pem` und `key.pem` Dateien ausgeben, dafür lassen wir einfach den `traefik-certs-dumper` Container laufen, binden das `/traefik` Volume an den Ordner, in dem unsere `acme.json` gespeichert ist, binden das `/output` Volume an unseren mailcow `data/assets/ssl/` Ordner, und setzen die `DOMAIN=example.org` Variable auf die Domain, von der wir die Zertifikate ausgeben wollen. 
+    mailcow-autodiscover:
+      entryPoints: "websecure"
+      rule: "Host(`autodiscover.domain.com`)"
+      service: mailcow-frontend
+      tls:
+        certResolver: cloudflare
 
-Dieser Container überwacht die Datei `acme.json` auf Änderungen und generiert die Dateien `cert.pem` und `key.pem` direkt in `data/assets/ssl/`, wobei der Pfad mit dem `/output`-Pfad des Containers verbunden ist.
+  services:
+    mailcow-acme:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.16:80" # mailcow lokale IP und Webport
+    mailcow-frontend:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.16:80" # mailcow lokale IP und Webport
+```
 
-Sie können es über die Kommandozeile ausführen oder das [hier](https://hub.docker.com/r/humenius/traefik-certs-dumper) gezeigte docker-compose.yml verwenden.
+**Wichtige Hinweise zu dieser Konfiguration:**
 
-Nachdem wir die Zertifikate übertragen haben, müssen wir die Konfigurationen aus unseren Postfix- und Dovecot-Containern neu laden und die Zertifikate überprüfen. Wie das geht, sehen Sie [hier](https://docs.mailcow.email/de/post_installation/firststeps-ssl/#ein-eigenes-zertifikat-verwenden).
+- Ersetzen Sie `mx.domain.com`, `mail.domain.com`, `autoconfig.domain.com` und `autodiscover.domain.com` durch Ihre tatsächlichen Domainnamen
+- Aktualisieren Sie `10.0.0.16` mit der tatsächlichen IP-Adresse Ihres mailcow-Servers
+- `entryPoints: "websecure"` - ersetzen Sie dies durch Ihren tatsächlichen Traefik-HTTPS-Entrypoint
+- `certResolver: cloudflare` - ersetzen Sie dies durch Ihren tatsächlichen Zertifikatsresolver
 
-Und das sollte es gewesen sein 😊, Sie können überprüfen, ob der Traefik-Router einwandfrei funktioniert, indem Sie das Dashboard von Traefik / traefik logs / über https auf die eingestellte Domain zugreifen, oder / und HTTPS, SMTP und IMAP mit den Befehlen auf der zuvor verlinkten Seite überprüfen.
+
+## Schritt 3: Neustarten der Dienste
+
+Starten Sie beide Dienste neu, um die Änderungen zu übernehmen:
+
+```bash
+# Mailcow neustarten
+cd /pfad/zu/mailcow-dockerized
+docker-compose up -d
+```
+
+## Testen der Konfiguration
+
+1. Besuchen Sie `https://mail.domain.com`, um zu prüfen, ob die mailcow-Web-Oberfläche ordnungsgemäß geladen wird
+2. Konfigurieren Sie einen E-Mail-Client, um die Autodiscover-Funktionalität zu testen
+3. Überwachen Sie die Traefik-Protokolle auf eventuelle Routing- oder Zertifikatsfehler
+
+## Problembehandlung
+
+### Zertifikatsprobleme
+- Prüfen Sie die Traefik-Protokolle auf Fehlschläge bei Zertifikatsanfragen
+- Stellen Sie sicher, dass die DNS-Einträge ordnungsgemäß konfiguriert sind
+- Prüfen Sie die Protokolle des `mailcow_acme` Containers
+
+### Routing-Probleme
+- Überprüfen Sie die Netzwerkverbindung zwischen Traefik und mailcow
+- Stellen Sie sicher, dass die mailcow IP-Adresse in der Traefik-Konfiguration korrekt ist
+- Vergewissern Sie sich, dass alle erforderlichen Ports in den Firewalls geöffnet sind
+
+### Dienstzugriffsprobleme
+- Prüfen Sie, ob die `Host` Regeln mit Ihren tatsächlichen Domainnamen übereinstimmen
+- Stellen Sie sicher, dass die mailcow-Dienste intern auf Port 80 laufen und erreichbar sind
