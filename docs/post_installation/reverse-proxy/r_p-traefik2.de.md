@@ -89,7 +89,7 @@ http:
 Starten Sie beide Dienste neu, um die Änderungen zu übernehmen:
 
 ```bash
-# Mailcow neustarten
+# mailcow neustarten
 cd /pfad/zu/mailcow-dockerized
 docker-compose up -d
 ```
