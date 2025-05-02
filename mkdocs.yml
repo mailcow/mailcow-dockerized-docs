@@ -83,6 +83,7 @@ nav:
     - 'Component backup & restore':
       - 'Backup': 'backup_restore/b_n_r-backup.md'
       - 'Restore': 'backup_restore/b_n_r-restore.md'
+      - 'Export': 'backup_restore/b_n_r-backup-export.md'
     - 'Cold-standby (rolling backup)': 'backup_restore/b_n_r-coldstandby.md'
     - 'Manual backups':
       - 'Maildir': 'backup_restore/b_n_r-backup_restore-maildir.md'
@@ -202,6 +203,7 @@ nav:
     - 'Windows Mail': 'client/client-windows.md'
     - 'Manual configuration': 'client/client-manual.md'
   - 'Third party apps':
+    - 'AbuseIPDB Integration': 'third_party/abuseipdb/third_party-abuseipdb.md'
     - 'Borgmatic Backup': 'third_party/borgmatic/third_party-borgmatic.md'
     - 'CheckMK' : 'third_party/checkmk/u_e-checkmk.md'
     - 'Exchange Hybrid Setup': 'third_party/exchange_onprem/third_party-exchange_onprem.md'
@@ -244,6 +246,7 @@ plugins:
               'Component backup & restore' : 'Sicherung und Wiederherstellung von Komponenten'
               'Backup': 'Sicherung'
               'Restore': 'Wiederherstellung'
+              'Export': 'Exportieren'
               'Cold-standby (rolling backup)' : 'Cold-standby (rollende Sicherung)'
               'Manual backups' : 'Manuelle Sicherung'
               'Maildir' : 'Mail-Verzeichnis'
@@ -395,6 +398,7 @@ plugins:
         'model-sender_rcv.md': 'models/model-sender_rcv.en.md'
         'prerequisite-dns.md': 'getstarted/prerequisite-dns.en.md'
         'prerequisite-system.md': 'getstarted/prerequisite-system.en.md'
+        'third_party-abuseipdb.md': 'third_party/abuseipdb/third_party-abuseipdb.en.md'
         'third_party-borgmatic.md': 'third_party/borgmatic/third_party-borgmatic.en.md'
         'third_party-exchange_onprem.md': 'third_party/exchange_onprem/third_party-exchange_onprem.en.md'
         'third_party-gitea.md': 'third_party/gitea/third_party-gitea.en.md'
