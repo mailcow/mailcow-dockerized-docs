@@ -114,4 +114,4 @@ docker-compose up -d
 
 ### Service Access Issues
 - Verify the `Host` rules match your actual domain names
-- Check that mailcow services are running and accessible on port 80 internally
+- Check that mailcow services are running and accessible on port 80 internally 
