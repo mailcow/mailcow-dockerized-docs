@@ -4249,38 +4249,38 @@
 
   <h1>Migration mit Sync Jobs</h1>
 
-<p>Sync-Aufträge werden verwendet, um bestehende E-Mails von einem externen IMAP-Server oder innerhalb von mailcow's bestehenden Mailboxen zu kopieren oder zu verschieben.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Abhängig von der ACL Ihrer Mailbox haben Sie möglicherweise nicht die Möglichkeit, einen Sync-Job hinzuzufügen. Bitte kontaktieren Sie in diesem Fall Ihren Domain-Administrator.</p>
+<p>Sync-Jobs dienen dazu, bestehende E-Mails entweder von einem externen IMAP-Server oder zwischen bestehenden Mailboxen innerhalb von mailcow zu kopieren oder zu verschieben.</p>
+<div class="admonition warning">
+<p class="admonition-title">Hinweis</p>
+<p>Abhängig von den Zugriffsrechten (ACL) Ihrer Mailbox kann es sein, dass Sie keinen Sync-Job erstellen können. Wenden Sie sich in diesem Fall bitte an Ihren Domain-Administrator.</p>
 </div>
 <h2 id="einrichten-eines-sync-jobs">Einrichten eines Sync-Jobs<a class="headerlink" href="#einrichten-eines-sync-jobs" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Erstellen Sie unter dem Punkt "Konfiguration &gt; E-Mail-Setup" oder "Benutzereinstellungen" einen neuen Synchronisierungsauftrag.</p>
+<p>Navigieren Sie zu „E-Mail <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Konfiguration <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Synchronisationen“ (bei Anmeldung als Admin oder Domain-Admin) oder zu „Benutzereinstellungen <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Sync-Jobs“ (als normaler Mailbox-Nutzer), um einen neuen Sync-Job zu erstellen.</p>
 </li>
 <li>
-<p>Wenn Sie ein Administrator sind, wählen Sie den Benutzernamen der nachgelagerten mailcow-Mailbox im Dropdown-Menü "Benutzername".</p>
+<p>Wenn Sie als Administrator angemeldet sind, wählen Sie im Dropdown-Menü „Benutzername“ die Mailbox aus, in die die E-Mails kopiert werden sollen (Ziel-Mailbox).</p>
 </li>
 <li>
-<p>Füllen Sie die Felder "Host" und "Port" mit den entsprechenden korrekten Werten des vorgelagerten IMAP-Servers aus.</p>
+<p>Tragen Sie in den Feldern „Host“ und „Port“ die korrekten Verbindungsdaten des Quell-IMAP-Servers ein (von dem die E-Mails übertragen werden sollen).</p>
 </li>
 <li>
-<p>Geben Sie in den Feldern "Benutzername" und "Passwort" die korrekten Zugangsdaten des vorgelagerten IMAP-Servers ein.</p>
+<p>Geben Sie unter „Benutzername“ und „Passwort“ die Zugangsdaten des Quellservers ein.</p>
 </li>
 <li>
-<p>Wählen Sie die "Verschlüsselungsmethode". Wenn der vorgelagerte IMAP-Server Port 143 verwendet, ist es wahrscheinlich, dass die Verschlüsselungsmethode TLS und SSL für Port 993 ist. Sie können auch PLAIN-Authentifizierung verwenden, aber davon wird dringend abgeraten.</p>
+<p>Wählen Sie die passende Verschlüsselungsmethode. Für Port 143 ist in der Regel TLS korrekt, während Port 993 meist mit SSL verwendet wird. Die Nutzung von PLAIN-Authentifizierung ist möglich, wird aber dringend abgeraten.</p>
 </li>
 <li>
-<p>Alle anderen Felder können Sie so lassen, wie sie sind, oder sie nach Belieben ändern.</p>
+<p>Alle weiteren Felder können bei den Standardwerten belassen oder nach Bedarf angepasst werden.</p>
 </li>
 <li>
-<p>Vergewissern Sie sich, dass Sie "Aktiv" ankreuzen und klicken Sie auf "Hinzufügen".</p>
+<p>Aktivieren Sie das Kontrollkästchen „Aktiv“ und klicken Sie anschließend auf „Hinzufügen“.</p>
 </li>
 </ol>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Sobald Sie fertig sind, melden Sie sich in der Mailbox an und überprüfen Sie, ob alle E-Mails korrekt importiert wurden. Wenn alles gut geht, werden alle Ihre E-Mails in Ihrem neuen Postfach landen. Vergessen Sie nicht, den Synchronisierungsauftrag zu löschen oder zu deaktivieren, nachdem er verwendet wurde.</p>
+<div class="admonition notice">
+<p class="admonition-title">Denken Sie dran...</p>
+<p>Nach dem Einrichten sollten Sie sich in der Ziel-Mailbox anmelden und prüfen, ob alle E-Mails korrekt importiert wurden. Wenn alles erfolgreich war, befinden sich alle Nachrichten im neuen Postfach. Vergessen Sie nicht, den Sync-Job zu deaktivieren oder zu löschen, sobald er nicht mehr benötigt wird.</p>
 </div>
 
 
@@ -4302,7 +4302,7 @@
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="29. Januar 2022 23:12:25">2022-01-29 23:12:25</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="7. Mai 2025 10:33:59">2025-05-07 10:33:59</span>
   </span>
 
     
