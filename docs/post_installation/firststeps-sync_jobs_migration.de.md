@@ -1,22 +1,23 @@
-Sync-Aufträge werden verwendet, um bestehende E-Mails von einem externen IMAP-Server oder innerhalb von mailcow's bestehenden Mailboxen zu kopieren oder zu verschieben.
+Sync-Jobs dienen dazu, bestehende E-Mails entweder von einem externen IMAP-Server oder zwischen bestehenden Mailboxen innerhalb von mailcow zu kopieren oder zu verschieben.
 
-!!! info
-    Abhängig von der ACL Ihrer Mailbox haben Sie möglicherweise nicht die Möglichkeit, einen Sync-Job hinzuzufügen. Bitte kontaktieren Sie in diesem Fall Ihren Domain-Administrator.
+!!! warning "Hinweis"
+    Abhängig von den Zugriffsrechten (ACL) Ihrer Mailbox kann es sein, dass Sie keinen Sync-Job erstellen können. Wenden Sie sich in diesem Fall bitte an Ihren Domain-Administrator.
 
 ## Einrichten eines Sync-Jobs
-1. Erstellen Sie unter dem Punkt "Konfiguration > E-Mail-Setup" oder "Benutzereinstellungen" einen neuen Synchronisierungsauftrag.
 
-2. Wenn Sie ein Administrator sind, wählen Sie den Benutzernamen der nachgelagerten mailcow-Mailbox im Dropdown-Menü "Benutzername".
+1. Navigieren Sie zu „E-Mail :material-arrow-right: Konfiguration :material-arrow-right: Synchronisationen“ (bei Anmeldung als Admin oder Domain-Admin) oder zu „Benutzereinstellungen :material-arrow-right: Sync-Jobs“ (als normaler Mailbox-Nutzer), um einen neuen Sync-Job zu erstellen.
 
-3. Füllen Sie die Felder "Host" und "Port" mit den entsprechenden korrekten Werten des vorgelagerten IMAP-Servers aus.
+2. Wenn Sie als Administrator angemeldet sind, wählen Sie im Dropdown-Menü „Benutzername“ die Mailbox aus, in die die E-Mails kopiert werden sollen (Ziel-Mailbox).
 
-4. Geben Sie in den Feldern "Benutzername" und "Passwort" die korrekten Zugangsdaten des vorgelagerten IMAP-Servers ein.
+3. Tragen Sie in den Feldern „Host“ und „Port“ die korrekten Verbindungsdaten des Quell-IMAP-Servers ein (von dem die E-Mails übertragen werden sollen).
 
-5. Wählen Sie die "Verschlüsselungsmethode". Wenn der vorgelagerte IMAP-Server Port 143 verwendet, ist es wahrscheinlich, dass die Verschlüsselungsmethode TLS und SSL für Port 993 ist. Sie können auch PLAIN-Authentifizierung verwenden, aber davon wird dringend abgeraten.
+4. Geben Sie unter „Benutzername“ und „Passwort“ die Zugangsdaten des Quellservers ein.
 
-6. Alle anderen Felder können Sie so lassen, wie sie sind, oder sie nach Belieben ändern.
+5. Wählen Sie die passende Verschlüsselungsmethode. Für Port 143 ist in der Regel TLS korrekt, während Port 993 meist mit SSL verwendet wird. Die Nutzung von PLAIN-Authentifizierung ist möglich, wird aber dringend abgeraten.
 
-7. Vergewissern Sie sich, dass Sie "Aktiv" ankreuzen und klicken Sie auf "Hinzufügen".
+6. Alle weiteren Felder können bei den Standardwerten belassen oder nach Bedarf angepasst werden.
 
-!!! info
-    Sobald Sie fertig sind, melden Sie sich in der Mailbox an und überprüfen Sie, ob alle E-Mails korrekt importiert wurden. Wenn alles gut geht, werden alle Ihre E-Mails in Ihrem neuen Postfach landen. Vergessen Sie nicht, den Synchronisierungsauftrag zu löschen oder zu deaktivieren, nachdem er verwendet wurde.
+7. Aktivieren Sie das Kontrollkästchen „Aktiv“ und klicken Sie anschließend auf „Hinzufügen“.
+
+!!! notice "Denken Sie dran..."
+    Nach dem Einrichten sollten Sie sich in der Ziel-Mailbox anmelden und prüfen, ob alle E-Mails korrekt importiert wurden. Wenn alles erfolgreich war, befinden sich alle Nachrichten im neuen Postfach. Vergessen Sie nicht, den Sync-Job zu deaktivieren oder zu löschen, sobald er nicht mehr benötigt wird.

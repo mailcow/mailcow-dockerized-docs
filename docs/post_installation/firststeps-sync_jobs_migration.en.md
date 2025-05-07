@@ -1,22 +1,23 @@
-Sync jobs are used to copy or move existing emails from an external IMAP server or within mailcow's existing mailboxes.
+Sync jobs are used to copy or move existing emails either from an external IMAP server or between existing mailboxes within mailcow.
 
-!!! info
-    Depending on your mailbox's ACL you may not have the option to add a sync job. Please contact your domain administrator if so.
+!!! warning "Notice"
+    Depending on your mailbox’s access control list (ACL), you may not have permission to create a sync job. In this case, please contact your domain administrator.
 
-## Setup a Sync Job
-1. In the "Configuration > Mail Setup" or "User Settings" interface, create a new sync job.
+## Creating a Sync Job
 
-2. If you are an administrator, select the username of the downstream mailcow mailbox in the "Username" dropdown.
+1. Navigate to “E-Mail :material-arrow-right: Configuration :material-arrow-right: Synchronizations” (if logged in as an admin or domain admin) or “User Settings :material-arrow-right: Sync Jobs” (as a regular mailbox user) to create a new sync job.
 
-3. Fill in the "Host" and "Port" fields with their respective correct values from the upstream IMAP server.
+2. If you are an administrator, select the mailbox username from the “Username” dropdown menu where the emails should be copied to (target mailbox).
 
-4. In the "Username" and "Password" fields, supply the correct access credentials from the upstream IMAP server.
+3. Fill in the “Host” and “Port” fields with the correct connection details of the source IMAP server (the server from which the emails will be fetched).
 
-5. Select the "Encryption Method". If the upstream IMAP server uses port 143, it is likely that the encryption method is TLS and SSL for port 993. Nevertheless, you can use PLAIN authentication, but it is stongly discouraged.
+4. Enter the correct login credentials for the source IMAP server in the “Username” and “Password” fields.
 
-6. For all ther other fields, you can leave them as is or modify them as desired.
+5. Select the appropriate encryption method. If the source IMAP server uses port 143, TLS is likely the correct choice, while SSL is typically used with port 993. PLAIN authentication is also possible, but strongly discouraged.
 
-7. Make sure to tick "Active" and click "Add".
+6. All other fields can be left at their default values or adjusted as needed.
 
-!!! info
-    Once Completed, log into the mailbox and check if all emails are imported correctly. If all goes well, all your mails shall end up in your new mailbox. And don't forget to delete or deactivate the sync job after it is used.
+7. Make sure to check the “Active” box and click “Add” to finalize the sync job.
+
+!!! notice "Please remember..."
+    Once you’re done, log in to the target mailbox and verify that all emails were imported correctly. If everything worked as expected, all your emails will appear in the new inbox. Don’t forget to disable or delete the sync job once it’s no longer needed.
