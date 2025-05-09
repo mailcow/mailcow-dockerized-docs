@@ -1,8 +1,8 @@
 !!! warning "Important"
     First read [the overview](r_p.md).
 
-!!! warning
-    This is an unsupported community contribution. Feel free to provide fixes.
+!!! danger
+    This is an community supported contribution. Feel free to provide fixes.
 
 This example redirects all HTTP traffic to HTTPS except for mailcow's built-in ACME client.
 If you do not want to use the built-in ACME client, please modify the configuration yourself.

@@ -1,8 +1,8 @@
 !!! warning "Wichtig"
     Lesen Sie zuerst [die Übersicht](r_p.md).
 
-!!! warning "Warnung"
-    Dies ist ein nicht unterstützter Communitybeitrag. Korrekturen sind immer erwünscht!
+!!! danger "Vorsicht"
+    Dies ist ein von der Community unterstützter Beitrag. Korrekturen sind willkommen.
 
 Die Konfiguration von Caddy mit mailcow ist sehr simpel.
 

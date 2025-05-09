@@ -1,8 +1,8 @@
 !!! warning "Wichtig"
     Lesen Sie zuerst [die Übersicht](r_p.md).
 
-!!! warning "Warnung"
-    Dies ist ein nicht unterstützter Community Beitrag. Korrekturen sind immer erwünscht!
+!!! danger "Vorsicht"
+    Dies ist ein von der Community unterstützter Beitrag. Korrekturen sind willkommen.
 
 Dieses Beispiel leitet den gesamten HTTP-Verkehr zu HTTPS um, außer für den eingebauten ACME-Client von mailcow.
 Wenn Sie den eingebauten ACME-Client nicht verwenden möchten, ändern Sie bitte die Konfiguration selbst.

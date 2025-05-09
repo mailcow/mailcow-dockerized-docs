@@ -1,8 +1,8 @@
 !!! warning "Important"
     First read [the overview](r_p.md).
 
-!!! warning
-    This is an unsupported community contribution. Feel free to provide fixes.
+!!! danger
+    This is an community supported contribution. Feel free to provide fixes.
 
 The configuration of Caddy with mailcow is very simple.
 
