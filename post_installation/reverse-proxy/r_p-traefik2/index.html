@@ -104,6 +104,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#prerequisites" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1274,6 +1279,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Traefik v2 (community supported)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1285,6 +1303,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-update-mailcow-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Update mailcow Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-configure-traefik-dynamic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Configure Traefik Dynamic Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-restart-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Restart Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-your-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Your Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificate-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Certificate Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing Problems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-access-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Access Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4171,6 +4302,110 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-update-mailcow-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Update mailcow Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-configure-traefik-dynamic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Configure Traefik Dynamic Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-restart-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Restart Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-your-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Your Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificate-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Certificate Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing Problems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-access-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Access Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4194,97 +4429,119 @@
 <p class="admonition-title">Important</p>
 <p>First read <a href="../r_p/">the overview</a>.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is an unsupported community contribution. Feel free to provide fixes.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>This is an community supported contribution. Feel free to provide fixes.</p>
 </div>
-<p><strong>Important</strong>: This config only covers the "reverseproxing" of the webpannel (nginx-mailcow) using Traefik v2, if you also want to reverseproxy the mail services such as dovecot, postfix... you'll just need to adapt the following config to each container and create an <a href="https://docs.traefik.io/routing/entrypoints/">EntryPoint</a> on your <code>traefik.toml</code> or <code>traefik.yml</code> (depending which config you use) for each port. </p>
-<p>For this section we'll assume you have your Traefik 2 <code>[certificatesresolvers]</code> properly configured on your traefik configuration file, and also using acme, also, the following example uses Lets Encrypt, but feel free to change it to your own cert resolver. You can find a basic Traefik 2 toml config file with all the above implemented which can be used for this example here <a href="https://github.com/Frenzoid/TraefikBasicConfig/blob/master/traefik.toml">traefik.toml</a> if you need one, or a hint on how to adapt your config.</p>
-<p>So, first of all, we are going to disable the acme-mailcow container since we'll use the certs that traefik will provide us.
-For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow.conf</code>, and run the following command to apply the changes:</p>
+<p>This tutorial explains how to set up mailcow with Traefik as a reverse proxy to handle HTTPS connections, domain routing, and certificate management.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Traefik v2.x installed and running</li>
+<li>Domain names configured to point to your server according to <a href="../../../getstarted/prerequisite-dns/">this guide</a></li>
+</ul>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Traefik will handle all incoming web traffic and route appropriate requests to mailcow. This setup allows Traefik to:</p>
+<ul>
+<li>Manage SSL certificates</li>
+<li>Handle autodiscover and autoconfig services</li>
+<li>Handle frontend UI</li>
+<li>Pass ACME challenge responses for certificate validation of the mail server</li>
+</ul>
+<h2 id="step-1-update-mailcow-configuration">Step 1: Update mailcow Configuration<a class="headerlink" href="#step-1-update-mailcow-configuration" title="Permanent link">&para;</a></h2>
+<p>First, modify your <code>mailcow.conf</code> or <code>.env</code> file to disable mailcow's built-in SSL handling:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable mailcow autodiscover SAN</span>
+<span class="nv">AUTODISCOVER_SAN</span><span class="o">=</span>n
+</code></pre></div>
+<h2 id="step-2-configure-traefik-dynamic-configuration">Step 2: Configure Traefik Dynamic Configuration<a class="headerlink" href="#step-2-configure-traefik-dynamic-configuration" title="Permanent link">&para;</a></h2>
+<p>Create or update your Traefik dynamic configuration file with the following content:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">http</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">routers</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mailcow-acme</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">entryPoints</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web</span>
+<span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(Host(`mx.domain.com`)</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">PathPrefix(`/.well-known/acme-challenge/`))&quot;</span><span class="w"> </span><span class="c1"># &quot;Host&quot; should be equal to your `MAILCOW_HOSTNAME` </span>
+<span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow-acme</span>
+<span class="w">      </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">    </span><span class="nt">mailcow-frontend</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">entryPoints</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;websecure&quot;</span>
+<span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`mail.domain.com`)&quot;</span>
+<span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow-frontend</span>
+<span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudflare</span>
+
+<span class="w">    </span><span class="nt">mailcow-autoconfig</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">entryPoints</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;websecure&quot;</span>
+<span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`autoconfig.domain.com`)&quot;</span><span class="w"> </span>
+<span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow-frontend</span>
+<span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudflare</span>
+
+<span class="w">    </span><span class="nt">mailcow-autodiscover</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">entryPoints</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;websecure&quot;</span>
+<span class="w">      </span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Host(`autodiscover.domain.com`)&quot;</span>
+<span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mailcow-frontend</span>
+<span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">certResolver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudflare</span>
+
+<span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mailcow-acme</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://10.0.0.16:80&quot;</span><span class="w"> </span><span class="c1"># mailcow local IP and web port</span>
+<span class="w">    </span><span class="nt">mailcow-frontend</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">loadBalancer</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">servers</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://10.0.0.16:80&quot;</span><span class="w"> </span><span class="c1"># mailcow local IP and web port</span>
+</code></pre></div>
+<p><strong>Important notes about this configuration:</strong></p>
+<ul>
+<li>Replace <code>mx.domain.com</code>, <code>mail.domain.com</code>, <code>autoconfig.domain.com</code>, and <code>autodiscover.domain.com</code> with your actual domain names</li>
+<li>Update <code>10.0.0.16</code> with the actual IP address of your mailcow server</li>
+<li><code>entryPoints: "websecure"</code> - replace it with your actual Traefik https entrypoint</li>
+<li><code>certResolver: cloudflare</code> - replace it with your actual certificate resolver</li>
+</ul>
+<h2 id="step-3-restart-services">Step 3: Restart Services<a class="headerlink" href="#step-3-restart-services" title="Permanent link">&para;</a></h2>
+<p>Restart both Traefik and mailcow to apply the changes:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code><span class="c1"># Restart mailcow</span>
+<span class="nb">cd</span><span class="w"> </span>/path/to/mailcow-dockerized
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code><span class="c1"># Restart mailcow</span>
+<span class="nb">cd</span><span class="w"> </span>/path/to/mailcow-dockerized
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </div>
 </div>
 </div>
-<p>Then we'll create a <code>docker-compose.override.yml</code> file in order to override the main <code>docker-compose.yml</code> found in your mailcow root folder. </p>
-<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nginx-mailcow</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">networks</span><span class="p">:</span>
-<span class="w">        </span><span class="c1"># Add Traefik&#39;s network</span>
-<span class="w">        </span><span class="nt">web</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.enable=true</span>
-<span class="w">        </span><span class="c1"># Creates a router called &quot;moo&quot; for the container, and sets up a rule to link the container to certain rule,</span>
-<span class="w">        </span><span class="c1">#   in this case, a Host rule with our MAILCOW_HOSTNAME var.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.rule=Host(`${MAILCOW_HOSTNAME}`)</span>
-<span class="w">        </span><span class="c1"># Enables tls over the router we created before.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls=true</span>
-<span class="w">        </span><span class="c1"># Specifies which kind of cert resolver we&#39;ll use, in this case le (Lets Encrypt).</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.tls.certresolver=le</span>
-<span class="w">        </span><span class="c1"># Creates a service called &quot;moo&quot; for the container, and specifies which internal port of the container</span>
-<span class="w">        </span><span class="c1">#   should traefik route the incoming data to.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.services.moo.loadbalancer.server.port=${HTTP_PORT}</span>
-<span class="w">        </span><span class="c1"># Specifies which entrypoint (external port) should traefik listen to, for this container.</span>
-<span class="w">        </span><span class="c1">#   websecure being port 443, check the traefik.toml file liked above.</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.http.routers.moo.entrypoints=websecure</span>
-<span class="w">        </span><span class="c1"># Make sure traefik uses the web network, not the mailcowdockerized_mailcow-network</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik.docker.network=traefik_web</span>
-
-<span class="w">    </span><span class="nt">certdumper</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/kereis/traefik-certs-dumper</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--restart-containers ${COMPOSE_PROJECT_NAME}-postfix-mailcow-1,${COMPOSE_PROJECT_NAME}-nginx-mailcow-1,${COMPOSE_PROJECT_NAME}-dovecot-mailcow-1</span>
-<span class="w">        </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
-<span class="w">        </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">          </span><span class="c1"># Mount the volume which contains Traefik&#39;s `acme.json&#39; file</span>
-<span class="w">          </span><span class="c1">#   Configure the external name in the volume definition</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">acme:/traefik:ro</span>
-<span class="w">          </span><span class="c1"># Mount mailcow&#39;s SSL folder</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/assets/ssl/:/output:rw</span>
-<span class="w">          </span><span class="c1"># Mount docker socket to restart containers</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock:ro</span>
-<span class="w">        </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-<span class="w">        </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">          </span><span class="c1"># only change this, if you&#39;re using another domain for mailcow&#39;s web frontend compared to the standard config</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOMAIN=${MAILCOW_HOSTNAME}</span>
-
-<span class="nt">networks</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">web</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="c1"># Name of the external network</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik_web</span>
-
-<span class="nt">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">acme</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="c1"># Name of the external docker volume which contains Traefik&#39;s `acme.json&#39; file</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik_acme</span>
-</code></pre></div>
-<p>Start the new containers with:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>Now, there's only one thing left to do, which is setup the certs so that the mail services can use them as well, since Traefik 2 uses an acme v2 format to save ALL the license from all the domains we have, we'll need to find a way to dump the certs, lucky we have <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">this tiny container</a> which grabs the <code>acme.json</code> file through a volume, and a variable <code>DOMAIN=example.org</code>, and with these, the container will output the <code>cert.pem</code> and <code>key.pem</code> files, for this we'll simply run the <code>traefik-certs-dumper</code> container binding the <code>/traefik</code> volume to the folder where our <code>acme.json</code> is saved, bind the <code>/output</code> volume to our mailcow <code>data/assets/ssl/</code> folder, and set up the <code>DOMAIN=example.org</code> variable to the domain we want the certs dumped from. </p>
-<p>This container will watch over the <code>acme.json</code> file for any changes, and regenerate the <code>cert.pem</code> and <code>key.pem</code> files directly into <code>data/assets/ssl/</code> being the path binded to the container's <code>/output</code> path.</p>
-<p>You can use the command line to run it, or use the docker-compose.yml shown <a href="https://hub.docker.com/r/humenius/traefik-certs-dumper">here</a>.</p>
-<p>After we have the certs dumped, we'll have to reload the configs from our postfix and dovecot containers, and check the certs, you can see how <a href="https://docs.mailcow.email/firststeps-ssl/#how-to-use-your-own-certificate">here</a>.</p>
-<p>Aaand that should be it 😊, you can check if the Traefik router works fine through Traefik's dashboard / traefik logs / accessing the setted domain through https, or / and check HTTPS, SMTP and IMAP through the commands shown on the page linked before.</p>
+<h2 id="testing-your-configuration">Testing Your Configuration<a class="headerlink" href="#testing-your-configuration" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Visit <code>https://mail.domain.com</code> to check if the mailcow web interface loads properly</li>
+<li>Configure an email client to test autodiscover functionality</li>
+<li>Monitor Traefik logs for any routing or certificate errors</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="certificate-issues">Certificate Issues<a class="headerlink" href="#certificate-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Check Traefik logs for certificate request failures</li>
+<li>Ensure DNS records are properly configured</li>
+<li>Check the logs of the <code>acme-mailcow</code> container</li>
+</ul>
+<h3 id="routing-problems">Routing Problems<a class="headerlink" href="#routing-problems" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify network connectivity between Traefik and mailcow</li>
+<li>Check that the mailcow IP address is correct in Traefik configuration</li>
+<li>Make sure all required ports are open in firewalls</li>
+</ul>
+<h3 id="service-access-issues">Service Access Issues<a class="headerlink" href="#service-access-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify the <code>Host</code> rules match your actual domain names</li>
+<li>Check that mailcow services are running and accessible on port 80 internally </li>
+</ul>
 
 
 
@@ -4305,7 +4562,7 @@ For this we'll have to set <code>SKIP_LETS_ENCRYPT=y</code> on our <code>mailcow
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="October 15, 2024 11:28:39">2024-10-15 11:28:39</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 9, 2025 11:24:52">2025-05-09 11:24:52</span>
   </span>
 
     
