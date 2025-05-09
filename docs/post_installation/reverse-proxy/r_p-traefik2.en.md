@@ -1,17 +1,15 @@
 !!! warning "Important"
     First read [the overview](r_p.md).
 
-!!! warning
-    This is an unsupported community contribution. Feel free to provide fixes.
-
-# Configuring mailcow with Traefik: Complete Tutorial
+!!! danger
+    This is an community supported contribution. Feel free to provide fixes.
 
 This tutorial explains how to set up mailcow with Traefik as a reverse proxy to handle HTTPS connections, domain routing, and certificate management.
 
 ## Prerequisites
 
 - Traefik v2.x installed and running
-- Domain names configured to point to your server according to [this guide](https://docs.mailcow.email/getstarted/prerequisite-dns/)
+- Domain names configured to point to your server according to [this guide](../../getstarted/prerequisite-dns.md)
 
 ## Overview
 
@@ -88,11 +86,21 @@ http:
 
 Restart both Traefik and mailcow to apply the changes:
 
-```bash
-# Restart mailcow
-cd /path/to/mailcow-dockerized
-docker-compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    # Restart mailcow
+    cd /path/to/mailcow-dockerized
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    # Restart mailcow
+    cd /path/to/mailcow-dockerized
+    docker-compose up -d
+    ```
 
 ## Testing Your Configuration
 
@@ -105,7 +113,7 @@ docker-compose up -d
 ### Certificate Issues
 - Check Traefik logs for certificate request failures
 - Ensure DNS records are properly configured
-- Check the logs of the `mailcow_acme` container
+- Check the logs of the `acme-mailcow` container
 
 ### Routing Problems
 - Verify network connectivity between Traefik and mailcow

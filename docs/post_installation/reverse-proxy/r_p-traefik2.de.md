@@ -1,10 +1,8 @@
 !!! warning "Wichtig"
     Lesen Sie zuerst [die Übersicht](r_p.md).
 
-!!! warning
-    Dies ist ein nicht unterstützter Community-Beitrag. Korrekturen sind willkommen.
-
-# Konfigurieren von mailcow mit Traefik: Vollständiges Tutorial
+!!! danger "Vorsicht"
+    Dies ist ein von der Community unterstützter Beitrag. Korrekturen sind willkommen.
 
 Dieses Tutorial erklärt, wie man mailcow mit Traefik als Reverse-Proxy einrichtet, um HTTPS-Verbindungen, Domain-Routing und Zertifikatsmanagement zu handhaben.
 
@@ -88,11 +86,21 @@ http:
 
 Starten Sie beide Dienste neu, um die Änderungen zu übernehmen:
 
-```bash
-# mailcow neustarten
-cd /pfad/zu/mailcow-dockerized
-docker-compose up -d
-```
+=== "docker compose (Plugin)"
+
+    ``` bash
+    # mailcow neustarten
+    cd /path/to/mailcow-dockerized
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    # mailcow neustarten
+    cd /path/to/mailcow-dockerized
+    docker-compose up -d
+    ```
 
 ## Testen der Konfiguration
 
@@ -105,7 +113,7 @@ docker-compose up -d
 ### Zertifikatsprobleme
 - Prüfen Sie die Traefik-Protokolle auf Fehlschläge bei Zertifikatsanfragen
 - Stellen Sie sicher, dass die DNS-Einträge ordnungsgemäß konfiguriert sind
-- Prüfen Sie die Protokolle des `mailcow_acme` Containers
+- Prüfen Sie die Protokolle des `acme-mailcow` Containers
 
 ### Routing-Probleme
 - Überprüfen Sie die Netzwerkverbindung zwischen Traefik und mailcow
