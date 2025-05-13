@@ -75,7 +75,7 @@ source_directories:
     - /mnt/source/rspamd
     - /mnt/source/postfix
 repositories:
-    - path: ssh://user@rsync.net:22/./mailcow
+    - path: ssh://uXXXXX@uXXXXX.your-storagebox.de:23/./mailcow
       label: rsync
 exclude_patterns:
     - '/mnt/source/postfix/public/'
@@ -109,8 +109,7 @@ EOF
     by default. Edit your `config.yaml` and add `--skip-ssl` to `options`, `restore_options`, and `list_options` as shown above. Also make
     sure to change `mysql_databases` to `mariadb_databases` to avoid problems with future borgmatic and MariaDB releases.
 
-This file is a minimal example for using borgmatic with an account `user` on the cloud storage provider `rsync.net` for
-a repository called `mailcow` (see `repositories` setting). This must be changed accordingly.
+This file is a minimal example for using borgmatic with an account `uXXXXX` on a Storage Box from the cloud storage provider `Hetzner`. The repository is called `mailcow` (see `repositories` setting). This must be changed accordingly.
 
 It will backup both the maildir and MySQL database, which is
 all you should need to restore your mailcow setup after an incident.
@@ -345,13 +344,13 @@ To fetch the keyfile run:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    docker compose exec -e BORG_RSH="ssh -p 23" borgmatic-mailcow borg key export --paper uXXXXX@uXXXXX.your-storagebox.de:mailcow
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    docker-compose exec -e BORG_RSH="ssh -p 23" borgmatic-mailcow borg key export --paper uXXXXX@uXXXXX.your-storagebox.de:mailcow
     ```
 
-Where `user@rsync.net:mailcow` is the URI to your repository.
+Where `uXXXXX@uXXXXX.your-storagebox.de:mailcow` is the URI to your repository.

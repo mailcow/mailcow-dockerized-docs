@@ -74,7 +74,7 @@ source_directories:
     - /mnt/source/rspamd
     - /mnt/source/postfix
 repositories:
-    - path: ssh://user@rsync.net:22/./mailcow
+    - path: ssh://uXXXXX@uXXXXX.your-storagebox.de:23/./mailcow
       label: rsync
 exclude_patterns:
     - '/mnt/source/postfix/public/'
@@ -108,8 +108,7 @@ EOF
     herzustellen. Bearbeiten Sie die `config.yaml` und fügen Sie `--skip-ssl` zu `options`, `restore_options` und `list_options` wie oben gezeigt hinzu.
     Ändern Sie außerdem `mysql_databases` in `mariadb_databases`, um Probleme mit zukünftigen Versionen von borgmatic und MariaDB zu vermeiden.
 
-Diese Datei ist ein minimales Beispiel für die Verwendung von borgmatic mit einem Konto `user` beim Cloud-Speicheranbieter `rsync.net` für
-ein Repository namens `mailcow` (siehe Einstellung `repositories`). Dies muss entsprechend angepasst werden.
+Diese Datei ist ein minimales Beispiel für die Verwendung von borgmatic mit einem Konto `uXXXXX` auf einer Storage Box beim Cloud-Speicheranbieter `Hetzner`. Als Repository wird `mailcow` verwendet (siehe Einstellung `repositories`). Dies muss entsprechend angepasst werden.
 
 Es wird sowohl das maildir als auch die MySQL-Datenbank gesichert, was alles ist, was Sie brauchen, um Ihre mailcow nach einem Vorfall wiederherzustellen.
 
@@ -339,13 +338,13 @@ Um das `keyfile` zu holen, führen Sie aus:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    docker compose exec -e BORG_RSH="ssh -p 23" borgmatic-mailcow borg key export --paper uXXXXX@uXXXXX.your-storagebox.de:mailcow
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec borgmatic-mailcow borg key export --paper user@rsync.net:mailcow
+    docker-compose exec -e BORG_RSH="ssh -p 23" borgmatic-mailcow borg key export --paper uXXXXX@uXXXXX.your-storagebox.de:mailcow
     ```
 
-Wobei `user@rsync.net:mailcow` die URI zu Ihrem Repository ist.
+Wobei `uXXXXX@uXXXXX.your-storagebox.de:mailcow` die URI zu Ihrem Repository ist.
