@@ -4656,7 +4656,7 @@ the <code>ro</code> flag prior to restoring the data. This is described in the s
 <span class="s">    - /mnt/source/rspamd</span>
 <span class="s">    - /mnt/source/postfix</span>
 <span class="s">repositories:</span>
-<span class="s">    - path: ssh://user@rsync.net:22/./mailcow</span>
+<span class="s">    - path: ssh://uXXXXX@uXXXXX.your-storagebox.de:23/./mailcow</span>
 <span class="s">      label: rsync</span>
 <span class="s">exclude_patterns:</span>
 <span class="s">    - &#39;/mnt/source/postfix/public/&#39;</span>
@@ -4691,8 +4691,7 @@ above to avoid problems with future borgmatic releases.</p>
 by default. Edit your <code>config.yaml</code> and add <code>--skip-ssl</code> to <code>options</code>, <code>restore_options</code>, and <code>list_options</code> as shown above. Also make
 sure to change <code>mysql_databases</code> to <code>mariadb_databases</code> to avoid problems with future borgmatic and MariaDB releases.</p>
 </div>
-<p>This file is a minimal example for using borgmatic with an account <code>user</code> on the cloud storage provider <code>rsync.net</code> for
-a repository called <code>mailcow</code> (see <code>repositories</code> setting). This must be changed accordingly.</p>
+<p>This file is a minimal example for using borgmatic with an account <code>uXXXXX</code> on a Storage Box from the cloud storage provider <code>Hetzner</code>. The repository is called <code>mailcow</code> (see <code>repositories</code> setting). This must be changed accordingly.</p>
 <p>It will backup both the maildir and MySQL database, which is
 all you should need to restore your mailcow setup after an incident.</p>
 <p>The retention settings will keep one archive for
@@ -4887,16 +4886,16 @@ repository, so a manual backup isn't as essential.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">docker compose (Plugin)</label><label for="__tabbed_10_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>user@rsync.net:mailcow
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">BORG_RSH</span><span class="o">=</span><span class="s2">&quot;ssh -p 23&quot;</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>uXXXXX@uXXXXX.your-storagebox.de:mailcow
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>user@rsync.net:mailcow
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">BORG_RSH</span><span class="o">=</span><span class="s2">&quot;ssh -p 23&quot;</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>uXXXXX@uXXXXX.your-storagebox.de:mailcow
 </code></pre></div>
 </div>
 </div>
 </div>
-<p>Where <code>user@rsync.net:mailcow</code> is the URI to your repository.</p>
+<p>Where <code>uXXXXX@uXXXXX.your-storagebox.de:mailcow</code> is the URI to your repository.</p>
 
 
 
@@ -4917,7 +4916,7 @@ repository, so a manual backup isn't as essential.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="March 7, 2025 21:33:52">2025-03-07 21:33:52</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 13, 2025 09:12:15">2025-05-13 09:12:15</span>
   </span>
 
     
