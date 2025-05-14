@@ -1,3 +1,8 @@
+!!! warning
+    There have been several independent reports of unintended configuration changes causing emails to no longer be sent or received on Apple devices. The root cause appears to be the device automatically enabling the "Automatically manage connection settings" option. This setting incorrectly changes the SMTP port from 587 to 25 and disables password authentication.
+
+    If you suddenly can't send or receive emails on your Apple device, please check these settings first.
+
 ## Method 1: Configuration Profile
 
 Email, contacts and calendars can be configured automatically on Apple devices by installing a configuration profile. To download such a profile you must login to the mailcow UI with the desired email account first.

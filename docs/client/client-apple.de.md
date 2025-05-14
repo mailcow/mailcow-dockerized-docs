@@ -1,3 +1,8 @@
+!!! warning "Achtung"
+    Es gibt mehrere unabhängige Berichte über unerwünschte Konfigurationsänderungen, die dazu führen, dass E-Mails auf Apple-Geräten nicht mehr empfangen oder gesendet werden können. Ursache scheint eine automatische Aktivierung der Option „Verbindungseinstellungen automatisch verwalten“ durch das Gerät zu sein. Diese Änderung stellt den SMTP-Port fälschlicherweise von 587 auf 25 um und deaktiviert die Passwort-Authentifizierung.
+
+    Falls Sie also plötzlich keine E-Mails mehr mit Ihrem Apple-Gerät empfangen oder versenden können, überprüfen Sie bitte zunächst diese Einstellungen.
+
 ## Methode 1: Konfigurationsprofil
 
 E-Mail, Kontakte und Kalender können auf Apple-Geräten automatisch konfiguriert werden, indem ein Konfigurationsprofil installiert wird. Um ein solches Profil herunterzuladen, müssen Sie sich mit dem gewünschten E-Mail-Konto in der mailcow UI anmelden.
