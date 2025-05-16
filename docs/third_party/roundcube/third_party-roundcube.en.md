@@ -703,6 +703,8 @@ Finally, restart mailcow
 
 ## Upgrading Roundcube
 
+!!! note If you are running Roundcube in a seperate container (Standalone       Installation), you can ignore most of this. The Roundcube container should update automatically-
+
 Upgrading Roundcube is rather simple, go to the [GitHub releases](https://github.com/roundcube/roundcubemail/releases)
 page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below
 commands and change the URL and Roundcube folder name if needed.
