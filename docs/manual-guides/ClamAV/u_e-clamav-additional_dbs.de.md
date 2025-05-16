@@ -20,11 +20,20 @@ Die Standard ClamAV Datenbanken haben keine hohe Trefferquote, können aber durc
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.ign2
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/javascript.ndb
-DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/spam_marketing.ndb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfohtml.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoascii.hdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoandroid.hdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoold.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo0hour.hdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.mdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.yara
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.pdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.wdb
 ```
+
+!!! danger
+    Die SecuriteInfo-Datenbank spam_marketing.ndb weist bekanntermaßen erhebliche falsch-positive Regeln auf. Sie gehen damit Ihr eigenes Risiko ein!
 
 8. Bei den kostenlosen SecuriteInfo Datenbanken ist die Download-Geschwindigkeit auf 300 kB/s begrenzt. Ändern Sie in `data/conf/clamav/freshclam.conf` den Standardwert `ReceiveTimeout 20` auf `ReceiveTimeout 90` (Zeitangabe in Sekunden), da ansonsten einige der Datenbank-Downloads aufgrund ihrer Größe abbrechen können.
 
