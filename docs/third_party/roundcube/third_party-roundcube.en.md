@@ -223,7 +223,6 @@
   * Roundcube stores its html inside of `var/www/html`, which is mounted inside of `./data/rc/html`
   * Configuration files are mounted inside of `./data/rc/config`
 
-
   `docker-compose.yml`
   ```yml
     roundcube:
@@ -307,6 +306,20 @@
         ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
         ofelia.job-exec.roundcube_cleandb.user: "www-data"
         ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /var/www/html/bin/cleandb.sh ] && /var/www/htm/bin/cleandb.sh\""
+  ```
+
+  ## Plugins
+
+  To add Plugins you have to specify them inside of the environment variables
+  `ROUNDCUBEMAIL_PLUGINS` AND
+  `ROUNDCUBEMAIL_COMPOSER_PLUGINS`, this will actually download not installed plugins
+
+  ```yml
+  services:
+    roundcube:
+      volumes:
+        ROUNDCUBEMAIL_PLUGINS: dovecot_client_ip, archive, managesieve, acl,markasjunk, zipdownload
+        ROUNDCUBEMAIL_COMPOSER_PLUGINS: "foorschtbar/dovecot_client_ip:~2"
   ```
 
   ## Optional: Reverse Proxy
