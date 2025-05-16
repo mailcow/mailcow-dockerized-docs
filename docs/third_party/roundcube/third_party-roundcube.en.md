@@ -291,6 +291,24 @@
   Initialize the database and leave the installer. It is not necessary to update the configuration with
   the downloaded one, unless you made some settings in the installer you would like to take over.
 
+  ### Ofelia job for roundcube housekeeping
+
+  Roundcube needs to clean some stale information from the database every once in a while,
+  for which we will create an ofelia job that runs the roundcube `cleandb.sh` script.
+
+  To do this, add the following to `docker-compose.override.yml` (if you already have some
+  adaptations for the php-fpm container, add the labels to the existing section):
+
+  ```yml
+  services:
+    roundcube:
+      labels:
+        ofelia.enabled: "true"
+        ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
+        ofelia.job-exec.roundcube_cleandb.user: "www-data"
+        ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /var/www/html/bin/cleandb.sh ] && /var/www/htm/bin/cleandb.sh\""
+  ```
+
   ## Optional: Reverse Proxy
 
   To put Roundcube behind a Reverse Proxy like traefik you must add this to your `docker-compose.yml`file
