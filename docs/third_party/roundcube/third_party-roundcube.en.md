@@ -575,6 +575,14 @@ $config['oauth_identity_fields'] = ['email'];
 $config['oauth_login_redirect'] = false;
 ```
 
+To reference the newly created config add
+
+```php
+include(__DIR__ . "/config.oauth.inc.php");
+```
+
+At the bottom of `/config.inc.php`.
+
 You will now be able to see a `SSO` button on your Roundcube login page.
 
 To setup Dovecot to accept `XOAUTH` as authentication method, create a file under `./data/conf/dovecot/extra.conf`.
