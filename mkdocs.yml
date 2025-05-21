@@ -200,7 +200,6 @@ nav:
     - 'KDE Kontact': 'client/client-kontact.md'
     - 'Microsoft Outlook': 'client/client-outlook.md'
     - 'Mozilla Thunderbird': 'client/client-thunderbird.md'
-    - 'Windows Mail': 'client/client-windows.md'
     - 'Manual configuration': 'client/client-manual.md'
   - 'Third party apps':
     - 'AbuseIPDB Integration': 'third_party/abuseipdb/third_party-abuseipdb.md'
@@ -368,7 +367,6 @@ plugins:
         'client-manual.md': 'client/client-manual.en.md'
         'client-outlook.md': 'client/client-outlook.en.md'
         'client-thunderbird.md': 'client/client-thunderbird.en.md'
-        'client-windows.md': 'client/client-windows.en.md'
         'debug-admin_login_sogo.md': 'troubleshooting/debug-admin_login_sogo.en.md'
         'debug-attach_service.md': 'troubleshooting/debug-attach_service.en.md'
         'debug-common_problems.md': 'troubleshooting/debug-common_problems.en.md'
