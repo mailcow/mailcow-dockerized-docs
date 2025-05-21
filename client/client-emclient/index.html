@@ -104,6 +104,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#what-is-em-client" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3714,6 +3719,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    eM Client
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3725,6 +3743,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-em-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is eM Client?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-guide-for-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Guide for Desktop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-em-client-mobile-app-androidios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the eM Client Mobile App (Android/iOS)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3790,29 +3852,6 @@
   
   <span class="md-ellipsis">
     Mozilla Thunderbird
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../client-windows/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Windows Mail
     
   </span>
   
@@ -4169,6 +4208,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-em-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is eM Client?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-guide-for-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Guide for Desktop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-em-client-mobile-app-androidios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the eM Client Mobile App (Android/iOS)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4188,15 +4262,56 @@
 
   <h1>eM Client</h1>
 
+<div class="admonition success">
+<p class="admonition-title">Recommended for mailcow</p>
+<p>We recommend this client for the usage in combination with our mailcow software to ensure a hasslefree and comfortable E-mailing routine.</p>
+</div>
+<h2 id="what-is-em-client">What is eM Client?<a class="headerlink" href="#what-is-em-client" title="Permanent link">&para;</a></h2>
+<p><strong>eM Client</strong> is a versatile email application for Windows, macOS, Android and Apple iOS known for its user-friendly interface and wide range of features. In addition to sending and receiving emails, eM Client also supports calendars, contacts, tasks, and chat. It is suitable for both private users and businesses looking for an alternative to Outlook or Thunderbird. With built-in support for IMAP, SMTP, and CardDAV/CalDAV, it integrates easily with most email servers.</p>
+<p>One of the standout features is its <strong>plug-and-play compatibility<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> with mailcow and SOGo</strong>: eM Client automatically detects the appropriate calendar and contact services, allowing seamless integration with just a single click — no need for ActiveSync. Calendar synchronization works effortlessly without any additional configuration.</p>
+<h2 id="setup-guide-for-desktop">Setup Guide for Desktop<a class="headerlink" href="#setup-guide-for-desktop" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Launch eM Client.</li>
-<li>If this is the first time you launched eM Client, it asks you to set up your account. Proceed to step 4.</li>
-<li>Go to <em>Menu</em> at the top, select <em>Tools</em> and <em>Accounts</em>.</li>
-<li>Enter your email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and click <em>Start Now</em>.</li>
-<li>Enter your password and click <em>Continue</em>.</li>
-<li>Enter your name<span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span> and click <em>Next</em>.</li>
+<li>If you're starting eM Client for the first time, you'll be prompted to set up your account. In this case, skip ahead to step 4.</li>
+<li>Click on <code>Menu</code>, then select <code>Tools</code> → <code>Accounts</code>.</li>
+<li>Enter your email address <span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and click <em>Start Now</em>.</li>
+<li>Enter your password and click <em>Next</em>.</li>
+<li>Enter your name <span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span> and click <em>Next</em>.</li>
 <li>Click <em>Finish</em>.</li>
 </ol>
+<h2 id="using-the-em-client-mobile-app-androidios">Using the eM Client Mobile App (Android/iOS)<a class="headerlink" href="#using-the-em-client-mobile-app-androidios" title="Permanent link">&para;</a></h2>
+<p>The eM Client app is also available for <strong>Android</strong> and <strong>iOS</strong>, offering a convenient way to access your emails, calendars, and contacts on the go.</p>
+<ol>
+<li>Download the <strong>eM Client</strong> app from the <strong>Google Play Store</strong> or <strong>Apple App Store</strong>.</li>
+<li>Open the app and choose <code>Add Account</code>.</li>
+<li>Enter your email address <span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and password.</li>
+<li>The app will automatically detect the correct settings for mailcow/SOGo.</li>
+<li>Confirm the setup — your emails, calendars, and contacts will be synced automatically.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>Calendar and contact synchronization also works on mobile via CardDAV and CalDAV — <strong>ActiveSync is not required</strong>.</p>
+</div>
+<details class="example">
+<summary>Fast mobile setup via QR code export</summary>
+<p>If you're already using the <strong>desktop version</strong> of eM Client, you can easily transfer your configuration to your smartphone:</p>
+<p><strong>eM Client allows you to export your desktop profile via QR code.</strong></p>
+<ol>
+<li>Open eM Client on your desktop.</li>
+<li>Navigate to <code>Menu</code> → <code>Accounts</code>.</li>
+<li>Click the QR code icon (<em>QR Export</em>) next to the desired account.</li>
+<li>Scan the displayed code using the mobile app.</li>
+</ol>
+<p>All account settings — including calendars and contacts — will be imported automatically, <strong>without the need to manually enter server details</strong>.</p>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>mailcow is not affiliated with eM Client.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -4217,7 +4332,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="February 2, 2022 16:31:51">2022-02-02 16:31:51</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 21, 2025 15:05:31">2025-05-21 15:05:31</span>
   </span>
 
     

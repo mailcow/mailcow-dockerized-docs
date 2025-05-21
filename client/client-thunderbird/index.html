@@ -14,7 +14,7 @@
         <link rel="prev" href="../client-outlook/">
       
       
-        <link rel="next" href="../client-windows/">
+        <link rel="next" href="../client-manual/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -103,6 +103,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#what-is-thunderbird" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -3783,6 +3788,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Mozilla Thunderbird
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3795,29 +3813,50 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../client-windows/" class="md-nav__link">
         
-  
-  
-  <span class="md-ellipsis">
-    Windows Mail
-    
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-thunderbird" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Thunderbird?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-instructions-on-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Instructions on Desktop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-on-android-thunderbird-mobile-k-9-mail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup on Android (Thunderbird Mobile / K-9 Mail)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4169,6 +4208,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-thunderbird" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Thunderbird?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-instructions-on-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Instructions on Desktop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-on-android-thunderbird-mobile-k-9-mail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup on Android (Thunderbird Mobile / K-9 Mail)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4188,35 +4262,60 @@
 
   <h1>Mozilla Thunderbird</h1>
 
+<div class="admonition success">
+<p class="admonition-title">Recommended for mailcow</p>
+<p>We recommend using this client in combination with our mailcow software for smooth operation and hassle-free emailing.</p>
+</div>
+<h2 id="what-is-thunderbird">What is Thunderbird?<a class="headerlink" href="#what-is-thunderbird" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.thunderbird.net">Thunderbird</a> is a free and open-source email client developed by the Mozilla Foundation. It supports multiple email accounts (IMAP, POP3), contacts, calendars, and add-ons to extend its functionality. Thunderbird is known for its high compatibility, user-friendly interface, and extensive customization options, making it particularly well-suited for use with mailcow.</p>
+<h2 id="setup-instructions-on-desktop">Setup Instructions on Desktop<a class="headerlink" href="#setup-instructions-on-desktop" title="Permanent link">&para;</a></h2>
+<div class="admonition notice">
+<p class="admonition-title">Note</p>
+<p>Please ensure that you have configured the <a href="../../getstarted/prerequisite-dns/#the-advanced-dns-configuration">advanced DNS settings</a> to enable smooth automatic detection of your mail settings.</p>
+</div>
 <ol>
-<li>
-  Launch Thunderbird.
+<li>Open Thunderbird.</li>
+<li>If this is your first time opening Thunderbird, you will be prompted to create a new email address. Click <strong>Skip this and use my existing email address</strong> and continue with step 4.</li>
+<li>Click on the <strong>File</strong> menu and select <strong>New → Existing Mail Account...</strong>.</li>
+<li>Enter your name<span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span>, your email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span>, and your password. Make sure <strong>Remember password</strong> is checked and click <strong>Continue</strong>.</li>
+<li>Once the configuration is detected automatically, ensure <strong>IMAP</strong> is selected and click <strong>Done</strong>.</li>
+<li>To use your contacts from the server, click the arrow next to <strong>Address Books</strong> and then click <strong>Connect</strong> for each address book you want to use.</li>
+<li>To use your calendars from the server, click the arrow next to <strong>Calendars</strong> and then click <strong>Connect</strong> for each calendar you want to use.</li>
+<li><em>(Optional)</em> If you want to synchronize all subfolders:<ul>
+<li>Open the <strong>Account Settings</strong> menu and select <strong>Server Settings</strong>.</li>
+<li>In the <strong>Server Settings</strong> tab, click the <strong>Advanced</strong> button.</li>
+<li>In the <strong>Advanced Account Settings</strong> window, uncheck <strong>Show only subscribed folders</strong>.</li>
+<li>Click <strong>OK</strong> to save the changes.</li>
+</ul>
 </li>
-<li>
-  If this is the first time you launched Thunderbird, it asks you whether you would like a new email address. Click <i>Skip this and use my existing email</i> and proceed to step 4.
-</li>
-<li>
-  Go to the <i>File</i> menu and select <i>New</i>, <i>Existing Mail Account...</i>.
-</li>
-<li>
-  Enter your name<span class="client_variables_available"> (<code><span class="client_var_name"></span></code>)</span>, email address<span class="client_variables_available"> (<code><span class="client_var_email"></span></code>)</span> and your password. Make sure the <i>Remember password</i> checkbox is selected and click <i>Continue</i>.
-</li>
-<li>
-  Once the configuration has been automatically detected, make sure <i>IMAP</i> is selected and click <i>Done</i>.
-</li>
-<li>
-  To use your contacts from the server, click on the arrow next to "Address Books" and click the <i>Connect</i> button on each address book you would like to use.
-</li>
-<li>
-  To use your calendars from the server, click on the arrow next to "Calendars" and click the <i>Connect</i> button on each calendar you would like to use.
-</li>
-<li>
-  (Optional) If you want Thunderbird to sync all subfolders, go to the <i>Account Settings</i> menu and select <i>Server Settings</i>. In the <i>Server Settings</i> tab, click on the <i>Advanced</i> button. In the <i>Advanced Account Settings</i> window, uncheck the "Show only subscribed folders" checkbox. Click <i>OK</i> to save the changes.
-</li>
-<li>
-  Click <i>Finish</i> to close the Account Setup window.
-</li>
+<li>Click <strong>Finish</strong> to close the account setup window.</li>
 </ol>
+<hr />
+<h2 id="setup-on-android-thunderbird-mobile-k-9-mail">Setup on Android (Thunderbird Mobile / K-9 Mail)<a class="headerlink" href="#setup-on-android-thunderbird-mobile-k-9-mail" title="Permanent link">&para;</a></h2>
+<p>As of version 115, Thunderbird for Android is based on the well-established app <a href="https://k9mail.app/">K-9 Mail</a>. The setup is similar:</p>
+<ol>
+<li>Install <strong>K-9 Mail</strong> or <strong>Thunderbird for Android</strong> from the <a href="https://play.google.com/store">Google Play Store</a> or <a href="https://f-droid.org/">F-Droid</a>.</li>
+<li>Open the app.</li>
+<li>Tap <strong>Add Account</strong> or the "+" icon on the start screen.</li>
+<li>Enter your email address and password, then tap <strong>Manual Setup</strong>.</li>
+<li>Choose <strong>IMAP</strong> as the account type.</li>
+<li>Enter the following information:<ul>
+<li><strong>IMAP Server:</strong> your <code>MAILCOW_HOSTNAME</code> <span class="client_variables_available"> <code><span class="client_var_host"></span></code></span></li>
+<li><strong>Security:</strong> STARTTLS or SSL/TLS</li>
+<li><strong>Port:</strong> 993 (SSL) or 143 (STARTTLS)</li>
+<li><strong>Username:</strong> your email address <span class="client_variables_available"> <code><span class="client_var_email"></span></code></span></li>
+</ul>
+</li>
+<li>For the SMTP server:<ul>
+<li><strong>SMTP Server:</strong> your <code>MAILCOW_HOSTNAME</code> <span class="client_variables_available"> <code><span class="client_var_host"></span></code></span></li>
+<li><strong>Security:</strong> STARTTLS or SSL/TLS</li>
+<li><strong>Port:</strong> 465 (SSL) or 587 (STARTTLS)</li>
+<li><strong>Username:</strong> your email address <span class="client_variables_available"> <code><span class="client_var_email"></span></code></span></li>
+</ul>
+</li>
+<li>Tap <strong>Next</strong>, optionally set a display name for the account, and complete the setup.</li>
+</ol>
+<p>K-9 Mail does not support native CardDAV or CalDAV synchronization. For contacts and calendars, we recommend using the additional apps <strong>DAVx⁵</strong> or <strong>ICSx⁵</strong>.</p>
 
 
 
@@ -4237,7 +4336,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="April 14, 2023 10:19:50">2023-04-14 10:19:50</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 21, 2025 15:05:31">2025-05-21 15:05:31</span>
   </span>
 
     
