@@ -308,7 +308,7 @@
         ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /var/www/html/bin/cleandb.sh ] && /var/www/htm/bin/cleandb.sh\""
   ```
 
-  ## Plugins
+  ### Plugins
 
   To add Plugins you have to specify them inside of the environment variables
   `ROUNDCUBEMAIL_PLUGINS` AND
@@ -322,7 +322,7 @@
         ROUNDCUBEMAIL_COMPOSER_PLUGINS: "foorschtbar/dovecot_client_ip:~2"
   ```
 
-  ## Optional: Reverse Proxy
+  ### Optional: Reverse Proxy
 
   To put Roundcube behind a Reverse Proxy like traefik you must add this to your `docker-compose.yml`file
 
@@ -372,6 +372,20 @@
   ```
 
   Now your Roundcube instance can be securily accessed from `https://roundcube.example.com`.
+
+  If you want to access your Roundcube Instance on a subpath like `/rc`, you will need to add
+  `ROUNDCUBEMAIL_REQUEST_PATH=/rc` to your environment, if that doesn't work, try the following:
+  Create `data/web/conf/nginx/site.roundcube.custom`
+  ```nginx
+    location /rc/ { # /rc: your subpath
+      proxy_pass http://roundcube:80/;  # Replace with the correct upstream
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_redirect off;
+    }
+  ```
 
 ## Optional extra functionality
 
