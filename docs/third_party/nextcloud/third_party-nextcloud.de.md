@@ -33,10 +33,11 @@ Im Folgenden wird beschrieben, wie die Authentifizierung über mailcow unter Ver
 - "Benutzerprofil bei jeder Anmeldung aktualisieren"
 - "Benachrichtigung der Administratoren über neue Benutzer deaktivieren".
 
-Klicken Sie auf die Schaltfläche _Speichern_.
+8\. Klicken Sie auf die Schaltfläche _Speichern_.
 
-8\. Scrollen Sie nach unten zu _Custom OAuth2_ und klicken Sie auf die Schaltfläche _+_.
-9\. Konfigurieren Sie die Parameter wie folgt:
+9\. Scrollen Sie nach unten zu _Custom OAuth2_ und klicken Sie auf die Schaltfläche _+_.
+
+10\. Konfigurieren Sie die Parameter wie folgt:
 
 - Interner Name: `mailcow`
 - Titel: `mailcow`
@@ -50,3 +51,23 @@ Klicken Sie auf die Schaltfläche _Speichern_.
 - Bereich: `Profil`
 
 Klicken Sie auf die Schaltfläche _Speichern_ ganz unten auf der Seite.
+
+Wenn Sie zuvor Nextcloud mit mailcow-Authentifizierung über user_external/IMAP verwendet haben, müssen Sie einige zusätzliche Schritte durchführen, um Ihre bestehenden Benutzerkonten mit OAuth2 zu verknüpfen.
+
+1. Klicken Sie oben rechts auf den Button und wählen Sie _Apps_. Scrollen Sie nach unten zur App _External user authentication_ und klicken Sie auf _Entfernen_ daneben.
+2. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus:
+
+    ```sql
+    INSERT INTO oc_users (uid, uid_lower) SELECT DISTINCT uid, LOWER(uid) FROM oc_users_external;
+    INSERT INTO oc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("mailcow-", uid) FROM oc_users_external;
+    ```
+
+---
+
+Wenn Sie zuvor Nextcloud ohne mailcow-Authentifizierung verwendet haben, aber mit denselben Benutzernamen wie in mailcow, können Sie Ihre bestehenden Benutzerkonten ebenfalls mit OAuth2 verknüpfen.
+
+1. Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus:
+
+    ```sql
+    INSERT INTO oc_sociallogin_connect (uid, identifier) SELECT DISTINCT uid, CONCAT("mailcow-", uid) FROM oc_users;
+    ```
