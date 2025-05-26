@@ -4461,9 +4461,15 @@ komprimieren und zu löschen.</p>
         missingok
         notifempty
         create 660 root root
+        copytruncate
+#        postrotate
+#                systemctl restart rsyslog
+#                docker compose -f /opt/mailcow-dockerized/docker-compose.yml restart postfix-mailcow
+#        endscript
 }
 </code></pre></div>
-<p>Mit dieser Konfiguration wird logrotate täglich ausgeführt und es werden maximal 7 Archive gespeichert.</p>
+<p>Mit dieser Konfiguration wird logrotate täglich ausgeführt und es werden maximal 7 Archive gespeichert. Da die Log-Datei vom Docker-Daemon permanent belegt ist, muss der Inhalt zum Rotieren mittels <code>copytruncate</code> in die neue rotierte Datei kopiert und die Log-Datei anschließend geleert werden. Dieser Schritt ist notwendig, da die Logs sonst weiterhin in die alte (bereits rotierte) Datei geschrieben werden.</p>
+<p>Alternativ zum <code>copytruncate</code> kann auch das auskommentierte <code>postrotate</code>-Snippet verwendet werden. Dafür <code>copytruncate</code> auskommentieren und die Zeilen darunter einkommentieren. So wird nach dem Rotieren der Log-Dateien der Daemon von rsyslog (<a href="https://www.cloudinsidr.com/content/set-up-logrotate-for-postfix/">Quelle</a>) und der Docker-Container mit postfix-mailcow neu gestartet. Die letzten beiden Schritte sind notwendig, da die Logs sonst weiterhin in die alte (bereits rotierte) Datei geschrieben werden. Sollte ein anderer Logging-Treiber als syslog für das Logging zum Einsatz kommen, muss der Befehl (<code>systemctl restart rsyslog</code>) entsprechend abgeändert werden oder die Zeile aus obigem Beispiel entfernt werden.</p>
 <p>Um die Logdatei wöchentlich oder monatlich zu rotieren, muss <code>daily</code> durch <code>weekly</code> oder respektive <code>monthly</code> ersetzt werden.</p>
 <p>Um mehr Archive zu speichern, muss die Nummer hinter <code>rotate</code> angepasst werden.</p>
 <p>Danach kann logrotate neu gestartet werden.</p>
@@ -4487,7 +4493,7 @@ komprimieren und zu löschen.</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="10. Juni 2024 12:09:59">2024-06-10 12:09:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="26. Mai 2025 09:03:43">2025-05-26 09:03:43</span>
   </span>
 
     
