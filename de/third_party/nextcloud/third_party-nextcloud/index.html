@@ -4253,9 +4253,9 @@
 <li>"Benutzerprofil bei jeder Anmeldung aktualisieren"</li>
 <li>"Benachrichtigung der Administratoren über neue Benutzer deaktivieren".</li>
 </ul>
-<p>Klicken Sie auf die Schaltfläche <em>Speichern</em>.</p>
-<p>8. Scrollen Sie nach unten zu <em>Custom OAuth2</em> und klicken Sie auf die Schaltfläche <em>+</em>.
-9. Konfigurieren Sie die Parameter wie folgt:</p>
+<p>8. Klicken Sie auf die Schaltfläche <em>Speichern</em>.</p>
+<p>9. Scrollen Sie nach unten zu <em>Custom OAuth2</em> und klicken Sie auf die Schaltfläche <em>+</em>.</p>
+<p>10. Konfigurieren Sie die Parameter wie folgt:</p>
 <ul>
 <li>Interner Name: <code>mailcow</code></li>
 <li>Titel: <code>mailcow</code></li>
@@ -4269,6 +4269,25 @@
 <li>Bereich: <code>Profil</code></li>
 </ul>
 <p>Klicken Sie auf die Schaltfläche <em>Speichern</em> ganz unten auf der Seite.</p>
+<p>Wenn Sie zuvor Nextcloud mit mailcow-Authentifizierung über user_external/IMAP verwendet haben, müssen Sie einige zusätzliche Schritte durchführen, um Ihre bestehenden Benutzerkonten mit OAuth2 zu verknüpfen.</p>
+<ol>
+<li>Klicken Sie oben rechts auf den Button und wählen Sie <em>Apps</em>. Scrollen Sie nach unten zur App <em>External user authentication</em> und klicken Sie auf <em>Entfernen</em> daneben.</li>
+<li>
+<p>Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_users</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">uid_lower</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users_external</span><span class="p">;</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users_external</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
+<hr />
+<p>Wenn Sie zuvor Nextcloud ohne mailcow-Authentifizierung verwendet haben, aber mit denselben Benutzernamen wie in mailcow, können Sie Ihre bestehenden Benutzerkonten ebenfalls mit OAuth2 verknüpfen.</p>
+<ol>
+<li>
+<p>Führen Sie die folgenden Abfragen in Ihrer Nextcloud-Datenbank aus:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
 
 
 
@@ -4289,7 +4308,7 @@
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="12. Februar 2025 09:31:15">2025-02-12 09:31:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="26. Mai 2025 08:50:24">2025-05-26 08:50:24</span>
   </span>
 
     

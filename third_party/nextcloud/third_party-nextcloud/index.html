@@ -4110,24 +4110,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debugging-troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging &amp; Troubleshooting
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4223,24 +4205,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#update" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debugging-troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging &amp; Troubleshooting
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4289,9 +4253,9 @@
 <li>"Update user profile every login"</li>
 <li>"Disable notify admins about new users"</li>
 </ul>
-<p>Click the <em>Save</em> button.</p>
-<p>8. Scroll down to <em>Custom OAuth2</em> and click the <em>+</em> button.
-9. Configure the parameters as follows:</p>
+<p>8. Click the <em>Save</em> button.</p>
+<p>9. Scroll down to <em>Custom OAuth2</em> and click the <em>+</em> button.
+10. Configure the parameters as follows:</p>
 <ul>
 <li>Internal name: <code>mailcow</code></li>
 <li>Title: <code>mailcow</code></li>
@@ -4307,78 +4271,22 @@
 <p>Click the <em>Save</em> button at the very bottom of the page.</p>
 <hr />
 <p>If you have previously used Nextcloud with mailcow authentication via user_external/IMAP, you need to perform some additional steps to link your existing user accounts with OAuth2.</p>
-<p>1. Click the button in the top right corner and select <em>Apps</em>. Scroll down to the <em>External user authentication</em> app and click <em>Remove</em> next to it.
-2. Run the following queries in your Nextcloud database (if you set up Nextcloud with the script from mailcow, you can use the following command to get into the container):</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
-</code></pre></div>
-</div>
-</div>
-</div>
+<ol>
+<li>Click the button in the top right corner and select <em>Apps</em>. Scroll down to the <em>External user authentication</em> app and click <em>Remove</em> next to it.</li>
+<li>
+<p>Run the following queries in your Nextcloud database:</p>
 <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_users</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">uid_lower</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users_external</span><span class="p">;</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users_external</span><span class="p">;</span>
 </code></pre></div>
+</li>
+</ol>
 <hr />
 <p>If you have previously used Nextcloud without mailcow authentication, but with the same usernames as mailcow, you can also link your existing user accounts with OAuth2.</p>
-<p>1. Run the following queries in your Nextcloud database (if you set up Nextcloud with the script from mailcow, you can use the following command to get into the container):</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mysql-mailcow<span class="w"> </span>mysql<span class="w"> </span>-u<span class="nv">$DBUSER</span><span class="w"> </span>-p<span class="nv">$DBPASS</span><span class="w"> </span><span class="nv">$DBNAME</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users</span><span class="p">;</span>
-</code></pre></div>
-<hr />
-<h2 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
-<p>The Nextcloud instance can be updated easily with the web update mechanism. In the case of larger updates, there may be further changes to be made after the update. After the Nextcloud instance has been checked, problems are shown. This can be e.g. missing indices in the DB or similar.
-It shows which commands have to be executed, these have to be placed in the php-fpm-mailcow container.</p>
-<p>As an an example run the following command to add the missing indices.
-<code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/occ db:add-missing-indices"</code></p>
-<p>The update can also been done by CLI with the following command: </p>
-<p><code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar"</code></p>
-<p>This can also been done in an non interactive way (e.g. CRON) with this command: </p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>We do not recommend this! Serios damage can be caused or the update process brakes over time.<br>
-<strong>USE AT OWN RISK!!</strong></p>
-</div>
-<p><code>docker exec -it -u www-data $(docker ps -f name=php-fpm-mailcow -q) bash -c "php /web/nextcloud/updater/updater.phar --no-interaction"</code></p>
-<hr />
-<h2 id="debugging-troubleshooting">Debugging &amp; Troubleshooting<a class="headerlink" href="#debugging-troubleshooting" title="Permanent link">&para;</a></h2>
-<p>It may happen that you cannot reach the Nextcloud instance from your network. This may be due to the fact that the entry of your subnet in the array 'trusted_proxies' is missing. You can make changes in the Nextcloud config.php in <code>data/web/nextcloud/config/*</code>.</p>
-<div class="highlight"><pre><span></span><code>&#39;trusted_proxies&#39; =&gt;
-  array (
-    0 =&gt; &#39;fd4d:6169:6c63:6f77::/64&#39;,
-    1 =&gt; &#39;172.22.1.0/24&#39;,
-    2 =&gt; &#39;NewSubnet/24&#39;,
-  ),
-</code></pre></div>
-<p>After the changes have been made, the nginx container must be restarted.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
-</code></pre></div>
-</div>
-</div>
-</div>
+<ol>
+<li>Run the following queries in your Nextcloud database:
+    <div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">oc_sociallogin_connect</span><span class="w"> </span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">identifier</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="ss">&quot;mailcow-&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">uid</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oc_users</span><span class="p">;</span>
+</code></pre></div></li>
+</ol>
 
 
 
@@ -4399,7 +4307,7 @@ It shows which commands have to be executed, these have to be placed in the php-
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="February 12, 2025 09:31:15">2025-02-12 09:31:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 26, 2025 08:50:24">2025-05-26 08:50:24</span>
   </span>
 
     
