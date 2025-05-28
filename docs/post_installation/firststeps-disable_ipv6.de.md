@@ -1,56 +1,101 @@
-!!! danger "ACHTUNG"
-    Bei Installationen, welche eine Docker Version <b>zwischen 25.0.0 und 25.0.2</b> (zum überprüfen nutzt `docker version`) verwenden hat sich das Verhalten der IPv6-Adressen Allokation durch einen Bug verändert. Ein simples `enable_ipv6: false` reicht damit **NICHT** mehr aus, um IPv6 komplett im Stack zu deaktivieren. <br>Dies war ein Bug im Docker Daemon, welcher mit Version 25.0.3 gefixt wurde.
+!!! failure "Anpassung erforderlich"
+    Bei älteren Setups muss diese Anleitung mit Update 2025-06 erneuert werden um die vollständige Kompatibilität zu gewährleisten.
 
-Dies wird **NUR** empfohlen, wenn Sie kein IPv6-fähiges Netzwerk auf Ihrem Host haben!
+??? warning "Vorsicht bei Docker Version 25"
+    Bei Installationen mit Docker-Versionen <b>zwischen 25.0.0 und 25.0.2</b> (Version prüfen mit `docker version`) hat sich das Verhalten der IPv6-Adressvergabe durch einen Bug verändert. Ein einfaches `enable_ipv6: false` reicht **nicht** mehr aus, um IPv6 im Stack vollständig zu deaktivieren. <br>Der Bug wurde mit Version 25.0.3 im Docker Daemon behoben.
 
-Wenn Sie es wirklich brauchen, können Sie die Verwendung von IPv6 in der Compose-Datei deaktivieren.
-Zusätzlich können Sie auch den Start des Containers "ipv6nat-mailcow" deaktivieren, da er nicht benötigt wird, wenn Sie IPv6 nicht verwenden.
+!!! danger "Vorsicht: Open Relay-Gefahr"
+    Auch bei deaktiviertem IPv6 in Docker kann es zu einem Open Relay kommen, wenn der Server weiterhin eine öffentliche IPv6-Adresse besitzt. 
+    
+    Grund: Docker deaktiviert IPv6 nur im Container, nicht jedoch auf dem Host. Anfragen über IPv6 erreichen den Container weiterhin und erscheinen dort als interne IPv4 – was ein Sicherheitsrisiko darstellt.
 
-Anstatt die Datei docker-compose.yml direkt zu bearbeiten, ist es besser, eine Override-Datei zu erstellen
-zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider scheint dies im Moment nur für Dienste zu funktionieren, nicht für Netzwerkeinstellungen.
+    mailcow erlaubt zur internen Kommunikation **alle** internen Container-IP-Adressen aus dem Docker-Netzwerk (IPv4 und IPv6) ohne Authentifizierung, z. B. zum Postfix.
 
-Um IPv6 im mailcow-Netzwerk zu deaktivieren, öffnen Sie docker-compose.yml mit Ihrem bevorzugten Texteditor und suchen Sie nach dem Netzwerk-Abschnitt (er befindet sich am Ende der Datei).
+    Bei fehlerhafter IPv6-Konfiguration erscheinen externe Zugriffe als interne Docker-IP und werden nicht geprüft – dies führt zu einem Open Relay.
 
-**1.** Ändern Sie docker-compose.yml
+Diese Schritte werden **nur empfohlen**, wenn Ihr Hostsystem kein funktionierendes IPv6-Netzwerk verwendet!
 
-Ändern Sie `enable_ipv6: true` in `enable_ipv6: false`:
+## 0. IPv6 am Hostsystem deaktivieren
 
-```
-networks:
-  mailcow-network:
-    [...]
-    enable_ipv6: true # <<< auf false setzen
-    ipam:
-      driver: default
-      config:
-        - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
-    [...]
-```
+??? question "Warum das?"
+    Wird IPv6 nur im Docker-Netzwerk deaktiviert, aber bleibt auf dem Host aktiv (z. B. durch eine öffentliche IPv6-Adresse am Interface), dann können weiterhin Verbindungen über IPv6 auf die Container geroutet werden. Dabei wird die ursprüngliche IPv6-Verbindung in eine interne IPv4-Verbindung übersetzt (z. B. über NAT oder das interne Routing-Verhalten von Docker). Das führt dazu, dass Postfix die Anfrage als vertrauenswürdig einstuft, weil sie scheinbar aus dem internen Netzwerk stammt – obwohl sie tatsächlich extern ist. Das Resultat: ein funktionierender Open Relay.
 
-**2.** ipv6nat-mailcow deaktivieren
+    Nur wenn IPv6 **am Hostsystem selbst** komplett deaktiviert ist, wird verhindert, dass überhaupt IPv6-Verbindungen in das Docker-Netz oder zu mailcow durchdringen.
 
-Um den ipv6nat-mailcow Container ebenfalls zu deaktivieren, gehen Sie in Ihr mailcow Verzeichnis und erstellen Sie eine neue Datei namens "docker-compose.override.yml":
+### Temporär (bis zum Reboot):
 
-**HINWEIS:** Wenn Sie bereits eine Override-Datei haben, erstellen Sie diese natürlich nicht neu, sondern fügen Sie die untenstehenden Zeilen entsprechend in Ihre bestehende Datei ein!
-
-```
-# cd /opt/mailcow-dockerized
-# touch docker-compose.override.yml
+```bash
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1
 ```
 
-Öffnen Sie die Datei in Ihrem bevorzugten Texteditor und tragen Sie folgendes ein:
+### Permanent:
 
+In `/etc/sysctl.conf` eintragen:
+
+```bash
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
 ```
-services:
 
+Dann anwenden:
+
+```bash
+sysctl -p
+```
+
+## 1. Im mailcow Netzwerk deaktivieren
+
+=== "Neue Logik (Ab Update 2025-06)"
+
+    In `mailcow.conf` den Wert: `ENABLE_IPV6` auf `false` setzen.
+
+=== "Vorherige Installationen"
+
+    In `docker-compose.yml` im Abschnitt `networks`:
+
+    ``` yml
+    networks:
+      mailcow-network:
+        [...]
+        enable_ipv6: false # von true auf false setzen
+        ipam:
+          driver: default
+          config:
+            - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
+        [...]
+    ```
+
+## 2. ipv6nat-mailcow deaktivieren
+
+=== "Neue Logik (Ab Update 2025-06)"
+
+    !!! warning "Vorsicht"
+        Der ipv6nat-mailcow Container ist seit dem Update 2025-06 nicht mehr teil der mailcow Container.
+        
+        Dieser Schritt entfällt demnach.
+
+=== "Vorherige Installationen"
+
+    ```bash
+    cd /opt/mailcow-dockerized
+    touch docker-compose.override.yml
+    ```
+
+    Mit dem folgenden Inhalt füllen:
+
+    ```yml
+    services:
     ipv6nat-mailcow:
-      image: bash:latest
-      restart: "no"
-      entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
-```
+        image: bash:latest
+        restart: "no"
+        entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
+    ```
 
-Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stoppen und dann neu starten, damit Container und Netzwerke neu erstellt werden:
+## 3. Stack neu starten
 
+!!! notice "Hinweis" 
+    Dies betrifft alle Setups.
 
 === "docker compose (Plugin)"
 
@@ -66,18 +111,17 @@ Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stopp
     docker-compose up -d
     ```
 
-**3.** Deaktivieren Sie IPv6 in unbound-mailcow
+## 4. IPv6 in unbound deaktivieren (Optional)
 
-Bearbeiten Sie `data/conf/unbound/unbound.conf` und setzen Sie `do-ip6` auf "no":
+!!! notice "Hinweis" 
+    Dies betrifft alle Setups.
 
-```
-Server:
-  [...]
-  do-ip6: no
-  [...]
-```
+In `data/conf/unbound/unbound.conf`:
 
-unbound neu starten:
+    server:
+      [...]
+      do-ip6: no
+      [...]
 
 === "docker compose (Plugin)"
 
@@ -91,16 +135,15 @@ unbound neu starten:
     docker-compose restart unbound-mailcow
     ```
 
-**4.** Deaktivieren Sie IPv6 in postfix-mailcow
+## 5. IPv6 in postfix deaktivieren (Optional)
 
-Erstellen Sie `data/conf/postfix/extra.cf` und setzen Sie `smtp_address_preference` auf `ipv4`:
+!!! notice "Hinweis" 
+    Dies betrifft alle Setups.
 
-```
-smtp_address_preference = ipv4
-inet_protocols = ipv4
-```
+In `data/conf/postfix/extra.cf`:
 
-Starten Sie Postfix neu:
+    smtp_address_preference = ipv4
+    inet_protocols = ipv4
 
 === "docker compose (Plugin)"
 
@@ -114,29 +157,37 @@ Starten Sie Postfix neu:
     docker-compose restart postfix-mailcow
     ```
 
-**5.** Wenn im Docker Daemon IPv6 komplett deaktiviert ist:
+## 6. IPv6 in dovecot und php-fpm deaktivieren (Optional)
 
-Folgende Dovecot und Php-fpm Konfigurationsdateien anpassen
+!!! notice "Hinweis" 
+    Dies betrifft alle Setups.
 
-```
+```bash
 sed -i 's/,\[::\]//g' data/conf/dovecot/dovecot.conf
 sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 ```
 
-**6.** IPv6 Listener für NGINX deaktivieren
 
-Setze `DISABLE_IPv6=y` in der Datei `mailcow.conf`.
+## 7. IPv6 Listener in nginx deaktivieren
 
-Damit diese Änderung wirksam wird, muss der Container `nginx-mailcow` neu erstellt werden.
+=== "Neue Logik (Ab Update 2025-06)"
 
-=== "docker compose (Plugin)"
+    Wird durch `ENABLE_IPV6=false` in `mailcow.conf` automatisch gepatcht [(siehe Schritt 1)](#1-im-mailcow-netzwerk-deaktivieren)
 
-    ``` bash
-    docker compose up -d
-    ```
+=== "Vorherige Installationen"
 
-=== "docker-compose (Standalone)"
+    In `mailcow.conf`:
 
-    ``` bash
-    docker-compose up -d
-    ```
+        DISABLE_IPv6=y
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose up -d
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose up -d
+        ```

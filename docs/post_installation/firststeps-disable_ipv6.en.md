@@ -1,143 +1,192 @@
-!!! danger
-    In installations using a Docker version <b>between 25.0.0 and 25.0.2</b> (to check, use `docker version`) the behavior of IPv6 address allocation has changed due to a bug. Simply using `enable_ipv6: false` is **NO LONGER** sufficient to completely disable IPv6 in the stack. <br>This was a bug in the Docker Daemon, which has been fixed with version 25.0.3.
+!!! failure "Action Required"
+    Older setups must follow this guide after the 2025-06 update to ensure full compatibility.
 
-This is **ONLY** recommended if you do not have an IPv6 enabled network on your host!
+??? warning "Caution with Docker version 25"
+    For installations using Docker versions <b>between 25.0.0 and 25.0.2</b> (check with `docker version`), a bug changed how IPv6 address allocation works. Setting `enable_ipv6: false` alone is **not** sufficient to fully disable IPv6 in the stack.<br>This bug was fixed in Docker version 25.0.3.
 
-If you really need to, you can disable the usage of IPv6 in the compose file.
-Additionally, you can  also disable the startup of container "ipv6nat-mailcow", as it's not needed if you won't use IPv6.
+!!! danger "Warning: Open Relay Risk"
+    Even with IPv6 disabled in Docker, your system can still become an open relay if the host has a public IPv6 address. 
+    
+    Reason: Docker disables IPv6 only inside the container, not on the host. IPv6 traffic still reaches the container and appears as internal IPv4 — a major security risk.
 
-Instead of editing docker-compose.yml directly, it is preferable to create an override file for it
-and implement your changes to the service there. Unfortunately, this right now only seems to work for services, not for network settings.
+    mailcow allows unauthenticated connections from **any** internal container IP address (IPv4 or IPv6) for internal communication, e.g., with Postfix.
 
-To disable IPv6 on the mailcow network, open docker-compose.yml with your favourite text editor and search for the network section (it's near the bottom of the file).
+    If IPv6 is misconfigured, external traffic may appear as an internal Docker IP and bypass authentication — resulting in a fully functional open relay.
 
-**1.** Modify docker-compose.yml
+These steps are **only recommended** if your host system does not need IPv6 connectivity.
 
-Change `enable_ipv6: true` to `enable_ipv6: false` and comment out the IPv6 subnet:
+## 0. Disable IPv6 on the host system
 
-```
-networks:
-  mailcow-network:
-    [...]
-    enable_ipv6: true # <<< set to false
-    ipam:
-      driver: default
-      config:
-        - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
-        - subnet: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64} # <<< comment out with #
-    [...]
-```
+??? question "Why is this necessary?"
+    Disabling IPv6 only inside Docker is **not enough**. If the host keeps a public IPv6 address (e.g. on a public interface), IPv6 traffic can still reach the container network. This traffic may be translated into internal IPv4 (via NAT or Docker's internal routing) and appear to services like Postfix as internal and trusted — even though it originated externally. This results in a working open relay.
 
-**2.** Disable ipv6nat-mailcow
+    Only by **completely disabling IPv6 on the host** can you ensure that no IPv6 connections reach mailcow or its containers.
 
-To disable the ipv6nat-mailcow container as well, go to your mailcow directory and create a new file called "docker-compose.override.yml":
+### Temporary (until reboot):
 
-**NOTE:** If you already have an override file, of course don't recreate it, but merge the lines below into your existing one accordingly!
-
-```
-# cd /opt/mailcow-dockerized
-# touch docker-compose.override.yml
+```bash
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1
 ```
 
-Open the file in your favourite text editor and fill in the following:
+### Permanent:
 
-```
-services:
+Add the following to `/etc/sysctl.conf`:
 
-    ipv6nat-mailcow:
-      image: bash:latest
-      restart: "no"
-      entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
+```bash
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
 ```
 
-For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:
+Apply afterwards:
+
+```bash
+sysctl -p
+```
+
+## 1. Disable IPv6 in the mailcow network
+
+=== "New logic (since 2025-06)"
+
+    Set `ENABLE_IPV6=false` in `mailcow.conf`.
+
+=== "Legacy installations"
+
+    In `docker-compose.yml`, find the `networks` section:
+
+    ```yml
+    networks:
+      mailcow-network:
+        [...]
+        enable_ipv6: false # set from true to false
+        ipam:
+          driver: default
+          config:
+            - subnet: ${IPV4_NETWORK:-172.22.1}.0/24
+        [...]
+    ```
+
+## 2. Disable ipv6nat-mailcow
+
+=== "New logic (since 2025-06)"
+
+    !!! warning "Attention"
+        The ipv6nat-mailcow container is no longer part of mailcow since the 2025-06 update.
+
+        This step is no longer required.
+
+=== "Legacy installations"
+
+    ```bash
+    cd /opt/mailcow-dockerized
+    touch docker-compose.override.yml
+    ```
+
+    Fill with the following content:
+
+    ```yml
+    services:
+      ipv6nat-mailcow:
+        image: bash:latest
+        restart: "no"
+        entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
+    ```
+
+## 3. Restart the stack
+
+!!! notice
+    Applies to all setups.
 
 === "docker compose (Plugin)"
 
-    ``` bash
+    ```bash
     docker compose down
     docker compose up -d
     ```
 
 === "docker-compose (Standalone)"
 
-    ``` bash
+    ```bash
     docker-compose down
     docker-compose up -d
     ```
 
-**3.** Disable IPv6 in unbound-mailcow
+## 4. Disable IPv6 in unbound (optional)
 
-Edit `data/conf/unbound/unbound.conf` and set `do-ip6` to "no":
+!!! notice
+    Applies to all setups.
 
-```
-server:
-  [...]
-  do-ip6: no
-  [...]
-```
+In `data/conf/unbound/unbound.conf`:
 
-Restart Unbound:
+    server:
+      [...]
+      do-ip6: no
+      [...]
 
 === "docker compose (Plugin)"
 
-    ``` bash
+    ```bash
     docker compose restart unbound-mailcow
     ```
 
 === "docker-compose (Standalone)"
 
-    ``` bash
+    ```bash
     docker-compose restart unbound-mailcow
     ```
 
-**4.** Disable IPv6 in postfix-mailcow
+## 5. Disable IPv6 in postfix (optional)
 
-Create `data/conf/postfix/extra.cf` and set `smtp_address_preference` to `ipv4`:
+!!! notice
+    Applies to all setups.
 
-```
-smtp_address_preference = ipv4
-inet_protocols = ipv4
-```
+In `data/conf/postfix/extra.cf`:
 
-Restart Postfix:
+    smtp_address_preference = ipv4
+    inet_protocols = ipv4
 
 === "docker compose (Plugin)"
 
-    ``` bash
+    ```bash
     docker compose restart postfix-mailcow
     ```
 
 === "docker-compose (Standalone)"
 
-    ``` bash
+    ```bash
     docker-compose restart postfix-mailcow
     ```
 
-**5.** If your docker daemon completly disabled IPv6:
+## 6. Disable IPv6 in dovecot and php-fpm (optional)
 
-Fix the following Dovecot and php-fpm config files
+!!! notice "Note"
+    Applies to all setups.
 
-```
+```bash
 sed -i 's/,\[::\]//g' data/conf/dovecot/dovecot.conf
 sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 ```
 
-**6.** Disable IPv6 listeners for NGINX
+## 7. Disable IPv6 listener in nginx
 
-Set `DISABLE_IPv6=y` in `mailcow.conf`
+=== "New logic (since 2025-06)"
 
-For this change to be effective, you need to recreate the `nginx-mailcow` Container
+    Automatically handled when setting `ENABLE_IPV6=false` in `mailcow.conf` [(see Step 1)](#1-disable-ipv6-in-the-mailcow-network)
 
-=== "docker compose (Plugin)"
+=== "Legacy installations"
 
-    ``` bash
-    docker compose up -d
-    ```
+    In `mailcow.conf`:
 
-=== "docker-compose (Standalone)"
+        DISABLE_IPv6=y
 
-    ``` bash
-    docker-compose up -d
-    ```
+    === "docker compose (Plugin)"
 
+        ```bash
+        docker compose up -d
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ```bash
+        docker-compose up -d
+        ```
