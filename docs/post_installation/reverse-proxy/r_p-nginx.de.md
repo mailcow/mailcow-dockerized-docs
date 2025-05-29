@@ -58,7 +58,7 @@ server {
   }
 }
 ```
-Wenn Sie einen Proxy in einem anderen Subnetz verwenden, müssen Sie der Datei mailcow.conf die folgende Umgebungsvariable hinzufügen, damit der Nginx-Container die oben festgelegte X-Real-IP akzeptiert.
+Beim Einsatz eines Proxys in einem anderen Subnetz müssen Sie die folgende Umgebungsvariable in die mailcow.conf einfügen, damit der nginx-Container die oben gesetzte X-Real-IP akzeptiert.
 ```
 TRUSTED_PROXIES=#.#.#.#
 ```
