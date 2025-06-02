@@ -58,3 +58,7 @@ server {
   }
 }
 ```
+When using a proxy on a different subnet you will need to add the following environment variable to the mailcow.conf to have the nginx container accept the X-Real-IP set above.
+```
+TRUSTED_PROXIES=#.#.#.#
+```
