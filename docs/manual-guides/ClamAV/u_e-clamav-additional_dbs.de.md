@@ -25,6 +25,7 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoandroid.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoold.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
+# Kostenpflichtige Datenbanken
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo0hour.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.mdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.yara
