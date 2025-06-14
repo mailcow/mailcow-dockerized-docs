@@ -33,7 +33,7 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.wdb
 ```
 
-!!! danger
+!!! danger "Attention"
     SecuriteInfo spam_marketing.ndb database is known to have significant false positive rules, add on your own risk!
 
 8. For free SecuriteInfo databases, download speed is limited to 300 kB/s. In `data/conf/clamav/freshclam.conf`, increase the default `ReceiveTimeout 20` value to `ReceiveTimeout 90` (time in seconds), otherwise some of the database downloads could fail because of their size.
