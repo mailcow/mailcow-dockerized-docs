@@ -32,7 +32,7 @@ DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securitein
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.wdb
 ```
 
-!!! danger
+!!! danger "Achtung"
     Die SecuriteInfo-Datenbank spam_marketing.ndb weist bekanntermaßen erhebliche falsch-positive Regeln auf. Sie gehen damit Ihr eigenes Risiko ein!
 
 8. Bei den kostenlosen SecuriteInfo Datenbanken ist die Download-Geschwindigkeit auf 300 kB/s begrenzt. Ändern Sie in `data/conf/clamav/freshclam.conf` den Standardwert `ReceiveTimeout 20` auf `ReceiveTimeout 90` (Zeitangabe in Sekunden), da ansonsten einige der Datenbank-Downloads aufgrund ihrer Größe abbrechen können.
