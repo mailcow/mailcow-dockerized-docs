@@ -1,9 +1,14 @@
 ## Installing Roundcube
+
 !!! note
-    Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
-    i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
-    do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
-    continuing with the subsequent commands.
+Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
+i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
+do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
+continuing with the subsequent commands.
+
+=== "Integrated"
+
+### Integrated Installation
 
 ### Note on composer usage
 
@@ -29,6 +34,7 @@ docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer dump
 ```
 
 ### Preparation
+
 First we load `mailcow.conf` so we have access to the mailcow configuration settings for the following commands.
 
 ```bash
@@ -46,6 +52,7 @@ docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /
 ```
 
 ### Optional: Spellchecking
+
 If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then
 `chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have
 built in spell check, so you may not want/need this.
@@ -57,6 +64,7 @@ apk add aspell-en # or any other language
 ```
 
 ### Install mime type mappings
+
 Download the `mime.types` file as it is not included in the php-fpm container.
 
 ```bash
@@ -64,6 +72,7 @@ wget -O data/web/rc/config/mime.types http://svn.apache.org/repos/asf/httpd/http
 ```
 
 ### Create roundcube database
+
 Create a database for roundcube in the mailcow MySQL container. This creates a new `roundcube` database user
 with a random password, which will be echoed to the shell and stored in a shell variable for use by later
 commands. Note that when you interrupt the process and continue in a new shell, you must set the `DBROUNDCUBE`
@@ -78,20 +87,22 @@ docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -
 ```
 
 ### Roundcube configuration
+
 Create a file `data/web/rc/config/config.inc.php` with the following content.
-  - The `des_key` option is set to a random value. It is used to temporarily store your IMAP password.
-  - The plugins list can be adapted to your preference. I added a set of standard plugins that I consider of common
-    usefulness and which work well together with mailcow:
-    - The archive plugin adds an archive button that moves selected messages to a user-configurable archive folder.
-    - The managesieve plugin provides a user-friendly interface to manage server-side mail filtering and vacation / out
-      of office notification.
-    - The acl plugin allows to manage access control lists on IMAP folders, including the ability to share IMAP folders
-      to other users.
-    - The markasjunk plugin adds buttons to mark selected messages as junk (or messages in the junk folder not as junk)
-      and moves them to the junk folder or back to the inbox. The sieve filters included with mailcow will take care
-      that action triggers a learn as spam/ham action in rspamd, so no further configuration of the plugin is needed.
-    - The zipdownload plugin allows to download multiple message attachments or messages as a zip file.
-  - If you didn't install spell check in the above step, remove `spellcheck_engine` parameter.
+
+- The `des_key` option is set to a random value. It is used to temporarily store your IMAP password.
+- The plugins list can be adapted to your preference. I added a set of standard plugins that I consider of common
+  usefulness and which work well together with mailcow:
+  - The archive plugin adds an archive button that moves selected messages to a user-configurable archive folder.
+  - The managesieve plugin provides a user-friendly interface to manage server-side mail filtering and vacation / out
+    of office notification.
+  - The acl plugin allows to manage access control lists on IMAP folders, including the ability to share IMAP folders
+    to other users.
+  - The markasjunk plugin adds buttons to mark selected messages as junk (or messages in the junk folder not as junk)
+    and moves them to the junk folder or back to the inbox. The sieve filters included with mailcow will take care
+    that action triggers a learn as spam/ham action in rspamd, so no further configuration of the plugin is needed.
+  - The zipdownload plugin allows to download multiple message attachments or messages as a zip file.
+- If you didn't install spell check in the above step, remove `spellcheck_engine` parameter.
 
 ```bash
 cat <<EOCONFIG >data/web/rc/config/config.inc.php
@@ -127,6 +138,7 @@ docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config
 ```
 
 ### Initialize database
+
 Point your browser to `https://myserver/rc/installer`. Check that the website shows no "NOT OK" check results on
 any of the steps, some "NOT AVAILABLE" are expected regarding different database extensions of which we only need MySQL.
 Initialize the database and leave the installer. It is not necessary to update the configuration with
@@ -206,7 +218,184 @@ services:
       ofelia.enabled: "true"
       ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
       ofelia.job-exec.roundcube_cleandb.user: "www-data"
-      ofelia.job-exec.roundcube_cleandb.command: "/bin/bash -c \"[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh\""
+      ofelia.job-exec.roundcube_cleandb.command: '/bin/bash -c "[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh"'
+```
+
+=== "Standalone Container"
+
+### Standalone Installation
+
+For a Standalone Roundcube installation you will need to edit your `docker-compose.yml` file OR create a `docker-compose.override.yml` file.
+
+- Roundcube stores its html inside of `var/www/html`, which is mounted inside of `./data/rc/html`
+- Configuration files are mounted inside of `./data/rc/config`
+
+`docker-compose.yml`
+
+```yml
+roundcube:
+  image: roundcube/roundcubemail:latest
+  environment:
+    DBROUNDCUBE: ${DBROUNDCUBE}
+    IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
+    IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
+    ROUNDCUBEMAIL_DB_TYPE: mysql
+    ROUNDCUBEMAIL_DB_HOST: mysql
+    ROUNDCUBEMAIL_DB_USER: roundcube
+    ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
+    ROUNDCUBEMAIL_DB_NAME: roundcubemail
+    ROUNDCUBEMAIL_DEFAULT_HOST: ssl://dovecot:143
+    ROUNDCUBEMAIL_SMTP_SERVER: ssl://postfix:587
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload
+  ports:
+    - "80:80"
+  volumes:
+    - ./data/rc/html:/var/www/html
+    - ./data/rc/config:/var/roundcube/config
+    # - ./data/rc/db:/var/roundcube/db # Optionally Mount Roundcube Database on the host
+  depends_on:
+    - mysql-mailcow
+    - dovecot-mailcow
+  restart: unless-stopped
+  networks:
+    mailcow-network:
+      aliases:
+        - roundcube
+```
+
+### Create roundcube database
+
+Create a database for roundcube in the mailcow MySQL container. This creates a new `roundcube` database user
+with a random password, which will be echoed to the shell and stored in a shell variable for use by later
+commands. Note that when you interrupt the process and continue in a new shell, you must set the `DBROUNDCUBE`
+shell variable manually to the password output by the following commands.
+
+```bash
+DBROUNDCUBE=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28)
+echo Database password for user roundcube is $DBROUNDCUBE
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${DBROUNDCUBE}';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
+```
+
+#### Now start the roundcube Docker Container
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose up -d
+    ```
+
+### Initialize Database
+
+Point your browser to `https://roundcube.example.com/installer`. Check that the website shows no "NOT OK" check results on
+any of the steps, some "NOT AVAILABLE" are expected regarding different database extensions of which we only need MySQL.
+Initialize the database and leave the installer. It is not necessary to update the configuration with
+the downloaded one, unless you made some settings in the installer you would like to take over.
+
+### Ofelia job for roundcube housekeeping
+
+Roundcube needs to clean some stale information from the database every once in a while,
+for which we will create an ofelia job that runs the roundcube `cleandb.sh` script.
+
+To do this, add the following to `docker-compose.override.yml` (if you already have some
+adaptations for the php-fpm container, add the labels to the existing section):
+
+```yml
+services:
+  roundcube:
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.roundcube_cleandb.schedule: "@every 168h"
+      ofelia.job-exec.roundcube_cleandb.user: "www-data"
+      ofelia.job-exec.roundcube_cleandb.command: '/bin/bash -c "[ -f /var/www/html/bin/cleandb.sh ] && /var/www/htm/bin/cleandb.sh"'
+```
+
+### Plugins
+
+To add Plugins you have to specify them inside of the environment variables
+`ROUNDCUBEMAIL_PLUGINS` AND
+`ROUNDCUBEMAIL_COMPOSER_PLUGINS`, this will actually download not installed plugins
+
+```yml
+services:
+  roundcube:
+    volumes:
+      ROUNDCUBEMAIL_PLUGINS: dovecot_client_ip, archive, managesieve, acl,markasjunk, zipdownload
+      ROUNDCUBEMAIL_COMPOSER_PLUGINS: "foorschtbar/dovecot_client_ip:~2"
+```
+
+### Optional: Reverse Proxy
+
+To put Roundcube behind a Reverse Proxy like traefik you must add this to your `docker-compose.yml`file
+
+`docker-compose.yml`
+
+```yml
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    environment:
+      DBROUNDCUBE: ${DBROUNDCUBE}
+      IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
+      IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
+      ROUNDCUBEMAIL_DB_TYPE: mysql
+      ROUNDCUBEMAIL_DB_HOST: mysql
+      ROUNDCUBEMAIL_DB_USER: roundcube
+      ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
+      ROUNDCUBEMAIL_DB_NAME: roundcubemail
+      ROUNDCUBEMAIL_DEFAULT_HOST: ssl://dovecot:143
+      ROUNDCUBEMAIL_SMTP_SERVER: ssl://postfix:587
+      ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.roundcube-mail-secure.entrypoints=websecure
+      - traefik.http.routers.roundcube-mail-secure.rule=Host(`roundcube.example.com`)
+      - traefik.http.routers.roundcube-mail-secure.tls=true
+      - traefik.http.routers.roundcube-mail-secure.tls.certresolver=resolver
+      - traefik.http.routers.roundcube-mail-secure.service=roundcube-svc
+      - traefik.http.services.roundcube-svc.loadbalancer.server.port=80
+
+      - traefik.docker.network=proxy
+    volumes:
+      - ./data/rc/html:/var/www/html
+      - ./data/rc/config:/var/roundcube/config
+      # - ./data/rc/db:/var/roundcube/db # Optionally Mount Roundcube Database on the host
+    depends_on:
+      - mysql-mailcow
+      - dovecot-mailcow
+    restart: unless-stopped
+    networks:
+      mailcow-network:
+        aliases:
+          - roundcube
+      proxy:
+
+networks:
+  proxy:
+    external: true
+```
+
+Now your Roundcube instance can be securily accessed from `https://roundcube.example.com`.
+
+If you want to access your Roundcube Instance on a subpath like `/rc`, you will need to add
+`ROUNDCUBEMAIL_REQUEST_PATH=/rc` to your environment, if that doesn't work, try the following:
+Create `data/web/conf/nginx/site.roundcube.custom`
+
+```nginx
+  location /rc/ { # /rc: your subpath
+    proxy_pass http://roundcube:80/;  # Replace with the correct upstream
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_redirect off;
+  }
 ```
 
 ## Optional extra functionality
@@ -231,7 +420,7 @@ $config['plugins'] = array(
 );
 ```
 
-Configure the password plugin (be sure to adapt __\*\*API_KEY\*\*__ to you mailcow read/write API key):
+Configure the password plugin (be sure to adapt **\*\*API_KEY\*\*** to you mailcow read/write API key):
 
 ```bash
 cat <<EOCONFIG >data/web/rc/plugins/password/config.inc.php
@@ -287,7 +476,7 @@ cat <<EOCONFIG >data/web/rc/plugins/carddav/config.inc.php
 EOCONFIG
 ```
 
-RCMCardDAV will add all addressbooks of the user on login, including __subscribed__ addressbooks shared to the user by
+RCMCardDAV will add all addressbooks of the user on login, including **subscribed** addressbooks shared to the user by
 other users.
 
 If you want to remove the default addressbooks (stored in the Roundcube database), so that only the CardDAV addressbooks
@@ -353,6 +542,112 @@ $MAILCOW_APPS = [
 ];
 ```
 
+### Let users authenticate with mailcow (oauth)
+
+First, we have to define some placeholders:
+
+- roundcube.example.com (your roundcube host)
+- mail.example.com (your mailcow host)
+
+Before continuing, you will have to have an externally managed Roundcube instance, in a seperate docker container behind a Reverse Proxy.
+[(See Standalone Installation)](https://docs.mailcow.email/third_party/roundcube/third_party-roundcube/#standalone-installation)
+
+In mailcow UI under `Admin > Oauth2 Apps`, create a new oauth2 App.
+Set the redirect uri to `https://roundcube.example.com/index.php/login/oauth`.
+Take note of the Client ID and SECRET.
+
+Create a Roundcube config file under `./data/rc/config/config.oauth.inc.php`.
+`./data/rc/config/config.oauth.inc.php`
+
+```php
+<?php
+// ----------------------------------
+// OAuth
+// ----------------------------------
+
+// Enable OAuth2 by defining a provider. Use 'generic' here
+$config['oauth_provider'] = 'generic';
+
+// Provider name to be displayed on the login button
+$config['oauth_provider_name'] = 'SSO';
+
+// Mandatory: OAuth client ID for your Roundcube installation
+// Get this from the oauth2 app in the mailcow UI
+$config['oauth_client_id'] = 'your_client_id';
+
+// Mandatory: OAuth client secret
+// Get this from the oauth2 app in the mailcow UI
+$config['oauth_client_secret'] = 'your_client_secret';
+
+// Mandatory: URI for OAuth user authentication (redirect)
+$config['oauth_auth_uri'] = 'https://mail.example.com/oauth/authorize';
+
+// Mandatory: Endpoint for OAuth authentication requests (server-to-server)
+$config['oauth_token_uri'] = 'https://mail.example.com/oauth/token';
+
+// Optional: Endpoint to query user identity if not provided in auth response
+$config['oauth_identity_uri'] = 'https://mail.example.com/oauth/profile';
+
+// Optional: disable SSL certificate check on HTTP requests to OAuth server
+// See http://docs.guzzlephp.org/en/stable/request-options.html#verify for possible values
+$config['oauth_verify_peer'] = false;
+
+// Mandatory: OAuth scopes to request (space-separated string)
+$config['oauth_scope'] = 'profile';
+
+// Optional: additional query parameters to send with login request (hash array)
+$config['oauth_auth_parameters'] = [];
+
+// Optional: array of field names used to resolve the username within the identity information
+$config['oauth_identity_fields'] = ['email'];
+
+// Boolean: automatically redirect to OAuth login when opening Roundcube without a valid session
+$config['oauth_login_redirect'] = false;
+```
+
+To reference the newly created config add
+
+```php
+include(__DIR__ . "/config.oauth.inc.php");
+```
+
+At the bottom of `/config.inc.php`.
+
+You will now be able to see a `SSO` button on your Roundcube login page.
+
+To setup Dovecot to accept `XOAUTH` as authentication method, create a file under `./data/conf/dovecot/extra.conf`.
+`./data/conf/dovecot/extra.conf`
+
+```
+auth_mechanisms = $auth_mechanisms oauthbearer oauth
+
+passdb {
+  driver = oauth2
+  mechanisms = xoauth2
+  args = /etc/dovecot/dovecot-oauth2.conf.ext
+}
+
+userdb {
+  driver = static
+  args = uid=vmail gid=vmail home=/var/vmail/%d/%n
+}
+```
+
+Now create `./data/conf/dovecot/dovecot-oauth2.conf.ext`.
+`./data/conf/dovecot/dovecot-oauth2.conf.ext`
+
+```
+grant_url = https://mail.example.com/oauth/token
+client_id = your_client_id
+client_secret = your_client_secret
+introspection_url = https://mail.example.com/oauth/profile
+introspection_mode = auth
+use_grant_password = no
+username_attribute = email
+```
+
+Then restart dovecot. And then you should be able to login to Roundcube via mailcow.
+
 ### Let admins log into Roundcube without password
 
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
@@ -398,13 +693,17 @@ Edit `data/web/js/site/mailbox.js` and the following code after [`if (ALLOW_ADMI
 
 ```js
 if (ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE) {
-  item.action += '<a href="/rc-auth.php?login=' + encodeURIComponent(item.username) + '" class="login_as btn btn-sm btn-xs-half btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>';
+	item.action +=
+		'<a href="/rc-auth.php?login=' +
+		encodeURIComponent(item.username) +
+		'" class="login_as btn btn-sm btn-xs-half btn-primary" target="_blank"><i class="bi bi-envelope-fill"></i> Roundcube</a>'
 }
 ```
 
 Add the following line to the array $template_data:
-* `data/web/admin/mailbox.php` [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/admin/mailbox.php#L43-L56)
-* `data/web/domainadmin/mailbox.php` [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/domainadmin/mailbox.php#L43-L56)
+
+- `data/web/admin/mailbox.php` [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/admin/mailbox.php#L43-L56)
+- `data/web/domainadmin/mailbox.php` [`$template_data`](https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/domainadmin/mailbox.php#L43-L56)
 
 ```php
   'allow_admin_email_login_roundcube' => (preg_match("/^([yY][eE][sS]|[yY])+$/", $_ENV["ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE"])) ? 'true' : 'false',
@@ -418,10 +717,11 @@ Edit `data/web/templates/mailbox.twig` and add this code to the bottom of the [j
 
 Copy the contents of the following files from this [Snippet](https://gitlab.com/-/snippets/2038244):
 
-* `data/web/inc/lib/RoundcubeAutoLogin.php`
-* `data/web/rc-auth.php`
+- `data/web/inc/lib/RoundcubeAutoLogin.php`
+- `data/web/rc-auth.php`
 
 ## Finish installation
+
 Finally, restart mailcow
 
 === "docker compose (Plugin)"
@@ -610,6 +910,7 @@ rm -r data/web/rc/plugins/carddav
 ### Switch roundcube to new database
 
 First adapt the roundcube configuration to use the new database.
+
 ```bash
 sed -i "/\$config\['db_dsnw'\].*$/d" data/web/rc/config/config.inc.php
 cat <<EOCONFIG >>data/web/rc/config/config.inc.php
@@ -618,6 +919,7 @@ EOCONFIG
 ```
 
 ### Re-enable roundcube web access
+
 Execute the chown and chmod commands on sensitive roundcube directories listed in [Preparation](#preparation), to
 make sure the nginx webserver cannot access files it is not supposed to serve.
 
@@ -629,6 +931,7 @@ docker compose exec nginx-mailcow nginx -s reload
 ```
 
 ### Other changes
+
 You must also adapt the configuration of the roundcube password plugin according to this instruction, specifically if
 you use the password changing functionality, since the old instruction directly changed the password in the database,
 whereas this version of the instruction uses the mailcow API for the password change.
@@ -638,10 +941,11 @@ installation instructions and adapt your configuration accordingly or perform th
 additions.
 
 Specifically, consider the following sections:
-  - [Ofelia job for roundcube housekeeping](#ofelia-job-for-roundcube-housekeeping)
-  - [Allow plaintext authentication in dovecot](#allow-plaintext-authentication-for-the-php-fpm-container-without-using-tls),
-    if you adapt the roundcube configuration to contact dovecot via non-encrypted IMAP connection.
-  - [Forward the client network address to dovecot](#forward-the-client-network-address-to-dovecot)
+
+- [Ofelia job for roundcube housekeeping](#ofelia-job-for-roundcube-housekeeping)
+- [Allow plaintext authentication in dovecot](#allow-plaintext-authentication-for-the-php-fpm-container-without-using-tls),
+  if you adapt the roundcube configuration to contact dovecot via non-encrypted IMAP connection.
+- [Forward the client network address to dovecot](#forward-the-client-network-address-to-dovecot)
 
 ### Removing roundcube tables from mailcow database
 
