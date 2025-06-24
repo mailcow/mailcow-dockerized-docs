@@ -42,15 +42,15 @@ You should not rename those folders to not break the restore process.
 
 To run a backup unattended, define MAILCOW_BACKUP_LOCATION as environment variable before starting the script:
 
-```
+```bash
 MAILCOW_BACKUP_LOCATION=/opt/backup /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
 ```
 
 !!! tip
-        Both variables mentioned above can also be combined! Ex:
-        ```
-        MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
-        ```
+    Both variables mentioned above can also be combined! Ex:
+    ```
+    MAILCOW_BACKUP_LOCATION=/opt/backup THREADS=14 /opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all
+    ```
 
 #### Cronjob
 
