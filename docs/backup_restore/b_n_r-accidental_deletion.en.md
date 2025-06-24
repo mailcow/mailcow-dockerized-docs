@@ -10,7 +10,7 @@ We automatically create daily backups (24h interval starting from running up -d)
 
 Copy the file named after the user you want to restore to `__MAILCOW_DIRECTORY__/data/conf/sogo`.
 
-1. Copy the backup: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo`
+1. Copy the backup: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo/restoreme@example.org`
 
 2. Run the following command:
 
@@ -29,7 +29,7 @@ Copy the file named after the user you want to restore to `__MAILCOW_DIRECTORY__
     !!! example
         Run `sogo-tool` without parameters to check for possible restore options if the command above is not suitable for you.
 
-3. Delete the copied backup by running `rm __MAILCOW_DIRECTORY__/data/conf/sogo`
+3. Delete the copied backup by running `rm __MAILCOW_DIRECTORY__/data/conf/sogo/restoreme@example.org`
 
 4. Restart SOGo and Memcached: 
 
