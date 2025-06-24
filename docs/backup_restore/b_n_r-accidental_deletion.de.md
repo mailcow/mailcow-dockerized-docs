@@ -26,7 +26,8 @@ Kopieren Sie die Datei mit dem Namen des Benutzers, den Sie wiederherstellen wol
         docker-compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org
         ```
 
-    Führen Sie `sogo-tool` ohne Parameter aus, um nach möglichen Wiederherstellungsoptionen zu suchen.
+    !!! example "Beispiele"
+        Führen Sie `sogo-tool` ohne Parameter aus, um nach möglichen Wiederherstellungsoptionen zu suchen, wenn der oben stehende Befehl für Sie nicht in Frage kommt.
 
 3. Löschen Sie die kopierte Sicherung, indem Sie `rm __MAILCOW_DIRECTORY__/data/conf/sogo` ausführen
 

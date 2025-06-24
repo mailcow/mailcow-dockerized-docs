@@ -26,7 +26,8 @@ Copy the file named after the user you want to restore to `__MAILCOW_DIRECTORY__
         docker-compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org
         ```
 
-    Run `sogo-tool` without parameters to check for possible restore options.
+    !!! example
+        Run `sogo-tool` without parameters to check for possible restore options if the command above is not suitable for you.
 
 3. Delete the copied backup by running `rm __MAILCOW_DIRECTORY__/data/conf/sogo`
 
