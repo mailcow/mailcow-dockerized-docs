@@ -12,9 +12,9 @@
 
 	Correct: **mailcow**, because mailcow is a registered word mark with a small m :grin:
 
-mailcow: dockerized is an open source groupware/email suite based on docker.
+mailcow: dockerized is an open source groupware/e-mail suite based on docker.
 
-mailcow relies on many well known and long used components, which in combination result in an all around carefree email server.
+mailcow relies on many well known and long used components, which in combination result in an all around carefree e-mail server.
 
 Each container represents a single application, connected in a bridged network:
 
@@ -29,7 +29,7 @@ Each container represents a single application, connected in a bridged network:
 - :simple-nginx: [__Nginx__](https://nginx.org/) Web server for components of the stack
 - :material-microsoft-office: [__Olefy__](https://github.com/HeinleinSupport/olefy) Analysis of Office documents for viruses, macros, etc.
 - :simple-php: [__PHP__](https://php.net/) Programming language of most web-based mailcow applications
-- :material-email-newsletter: [__Postfix__](http://www.postfix.org/) MTA (Mail Transfer Agent) for e-mail traffic on the Internet
+- :material-e-mail-newsletter: [__Postfix__](http://www.postfix.org/) MTA (Mail Transfer Agent) for e-mail traffic on the Internet
 - :simple-redis: [__Redis__](https://redis.io/) Storage for spam information, DKIM key, etc.
 - :fontawesome-solid-trash-can: [__Rspamd__](https://www.rspamd.com/) Spam filter with automatic learning of spam mails
 - :material-calendar: [__SOGo__](https://sogo.nu/) Integrated webmailer and Cal-/Carddav interface
@@ -39,15 +39,14 @@ Each container represents a single application, connected in a bridged network:
 
 But the heart of mailcow is the graphical web interface, the **mailcow UI**.
 
-It offers a place for almost all settings and allows the comfortable creation of new domains and email addresses with just a few clicks.
-
-But also other or more tricky tasks can be done in it with ease:
+It offers a place for almost all settings and allows the comfortable creation of new domains and e-mail addresses with just a few clicks, as well as 
+other or more tricky tasks that can be done with ease:
 
 - [DKIM](http://dkim.org) and [ARC](http://arc-spec.org/) support/generation.
-- Black and white lists per domain and per user.
-- Spam score management per user (reject spam, flag spam, greylist).
+- Black- and whitelists per domain and per user
+- Spam score management per user (reject spam, flag spam, greylist)
 - Allow mailbox users to create temporary spam aliases
-- Prepend email tags to subject or move emails to subfolders (per user)
+- Prepend e-mail tags to subject or move e-mails to subfolders (per user)
 - Allow mailbox users to toggle TLS enforcement for inbound and outbound messages
 - Users can reset caches on SOGo ActiveSync devices
 - imapsync to periodically migrate or retrieve remote mailboxes
@@ -55,11 +54,11 @@ But also other or more tricky tasks can be done in it with ease:
 - Add whitelist hosts to forward mail to mailcow
 - Fail2ban-like integration
 - Quarantine system
-- Anti-virus scanning including macro scanning in Office documents
+- Anti-virus scanning, including macro scanning in Office documents
 - Integrated basic monitoring
 - And much more...
 
-The mailcow data (such as emails, user data, etc.) is stored in **Docker volumes** - take good care of these volumes:
+The mailcow data (such as e-mails, user data, etc.) is stored in **Docker volumes** - take good care of these volumes:
 
 - clamd-db-vol-1
 - crypt-vol-1
@@ -80,11 +79,11 @@ The mailcow data (such as emails, user data, etc.) is stored in **Docker volumes
 
 ## Try out mailcow (Demos)
 
-Have we got your interest? Get a first overview of the functionalities of mailcow and your mailcow UI in our official **mailcow demos**!
+You are interested in our project? Get a first overview of the functionalities of mailcow and your mailcow UI in our official **mailcow demos**!
 
-We´re providing two seperate Demo instances: 
+We're providing two separate demo instances: 
 
-+ **[demo.mailcow.email](https://demo.mailcow.email)** is the classic Demo based on the **stable releases**.
++ **[demo.mailcow.email](https://demo.mailcow.email)** is the classic demo based on the **stable releases**.
 + **[nightly-demo.mailcow.email](https://nightly-demo.mailcow.email)** is the **nightly demo** based on unreleased testing features. (So especially interesting for those who have no possibility to create a test instance themselves.)
 
 !!! abstract "Use these credentials for the demos"
@@ -94,7 +93,7 @@ We´re providing two seperate Demo instances:
 	| **Domain-Administrator** | department | moohoo | `/domainadmin` |
 	| **Normal User** | demo@440044.xyz | moohoo | `/` |
 
-	*The login credentials work on both Demos*.
+	*The login credentials work on both demos*.
 
 !!! success "Always up to date"
 	The demo instances get the latest updates directly after releases from GitHub. Fully automatic, without any downtime!
