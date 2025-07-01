@@ -38,7 +38,7 @@ If you plan to contribute to our docs please make sure to always specify **both*
     ```
 ```
 
-Simply change the Content of this two cases acording to your desired needs.
+Simply change the content of these two cases according to your desired needs.
 
 
 ### Translations
@@ -143,7 +143,7 @@ mkdocs serve
 ```
 
 
-The Placeholder values get replaced by the javascript in the file docs/assets/javascript/client.js.
+The Placeholder values get replaced by the JavaScript in the file docs/assets/javascript/client.js.
 
 If you want to test how the documentation looks like with the placeholder values filled in, you can set the values via url parameters.
 
