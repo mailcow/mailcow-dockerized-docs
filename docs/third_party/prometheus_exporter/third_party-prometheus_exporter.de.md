@@ -26,7 +26,7 @@ Der Endpunkt `/metrics` benötigt die URL-Parameter `host` und `apiKey`. `host` 
 
 
 
-![Visualization of where to find the API Key](../../assets/images/prometheus_exporter/mailcow-apikey.jpg)
+![Visualisierung, wo man den API-Schlüssel findet](../../assets/images/prometheus_exporter/mailcow-apikey.jpg)
 
 **ImpoWichtigrtant:** Beschränken Sie den Zugriff auf den Exporter und schützen Sie Ihren API-Schlüssel!
 
