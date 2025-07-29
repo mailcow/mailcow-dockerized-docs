@@ -19,7 +19,7 @@ docker compose up -d
 ```
 
 
-[Prometheus](https://prometheus.io) exporter for information about a
+[Prometheus](https://prometheus.io) Ein Prometheus-Exporter, der Metriken sammelt und bereitstellt, um Einblicke in die Leistung und den Zustand eines Dienstes zu geben.
 
 ### Usage
 
@@ -44,8 +44,9 @@ scrape_configs:
     static_configs:
       - targets: [ 'mailcow_exporter:9099' ]
     params:
-      host: [ 'mail.example.com' ]
-      apiKey: [ 'YOUR-APIKEY-HERE' ]
+      MAILCOW_EXPORTER_HOST: [ 'mail.example.com' ]
+      MAILCOW_EXPORTER_API_KEY: [ 'YOUR-APIKEY-HERE' ]
+      MAILCOW_EXPORTER_TOKEN: [ 'YOUR-APIKEY-HERE' ] # if you MAILCOW_EXPORTER_TOKEN_DISABLE=false
 ```
 
 It also supports an optional `scheme` URL parameter, that defaults to `https`.
