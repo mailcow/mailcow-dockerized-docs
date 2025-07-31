@@ -110,9 +110,9 @@ services:
   dovecot-mailcow:
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.dovecot-expunge-trash.schedule: "0 0 4 * * *"
-      ofelia.job-exec.dovecot-expunge-trash.command: "doveadm expunge -A mailbox 'Junk' savedbefore 2w"
-      ofelia.job-exec.dovecot-expunge-trash.tty: "false"
+      ofelia.job-exec.dovecot-expunge-junk.schedule: "0 0 4 * * *"
+      ofelia.job-exec.dovecot-expunge-junk.command: "doveadm expunge -A mailbox 'Junk' savedbefore 2w"
+      ofelia.job-exec.dovecot-expunge-junk.tty: "false"
 ```
 
 We add a few label to our dovecot-container to activate the job scheduler and tell him in a cron compatible scheduling format when to run. Note: Ofelia uses the [scheduling format](https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc) of the Go cron implementation which starts with a field for seconds instead of minutes.
@@ -120,10 +120,10 @@ We add a few label to our dovecot-container to activate the job scheduler and te
 This docker-compose.override.yml deletes all mails older then 2 weeks from the "Junk" folder every day at 4 am. To see if things ran proper, you can not only see in your mailbox but also check Ofelia's docker log if it looks something like this:
 
 ```
-common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
-common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Finished in "285.032291ms", failed: false, skipped: false, error: none,
+common.go:124 ▶ NOTICE [Job "dovecot-expunge-junk" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
+common.go:124 ▶ NOTICE [Job "dovecot-expunge-junk" (8759567efa66)] Finished in "285.032291ms", failed: false, skipped: false, error: none,
 ```
 
 If it failed it will say so and give you the output of the doveadm in the log to make it easy on you to debug.
 
-In case you want to add more jobs, ensure you change the "dovecot-expunge-trash" part after "ofelia.job-exec." to something else, it defines the name of the job. Syntax of the labels you find at [mcuadros/ofelia](https://github.com/mcuadros/ofelia).
+In case you want to add more jobs, ensure you change the "dovecot-expunge-junk" part after "ofelia.job-exec." to something else, it defines the name of the job. Syntax of the labels you find at [mcuadros/ofelia](https://github.com/mcuadros/ofelia).
