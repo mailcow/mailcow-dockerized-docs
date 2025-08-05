@@ -4391,17 +4391,17 @@ docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w
   dovecot-mailcow:
     labels:
       ofelia.enabled: &quot;true&quot;
-      ofelia.job-exec.dovecot-expunge-trash.schedule: &quot;0 0 4 * * *&quot;
-      ofelia.job-exec.dovecot-expunge-trash.command: &quot;doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
-      ofelia.job-exec.dovecot-expunge-trash.tty: &quot;false&quot;
+      ofelia.job-exec.dovecot-expunge-junk.schedule: &quot;0 0 4 * * *&quot;
+      ofelia.job-exec.dovecot-expunge-junk.command: &quot;doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w&quot;
+      ofelia.job-exec.dovecot-expunge-junk.tty: &quot;false&quot;
 </code></pre></div>
 <p>Wir fügen unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler zu aktivieren und ihm in einem Cron-kompatiblen Scheduling-Format mitzuteilen, wann er laufen soll. Hinweis: Ofelia verwendet das <a href="https://pkg.go.dev/github.com/robfig/cron?utm_source=godoc">Scheduling-Format</a> der Cron-Implementierung von Go, die mit einem Eintrag für Sekunden statt für Minuten beginnt.</p>
 <p>Diese docker-compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:</p>
-<div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
-common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
+<div class="highlight"><pre><span></span><code>common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-junk&quot; (8759567efa66)] Started - doveadm expunge -A mailbox &#39;Junk&#39; savedbefore 2w,
+common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-junk&quot; (8759567efa66)] Finished in &quot;285.032291ms&quot;, failed: false, skipped: false, error: none,
 </code></pre></div>
 <p>Wenn der Vorgang fehlgeschlagen ist, wird dies angegeben und die Ausgabe von doveadm im Protokoll aufgeführt, um Ihnen die Fehlersuche zu erleichtern.</p>
-<p>Falls Sie weitere Jobs hinzufügen wollen, stellen Sie sicher, dass Sie den "dovecot-expunge-trash"-Teil nach "ofelia.job-exec." in etwas anderes ändern, er definiert den Namen des Jobs. Die Syntax der Labels finden Sie unter <a href="https://github.com/mcuadros/ofelia">mcuadros/ofelia</a>.</p>
+<p>Falls Sie weitere Jobs hinzufügen wollen, stellen Sie sicher, dass Sie den "dovecot-expunge-junk"-Teil nach "ofelia.job-exec." in etwas anderes ändern, er definiert den Namen des Jobs. Die Syntax der Labels finden Sie unter <a href="https://github.com/mcuadros/ofelia">mcuadros/ofelia</a>.</p>
 
 
 
@@ -4422,7 +4422,7 @@ common.go:124 ▶ NOTICE [Job &quot;dovecot-expunge-trash&quot; (8759567efa66)] 
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="10. Juni 2024 12:09:59 CEST">2024-06-10 12:09:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="5. August 2025 06:37:39 CEST">2025-08-05 06:37:39</span>
   </span>
 
     
