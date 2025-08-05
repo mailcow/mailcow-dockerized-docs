@@ -1,4 +1,4 @@
-Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful and fast filter system. For a more in-depth documentation on Rspamd please visit its [own documentation](https://rspamd.com/doc/index.html).
+Rspamd is used for AV handling, DKIM signing and SPAM handling. It's a powerful and fast filter system. For a more in-depth documentation on Rspamd please visit its [own documentation](https://docs.rspamd.com/).
 
 ## UI access
 
@@ -15,7 +15,7 @@ You do this as follows:
 3. Change the Rspamd UI password here, or set one.
 4. Go to https://${MAILCOW_HOSTNAME}/rspamd in a browser and log in!
 
-Further configuration options and documentation for the WebUI can be found here: https://rspamd.com/webui/
+Further configuration options and documentation for the WebUI can be found here: https://docs.rspamd.com/
 
 ---
 
