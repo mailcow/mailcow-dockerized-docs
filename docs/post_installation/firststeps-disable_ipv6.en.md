@@ -48,6 +48,7 @@ services:
       image: bash:latest
       restart: "no"
       entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
+      network_mode: "host"
 ```
 
 For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:
