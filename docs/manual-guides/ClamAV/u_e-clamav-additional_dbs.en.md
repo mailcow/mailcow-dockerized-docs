@@ -21,11 +21,21 @@ Default ClamAV databases do not have great detection levels, but it can be enhan
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.ign2
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/javascript.ndb
-DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/spam_marketing.ndb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfohtml.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoascii.hdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoandroid.hdb
+DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfoold.hdb
 DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfopdf.hdb
+# Paid databases
+# DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo0hour.hdb
+# DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.mdb
+# DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.yara
+# DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.pdb
+# DatabaseCustomURL https://www.securiteinfo.com/get/signatures/your_id/securiteinfo.wdb
 ```
+
+!!! danger "Attention"
+    SecuriteInfo spam_marketing.ndb database is known to have significant false positive rules, add on your own risk!
 
 8. For free SecuriteInfo databases, download speed is limited to 300 kB/s. In `data/conf/clamav/freshclam.conf`, increase the default `ReceiveTimeout 20` value to `ReceiveTimeout 90` (time in seconds), otherwise some of the database downloads could fail because of their size.
 
