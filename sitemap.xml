@@ -757,6 +757,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/portainer/third_party-portainer/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/third_party/prometheus_exporter/third_party-prometheus_exporter/</loc>
+        <lastmod>2025-08-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/prometheus_exporter/third_party-prometheus_exporter/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/prometheus_exporter/third_party-prometheus_exporter/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/third_party/roundcube/third_party-roundcube/</loc>
         <lastmod>2025-08-07</lastmod>
         <changefreq>daily</changefreq>
@@ -1602,6 +1609,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/portainer/third_party-portainer/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/portainer/third_party-portainer/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/third_party/prometheus_exporter/third_party-prometheus_exporter/</loc>
+        <lastmod>2025-08-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/prometheus_exporter/third_party-prometheus_exporter/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/prometheus_exporter/third_party-prometheus_exporter/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/roundcube/third_party-roundcube/</loc>
