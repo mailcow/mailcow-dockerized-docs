@@ -213,6 +213,7 @@ nav:
     - 'Nextcloud': 'third_party/nextcloud/third_party-nextcloud.md'
     - 'Portainer': 'third_party/portainer/third_party-portainer.md'
     - 'Roundcube': 'third_party/roundcube/third_party-roundcube.md'
+    - 'Prometheus Exporter': 'third_party/prometheus_exporter/third_party-prometheus_exporter.en.md'
 
 plugins:
   - i18n: # <--- Translation plugin
