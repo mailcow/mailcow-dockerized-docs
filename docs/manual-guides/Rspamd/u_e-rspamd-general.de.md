@@ -1,4 +1,4 @@
-Rspamd wird für die AV-Verarbeitung, DKIM-Signierung und SPAM-Verarbeitung verwendet. Es ist ein leistungsfähiges und schnelles Filtersystem. Für eine ausführlichere Dokumentation über Rspamd besuchen Sie bitte die [Rspamd Dokumentation] (https://rspamd.com/doc/index.html).
+Rspamd wird für die AV-Verarbeitung, DKIM-Signierung und SPAM-Verarbeitung verwendet. Es ist ein leistungsfähiges und schnelles Filtersystem. Für eine ausführlichere Dokumentation über Rspamd besuchen Sie bitte die [Rspamd Dokumentation] (https://docs.rspamd.com/).
 
 ## UI Zugang
 
@@ -15,7 +15,7 @@ Dies tun Sie wie folgt:
 3. Ändern Sie hier das Rspamd UI Passwort, bzw. legen Sie eines fest.
 4. Gehen Sie in einem Browser zu https://${MAILCOW_HOSTNAME}/rspamd und melden Sie sich an!
 
-Weitere Konfigurationsoptionen und Dokumentation zur WebUI finden Sie hier: https://rspamd.com/webui/
+Weitere Konfigurationsoptionen und Dokumentation zur WebUI finden Sie hier: https://docs.rspamd.com/
 
 ---
 

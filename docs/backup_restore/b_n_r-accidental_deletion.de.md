@@ -10,7 +10,7 @@ Wir erstellen automatisch tägliche Backups (24 Stunden Intervall ab dem ausfüh
 
 Kopieren Sie die Datei mit dem Namen des Benutzers, den Sie wiederherstellen wollen, nach `__MAILCOW_DIRECTORY__/data/conf/sogo`.
 
-1. Kopieren Sie die Sicherung: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo`
+1. Kopieren Sie die Sicherung: `cp /var/lib/docker/volumes/mailcowdockerized_sogo-userdata-backup-vol-1/_data/restoreme@example.org __MAILCOW_DIRECTORY__/data/conf/sogo/restoreme@example.org`
 
 2. Führen Sie folgenden Befehl aus:
 
@@ -26,9 +26,10 @@ Kopieren Sie die Datei mit dem Namen des Benutzers, den Sie wiederherstellen wol
         docker-compose exec -u sogo sogo-mailcow sogo-tool restore -F ALL /etc/sogo restoreme@example.org
         ```
 
-    Führen Sie `sogo-tool` ohne Parameter aus, um nach möglichen Wiederherstellungsoptionen zu suchen.
+    !!! example "Beispiele"
+        Führen Sie `sogo-tool` ohne Parameter aus, um nach möglichen Wiederherstellungsoptionen zu suchen, wenn der oben stehende Befehl für Sie nicht in Frage kommt.
 
-3. Löschen Sie die kopierte Sicherung, indem Sie `rm __MAILCOW_DIRECTORY__/data/conf/sogo` ausführen
+3. Löschen Sie die kopierte Sicherung, indem Sie `rm __MAILCOW_DIRECTORY__/data/conf/sogo/restoreme@example.org` ausführen
 
 4. Starten Sie SOGo und Memcached neu: 
 

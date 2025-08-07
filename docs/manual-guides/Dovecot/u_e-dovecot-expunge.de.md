@@ -112,9 +112,9 @@ services:
   dovecot-mailcow:
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.dovecot-expunge-trash.schedule: "0 0 4 * * *"
-      ofelia.job-exec.dovecot-expunge-trash.command: "doveadm expunge -A mailbox 'Junk' savedbefore 2w"
-      ofelia.job-exec.dovecot-expunge-trash.tty: "false"
+      ofelia.job-exec.dovecot-expunge-junk.schedule: "0 0 4 * * *"
+      ofelia.job-exec.dovecot-expunge-junk.command: "doveadm expunge -A mailbox 'Junk' savedbefore 2w"
+      ofelia.job-exec.dovecot-expunge-junk.tty: "false"
 
 ```
 
@@ -123,11 +123,11 @@ Wir fügen unserem Dovecot-Container ein paar Labels hinzu, um den Job-Scheduler
 Diese docker-compose.override.yml löscht jeden Tag um 4 Uhr morgens alle Mails, die älter als 2 Wochen sind, aus dem Ordner "Junk". Um zu sehen, ob alles richtig gelaufen ist, können Sie nicht nur in Ihrer Mailbox nachsehen, sondern auch im Docker-Log von Ofelia, ob es etwa so aussieht:
 
 ```
-common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
-common.go:124 ▶ NOTICE [Job "dovecot-expunge-trash" (8759567efa66)] Finished in "285.032291ms", failed: false, skipped: false, error: none,
+common.go:124 ▶ NOTICE [Job "dovecot-expunge-junk" (8759567efa66)] Started - doveadm expunge -A mailbox 'Junk' savedbefore 2w,
+common.go:124 ▶ NOTICE [Job "dovecot-expunge-junk" (8759567efa66)] Finished in "285.032291ms", failed: false, skipped: false, error: none,
 ```
 
 Wenn der Vorgang fehlgeschlagen ist, wird dies angegeben und die Ausgabe von doveadm im Protokoll aufgeführt, um Ihnen die Fehlersuche zu erleichtern.
 
-Falls Sie weitere Jobs hinzufügen wollen, stellen Sie sicher, dass Sie den "dovecot-expunge-trash"-Teil nach "ofelia.job-exec." in etwas anderes ändern, er definiert den Namen des Jobs. Die Syntax der Labels finden Sie unter [mcuadros/ofelia](https://github.com/mcuadros/ofelia).
+Falls Sie weitere Jobs hinzufügen wollen, stellen Sie sicher, dass Sie den "dovecot-expunge-junk"-Teil nach "ofelia.job-exec." in etwas anderes ändern, er definiert den Namen des Jobs. Die Syntax der Labels finden Sie unter [mcuadros/ofelia](https://github.com/mcuadros/ofelia).
 

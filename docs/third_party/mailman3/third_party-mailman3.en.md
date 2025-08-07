@@ -91,11 +91,11 @@ certbot certonly -d MAILMAN_DOMAIN
 
 #### Install mailcow
 
-Follow the [mailcow installation](../../getstarted/install.en.md). **Omit step 5 and do not pull and start!**
+Follow the [mailcow installation](../../getstarted/install.en.md). **Omit the step »*Start mailcow*« and do _not_ pull and up!**
 
 #### Configure mailcow
 
-This is also **Step 4** in the official *mailcow installation* (`nano mailcow.conf`). So change to your needs and alter the following variables:
+Do the step **Initialize mailcow** in the official *mailcow installation* and change configuration with `nano mailcow.conf` by altering the following variables:
 
 ```
 HTTP_PORT=18080            # don't use 8080 as mailman needs it
@@ -117,7 +117,7 @@ Create the file `/opt/mailcow-dockerized/docker-compose.override.yml` (e.g. with
 services:
   postfix-mailcow:
     volumes:
-      - /opt/mailman:/opt/mailman
+      - /opt/mailman/core/var/data/:/opt/mailman/core/var/data/
     networks:
       - docker-mailman_mailman
 
