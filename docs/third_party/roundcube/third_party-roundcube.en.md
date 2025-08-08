@@ -334,7 +334,7 @@ After all of the steps above you can start the Roundcube Container with.
     docker-compose up -d
     ```
 
-**Important notes about this configuration:**#
+**Important notes about this configuration:**
 
 !!! note
 For the rest of this Documentation you will be asked to modify files inside of `data/web/rc/config` use `data/web/rc/persistent-config` or `data/rc/config` (Advanced) instead.
