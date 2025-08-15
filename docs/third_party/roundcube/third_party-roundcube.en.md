@@ -6,6 +6,8 @@ i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute
 do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
 continuing with the subsequent commands.
 
+## Integrated Install
+
 ### Note on composer usage
 
 This guide uses composer to update roundcube dependencies or install / update roundcube plugins.
@@ -207,7 +209,7 @@ for which we will create an ofelia job that runs the roundcube `cleandb.sh` scri
 To do this, add the following to `docker-compose.override.yml` (if you already have some
 adaptations for the php-fpm container, add the labels to the existing section):
 
-```yml
+```yaml
 services:
   php-fpm-mailcow:
     labels:
@@ -217,6 +219,129 @@ services:
       ofelia.job-exec.roundcube_cleandb.command: '/bin/bash -c "[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh"'
 ```
 
+### Standalone Install
+
+To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
+
+```yaml
+services:
+  # ...
+
+  roundcube:
+    image: roundcube/roundcubemail:1.6.11-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
+    environment:
+      IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
+      IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
+      ROUNDCUBEMAIL_DB_TYPE: mysql
+      ROUNDCUBEMAIL_DB_HOST: mysql
+      ROUNDCUBEMAIL_DB_USER: roundcube
+      ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
+      ROUNDCUBEMAIL_DB_NAME: roundcubemail
+      ROUNDCUBEMAIL_DEFAULT_HOST: ssl://dovecot:143
+      ROUNDCUBEMAIL_SMTP_SERVER: ssl://postfix:587
+      ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload
+    volumes:
+      # == Documentation Compatibility ==
+      # These mounts are setup to match the ones from the Integrated Installation
+      # But it is recommended to not mount these inside of web/rc because said folder is also mounted into the php-fpm Container
+      # - ./data/web/rc:/var/www/html
+      # - ./data/web/rc/persistent-config:/var/roundcube/config
+
+      # Advanced (less Compatibility with Documentation, but safer)
+      - ./data/rc/main:/var/www/html
+      - ./data/rc/config:/var/roundcube/config
+    depends_on:
+      - mysql-mailcow
+      - dovecot-mailcow
+    restart: unless-stopped
+    networks:
+      mailcow-network:
+        aliases:
+          - roundcube
+
+networks:
+  proxy:
+    external: true
+```
+
+### Webserver configuration
+
+The roundcube directory includes some locations that we do not want to serve to web users. We add a configuration
+extension to nginx to only expose the public directory of roundcube.
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location /rc/ {
+    proxy_pass http://roundcube:80/;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_redirect off;
+}
+EOCONFIG
+```
+
+### Create roundcube database
+
+You may need to load the Environment Variables.
+
+```bash
+source mailcow.conf
+```
+
+Create a database for roundcube in the mailcow MySQL container. This creates a new `roundcube` database user
+with a random password, which will be echoed to the shell and stored in a shell variable for use by later
+commands. Note that when you interrupt the process and continue in a new shell, you must set the `DBROUNDCUBE`
+shell variable manually to the password output by the following commands.
+
+Generate a Password for the Roundcube Database by using
+
+```bash
+LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28
+```
+
+and add `DBROUNDCUBE` to your `mailcow.conf` file.
+
+Then execute the following commands:
+
+```bash
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${DBROUNDCUBE}';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
+```
+
+### Optional: Add Plugins
+
+To enable Plugins add them to `ROUNDCUBEMAIL_PLUGINS`,
+if a Plugin is not already installed add it to the `ROUNDCUBEMAIL_COMPOSER_PLUGINS` Environment Variable to ensure it is auto-installed on startup.
+
+### Start Roundcube
+
+After all of the steps above you can start the Roundcube Container with.
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down
+    docker-compose up -d
+    ```
+
+**Important notes about this configuration:**
+
+!!! note
+For the rest of this Documentation you will be asked to modify files inside of `data/web/rc/config` use `data/web/rc/persistent-config` or `data/rc/config` (Advanced) instead.
+This is due to Roundcube auto-generating configs inside of `rc/main/config/` or `web/rc/config/` based on configs in `persistent-config/` / `data/rc/config/`.
+
+If you chose to mount in the _Advanced_ way notice folders like `plugins/` are located inside of `data/rc/main`.
+
 ## Optional extra functionality
 
 ### Enable change password function in Roundcube
@@ -225,19 +350,27 @@ Changing the mailcow password from the roundcube UI is supported via the passwor
 the mailcow API to update the password, which requires to enable the API first and to get the API key (read/write API
 access required). The API can be enabled in the mailcow admin interface, where you can also find the API key.
 
-Open `data/web/rc/config/config.inc.php` and enable the password plugin by adding it to the `$config['plugins']` array,
-for example:
+Open `data/web/rc/config/config.inc.php` and enable the password plugin by adding it to the `$config['plugins']` array
+or by adding it to `DBROUNDCUBEMAIL_PLUGINS`, for example:
 
-```php
-$config['plugins'] = array(
-  'archive',
-  'managesieve',
-  'acl',
-  'markasjunk',
-  'zipdownload',
-  'password',
-);
-```
+=== "Integrated"
+
+    ```php
+    $config['plugins'] = array(
+      'archive',
+      'managesieve',
+      'acl',
+      'markasjunk',
+      'zipdownload',
+      'password',
+    );
+    ```
+
+=== "Standalone"
+
+    ```yaml
+          ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, password
+    ```
 
 Configure the password plugin (be sure to adapt **\*\*API_KEY\*\*** to you mailcow read/write API key):
 
@@ -269,12 +402,21 @@ EOCONFIG
 
 ### Integrate CardDAV addressbooks in Roundcube
 
-Install the latest v5 version (the config below is compatible with v5 releases) using composer.
-Answer `Y` when asked if you want to activate the plugin.
+=== "Integrated"
+    Install the latest v5 version (the config below is compatible with v5 releases) using composer.
+    Answer `Y` when asked if you want to activate the plugin.
 
-```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "roundcube/carddav:~5"
-```
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "roundcube/carddav:~5"
+    ```
+
+=== "Standalone"
+    Install the latest version of CardDAV (config based on v5 releases) by adding `carddav` to `ROUNDCUBEMAIL_PLUGINS`:
+
+    ```yaml
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, carddav
+    ROUNDCUBEMAIL_COMPOSER_PLUGINS: "roundcube/carddav:~5"
+    ```
 
 Edit the file `data/web/rc/plugins/carddav/config.inc.php` and insert the following content:
 
@@ -316,9 +458,18 @@ already be in place to handle bruteforce attacks on the IMAP server.
 
 For this, the roundcube plugin must be installed.
 
-```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "foorschtbar/dovecot_client_ip:~2"
-```
+=== "Integrated"
+
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "foorschtbar/dovecot_client_ip:~2"
+    ```
+
+=== "Standalone"
+
+    ```yaml
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, dovecot_client_ip
+    ROUNDCUBEMAIL_COMPOSER_PLUGINS: "foorschtbar/dovecot_client_ip:~2"
+    ```
 
 Edit the file `data/web/rc/config/config.inc.php` and insert the following content:
 
@@ -361,132 +512,43 @@ $MAILCOW_APPS = [
 ];
 ```
 
-### Let users authenticate with mailcow (oauth)
-
-First, we have to define some placeholders:
-
-- roundcube.example.com
-  (can also be hosted on the `/rc` subpath on you mailcow host)
-- mail.example.com (your mailcow host)
-
-In mailcow UI under `Admin > Oauth2 Apps`, create a new oauth2 App.
-Set the redirect uri to `https://roundcube.example.com/index.php/login/oauth`.
-Take note of the Client ID and SECRET.
-
-Create a Roundcube config file under `./data/rc/config/config.oauth.inc.php`.
-`./data/rc/config/config.oauth.inc.php`
-
-```php
-<?php
-// ----------------------------------
-// OAuth
-// ----------------------------------
-
-// Enable OAuth2 by defining a provider. Use 'generic' here
-$config['oauth_provider'] = 'generic';
-
-// Provider name to be displayed on the login button
-$config['oauth_provider_name'] = 'SSO';
-
-// Mandatory: OAuth client ID for your Roundcube installation
-// Get this from the oauth2 app in the mailcow UI
-$config['oauth_client_id'] = 'your_client_id';
-
-// Mandatory: OAuth client secret
-// Get this from the oauth2 app in the mailcow UI
-$config['oauth_client_secret'] = 'your_client_secret';
-
-// Mandatory: URI for OAuth user authentication (redirect)
-$config['oauth_auth_uri'] = 'https://mail.example.com/oauth/authorize';
-
-// Mandatory: Endpoint for OAuth authentication requests (server-to-server)
-$config['oauth_token_uri'] = 'https://mail.example.com/oauth/token';
-
-// Optional: Endpoint to query user identity if not provided in auth response
-$config['oauth_identity_uri'] = 'https://mail.example.com/oauth/profile';
-
-// Optional: disable SSL certificate check on HTTP requests to OAuth server
-// See http://docs.guzzlephp.org/en/stable/request-options.html#verify for possible values
-$config['oauth_verify_peer'] = false;
-
-// Mandatory: OAuth scopes to request (space-separated string)
-$config['oauth_scope'] = 'profile';
-
-// Optional: additional query parameters to send with login request (hash array)
-$config['oauth_auth_parameters'] = [];
-
-// Optional: array of field names used to resolve the username within the identity information
-$config['oauth_identity_fields'] = ['email'];
-
-// Boolean: automatically redirect to OAuth login when opening Roundcube without a valid session
-$config['oauth_login_redirect'] = false;
-```
-
-Load the newly created config file by adding
-
-```php
-include(__DIR__ . "/config.oauth.inc.php");
-```
-
-At the bottom of `/config.inc.php`.
-
-You will now be able to see a `SSO` button on your Roundcube login page.
-
-To setup Dovecot to accept `XOAUTH` as an Authentication method, create a file under `./data/conf/dovecot/extra.conf`.
-`./data/conf/dovecot/extra.conf`
-
-```
-auth_mechanisms = $auth_mechanisms oauthbearer oauth
-
-passdb {
-  driver = oauth2
-  mechanisms = xoauth2
-  args = /etc/dovecot/dovecot-oauth2.conf.ext
-}
-
-userdb {
-  driver = static
-  args = uid=vmail gid=vmail home=/var/vmail/%d/%n
-}
-```
-
-Now create `./data/conf/dovecot/dovecot-oauth2.conf.ext`.
-`./data/conf/dovecot/dovecot-oauth2.conf.ext`
-
-```
-grant_url = https://mail.example.com/oauth/token
-client_id = your_client_id
-client_secret = your_client_secret
-introspection_url = https://mail.example.com/oauth/profile
-introspection_mode = auth
-use_grant_password = no
-username_attribute = email
-```
-
-Make sure to restart Dovecot to load the new configuration.
-
 ### Let admins log into Roundcube without password
 
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
 
-```bash
-docker exec -it -w /web/rc/plugins $(docker ps -f name=php-fpm-mailcow -q) git clone https://github.com/corbosman/dovecot_impersonate.git
-```
+=== "Integrated"
+    ```bash
+    docker exec -it -w /web/rc/plugins $(docker ps -f name=php-fpm-mailcow -q) git clone https://github.com/corbosman/dovecot_impersonate.git
+    ```
 
-Open `data/web/rc/config/config.inc.php` and enable the dovecot_impersonate plugin by adding it to the `$config['plugins']` array,
+=== "Standalone"
+    ```bash
+    docker exec -it -w /var/www/html/plugins $(docker ps -f name=roundcube -q) git clone https://github.com/corbosman/dovecot_impersonate.git
+    ```
+
+Open `data/web/rc/config/config.inc.php` and enable the dovecot_impersonate plugin by adding it to the `$config['plugins']` array or by adding it to `ROUNDCUBEMAIL_PLUGINS`. 
 for example:
 
-```php
-$config['plugins'] = array(
-  'archive',
-  'managesieve',
-  'acl',
-  'markasjunk',
-  'zipdownload',
-  'password',
-  'dovecot_impersonate'
-);
-```
+=== "Integrated"
+
+    ```php
+    $config['plugins'] = array(
+      'archive',
+      'managesieve',
+      'acl',
+      'markasjunk',
+      'zipdownload',
+      'password',
+      'dovecot_impersonate'
+    );
+    ```
+
+=== "Standalone"
+
+    ```yaml
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, dovecot_impersonate
+    ROUNDCUBEMAIL_COMPOSER_PLUGINS: #... We just installed so no need to add it here
+    ```
 
 Edit `mailcow.conf` and add the following:
 
@@ -499,7 +561,7 @@ ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
 
 Edit `docker-compose.override.yml` and crate/extend the section for `php-fpm-mailcow`:
 
-```yml
+```yaml
 services:
   php-fpm-mailcow:
     environment:
@@ -557,49 +619,67 @@ Finally, restart mailcow
 
 ## Upgrading Roundcube
 
-Upgrading Roundcube is rather simple, go to the [GitHub releases](https://github.com/roundcube/roundcubemail/releases)
-page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below
-commands and change the URL and Roundcube folder name if needed.
+=== "Integrated"
+    Upgrading Roundcube is rather simple, go to the [GitHub releases](https://github.com/roundcube/roundcubemail/releases)
+    page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below
+    commands and change the URL and Roundcube folder name if needed.
 
-```bash
-# Enter a bash session of the mailcow PHP container
-docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
+    ```bash
+    # Enter a bash session of the mailcow PHP container
+    docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
-# Install required upgrade dependency, then upgrade Roundcube to wanted release
-apk add rsync
-cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.6.11
-bin/installto.sh /web/rc
+    # Install required upgrade dependency, then upgrade Roundcube to wanted release
+    apk add rsync
+    cd /tmp
+    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar xfvz -
+    cd roundcubemail-1.6.11
+    bin/installto.sh /web/rc
 
-# Type 'Y' and press enter to upgrade your install of Roundcube
-# Type 'N' to "Do you want me to fix your local configuration" if prompted
+    # Type 'Y' and press enter to upgrade your install of Roundcube
+    # Type 'N' to "Do you want me to fix your local configuration" if prompted
 
-# If you see "NOTICE: Update dependencies by running php composer.phar update --no-dev" run composer:
-cd /web/rc
-composer update --no-dev -o
-# If asked "Do you trust "roundcube/plugin-installer" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?] " hit y and continue.
+    # If you see "NOTICE: Update dependencies by running php composer.phar update --no-dev" run composer:
+    cd /web/rc
+    composer update --no-dev -o
+    # If asked "Do you trust "roundcube/plugin-installer" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?] " hit y and continue.
 
-# Remove leftover files
-rm -rf /tmp/roundcube*
+    # Remove leftover files
+    rm -rf /tmp/roundcube*
 
-# If you're going from 1.5 to 1.6 please run the config file changes below
-sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'dovecot:143'\;/" /web/rc/config/config.inc.php
-sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
-sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'postfix:588'\;/" /web/rc/config/config.inc.php
-sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
-sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
-sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
-```
+    # If you're going from 1.5 to 1.6 please run the config file changes below
+    sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'dovecot:143'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
+    sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'postfix:588'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
+    sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
+    ```
+
+=== "Standalone"
+    Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
+
+    ```yaml
+    image: roundcube/roundcubemail:1.6.11-apache # 1.6.11 -> 1.6.X (in the futur: 1.7.X)
+    ```
+
+    Roundcube will then after a restart automatically apply Migrations and update your Container.
 
 ### Upgrade composer plugins
 
-To upgrade roundcube plugins installed using composer and dependencies (e.g. RCMCardDAV plugin), you can simply run
-composer in the container:
+=== "Integrated"
+    To upgrade roundcube plugins installed using composer and dependencies (e.g. RCMCardDAV plugin), you can simply run
+    composer in the container:
 
-```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
-```
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+    ```
+
+=== "Standalone"
+    To update composer plugins increase the version number at the end of a import:
+
+    ```yaml
+        ROUNDCUBEMAIL_COMPOSER_PLUGINS: "roundcube/carddav:~4" # increase to v5
+    ```
 
 ### Upgrade mime type mappings
 
@@ -619,9 +699,29 @@ including those installed with composer.
 Note: This deletes also any custom configuration that you may have done in roundcube. If you want to preserve it, move it some
 place else instead of deleting it.
 
-```bash
-rm -r data/web/rc
-```
+=== "Integrated"
+
+    ```bash
+    rm -r data/web/rc
+    ```
+
+=== "Standalone"
+
+    Stop the Roundcube Container:
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose down
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose down
+        ```
+
+		Then you can safely delete `data/web/rc` / `data/rc/`.
 
 ### Remove the database
 
@@ -772,3 +872,6 @@ the roundcube tables from the mailcow database using the following command:
 ```bash
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SET SESSION foreign_key_checks = 0; DROP TABLE IF EXISTS $(echo $RCTABLES | sed -e 's/ \+/,/g');"
 ```
+
+
+
