@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik3/">
       
       
+        <link rel="prev" href="../r_p-haproxy/">
+      
+      
+        <link rel="next" href="../r_p-caddy2/">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>R p traefik3 - mailcow: dockerized Dokumentation</title>
+        <title>Traefik v3 (von der Community unterstützt) - mailcow: dockerized Dokumentation</title>
       
     
     
@@ -49,7 +53,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="R p traefik3 - mailcow: dockerized Dokumentation" >
+        <meta  property="og:title"  content="Traefik v3 (von der Community unterstützt) - mailcow: dockerized Dokumentation" >
       
         <meta  property="og:description"  content="None" >
       
@@ -65,7 +69,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="R p traefik3 - mailcow: dockerized Dokumentation" >
+        <meta  name="twitter:title"  content="Traefik v3 (von der Community unterstützt) - mailcow: dockerized Dokumentation" >
       
         <meta  name="twitter:description"  content="None" >
       
@@ -155,7 +159,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              R p traefik3
+              Traefik v3 (von der Community unterstützt)
             
           </span>
         </div>
@@ -932,18 +936,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -959,7 +965,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Post-Installationsaufgaben
@@ -1131,18 +1137,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" checked>
         
           
           <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
@@ -1158,7 +1166,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_8">
             <span class="md-nav__icon md-icon"></span>
             Reverse Proxy
@@ -1261,20 +1269,145 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../post_installation/reverse-proxy/r_p-traefik2.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Traefik v3 (von der Community unterstützt)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Traefik v2 (von der Community unterstützt)
+    Traefik v3 (von der Community unterstützt)
     
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#voraussetzungen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Voraussetzungen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uberblick" class="md-nav__link">
+    <span class="md-ellipsis">
+      Überblick
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schritt-1-aktualisieren-der-mailcow-konfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schritt 1: Aktualisieren der mailcow-Konfiguration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traefik-konfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traefik-Konfiguration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schritt-3-neustarten-der-dienste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schritt 3: Neustarten der Dienste
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testen-der-konfiguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testen der Konfiguration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problembehandlung" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problembehandlung
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problembehandlung">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zertifikatsprobleme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zertifikatsprobleme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-probleme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Routing-Probleme
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4272,7 +4405,7 @@
   
 
 
-  <h1>R p traefik3</h1>
+  <h1>Traefik v3 (von der Community unterstützt)</h1>
 
 <div class="admonition warning">
 <p class="admonition-title">Wichtig</p>
