@@ -4152,7 +4152,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Installation von Roundcube">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrierte-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrierte Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrierte Installation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4258,6 +4267,57 @@
   <a href="#ofelia-job-fur-roundcube-aufraumtatigkeiten" class="md-nav__link">
     <span class="md-ellipsis">
       Ofelia-Job für Roundcube-Aufräumtätigkeiten
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#externe-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Externe Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Externe Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webserver-konfiguration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webserver-Konfiguration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anlegen-der-roundcube-datenbank_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anlegen der Roundcube-Datenbank
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-plugins-hinzufugen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: Plugins hinzufügen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starte-den-roundcube-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starte den Roundcube Container
     </span>
   </a>
   
@@ -4569,7 +4629,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Installation von Roundcube">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrierte-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrierte Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integrierte Installation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4675,6 +4744,57 @@
   <a href="#ofelia-job-fur-roundcube-aufraumtatigkeiten" class="md-nav__link">
     <span class="md-ellipsis">
       Ofelia-Job für Roundcube-Aufräumtätigkeiten
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#externe-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Externe Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Externe Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webserver-konfiguration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webserver-Konfiguration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anlegen-der-roundcube-datenbank_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anlegen der Roundcube-Datenbank
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-plugins-hinzufugen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional: Plugins hinzufügen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starte-den-roundcube-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starte den Roundcube Container
     </span>
   </a>
   
@@ -4940,12 +5060,13 @@
 <h2 id="installation-von-roundcube">Installation von Roundcube<a class="headerlink" href="#installation-von-roundcube" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Beachten Sie</p>
+</div>
 <p>Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
 Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches <code>mailcow.conf</code> usw. enthält. Bitte führen Sie
 die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
 ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
 nachfolgenden Kommandos fortfahren.</p>
-</div>
+<h2 id="integrierte-installation">Integrierte Installation<a class="headerlink" href="#integrierte-installation" title="Permanent link">&para;</a></h2>
 <h3 id="hinweise-zur-verwendung-von-composer">Hinweise zur Verwendung von composer<a class="headerlink" href="#hinweise-zur-verwendung-von-composer" title="Permanent link">&para;</a></h3>
 <p>Diese Anweisungen verwenden das Programm composer zur Aktualisierung der Abhängigkeiten von Roundcube und um
 Roundcube-Plugins zu installieren bzw. zu aktualisieren.</p>
@@ -5001,24 +5122,26 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;GRANT ALL PRIVILEGES ON roundcubemail.* TO &#39;roundcube&#39;@&#39;%&#39;;&quot;</span>
 </code></pre></div>
 <h3 id="roundcube-konfigurationsdatei">Roundcube-Konfigurationsdatei<a class="headerlink" href="#roundcube-konfigurationsdatei" title="Permanent link">&para;</a></h3>
-<p>Erstellen Sie eine Datei <code>data/web/rc/config/config.inc.php</code> mit dem folgenden Inhalt.
-  - Die <code>des_key</code>-Einstellung wird auf einen Zufallswert gesetzt. Sie wird u. a. zur Verschlüsselung vorübergehend
-    gespeicherter IMAP-Passwörter verwendet.
-  - Die Liste der Plugins kann nach Belieben angepasst werden. Die folgende Liste enthält eine Liste von
-    Standard-Plugins, welche ich als allgemein nützlich empfinde und die gut mit mailcow zusammenspielen:
-    - Das archive-Plugin fügt einen Archiv-Button hinzu, der ausgewählte E-Mails in ein konfigurierbares
-      Archiv-Verzeichnis verschiebt.
-    - Das managesieve-Plugin bietet eine benutzerfreundliche Oberfläche zur Verwaltung serverseitiger E-Mail-Filter und
-      Abwesenheits-Benachrichtigungen.
-    - Das acl-Plugin ermöglicht die Verwaltung von Zugriffskontroll-Listen auf IMAP-Verzeichnissen, mit der Möglichkeit
-      IMAP-Verzeichnisse mit anderen Benutzern zu teilen.
-    - Das markasjunk-Plugin fügt Buttons hinzu, um ausgewählte E-Mails als Spam (oder E-Mails im Junk-Verzeichnis nicht
-      als Spam) zu markieren und diese in das Junk-Verzeichnis (oder zurück in den Posteingang) zu verschieben. Die in
-      mailcow enthaltenen Sieve-Filter lösen automatisch die zugehörige Lern-Operation in rspamd aus, so dass keine
-      weitere Konfiguration des Plugins erforderlich ist.
-    - Das zipdownload-Plugin erlaubt es, mehrere E-Mail-Anhänge oder E-Mails als ZIP-Archiv herunterzuladen.
-  - Wenn Sie die Rechtschreibprüfung im obigen Schritt nicht installiert haben, entfernen Sie den Parameter
-    <code>spellcheck_engine</code>.</p>
+<p>Erstellen Sie eine Datei <code>data/web/rc/config/config.inc.php</code> mit dem folgenden Inhalt.</p>
+<ul>
+<li>Die <code>des_key</code>-Einstellung wird auf einen Zufallswert gesetzt. Sie wird u. a. zur Verschlüsselung vorübergehend
+  gespeicherter IMAP-Passwörter verwendet.</li>
+<li>Die Liste der Plugins kann nach Belieben angepasst werden. Die folgende Liste enthält eine Liste von
+  Standard-Plugins, welche ich als allgemein nützlich empfinde und die gut mit mailcow zusammenspielen:</li>
+<li>Das archive-Plugin fügt einen Archiv-Button hinzu, der ausgewählte E-Mails in ein konfigurierbares
+    Archiv-Verzeichnis verschiebt.</li>
+<li>Das managesieve-Plugin bietet eine benutzerfreundliche Oberfläche zur Verwaltung serverseitiger E-Mail-Filter und
+    Abwesenheits-Benachrichtigungen.</li>
+<li>Das acl-Plugin ermöglicht die Verwaltung von Zugriffskontroll-Listen auf IMAP-Verzeichnissen, mit der Möglichkeit
+    IMAP-Verzeichnisse mit anderen Benutzern zu teilen.</li>
+<li>Das markasjunk-Plugin fügt Buttons hinzu, um ausgewählte E-Mails als Spam (oder E-Mails im Junk-Verzeichnis nicht
+    als Spam) zu markieren und diese in das Junk-Verzeichnis (oder zurück in den Posteingang) zu verschieben. Die in
+    mailcow enthaltenen Sieve-Filter lösen automatisch die zugehörige Lern-Operation in rspamd aus, so dass keine
+    weitere Konfiguration des Plugins erforderlich ist.</li>
+<li>Das zipdownload-Plugin erlaubt es, mehrere E-Mail-Anhänge oder E-Mails als ZIP-Archiv herunterzuladen.</li>
+<li>Wenn Sie die Rechtschreibprüfung im obigen Schritt nicht installiert haben, entfernen Sie den Parameter
+  <code>spellcheck_engine</code>.</li>
+</ul>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;data/web/rc/config/config.inc.php</span>
 <span class="s">&lt;?php</span>
 <span class="s">\$config[&#39;db_dsnw&#39;] = &#39;mysql://roundcube:${DBROUNDCUBE}@mysql/roundcubemail&#39;;</span>
@@ -5104,14 +5227,109 @@ docker<span class="w"> </span>compose<span class="w"> </span>restart<span class=
 der das Roundcube <code>cleandb.sh</code>-Skript regelmässig ausführt.</p>
 <p>Um dies zu tun, fügen Sie folgendes zu <code>docker-compose.override.yml</code> hinzu (falls Sie bereits einige Anpassungen für den
 php-fpm-Container durchgeführt haben, fügen Sie die Label dem bestehenden Abschnitt hinzu):</p>
-<div class="highlight"><pre><span></span><code>services:
-  php-fpm-mailcow:
-    labels:
-      ofelia.enabled: &quot;true&quot;
-      ofelia.job-exec.roundcube_cleandb.schedule: &quot;@every 168h&quot;
-      ofelia.job-exec.roundcube_cleandb.user: &quot;www-data&quot;
-      ofelia.job-exec.roundcube_cleandb.command: &quot;/bin/bash -c \&quot;[ -f /web/rc/bin/cleandb.sh ] &amp;&amp; /web/rc/bin/cleandb.sh\&quot;&quot;
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">php-fpm-mailcow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ofelia.enabled</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">ofelia.job-exec.roundcube_cleandb.schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;@every</span><span class="nv"> </span><span class="s">168h&quot;</span>
+<span class="w">      </span><span class="nt">ofelia.job-exec.roundcube_cleandb.user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;www-data&quot;</span>
+<span class="w">      </span><span class="nt">ofelia.job-exec.roundcube_cleandb.command</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/bin/bash</span><span class="nv"> </span><span class="s">-c</span><span class="nv"> </span><span class="s">&quot;[</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">/web/rc/bin/cleandb.sh</span><span class="nv"> </span><span class="s">]</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">/web/rc/bin/cleandb.sh&quot;&#39;</span>
 </code></pre></div>
+<h2 id="externe-installation">Externe Installation<a class="headerlink" href="#externe-installation" title="Permanent link">&para;</a></h2>
+<p>Um Roundcube in einem eigenen Docker-Container installieren zu können muss zu Ihrer existierenden <code>docker-compose.yaml</code> Datei folgendes hinzugefügt werden:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ...</span>
+
+<span class="w">  </span><span class="nt">roundcube</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube/roundcubemail:1.6.11-apache</span><span class="w"> </span><span class="c1"># Siehe neuste version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">IPV4_NETWORK</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}</span>
+<span class="w">      </span><span class="nt">IPV6_NETWORK</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_TYPE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBE}</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcubemail</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DEFAULT_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssl://dovecot:143</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_SMTP_SERVER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssl://postfix:587</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">archive, managesieve, acl, markasjunk, zipdownload</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># == Dokumentation Kompatibilität ==</span>
+<span class="w">      </span><span class="c1"># Diese Mounts sind ähnlich zu der Integrierten Installation aufgebaut</span>
+<span class="w">      </span><span class="c1"># jedoch ist es empfohlen Mounts innerhalb des web/rc Ordners zu vermeiden, da diese Ordner ebenfalls im php-fpm Container eingehängt sind</span>
+<span class="w">      </span><span class="c1"># - ./data/web/rc:/var/www/html</span>
+<span class="w">      </span><span class="c1"># - ./data/web/rc/persistent-config:/var/roundcube/config</span>
+
+<span class="w">      </span><span class="c1"># Erweiterte Variante (weniger kompatible, dafür aber sicherer)</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/rc/main:/var/www/html</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/rc/config:/var/roundcube/config</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-mailcow</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dovecot-mailcow</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mailcow-network</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">proxy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h3 id="webserver-konfiguration_1">Webserver-Konfiguration<a class="headerlink" href="#webserver-konfiguration_1" title="Permanent link">&para;</a></h3>
+<p>Das Roundcube-Verzeichnis enthält einige Inhalte, die nicht an Web-Nutzer ausgeliefert werden sollen. Wir erstellen
+daher eine Konfigurations-Ergänzung für nginx, um nur die öffentlichen Teile von Roundcube im Web zu exponieren:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;data/conf/nginx/site.roundcube.custom</span>
+<span class="s">location /rc/ {</span>
+<span class="s">  alias /web/rc/public_html/;</span>
+<span class="s">}</span>
+<span class="s">EOCONFIG</span>
+</code></pre></div>
+<h3 id="anlegen-der-roundcube-datenbank_1">Anlegen der Roundcube-Datenbank<a class="headerlink" href="#anlegen-der-roundcube-datenbank_1" title="Permanent link">&para;</a></h3>
+<p>Zunächst falls noch nicht getan, die Shell Variablen laden:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
+</code></pre></div>
+<p>Erstellen Sie eine Datenbank für Roundcube im mailcow mysql Container. Dies erstellt einen neuen <code>roundcube</code>
+Datenbank-Benutzer mit einem Zufallspasswort, welches in die Shell ausgegeben wird und in einer Shell-Variable für die
+Verwendung durch die nachfolgenden Kommandos gespeichert wird. Beachten Sie, dass Sie die <code>DBROUNDCUBE</code>-Shell-Variable
+manuell auf das ausgegebene Passwort setzen müssen, falls sie den Installationsprozess unterbrechen und später in einer
+neuen Shell fortsetzen sollten.</p>
+<p>Hiermit besagtes Passwort generieren:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>&lt;/dev/urandom<span class="w"> </span>tr<span class="w"> </span>-dc<span class="w"> </span>A-Za-z0-9<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">28</span>
+</code></pre></div>
+<p>Anschließend den Wert <code>DBROUNDCUBE</code> in der Datei mailcow.conf auf das generierte Passwort setzen und...</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;&quot;</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE USER &#39;roundcube&#39;@&#39;%&#39; IDENTIFIED BY &#39;</span><span class="si">${</span><span class="nv">DBROUNDCUBE</span><span class="si">}</span><span class="s2">&#39;;&quot;</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;GRANT ALL PRIVILEGES ON roundcubemail.* TO &#39;roundcube&#39;@&#39;%&#39;;&quot;</span>
+</code></pre></div>
+<p>ausführen.</p>
+<h3 id="optional-plugins-hinzufugen">Optional: Plugins hinzufügen<a class="headerlink" href="#optional-plugins-hinzufugen" title="Permanent link">&para;</a></h3>
+<p>Um Plugins zu aktivieren müssen diese in <code>ROUNDCUBEMAIL_PLUGINS</code> gesetzt sein.
+Falls ein Plugin noch nicht vorinstalliert, bzw. installiert ist muss dieses auch zu der <code>ROUNDCUBEMAIL_COMPOSER_PLUGINS</code> Umgebungsvariable in <code>docker-compose.yaml</code> hinzugefügt werden.</p>
+<h3 id="starte-den-roundcube-container">Starte den Roundcube Container<a class="headerlink" href="#starte-den-roundcube-container" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>Wichtige Information für den Verlauf der Dokumentation:</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von <code>data/web/rc/config</code> zu verändern
+nutzen Sie stattdessen <code>data/web/rc/persistent-config</code> oder <code>data/rc/config</code> (Erweiterte Variante).
+Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in <code>persistent-config/</code> / <code>data/rc/config/</code> innerhalb von <code>rc/main/config/</code> oder <code>web/rc/config/</code> erstellt.</p>
+<p>If you chose to mount in the <em>Advanced</em> way notice folders like <code>plugins/</code> are located inside of <code>data/rc/main</code>.
+Sofern Sie sich für die Erweiterte Variante entschieden haben merken Sie sich, dass Ordner wie <code>plugins/</code> sich in <code>data/rc/main</code> befinden.</p>
 <h2 id="optionale-zusatz-funktionalitaten">Optionale Zusatz-Funktionalitäten<a class="headerlink" href="#optionale-zusatz-funktionalitaten" title="Permanent link">&para;</a></h2>
 <h2 id="aktivieren-der-funktion-passwort-andern-in-roundcube">Aktivieren der Funktion "Passwort ändern" in Roundcube<a class="headerlink" href="#aktivieren-der-funktion-passwort-andern-in-roundcube" title="Permanent link">&para;</a></h2>
 <p>Das Ändern des mailcow Passworts aus der Roundcube-Benutzeroberfläche wird durch das password-Plugin ermöglicht. Wir
@@ -5119,7 +5337,10 @@ konfigurieren dieses zur Verwendung der mailcow-API zur Passwort-Aktualisierung,
 aktivieren und den API-Schlüssel zu ermitteln (Lese-/Schreib-Zugriff notwendig). Die API kann in der
 mailcow-Administrationsoberfläche aktiviert werden, wo Sie auch den API-Schlüssel finden.</p>
 <p>Öffnen Sie <code>data/web/rc/config/config.inc.php</code> und aktivieren Sie das Passwort-Plugin, indem Sie es dem
-<code>$config['plugins']</code>-Array hinzufügen, zum Beispiel:</p>
+<code>$config['plugins']</code>-Array oder zur <code>ROUNDCUBEMAIL_PLUGINS</code> Variable hinzufügen, zum Beispiel:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Integriert</label><label for="__tabbed_2_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="x">$config[&#39;plugins&#39;] = array(</span>
 <span class="x">  &#39;archive&#39;,</span>
 <span class="x">  &#39;managesieve&#39;,</span>
@@ -5129,6 +5350,13 @@ mailcow-Administrationsoberfläche aktiviert werden, wo Sie auch den API-Schlüs
 <span class="x">  &#39;password&#39;,</span>
 <span class="x">);</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="nt">ROUNDCUBEMAIL_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">archive, managesieve, acl, markasjunk, zipdownload, password</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Konfigurieren Sie das password-Plugin (stellen Sie sicher, <strong>**API_KEY**</strong> auf Ihren mailcow Lese-/Schreib-API-Schlüssel
 anzupassen):</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;data/web/rc/plugins/password/config.inc.php</span>
@@ -5152,10 +5380,22 @@ solchen Fällen setzen Sie <code>password_mailcow_api_host</code> stattdessen au
 <span class="s">EOCONFIG</span>
 </code></pre></div>
 <h2 id="carddav-adressbucher-in-roundcube-einbinden">CardDAV-Adressbücher in Roundcube einbinden<a class="headerlink" href="#carddav-adressbucher-in-roundcube-einbinden" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Integriert</label><label for="__tabbed_3_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Installieren Sie die neuste v5-Version (die untenstehende Konfiguration ist kompatibel zu v5-Releases) mit composer.
 Antworten Sie <code>Y</code>, wenn Sie gefragt werden, ob Sie das Plugin aktivieren möchten.</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>--update-no-dev<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;roundcube/carddav:~5&quot;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Installieren Sie die neueste version von CardDAV indem Sie <code>carddav</code> zu <code>ROUNDCUBEMAIL_PLUGINS</code> hinzufügen:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ROUNDCUBEMAIL_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">archive, managesieve, acl, markasjunk, zipdownload, carddav</span>
+<span class="nt">ROUNDCUBEMAIL_COMPOSER_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;roundcube/carddav:~5&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Editieren Sie die Datei <code>data/web/rc/plugins/carddav/config.inc.php</code> und fügen Sie folgenden Inhalt hinzu:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;data/web/rc/plugins/carddav/config.inc.php</span>
 <span class="s">&lt;?php</span>
@@ -5190,8 +5430,19 @@ analog zu fehlgeschlagenen direkten IMAP-Logins durch den netfilter-Container od
 zur Behandlung von Bruteforce-Attacken auf den IMAP-Server aufgegriffen werden und z. B. zu einer Blockierung des
 Clients führen.</p>
 <p>Hierzu muss das Roundcube-Plugin installiert werden:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Integriert</label><label for="__tabbed_4_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>--update-no-dev<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;foorschtbar/dovecot_client_ip:~2&quot;</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">ROUNDCUBEMAIL_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">archive, managesieve, acl, markasjunk, zipdownload, dovecot_client_ip</span>
+<span class="nt">ROUNDCUBEMAIL_COMPOSER_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foorschtbar/dovecot_client_ip:~2&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Bearbeiten Sie die Datei <code>data/web/rc/config/config.inc.php</code> und fügen Sie den folgenden Inhalt ein:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;&gt;data/web/rc/config/config.inc.php</span>
 <span class="s">\$config[&#39;dovecot_client_ip_trusted_proxies&#39;] = [&#39;${IPV4_NETWORK}.0/24&#39;, &#39;${IPV6_NETWORK}&#39;];</span>
@@ -5226,10 +5477,24 @@ folgenden Konfigurationsblock beinhaltet:</p>
 </code></pre></div>
 <h3 id="administratoren-ohne-passwort-in-roundcube-einloggen-lassen">Administratoren ohne Passwort in Roundcube einloggen lassen<a class="headerlink" href="#administratoren-ohne-passwort-in-roundcube-einloggen-lassen" title="Permanent link">&para;</a></h3>
 <p>Installieren Sie zunächst das Plugin <a href="https://github.com/corbosman/dovecot_impersonate/">dovecot_impersonate</a> und fügen Sie Roundcube als App hinzu (siehe oben).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Integriert</label><label for="__tabbed_5_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc/plugins<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/corbosman/dovecot_impersonate.git
 </code></pre></div>
-<p>Editieren Sie <code>data/web/rc/config/config.inc.php</code> und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array <code>$config['plugins']</code> hinzufügen,
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/var/www/html/plugins<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>roundcube<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/corbosman/dovecot_impersonate.git
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Editieren Sie <code>data/web/rc/config/config.inc.php</code> und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array <code>$config['plugins']</code> 
+oder zur <code>ROUNDCUBEMAIL_PLUGINS</code> Variable hinzufügen,
 zum Beispiel:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Integriert</label><label for="__tabbed_6_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="x">$config[&#39;plugins&#39;] = array(</span>
 <span class="x">  &#39;archive&#39;,</span>
 <span class="x">  &#39;managesieve&#39;,</span>
@@ -5240,6 +5505,14 @@ zum Beispiel:</p>
 <span class="x">  &#39;dovecot_impersonate&#39;</span>
 <span class="x">);</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">ROUNDCUBEMAIL_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">archive, managesieve, acl, markasjunk, zipdownload, dovecot_impersonate</span>
+<span class="nt">ROUNDCUBEMAIL_COMPOSER_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="c1">#... Schon bereits durch git clone installiert</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Editieren Sie <code>mailcow.conf</code> und fügen Sie folgendes hinzu:</p>
 <div class="highlight"><pre><span></span><code># Erlaube Admins, sich in Roundcube als Email-Benutzer einzuloggen (ohne Passwort)
 # Roundcube mit Plugin dovecot_impersonate muss zuerst installiert werden
@@ -5247,19 +5520,24 @@ zum Beispiel:</p>
 ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
 </code></pre></div>
 <p>Editieren Sie <code>docker-compose.override.yml</code> und verfassen/erweitern Sie den Abschnitt für <code>php-fpm-mailcow</code>:</p>
-<div class="highlight"><pre><span></span><code>services:
-  php-fpm-mailcow:
-    environment:
-      - ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">php-fpm-mailcow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=${ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE:-n}</span>
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/js/site/mailbox.js</code> und den folgenden Code nach <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/js/site/mailbox.js#L485-L487"><code>if (ALLOW_ADMIN_EMAIL_LOGIN) { ... }</code></a></p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-sm btn-xs-half btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">item</span><span class="p">.</span><span class="nx">action</span><span class="w"> </span><span class="o">+=</span>
+<span class="w">        </span><span class="s1">&#39;&lt;a href=&quot;/rc-auth.php?login=&#39;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="s1">&#39;&quot; class=&quot;login_as btn btn-sm btn-xs-half btn-primary&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;bi bi-envelope-fill&quot;&gt;&lt;/i&gt; Roundcube&lt;/a&gt;&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Füge die folgende Zeile zum Array <code>$template_data</code> hinzu:
-* <code>data/web/admin/mailbox.php</code> <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/admin/mailbox.php#L43-L56"><code>$template_data</code></a>
-* <code>data/web/domainadmin/mailbox.php</code> <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/domainadmin/mailbox.php#L43-L56"><code>$template_data</code></a></p>
+<p>Füge die folgende Zeile zum Array <code>$template_data</code> hinzu:</p>
+<ul>
+<li><code>data/web/admin/mailbox.php</code> <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/admin/mailbox.php#L43-L56"><code>$template_data</code></a></li>
+<li><code>data/web/domainadmin/mailbox.php</code> <a href="https://github.com/mailcow/mailcow-dockerized/blob/master/data/web/domainadmin/mailbox.php#L43-L56"><code>$template_data</code></a></li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="x">  &#39;allow_admin_email_login_roundcube&#39; =&gt; (preg_match(&quot;/^([yY][eE][sS]|[yY])+$/&quot;, $_ENV[&quot;ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE&quot;])) ? &#39;true&#39; : &#39;false&#39;,</span>
 </code></pre></div>
 <p>Bearbeiten Sie <code>data/web/templates/mailbox.twig</code> und fügen Sie diesen Code am Ende des <a href="https://github.com/mailcow/mailcow-dockerized/blob/2f9da5ae93d93bf62a8c2b7a5a6ae50a41170c48/data/web/templates/mailbox.twig#L49-L57">Javascript-Abschnitts</a> ein:</p>
@@ -5272,7 +5550,7 @@ ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
 </ul>
 <h2 id="abschluss-der-installation">Abschluss der Installation<a class="headerlink" href="#abschluss-der-installation" title="Permanent link">&para;</a></h2>
 <p>Starten Sie schließlich mailcow neu</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">docker compose (Plugin)</label><label for="__tabbed_7_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
@@ -5287,6 +5565,9 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </div>
 </div>
 <h2 id="aktualisierung-von-roundcube">Aktualisierung von Roundcube<a class="headerlink" href="#aktualisierung-von-roundcube" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Integriert</label><label for="__tabbed_8_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Ein Upgrade von Roundcube ist recht einfach: Gehen Sie auf die
 <a href="https://github.com/roundcube/roundcubemail/releases">GitHub releases</a> Seite für Roundcube und holen Sie sich den Link
 für die "complete.tar.gz" Datei für die gewünschte Version. Dann folgen Sie den untenstehenden Befehlen und ändern Sie
@@ -5321,11 +5602,31 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/\$c
 sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/\$config\[&#39;managesieve_host&#39;\].*</span>$<span class="s2">/\$config\[&#39;managesieve_host&#39;\]\ =\ &#39;dovecot:4190&#39;\;/&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
 sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/\$config\[&#39;managesieve_port&#39;\].*</span>$<span class="s2">/d&quot;</span><span class="w"> </span>/web/rc/config/config.inc.php
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Ein Upgrade von Roundcube ist in der Externen Installation ziemlich einfach, es muss lediglich der Version-Tag heraufgestuft werden:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube/roundcubemail:1.6.11-apache</span><span class="w"> </span><span class="c1"># 1.6.11 -&gt; 1.6.X (in der Zukunft: 1.7.X)</span>
+</code></pre></div>
+<p>Nach einem Neustart aktualisiert sich Roundcube automatisch, was einen reibungslosen Prozess ermöglich sollte.</p>
+</div>
+</div>
+</div>
 <h3 id="aktualisierung-von-composer-plugins">Aktualisierung von composer-Plugins<a class="headerlink" href="#aktualisierung-von-composer-plugins" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Integriert</label><label for="__tabbed_9_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Um Roundcube-Plugins und -Abhängigkeiten zu aktualisieren, die mit composer installiert wurden (z. B.
 RCMCardDAV-Plugin), führen Sie einfach composer im Container aus:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-w<span class="w"> </span>/web/rc<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>php-fpm-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>composer<span class="w"> </span>update<span class="w"> </span>--no-dev<span class="w"> </span>-o
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Um Roundcube-Plugins zu aktualisieren müssen lediglich die Version-Tags zur neusten Version erhöht werden:</p>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="nt">ROUNDCUBEMAIL_COMPOSER_PLUGINS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;roundcube/carddav:~4&quot;</span><span class="w"> </span><span class="c1"># zu v5 erhöhen</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="aktualisierung-des-mime-typ-verzeichnisses">Aktualisierung des MIME-Typ-Verzeichnisses<a class="headerlink" href="#aktualisierung-des-mime-typ-verzeichnisses" title="Permanent link">&para;</a></h3>
 <p>Um das MIME-Typ-Verzeichnis zu aktualisieren, laden Sie dieses erneut mit dem Kommando aus den
 <a href="#installation-des-mime-typ-verzeichnisses">Installations-Anweisungen</a> herunter.</p>
@@ -5337,8 +5638,30 @@ werden und dass <code>mailcow.conf</code> in die Shell geladen wurde, siehe Absc
 einschließlich solcher, die mit composer installiert wurden.</p>
 <p>Hinweis: Dies entfernt auch alle angepassten Konfigurationen die Sie ggf. in Roundcube durchgeführt haben. Sollten Sie
 diese erhalten wollen, verschieben Sie das Verzeichnis an einen anderen Ort statt es zu entfernen.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Integriert</label><label for="__tabbed_10_2">Extern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-r<span class="w"> </span>data/web/rc
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Den Roundcube Container anhalten:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">docker compose (Plugin)</label><label for="__tabbed_11_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Anschließend <code>data/web/rc</code> oder <code>data/rc</code> je nach Mounts löschen.</p>
+</div>
+</div>
+</div>
 <h3 id="entfernen-der-datenbank">Entfernen der Datenbank<a class="headerlink" href="#entfernen-der-datenbank" title="Permanent link">&para;</a></h3>
 <p>Hinweis: Dies löscht alle Daten, die Roundcube abgespeichert hat. Wenn Sie diese erhalten möchten, können Sie
 <code>mysqldump</code> ausführen, bevor Sie die Datenbank löschen, oder die Datenbank einfach nicht löschen.</p>
@@ -5415,12 +5738,12 @@ Konfigurationsdatei übernehmen.</p>
 <div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-r<span class="w"> </span>data/web/rc/plugins/carddav
 </code></pre></div>
 <h3 id="umschalten-von-roundcube-auf-die-neue-datenbank">Umschalten von Roundcube auf die neue Datenbank<a class="headerlink" href="#umschalten-von-roundcube-auf-die-neue-datenbank" title="Permanent link">&para;</a></h3>
-<p>Zunächst passen wir die Roundcube-Konfiguration an, so dass die neue Datenbank verwendet wird.
+<p>Zunächst passen wir die Roundcube-Konfiguration an, so dass die neue Datenbank verwendet wird.</p>
 <div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/\$config\[&#39;db_dsnw&#39;\].*</span>$<span class="s2">/d&quot;</span><span class="w"> </span>data/web/rc/config/config.inc.php
 cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;&gt;data/web/rc/config/config.inc.php</span>
 <span class="s">\$config[&#39;db_dsnw&#39;] = &#39;mysql://roundcube:${DBROUNDCUBE}@mysql/roundcubemail&#39;;</span>
 <span class="s">EOCONFIG</span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="roundcube-web-zugriff-reaktivieren">Roundcube Web-Zugriff reaktivieren<a class="headerlink" href="#roundcube-web-zugriff-reaktivieren" title="Permanent link">&para;</a></h3>
 <p>Führen Sie chown und chmod auf den sensitiven Roundcube-Verzeichnissen, welche in <a href="#vorbereitung">Vorbereitung</a>
 aufgeführt sind aus, um sicherzustellen, dass der nginx-Webserver nicht auf Dateien zugreifen darf, die er nicht
@@ -5469,7 +5792,7 @@ entfernen:</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2. Juni 2025 09:55:02 CEST">2025-06-02 09:55:02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="15. August 2025 22:47:52 CEST">2025-08-15 22:47:52</span>
   </span>
 
     
