@@ -7,6 +7,8 @@ die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines 
 ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
 nachfolgenden Kommandos fortfahren.
 
+## Integrierte Installation
+
 ### Hinweise zur Verwendung von composer
 
 Diese Anweisungen verwenden das Programm composer zur Aktualisierung der Abhängigkeiten von Roundcube und um
@@ -232,6 +234,124 @@ services:
       ofelia.job-exec.roundcube_cleandb.user: "www-data"
       ofelia.job-exec.roundcube_cleandb.command: '/bin/bash -c "[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh"'
 ```
+
+## Externe Installation
+
+Um Roundcube in einem eigenen Docker Container installieren zu können muss zu Ihrer existierenden `docker-compose.yaml` Datei folgendes hinzugefügt werden:
+
+```yaml
+services:
+  # ...
+
+  roundcube:
+    image: roundcube/roundcubemail:1.6.11-apache # Siehe neuste version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
+    environment:
+      IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
+      IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
+      ROUNDCUBEMAIL_DB_TYPE: mysql
+      ROUNDCUBEMAIL_DB_HOST: mysql
+      ROUNDCUBEMAIL_DB_USER: roundcube
+      ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
+      ROUNDCUBEMAIL_DB_NAME: roundcubemail
+      ROUNDCUBEMAIL_DEFAULT_HOST: ssl://dovecot:143
+      ROUNDCUBEMAIL_SMTP_SERVER: ssl://postfix:587
+      ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload
+    volumes:
+      # == Dokumentation Kompatibilität ==
+      # Diese Mounts sind ähnlich zu der Integrierten Installation aufgebaut
+      # jedoch ist es empfohlen Mounts innerhalb des web/rc Ordners zu vermeiden, da besagte Ordner ebenfalls im php-fpm Container eingehängt sind
+      # - ./data/web/rc:/var/www/html
+      # - ./data/web/rc/persistent-config:/var/roundcube/config
+
+      # Erweiterte Variante (weniger kompatible, dafür aber sicherer)
+      - ./data/rc/main:/var/www/html
+      - ./data/rc/config:/var/roundcube/config
+    depends_on:
+      - mysql-mailcow
+      - dovecot-mailcow
+    restart: unless-stopped
+    networks:
+      mailcow-network:
+        aliases:
+          - roundcube
+
+networks:
+  proxy:
+    external: true
+```
+
+### Webserver-Konfiguration
+
+Das Roundcube-Verzeichnis enthält einige Inhalte, die nicht an Web-Nutzer ausgeliefert werden sollen. Wir erstellen
+daher eine Konfigurations-Ergänzung für nginx, um nur die öffentlichen Teile von Roundcube im Web zu exponieren:
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location /rc/ {
+  alias /web/rc/public_html/;
+}
+EOCONFIG
+```
+
+### Anlegen der Roundcube-Datenbank
+
+Zunächst falls noch nicht getan, die Shell Variablen laden:
+
+```bash
+source mailcow.conf
+```
+
+Erstellen Sie eine Datenbank für Roundcube im mailcow mysql Container. Dies erstellt einen neuen `roundcube`
+Datenbank-Benutzer mit einem Zufallspasswort, welches in die Shell ausgegeben wird und in einer Shell-Variable für die
+Verwendung durch die nachfolgenden Kommandos gespeichert wird. Beachten Sie, dass Sie die `DBROUNDCUBE`-Shell-Variable
+manuell auf das ausgegebene Passwort setzen müssen, falls sie den Installationsprozess unterbrechen und später in einer
+neuen Shell fortsetzen sollten.
+
+Hiermit besagtes Passwort generieren:
+
+```bash
+LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28
+```
+
+Anschließend `DBROUNDCUBE` in `mailcow.conf` Datei zu dem Passwort setzen und...
+
+```bash
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${DBROUNDCUBE}';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
+```
+
+ausführen.
+
+### Optional: Plugins hinzufügen
+
+Um Plugins zu aktivieren müssen diese in `ROUNDCUBEMAIL_PLUGINS` gesetzt sein.
+Falls ein Plugin noch nicht vorinstalliert, bzw. installiert ist muss dieses auch zu der `ROUNDCUBEMAIL_COMPOSER_PLUGINS` Umgebungsvariable in `docker-compose.yaml` hinzugefügt werden.
+
+### Starte den Roundcube Container
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose down
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose down
+    docker-compose up -d
+    ```
+
+**Wichtige Information für den Verlauf der Dokumentation:**
+
+!!! note
+Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von `data/web/rc/config` zu verändern
+nutzen Sie stattdessen `data/web/rc/persistent-config` oder `data/rc/config` (Erweiterte Variante).
+Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in `persistent-config/` / `data/rc/config/` innerhalb von `rc/main/config/` oder `web/rc/config/` erstellt.
+
+Sofern Sie sich für die Erweiterte Variante entschieden haben merken Sie sich, dass Ordner wie `plugins/` sich in `data/rc/main` befinden.
 
 ## Optionale Zusatz-Funktionalitäten
 
