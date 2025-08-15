@@ -209,7 +209,7 @@ for which we will create an ofelia job that runs the roundcube `cleandb.sh` scri
 To do this, add the following to `docker-compose.override.yml` (if you already have some
 adaptations for the php-fpm container, add the labels to the existing section):
 
-```yml
+```yaml
 services:
   php-fpm-mailcow:
     labels:
@@ -223,7 +223,7 @@ services:
 
 To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
 
-```yml
+```yaml
 services:
   # ...
 
@@ -561,7 +561,7 @@ ALLOW_ADMIN_EMAIL_LOGIN_ROUNDCUBE=y
 
 Edit `docker-compose.override.yml` and crate/extend the section for `php-fpm-mailcow`:
 
-```yml
+```yaml
 services:
   php-fpm-mailcow:
     environment:
@@ -653,7 +653,7 @@ Finally, restart mailcow
     sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
     sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
     sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
-```
+    ```
 
 === "Standalone"
     Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
@@ -700,11 +700,13 @@ Note: This deletes also any custom configuration that you may have done in round
 place else instead of deleting it.
 
 === "Integrated"
+
     ```bash
     rm -r data/web/rc
     ```
 
 === "Standalone"
+
     Stop the Roundcube Container:
 
     === "docker compose (Plugin)"
@@ -719,7 +721,7 @@ place else instead of deleting it.
         docker-compose down
         ```
 
-    Then you can safely delete `data/web/rc` / `data/rc/`.
+		Then you can safely delete `data/web/rc` / `data/rc/`.
 
 ### Remove the database
 
@@ -870,4 +872,6 @@ the roundcube tables from the mailcow database using the following command:
 ```bash
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SET SESSION foreign_key_checks = 0; DROP TABLE IF EXISTS $(echo $RCTABLES | sed -e 's/ \+/,/g');"
 ```
+
+
 
