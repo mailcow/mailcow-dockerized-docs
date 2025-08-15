@@ -103,7 +103,7 @@ nav:
       - 'Apache 2.4': 'post_installation/reverse-proxy/r_p-apache24.md'
       - 'Nginx': 'post_installation/reverse-proxy/r_p-nginx.md'
       - 'HAProxy (community supported)': 'post_installation/reverse-proxy/r_p-haproxy.md'
-      - 'Traefik v2 (community supported)': 'post_installation/reverse-proxy/r_p-traefik2.md'
+      - 'Traefik v3 (community supported)': 'post_installation/reverse-proxy/r_p-traefik3.md'
       - 'Caddy v2 (community supported)': 'post_installation/reverse-proxy/r_p-caddy2.md'
     - 'SNAT': 'post_installation/firststeps-snat.md'
     - 'Sync job migration': 'post_installation/firststeps-sync_jobs_migration.md'
@@ -262,7 +262,7 @@ plugins:
                 ### Reverse Proxy Subsection
               'Overview': 'Übersicht'
               'HAProxy (community supported)': 'HAProxy (von der Community unterstützt)'
-              'Traefik v2 (community supported)': 'Traefik v2 (von der Community unterstützt)'
+              'Traefik v3 (community supported)': 'Traefik v3 (von der Community unterstützt)'
               'Caddy v2 (community supported)': 'Caddy v2 (von der Community unterstützt)'
               'Sync job migration': 'Migration mit Sync Jobs'
               ### Models Section
