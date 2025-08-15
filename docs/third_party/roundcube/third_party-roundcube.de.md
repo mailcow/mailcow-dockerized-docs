@@ -237,7 +237,7 @@ services:
 
 ## Externe Installation
 
-Um Roundcube in einem eigenen Docker Container installieren zu können muss zu Ihrer existierenden `docker-compose.yaml` Datei folgendes hinzugefügt werden:
+Um Roundcube in einem eigenen Docker-Container installieren zu können muss zu Ihrer existierenden `docker-compose.yaml` Datei folgendes hinzugefügt werden:
 
 ```yaml
 services:
@@ -259,7 +259,7 @@ services:
     volumes:
       # == Dokumentation Kompatibilität ==
       # Diese Mounts sind ähnlich zu der Integrierten Installation aufgebaut
-      # jedoch ist es empfohlen Mounts innerhalb des web/rc Ordners zu vermeiden, da besagte Ordner ebenfalls im php-fpm Container eingehängt sind
+      # jedoch ist es empfohlen Mounts innerhalb des web/rc Ordners zu vermeiden, da diese Ordner ebenfalls im php-fpm Container eingehängt sind
       # - ./data/web/rc:/var/www/html
       # - ./data/web/rc/persistent-config:/var/roundcube/config
 
@@ -313,7 +313,7 @@ Hiermit besagtes Passwort generieren:
 LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28
 ```
 
-Anschließend `DBROUNDCUBE` in `mailcow.conf` Datei zu dem Passwort setzen und...
+Anschließend den Wert `DBROUNDCUBE` in der Datei mailcow.conf auf das generierte Passwort setzen und...
 
 ```bash
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
@@ -351,6 +351,7 @@ Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von `data/web/
 nutzen Sie stattdessen `data/web/rc/persistent-config` oder `data/rc/config` (Erweiterte Variante).
 Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in `persistent-config/` / `data/rc/config/` innerhalb von `rc/main/config/` oder `web/rc/config/` erstellt.
 
+If you chose to mount in the _Advanced_ way notice folders like `plugins/` are located inside of `data/rc/main`.
 Sofern Sie sich für die Erweiterte Variante entschieden haben merken Sie sich, dass Ordner wie `plugins/` sich in `data/rc/main` befinden.
 
 ## Optionale Zusatz-Funktionalitäten
@@ -363,18 +364,26 @@ aktivieren und den API-Schlüssel zu ermitteln (Lese-/Schreib-Zugriff notwendig)
 mailcow-Administrationsoberfläche aktiviert werden, wo Sie auch den API-Schlüssel finden.
 
 Öffnen Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das Passwort-Plugin, indem Sie es dem
-`$config['plugins']`-Array hinzufügen, zum Beispiel:
+`$config['plugins']`-Array oder zur `ROUNDCUBEMAIL_PLUGINS` Variable hinzufügen, zum Beispiel:
 
-```php
-$config['plugins'] = array(
-  'archive',
-  'managesieve',
-  'acl',
-  'markasjunk',
-  'zipdownload',
-  'password',
-);
-```
+=== "Integriert"
+
+    ```php
+    $config['plugins'] = array(
+      'archive',
+      'managesieve',
+      'acl',
+      'markasjunk',
+      'zipdownload',
+      'password',
+    );
+    ```
+
+=== "Extern"
+
+    ```yaml
+          ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, password
+    ```
 
 Konfigurieren Sie das password-Plugin (stellen Sie sicher, **\*\*API_KEY\*\*** auf Ihren mailcow Lese-/Schreib-API-Schlüssel
 anzupassen):
@@ -406,12 +415,21 @@ EOCONFIG
 
 ## CardDAV-Adressbücher in Roundcube einbinden
 
-Installieren Sie die neuste v5-Version (die untenstehende Konfiguration ist kompatibel zu v5-Releases) mit composer.
-Antworten Sie `Y`, wenn Sie gefragt werden, ob Sie das Plugin aktivieren möchten.
+=== "Integriert"
+    Installieren Sie die neuste v5-Version (die untenstehende Konfiguration ist kompatibel zu v5-Releases) mit composer.
+    Antworten Sie `Y`, wenn Sie gefragt werden, ob Sie das Plugin aktivieren möchten.
 
-```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "roundcube/carddav:~5"
-```
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "roundcube/carddav:~5"
+    ```
+
+=== "Extern"
+    Installieren Sie die neueste version von CardDAV indem Sie `carddav` zu `ROUNDCUBEMAIL_PLUGINS` hinzufügen:
+
+    ```yaml
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, carddav
+    ROUNDCUBEMAIL_COMPOSER_PLUGINS: "roundcube/carddav:~5"
+    ```
 
 Editieren Sie die Datei `data/web/rc/plugins/carddav/config.inc.php` und fügen Sie folgenden Inhalt hinzu:
 
@@ -456,9 +474,18 @@ Clients führen.
 
 Hierzu muss das Roundcube-Plugin installiert werden:
 
-```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "foorschtbar/dovecot_client_ip:~2"
-```
+=== "Integriert"
+
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "foorschtbar/dovecot_client_ip:~2"
+    ```
+
+=== "Extern"
+
+    ```yaml
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, dovecot_client_ip
+    ROUNDCUBEMAIL_COMPOSER_PLUGINS: "foorschtbar/dovecot_client_ip:~2"
+    ```
 
 Bearbeiten Sie die Datei `data/web/rc/config/config.inc.php` und fügen Sie den folgenden Inhalt ein:
 
@@ -506,24 +533,42 @@ $MAILCOW_APPS = [
 
 Installieren Sie zunächst das Plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) und fügen Sie Roundcube als App hinzu (siehe oben).
 
-```bash
-docker exec -it -w /web/rc/plugins $(docker ps -f name=php-fpm-mailcow -q) git clone https://github.com/corbosman/dovecot_impersonate.git
-```
+=== "Integriert"
 
-Editieren Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array `$config['plugins']` hinzufügen,
+    ```bash
+    docker exec -it -w /web/rc/plugins $(docker ps -f name=php-fpm-mailcow -q) git clone https://github.com/corbosman/dovecot_impersonate.git
+    ```
+
+=== "Extern"
+
+    ```bash
+    docker exec -it -w /var/www/html/plugins $(docker ps -f name=roundcube -q) git clone https://github.com/corbosman/dovecot_impersonate.git
+    ```
+
+Editieren Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array `$config['plugins']` 
+oder zur `ROUNDCUBEMAIL_PLUGINS` Variable hinzufügen,
 zum Beispiel:
 
-```php
-$config['plugins'] = array(
-  'archive',
-  'managesieve',
-  'acl',
-  'markasjunk',
-  'zipdownload',
-  'password',
-  'dovecot_impersonate'
-);
-```
+=== "Integriert"
+
+    ```php
+    $config['plugins'] = array(
+      'archive',
+      'managesieve',
+      'acl',
+      'markasjunk',
+      'zipdownload',
+      'password',
+      'dovecot_impersonate'
+    );
+    ```
+
+=== "Extern"
+
+    ```yaml
+    ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, dovecot_impersonate
+    ROUNDCUBEMAIL_COMPOSER_PLUGINS: #... Schon bereits durch git clone installiert
+    ```
 
 Editieren Sie `mailcow.conf` und fügen Sie folgendes hinzu:
 
@@ -594,51 +639,72 @@ Starten Sie schließlich mailcow neu
 
 ## Aktualisierung von Roundcube
 
-Ein Upgrade von Roundcube ist recht einfach: Gehen Sie auf die
-[GitHub releases](https://github.com/roundcube/roundcubemail/releases) Seite für Roundcube und holen Sie sich den Link
-für die "complete.tar.gz" Datei für die gewünschte Version. Dann folgen Sie den untenstehenden Befehlen und ändern Sie
-die URL und den Namen des Roundcube-Ordners, falls nötig.
+=== "Integriert"
 
-```bash
-# Starten Sie eine Bash-Sitzung des mailcow PHP-Containers
-docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
+    Ein Upgrade von Roundcube ist recht einfach: Gehen Sie auf die
+    [GitHub releases](https://github.com/roundcube/roundcubemail/releases) Seite für Roundcube und holen Sie sich den Link
+    für die "complete.tar.gz" Datei für die gewünschte Version. Dann folgen Sie den untenstehenden Befehlen und ändern Sie
+    die URL und den Namen des Roundcube-Ordners, falls nötig.
 
-# Installieren Sie die erforderliche Upgrade-Abhängigkeit, dann aktualisieren Sie Roundcube auf die gewünschte Version
-apk add rsync
-cd /tmp
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar xfvz -
-cd roundcubemail-1.6.11
-bin/installto.sh /web/rc
+    ```bash
+    # Starten Sie eine Bash-Sitzung des mailcow PHP-Containers
+    docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
 
-# Geben Sie 'Y' ein und drücken Sie die Eingabetaste, um Ihre Installation von Roundcube zu aktualisieren.
-# Geben Sie 'N' ein, wenn folgender Dialog erscheint: "Do you want me to fix your local configuration".
+    # Installieren Sie die erforderliche Upgrade-Abhängigkeit, dann aktualisieren Sie Roundcube auf die gewünschte Version
+    apk add rsync
+    cd /tmp
+    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz | tar xfvz -
+    cd roundcubemail-1.6.11
+    bin/installto.sh /web/rc
 
-# Sollte im Output eine Notice kommen "NOTICE: Update dependencies by running php composer.phar update --no-dev" führen
-Sie composer aus:
-cd /web/rc
-composer update --no-dev -o
-# Auf die Frage "Do you trust "roundcube/plugin-installer" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?] " bitte mit y antworten.
+    # Geben Sie 'Y' ein und drücken Sie die Eingabetaste, um Ihre Installation von Roundcube zu aktualisieren.
+    # Geben Sie 'N' ein, wenn folgender Dialog erscheint: "Do you want me to fix your local configuration".
 
-# Entfernen Sie übrig gebliebene Dateien
-rm -rf /tmp/roundcube*
+    # Sollte im Output eine Notice kommen "NOTICE: Update dependencies by running php composer.phar update --no-dev" führen
+    Sie composer aus:
+    cd /web/rc
+    composer update --no-dev -o
+    # Auf die Frage "Do you trust "roundcube/plugin-installer" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?] " bitte mit y antworten.
 
-# Falls Sie von Version 1.5 auf 1.6 updaten, dann führen Sie folgende Befehle aus, um die Konfigurationsdatei anzupassen:`
-sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'dovecot:143'\;/" /web/rc/config/config.inc.php
-sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
-sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'postfix:588'\;/" /web/rc/config/config.inc.php
-sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
-sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
-sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
-```
+    # Entfernen Sie übrig gebliebene Dateien
+    rm -rf /tmp/roundcube*
+
+    # Falls Sie von Version 1.5 auf 1.6 updaten, dann führen Sie folgende Befehle aus, um die Konfigurationsdatei anzupassen:`
+    sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'dovecot:143'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
+    sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'postfix:588'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
+    sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
+    ```
+
+=== "Extern"
+    Ein Upgrade von Roundcube ist in der Externen Installation ziemlich einfach, es muss lediglich der Version-Tag heraufgestuft werden:
+
+    ```yaml
+    image: roundcube/roundcubemail:1.6.11-apache # 1.6.11 -> 1.6.X (in der Zukunft: 1.7.X)
+    ```
+
+    Nach einem Neustart aktualisiert sich Roundcube automatisch, was einen reibungslosen Prozess ermöglich sollte.
 
 ### Aktualisierung von composer-Plugins
 
-Um Roundcube-Plugins und -Abhängigkeiten zu aktualisieren, die mit composer installiert wurden (z. B.
-RCMCardDAV-Plugin), führen Sie einfach composer im Container aus:
+=== "Integriert"
 
-```bash
-docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
-```
+    Um Roundcube-Plugins und -Abhängigkeiten zu aktualisieren, die mit composer installiert wurden (z. B.
+    RCMCardDAV-Plugin), führen Sie einfach composer im Container aus:
+
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+    ```
+
+=== "Extern"
+
+    Um Roundcube-Plugins zu aktualisieren müssen lediglich die Version-Tags zur neusten Version erhöht werden:
+    
+    ```yaml
+          ROUNDCUBEMAIL_COMPOSER_PLUGINS: "roundcube/carddav:~4" # zu v5 erhöhen
+    ```
 
 ### Aktualisierung des MIME-Typ-Verzeichnisses
 
@@ -658,9 +724,29 @@ einschließlich solcher, die mit composer installiert wurden.
 Hinweis: Dies entfernt auch alle angepassten Konfigurationen die Sie ggf. in Roundcube durchgeführt haben. Sollten Sie
 diese erhalten wollen, verschieben Sie das Verzeichnis an einen anderen Ort statt es zu entfernen.
 
-```bash
-rm -r data/web/rc
-```
+=== "Integriert"
+
+    ```bash
+    rm -r data/web/rc
+    ```
+
+=== "Extern"
+
+    Den Roundcube Container anhalten:
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose down
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose down
+        ```
+
+    Anschließend `data/web/rc` oder `data/rc` je nach Mounts löschen.
 
 ### Entfernen der Datenbank
 
@@ -820,3 +906,5 @@ entfernen:
 ```bash
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SET SESSION foreign_key_checks = 0; DROP TABLE IF EXISTS $(echo $RCTABLES | sed -e 's/ \+/,/g');"
 ```
+
+
