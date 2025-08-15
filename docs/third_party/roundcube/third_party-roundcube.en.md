@@ -721,7 +721,7 @@ place else instead of deleting it.
         docker-compose down
         ```
 
-Then you can safely delete `data/web/rc` / `data/rc/`.
+		Then you can safely delete `data/web/rc` / `data/rc/`.
 
 ### Remove the database
 
