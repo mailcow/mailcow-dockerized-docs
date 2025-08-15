@@ -1,11 +1,11 @@
 ## Installation von Roundcube
 
 !!! note "Beachten Sie"
-Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
-Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches `mailcow.conf` usw. enthält. Bitte führen Sie
-die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
-ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
-nachfolgenden Kommandos fortfahren.
+    Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
+    Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches `mailcow.conf` usw. enthält. Bitte führen Sie
+    die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
+    ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
+    nachfolgenden Kommandos fortfahren.
 
 ## Integrierte Installation
 
@@ -347,9 +347,9 @@ Falls ein Plugin noch nicht vorinstalliert, bzw. installiert ist muss dieses auc
 **Wichtige Information für den Verlauf der Dokumentation:**
 
 !!! note
-Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von `data/web/rc/config` zu verändern
-nutzen Sie stattdessen `data/web/rc/persistent-config` oder `data/rc/config` (Erweiterte Variante).
-Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in `persistent-config/` / `data/rc/config/` innerhalb von `rc/main/config/` oder `web/rc/config/` erstellt.
+    Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von `data/web/rc/config` zu verändern
+    nutzen Sie stattdessen `data/web/rc/persistent-config` oder `data/rc/config` (Erweiterte Variante).
+    Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in `persistent-config/` / `data/rc/config/` innerhalb von `rc/main/config/` oder `web/rc/config/` erstellt.
 
 If you chose to mount in the _Advanced_ way notice folders like `plugins/` are located inside of `data/rc/main`.
 Sofern Sie sich für die Erweiterte Variante entschieden haben merken Sie sich, dass Ordner wie `plugins/` sich in `data/rc/main` befinden.
