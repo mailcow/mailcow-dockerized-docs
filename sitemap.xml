@@ -673,11 +673,11 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-nginx/"/>
     </url>
     <url>
-        <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik2/</loc>
+        <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik3/</loc>
         <lastmod>2025-08-15</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik2/"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik2/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik3/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik3/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p/</loc>
@@ -1527,11 +1527,11 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-nginx/"/>
     </url>
     <url>
-        <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik2/</loc>
+        <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik3/</loc>
         <lastmod>2025-08-15</lastmod>
         <changefreq>daily</changefreq>
-        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik2/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik2/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik3/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik3/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p/</loc>
