@@ -1,8 +1,8 @@
 !!! warning "Wichtig"
-Lesen Sie zuerst [die Übersicht](r_p.md).
+    Lesen Sie zuerst [die Übersicht](r_p.md).
 
 !!! danger "Vorsicht"
-Dies ist ein von der Community unterstützter Beitrag. Korrekturen sind willkommen.
+    Dies ist ein von der Community unterstützter Beitrag. Korrekturen sind willkommen.
 
 Dieses Tutorial erklärt, wie man mailcow mit Traefik als Reverse-Proxy einrichtet, um HTTPS-Verbindungen, Domain-Routing und Zertifikatsmanagement zu handhaben.
 
