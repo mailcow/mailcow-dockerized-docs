@@ -1,10 +1,10 @@
 ## Installing Roundcube
 
 !!! note
-    Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
-    i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
-    do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
-    continuing with the subsequent commands.
+Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
+i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
+do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
+continuing with the subsequent commands.
 
 ## Integrated Install
 
@@ -219,7 +219,7 @@ services:
       ofelia.job-exec.roundcube_cleandb.command: '/bin/bash -c "[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh"'
 ```
 
-### Standalone Install
+## Standalone Install
 
 To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
 
@@ -333,8 +333,8 @@ After all of the steps above you can start the Roundcube Container with.
 **Important notes about this configuration:**
 
 !!! note
-    For the rest of this Documentation you will be asked to modify files inside of `data/web/rc/config` use `data/web/rc/persistent-config` or `data/rc/config` (Advanced) instead.
-    This is due to Roundcube auto-generating configs inside of `rc/main/config/` or `web/rc/config/` based on configs in `persistent-config/` / `data/rc/config/`.
+For the rest of this Documentation you will be asked to modify files inside of `data/web/rc/config` use `data/web/rc/persistent-config` or `data/rc/config` (Advanced) instead.
+This is due to Roundcube auto-generating configs inside of `rc/main/config/` or `web/rc/config/` based on configs in `persistent-config/` / `data/rc/config/`.
 
 If you chose to mount in the _Advanced_ way notice folders like `plugins/` are located inside of `data/rc/main`.
 
@@ -399,15 +399,15 @@ EOCONFIG
 ### Integrate CardDAV addressbooks in Roundcube
 
 === "Integrated"
-    Install the latest v5 version (the config below is compatible with v5 releases) using composer.
-    Answer `Y` when asked if you want to activate the plugin.
+Install the latest v5 version (the config below is compatible with v5 releases) using composer.
+Answer `Y` when asked if you want to activate the plugin.
 
     ```bash
     docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "roundcube/carddav:~5"
     ```
 
 === "Standalone"
-    Install the latest version of CardDAV (config based on v5 releases) by adding `carddav` to `ROUNDCUBEMAIL_PLUGINS`:
+Install the latest version of CardDAV (config based on v5 releases) by adding `carddav` to `ROUNDCUBEMAIL_PLUGINS`:
 
     ```yaml
     ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, carddav
@@ -513,16 +513,16 @@ $MAILCOW_APPS = [
 First, install plugin [dovecot_impersonate](https://github.com/corbosman/dovecot_impersonate/) and add Roundcube as an app (see above).
 
 === "Integrated"
-    ```bash
+`bash
     docker exec -it -w /web/rc/plugins $(docker ps -f name=php-fpm-mailcow -q) git clone https://github.com/corbosman/dovecot_impersonate.git
-    ```
+    `
 
 === "Standalone"
-    ```bash
+`bash
     docker exec -it -w /var/www/html/plugins $(docker ps -f name=roundcube -q) git clone https://github.com/corbosman/dovecot_impersonate.git
-    ```
+    `
 
-Open `data/web/rc/config/config.inc.php` and enable the dovecot_impersonate plugin by adding it to the `$config['plugins']` array or by adding it to `ROUNDCUBEMAIL_PLUGINS`. 
+Open `data/web/rc/config/config.inc.php` and enable the dovecot_impersonate plugin by adding it to the `$config['plugins']` array or by adding it to `ROUNDCUBEMAIL_PLUGINS`.
 for example:
 
 === "Integrated"
@@ -616,9 +616,9 @@ Finally, restart mailcow
 ## Upgrading Roundcube
 
 === "Integrated"
-    Upgrading Roundcube is rather simple, go to the [GitHub releases](https://github.com/roundcube/roundcubemail/releases)
-    page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below
-    commands and change the URL and Roundcube folder name if needed.
+Upgrading Roundcube is rather simple, go to the [GitHub releases](https://github.com/roundcube/roundcubemail/releases)
+page for Roundcube and get the link for the "complete.tar.gz" file for the wanted release. Then follow the below
+commands and change the URL and Roundcube folder name if needed.
 
     ```bash
     # Enter a bash session of the mailcow PHP container
@@ -652,7 +652,7 @@ Finally, restart mailcow
     ```
 
 === "Standalone"
-    Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
+Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
 
     ```yaml
     image: roundcube/roundcubemail:1.6.11-apache # 1.6.11 -> 1.6.X (in the futur: 1.7.X)
@@ -663,15 +663,15 @@ Finally, restart mailcow
 ### Upgrade composer plugins
 
 === "Integrated"
-    To upgrade roundcube plugins installed using composer and dependencies (e.g. RCMCardDAV plugin), you can simply run
-    composer in the container:
+To upgrade roundcube plugins installed using composer and dependencies (e.g. RCMCardDAV plugin), you can simply run
+composer in the container:
 
     ```bash
     docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
     ```
 
 === "Standalone"
-    To update composer plugins increase the version number at the end of a import:
+To update composer plugins increase the version number at the end of a import:
 
     ```yaml
         ROUNDCUBEMAIL_COMPOSER_PLUGINS: "roundcube/carddav:~4" # increase to v5
@@ -717,7 +717,7 @@ place else instead of deleting it.
         docker-compose down
         ```
 
-		Then you can safely delete `data/web/rc` / `data/rc/`.
+    	Then you can safely delete `data/web/rc` / `data/rc/`.
 
 ### Remove the database
 
@@ -868,6 +868,3 @@ the roundcube tables from the mailcow database using the following command:
 ```bash
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SET SESSION foreign_key_checks = 0; DROP TABLE IF EXISTS $(echo $RCTABLES | sed -e 's/ \+/,/g');"
 ```
-
-
-
