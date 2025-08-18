@@ -201,7 +201,7 @@ nav:
     - 'Microsoft Outlook': 'client/client-outlook.md'
     - 'Mozilla Thunderbird': 'client/client-thunderbird.md'
     - 'Manual configuration': 'client/client-manual.md'
-  - 'Third party apps':
+  - 'Third party apps (community managed)':
     - 'AbuseIPDB Integration': 'third_party/abuseipdb/third_party-abuseipdb.md'
     - 'Borgmatic Backup': 'third_party/borgmatic/third_party-borgmatic.md'
     - 'CheckMK' : 'third_party/checkmk/u_e-checkmk.md'
@@ -341,7 +341,7 @@ plugins:
               'Client Configuration': 'Client-Konfiguration'
               'Manual configuration': 'Manuelle Konfiguration'
               ### Third party apps Section
-              'Third party apps': 'Anwendungen von Drittanbietern'
+              'Third party apps (community managed)': 'Anwendungen von Drittanbietern (Von der Community verwaltet)'
               'Borgmatic Backup': 'Borgmatic-Sicherung'
           #### End of german translation
   - git-revision-date-localized:
