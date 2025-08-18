@@ -1,10 +1,10 @@
 ## Installing Roundcube
 
 !!! note
-Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
-i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
-do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
-continuing with the subsequent commands.
+    Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
+    i.e., the directory containing `mailcow.conf` etc. Please do not blindly execute the commands but understand what they
+    do. None of the commands is supposed to produce an error, so if you encounter an error, fix it if necessary before
+    continuing with the subsequent commands.
 
 ## Integrated Install
 
@@ -337,8 +337,8 @@ After all of the steps above you can start the Roundcube Container with.
 **Important notes about this configuration:**
 
 !!! note
-For the rest of this Documentation you will be asked to modify files inside of `data/web/rc/config` use `data/web/rc/persistent-config` or `data/rc/config` (Advanced) instead.
-This is due to Roundcube auto-generating configs inside of `rc/main/config/` or `web/rc/config/` based on configs in `persistent-config/` / `data/rc/config/`.
+    For the rest of this Documentation you will be asked to modify files inside of `data/web/rc/config` use `data/web/rc/persistent-config` or `data/rc/config` (Advanced) instead.
+    This is due to Roundcube auto-generating configs inside of `rc/main/config/` or `web/rc/config/` based on configs in `persistent-config/` / `data/rc/config/`.
 
 If you chose to mount in the _Advanced_ way notice folders like `plugins/` are located inside of `data/rc/main`.
 
