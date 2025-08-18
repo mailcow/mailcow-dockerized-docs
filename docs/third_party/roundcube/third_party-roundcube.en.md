@@ -258,10 +258,6 @@ services:
       mailcow-network:
         aliases:
           - roundcube
-
-networks:
-  proxy:
-    external: true
 ```
 
 ### Webserver configuration
