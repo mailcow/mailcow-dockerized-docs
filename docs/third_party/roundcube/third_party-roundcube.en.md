@@ -219,13 +219,27 @@ services:
       ofelia.job-exec.roundcube_cleandb.command: '/bin/bash -c "[ -f /web/rc/bin/cleandb.sh ] && /web/rc/bin/cleandb.sh"'
 ```
 
-### Standalone Install
+## Standalone Install
 
 To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
 
 ```yaml
 services:
-  # ...
+  roundcube-db:
+    image: mariadb:10.11
+    volumes:
+      - roundcube-db:/var/lib/mysql/
+    environment:
+      TZ: ${TZ}
+      MYSQL_ROOT_PASSWORD: ${DBROUNDCUBEROOT}
+      MYSQL_DATABASE: roundcubemail
+      MYSQL_USER: roundcube
+      MYSQL_PASSWORD: ${DBROUNDCUBE}
+    restart: unless-stopped
+    networks:
+      mailcow-network:
+        aliases:
+          - roundcube-db
 
   roundcube:
     image: roundcube/roundcubemail:1.6.11-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
@@ -233,7 +247,7 @@ services:
       IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
       IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
       ROUNDCUBEMAIL_DB_TYPE: mysql
-      ROUNDCUBEMAIL_DB_HOST: mysql
+      ROUNDCUBEMAIL_DB_HOST: roundcube-db
       ROUNDCUBEMAIL_DB_USER: roundcube
       ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
       ROUNDCUBEMAIL_DB_NAME: roundcubemail
@@ -251,7 +265,7 @@ services:
       - ./data/rc/main:/var/www/html
       - ./data/rc/config:/var/roundcube/config
     depends_on:
-      - mysql-mailcow
+      - roundcube-db
       - dovecot-mailcow
     restart: unless-stopped
     networks:
@@ -259,9 +273,8 @@ services:
         aliases:
           - roundcube
 
-networks:
-  proxy:
-    external: true
+volumes:
+  roundcube-db:
 ```
 
 ### Webserver configuration
@@ -282,7 +295,7 @@ location /rc/ {
 EOCONFIG
 ```
 
-### Create roundcube database
+### Create Roundcube Passwords
 
 You may need to load the Environment Variables.
 
@@ -290,25 +303,14 @@ You may need to load the Environment Variables.
 source mailcow.conf
 ```
 
-Create a database for roundcube in the mailcow MySQL container. This creates a new `roundcube` database user
-with a random password, which will be echoed to the shell and stored in a shell variable for use by later
-commands. Note that when you interrupt the process and continue in a new shell, you must set the `DBROUNDCUBE`
-shell variable manually to the password output by the following commands.
+Create password for the seperate Roundcube MySQL container. This creates a new `roundcube` database user
+with a random password, which will be echoed to the shell.
 
-Generate a Password for the Roundcube Database by using
+Generate a Password for the Roundcube Database by using the command below, do this for `DBROUNDCUBEROOT` and `DBROUNDCUBE`.
+Remember to also add them to your `mailcow.conf` file.
 
 ```bash
 LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28
-```
-
-and add `DBROUNDCUBE` to your `mailcow.conf` file.
-
-Then execute the following commands:
-
-```bash
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${DBROUNDCUBE}';"
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
 ```
 
 ### Optional: Add Plugins

@@ -241,7 +241,21 @@ Um Roundcube in einem eigenen Docker-Container installieren zu können muss zu I
 
 ```yaml
 services:
-  # ...
+  roundcube-db:
+    image: mariadb:10.11
+    volumes:
+      - roundcube-db:/var/lib/mysql/
+    environment:
+      TZ: ${TZ}
+      MYSQL_ROOT_PASSWORD: ${DBROUNDCUBEROOT}
+      MYSQL_DATABASE: roundcubemail
+      MYSQL_USER: roundcube
+      MYSQL_PASSWORD: ${DBROUNDCUBE}
+    restart: unless-stopped
+    networks:
+      mailcow-network:
+        aliases:
+          - roundcube-db
 
   roundcube:
     image: roundcube/roundcubemail:1.6.11-apache # Siehe neuste version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
@@ -249,7 +263,7 @@ services:
       IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
       IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
       ROUNDCUBEMAIL_DB_TYPE: mysql
-      ROUNDCUBEMAIL_DB_HOST: mysql
+      ROUNDCUBEMAIL_DB_HOST: roundcube-db
       ROUNDCUBEMAIL_DB_USER: roundcube
       ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
       ROUNDCUBEMAIL_DB_NAME: roundcubemail
@@ -267,7 +281,7 @@ services:
       - ./data/rc/main:/var/www/html
       - ./data/rc/config:/var/roundcube/config
     depends_on:
-      - mysql-mailcow
+      - roundcube-db
       - dovecot-mailcow
     restart: unless-stopped
     networks:
@@ -275,9 +289,8 @@ services:
         aliases:
           - roundcube
 
-networks:
-  proxy:
-    external: true
+volumes:
+  roundcube-db:
 ```
 
 ### Webserver-Konfiguration
@@ -288,12 +301,17 @@ daher eine Konfigurations-Ergänzung für nginx, um nur die öffentlichen Teile 
 ```bash
 cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
 location /rc/ {
-  alias /web/rc/public_html/;
+    proxy_pass http://roundcube:80/;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_redirect off;
 }
 EOCONFIG
 ```
 
-### Anlegen der Roundcube-Datenbank
+### Anlegen der Roundcube-Datenbank Passwörter
 
 Zunächst falls noch nicht getan, die Shell Variablen laden:
 
@@ -301,27 +319,14 @@ Zunächst falls noch nicht getan, die Shell Variablen laden:
 source mailcow.conf
 ```
 
-Erstellen Sie eine Datenbank für Roundcube im mailcow mysql Container. Dies erstellt einen neuen `roundcube`
-Datenbank-Benutzer mit einem Zufallspasswort, welches in die Shell ausgegeben wird und in einer Shell-Variable für die
-Verwendung durch die nachfolgenden Kommandos gespeichert wird. Beachten Sie, dass Sie die `DBROUNDCUBE`-Shell-Variable
-manuell auf das ausgegebene Passwort setzen müssen, falls sie den Installationsprozess unterbrechen und später in einer
-neuen Shell fortsetzen sollten.
+Erstellen Sie eine Datenbank für Roundcube im Roundcube mysql Container. Dies erstellt einen neuen `roundcube`
+Datenbank-Benutzer mit einem Zufallspasswort, welches in die Shell ausgegeben wird.
 
-Hiermit besagtes Passwort generieren:
+Generieren Sie ein Passwort für jeweils `DBROUNDCUBEROOT` und `DBROUNDCUBE` und setzen Sie diese in der `mailcow.conf` Datei.
 
 ```bash
 LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28
 ```
-
-Anschließend den Wert `DBROUNDCUBE` in der Datei mailcow.conf auf das generierte Passwort setzen und...
-
-```bash
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "CREATE USER 'roundcube'@'%' IDENTIFIED BY '${DBROUNDCUBE}';"
-docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "GRANT ALL PRIVILEGES ON roundcubemail.* TO 'roundcube'@'%';"
-```
-
-ausführen.
 
 ### Optional: Plugins hinzufügen
 
