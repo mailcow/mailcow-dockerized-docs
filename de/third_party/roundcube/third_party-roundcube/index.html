@@ -4297,9 +4297,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#anlegen-der-roundcube-datenbank_1" class="md-nav__link">
+  <a href="#anlegen-der-roundcube-datenbank-passworter" class="md-nav__link">
     <span class="md-ellipsis">
-      Anlegen der Roundcube-Datenbank
+      Anlegen der Roundcube-Datenbank Passwörter
     </span>
   </a>
   
@@ -4774,9 +4774,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#anlegen-der-roundcube-datenbank_1" class="md-nav__link">
+  <a href="#anlegen-der-roundcube-datenbank-passworter" class="md-nav__link">
     <span class="md-ellipsis">
-      Anlegen der Roundcube-Datenbank
+      Anlegen der Roundcube-Datenbank Passwörter
     </span>
   </a>
   
@@ -5238,7 +5238,21 @@ php-fpm-Container durchgeführt haben, fügen Sie die Label dem bestehenden Absc
 <h2 id="externe-installation">Externe Installation<a class="headerlink" href="#externe-installation" title="Permanent link">&para;</a></h2>
 <p>Um Roundcube in einem eigenen Docker-Container installieren zu können muss zu Ihrer existierenden <code>docker-compose.yaml</code> Datei folgendes hinzugefügt werden:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">roundcube-db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb:10.11</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db:/var/lib/mysql/</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${TZ}</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBEROOT}</span>
+<span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcubemail</span>
+<span class="w">      </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
+<span class="w">      </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBE}</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mailcow-network</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db</span>
 
 <span class="w">  </span><span class="nt">roundcube</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube/roundcubemail:1.6.11-apache</span><span class="w"> </span><span class="c1"># Siehe neuste version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache</span>
@@ -5246,7 +5260,7 @@ php-fpm-Container durchgeführt haben, fügen Sie die Label dem bestehenden Absc
 <span class="w">      </span><span class="nt">IPV4_NETWORK</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}</span>
 <span class="w">      </span><span class="nt">IPV6_NETWORK</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_TYPE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
-<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBE}</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcubemail</span>
@@ -5264,7 +5278,7 @@ php-fpm-Container durchgeführt haben, fügen Sie die Label dem bestehenden Absc
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/rc/main:/var/www/html</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/rc/config:/var/roundcube/config</span>
 <span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-mailcow</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dovecot-mailcow</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 <span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
@@ -5272,37 +5286,32 @@ php-fpm-Container durchgeführt haben, fügen Sie die Label dem bestehenden Absc
 <span class="w">        </span><span class="nt">aliases</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
 
-<span class="nt">networks</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">proxy</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">roundcube-db</span><span class="p">:</span>
 </code></pre></div>
 <h3 id="webserver-konfiguration_1">Webserver-Konfiguration<a class="headerlink" href="#webserver-konfiguration_1" title="Permanent link">&para;</a></h3>
 <p>Das Roundcube-Verzeichnis enthält einige Inhalte, die nicht an Web-Nutzer ausgeliefert werden sollen. Wir erstellen
 daher eine Konfigurations-Ergänzung für nginx, um nur die öffentlichen Teile von Roundcube im Web zu exponieren:</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="s">&lt;&lt;EOCONFIG &gt;data/conf/nginx/site.roundcube.custom</span>
 <span class="s">location /rc/ {</span>
-<span class="s">  alias /web/rc/public_html/;</span>
+<span class="s">    proxy_pass http://roundcube:80/;</span>
+<span class="s">    proxy_set_header Host $host;</span>
+<span class="s">    proxy_set_header X-Real-IP $remote_addr;</span>
+<span class="s">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+<span class="s">    proxy_set_header X-Forwarded-Proto $scheme;</span>
+<span class="s">    proxy_redirect off;</span>
 <span class="s">}</span>
 <span class="s">EOCONFIG</span>
 </code></pre></div>
-<h3 id="anlegen-der-roundcube-datenbank_1">Anlegen der Roundcube-Datenbank<a class="headerlink" href="#anlegen-der-roundcube-datenbank_1" title="Permanent link">&para;</a></h3>
+<h3 id="anlegen-der-roundcube-datenbank-passworter">Anlegen der Roundcube-Datenbank Passwörter<a class="headerlink" href="#anlegen-der-roundcube-datenbank-passworter" title="Permanent link">&para;</a></h3>
 <p>Zunächst falls noch nicht getan, die Shell Variablen laden:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
 </code></pre></div>
-<p>Erstellen Sie eine Datenbank für Roundcube im mailcow mysql Container. Dies erstellt einen neuen <code>roundcube</code>
-Datenbank-Benutzer mit einem Zufallspasswort, welches in die Shell ausgegeben wird und in einer Shell-Variable für die
-Verwendung durch die nachfolgenden Kommandos gespeichert wird. Beachten Sie, dass Sie die <code>DBROUNDCUBE</code>-Shell-Variable
-manuell auf das ausgegebene Passwort setzen müssen, falls sie den Installationsprozess unterbrechen und später in einer
-neuen Shell fortsetzen sollten.</p>
-<p>Hiermit besagtes Passwort generieren:</p>
+<p>Erstellen Sie eine Datenbank für Roundcube im Roundcube mysql Container. Dies erstellt einen neuen <code>roundcube</code>
+Datenbank-Benutzer mit einem Zufallspasswort, welches in die Shell ausgegeben wird.</p>
+<p>Generieren Sie ein Passwort für jeweils <code>DBROUNDCUBEROOT</code> und <code>DBROUNDCUBE</code> und setzen Sie diese in der <code>mailcow.conf</code> Datei.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>&lt;/dev/urandom<span class="w"> </span>tr<span class="w"> </span>-dc<span class="w"> </span>A-Za-z0-9<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">28</span>
 </code></pre></div>
-<p>Anschließend den Wert <code>DBROUNDCUBE</code> in der Datei mailcow.conf auf das generierte Passwort setzen und...</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE USER &#39;roundcube&#39;@&#39;%&#39; IDENTIFIED BY &#39;</span><span class="si">${</span><span class="nv">DBROUNDCUBE</span><span class="si">}</span><span class="s2">&#39;;&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;GRANT ALL PRIVILEGES ON roundcubemail.* TO &#39;roundcube&#39;@&#39;%&#39;;&quot;</span>
-</code></pre></div>
-<p>ausführen.</p>
 <h3 id="optional-plugins-hinzufugen">Optional: Plugins hinzufügen<a class="headerlink" href="#optional-plugins-hinzufugen" title="Permanent link">&para;</a></h3>
 <p>Um Plugins zu aktivieren müssen diese in <code>ROUNDCUBEMAIL_PLUGINS</code> gesetzt sein.
 Falls ein Plugin noch nicht vorinstalliert, bzw. installiert ist muss dieses auch zu der <code>ROUNDCUBEMAIL_COMPOSER_PLUGINS</code> Umgebungsvariable in <code>docker-compose.yaml</code> hinzugefügt werden.</p>
@@ -5792,7 +5801,7 @@ entfernen:</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="16. August 2025 18:09:59 CEST">2025-08-16 18:09:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="19. August 2025 17:45:42 CEST">2025-08-19 17:45:42</span>
   </span>
 
     

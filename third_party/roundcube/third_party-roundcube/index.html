@@ -4274,14 +4274,20 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#standalone-install" class="md-nav__link">
     <span class="md-ellipsis">
       Standalone Install
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Standalone Install">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#webserver-configuration_1" class="md-nav__link">
@@ -4293,9 +4299,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-roundcube-database_1" class="md-nav__link">
+  <a href="#create-roundcube-passwords" class="md-nav__link">
     <span class="md-ellipsis">
-      Create roundcube database
+      Create Roundcube Passwords
     </span>
   </a>
   
@@ -4745,14 +4751,20 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#standalone-install" class="md-nav__link">
     <span class="md-ellipsis">
       Standalone Install
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Standalone Install">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#webserver-configuration_1" class="md-nav__link">
@@ -4764,9 +4776,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-roundcube-database_1" class="md-nav__link">
+  <a href="#create-roundcube-passwords" class="md-nav__link">
     <span class="md-ellipsis">
-      Create roundcube database
+      Create Roundcube Passwords
     </span>
   </a>
   
@@ -5210,10 +5222,24 @@ adaptations for the php-fpm container, add the labels to the existing section):<
 <span class="w">      </span><span class="nt">ofelia.job-exec.roundcube_cleandb.user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;www-data&quot;</span>
 <span class="w">      </span><span class="nt">ofelia.job-exec.roundcube_cleandb.command</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/bin/bash</span><span class="nv"> </span><span class="s">-c</span><span class="nv"> </span><span class="s">&quot;[</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">/web/rc/bin/cleandb.sh</span><span class="nv"> </span><span class="s">]</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">/web/rc/bin/cleandb.sh&quot;&#39;</span>
 </code></pre></div>
-<h3 id="standalone-install">Standalone Install<a class="headerlink" href="#standalone-install" title="Permanent link">&para;</a></h3>
+<h2 id="standalone-install">Standalone Install<a class="headerlink" href="#standalone-install" title="Permanent link">&para;</a></h2>
 <p>To Install Roundcube in its own Docker Container you have to add the following into your <code>docker-compose.yaml</code> file:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># ...</span>
+<span class="w">  </span><span class="nt">roundcube-db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb:10.11</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db:/var/lib/mysql/</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${TZ}</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBEROOT}</span>
+<span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcubemail</span>
+<span class="w">      </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
+<span class="w">      </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBE}</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mailcow-network</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">aliases</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db</span>
 
 <span class="w">  </span><span class="nt">roundcube</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube/roundcubemail:1.6.11-apache</span><span class="w"> </span><span class="c1"># See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache</span>
@@ -5221,7 +5247,7 @@ adaptations for the php-fpm container, add the labels to the existing section):<
 <span class="w">      </span><span class="nt">IPV4_NETWORK</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV4_NETWORK:-172.22.1}</span>
 <span class="w">      </span><span class="nt">IPV6_NETWORK</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_TYPE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
-<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DBROUNDCUBE}</span>
 <span class="w">      </span><span class="nt">ROUNDCUBEMAIL_DB_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcubemail</span>
@@ -5239,7 +5265,7 @@ adaptations for the php-fpm container, add the labels to the existing section):<
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/rc/main:/var/www/html</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data/rc/config:/var/roundcube/config</span>
 <span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-mailcow</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube-db</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dovecot-mailcow</span>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 <span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
@@ -5247,9 +5273,8 @@ adaptations for the php-fpm container, add the labels to the existing section):<
 <span class="w">        </span><span class="nt">aliases</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">roundcube</span>
 
-<span class="nt">networks</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">proxy</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">roundcube-db</span><span class="p">:</span>
 </code></pre></div>
 <h3 id="webserver-configuration_1">Webserver configuration<a class="headerlink" href="#webserver-configuration_1" title="Permanent link">&para;</a></h3>
 <p>The roundcube directory includes some locations that we do not want to serve to web users. We add a configuration
@@ -5265,22 +5290,15 @@ extension to nginx to only expose the public directory of roundcube.</p>
 <span class="s">}</span>
 <span class="s">EOCONFIG</span>
 </code></pre></div>
-<h3 id="create-roundcube-database_1">Create roundcube database<a class="headerlink" href="#create-roundcube-database_1" title="Permanent link">&para;</a></h3>
+<h3 id="create-roundcube-passwords">Create Roundcube Passwords<a class="headerlink" href="#create-roundcube-passwords" title="Permanent link">&para;</a></h3>
 <p>You may need to load the Environment Variables.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>mailcow.conf
 </code></pre></div>
-<p>Create a database for roundcube in the mailcow MySQL container. This creates a new <code>roundcube</code> database user
-with a random password, which will be echoed to the shell and stored in a shell variable for use by later
-commands. Note that when you interrupt the process and continue in a new shell, you must set the <code>DBROUNDCUBE</code>
-shell variable manually to the password output by the following commands.</p>
-<p>Generate a Password for the Roundcube Database by using</p>
+<p>Create password for the seperate Roundcube MySQL container. This creates a new <code>roundcube</code> database user
+with a random password, which will be echoed to the shell.</p>
+<p>Generate a Password for the Roundcube Database by using the command below, do this for <code>DBROUNDCUBEROOT</code> and <code>DBROUNDCUBE</code>.
+Remember to also add them to your <code>mailcow.conf</code> file.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span>&lt;/dev/urandom<span class="w"> </span>tr<span class="w"> </span>-dc<span class="w"> </span>A-Za-z0-9<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">28</span>
-</code></pre></div>
-<p>and add <code>DBROUNDCUBE</code> to your <code>mailcow.conf</code> file.</p>
-<p>Then execute the following commands:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE DATABASE roundcubemail CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;CREATE USER &#39;roundcube&#39;@&#39;%&#39; IDENTIFIED BY &#39;</span><span class="si">${</span><span class="nv">DBROUNDCUBE</span><span class="si">}</span><span class="s2">&#39;;&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-f<span class="w"> </span><span class="nv">name</span><span class="o">=</span>mysql-mailcow<span class="w"> </span>-q<span class="k">)</span><span class="w"> </span>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p<span class="si">${</span><span class="nv">DBROOT</span><span class="si">}</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;GRANT ALL PRIVILEGES ON roundcubemail.* TO &#39;roundcube&#39;@&#39;%&#39;;&quot;</span>
 </code></pre></div>
 <h3 id="optional-add-plugins">Optional: Add Plugins<a class="headerlink" href="#optional-add-plugins" title="Permanent link">&para;</a></h3>
 <p>To enable Plugins add them to <code>ROUNDCUBEMAIL_PLUGINS</code>,
@@ -5753,7 +5771,7 @@ the roundcube tables from the mailcow database using the following command:</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="August 16, 2025 18:09:59 CEST">2025-08-16 18:09:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="August 19, 2025 17:45:42 CEST">2025-08-19 17:45:42</span>
   </span>
 
     
