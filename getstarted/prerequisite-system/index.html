@@ -4496,7 +4496,7 @@
 <p class="admonition-title">Important</p>
 <p>mailcow is using Docker as a base component, due to some technical differences across multiple platforms we do <strong>not support all</strong>, even if they can run Docker.</p>
 </div>
-<p>The following table contains all operating systems officially supported and tested by us (<em>as of December 2024</em>):</p>
+<p>The following table contains all operating systems officially supported and tested by us (<em>as of August 2025</em>):</p>
 <table>
 <thead>
 <tr>
@@ -4510,7 +4510,7 @@
 <td><a href="https://www.alpinelinux.org/" title="Limited Compatibility">⚠️</a></td>
 </tr>
 <tr>
-<td>Debian 11, 12</td>
+<td>Debian 11 - 13<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
 <td><a href="https://www.debian.org/index.html" title="Fully Compatible">✅</a></td>
 </tr>
 <tr>
@@ -4814,6 +4814,14 @@ iface eth0 inet6 static
 You may want to <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#disable_cloud-init_network_changes">disable cloud-init network changes.</a></p>
 <h2 id="mtu">MTU<a class="headerlink" href="#mtu" title="Permanent link">&para;</a></h2>
 <p>Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See <a href="../install/#users-with-a-mtu-not-equal-to-1500-eg-openstack">Troubleshooting</a> in our Installation guide.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>During an upgrade from Debian 12 (Bookworm) to Debian 13 (Trixie), a service called <code>EXIM</code> may be installed, which blocks port 25 on the host. Therefore, it is advisable to remove this service before using mailcow.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -4834,7 +4842,7 @@ You may want to <a href="https://wiki.hetzner.de/index.php/Cloud_IP_static/en#di
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 19, 2025 08:45:25 CEST">2025-05-19 08:45:25</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="August 19, 2025 12:46:47 CEST">2025-08-19 12:46:47</span>
   </span>
 
     
