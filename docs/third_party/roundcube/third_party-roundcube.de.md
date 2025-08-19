@@ -1,11 +1,11 @@
 ## Installation von Roundcube
 
 !!! note "Beachten Sie"
-    Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
-    Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches `mailcow.conf` usw. enthält. Bitte führen Sie
-    die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
-    ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
-    nachfolgenden Kommandos fortfahren.
+Sofern nicht abweichend angegeben wird für alle aufgeführten Kommandos angenommen, dass diese im mailcow
+Installationsverzeichnis ausgeführt werden, d. h. dem Verzeichnis, welches `mailcow.conf` usw. enthält. Bitte führen Sie
+die Kommandos nicht blind aus, sondern verstehen Sie was diese bewirken. Keines der Kommandos sollte einen Fehler
+ausgeben; sollten Sie dennoch auf einen Fehler stoßen, beheben Sie diesen sofern notwendig bevor Sie mit den
+nachfolgenden Kommandos fortfahren.
 
 ## Integrierte Installation
 
@@ -311,7 +311,7 @@ location /rc/ {
 EOCONFIG
 ```
 
-### Anlegen der Roundcube-Datenbank
+### Anlegen der Roundcube-Datenbank Passwörter
 
 Zunächst falls noch nicht getan, die Shell Variablen laden:
 
@@ -352,9 +352,9 @@ Falls ein Plugin noch nicht vorinstalliert, bzw. installiert ist muss dieses auc
 **Wichtige Information für den Verlauf der Dokumentation:**
 
 !!! note
-    Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von `data/web/rc/config` zu verändern
-    nutzen Sie stattdessen `data/web/rc/persistent-config` oder `data/rc/config` (Erweiterte Variante).
-    Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in `persistent-config/` / `data/rc/config/` innerhalb von `rc/main/config/` oder `web/rc/config/` erstellt.
+Im Verlauf der Dokumentation werden Sie gebeten Dateien innerhalb von `data/web/rc/config` zu verändern
+nutzen Sie stattdessen `data/web/rc/persistent-config` oder `data/rc/config` (Erweiterte Variante).
+Dies liegt daran, dass Roundcube seine Konfigurationsdateien automatisch anhand von Konfigurationsdateien in `persistent-config/` / `data/rc/config/` innerhalb von `rc/main/config/` oder `web/rc/config/` erstellt.
 
 If you chose to mount in the _Advanced_ way notice folders like `plugins/` are located inside of `data/rc/main`.
 Sofern Sie sich für die Erweiterte Variante entschieden haben merken Sie sich, dass Ordner wie `plugins/` sich in `data/rc/main` befinden.
@@ -421,15 +421,15 @@ EOCONFIG
 ## CardDAV-Adressbücher in Roundcube einbinden
 
 === "Integriert"
-    Installieren Sie die neuste v5-Version (die untenstehende Konfiguration ist kompatibel zu v5-Releases) mit composer.
-    Antworten Sie `Y`, wenn Sie gefragt werden, ob Sie das Plugin aktivieren möchten.
+Installieren Sie die neuste v5-Version (die untenstehende Konfiguration ist kompatibel zu v5-Releases) mit composer.
+Antworten Sie `Y`, wenn Sie gefragt werden, ob Sie das Plugin aktivieren möchten.
 
     ```bash
     docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer require --update-no-dev -o "roundcube/carddav:~5"
     ```
 
 === "Extern"
-    Installieren Sie die neueste version von CardDAV indem Sie `carddav` zu `ROUNDCUBEMAIL_PLUGINS` hinzufügen:
+Installieren Sie die neueste version von CardDAV indem Sie `carddav` zu `ROUNDCUBEMAIL_PLUGINS` hinzufügen:
 
     ```yaml
     ROUNDCUBEMAIL_PLUGINS: archive, managesieve, acl, markasjunk, zipdownload, carddav
@@ -550,7 +550,7 @@ Installieren Sie zunächst das Plugin [dovecot_impersonate](https://github.com/c
     docker exec -it -w /var/www/html/plugins $(docker ps -f name=roundcube -q) git clone https://github.com/corbosman/dovecot_impersonate.git
     ```
 
-Editieren Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array `$config['plugins']` 
+Editieren Sie `data/web/rc/config/config.inc.php` und aktivieren Sie das dovecot_impersonate Plugin indem Sie es zum Array `$config['plugins']`
 oder zur `ROUNDCUBEMAIL_PLUGINS` Variable hinzufügen,
 zum Beispiel:
 
@@ -684,7 +684,7 @@ Starten Sie schließlich mailcow neu
     ```
 
 === "Extern"
-    Ein Upgrade von Roundcube ist in der Externen Installation ziemlich einfach, es muss lediglich der Version-Tag heraufgestuft werden:
+Ein Upgrade von Roundcube ist in der Externen Installation ziemlich einfach, es muss lediglich der Version-Tag heraufgestuft werden:
 
     ```yaml
     image: roundcube/roundcubemail:1.6.11-apache # 1.6.11 -> 1.6.X (in der Zukunft: 1.7.X)
@@ -706,7 +706,7 @@ Starten Sie schließlich mailcow neu
 === "Extern"
 
     Um Roundcube-Plugins zu aktualisieren müssen lediglich die Version-Tags zur neusten Version erhöht werden:
-    
+
     ```yaml
           ROUNDCUBEMAIL_COMPOSER_PLUGINS: "roundcube/carddav:~4" # zu v5 erhöhen
     ```
@@ -911,5 +911,3 @@ entfernen:
 ```bash
 docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SET SESSION foreign_key_checks = 0; DROP TABLE IF EXISTS $(echo $RCTABLES | sed -e 's/ \+/,/g');"
 ```
-
-
