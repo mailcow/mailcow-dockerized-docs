@@ -42,12 +42,12 @@ Im Rahmen unseres Supports können wir Ihnen bei der korrekten Planung Ihres Set
 !!! danger "Wichtig"
     mailcow nutzt Docker als Grundlage. Aufgrund verschiedener technischer Unterschiede zwischen den einzelnen Systemen **werden nicht alle** Plattformen unterstützt, auf denen Docker theoretisch lauffähig ist.
 
-Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand Mai 2025*):
+Die folgende Tabelle enthält alle von uns offiziell unterstützten und getesteten Betriebssysteme (*Stand August 2025*):
 
 | Betriebssystem            | Kompatibilität                                                     |
 | ------------------------- | ------------------------------------------------------------------ |
 | Alpine 3.19 und älter     | [⚠️](https://www.alpinelinux.org/ "Eingeschränkt Kompatibel")       |
-| Debian 11, 12             | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
+| Debian 11 - 13[^1]        | [✅](https://www.debian.org/index.de.html "Vollständig Kompatibel") |
 | Ubuntu 22.04 (oder neuer) | [✅](https://ubuntu.com/ "Vollständig Kompatibel")                  |
 | Alma Linux 8, 9           | [✅](https://almalinux.org/ "Vollständig Kompatibel")               |
 | Rocky Linux 9             | [✅](https://rockylinux.org/ "Vollständig Kompatibel")              |
@@ -220,3 +220,5 @@ Sie können außerdem die [cloud-init Netzwerkänderungen deaktivieren.](https:/
 ## MTU
 
 Besonders relevant für OpenStack-Benutzer: Überprüfen Sie Ihre MTU und setzen Sie sie entsprechend in docker-compose.yml. Siehe [Problebehandlungen](../getstarted/install.de.md#benutzer-mit-einer-mtu-ungleich-1500-zb-openstack) in unseren Installationsanleitungen.
+
+[^1]: Bei einem Upgrade von Debian 12 (Bookworm) auf Debian 13 (Trixie) kann ein Dienst namens `EXIM` installiert werden, welcher Port 25 auf dem Host blockiert. Eine entfernung des Dienstes ist vor der nutzung von mailcow daher ratsam.

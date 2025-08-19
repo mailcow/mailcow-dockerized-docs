@@ -41,12 +41,12 @@ We can help to correctly plan your setup as part of our support.
 !!! danger "Important"
     mailcow is using Docker as a base component, due to some technical differences across multiple platforms we do **not support all**, even if they can run Docker.
 
-The following table contains all operating systems officially supported and tested by us (*as of December 2024*):
+The following table contains all operating systems officially supported and tested by us (*as of August 2025*):
 
 | OS                      | Compatibility                                             |
 | ----------------------- | --------------------------------------------------------- |
 | Alpine since 3.19       | [⚠️](https://www.alpinelinux.org/ "Limited Compatibility") |
-| Debian 11, 12           | [✅](https://www.debian.org/index.html "Fully Compatible") |
+| Debian 11 - 13[^1]      | [✅](https://www.debian.org/index.html "Fully Compatible") |
 | Ubuntu 22.04 (or newer) | [✅](https://ubuntu.com/ "Fully Compatible")               |
 | Alma Linux 8, 9         | [✅](https://almalinux.org/ "Fully Compatible")            |
 | Rocky Linux 9           | [✅](https://rockylinux.org/ "Fully Compatible")           |
@@ -217,3 +217,5 @@ You may want to [disable cloud-init network changes.](https://wiki.hetzner.de/in
 ## MTU
 
 Especially relevant for OpenStack users: Check your MTU and set it accordingly in docker-compose.yml. See [Troubleshooting](../getstarted/install.md#users-with-a-mtu-not-equal-to-1500-eg-openstack) in our Installation guide.
+
+[^1]: During an upgrade from Debian 12 (Bookworm) to Debian 13 (Trixie), a service called `EXIM` may be installed, which blocks port 25 on the host. Therefore, it is advisable to remove this service before using mailcow.
