@@ -246,5 +246,5 @@ Dieses Dashboard wurde von [remkolodder/mailcow-dashboard](https://github.com/re
 
 Dieses Repository enthält den Quellcode für den Exporter, ein Dockerfile zur Erstellung des Images und Beispiel-Grafana-Dashboards.
 
-[https://github.com/j6s/mailcow-exporter](https://github.com/j6s/mailcow-exporter)
+[https://github.com/mailcow/prometheus-exporter](https://github.com/mailcow/prometheus-exporter)
 

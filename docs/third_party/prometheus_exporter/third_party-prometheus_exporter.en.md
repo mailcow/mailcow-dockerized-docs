@@ -250,5 +250,5 @@ This dashboard was adapted from [remkolodder/mailcow-dashboard](https://github.c
 
 This repository contains the source code for the exporter, a Dockerfile for building the image, and example Grafana dashboards.
 
-[https://github.com/j6s/mailcow-exporter](https://github.com/j6s/mailcow-exporter)
+[https://github.com/mailcow/prometheus-exporter](https://github.com/mailcow/prometheus-exporter)
 
