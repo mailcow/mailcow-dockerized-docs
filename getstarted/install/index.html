@@ -105,7 +105,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-and-docker-compose-installation" class="md-skip">
+        <a href="#installation-of-mailcow" class="md-skip">
           Skip to content
         </a>
       
@@ -459,6 +459,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -491,6 +493,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -499,14 +503,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docker-and-docker-compose-installation" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker and Docker Compose Installation
+      Prerequisites
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Docker and Docker Compose Installation">
+    <nav class="md-nav" aria-label="Prerequisites">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-and-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker and Docker Compose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-packages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debianubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian/Ubuntu:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rhel-based-systems-eg-rocky-linux-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      RHEL-based systems (e.g., Rocky Linux 9):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux-eg-322" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Linux (e.g., 3.22):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
@@ -519,18 +593,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#on-debianubuntu-systems" class="md-nav__link">
+  <a href="#debianubuntu_1" class="md-nav__link">
     <span class="md-ellipsis">
-      On Debian/Ubuntu systems:
+      Debian/Ubuntu:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#on-rhel-based-systems-eg-rocky-linux-9" class="md-nav__link">
+  <a href="#rhel-based-systems-eg-rocky-linux-9_1" class="md-nav__link">
     <span class="md-ellipsis">
-      On RHEL-based systems (e.g. Rocky Linux 9):
+      RHEL-based systems (e.g., Rocky Linux 9):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux-eg-322_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Linux (e.g., 3.22):
     </span>
   </a>
   
@@ -544,26 +627,59 @@
           <li class="md-nav__item">
   <a href="#docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
-      docker compose
+      Docker Compose
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="docker compose">
+    <nav class="md-nav" aria-label="Docker Compose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installation-via-paketmanager-plugin" class="md-nav__link">
+  <a href="#installation-via-package-manager-plugin" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation via Paketmanager (plugin)
+      Installation via Package Manager (Plugin)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation via Package Manager (Plugin)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debianubuntu_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian/Ubuntu:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation-via-script-standalone" class="md-nav__link">
+  <a href="#rhel-based-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation via Script (standalone)
+      RHEL-based systems:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux-eg-322_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Linux (e.g., 3.22):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-as-a-standalone-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation as a Standalone Version
     </span>
   </a>
   
@@ -578,29 +694,34 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#check-selinux-specifics" class="md-nav__link">
+  <a href="#selinux-configuration-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Check SELinux specifics
+      SELinux Configuration (Optional)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-mailcow" class="md-nav__link">
+  <a href="#installing-mailcow" class="md-nav__link">
     <span class="md-ellipsis">
-      Install mailcow
+      Installing mailcow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#initialize-mailcow" class="md-nav__link">
+  <a href="#starting-mailcow" class="md-nav__link">
     <span class="md-ellipsis">
-      Initialize mailcow
+      Starting mailcow
     </span>
   </a>
   
@@ -617,18 +738,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#users-with-a-mtu-not-equal-to-1500-eg-openstack" class="md-nav__link">
+  <a href="#mtu-not-equal-to-1500-eg-openstack" class="md-nav__link">
     <span class="md-ellipsis">
-      Users with a MTU not equal to 1500 (e.g. OpenStack)
+      MTU not equal to 1500 (e.g., OpenStack)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#users-without-an-ipv6-enabled-network-on-their-host-system" class="md-nav__link">
+  <a href="#no-ipv6-on-the-host-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Users without an IPv6 enabled network on their host system
+      No IPv6 on the Host System
     </span>
   </a>
   
@@ -640,9 +761,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-mailcow" class="md-nav__link">
+  <a href="#important-notes" class="md-nav__link">
     <span class="md-ellipsis">
-      Start mailcow
+      Important Notes
     </span>
   </a>
   
@@ -4353,6 +4474,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -4361,14 +4484,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docker-and-docker-compose-installation" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker and Docker Compose Installation
+      Prerequisites
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Docker and Docker Compose Installation">
+    <nav class="md-nav" aria-label="Prerequisites">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Packages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-and-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker and Docker Compose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-packages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debianubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian/Ubuntu:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rhel-based-systems-eg-rocky-linux-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      RHEL-based systems (e.g., Rocky Linux 9):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux-eg-322" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Linux (e.g., 3.22):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
@@ -4381,18 +4574,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#on-debianubuntu-systems" class="md-nav__link">
+  <a href="#debianubuntu_1" class="md-nav__link">
     <span class="md-ellipsis">
-      On Debian/Ubuntu systems:
+      Debian/Ubuntu:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#on-rhel-based-systems-eg-rocky-linux-9" class="md-nav__link">
+  <a href="#rhel-based-systems-eg-rocky-linux-9_1" class="md-nav__link">
     <span class="md-ellipsis">
-      On RHEL-based systems (e.g. Rocky Linux 9):
+      RHEL-based systems (e.g., Rocky Linux 9):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux-eg-322_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Linux (e.g., 3.22):
     </span>
   </a>
   
@@ -4406,26 +4608,59 @@
           <li class="md-nav__item">
   <a href="#docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
-      docker compose
+      Docker Compose
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="docker compose">
+    <nav class="md-nav" aria-label="Docker Compose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installation-via-paketmanager-plugin" class="md-nav__link">
+  <a href="#installation-via-package-manager-plugin" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation via Paketmanager (plugin)
+      Installation via Package Manager (Plugin)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation via Package Manager (Plugin)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debianubuntu_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debian/Ubuntu:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation-via-script-standalone" class="md-nav__link">
+  <a href="#rhel-based-systems" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation via Script (standalone)
+      RHEL-based systems:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux-eg-322_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alpine Linux (e.g., 3.22):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-as-a-standalone-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation as a Standalone Version
     </span>
   </a>
   
@@ -4440,29 +4675,34 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#check-selinux-specifics" class="md-nav__link">
+  <a href="#selinux-configuration-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Check SELinux specifics
+      SELinux Configuration (Optional)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-mailcow" class="md-nav__link">
+  <a href="#installing-mailcow" class="md-nav__link">
     <span class="md-ellipsis">
-      Install mailcow
+      Installing mailcow
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#initialize-mailcow" class="md-nav__link">
+  <a href="#starting-mailcow" class="md-nav__link">
     <span class="md-ellipsis">
-      Initialize mailcow
+      Starting mailcow
     </span>
   </a>
   
@@ -4479,18 +4719,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#users-with-a-mtu-not-equal-to-1500-eg-openstack" class="md-nav__link">
+  <a href="#mtu-not-equal-to-1500-eg-openstack" class="md-nav__link">
     <span class="md-ellipsis">
-      Users with a MTU not equal to 1500 (e.g. OpenStack)
+      MTU not equal to 1500 (e.g., OpenStack)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#users-without-an-ipv6-enabled-network-on-their-host-system" class="md-nav__link">
+  <a href="#no-ipv6-on-the-host-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Users without an IPv6 enabled network on their host system
+      No IPv6 on the Host System
     </span>
   </a>
   
@@ -4502,9 +4742,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-mailcow" class="md-nav__link">
+  <a href="#important-notes" class="md-nav__link">
     <span class="md-ellipsis">
-      Start mailcow
+      Important Notes
     </span>
   </a>
   
@@ -4529,129 +4769,156 @@
   
 
 
-  <h1>Install mailcow</h1>
-
-<div class="admonition success">
-<p class="admonition-title">It's the same</p>
-<p>The installation is exactly the same on x86 and ARM64 platforms!</p>
+<h1 id="installation-of-mailcow">Installation of mailcow<a class="headerlink" href="#installation-of-mailcow" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h3 id="system-packages">System Packages<a class="headerlink" href="#system-packages" title="Permanent link">&para;</a></h3>
+<p>The following Linux packages are required for using mailcow and may need to be installed depending on your distribution:</p>
+<ul>
+<li>git</li>
+<li>openssl</li>
+<li>curl</li>
+<li>awk</li>
+<li>sha1sum</li>
+<li>grep</li>
+<li>cut</li>
+<li>jq (<strong>new as of 2025-08</strong>)</li>
+</ul>
+<h3 id="docker-and-docker-compose">Docker and Docker Compose<a class="headerlink" href="#docker-and-docker-compose" title="Permanent link">&para;</a></h3>
+<p>For the installation, you will need:</p>
+<ul>
+<li><strong>Docker</strong>: Version <code>&gt;= 24.0.0</code></li>
+<li><strong>Docker Compose</strong>: Version <code>&gt;= 2.0</code></li>
+</ul>
+<p>Installation guides can be found here:</p>
+<ul>
+<li><a href="https://docs.docker.com/install/">Install Docker</a></li>
+<li><a href="https://docs.docker.com/compose/install/">Install Docker Compose</a></li>
+</ul>
+<h3 id="quick-installation">Quick Installation<a class="headerlink" href="#quick-installation" title="Permanent link">&para;</a></h3>
+<h4 id="system-packages_1">System Packages<a class="headerlink" href="#system-packages_1" title="Permanent link">&para;</a></h4>
+<h5 id="debianubuntu">Debian/Ubuntu:<a class="headerlink" href="#debianubuntu" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
+apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>openssl<span class="w"> </span>curl<span class="w"> </span>gawk<span class="w"> </span>coreutils<span class="w"> </span>grep<span class="w"> </span>jq
+</code></pre></div>
+<h5 id="rhel-based-systems-eg-rocky-linux-9">RHEL-based systems (e.g., Rocky Linux 9):<a class="headerlink" href="#rhel-based-systems-eg-rocky-linux-9" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>openssl<span class="w"> </span>curl<span class="w"> </span>gawk<span class="w"> </span>coreutils<span class="w"> </span>grep<span class="w"> </span>jq
+</code></pre></div>
+<h5 id="alpine-linux-eg-322">Alpine Linux (e.g., 3.22):<a class="headerlink" href="#alpine-linux-eg-322" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>--upgrade<span class="w"> </span>sed<span class="w"> </span>findutils<span class="w"> </span>bash<span class="w"> </span>git<span class="w"> </span>openssl<span class="w"> </span>curl<span class="w"> </span>gawk<span class="w"> </span>coreutils<span class="w"> </span>grep<span class="w"> </span>jq
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>All programs not explicitly listed in the installation process are already included as subprograms in <code>coreutils</code>.</p>
 </div>
-<h2 id="docker-and-docker-compose-installation">Docker and Docker Compose Installation<a class="headerlink" href="#docker-and-docker-compose-installation" title="Permanent link">&para;</a></h2>
-<p>You need Docker (a version &gt;= <code>24.0.0</code> is required) and Docker Compose (a version <code>&gt;= 2.0</code> is required).</p>
-<p>Learn how to install <a href="https://docs.docker.com/install/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose</a>.</p>
-<p>Quick installation for most operation systems:</p>
-<h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
+<h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
 <div class="admonition danger">
 <p class="admonition-title">Important</p>
-<p>Always use the latest available Docker Engine from Docker Inc. — do not use the version provided by your distribution's default repository.</p>
+<p>Use the <strong>latest available Docker Engine</strong> and not the version from your Linux distribution's package sources.</p>
 </div>
-<h4 id="on-debianubuntu-systems">On Debian/Ubuntu systems:<a class="headerlink" href="#on-debianubuntu-systems" title="Permanent link">&para;</a></h4>
+<h5 id="debianubuntu_1">Debian/Ubuntu:<a class="headerlink" href="#debianubuntu_1" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span>https://get.docker.com/<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">CHANNEL</span><span class="o">=</span>stable<span class="w"> </span>sh
 systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
 </code></pre></div>
-<h4 id="on-rhel-based-systems-eg-rocky-linux-9">On RHEL-based systems (e.g. Rocky Linux 9):<a class="headerlink" href="#on-rhel-based-systems-eg-rocky-linux-9" title="Permanent link">&para;</a></h4>
+<h5 id="rhel-based-systems-eg-rocky-linux-9_1">RHEL-based systems (e.g., Rocky Linux 9):<a class="headerlink" href="#rhel-based-systems-eg-rocky-linux-9_1" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>config-manager<span class="w"> </span>--add-repo<span class="o">=</span>https://download.docker.com/linux/centos/docker-ce.repo
 dnf<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
 systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
 </code></pre></div>
+<h5 id="alpine-linux-eg-322_1">Alpine Linux (e.g., 3.22):<a class="headerlink" href="#alpine-linux-eg-322_1" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>apk<span class="w"> </span>--no-cache<span class="w"> </span>--upgrade<span class="w"> </span>add<span class="w"> </span>docker
+rc-update<span class="w"> </span>add<span class="w"> </span>docker<span class="w"> </span>default
+rc-service<span class="w"> </span>docker<span class="w"> </span>start
+</code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Note</p>
-<p>The convenience "get Docker" script does not reliably work on RHEL systems, so a manual setup is required there.</p>
+<p>The <code>get.docker.com</code> script does not work reliably or at all on RHEL and Alpine Linux systems. Use the manual method instead.</p>
 </div>
-<h3 id="docker-compose">docker compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h3>
+<h4 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h4>
 <div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p><strong>mailcow requires the latest version of docker compose v2.</strong><br>
-If Docker was installed using the script above, the Docker Compose plugin is already automatically installed in a version &gt;=2.0.<br>
-Is your mailcow installation older or Docker was installed in a different way, the Compose plugin or the standalone version of Docker must be installed manually.</p>
+<p class="admonition-title">Warning</p>
+<p><strong>mailcow requires Docker Compose version <code>&gt;= 2.0</code>.</strong></p>
 </div>
-<h4 id="installation-via-paketmanager-plugin">Installation via Paketmanager (plugin)<a class="headerlink" href="#installation-via-paketmanager-plugin" title="Permanent link">&para;</a></h4>
+<h5 id="installation-via-package-manager-plugin">Installation via Package Manager (Plugin)<a class="headerlink" href="#installation-via-package-manager-plugin" title="Permanent link">&para;</a></h5>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>This approach with the package sources is only possible if the Docker repository has been included. This can happen either through the instructions above (see <a href="#docker">Docker</a>) or through a manually integration.</p>
+<p class="admonition-title">Note</p>
+<p>This method requires that the Docker repository has been added (see <a href="#docker">Docker</a>).</p>
 </div>
-<p>On Debian/Ubuntu systems:
-<div class="highlight"><pre><span></span><code>apt update
-apt install docker-compose-plugin
-</code></pre></div></p>
-<p>On RHEL based systems:
-<div class="highlight"><pre><span></span><code>dnf update
-dnf install docker-compose-plugin
-</code></pre></div></p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>The Docker Compose command syntax is <strong><code>docker compose</code></strong> for the <strong>plugin variant</strong> of Docker Compose!!!</p>
-</div>
-<h4 id="installation-via-script-standalone">Installation via Script (standalone)<a class="headerlink" href="#installation-via-script-standalone" title="Permanent link">&para;</a></h4>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>This installation is the old familiar way. It installs Docker Compose as a standalone program and does not rely on the Docker installation way.</p>
-</div>
-<div class="highlight"><pre><span></span><code>LATEST=$(curl -Ls -w %{url_effective} -o /dev/null https://github.com/docker/compose/releases/latest) &amp;&amp; LATEST=${LATEST##*/} &amp;&amp; curl -L https://github.com/docker/compose/releases/download/$LATEST/docker-compose-$(uname -s)-$(uname -m) &gt; /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+<h6 id="debianubuntu_2">Debian/Ubuntu:<a class="headerlink" href="#debianubuntu_2" title="Permanent link">&para;</a></h6>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
+apt<span class="w"> </span>install<span class="w"> </span>docker-compose-plugin
+</code></pre></div>
+<h6 id="rhel-based-systems">RHEL-based systems:<a class="headerlink" href="#rhel-based-systems" title="Permanent link">&para;</a></h6>
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>update
+dnf<span class="w"> </span>install<span class="w"> </span>docker-compose-plugin
+</code></pre></div>
+<h6 id="alpine-linux-eg-322_2">Alpine Linux (e.g., 3.22):<a class="headerlink" href="#alpine-linux-eg-322_2" title="Permanent link">&para;</a></h6>
+<div class="highlight"><pre><span></span><code>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>--upgrade<span class="w"> </span>docker-cli-compose
 </code></pre></div>
 <div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>The Docker Compose command syntax is <strong><code>docker-compose</code></strong> for the <strong>standalone variant</strong> of Docker Compose!!!   </p>
+<p class="admonition-title">Warning</p>
+<p>For the plugin version, the command is <strong><code>docker compose</code></strong> (without a hyphen).</p>
 </div>
-<p>Please use the latest Docker engine available and do not use the engine that ships with your distros repository.</p>
-<h2 id="check-selinux-specifics">Check SELinux specifics<a class="headerlink" href="#check-selinux-specifics" title="Permanent link">&para;</a></h2>
-<p>On SELinux enabled systems, e.g. CentOS 7:</p>
+<h5 id="installation-as-a-standalone-version">Installation as a Standalone Version<a class="headerlink" href="#installation-as-a-standalone-version" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="nv">LATEST</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-Ls<span class="w"> </span>-w<span class="w"> </span>%<span class="o">{</span>url_effective<span class="o">}</span><span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>https://github.com/docker/compose/releases/latest<span class="k">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="nv">LATEST</span><span class="o">=</span><span class="si">${</span><span class="nv">LATEST</span><span class="p">##*/</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+curl<span class="w"> </span>-L<span class="w"> </span>https://github.com/docker/compose/releases/download/<span class="nv">$LATEST</span>/docker-compose-<span class="k">$(</span>uname<span class="w"> </span>-s<span class="k">)</span>-<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/docker-compose
+chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/docker-compose
+</code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Warning</p>
+<p>For the standalone version, the command is <strong><code>docker-compose</code></strong> (with a hyphen).</p>
+</div>
+<hr />
+<h2 id="selinux-configuration-optional">SELinux Configuration (Optional)<a class="headerlink" href="#selinux-configuration-optional" title="Permanent link">&para;</a></h2>
+<p>On SELinux-enabled systems (e.g., CentOS 7):</p>
+<ol>
+<li>
+<p>Check if the <code>container-selinux</code> package is installed:</p>
+<div class="highlight"><pre><span></span><code>rpm<span class="w"> </span>-qa<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>container-selinux
+</code></pre></div>
+</li>
+<li>
+<p>Enable SELinux support in Docker:</p>
 <ul>
-<li>Check if "container-selinux" package is present on your system:</li>
+<li>Edit <code>/etc/docker/daemon.json</code> and add <code>"selinux-enabled": true</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>rpm -qa | grep container-selinux
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;selinux-enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>If the above command returns an empty or no output, you should install it via your package manager.</p>
 <ul>
-<li>Check if docker has SELinux support enabled:</li>
+<li>Restart the Docker daemon.</li>
 </ul>
-<div class="highlight"><pre><span></span><code>docker info | grep selinux
+</li>
+</ol>
+<p>For more information, see the <a href="https://github.com/containers/container-selinux">container-selinux Readme</a>.</p>
+<hr />
+<h2 id="installing-mailcow">Installing mailcow<a class="headerlink" href="#installing-mailcow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Clone the repository:</p>
+<div class="highlight"><pre><span></span><code>su
+<span class="nb">umask</span><span class="w"> </span><span class="m">0022</span>
+<span class="nb">cd</span><span class="w"> </span>/opt
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mailcow/mailcow-dockerized
+<span class="nb">cd</span><span class="w"> </span>mailcow-dockerized
 </code></pre></div>
-<p>If the above command returns an empty or no output, create or edit <code>/etc/docker/daemon.json</code> and add <code>"selinux-enabled": true</code>. Example file content:</p>
-<div class="highlight"><pre><span></span><code>{
-  &quot;selinux-enabled&quot;: true
-}
-</code></pre></div>
-<p>Restart the docker daemon and verify SELinux is now enabled.</p>
-<p>This step is required to make sure mailcows volumes are properly labeled as declared in the compose file.
-If you are interested in how this works, you can check out the readme of <a href="https://github.com/containers/container-selinux">https://github.com/containers/container-selinux</a> which links to a lot of useful information on that topic.</p>
-<h2 id="install-mailcow">Install mailcow<a class="headerlink" href="#install-mailcow" title="Permanent link">&para;</a></h2>
-<p>Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while bootstrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. <strong>We drop permissions for every exposed application</strong> and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.</p>
-<div class="highlight"><pre><span></span><code>$ su
-# umask
-0022 # &lt;- Verify it is 0022
-# cd /opt
-# git clone https://github.com/mailcow/mailcow-dockerized
-# cd mailcow-dockerized
-</code></pre></div>
-<h2 id="initialize-mailcow">Initialize mailcow<a class="headerlink" href="#initialize-mailcow" title="Permanent link">&para;</a></h2>
-<p>Generate a configuration file. Use a FQDN (<code>host.domain.tld</code>) as hostname when asked.
+</li>
+<li>
+<p>Generate the configuration file:</p>
 <div class="highlight"><pre><span></span><code>./generate_config.sh
-</code></pre></div></p>
-<p>Change configuration if you want or need to.
-<div class="highlight"><pre><span></span><code>nano mailcow.conf
 </code></pre></div>
-If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.1 on port 8443 and HTTP to 127.0.0.1 on port 8080.</p>
-<p>You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See <a href="../../post_installation/firststeps-local_mta/">this chapter</a> to learn how to reconfigure Postfix to run besides mailcow after a successful installation.</p>
-<p>Some updates modify mailcow.conf and add new parameters. It is hard to keep track of them in the documentation. Please check their description and, if unsure, ask at the known channels for advise.</p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="users-with-a-mtu-not-equal-to-1500-eg-openstack">Users with a MTU not equal to 1500 (e.g. OpenStack)<a class="headerlink" href="#users-with-a-mtu-not-equal-to-1500-eg-openstack" title="Permanent link">&para;</a></h3>
-<p><strong>Whenever you run into trouble and strange phenomena, please check your MTU.</strong></p>
-<p>Edit <code>docker-compose.yml</code> and change the network settings according to your MTU.
-Add the new driver_opts parameter like this:
-<div class="highlight"><pre><span></span><code>networks:
-  mailcow-network:
-    ...
-    driver_opts:
-      com.docker.network.driver.mtu: 1450
-    ...
-</code></pre></div></p>
-<h3 id="users-without-an-ipv6-enabled-network-on-their-host-system">Users without an IPv6 enabled network on their host system<a class="headerlink" href="#users-without-an-ipv6-enabled-network-on-their-host-system" title="Permanent link">&para;</a></h3>
-<p><strong>Please don't turn off IPv6, even if you don't like it. IPv6 is the future and should not be ignored.</strong></p>
-<p>If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to <a href="../../post_installation/firststeps-disable_ipv6/">disable IPv6</a> for the mailcow network to prevent unforeseen issues.</p>
-<h2 id="start-mailcow">Start mailcow<a class="headerlink" href="#start-mailcow" title="Permanent link">&para;</a></h2>
-<p>Pull the images and run the compose file. The parameter <code>-d</code> will start mailcow: dockerized detached:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+</li>
+<li>
+<p>Adjust the configuration if necessary:</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>mailcow.conf
+</code></pre></div>
+</li>
+</ol>
+<hr />
+<h2 id="starting-mailcow">Starting mailcow<a class="headerlink" href="#starting-mailcow" title="Permanent link">&para;</a></h2>
+<p>Download the images and start the containers:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Docker Compose (Plugin)</label><label for="__tabbed_1_2">Docker Compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>pull
@@ -4666,42 +4933,24 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </div>
 </div>
 <p>Done!</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Post 2025-03 (LDAP Patch)</label><label for="__tabbed_2_2">Pre 2025-03 (LDAP Patch)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="admonition warning">
-<p class="admonition-title">Important</p>
-<p>Logins have been separated since 2025-03.</p>
-</div>
+<p>You can now access <strong><code>https://${MAILCOW_HOSTNAME}/admin</code></strong>  using the default credentials <code>admin</code> and the password <code>moohoo</code>.</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="mtu-not-equal-to-1500-eg-openstack">MTU not equal to 1500 (e.g., OpenStack)<a class="headerlink" href="#mtu-not-equal-to-1500-eg-openstack" title="Permanent link">&para;</a></h3>
+<p>Adjust the network settings in <code>docker-compose.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mailcow-network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver_opts</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">com.docker.network.driver.mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1450</span>
+</code></pre></div>
+<h3 id="no-ipv6-on-the-host-system">No IPv6 on the Host System<a class="headerlink" href="#no-ipv6-on-the-host-system" title="Permanent link">&para;</a></h3>
+<p>Disable IPv6 for the mailcow network if your host system does not support IPv6. More information can be found <a href="../post_installation/firststeps-disable_ipv6.de.md">here</a>.</p>
+<hr />
+<h2 id="important-notes">Important Notes<a class="headerlink" href="#important-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>Administrators</strong>:<br />
-You can now log in as an administrator using the default credentials <code>admin</code> and the password <code>moohoo</code> at:<br />
-<strong><code>https://${MAILCOW_HOSTNAME}/admin</code></strong></p>
-</li>
-<li>
-<p><strong>Regular mailbox users</strong>:<br />
-Continue logging in at the usual URL:<br />
-<strong><code>https://${MAILCOW_HOSTNAME}</code></strong> (FQDN only)</p>
-</li>
-<li>
-<p><strong>Domain administrators</strong>:<br />
-Log in at the dedicated URL:<br />
-<strong><code>https://${MAILCOW_HOSTNAME}/domainadmin</code></strong></p>
-</li>
+<li><strong>Data Persistence</strong>: Your data is stored in Docker volumes and remains intact even if you recreate or delete containers.</li>
+<li><strong>Reverse Proxy</strong>: If you are not using a reverse proxy, you should <a href="../../manual-guides/u_e-80_to_443/">redirect HTTP to HTTPS</a>.</li>
 </ul>
-</div>
-<div class="tabbed-block">
-<p>You can now access <strong><code>https://${MAILCOW_HOSTNAME}</code></strong>  using the default credentials <code>admin</code> and the password <code>moohoo</code>.</p>
-</div>
-</div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>If you are not using mailcow behind a reverse proxy, you should <a href="../../manual-guides/u_e-80_to_443/">redirect all HTTP requests to HTTPS</a>.</p>
-</div>
-<p>The database will be initialized right after a connection to MySQL can be established.</p>
-<p>Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run <code>docker volume ls</code> to see a list of all volumes. You can safely run <code>docker compose down</code> without removing persistent data.</p>
 
 
 
@@ -4722,7 +4971,7 @@ Log in at the dedicated URL:<br />
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="April 30, 2025 15:48:40 CEST">2025-04-30 15:48:40</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="August 20, 2025 16:57:04 CEST">2025-08-20 16:57:04</span>
   </span>
 
     
