@@ -1,204 +1,230 @@
-!!! success "It's the same"
-    The installation is exactly the same on x86 and ARM64 platforms!
+# Installation of mailcow
 
-## Docker and Docker Compose Installation
-You need Docker (a version >= `24.0.0` is required) and Docker Compose (a version `>= 2.0` is required).
+## Prerequisites
 
- Learn how to install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
+### System Packages
 
-Quick installation for most operation systems:
+The following Linux packages are required for using mailcow and may need to be installed depending on your distribution:
 
-### Docker
+- git
+- openssl
+- curl
+- awk
+- sha1sum
+- grep
+- cut
+- jq (**new as of 2025-08**)
+
+### Docker and Docker Compose
+
+For the installation, you will need:
+
+- **Docker**: Version `>= 24.0.0`
+- **Docker Compose**: Version `>= 2.0`
+
+Installation guides can be found here:
+
+- [Install Docker](https://docs.docker.com/install/)
+- [Install Docker Compose](https://docs.docker.com/compose/install/)
+
+### Quick Installation
+
+#### System Packages
+
+##### Debian/Ubuntu:
+
+```bash
+apt update
+apt install -y git openssl curl gawk coreutils grep jq
+```
+
+##### RHEL-based systems (e.g., Rocky Linux 9):
+```bash
+dnf install -y git openssl curl gawk coreutils grep jq
+```
+
+##### Alpine Linux (e.g., 3.22):
+```bash
+apk add --no-cache --upgrade sed findutils bash git openssl curl gawk coreutils grep jq
+```
+
+!!! info "Note"
+    All programs not explicitly listed in the installation process are already included as subprograms in `coreutils`.
+
+#### Docker
 
 !!! danger "Important"
-    Always use the latest available Docker Engine from Docker Inc. — do not use the version provided by your distribution's default repository.
+    Use the **latest available Docker Engine** and not the version from your Linux distribution's package sources.
 
-#### On Debian/Ubuntu systems:
+##### Debian/Ubuntu:
 
-``` bash
+```bash
 curl -sSL https://get.docker.com/ | CHANNEL=stable sh
 systemctl enable --now docker
 ```
 
-#### On RHEL-based systems (e.g. Rocky Linux 9):
+##### RHEL-based systems (e.g., Rocky Linux 9):
 
-``` bash
+```bash
 dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 systemctl enable --now docker
 ```
 
-!!! info "Note"
-    The convenience "get Docker" script does not reliably work on RHEL systems, so a manual setup is required there.
+##### Alpine Linux (e.g., 3.22):
 
-### docker compose
-
-!!! danger
-    **mailcow requires the latest version of docker compose v2.**<br>
-    If Docker was installed using the script above, the Docker Compose plugin is already automatically installed in a version >=2.0.<br>
-    Is your mailcow installation older or Docker was installed in a different way, the Compose plugin or the standalone version of Docker must be installed manually.
-
-#### Installation via Paketmanager (plugin)
-
-!!! info
-    This approach with the package sources is only possible if the Docker repository has been included. This can happen either through the instructions above (see [Docker](#docker)) or through a manually integration.
-
-On Debian/Ubuntu systems:
+```bash
+apk --no-cache --upgrade add docker
+rc-update add docker default
+rc-service docker start
 ```
+
+!!! info "Note"
+    The `get.docker.com` script does not work reliably or at all on RHEL and Alpine Linux systems. Use the manual method instead.
+
+#### Docker Compose
+
+!!! danger "Warning"
+    **mailcow requires Docker Compose version `>= 2.0`.**
+
+##### Installation via Package Manager (Plugin)
+
+!!! info "Note"
+    This method requires that the Docker repository has been added (see [Docker](#docker)).
+
+###### Debian/Ubuntu:
+
+```bash
 apt update
 apt install docker-compose-plugin
 ```
 
-On RHEL based systems:
-```
+###### RHEL-based systems:
+
+```bash
 dnf update
 dnf install docker-compose-plugin
 ```
 
-!!! danger
-    The Docker Compose command syntax is **`docker compose`** for the **plugin variant** of Docker Compose!!!
+###### Alpine Linux (e.g., 3.22):
 
-#### Installation via Script (standalone)
-
-!!! info
-    This installation is the old familiar way. It installs Docker Compose as a standalone program and does not rely on the Docker installation way.
-
+```bash
+apk add --no-cache --upgrade docker-cli-compose
 ```
-LATEST=$(curl -Ls -w %{url_effective} -o /dev/null https://github.com/docker/compose/releases/latest) && LATEST=${LATEST##*/} && curl -L https://github.com/docker/compose/releases/download/$LATEST/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+
+!!! danger "Warning"
+    For the plugin version, the command is **`docker compose`** (without a hyphen).
+
+##### Installation as a Standalone Version
+
+```bash
+LATEST=$(curl -Ls -w %{url_effective} -o /dev/null https://github.com/docker/compose/releases/latest) && \
+LATEST=${LATEST##*/} && \
+curl -L https://github.com/docker/compose/releases/download/$LATEST/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
-!!! danger
-    The Docker Compose command syntax is **`docker-compose`** for the **standalone variant** of Docker Compose!!!   
+!!! danger "Warning"
+    For the standalone version, the command is **`docker-compose`** (with a hyphen).
 
-Please use the latest Docker engine available and do not use the engine that ships with your distros repository.
+---
 
-## Check SELinux specifics
-On SELinux enabled systems, e.g. CentOS 7:
+## SELinux Configuration (Optional)
 
-- Check if "container-selinux" package is present on your system:
+On SELinux-enabled systems (e.g., CentOS 7):
 
-```
-rpm -qa | grep container-selinux
-```
+1. Check if the `container-selinux` package is installed:
 
-If the above command returns an empty or no output, you should install it via your package manager.
+    ```bash
+    rpm -qa | grep container-selinux
+    ```
 
-- Check if docker has SELinux support enabled:
+2. Enable SELinux support in Docker:
 
-```
-docker info | grep selinux
-```
+    - Edit `/etc/docker/daemon.json` and add `"selinux-enabled": true`:
 
-If the above command returns an empty or no output, create or edit `/etc/docker/daemon.json` and add `"selinux-enabled": true`. Example file content:
+      ```json
+      {
+        "selinux-enabled": true
+      }
+      ```
 
-```
-{
-  "selinux-enabled": true
-}
-```
+    - Restart the Docker daemon.
 
-Restart the docker daemon and verify SELinux is now enabled.
+For more information, see the [container-selinux Readme](https://github.com/containers/container-selinux).
 
-This step is required to make sure mailcows volumes are properly labeled as declared in the compose file.
-If you are interested in how this works, you can check out the readme of https://github.com/containers/container-selinux which links to a lot of useful information on that topic.
+---
 
+## Installing mailcow
 
-## Install mailcow
-Clone the master branch of the repository, make sure your umask equals 0022. Please clone the repository as root user and also control the stack as root. We will modify attributes - if necessary - while bootstrapping the containers automatically and make sure everything is secured. The update.sh script must therefore also be run as root. It might be necessary to change ownership and other attributes of files you will otherwise not have access to. **We drop permissions for every exposed application** and will not run an exposed service as root! Controlling the Docker daemon as non-root user does not give you additional security. The unprivileged user will spawn the containers as root likewise. The behaviour of the stack is identical.
+1. Clone the repository:
 
-```
-$ su
-# umask
-0022 # <- Verify it is 0022
-# cd /opt
-# git clone https://github.com/mailcow/mailcow-dockerized
-# cd mailcow-dockerized
-```
+    ```bash
+    su
+    umask 0022
+    cd /opt
+    git clone https://github.com/mailcow/mailcow-dockerized
+    cd mailcow-dockerized
+    ```
 
-## Initialize mailcow
-Generate a configuration file. Use a FQDN (`host.domain.tld`) as hostname when asked.
-```
-./generate_config.sh
-```
+2. Generate the configuration file:
 
-Change configuration if you want or need to.
-```
-nano mailcow.conf
-```
-If you plan to use a reverse proxy, you can, for example, bind HTTPS to 127.0.0.1 on port 8443 and HTTP to 127.0.0.1 on port 8080.
+    ```bash
+    ./generate_config.sh
+    ```
 
-You may need to stop an existing pre-installed MTA which blocks port 25/tcp. See [this chapter](../post_installation/firststeps-local_mta.en.md) to learn how to reconfigure Postfix to run besides mailcow after a successful installation.
+3. Adjust the configuration if necessary:
 
-Some updates modify mailcow.conf and add new parameters. It is hard to keep track of them in the documentation. Please check their description and, if unsure, ask at the known channels for advise.
+    ```bash
+    nano mailcow.conf
+    ```
 
+---
 
-## Troubleshooting
-### Users with a MTU not equal to 1500 (e.g. OpenStack)
+## Starting mailcow
 
-**Whenever you run into trouble and strange phenomena, please check your MTU.**
+Download the images and start the containers:
 
-Edit `docker-compose.yml` and change the network settings according to your MTU.
-Add the new driver_opts parameter like this:
-```
-networks:
-  mailcow-network:
-    ...
-    driver_opts:
-      com.docker.network.driver.mtu: 1450
-    ...
-```
+=== "Docker Compose (Plugin)"
 
-### Users without an IPv6 enabled network on their host system
-
-**Please don't turn off IPv6, even if you don't like it. IPv6 is the future and should not be ignored.**
-
-If you do not have an IPv6 enabled network on your host and you don't care for a better internet (thehe), it is recommended to [disable IPv6](../post_installation/firststeps-disable_ipv6.en.md) for the mailcow network to prevent unforeseen issues.
-
-
-## Start mailcow
-Pull the images and run the compose file. The parameter `-d` will start mailcow: dockerized detached:
-=== "docker compose (Plugin)"
-
-    ``` bash
+    ```bash
     docker compose pull
     docker compose up -d
     ```
 
-=== "docker-compose (Standalone)"
+=== "Docker Compose (Standalone)"
 
-    ``` bash
+    ```bash
     docker-compose pull
     docker-compose up -d
     ```
-
+    
 Done!
 
-=== "Post 2025-03 (LDAP Patch)"
+You can now access **`https://${MAILCOW_HOSTNAME}/admin`**  using the default credentials `admin` and the password `moohoo`.
 
-    !!! warning "Important"
-        Logins have been separated since 2025-03.
+---
 
-    - **Administrators**:  
-    You can now log in as an administrator using the default credentials `admin` and the password `moohoo` at:  
-    **`https://${MAILCOW_HOSTNAME}/admin`**
+## Troubleshooting
 
-    - **Regular mailbox users**:  
-    Continue logging in at the usual URL:  
-    **`https://${MAILCOW_HOSTNAME}`** (FQDN only)
+### MTU not equal to 1500 (e.g., OpenStack)
 
-    - **Domain administrators**:  
-    Log in at the dedicated URL:  
-    **`https://${MAILCOW_HOSTNAME}/domainadmin`**
+Adjust the network settings in `docker-compose.yml`:
 
-=== "Pre 2025-03 (LDAP Patch)"
+```yaml
+networks:
+  mailcow-network:
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
+```
 
-    You can now access **`https://${MAILCOW_HOSTNAME}`**  using the default credentials `admin` and the password `moohoo`.
+### No IPv6 on the Host System
 
+Disable IPv6 for the mailcow network if your host system does not support IPv6. More information can be found [here](../post_installation/firststeps-disable_ipv6.de.md).
 
-!!! info
-    If you are not using mailcow behind a reverse proxy, you should [redirect all HTTP requests to HTTPS](../manual-guides/u_e-80_to_443.md).
+---
 
-The database will be initialized right after a connection to MySQL can be established.
+## Important Notes
 
-Your data will persist in multiple Docker volumes, that are not deleted when you recreate or delete containers. Run `docker volume ls` to see a list of all volumes. You can safely run `docker compose down` without removing persistent data.
+- **Data Persistence**: Your data is stored in Docker volumes and remains intact even if you recreate or delete containers.
+- **Reverse Proxy**: If you are not using a reverse proxy, you should [redirect HTTP to HTTPS](../manual-guides/u_e-80_to_443.md).
