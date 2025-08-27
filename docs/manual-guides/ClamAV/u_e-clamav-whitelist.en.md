@@ -42,15 +42,13 @@ Cleanup cached ClamAV results in Redis:
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec redis-mailcow /bin/sh
-    /data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
-    /data # exit
+    source mailcow.conf
+    docker compose exec redis-mailcow sh -c "redis-cli -a $REDISPASS KEYS 'rs_cl*' | xargs redis-cli -a $REDISPASS DEL"
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec redis-mailcow /bin/sh
-    /data # redis-cli KEYS rs_cl* | xargs redis-cli DEL
-    /data # exit
+    source mailcow.conf
+    docker-compose exec redis-mailcow sh -c "redis-cli -a $REDISPASS KEYS 'rs_cl*' | xargs redis-cli -a $REDISPASS DEL"
     ```
