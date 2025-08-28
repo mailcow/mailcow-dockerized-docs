@@ -1,4 +1,4 @@
-## Installing Roundcube
+# Installing Roundcube
 
 !!! note
     Unless otherwise stated, all of the given commands are expected to be executed in the mailcow installation directory,
@@ -139,6 +139,7 @@ docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 640 /web/rc/config
 
 Point your browser to `https://myserver/rc/installer`. Check that the website shows no "NOT OK" check results on
 any of the steps, some "NOT AVAILABLE" are expected regarding different database extensions of which we only need MySQL.
+
 Initialize the database and leave the installer. It is not necessary to update the configuration with
 the downloaded one, unless you made some settings in the installer you would like to take over.
 
@@ -221,7 +222,7 @@ services:
 
 ## Standalone Install
 
-To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
+To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose-override.yaml` file:
 
 ```yaml
 services:
@@ -843,9 +844,13 @@ EOCONFIG
 ### Switch RCMCardDAV plugin to composer installation method
 
 This is optional but will align your installation with these instructions and enable you to upgrade RCMCardDAV
-using composer. This is simply done by deleting the carddav plugin from the installation and installing it using
+using composer. 
+
+This is simply done by deleting the carddav plugin from the installation and installing it using
 composer according to the [instructions above](#integrate-carddav-addressbooks-in-roundcube), which include the creation
-of a new RCMCardDAV v5 config. In case you modified your RCMCardDAV configuration file, you may want to backup it before
+of a new RCMCardDAV v5 config. 
+
+In case you modified your RCMCardDAV configuration file, you may want to backup it before
 deleting the plugin and carry over your changes to the new configuration afterwards as well.
 
 To delete the carddav plugin run the following command, then re-install according to the
