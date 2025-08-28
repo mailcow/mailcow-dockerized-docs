@@ -477,6 +477,9 @@ plugins:
       cards_layout_options:
         font_family: Roboto
   - glightbox
+  - privacy
+  - open-in-new-tab:
+      add_icon: true
 
 extra:
   social:

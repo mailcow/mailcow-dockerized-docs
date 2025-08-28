@@ -12,7 +12,7 @@
 
 	Richtig: **mailcow**, denn mailcow ist eine eingetragene Wortmarke mit kleinem m :grin:
 
-mailcow: dockerized ist eine Open-Source Groupware/E-Mail Suite auf Docker Basis.
+mailcow[^1]: dockerized ist eine Open-Source Groupware/E-Mail Suite auf Docker Basis.
 
 Dabei setzt mailcow auf viele bekannte und seit Langem bewährte Komponenten, welche im Zusammenspiel einen rundum sorglosen E-Mail-Server ergeben.
 
@@ -147,4 +147,4 @@ Oder alternativ auf unserem Blog:
 
 - :fontawesome-solid-globe: [mailcow.email](https://mailcow.email)
 
-[^1]: Servercow ist eine Hosting/Support Sparte der The Infrastructure Company GmbH (mailcow Maintainer)
+[^1]: mailcow und Servercow sind eingetragene Marken der The Infrastructure Company GmbH.
