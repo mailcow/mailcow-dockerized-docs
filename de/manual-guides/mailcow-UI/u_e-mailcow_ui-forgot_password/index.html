@@ -44,6 +44,10 @@
     
       <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../../css/open_in_new_tab.css">
+    
+      <link rel="stylesheet" href="../../../../css/open_in_new_tab.css">
+    
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -4380,13 +4384,13 @@
 <h3 id="einstellungsmoglichkeiten-in-der-mailcow-ui">Einstellungsmöglichkeiten in der mailcow UI<a class="headerlink" href="#einstellungsmoglichkeiten-in-der-mailcow-ui" title="Permanent link">&para;</a></h3>
 <h4 id="mailbox-einstellungen">Mailbox-Einstellungen<a class="headerlink" href="#mailbox-einstellungen" title="Permanent link">&para;</a></h4>
 <p>Durch dieses Feature wird ein neues Feld in den Mailbox-Optionen hinzugefügt:</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_field.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Neues mailcow UI Feld für das Hinterlegen einer Backup-E-Mail im Mailbox-Bearbeiten-Fenster" src="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_field.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Neues mailcow UI Feld für das Hinterlegen einer Backup-E-Mail im Mailbox-Bearbeiten-Fenster" src="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_field.png" /></a></p>
 <div class="admonition danger">
 <p class="admonition-title">Achtung</p>
 <p>Zur Erinnerung: Dieses Feld <strong>MUSS</strong> ausgefüllt sein, damit der Benutzer sein Passwort zurücksetzen kann! Sollte es nicht gesetzt sein, ist es ihm nicht möglich, sein Passwort zurückzusetzen!</p>
 </div>
 <p>Für Administratoren gibt es eine neue ACL, die entweder pro Mailbox im Nachhinein oder auch als Vorlage für Mailboxen gesetzt werden kann: <code>Verwalten der E-Mail zur Passwortwiederherstellung erlauben</code>:
-<a class="glightbox" href="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_acl.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Neue mailcow UI ACL für das Steuern, ob ein Mailbox-Benutzer die Backup-E-Mail selber ändern darf oder nicht" src="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_acl.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Neue mailcow UI ACL für das Steuern, ob ein Mailbox-Benutzer die Backup-E-Mail selber ändern darf oder nicht" src="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_acl.png" /></a></p>
 <div class="admonition info">
 <p class="admonition-title">Hinweis</p>
 <p>Wenn ein Benutzer bereits eine Backup-E-Mail gesetzt hat, aber der Admin ihm diese ACL entzieht, so kann er trotzdem sein Passwort zurücksetzen, da die Backup-E-Mail weiterhin im System existiert. Die ACL <strong>verbietet</strong> dadurch also <strong>nicht</strong> automatisch die Möglichkeit, das <strong>Passwort zurückzusetzen, wenn es eine E-Mail gibt</strong>!</p>
@@ -4395,7 +4399,7 @@
 <h4 id="server-einstellungen">Server-Einstellungen<a class="headerlink" href="#server-einstellungen" title="Permanent link">&para;</a></h4>
 <p>Der mailcow-Administrator kann (ähnlich wie die Quota- und Quarantäne-Mails) auch für die Passwort-vergessen-E-Mails das Template bearbeiten, wie die Mails dann verschickt werden sollen. <strong>Standardmäßig ist das Template immer auf Englisch</strong>.</p>
 <p>Dieses kann unter dem Reiter: <code>System -&gt; Konfiguration -&gt; Einstellungen -&gt; Passwort-Einstellungen</code> erreicht werden:</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-forgot-password_server_settings.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Neuer mailcow UI Einstellungsabschnitt, wo der Administrator die E-Mail-Vorlagen für das Passwort-vergessen-Feature anpassen kann" src="../../../assets/images/manual-guides/mailcow-forgot-password_server_settings.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Neuer mailcow UI Einstellungsabschnitt, wo der Administrator die E-Mail-Vorlagen für das Passwort-vergessen-Feature anpassen kann" src="../../../assets/images/manual-guides/mailcow-forgot-password_server_settings.png" /></a></p>
 <hr />
 <h3 id="versteckte-einstellungen-nicht-in-der-mailcow-ui">Versteckte Einstellungen (nicht in der mailcow UI)<a class="headerlink" href="#versteckte-einstellungen-nicht-in-der-mailcow-ui" title="Permanent link">&para;</a></h3>
 <p>Standardmäßig kann jeder Nutzer maximal 3 Passwort-Reset-Tokens anfordern, die dann standardmäßig 15 Minuten gültig sind.</p>
@@ -4550,8 +4554,24 @@
       
         <script src="../../../../assets/javascripts/client.js"></script>
       
+        <script src="../../../../js/open_in_new_tab.js"></script>
+      
+        <script src="../../../../js/open_in_new_tab.js"></script>
+      
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(() => { lightbox.reload() });
 </script></body>
 </html>

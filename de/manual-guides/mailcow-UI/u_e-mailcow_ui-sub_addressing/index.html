@@ -44,6 +44,10 @@
     
       <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../../css/open_in_new_tab.css">
+    
+      <link rel="stylesheet" href="../../../../css/open_in_new_tab.css">
+    
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -4252,7 +4256,7 @@
   <h1>Sub-Adressierung</h1>
 
 <p>Mailbox-Nutzer können ihre Mailadresse wie in "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#101;&#43;&#102;&#97;&#99;&#101;&#98;&#111;&#111;&#107;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;">&#109;&#101;&#43;&#102;&#97;&#99;&#101;&#98;&#111;&#111;&#107;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;</a>" markieren. Sie können die Tag-Behandlung im <strong>mailcow UI</strong> Panel (für den Benutzer) unter <code>Mailbox &gt; Einstellungen</code> kontrollieren.
-<a class="glightbox" href="../../../assets/images/manual-guides/mailcow-tagging.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></a></p>
 <p><em><code>Sub-Adressierung</code> (RFC 5233) oder <code>Plus-Adressierung</code> auch als Tagging bekannt (nicht zu verwechseln mit <a href="../u_e-mailcow_ui-tags/">Tags</a>)</em></p>
 <h3 id="verfugbare-aktionen">Verfügbare Aktionen<a class="headerlink" href="#verfugbare-aktionen" title="Permanent link">&para;</a></h3>
 <p>1. Diese Nachricht in einen Unterordner "facebook" verschieben (wird in Kleinbuchstaben erstellt, falls nicht vorhanden)</p>
@@ -4411,8 +4415,24 @@ index e047136e..933c4137 100644
       
         <script src="../../../../assets/javascripts/client.js"></script>
       
+        <script src="../../../../js/open_in_new_tab.js"></script>
+      
+        <script src="../../../../js/open_in_new_tab.js"></script>
+      
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(() => { lightbox.reload() });
 </script></body>
 </html>

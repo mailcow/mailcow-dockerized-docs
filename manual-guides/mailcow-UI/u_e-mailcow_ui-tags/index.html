@@ -44,6 +44,8 @@
     
       <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../css/open_in_new_tab.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -4316,11 +4318,11 @@ For more informations about a mailcow update please take a look at the <a href="
 <h3 id="where-are-the-tags-located">Where are the Tags located?<a class="headerlink" href="#where-are-the-tags-located" title="Permanent link">&para;</a></h3>
 <p>The Tags are located in the Domain/Mailbox section of the mailcow UI.
 To view them simply click on the small plus symbol on the left of your Domain/Mailbox (following picture is showing the domain ribbon menu):
-<a class="glightbox" href="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Domain/Mailbox Tags Ribbon" src="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Domain/Mailbox Tags Ribbon" src="../../../assets/images/manual-guides/mailcow-domain_tags_ribbon.png" /></a></p>
 <h3 id="how-can-i-addremove-a-tag">How can i add/remove a Tag?<a class="headerlink" href="#how-can-i-addremove-a-tag" title="Permanent link">&para;</a></h3>
 <p>You can simply add/remove a Tag during the creation of a new Domain/Mailbox. You also can add/remove them if you edit your desired Domain/Mailbox.</p>
 <p>It looks similar to this (following picture showing the domain edit section):</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Domain/Mailbox Tags" src="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Domain/Mailbox Tags" src="../../../assets/images/manual-guides/mailcow-domain_email_tags.png" /></a></p>
 <h3 id="how-can-i-search-for-a-tag">How can i search for a tag?<a class="headerlink" href="#how-can-i-search-for-a-tag" title="Permanent link">&para;</a></h3>
 <p>Simply type the Tag Name in the search bar in the Domain/Mailbox Section and wait for it to complete.</p>
 <p>You can even specify if you want to search for tags only.</p>
@@ -4463,8 +4465,22 @@ To view them simply click on the small plus symbol on the left of your Domain/Ma
       
         <script src="../../../assets/javascripts/client.js"></script>
       
+        <script src="../../../js/open_in_new_tab.js"></script>
+      
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(() => { lightbox.reload() });
 </script></body>
 </html>

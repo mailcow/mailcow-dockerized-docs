@@ -42,6 +42,10 @@
     
       <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../../css/open_in_new_tab.css">
+    
+      <link rel="stylesheet" href="../../../../css/open_in_new_tab.css">
+    
     <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -4415,7 +4419,7 @@ docker compose up -d
 <p><a href="https://prometheus.io">Prometheus</a> Exporter für Informationen über eine Mailcow-Instanz.</p>
 <h3 id="nutzung">Nutzung<a class="headerlink" href="#nutzung" title="Permanent link">&para;</a></h3>
 <p>Der Endpunkt <code>/metrics</code> benötigt die URL-Parameter <code>host</code> und <code>apiKey</code>. <code>host</code> ist der Hostname Ihrer Mailcow-Instanz. <code>apiKey</code> sollte ein schreibgeschützter API-Schlüssel sein, der im Mailcow-Management-Interface unter 'Access &gt; API' generiert werden kann.</p>
-<p><a class="glightbox" href="../../../../assets/images/prometheus_exporter/mailcow-apikey.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Visualisierung, wo man den API-Schlüssel findet" src="../../../../assets/images/prometheus_exporter/mailcow-apikey.jpg" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Visualisierung, wo man den API-Schlüssel findet" src="../../../../assets/images/prometheus_exporter/mailcow-apikey.jpg" /></a></p>
 <p><strong>ImpoWichtigrtant:</strong> Beschränken Sie den Zugriff auf den Exporter und schützen Sie Ihren API-Schlüssel!</p>
 <hr />
 <h2 id="prometheus-konfiguration">Prometheus Konfiguration<a class="headerlink" href="#prometheus-konfiguration" title="Permanent link">&para;</a></h2>
@@ -4609,7 +4613,7 @@ mailcow_rspamd_scanned{host=&quot;mail.example.com&quot;} 2197
 <h2 id="grafana-dashboard">Grafana Dashboard<a class="headerlink" href="#grafana-dashboard" title="Permanent link">&para;</a></h2>
 <p><a href="https://grafana.com/">Grafana</a> Die offene und anpassbare Observability-Plattform."</p>
 <p>Ein Screenshot, der zeigt, wie das Dashboard aussieht:
-<a class="glightbox" href="../../../../assets/images/prometheus_exporter/grafana-mailcow-dashboard.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Mailcow screenshot" src="../../../../assets/images/prometheus_exporter/grafana-mailcow-dashboard.png" /></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Mailcow screenshot" src="../../../../assets/images/prometheus_exporter/grafana-mailcow-dashboard.png" /></a>
 Dieses Dashboard wurde von <a href="https://github.com/remkolodder/mailcow-dashboard">remkolodder/mailcow-dashboard</a> adaptiert, erstellt von [Remko Lodder].</p>
 <h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
 <p>Dieses Repository enthält den Quellcode für den Exporter, ein Dockerfile zur Erstellung des Images und Beispiel-Grafana-Dashboards.</p>
@@ -4753,8 +4757,24 @@ Dieses Dashboard wurde von <a href="https://github.com/remkolodder/mailcow-dashb
       
         <script src="../../../../assets/javascripts/client.js"></script>
       
+        <script src="../../../../js/open_in_new_tab.js"></script>
+      
+        <script src="../../../../js/open_in_new_tab.js"></script>
+      
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(() => { lightbox.reload() });
 </script></body>
 </html>

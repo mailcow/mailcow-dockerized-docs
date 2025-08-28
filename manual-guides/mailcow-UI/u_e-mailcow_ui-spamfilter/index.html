@@ -44,6 +44,8 @@
     
       <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../css/open_in_new_tab.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -4191,7 +4193,7 @@
   <h1>Spamfilter</h1>
 
 <p>A mailbox user may adjust the spam filter and black- / whitelist settings for his mailbox individually by navigating to the <strong>Spam filter</strong> tab in the users mailcow UI.</p>
-<p><a class="glightbox" href="../../../assets/images/manual-guides/mailcow-spamfilter.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Where to adjust the users spam, black- and whitelist settings" src="../../../assets/images/manual-guides/mailcow-spamfilter.png" /></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Where to adjust the users spam, black- and whitelist settings" src="../../../assets/images/manual-guides/mailcow-spamfilter.png" /></a></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>For global adjustments on your spam filter please check our section on <a href="../../Rspamd/u-e-rspamd-tweaks/">Rspamd</a>.
@@ -4336,8 +4338,22 @@ For a domain wide black- and whitelist please check our guide on <a href="../u_e
       
         <script src="../../../assets/javascripts/client.js"></script>
       
+        <script src="../../../js/open_in_new_tab.js"></script>
+      
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(() => { lightbox.reload() });
 </script></body>
 </html>

@@ -44,6 +44,8 @@
     
       <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../../css/open_in_new_tab.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -4252,7 +4254,7 @@
   <h1>Sub-addressing</h1>
 
 <p>Mailbox users can tag their mail address like in <code>me+facebook@example.org</code>. They can control the tag handling in the users <strong>mailcow UI</strong> panel under <code>Mailbox &gt; Settings</code>.
-<a class="glightbox" href="../../../assets/images/manual-guides/mailcow-tagging.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></a></p>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="mailcow mail tagging settings" src="../../../assets/images/manual-guides/mailcow-tagging.png" /></a></p>
 <p><em><code>sub-addressing</code> (RFC 5233) or <code>plus addressing</code> also known as tagging (do not mix with <a href="../u_e-mailcow_ui-tags/">Tags</a>)</em></p>
 <h3 id="available-actions">Available Actions<a class="headerlink" href="#available-actions" title="Permanent link">&para;</a></h3>
 <p>1. Move this message to a sub folder "facebook" (will be created lower case if not existing)</p>
@@ -4411,8 +4413,22 @@ index e047136e..933c4137 100644
       
         <script src="../../../assets/javascripts/client.js"></script>
       
+        <script src="../../../js/open_in_new_tab.js"></script>
+      
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
 document$.subscribe(() => { lightbox.reload() });
 </script></body>
 </html>
