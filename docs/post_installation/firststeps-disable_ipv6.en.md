@@ -1,6 +1,6 @@
-## mailcow Versions from 2025-08
+## mailcow Versions from 2025-09
 
-Starting with the 2025-08 update, IPv6 in the mailcow stack can be conveniently managed.
+Starting with the 2025-09 update, IPv6 in the mailcow stack can be conveniently managed.
 
 Simply adjust the variable in the mailcow.conf file:
 
@@ -9,7 +9,7 @@ ENABLE_IPv6=false
 ```
 
 !!! info "Note"
-    From 2025-08 onwards, this variable is enabled by default (`true`) if the system supports IPv6 connectivity. This also enables IPv6 within the containers.
+    From 2025-09 onwards, this variable is enabled by default (`true`) if the system supports IPv6 connectivity. This also enables IPv6 within the containers.
 
 After making the change, the entire mailcow stack must be restarted:
 
@@ -30,7 +30,7 @@ After making the change, the entire mailcow stack must be restarted:
 This will recreate the mailcow Docker network based on the setting in mailcow.conf.
 
 ??? question "Did you know?"
-    Since the 2025-08 update, there is a helper in the update script that can adjust the IPv6 settings in the Docker Daemon based on your host configuration.
+    Since the 2025-09 update, there is a helper in the update script that can adjust the IPv6 settings in the Docker Daemon based on your host configuration.
 
     In most cases, this works seamlessly as the JSON file is carefully edited using the `jq` tool to cleanly integrate or remove values.
 
@@ -53,7 +53,7 @@ All mailcow services are configured to listen on both IPv4 and IPv6 (if enabled)
 
 ---
 
-## Older mailcow Versions (pre 2025-08)
+## Older mailcow Versions (pre 2025-09)
 
 !!! danger
     In installations using a Docker version <b>between 25.0.0 and 25.0.2</b> (to check, use `docker version`) the behavior of IPv6 address allocation has changed due to a bug. Simply using `enable_ipv6: false` is **NO LONGER** sufficient to completely disable IPv6 in the stack. <br>This was a bug in the Docker Daemon, which has been fixed with version 25.0.3.

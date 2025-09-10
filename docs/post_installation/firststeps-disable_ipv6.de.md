@@ -1,6 +1,6 @@
-## mailcow Versionen ab 2025-08
+## mailcow Versionen ab 2025-09
 
-Ab dem Update 2025-08 kann IPv6 im mailcow Stack bequem gesteuert werden.
+Ab dem Update 2025-09 kann IPv6 im mailcow Stack bequem gesteuert werden.
 
 Dazu genügt eine einfache Anpassung der Variable in der mailcow.conf:
 
@@ -9,7 +9,7 @@ ENABLE_IPv6=false
 ```
 
 !!! info "Hinweis"
-    Ab 2025-08 ist diese Variable standardmäßig aktiviert (`true`), sofern das System IPv6-Konnektivität unterstützt. Dadurch wird IPv6 auch innerhalb der Container aktiviert.
+    Ab 2025-09 ist diese Variable standardmäßig aktiviert (`true`), sofern das System IPv6-Konnektivität unterstützt. Dadurch wird IPv6 auch innerhalb der Container aktiviert.
 
 Nach der Änderung muss der gesamte mailcow Stack neu gestartet werden:
 
@@ -30,7 +30,7 @@ Nach der Änderung muss der gesamte mailcow Stack neu gestartet werden:
 Dabei wird das mailcow Docker-Netzwerk basierend auf der Einstellung in der mailcow.conf neu erstellt.
 
 ??? question "Schon gewusst?"
-    Seit dem Update 2025-08 gibt es einen Helfer im Update-Skript, der die IPv6-Einstellungen im Docker Daemon basierend auf Ihrer Hostkonfiguration anpassen kann.
+    Seit dem Update 2025-09 gibt es einen Helfer im Update-Skript, der die IPv6-Einstellungen im Docker Daemon basierend auf Ihrer Hostkonfiguration anpassen kann.
 
     In den meisten Fällen funktioniert dies problemlos, da die JSON-Datei mit dem Werkzeug `jq` vorsichtig bearbeitet wird, um Werte sauber zu integrieren oder zu entfernen.
 
@@ -53,7 +53,7 @@ Alle mailcow-Dienste sind so konfiguriert, dass sie sowohl auf IPv4 als auch auf
 
 ---    
 
-## Ältere mailcow Versionen (pre 2025-08)
+## Ältere mailcow Versionen (pre 2025-09)
 
 !!! danger "ACHTUNG"
     Bei Installationen, welche eine Docker Version <b>zwischen 25.0.0 und 25.0.2</b> (zum überprüfen nutzt `docker version`) verwenden hat sich das Verhalten der IPv6-Adressen Allokation durch einen Bug verändert. Ein simples `enable_ipv6: false` reicht damit **NICHT** mehr aus, um IPv6 komplett im Stack zu deaktivieren. <br>Dies war ein Bug im Docker Daemon, welcher mit Version 25.0.3 gefixt wurde.
