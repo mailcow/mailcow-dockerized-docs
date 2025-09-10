@@ -1,3 +1,60 @@
+## mailcow Versions from 2025-09
+
+Starting with the 2025-09 update, IPv6 in the mailcow stack can be conveniently managed.
+
+Simply adjust the variable in the mailcow.conf file:
+
+```bash
+ENABLE_IPv6=false
+```
+
+!!! info "Note"
+    From 2025-09 onwards, this variable is enabled by default (`true`) if the system supports IPv6 connectivity. This also enables IPv6 within the containers.
+
+After making the change, the entire mailcow stack must be restarted:
+
+=== "docker compose (Plugin)"
+
+    ```bash
+    docker compose down
+    docker compose up -d
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ```bash
+    docker-compose down
+    docker-compose up -d
+    ```
+
+This will recreate the mailcow Docker network based on the setting in mailcow.conf.
+
+??? question "Did you know?"
+    Since the 2025-09 update, there is a helper in the update script that can adjust the IPv6 settings in the Docker Daemon based on your host configuration.
+
+    In most cases, this works seamlessly as the JSON file is carefully edited using the `jq` tool to cleanly integrate or remove values.
+
+    The helper will notify you of necessary adjustments until the daemon.json file is correctly configured (either IPv6-compatible or not) to ensure smooth and error-free operation.
+
+No further changes are required, as these settings control all internal IPv6 addresses.
+
+All mailcow services are configured to listen on both IPv4 and IPv6 (if enabled). If only an IPv4 address is available for the container network, only this will be used for the services.
+
+!!! danger "Caution"
+    If you are using an IPv6 address on your host and the Docker Daemon is not correctly configured (which is usually detected and resolved by a helper during the update process), this can lead to an open relay.
+
+    This happens because Docker, by default, translates IPv6 addresses into internal IPv4 addresses (NAT). If the Docker Daemon is not properly configured, external IPv6 addresses may be mistakenly interpreted as internal addresses. This could allow spammers to send spam through your server using a misconfigured IPv6 address.
+
+    On the Docker network level, this is particularly critical because internal container addresses often have less stringent security mechanisms. Specifically, communication between the webmail client and the Postfix (SMTP) server could expose security vulnerabilities if the network translation is not functioning correctly.
+
+    It is therefore essential to adjust the Docker Daemon according to the system configuration. The Daemon should be configured to reflect the actual IPv6 connectivity of the host. This prevents incorrect NAT rules and ensures that IPv6 addresses are handled correctly. 
+    
+    **Always check your Docker network configurations after making network changes to ensure that no unintended security vulnerabilities are introduced.**
+
+---
+
+## Older mailcow Versions (pre 2025-09)
+
 !!! danger
     In installations using a Docker version <b>between 25.0.0 and 25.0.2</b> (to check, use `docker version`) the behavior of IPv6 address allocation has changed due to a bug. Simply using `enable_ipv6: false` is **NO LONGER** sufficient to completely disable IPv6 in the stack. <br>This was a bug in the Docker Daemon, which has been fixed with version 25.0.3.
 
