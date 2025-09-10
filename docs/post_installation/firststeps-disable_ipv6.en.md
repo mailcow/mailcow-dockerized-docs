@@ -40,6 +40,57 @@ No further changes are required, as these settings control all internal IPv6 add
 
 All mailcow services are configured to listen on both IPv4 and IPv6 (if enabled). If only an IPv4 address is available for the container network, only this will be used for the services.
 
+??? warning "Important — if IPv6 was enabled earlier"
+    If you had previously enabled IPv6 in the stack or in the Docker daemon and now want to disable it, please also manually adjust the Docker daemon and kernel IPv6 settings. If old Docker or kernel settings remain, unexpected errors may occur (e.g., incorrect address translations). Ideally, this should be done via sysctl, so that IPv6 is completely disabled at the kernel level, and then the Docker service should be restarted.
+
+    Quick overview (example commands, check and adapt to your distribution):
+
+    Check:
+    ```bash
+    sysctl net.ipv6.conf.all.disable_ipv6 net.ipv6.conf.default.disable_ipv6
+    ```
+
+    Temporarily (lasts until reboot):
+    ```bash
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+    sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+    ```
+
+    Persistent disabling (create and apply file):
+    ```bash
+    echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1\nnet.ipv6.conf.lo.disable_ipv6 = 1" | tee /etc/sysctl.d/99-disable-ipv6.conf
+    sysctl --system
+    ```
+
+    Docker Daemon check/adapt:
+
+    - Make sure there is no entry like "ipv6": true or "fixed-cidr-v6" in /etc/docker/daemon.json. If necessary, set "ipv6": false or remove IPv6-related entries.
+    - Example (edit carefully or automate with jq):
+
+        ```bash
+        mkdir -p /etc/docker
+        # manually: edit /etc/docker/daemon.json and set "ipv6": false or remove fixed-cidr-v6
+        systemctl restart docker
+        ```
+
+    After these changes, restart Docker and recreate the mailcow stack:
+
+    === "docker compose (Plugin)"
+
+        ```bash
+        docker compose down
+        docker compose up -d
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ```bash
+        docker-compose down
+        docker-compose up -d
+        ```
+
+
 !!! danger "Caution"
     If you are using an IPv6 address on your host and the Docker Daemon is not correctly configured (which is usually detected and resolved by a helper during the update process), this can lead to an open relay.
 

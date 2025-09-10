@@ -40,6 +40,56 @@ Weitere Änderungen sind nicht erforderlich, da diese Einstellungen alle interne
 
 Alle mailcow-Dienste sind so konfiguriert, dass sie sowohl auf IPv4 als auch auf IPv6 (falls aktiviert) lauschen. Wenn nur eine IPv4-Adresse für das Container-Netzwerk verfügbar ist, wird ausschließlich diese für die Dienste verwendet.
 
+??? warning "Wichtig — falls IPv6 früher aktiviert war"
+    Wenn Sie IPv6 früher im Stack oder im Docker-Daemon aktiviert hatten und jetzt IPv6 deaktivieren möchten, passen Sie bitte zusätzlich den Docker-Daemon und die Kernel-IPv6-Einstellungen manuell an. Bleiben alte Docker- oder Kernel-Einstellungen bestehen, können dadurch unerwartete Fehler auftreten (z. B. fehlerhafte Adressübersetzungen). Idealerweise erfolgt dies über sysctl, sodass IPv6 vollständig auf Kernel-Ebene abgeschaltet wird, und anschließend der Docker-Dienst neu gestartet wird.
+
+    Kurzüberblick (Beispielbefehle, prüfen und an Ihre Distribution anpassen):
+
+    Prüfen:
+    ```bash
+    sysctl net.ipv6.conf.all.disable_ipv6 net.ipv6.conf.default.disable_ipv6
+    ```
+
+    Temporär (wirkt bis zum Reboot):
+    ```bash
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+    sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+    ```
+
+    Persistente Deaktivierung (Datei erstellen und anwenden):
+    ```bash
+    echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1\nnet.ipv6.conf.lo.disable_ipv6 = 1" | tee /etc/sysctl.d/99-disable-ipv6.conf
+    sysctl --system
+    ```
+
+    Docker-Daemon prüfen/anpassen:
+
+    - Stellen Sie sicher, dass in /etc/docker/daemon.json kein Eintrag wie "ipv6": true oder "fixed-cidr-v6" vorhanden ist. Setzen Sie ggf. "ipv6": false oder entfernen Sie IPv6-bezogene Einträge.
+    - Beispiel (vorsichtig bearbeiten oder mit jq automatisieren):
+  
+        ```bash
+        mkdir -p /etc/docker
+        # manuell: /etc/docker/daemon.json bearbeiten und "ipv6": false setzen bzw. fixed-cidr-v6 entfernen
+        systemctl restart docker
+        ```
+
+    Nach diesen Änderungen Docker neu starten und den mailcow-Stack neu erstellen:
+
+    === "docker compose (Plugin)"
+
+        ```bash
+        docker compose down
+        docker compose up -d
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ```bash
+        docker-compose down
+        docker-compose up -d
+        ```
+
 !!! danger "Aber Achtung"
     Sollten Sie eine IPv6-Adresse auf Ihrem Host verwenden und der Docker Daemon nicht korrekt konfiguriert sein (was normalerweise durch einen Helfer im Update-Prozess erkannt und behoben wird), kann dies zu einem Open-Relay führen. 
 
