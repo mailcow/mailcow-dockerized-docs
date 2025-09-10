@@ -4302,6 +4302,49 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </details>
 <p>Weitere Änderungen sind nicht erforderlich, da diese Einstellungen alle internen IPv6-Adressen steuern.</p>
 <p>Alle mailcow-Dienste sind so konfiguriert, dass sie sowohl auf IPv4 als auch auf IPv6 (falls aktiviert) lauschen. Wenn nur eine IPv4-Adresse für das Container-Netzwerk verfügbar ist, wird ausschließlich diese für die Dienste verwendet.</p>
+<details class="warning">
+<summary>Wichtig — falls IPv6 früher aktiviert war</summary>
+<p>Wenn Sie IPv6 früher im Stack oder im Docker-Daemon aktiviert hatten und jetzt IPv6 deaktivieren möchten, passen Sie bitte zusätzlich den Docker-Daemon und die Kernel-IPv6-Einstellungen manuell an. Bleiben alte Docker- oder Kernel-Einstellungen bestehen, können dadurch unerwartete Fehler auftreten (z. B. fehlerhafte Adressübersetzungen). Idealerweise erfolgt dies über sysctl, sodass IPv6 vollständig auf Kernel-Ebene abgeschaltet wird, und anschließend der Docker-Dienst neu gestartet wird.</p>
+<p>Kurzüberblick (Beispielbefehle, prüfen und an Ihre Distribution anpassen):</p>
+<p>Prüfen:
+</p><div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>net.ipv6.conf.all.disable_ipv6<span class="w"> </span>net.ipv6.conf.default.disable_ipv6
+</code></pre></div><p></p>
+<p>Temporär (wirkt bis zum Reboot):
+</p><div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.all.disable_ipv6<span class="o">=</span><span class="m">1</span>
+sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.default.disable_ipv6<span class="o">=</span><span class="m">1</span>
+sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv6.conf.lo.disable_ipv6<span class="o">=</span><span class="m">1</span>
+</code></pre></div><p></p>
+<p>Persistente Deaktivierung (Datei erstellen und anwenden):
+</p><div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1\nnet.ipv6.conf.lo.disable_ipv6 = 1"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/etc/sysctl.d/99-disable-ipv6.conf
+sysctl<span class="w"> </span>--system
+</code></pre></div><p></p>
+<p>Docker-Daemon prüfen/anpassen:</p>
+<ul>
+<li>Stellen Sie sicher, dass in /etc/docker/daemon.json kein Eintrag wie "ipv6": true oder "fixed-cidr-v6" vorhanden ist. Setzen Sie ggf. "ipv6": false oder entfernen Sie IPv6-bezogene Einträge.</li>
+<li>
+<p>Beispiel (vorsichtig bearbeiten oder mit jq automatisieren):</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/docker
+<span class="c1"># manuell: /etc/docker/daemon.json bearbeiten und "ipv6": false setzen bzw. fixed-cidr-v6 entfernen</span>
+systemctl<span class="w"> </span>restart<span class="w"> </span>docker
+</code></pre></div>
+</li>
+</ul>
+<p>Nach diesen Änderungen Docker neu starten und den mailcow-Stack neu erstellen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
 <div class="admonition danger">
 <p class="admonition-title">Aber Achtung</p>
 <p>Sollten Sie eine IPv6-Adresse auf Ihrem Host verwenden und der Docker Daemon nicht korrekt konfiguriert sein (was normalerweise durch einen Helfer im Update-Prozess erkannt und behoben wird), kann dies zu einem Open-Relay führen. </p>
@@ -4349,7 +4392,7 @@ zu erstellen und Ihre Änderungen am Dienst dort zu implementieren. Leider schei
       entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
 </code></pre></div>
 <p>Damit diese Änderungen wirksam werden, müssen Sie den Stack vollständig stoppen und dann neu starten, damit Container und Netzwerke neu erstellt werden:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
@@ -4371,7 +4414,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
   [...]
 </code></pre></div>
 <p>unbound neu starten:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>unbound-mailcow
@@ -4389,7 +4432,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 inet_protocols = ipv4
 </code></pre></div>
 <p>Starten Sie Postfix neu:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
@@ -4409,7 +4452,7 @@ sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 <p><strong>6.</strong> IPv6 Listener für NGINX deaktivieren</p>
 <p>Setze <code>DISABLE_IPv6=y</code> in der Datei <code>mailcow.conf</code>.</p>
 <p>Damit diese Änderung wirksam wird, muss der Container <code>nginx-mailcow</code> neu erstellt werden.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4441,7 +4484,7 @@ sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="10. September 2025 12:16:57 CEST">2025-09-10 12:16:57</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="10. September 2025 16:40:11 CEST">2025-09-10 16:40:11</span>
   </span>
 
     
