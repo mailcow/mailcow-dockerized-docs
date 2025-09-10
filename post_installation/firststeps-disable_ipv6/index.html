@@ -104,6 +104,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#mailcow-versions-from-2025-09" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1027,6 +1032,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Disable IPv6
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1038,6 +1056,41 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mailcow-versions-from-2025-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      mailcow Versions from 2025-09
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#older-mailcow-versions-pre-2025-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      Older mailcow Versions (pre 2025-09)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4169,6 +4222,32 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mailcow-versions-from-2025-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      mailcow Versions from 2025-09
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#older-mailcow-versions-pre-2025-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      Older mailcow Versions (pre 2025-09)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4188,6 +4267,49 @@
 
   <h1>Disable IPv6</h1>
 
+<h2 id="mailcow-versions-from-2025-09">mailcow Versions from 2025-09<a class="headerlink" href="#mailcow-versions-from-2025-09" title="Permanent link">¶</a></h2>
+<p>Starting with the 2025-09 update, IPv6 in the mailcow stack can be conveniently managed.</p>
+<p>Simply adjust the variable in the mailcow.conf file:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_IPv6</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>From 2025-09 onwards, this variable is enabled by default (<code>true</code>) if the system supports IPv6 connectivity. This also enables IPv6 within the containers.</p>
+</div>
+<p>After making the change, the entire mailcow stack must be restarted:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>This will recreate the mailcow Docker network based on the setting in mailcow.conf.</p>
+<details class="question">
+<summary>Did you know?</summary>
+<p>Since the 2025-09 update, there is a helper in the update script that can adjust the IPv6 settings in the Docker Daemon based on your host configuration.</p>
+<p>In most cases, this works seamlessly as the JSON file is carefully edited using the <code>jq</code> tool to cleanly integrate or remove values.</p>
+<p>The helper will notify you of necessary adjustments until the daemon.json file is correctly configured (either IPv6-compatible or not) to ensure smooth and error-free operation.</p>
+</details>
+<p>No further changes are required, as these settings control all internal IPv6 addresses.</p>
+<p>All mailcow services are configured to listen on both IPv4 and IPv6 (if enabled). If only an IPv4 address is available for the container network, only this will be used for the services.</p>
+<div class="admonition danger">
+<p class="admonition-title">Caution</p>
+<p>If you are using an IPv6 address on your host and the Docker Daemon is not correctly configured (which is usually detected and resolved by a helper during the update process), this can lead to an open relay.</p>
+<p>This happens because Docker, by default, translates IPv6 addresses into internal IPv4 addresses (NAT). If the Docker Daemon is not properly configured, external IPv6 addresses may be mistakenly interpreted as internal addresses. This could allow spammers to send spam through your server using a misconfigured IPv6 address.</p>
+<p>On the Docker network level, this is particularly critical because internal container addresses often have less stringent security mechanisms. Specifically, communication between the webmail client and the Postfix (SMTP) server could expose security vulnerabilities if the network translation is not functioning correctly.</p>
+<p>It is therefore essential to adjust the Docker Daemon according to the system configuration. The Daemon should be configured to reflect the actual IPv6 connectivity of the host. This prevents incorrect NAT rules and ensures that IPv6 addresses are handled correctly. </p>
+<p><strong>Always check your Docker network configurations after making network changes to ensure that no unintended security vulnerabilities are introduced.</strong></p>
+</div>
+<hr>
+<h2 id="older-mailcow-versions-pre-2025-09">Older mailcow Versions (pre 2025-09)<a class="headerlink" href="#older-mailcow-versions-pre-2025-09" title="Permanent link">¶</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>In installations using a Docker version <b>between 25.0.0 and 25.0.2</b> (to check, use <code>docker version</code>) the behavior of IPv6 address allocation has changed due to a bug. Simply using <code>enable_ipv6: false</code> is <strong>NO LONGER</strong> sufficient to completely disable IPv6 in the stack. <br>This was a bug in the Docker Daemon, which has been fixed with version 25.0.3.</p>
@@ -4226,7 +4348,7 @@ and implement your changes to the service there. Unfortunately, this right now o
       entrypoint: ["echo", "ipv6nat disabled in compose.override.yml"]
 </code></pre></div>
 <p>For these changes to be effective, you need to fully stop and then restart the stack, so containers and networks are recreated:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
@@ -4248,7 +4370,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
   [...]
 </code></pre></div>
 <p>Restart Unbound:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">docker compose (Plugin)</label><label for="__tabbed_2_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>unbound-mailcow
@@ -4266,7 +4388,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 inet_protocols = ipv4
 </code></pre></div>
 <p>Restart Postfix:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">docker compose (Plugin)</label><label for="__tabbed_3_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
@@ -4286,7 +4408,7 @@ sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
 <p><strong>6.</strong> Disable IPv6 listeners for NGINX</p>
 <p>Set <code>DISABLE_IPv6=y</code> in <code>mailcow.conf</code></p>
 <p>For this change to be effective, you need to recreate the <code>nginx-mailcow</code> Container</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">docker compose (Plugin)</label><label for="__tabbed_4_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4318,7 +4440,7 @@ sed -i 's/\[::\]://g' data/conf/phpfpm/php-fpm.d/pools.conf
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="January 22, 2025 15:02:00 CET">2025-01-22 15:02:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="September 10, 2025 12:16:57 CEST">2025-09-10 12:16:57</span>
   </span>
 
     
