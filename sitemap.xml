@@ -645,6 +645,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-sync_jobs_migration/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/post_installation/setup-mta-sts/</loc>
+        <lastmod>2025-09-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/setup-mta-sts/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/setup-mta-sts/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-apache24/</loc>
         <lastmod>2025-09-12</lastmod>
         <changefreq>daily</changefreq>
@@ -1497,6 +1504,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/firststeps-sync_jobs_migration/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/firststeps-sync_jobs_migration/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/post_installation/setup-mta-sts/</loc>
+        <lastmod>2025-09-12</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/setup-mta-sts/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/setup-mta-sts/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-apache24/</loc>
