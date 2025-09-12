@@ -5,7 +5,7 @@ Ab dem Update 2025-09 kann IPv6 im mailcow Stack bequem gesteuert werden.
 Dazu genügt eine einfache Anpassung der Variable in der mailcow.conf:
 
 ```bash
-ENABLE_IPv6=false
+ENABLE_IPV6=false
 ```
 
 !!! info "Hinweis"
