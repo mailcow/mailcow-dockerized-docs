@@ -98,6 +98,7 @@ nav:
     - 'IP bindings': 'post_installation/firststeps-ip_bindings.md'
     - 'Local MTA on Docker host': 'post_installation/firststeps-local_mta.md'
     - 'Logging': 'post_installation/firststeps-logging.md'
+    - 'Setting up MTA-STS': 'post_installation/setup-mta-sts.md'
     - 'Reverse Proxy':
       - 'Overview': 'post_installation/reverse-proxy/r_p.md'
       - 'Apache 2.4': 'post_installation/reverse-proxy/r_p-apache24.md'
@@ -259,6 +260,7 @@ plugins:
               'Disable IPv6': 'IPv6 deaktivieren'
               'IP bindings': 'IP-Bindings'
               'Local MTA on Docker host': 'Lokaler MTA auf Docker-Host'
+              'Setting up MTA-STS': 'MTA-STS einrichten'
                 ### Reverse Proxy Subsection
               'Overview': 'Übersicht'
               'HAProxy (community supported)': 'HAProxy (von der Community unterstützt)'
