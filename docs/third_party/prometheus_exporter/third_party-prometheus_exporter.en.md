@@ -46,7 +46,7 @@ scrape_configs:
     params:
       MAILCOW_EXPORTER_HOST: [ 'mail.example.com' ]
       MAILCOW_EXPORTER_API_KEY: [ 'YOUR-APIKEY-HERE' ]
-      MAILCOW_EXPORTER_TOKEN: [ 'YOUR-APIKEY-HERE' ] # if you MAILCOW_EXPORTER_TOKEN_DISABLE=false
+      token: [ 'YOUR-APIKEY-HERE' ] # if you MAILCOW_EXPORTER_TOKEN_DISABLE=false
 ```
 
 It also supports an optional `scheme` URL parameter, that defaults to `https`.

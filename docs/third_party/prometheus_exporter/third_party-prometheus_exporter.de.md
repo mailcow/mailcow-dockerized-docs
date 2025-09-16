@@ -43,7 +43,7 @@ scrape_configs:
     params:
       MAILCOW_EXPORTER_HOST: [ 'mail.example.com' ]
       MAILCOW_EXPORTER_API_KEY: [ 'YOUR-APIKEY-HERE' ]
-      MAILCOW_EXPORTER_TOKEN: [ 'YOUR-APIKEY-HERE' ] # if you MAILCOW_EXPORTER_TOKEN_DISABLE=false
+      token: [ 'YOUR-APIKEY-HERE' ] # if you MAILCOW_EXPORTER_TOKEN_DISABLE=false
 ```
 
 Es unterstützt auch einen optionalen `scheme` URL Parameter, der standardmäßig auf `https` gesetzt ist. Falls Sie auf die API ohne TLS-Verschlüsselung zugreifen möchten, setzen Sie ihn auf `http`.
