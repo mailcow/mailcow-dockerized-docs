@@ -13,7 +13,7 @@ Die folgenden Linux-Pakete sind f√ºr die Nutzung von mailcow erforderlich und m√
 - sha1sum
 - grep
 - cut
-- jq (**neu ab 2025-08**)
+- jq (**neu ab [2025-09](https://mailcow.email/posts/2025/release-2025-09/#2025-09-release-10th-september-2025)**)
 
 ### Docker und Docker Compose
 
