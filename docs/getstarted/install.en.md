@@ -13,7 +13,7 @@ The following Linux packages are required for using mailcow and may need to be i
 - sha1sum
 - grep
 - cut
-- jq (**new as of 2025-08**)
+- jq (**new as of [2025-09](https://mailcow.email/posts/2025/release-2025-09/#2025-09-release-10th-september-2025)**)
 
 ### Docker and Docker Compose
 
