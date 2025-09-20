@@ -15,6 +15,7 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
+  ServerAlias mta-sts.*
   RewriteEngine on
 
   RewriteCond %{HTTPS} off
@@ -30,6 +31,7 @@ Let's Encrypt will follow our rewrite, certificate requests in mailcow will work
   ServerName CHANGE_TO_MAILCOW_HOSTNAME
   ServerAlias autodiscover.*
   ServerAlias autoconfig.*
+  ServerAlias mta-sts.*
 
   # You should proxy to a plain HTTP session to offload SSL processing
   ProxyPass /Microsoft-Server-ActiveSync http://127.0.0.1:8080/Microsoft-Server-ActiveSync connectiontimeout=4000
