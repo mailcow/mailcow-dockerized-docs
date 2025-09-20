@@ -12,7 +12,7 @@ Bspw:
 
 ``` hl_lines="1 3 13"
 
-MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
+MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME mta-sts.MAILCOW_HOSTNAME {
         log {
                 output file /var/log/caddy/MAILCOW_HOSTNAME.log {
                         roll_disabled
