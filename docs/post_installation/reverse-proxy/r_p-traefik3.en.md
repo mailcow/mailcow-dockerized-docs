@@ -50,20 +50,20 @@ SKIP_LETS_ENCRYPT=y
 
         mailcow-autoconfig:
           entryPoints: "websecure"
-          rule: "(Host(`autoconfig.domain.com`) && Path(`/autodiscover/autodiscover.xml`))"
+          rule: "(Host(`autoconfig.domain.com`) && Path(`/mail/config-v1.1.xml`))"
           service: mailcow-svc
           tls:
             certResolver: cloudflare
 
         mailcow-autodiscover:
           entryPoints: "websecure"
-          rule: "(Host(`autodiscover.domain.com`) && Path(`/mail/config-v1.1.xml`))"
+          rule: "(Host(`autodiscover.domain.com`) && Path(`/autodiscover/autodiscover.xml`))"
           service: mailcow-svc
           tls:
             certResolver: cloudflare
 
       services:
-        mailcow:
+        mailcow-svc:
           loadBalancer:
             servers:
               - url: "http://mailcow-nginx-mailcow-1:8080"
