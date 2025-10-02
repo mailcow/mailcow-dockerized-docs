@@ -49,6 +49,13 @@ You need to delete keys in Redis to reset learned data, so create a copy of your
 cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
 ```
 
+!!! Info
+    If $REDISPASS is set in mailcow.conf adjust the commands like this:
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
+
 ### Reset Bayes data
 === "docker compose (Plugin)"
 
