@@ -153,6 +153,7 @@ nav:
       - 'Max. message size (attachment size)': 'manual-guides/Postfix/u_e-postfix-attachment_size.md'
       - 'Relayhosts': 'manual-guides/Postfix/u_e-postfix-relayhost.md'
       - 'Statistics with pflogsumm': 'manual-guides/Postfix/u_e-postfix-pflogsumm.md'
+      - 'TLS-Policy override': 'manual-guides/Postfix/u_e-postfix-tls_policy_override.md'
       - 'Whitelist IP in Postscreen': 'manual-guides/Postfix/u_e-postfix-postscreen_whitelist.md'
     - 'Unbound':
       - 'Using an external DNS service': 'manual-guides/Unbound/u_e-unbound-fwd.md'
@@ -305,6 +306,7 @@ plugins:
               'Disable Sender Addresses Verification': 'Überprüfung der Absenderadressen deaktivieren'
               'Max. message size (attachment size)': 'Maximale Nachrichtengröße (Größe des Anhangs)'
               'Statistics with pflogsumm': 'Statistik mit pflogsumm'
+              'TLS-Policy override': 'TLS-Richtlinienüberschreibung'
               'Whitelist IP in Postscreen': 'IP in Postscreen auf die Whitelist setzen'
                 ### Unbound Subsection
               'Using an external DNS service': 'Verwendung eines externen DNS-Dienstes'
