@@ -30,6 +30,7 @@ Jeder Container repräsentiert eine einzelne Anwendung, die in einem überbrück
 - :material-microsoft-office: [__Olefy__](https://github.com/HeinleinSupport/olefy) Analyse von Office Dokumenten nach Viren, Makros etc.
 - :simple-php: [__PHP__](https://php.net/) Programmiersprache der meisten webbasierten mailcow Applikationen
 - :material-email-newsletter: [__Postfix__](http://www.postfix.org/) MTA (Mail Transfer Agent) für den E-Mail-Verkehr im Internet
+- :material-message-text-lock-outline: [__Postfix TLS-Pol__](https://github.com/Zuplu/postfix-tlspol) Leichter, performanter MTA‑STS- und DANE/TLSA‑Resolver sowie TLS‑Policy‑Socketmap für Postfix; standardkonform, DANE bevorzugt.
 - :simple-redis: [__Redis__](https://redis.io/) Speicher für Spaminformationen, DKIM Schlüssel u.w.
 - :fontawesome-solid-trash-can: [__Rspamd__](https://www.rspamd.com/) Spamfilter mit automatischem Lernen von Spammails
 - :material-calendar: [__SOGo__](https://sogo.nu/) Integrierter Webmailer und Cal-/Carddav Schnittstelle
@@ -66,6 +67,7 @@ Die mailcow Daten (wie bspw. E-Mails, Userdaten etc.) werden in **Docker-Volumes
 - mysql-socket-vol-1
 - mysql-vol-1
 - postfix-vol-1
+- postfix-tlspol-vol-1
 - redis-vol-1
 - rspamd-vol-1
 - sogo-userdata-backup-vol-1

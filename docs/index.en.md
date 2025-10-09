@@ -29,7 +29,8 @@ Each container represents a single application, connected in a bridged network:
 - :simple-nginx: [__Nginx__](https://nginx.org/) Web server for components of the stack
 - :material-microsoft-office: [__Olefy__](https://github.com/HeinleinSupport/olefy) Analysis of Office documents for viruses, macros, etc.
 - :simple-php: [__PHP__](https://php.net/) Programming language of most web-based mailcow applications
-- :material-e-mail-newsletter: [__Postfix__](http://www.postfix.org/) MTA (Mail Transfer Agent) for e-mail traffic on the Internet
+- :material-email-newsletter: [__Postfix__](http://www.postfix.org/) MTA (Mail Transfer Agent) for Internet e-mail traffic
+- :material-message-text-lock-outline: [__Postfix TLS-Pol__](https://github.com/Zuplu/postfix-tlspol) Lightweight, high-performance MTA-STS and DANE/TLSA resolver and TLS policy socketmap for Postfix; standards-compliant, DANE preferred.
 - :simple-redis: [__Redis__](https://redis.io/) Storage for spam information, DKIM key, etc.
 - :fontawesome-solid-trash-can: [__Rspamd__](https://www.rspamd.com/) Spam filter with automatic learning of spam mails
 - :material-calendar: [__SOGo__](https://sogo.nu/) Integrated webmailer and Cal-/Carddav interface
@@ -65,6 +66,7 @@ The mailcow data (such as e-mails, user data, etc.) is stored in **Docker volume
 - mysql-socket-vol-1
 - mysql-vol-1
 - postfix-vol-1
+- postfix-tlspol-vol-1
 - redis-vol-1
 - rspamd-vol-1
 - sogo-userdata-backup-vol-1
