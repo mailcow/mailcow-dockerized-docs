@@ -8,16 +8,33 @@ In order to enable Prometheus Exporter.
 
 first of all, you need to set up this file
 
-```
-
+```bash
 # copy override file behind on mailcow compose file
 cp your-mailcow-project-path/helper-scripts/docker-compose.override.yml.d/PROMETHEUS_EXPORTER/docker-compose.override.yml your-mailcow-project-path/
 
 # run composefile again
 docker compose up -d
-
 ```
 
+If you want to make the exporter accessible via the internal Mailcow Nginx, create the following file: `data/conf/nginx/site.metrics.custom` and remove the section with `ports: - "9099:9099"` from the `docker-compose.override.yml` file.
+
+```
+location /metrics/ {
+		proxy_pass http://prometheus-exporter:9099/metrics;
+}
+```
+
+=== "docker compose (Plugin)"
+
+    ```bash
+    docker compose restart nginx-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ```bash
+    docker-compose restart nginx-mailcow
+    ```
 
 [Prometheus](https://prometheus.io) Ein Prometheus-Exporter, der Metriken sammelt und bereitstellt, um Einblicke in die Leistung und den Zustand eines Dienstes zu geben.
 
