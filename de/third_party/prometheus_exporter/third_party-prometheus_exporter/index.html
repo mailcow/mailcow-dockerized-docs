@@ -4477,12 +4477,29 @@
 <h2 id="prometheus-exporter-mailcow-dienst">Prometheus-exporter-mailcow Dienst<a class="headerlink" href="#prometheus-exporter-mailcow-dienst" title="Permanent link">¶</a></h2>
 <h3 id="einrichtung">Einrichtung<a class="headerlink" href="#einrichtung" title="Permanent link">¶</a></h3>
 <p>Zuerst müssen Sie diese Datei einrichten:</p>
-<div class="highlight"><pre><span></span><code># Kopiere die Override-Datei hinter der Mailcow-Compose-Datei
-cp your-mailcow-project-path/helper-scripts/docker-compose.override.yml.d/PROMETHEUS_EXPORTER/docker-compose.override.yml your-mailcow-project-path/
+<div class="highlight"><pre><span></span><code><span class="c1"># Kopiere die Override-Datei hinter der Mailcow-Compose-Datei</span>
+cp<span class="w"> </span>your-mailcow-project-path/helper-scripts/docker-compose.override.yml.d/PROMETHEUS_EXPORTER/docker-compose.override.yml<span class="w"> </span>your-mailcow-project-path/
 
-# Starte die Compose-Datei erneut
-docker compose up -d
+<span class="c1"># Starte die Compose-Datei erneut</span>
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<p>Wenn Sie den Exporter über den Mailcow-internen Nginx erreichbar machen möchten, erstellen Sie die folgende Datei: <code>data/conf/nginx/site.metrics.custom</code> und entfernen Sie aus der <code>docker-compose.override.yml</code> den Bereich mit <code>ports: - "9099:9099"</code></p>
+<div class="highlight"><pre><span></span><code>location /metrics/ {
+        proxy_pass http://prometheus-exporter:9099/metrics;
+}
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>nginx-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <p><a href="https://prometheus.io">Prometheus</a> Exporter für Informationen über eine Mailcow-Instanz.</p>
 <h3 id="nutzung">Nutzung<a class="headerlink" href="#nutzung" title="Permanent link">¶</a></h3>
 <p>Der Endpunkt <code>/metrics</code> benötigt die URL-Parameter <code>host</code> und <code>apiKey</code>. <code>host</code> ist der Hostname Ihrer Mailcow-Instanz. <code>apiKey</code> sollte ein schreibgeschützter API-Schlüssel sein, der im Mailcow-Management-Interface unter 'Access &gt; API' generiert werden kann.</p>
@@ -4705,7 +4722,7 @@ Dieses Dashboard wurde von <a href="https://github.com/remkolodder/mailcow-dashb
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="26. September 2025 08:50:26 CEST">2025-09-26 08:50:26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="15. Oktober 2025 10:58:56 CEST">2025-10-15 10:58:56</span>
   </span>
 
     
