@@ -1,9 +1,9 @@
-Seit einiger Zeit erreichen uns vermehrt Reports, dass die mailcow UI bei einigen Nutzern nicht mehr erreichbar ist. Stattdessen wird eine Google Safe Search Seite angezeigt, die darauf hinweist, dass die Seite als unsicher eingestuft wurde.
+Seit einiger Zeit erreichen uns vermehrt Reports, dass die mailcow UI bei einigen Nutzern nicht mehr erreichbar ist. Stattdessen wird eine Google SafeBrowsing Seite angezeigt, die darauf hinweist, dass die Seite als unsicher eingestuft wurde.
 
-Dies tritt auch dann auf, wenn Sie selber keine Safe Search Filterung für Ihre Webseite aktiviert haben.
+Dies tritt auch dann auf, wenn Sie selber keine SafeBrowsing Filterung für Ihre Webseite aktiviert haben.
 <figure markdown>
-![Beispielhafte Darstellung der Google Safe Search Seite](../assets/images/troubleshooting/debug-google_safe_search.png)
-<figcaption>Beispielhafte Darstellung der Google Safe Search Seite</figcaption>
+![Beispielhafte Darstellung der Google SafeBrowsing Seite](../assets/images/troubleshooting/debug-google_safe_browsing.png)
+<figcaption>Beispielhafte Darstellung der Google SafeBrowsing Seite</figcaption>
 </figure>
 
 ## Ursache
@@ -18,7 +18,7 @@ Bei mailcow ist es jedoch sehr unwahrscheinlich, dass diese Gründe zutreffen, e
 
 Da dies aber auch bei Seiten auftritt die frisch mailcow installiert wurden, liegt die Ursache meist woanders.
 
-Wir vermuten, dass Google seit einiger Zeit ein neues KI Modell zur erkennung der Safe Search Filterung einsetzt und dieses bei ähnlichen Seiten wie mailcow Installationen (da das Login UI von mailcow eine ähnliche Struktur aufweist pro Server) fälschlicherweise anschlägt.
+Wir vermuten, dass Google seit einiger Zeit ein neues KI Modell zur erkennung der SafeBrowsing Filterung einsetzt und dieses bei ähnlichen Seiten wie mailcow Installationen (da das Login UI von mailcow eine ähnliche Struktur aufweist pro Server) fälschlicherweise anschlägt.
 
 ## Mögliche Lösungen
 1. Halten Sie ihre mailcow Installation aktuell, da wir stetig daran arbeiten, bekannte Sicherheitslücken zu schließen.
