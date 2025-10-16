@@ -14,6 +14,8 @@ functionality is provided by the [borgmatic Docker image](https://github.com/bor
 the `README` in that repository to find out about the other options (such as push notifications) that are available.
 This guide only covers the basics.
 
+---
+
 ## Setting up borgmatic
 
 ### Create or amend `docker-compose.override.yml`
@@ -200,12 +202,14 @@ state:
     docker-compose restart borgmatic-mailcow
     ```
 
+---
+
 ## Restoring from a backup
 
 Restoring a backup assumes you are starting off with a fresh installation of mailcow, and you currently do not have
 any custom data in your maildir or your mailcow database.
 
-### Restore maildir
+### Restore maildir (completely)
 
 !!! warning
     Doing this will overwrite files in your maildir! Do not run this unless you actually intend to recover mail
@@ -235,6 +239,45 @@ Then you can use the following command to restore the maildir from a backup:
 
 Alternatively you can specify any archive name from the list of archives (see
 [Listing all available archives](#listing-all-available-archives))
+
+### Restore maildir (per mailbox)
+
+It is also possible to restore only a single mailbox from a backup. Suppose you want to restore the mailbox for `user@example.com`.
+
+Again, before restoring you must remove the `ro` flag from the volume in `docker-compose.override.yml` before proceeding.
+
+If you used the configuration above, borgmatic stores the backups under mnt/source/vmail/example.com/user/ (in this example for our user `user@example.com`).
+
+To restore this mailbox, use the following command:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec borgmatic-mailcow borgmatic extract --path mnt/source/vmail/example.com/user --archive latest
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec borgmatic-mailcow borgmatic extract --path mnt/source/vmail/example.com/user --archive latest
+    ```
+
+!!! info "Note"
+    Instead of `latest` you can also specify any archive name from the list of archives (see [Listing all available archives](#listing-all-available-archives))
+
+Depending on how long ago the original data was deleted, you may need to trigger a reindex of the mailbox via Dovecot so the restored emails appear in your mail client:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose exec dovecot-mailcow doveadm index -u user@example.com '*'
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose exec dovecot-mailcow doveadm index -u user@example.com '*'
+    ```
 
 ### Restore MySQL
 
@@ -280,6 +323,8 @@ To restart mailcow use the follwing command:
 
 If you use SELinux this will also trigger the re-labeling of all files in your vmail volume. Be patient, as this may
 take a while if you have lots of files.
+
+---
 
 ## Useful commands
 
