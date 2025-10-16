@@ -1,11 +1,11 @@
-<!DOCTYPE html><html lang="de" class="no-js"><head>
+<!DOCTYPE html><html lang="en" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
       
-        <link rel="canonical" href="https://docs.mailcow.email/de/troubleshooting/debug-google_safe_search/">
+        <link rel="canonical" href="https://docs.mailcow.email/troubleshooting/debug-google_safe_browsing/">
       
       
         <link rel="prev" href="../debug-common_problems/">
@@ -14,19 +14,19 @@
         <link rel="next" href="../debug-logs/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
-        <title>Probleme mit Google Safe Search - mailcow: dockerized Dokumentation</title>
+        <title>Google SafeBrowsing issues - mailcow: dockerized documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.84d31ad4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -39,13 +39,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
     
-      <link rel="stylesheet" href="../../../css/open_in_new_tab.css">
+      <link rel="stylesheet" href="../../css/open_in_new_tab.css">
     
-      <link rel="stylesheet" href="../../../css/open_in_new_tab.css">
-    
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -54,11 +52,11 @@
       
         <meta property="og:type" content="website">
       
-        <meta property="og:title" content="Probleme mit Google Safe Search - mailcow: dockerized Dokumentation">
+        <meta property="og:title" content="Google SafeBrowsing issues - mailcow: dockerized documentation">
       
         <meta property="og:description" content="None">
       
-        <meta property="og:image" content="https://docs.mailcow.email/assets/images/social/troubleshooting/debug-google_safe_search.de.png">
+        <meta property="og:image" content="https://docs.mailcow.email/assets/images/social/troubleshooting/debug-google_safe_browsing.en.png">
       
         <meta property="og:image:type" content="image/png">
       
@@ -66,19 +64,19 @@
       
         <meta property="og:image:height" content="630">
       
-        <meta property="og:url" content="https://docs.mailcow.email/de/troubleshooting/debug-google_safe_search/">
+        <meta property="og:url" content="https://docs.mailcow.email/troubleshooting/debug-google_safe_browsing/">
       
         <meta name="twitter:card" content="summary_large_image">
       
-        <meta name="twitter:title" content="Probleme mit Google Safe Search - mailcow: dockerized Dokumentation">
+        <meta name="twitter:title" content="Google SafeBrowsing issues - mailcow: dockerized documentation">
       
         <meta name="twitter:description" content="None">
       
-        <meta name="twitter:image" content="https://docs.mailcow.email/assets/images/social/troubleshooting/debug-google_safe_search.de.png">
+        <meta name="twitter:image" content="https://docs.mailcow.email/assets/images/social/troubleshooting/debug-google_safe_browsing.en.png">
       
     
     
-  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -107,8 +105,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#ursache" class="md-skip">
-          Zum Inhalt
+        <a href="#cause" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -117,14 +115,14 @@
         <aside class="md-banner">
           <div class="md-banner__inner md-grid md-typeset">
             
-              <button class="md-banner__button md-icon" aria-label="Nicht mehr anzeigen">
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
               </button>
             
             
 
-  <center><h4>Alle Befehle sind gemäß der Syntax des <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> und der <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Variante</a> anwählbar.<br></h4></center>
+  <center><h4>All Commands are available according to the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/linux/">Docker Compose Plugin</a> and the <a style="color:#6390e5;" href="https://docs.docker.com/compose/install/other/">Standalone Version</a> syntax</h4></center>
 
 
           </div>
@@ -141,10 +139,10 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Kopfzeile">
-    <a href="../../" title="mailcow: dockerized Dokumentation" class="md-header__button md-logo" aria-label="mailcow: dockerized Dokumentation" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="mailcow: dockerized documentation" class="md-header__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
-  <img src="../../../assets/images/logo.svg" alt="logo">
+  <img src="../../assets/images/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -155,13 +153,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            mailcow: dockerized Dokumentation
+            mailcow: dockerized documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Probleme mit Google Safe Search
+              Google SafeBrowsing issues
             
           </span>
         </div>
@@ -211,20 +209,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Sprache wechseln">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../troubleshooting/debug-google_safe_search/" hreflang="en" class="md-select__link">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="./" hreflang="de" class="md-select__link">
+            <a href="../../de/troubleshooting/debug-google_safe_browsing/" hreflang="de" class="md-select__link">
               Deutsch
             </a>
           </li>
@@ -245,21 +243,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Suche" placeholder="Suche" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
-      <nav class="md-search__options" aria-label="Suche">
+      <nav class="md-search__options" aria-label="Search">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Teilen" aria-label="Teilen" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Zurücksetzen" aria-label="Zurücksetzen" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
@@ -270,7 +268,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Suche wird initialisiert
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -282,7 +280,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/mailcow/mailcow-dockerized" title="Zum Repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/mailcow/mailcow-dockerized" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
@@ -318,16 +316,16 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../" title="mailcow: dockerized Dokumentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized Dokumentation" data-md-component="logo">
+    <a href="../.." title="mailcow: dockerized documentation" class="md-nav__button md-logo" aria-label="mailcow: dockerized documentation" data-md-component="logo">
       
-  <img src="../../../assets/images/logo.svg" alt="logo">
+  <img src="../../assets/images/logo.svg" alt="logo">
 
     </a>
-    mailcow: dockerized Dokumentation
+    mailcow: dockerized documentation
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/mailcow/mailcow-dockerized" title="Zum Repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/mailcow/mailcow-dockerized" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
@@ -347,12 +345,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Informationen &amp; Support
+    Information &amp; Support
     
   </span>
   
@@ -385,7 +383,7 @@
   
   
   <span class="md-ellipsis">
-    Loslegen
+    Get started
     
   </span>
   
@@ -396,7 +394,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Loslegen
+            Get started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -412,7 +410,7 @@
   
   
   <span class="md-ellipsis">
-    Systemvoraussetzungen
+    Prepare your system
     
   </span>
   
@@ -435,7 +433,7 @@
   
   
   <span class="md-ellipsis">
-    DNS Einstellungen
+    DNS setup
     
   </span>
   
@@ -458,7 +456,7 @@
   
   
   <span class="md-ellipsis">
-    mailcow Installieren
+    Install mailcow
     
   </span>
   
@@ -499,7 +497,7 @@
   
   
   <span class="md-ellipsis">
-    mailcow warten (Updates usw.)
+    Maintaining mailcow
     
   </span>
   
@@ -510,7 +508,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            mailcow warten (Updates usw.)
+            Maintaining mailcow
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -613,7 +611,7 @@
   
   
   <span class="md-ellipsis">
-    Sichern &amp; Wiederherstellen
+    Backup &amp; Restore
     
   </span>
   
@@ -624,7 +622,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Sichern &amp; Wiederherstellen
+            Backup &amp; Restore
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -651,7 +649,7 @@
   
   
   <span class="md-ellipsis">
-    Sicherung und Wiederherstellung von Komponenten
+    Component backup &amp; restore
     
   </span>
   
@@ -662,7 +660,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
-            Sicherung und Wiederherstellung von Komponenten
+            Component backup &amp; restore
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -678,7 +676,7 @@
   
   
   <span class="md-ellipsis">
-    Sicherung
+    Backup
     
   </span>
   
@@ -701,7 +699,7 @@
   
   
   <span class="md-ellipsis">
-    Wiederherstellung
+    Restore
     
   </span>
   
@@ -724,7 +722,7 @@
   
   
   <span class="md-ellipsis">
-    Exportieren
+    Export
     
   </span>
   
@@ -755,7 +753,7 @@
   
   
   <span class="md-ellipsis">
-    Cold-standby (rollende Sicherung)
+    Cold-standby (rolling backup)
     
   </span>
   
@@ -789,7 +787,7 @@
   
   
   <span class="md-ellipsis">
-    Manuelle Sicherung
+    Manual backups
     
   </span>
   
@@ -800,7 +798,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
-            Manuelle Sicherung
+            Manual backups
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -816,7 +814,7 @@
   
   
   <span class="md-ellipsis">
-    Mail-Verzeichnis
+    Maildir
     
   </span>
   
@@ -881,7 +879,7 @@
   
   
   <span class="md-ellipsis">
-    Interne mailcow Sicherungen
+    mailcow-internal backups
     
   </span>
   
@@ -892,7 +890,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
-            Interne mailcow Sicherungen
+            mailcow-internal backups
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -908,7 +906,7 @@
   
   
   <span class="md-ellipsis">
-    Versehentlich gelöschte Daten wiederherstellen
+    Recover accidentally deleted data
     
   </span>
   
@@ -957,7 +955,7 @@
   
   
   <span class="md-ellipsis">
-    Post-Installationsaufgaben
+    Post Installation Tasks
     
   </span>
   
@@ -968,7 +966,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Post-Installationsaufgaben
+            Post Installation Tasks
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -984,7 +982,7 @@
   
   
   <span class="md-ellipsis">
-    Erweitertes SSL
+    Advanced SSL
     
   </span>
   
@@ -1007,7 +1005,7 @@
   
   
   <span class="md-ellipsis">
-    Authorisieren der Watchdog und Bounce Mails
+    Authorize Watchdog and Bounce Mails
     
   </span>
   
@@ -1030,7 +1028,7 @@
   
   
   <span class="md-ellipsis">
-    IPv6 deaktivieren
+    Disable IPv6
     
   </span>
   
@@ -1076,7 +1074,7 @@
   
   
   <span class="md-ellipsis">
-    IP-Bindings
+    IP bindings
     
   </span>
   
@@ -1099,7 +1097,7 @@
   
   
   <span class="md-ellipsis">
-    Lokaler MTA auf Docker-Host
+    Local MTA on Docker host
     
   </span>
   
@@ -1145,7 +1143,7 @@
   
   
   <span class="md-ellipsis">
-    MTA-STS einrichten
+    Setting up MTA-STS
     
   </span>
   
@@ -1206,7 +1204,7 @@
   
   
   <span class="md-ellipsis">
-    Übersicht
+    Overview
     
   </span>
   
@@ -1275,7 +1273,7 @@
   
   
   <span class="md-ellipsis">
-    HAProxy (von der Community unterstützt)
+    HAProxy (community supported)
     
   </span>
   
@@ -1298,7 +1296,7 @@
   
   
   <span class="md-ellipsis">
-    Traefik v3 (von der Community unterstützt)
+    Traefik v3 (community supported)
     
   </span>
   
@@ -1321,7 +1319,7 @@
   
   
   <span class="md-ellipsis">
-    Caddy v2 (von der Community unterstützt)
+    Caddy v2 (community supported)
     
   </span>
   
@@ -1375,7 +1373,7 @@
   
   
   <span class="md-ellipsis">
-    Migration mit Sync Jobs
+    Sync job migration
     
   </span>
   
@@ -1416,7 +1414,7 @@
   
   
   <span class="md-ellipsis">
-    Modelle
+    Models
     
   </span>
   
@@ -1427,7 +1425,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Modelle
+            Models
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1466,7 +1464,7 @@
   
   
   <span class="md-ellipsis">
-    Passwort-Hashing
+    Password hashing
     
   </span>
   
@@ -1489,7 +1487,7 @@
   
   
   <span class="md-ellipsis">
-    Sender- und Empfängermodell
+    Sender and receiver model
     
   </span>
   
@@ -1532,7 +1530,7 @@
   
   
   <span class="md-ellipsis">
-    Allgemeine Fehlersuche
+    General Troubleshooting
     
   </span>
   
@@ -1543,7 +1541,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            Allgemeine Fehlersuche
+            General Troubleshooting
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1559,7 +1557,7 @@
   
   
   <span class="md-ellipsis">
-    Einführung
+    Introduction
     
   </span>
   
@@ -1582,7 +1580,7 @@
   
   
   <span class="md-ellipsis">
-    Admin-Anmeldung bei SOGo
+    Admin login to SOGo
     
   </span>
   
@@ -1605,7 +1603,7 @@
   
   
   <span class="md-ellipsis">
-    Fortgeschritten: Memory-Leaks in Rspamd finden
+    Advanced: Find memory leaks in Rspamd
     
   </span>
   
@@ -1628,7 +1626,7 @@
   
   
   <span class="md-ellipsis">
-    In einen Container wechseln (CLI)
+    Attach to a Container
     
   </span>
   
@@ -1651,7 +1649,7 @@
   
   
   <span class="md-ellipsis">
-    Häufig auftretende Probleme
+    Common Problems
     
   </span>
   
@@ -1681,7 +1679,7 @@
   
   
   <span class="md-ellipsis">
-    Probleme mit Google Safe Search
+    Google SafeBrowsing issues
     
   </span>
   
@@ -1694,7 +1692,7 @@
   
   
   <span class="md-ellipsis">
-    Probleme mit Google Safe Search
+    Google SafeBrowsing issues
     
   </span>
   
@@ -1703,30 +1701,30 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ursache" class="md-nav__link">
+  <a href="#cause" class="md-nav__link">
     <span class="md-ellipsis">
-      Ursache
+      Cause
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mogliche-losungen" class="md-nav__link">
+  <a href="#possible-solutions" class="md-nav__link">
     <span class="md-ellipsis">
-      Mögliche Lösungen
+      Possible solutions
     </span>
   </a>
   
@@ -1776,7 +1774,7 @@
   
   
   <span class="md-ellipsis">
-    Manuelles MySQL-Upgrade
+    Manual MySQL upgrade
     
   </span>
   
@@ -1799,7 +1797,7 @@
   
   
   <span class="md-ellipsis">
-    Abgestürzte Aria-Speicher-Engine wiederherstellen
+    Recover crashed Aria storage engine
     
   </span>
   
@@ -1822,7 +1820,7 @@
   
   
   <span class="md-ellipsis">
-    Persistente Daten löschen
+    Remove Persistent Data
     
   </span>
   
@@ -1845,7 +1843,7 @@
   
   
   <span class="md-ellipsis">
-    Erneutes Senden von Quarantäne-Benachrichtigungen
+    Resend Quarantine Notifications
     
   </span>
   
@@ -1868,7 +1866,7 @@
   
   
   <span class="md-ellipsis">
-    Passwörter zurücksetzen (inkl. SQL)
+    Reset Passwords (incl. SQL)
     
   </span>
   
@@ -1891,7 +1889,7 @@
   
   
   <span class="md-ellipsis">
-    TLS-Zertifikate zurücksetzen
+    Reset TLS certificates
     
   </span>
   
@@ -1932,7 +1930,7 @@
   
   
   <span class="md-ellipsis">
-    Anleitungen/Beispiele
+    Manual/Guides/Examples
     
   </span>
   
@@ -1943,7 +1941,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            Anleitungen/Beispiele
+            Manual/Guides/Examples
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2020,7 +2018,7 @@
   
   
   <span class="md-ellipsis">
-    Konfiguration
+    Configuration
     
   </span>
   
@@ -2043,7 +2041,7 @@
   
   
   <span class="md-ellipsis">
-    CSS-Überschreibungen
+    CSS overrides
     
   </span>
   
@@ -2066,7 +2064,7 @@
   
   
   <span class="md-ellipsis">
-    Passwort vergessen Funktion
+    Forgot Password Feature
     
   </span>
   
@@ -2112,7 +2110,7 @@
   
   
   <span class="md-ellipsis">
-    Templates für Benachrichtigungen
+    Notification templates
     
   </span>
   
@@ -2181,7 +2179,7 @@
   
   
   <span class="md-ellipsis">
-    Sub-Adressierung
+    Sub-addressing
     
   </span>
   
@@ -2204,7 +2202,7 @@
   
   
   <span class="md-ellipsis">
-    Tags (für Domains und Mailboxen)
+    Tags (for Domains and Mailboxes)
     
   </span>
   
@@ -2227,7 +2225,7 @@
   
   
   <span class="md-ellipsis">
-    Temporäre E-Mail-Aliase
+    Temporary email aliases
     
   </span>
   
@@ -2250,7 +2248,7 @@
   
   
   <span class="md-ellipsis">
-    Zwei-Faktor Authentifizierung
+    Two-Factor Authentication
     
   </span>
   
@@ -2411,7 +2409,7 @@
   
   
   <span class="md-ellipsis">
-    Unauthentifiziertes Relaying
+    Unauthenticated Relaying
     
   </span>
   
@@ -2434,7 +2432,7 @@
   
   
   <span class="md-ellipsis">
-    Benutzerdefinierte Transportmaps
+    Custom transport maps
     
   </span>
   
@@ -2457,7 +2455,7 @@
   
   
   <span class="md-ellipsis">
-    main.cf anpassen/erweitern
+    Customize/Expand main.cf
     
   </span>
   
@@ -2480,7 +2478,7 @@
   
   
   <span class="md-ellipsis">
-    Überprüfung der Absenderadressen deaktivieren
+    Disable Sender Addresses Verification
     
   </span>
   
@@ -2503,7 +2501,7 @@
   
   
   <span class="md-ellipsis">
-    Ciphers verstärken
+    Hardening Ciphers
     
   </span>
   
@@ -2526,7 +2524,7 @@
   
   
   <span class="md-ellipsis">
-    Maximale Nachrichtengröße (Größe des Anhangs)
+    Max. message size (attachment size)
     
   </span>
   
@@ -2572,7 +2570,7 @@
   
   
   <span class="md-ellipsis">
-    Statistik mit pflogsumm
+    Statistics with pflogsumm
     
   </span>
   
@@ -2595,7 +2593,7 @@
   
   
   <span class="md-ellipsis">
-    TLS-Richtlinienüberschreibung
+    TLS-Policy override
     
   </span>
   
@@ -2618,7 +2616,7 @@
   
   
   <span class="md-ellipsis">
-    IP in Postscreen auf die Whitelist setzen
+    Whitelist IP in Postscreen
     
   </span>
   
@@ -2687,7 +2685,7 @@
   
   
   <span class="md-ellipsis">
-    Verwendung eines externen DNS-Dienstes
+    Using an external DNS service
     
   </span>
   
@@ -2756,7 +2754,7 @@
   
   
   <span class="md-ellipsis">
-    Anpassen/Erweitern von dovecot.conf
+    Customize/Expand dovecot.conf
     
   </span>
   
@@ -2779,7 +2777,7 @@
   
   
   <span class="md-ellipsis">
-    Aktivierung von "any" ACL-Einstellungen
+    Enable "any" ACL settings
     
   </span>
   
@@ -2802,7 +2800,7 @@
   
   
   <span class="md-ellipsis">
-    Löschen der Mails eines Benutzers
+    Expunge a Users mails
     
   </span>
   
@@ -2825,7 +2823,7 @@
   
   
   <span class="md-ellipsis">
-    Volltext Suche (FTS)
+    Full-Text Search
     
   </span>
   
@@ -2848,7 +2846,7 @@
   
   
   <span class="md-ellipsis">
-    Ciphers verstärken
+    Hardening Ciphers
     
   </span>
   
@@ -2871,7 +2869,7 @@
   
   
   <span class="md-ellipsis">
-    IMAP IDLE-Intervall
+    IMAP IDLE interval
     
   </span>
   
@@ -2894,7 +2892,7 @@
   
   
   <span class="md-ellipsis">
-    Verzögertes Löschen (Dovecot Plugin)
+    Lazy Expunge (Dovecot Plugin)
     
   </span>
   
@@ -2940,7 +2938,7 @@
   
   
   <span class="md-ellipsis">
-    Weitere Beispiele mit DOVEADM
+    More Examples with DOVEADM
     
   </span>
   
@@ -2963,7 +2961,7 @@
   
   
   <span class="md-ellipsis">
-    Maildir verschieben (vmail)
+    Move Maildir (vmail)
     
   </span>
   
@@ -2986,7 +2984,7 @@
   
   
   <span class="md-ellipsis">
-    Performance Optimierungen
+    Performance Optimizations
     
   </span>
   
@@ -3009,7 +3007,7 @@
   
   
   <span class="md-ellipsis">
-    Öffentliche Ordner
+    Public folders
     
   </span>
   
@@ -3032,7 +3030,7 @@
   
   
   <span class="md-ellipsis">
-    Statischer Hauptbenutzer
+    Static master user
     
   </span>
   
@@ -3055,7 +3053,7 @@
   
   
   <span class="md-ellipsis">
-    Urlaubsantworten für Catchall-Adressen
+    Vacation replies for catchall addresses
     
   </span>
   
@@ -3124,7 +3122,7 @@
   
   
   <span class="md-ellipsis">
-    Subdomäne webmail.example.org erstellen
+    Create subdomain webmail.example.org
     
   </span>
   
@@ -3147,7 +3145,7 @@
   
   
   <span class="md-ellipsis">
-    Benutzerdefinierte Seiten
+    Custom sites
     
   </span>
   
@@ -3308,7 +3306,7 @@
   
   
   <span class="md-ellipsis">
-    Allgemeine Einstellungen
+    General Settings
     
   </span>
   
@@ -3331,7 +3329,7 @@
   
   
   <span class="md-ellipsis">
-    Anpassungen
+    Tweaks
     
   </span>
   
@@ -3354,7 +3352,7 @@
   
   
   <span class="md-ellipsis">
-    Mit Spamdaten Arbeiten
+    Work with Spam Data
     
   </span>
   
@@ -3377,7 +3375,7 @@
   
   
   <span class="md-ellipsis">
-    Greylisting deaktivieren
+    Disable Greylisting
     
   </span>
   
@@ -3400,7 +3398,7 @@
   
   
   <span class="md-ellipsis">
-    Weitere Module hinzufügen
+    Add Additional Modules
     
   </span>
   
@@ -3492,7 +3490,7 @@
   
   
   <span class="md-ellipsis">
-    Weitere Datenbanken
+    Additional Databases
     
   </span>
   
@@ -3584,7 +3582,7 @@
   
   
   <span class="md-ellipsis">
-    Dockerfiles anpassen
+    Customize Dockerfiles
     
   </span>
   
@@ -3615,7 +3613,7 @@
   
   
   <span class="md-ellipsis">
-    Warum unbound?
+    Why unbound?
     
   </span>
   
@@ -3661,7 +3659,7 @@
   
   
   <span class="md-ellipsis">
-    HTTP auf HTTPS umleiten
+    Redirect HTTP to HTTPS
     
   </span>
   
@@ -3684,7 +3682,7 @@
   
   
   <span class="md-ellipsis">
-    TLS 1.0 und TLS 1.1 wieder aktivieren
+    Re-enable TLS 1.0 and TLS 1.1
     
   </span>
   
@@ -3707,7 +3705,7 @@
   
   
   <span class="md-ellipsis">
-    Skripte vor und nach Aktualisierungen ausführen
+    Run scripts before and after updates
     
   </span>
   
@@ -3748,7 +3746,7 @@
   
   
   <span class="md-ellipsis">
-    Client-Konfiguration
+    Client Configuration
     
   </span>
   
@@ -3759,7 +3757,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
-            Client-Konfiguration
+            Client Configuration
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3775,7 +3773,7 @@
   
   
   <span class="md-ellipsis">
-    Übersicht
+    Overview
     
   </span>
   
@@ -3936,7 +3934,7 @@
   
   
   <span class="md-ellipsis">
-    Manuelle Konfiguration
+    Manual configuration
     
   </span>
   
@@ -3977,7 +3975,7 @@
   
   
   <span class="md-ellipsis">
-    Anwendungen von Drittanbietern (Von der Community verwaltet)
+    Third party apps (community managed)
     
   </span>
   
@@ -3988,7 +3986,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
-            Anwendungen von Drittanbietern (Von der Community verwaltet)
+            Third party apps (community managed)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4027,7 +4025,7 @@
   
   
   <span class="md-ellipsis">
-    Borgmatic-Sicherung
+    Borgmatic Backup
     
   </span>
   
@@ -4288,30 +4286,30 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Inhaltsverzeichnis">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ursache" class="md-nav__link">
+  <a href="#cause" class="md-nav__link">
     <span class="md-ellipsis">
-      Ursache
+      Cause
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mogliche-losungen" class="md-nav__link">
+  <a href="#possible-solutions" class="md-nav__link">
     <span class="md-ellipsis">
-      Mögliche Lösungen
+      Possible solutions
     </span>
   </a>
   
@@ -4336,37 +4334,37 @@
   
 
 
-  <h1>Probleme mit Google Safe Search</h1>
+  <h1>Google SafeBrowsing issues</h1>
 
-<p>Seit einiger Zeit erreichen uns vermehrt Reports, dass die mailcow UI bei einigen Nutzern nicht mehr erreichbar ist. Stattdessen wird eine Google Safe Search Seite angezeigt, die darauf hinweist, dass die Seite als unsicher eingestuft wurde.</p>
-<p>Dies tritt auch dann auf, wenn Sie selber keine Safe Search Filterung für Ihre Webseite aktiviert haben.</p>
+<p>For some time now we have been receiving increasing reports that the mailcow UI is no longer reachable for some users. Instead, a Google SafeBrowsing page is shown stating that the site has been classified as unsafe. </p>
+<p>This can occur even if you have not enabled SafeBrowsing filtering for your site.</p>
 <figure>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Beispielhafte Darstellung der Google Safe Search Seite" src="../../assets/images/troubleshooting/debug-google_safe_search.png"></a></p>
-<figcaption>Beispielhafte Darstellung der Google Safe Search Seite</figcaption>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Sample representation of the Google SafeBrowsing page" src="../../assets/images/troubleshooting/debug-google_safe_browsing.png"></a></p>
+<figcaption>Sample representation of the Google SafeBrowsing page</figcaption>
 </figure>
-<h2 id="ursache">Ursache<a class="headerlink" href="#ursache" title="Permanent link">¶</a></h2>
-<p>Leider ist Google was die Einstufung von Webseiten angeht nicht immer ganz transparent.
-Es gibt verschiedene Gründe, warum eine Webseite als unsicher eingestuft werden kann, z.B.:</p>
+<h2 id="cause">Cause<a class="headerlink" href="#cause" title="Permanent link">¶</a></h2>
+<p>Unfortunately, Google is not always transparent about how websites are classified.
+There are various reasons a site may be marked as unsafe, for example:</p>
 <ul>
-<li>Malware auf der Webseite</li>
-<li>Phishing-Versuche</li>
-<li>Unangemessene Inhalte</li>
+<li>Malware on the site</li>
+<li>Phishing attempts</li>
+<li>Inappropriate content</li>
 </ul>
-<p>Bei mailcow ist es jedoch sehr unwahrscheinlich, dass diese Gründe zutreffen, es sei denn, Ihr Server wurde wirklich kompromittiert.</p>
-<p>Da dies aber auch bei Seiten auftritt die frisch mailcow installiert wurden, liegt die Ursache meist woanders.</p>
-<p>Wir vermuten, dass Google seit einiger Zeit ein neues KI Modell zur erkennung der Safe Search Filterung einsetzt und dieses bei ähnlichen Seiten wie mailcow Installationen (da das Login UI von mailcow eine ähnliche Struktur aufweist pro Server) fälschlicherweise anschlägt.</p>
-<h2 id="mogliche-losungen">Mögliche Lösungen<a class="headerlink" href="#mogliche-losungen" title="Permanent link">¶</a></h2>
+<p>For mailcow, however, these reasons are very unlikely unless your server has actually been compromised.</p>
+<p>Because this also occurs on freshly installed mailcow instances, the cause usually lies elsewhere.</p>
+<p>We suspect that Google has recently deployed a new AI model for SafeBrowsing detection that may falsely flag sites similar to mailcow installations (since the mailcow login UI has a similar structure across servers).</p>
+<h2 id="possible-solutions">Possible solutions<a class="headerlink" href="#possible-solutions" title="Permanent link">¶</a></h2>
 <ol>
-<li>Halten Sie ihre mailcow Installation aktuell, da wir stetig daran arbeiten, bekannte Sicherheitslücken zu schließen.</li>
-<li>Fügen Sie ein Logo zu Ihrer mailcow Installation hinzu, das eindeutig Ihre Organisation oder Ihre Domain repräsentiert. Dies kann helfen, die Vertrauenswürdigkeit Ihrer Seite zu erhöhen.</li>
-<li>Fügen Sie ein Impressum oder einen Footer Text hinzu, dieser hilft auch die Unterscheidung zu anderen mailcow Installationen zu verbessern.</li>
-<li>Kontaktieren Sie den Google Support und bitten Sie um eine Überprüfung Ihrer Seite. Dies kann jedoch einige Zeit in Anspruch nehmen.</li>
+<li>Keep your mailcow installation up to date, as we continuously work to close known security vulnerabilities.</li>
+<li>Add a logo to your mailcow installation that clearly identifies your organization or domain. This can help increase the perceived trustworthiness of your site.</li>
+<li>Add an imprint or footer text; this also helps distinguish your instance from other mailcow installations.</li>
+<li>Contact Google Support and request a review of your site. This may, however, take some time.</li>
 </ol>
 <div class="admonition info">
-<p class="admonition-title">Hinweis</p>
-<p>Es gibt keine Garantie, dass diese Maßnahmen erfolgreich sind, da die Einstufung durch Google automatisiert erfolgt und nicht immer nachvollziehbar ist.
-Es ist jedoch einen Versuch wert, insbesondere wenn Sie mailcow für geschäftliche Zwecke nutzen.</p>
-<p><strong>Seien Sie sich bewusst, dass wir alles in unserer Macht stehende tun, um die Sicherheit und Integrität von mailcow zu gewährleisten.</strong></p>
+<p class="admonition-title">Note</p>
+<p>There is no guarantee these measures will be successful, as Google’s classification is automated and not always explainable.
+Nevertheless, it is worth trying—especially if you use mailcow for business purposes.</p>
+<p><strong>Please be aware that everything possible is being done to ensure the security and integrity of mailcow.</strong></p>
 </div>
 
 
@@ -4385,10 +4383,10 @@ Es ist jedoch einen Versuch wert, insbesondere wenn Sie mailcow für geschäftli
     
       
   <span class="md-source-file__fact">
-    <span class="md-icon" title="Letztes Update">
+    <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="8. Oktober 2025 16:32:04 CEST">2025-10-08 16:32:04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="October 16, 2025 11:50:59 CEST">2025-10-16 11:50:59</span>
   </span>
 
     
@@ -4414,7 +4412,7 @@ Es ist jedoch einen Versuch wert, insbesondere wenn Sie mailcow für geschäftli
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
-  Zurück zum Seitenanfang
+  Back to top
 </button>
         
       </main>
@@ -4500,16 +4498,14 @@ Es ist jedoch einen Versuch wert, insbesondere wenn Sie mailcow für geschäftli
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "content.tooltips", "content.code.copy", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version": "Version ausw\u00e4hlen"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "content.tooltips", "content.code.copy", "search.share", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
-        <script src="../../../assets/javascripts/client.js"></script>
+        <script src="../../assets/javascripts/client.js"></script>
       
-        <script src="../../../js/open_in_new_tab.js"></script>
-      
-        <script src="../../../js/open_in_new_tab.js"></script>
+        <script src="../../js/open_in_new_tab.js"></script>
       
     
   
