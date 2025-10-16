@@ -4111,9 +4111,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#restore-maildir" class="md-nav__link">
+  <a href="#restore-maildir-completely" class="md-nav__link">
     <span class="md-ellipsis">
-      Restore maildir
+      Restore maildir (completely)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restore-maildir-per-mailbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restore maildir (per mailbox)
     </span>
   </a>
   
@@ -4563,9 +4572,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#restore-maildir" class="md-nav__link">
+  <a href="#restore-maildir-completely" class="md-nav__link">
     <span class="md-ellipsis">
-      Restore maildir
+      Restore maildir (completely)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restore-maildir-per-mailbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restore maildir (per mailbox)
     </span>
   </a>
   
@@ -4675,6 +4693,7 @@ recover data from a backup.</p>
 functionality is provided by the <a href="https://github.com/borgmatic-collective/docker-borgmatic">borgmatic Docker image</a>. Check out
 the <code>README</code> in that repository to find out about the other options (such as push notifications) that are available.
 This guide only covers the basics.</p>
+<hr>
 <h2 id="setting-up-borgmatic">Setting up borgmatic<a class="headerlink" href="#setting-up-borgmatic" title="Permanent link">¶</a></h2>
 <h3 id="create-or-amend-docker-composeoverrideyml">Create or amend <code>docker-compose.override.yml</code><a class="headerlink" href="#create-or-amend-docker-composeoverrideyml" title="Permanent link">¶</a></h3>
 <p>In the mailcow-dockerized root folder create or edit <code>docker-compose.override.yml</code> and insert the following
@@ -4831,10 +4850,11 @@ state:</p>
 </div>
 </div>
 </div>
+<hr>
 <h2 id="restoring-from-a-backup">Restoring from a backup<a class="headerlink" href="#restoring-from-a-backup" title="Permanent link">¶</a></h2>
 <p>Restoring a backup assumes you are starting off with a fresh installation of mailcow, and you currently do not have
 any custom data in your maildir or your mailcow database.</p>
-<h3 id="restore-maildir">Restore maildir<a class="headerlink" href="#restore-maildir" title="Permanent link">¶</a></h3>
+<h3 id="restore-maildir-completely">Restore maildir (completely)<a class="headerlink" href="#restore-maildir-completely" title="Permanent link">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Doing this will overwrite files in your maildir! Do not run this unless you actually intend to recover mail
@@ -4864,6 +4884,40 @@ Then you can use the following command to restore the maildir from a backup:</p>
 </div>
 <p>Alternatively you can specify any archive name from the list of archives (see
 <a href="#listing-all-available-archives">Listing all available archives</a>)</p>
+<h3 id="restore-maildir-per-mailbox">Restore maildir (per mailbox)<a class="headerlink" href="#restore-maildir-per-mailbox" title="Permanent link">¶</a></h3>
+<p>It is also possible to restore only a single mailbox from a backup. Suppose you want to restore the mailbox for <code>user@example.com</code>.</p>
+<p>Again, before restoring you must remove the <code>ro</code> flag from the volume in <code>docker-compose.override.yml</code> before proceeding.</p>
+<p>If you used the configuration above, borgmatic stores the backups under mnt/source/vmail/example.com/user/ (in this example for our user <code>user@example.com</code>).</p>
+<p>To restore this mailbox, use the following command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>extract<span class="w"> </span>--path<span class="w"> </span>mnt/source/vmail/example.com/user<span class="w"> </span>--archive<span class="w"> </span>latest
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>extract<span class="w"> </span>--path<span class="w"> </span>mnt/source/vmail/example.com/user<span class="w"> </span>--archive<span class="w"> </span>latest
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>Instead of <code>latest</code> you can also specify any archive name from the list of archives (see <a href="#listing-all-available-archives">Listing all available archives</a>)</p>
+</div>
+<p>Depending on how long ago the original data was deleted, you may need to trigger a reindex of the mailbox via Dovecot so the restored emails appear in your mail client:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@example.com<span class="w"> </span><span class="s1">'*'</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>dovecot-mailcow<span class="w"> </span>doveadm<span class="w"> </span>index<span class="w"> </span>-u<span class="w"> </span>user@example.com<span class="w"> </span><span class="s1">'*'</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="restore-mysql">Restore MySQL<a class="headerlink" href="#restore-mysql" title="Permanent link">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -4871,7 +4925,7 @@ Then you can use the following command to restore the maildir from a backup:</p>
 intend to recover the mailcow database from a backup.</p>
 </div>
 <p>To restore the MySQL database from the latest archive use this command:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">docker compose (Plugin)</label><label for="__tabbed_5_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">docker compose (Plugin)</label><label for="__tabbed_7_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>restore<span class="w"> </span>--archive<span class="w"> </span>latest
@@ -4889,7 +4943,7 @@ intend to recover the mailcow database from a backup.</p>
 <p>After restoring you need to restart mailcow. If you disabled SELinux enforcing mode now would be a good time to
 re-enable it.</p>
 <p>To restart mailcow use the follwing command:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">docker compose (Plugin)</label><label for="__tabbed_6_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><input id="__tabbed_8_2" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">docker compose (Plugin)</label><label for="__tabbed_8_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4903,9 +4957,10 @@ re-enable it.</p>
 </div>
 <p>If you use SELinux this will also trigger the re-labeling of all files in your vmail volume. Be patient, as this may
 take a while if you have lots of files.</p>
+<hr>
 <h2 id="useful-commands">Useful commands<a class="headerlink" href="#useful-commands" title="Permanent link">¶</a></h2>
 <h3 id="manual-archiving-run-with-debugging-output">Manual archiving run (with debugging output)<a class="headerlink" href="#manual-archiving-run-with-debugging-output" title="Permanent link">¶</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">docker compose (Plugin)</label><label for="__tabbed_7_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio"><input id="__tabbed_9_2" name="__tabbed_9" type="radio"><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>-v<span class="w"> </span><span class="m">2</span>
@@ -4918,7 +4973,7 @@ take a while if you have lots of files.</p>
 </div>
 </div>
 <h3 id="listing-all-available-archives">Listing all available archives<a class="headerlink" href="#listing-all-available-archives" title="Permanent link">¶</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><input id="__tabbed_8_2" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">docker compose (Plugin)</label><label for="__tabbed_8_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio"><input id="__tabbed_10_2" name="__tabbed_10" type="radio"><div class="tabbed-labels"><label for="__tabbed_10_1">docker compose (Plugin)</label><label for="__tabbed_10_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span>list
@@ -4933,7 +4988,7 @@ take a while if you have lots of files.</p>
 <h3 id="break-lock">Break lock<a class="headerlink" href="#break-lock" title="Permanent link">¶</a></h3>
 <p>When borg is interrupted during an archiving run it will leave behind a stale lock that needs to be cleared before any
 new operations can be performed:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio"><input id="__tabbed_9_2" name="__tabbed_9" type="radio"><div class="tabbed-labels"><label for="__tabbed_9_1">docker compose (Plugin)</label><label for="__tabbed_9_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio"><input id="__tabbed_11_2" name="__tabbed_11" type="radio"><div class="tabbed-labels"><label for="__tabbed_11_1">docker compose (Plugin)</label><label for="__tabbed_11_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borgmatic<span class="w"> </span><span class="k">break</span>-lock
@@ -4952,7 +5007,7 @@ key files are generated when you initialize the repository. The <code>repokey</c
 repository, so a manual backup isn't as essential.</p>
 <p>Note that in either case you also must have the passphrase to decrypt any archives.</p>
 <p>To fetch the keyfile run:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio"><input id="__tabbed_10_2" name="__tabbed_10" type="radio"><div class="tabbed-labels"><label for="__tabbed_10_1">docker compose (Plugin)</label><label for="__tabbed_10_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio"><input id="__tabbed_12_2" name="__tabbed_12" type="radio"><div class="tabbed-labels"><label for="__tabbed_12_1">docker compose (Plugin)</label><label for="__tabbed_12_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">BORG_RSH</span><span class="o">=</span><span class="s2">"ssh -p 23"</span><span class="w"> </span>borgmatic-mailcow<span class="w"> </span>borg<span class="w"> </span>key<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--paper<span class="w"> </span>uXXXXX@uXXXXX.your-storagebox.de:mailcow
@@ -4985,7 +5040,7 @@ repository, so a manual backup isn't as essential.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 13, 2025 09:12:15 CEST">2025-05-13 09:12:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="October 16, 2025 15:39:56 CEST">2025-10-16 15:39:56</span>
   </span>
 
     
