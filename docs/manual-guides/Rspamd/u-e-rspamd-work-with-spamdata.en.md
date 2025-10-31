@@ -53,36 +53,41 @@ cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xargs redis-cli del'
-    docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
+    source mailcow.conf
+    docker compose exec redis-mailcow sh -c 'redis-cli -a ${REDISPASS} --scan --pattern BAYES_* | xargs redis-cli -a ${REDISPASS} del'
+    docker compose exec redis-mailcow sh -c 'redis-cli -a ${REDISPASS} --scan --pattern RS* | xargs redis-cli -a ${REDISPASS} del'
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern BAYES_* | xargs redis-cli del'
-    docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern RS* | xargs redis-cli del'
+    source mailcow.conf
+    docker-compose exec redis-mailcow sh -c 'redis-cli -a ${REDISPASS} --scan --pattern BAYES_* | xargs redis-cli -a ${REDISPASS} del'
+    docker-compose exec redis-mailcow sh -c 'redis-cli -a ${REDISPASS} --scan --pattern RS* | xargs redis-cli -a ${REDISPASS} del'
     ```
 
 ### Reset Neural data
 === "docker compose (Plugin)"
 
     ``` bash
-    docker compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs redis-cli del'
+    source mailcow.conf
+    docker compose exec redis-mailcow sh -c 'redis-cli -a ${REDISPASS} --scan --pattern rn_* | xargs redis-cli -a ${REDISPASS} del'
     ```
 
 === "docker-compose (Standalone)"
 
     ``` bash
-    docker-compose exec redis-mailcow sh -c 'redis-cli --scan --pattern rn_* | xargs redis-cli del'
+    source mailcow.conf
+    docker-compose exec redis-mailcow sh -c 'redis-cli -a ${REDISPASS} --scan --pattern rn_* | xargs redis-cli -a ${REDISPASS} del'
     ```
 
 ### Reset Fuzzy data
 === "docker compose (Plugin)"
 
     ``` bash
+    source mailcow.conf
     # We need to enter the redis-cli first:
-    docker compose exec redis-mailcow redis-cli
+    docker compose exec redis-mailcow redis-cli -a ${REDISPASS}
     # In redis-cli:
     127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
     ```
@@ -90,8 +95,9 @@ cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
 === "docker-compose (Standalone)"
 
     ``` bash
+    source mailcow.conf
     # We need to enter the redis-cli first:
-    docker-compose exec redis-mailcow redis-cli
+    docker-compose exec redis-mailcow redis-cli -a ${REDISPASS}
     # In redis-cli:
     127.0.0.1:6379> EVAL "for i, name in ipairs(redis.call('KEYS', ARGV[1])) do redis.call('DEL', name); end" 0 fuzzy*
     ```
