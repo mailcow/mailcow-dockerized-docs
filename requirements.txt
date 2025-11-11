@@ -1,4 +1,4 @@
-mkdocs-material==9.6.23
+mkdocs-material==9.7.0
 mkdocs-redirects==1.2.2
 mkdocs-glightbox==0.5.2
 pygments==2.19.2
