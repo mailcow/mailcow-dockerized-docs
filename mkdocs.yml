@@ -126,6 +126,7 @@ nav:
     - 'Resend Quarantine Notifications': 'troubleshooting/debug-resend-quarantine-notifications.md'
     - 'Reset Passwords (incl. SQL)': 'troubleshooting/debug-reset_pw.md'
     - 'Reset TLS certificates': 'troubleshooting/debug-reset_tls.md'
+    - 'Use latest SOGo Nightly build': 'troubleshooting/debug-sogo_nightly.md'
   - 'Manual/Guides/Examples':
     - 'mailcow UI':
       - 'Blacklist / Whitelist': 'manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl.md'
@@ -287,6 +288,7 @@ plugins:
               'Resend Quarantine Notifications' : 'Erneutes Senden von Quarantäne-Benachrichtigungen'
               'Reset Passwords (incl. SQL)': 'Passwörter zurücksetzen (inkl. SQL)'
               'Reset TLS certificates': 'TLS-Zertifikate zurücksetzen'
+              'Use latest SOGo Nightly build': 'Nutzen der neuesten SOGo Nightly Version'
               ### Manual/Guides/Examples Section
               'Manual/Guides/Examples': 'Anleitungen/Beispiele'
                 ### mailcow UI Subsection
