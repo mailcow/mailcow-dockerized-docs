@@ -472,6 +472,7 @@ plugins:
         'unauthenticated-relaying.md': 'manual-guides/Postfix/u_e-postfix-unauthenticated-relaying.en.md'
         'uninstall.md': 'maintenance/deinstall.en.md'
         'update.md': 'maintenance/update.en.md'
+        'sogo-nightly.md': 'troubleshooting/debug-sogo_nightly.en.md'
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
       lang:
