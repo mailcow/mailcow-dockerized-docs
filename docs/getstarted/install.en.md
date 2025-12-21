@@ -220,7 +220,7 @@ networks:
 
 ### No IPv6 on the Host System
 
-Disable IPv6 for the mailcow network if your host system does not support IPv6. More information can be found [here](../post_installation/firststeps-disable_ipv6.de.md).
+Disable IPv6 for the mailcow network if your host system does not support IPv6. More information can be found [here](../post_installation/firststeps-disable_ipv6.en.md).
 
 ---
 
