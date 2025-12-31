@@ -142,6 +142,7 @@ nav:
       - 'Temporary email aliases': 'manual-guides/mailcow-UI/u_e-mailcow_ui-spamalias.md'
       - 'Two-Factor Authentication': 'manual-guides/mailcow-UI/u_e-mailcow_ui-tfa.md'
       - 'WebAuthn / FIDO2': 'manual-guides/mailcow-UI/u_e-mailcow_ui-fido.md'
+      - 'SMTP API': 'manual-guides/mailcow-UI/u_e-mailcow_ui-smtp_api.md'
       - 'LDAP': 'manual-guides/mailcow-UI/u_e-mailcow_ui-ldap.md'
       - 'Keycloak': 'manual-guides/mailcow-UI/u_e-mailcow_ui-keycloak.md'
       - 'Generic-OIDC': 'manual-guides/mailcow-UI/u_e-mailcow_ui-generic-oidc.md'
