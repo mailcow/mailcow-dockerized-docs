@@ -39,9 +39,9 @@ Use the API key in the `X-API-Key` header for all requests.
 | `reply_to` | string | Reply-to email address |
 | `attachments` | array | List of attachment objects |
 | `smtp_host` | string | SMTP host (default: postfix-mailcow) |
-| `smtp_port` | integer | SMTP port (default: 25) |
-| `smtp_user` | string | SMTP username (default: from address) |
-| `password` | string | SMTP password for authentication |
+| `smtp_port` | integer | SMTP port (default: 587 for authenticated) |
+| `smtp_user` | string | SMTP username (required; mailbox) |
+| `password` | string | SMTP password (required; mailbox) |
 
 ### Attachment Format
 
@@ -57,25 +57,9 @@ Each attachment object should contain:
 
 ## Example Requests
 
-### Basic Email (Unauthenticated Internal)
+### Basic Email
 
-For sending via the internal postfix-mailcow container without authentication:
-
-```bash
-curl -X POST "https://mail.example.com/api/v1/send/email" \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: YOUR-API-KEY" \
-  -d '{
-    "from": "sender@example.com",
-    "to": ["recipient@example.com"],
-    "subject": "Test Email",
-    "body": "This is a test email sent via the SMTP API."
-  }'
-```
-
-### Authenticated SMTP
-
-For authenticated SMTP (recommended for production):
+SMTP authentication with mailbox credentials is required:
 
 ```bash
 curl -X POST "https://mail.example.com/api/v1/send/email" \
@@ -160,14 +144,11 @@ curl -X POST "https://mail.example.com/api/v1/send/email" \
 
 ## Sender Authorization
 
-The API enforces sender authorization based on user role:
-
-- **Admin users**: Can send from any email address (bypass check)
-- **Non-admin users**: Must be authorized to send from the specified `from` address
+The API enforces sender authorization at mailbox level. SMTP mailbox credentials are required, and the `from` address must be authorized.
 
 ### Authorized Senders
 
-Non-admin users can only send from:
+You can only send from:
 
 1. Their own mailbox address
 2. Aliases that point to their mailbox
@@ -181,6 +162,7 @@ Non-admin users can only send from:
 | Error Code | Description |
 |------------|-------------|
 | `smtp_invalid_from` | Invalid sender email address |
+| `smtp_auth_required` | SMTP username/password required |
 | `smtp_unauthorized_sender` | Not authorized to send from this address |
 | `smtp_missing_recipients` | No recipients specified |
 | `smtp_invalid_recipient` | Invalid recipient email address |
