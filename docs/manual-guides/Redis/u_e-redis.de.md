@@ -15,6 +15,13 @@ Um sich mit dem redis cli zu verbinden, führen Sie aus:
     docker-compose exec redis-mailcow redis-cli
     ```
 
+!!! Info
+    Wenn $REDISPASS in mailcow.conf gesetzt ist sollten die Befehle wie hier am besipiel gezeigt angepasst werden.
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
+
 ### Fehlersuche
 
 Hier sind einige nützliche Befehle für den redis-cli zur Fehlersuche:

@@ -13,6 +13,7 @@ Sie können auch die Web-UI von Rspamd verwenden, um Ham und/oder Spam zu lernen
 
 ### Spam oder Ham aus bestehendem Verzeichnis lernen
 
+
 Sie können einen Einzeiler verwenden, um Mails im Klartextformat (unkomprimiert) zu lernen:
 === "docker compose (Plugin)"
 
@@ -48,6 +49,13 @@ Sie müssen die Schlüssel in Redis löschen, um die gelernten Daten zurückzuse
 # Es ist besser, Redis zu stoppen, bevor Sie die Datei kopieren.
 cp /var/lib/docker/volumes/mailcowdockerized_redis-vol-1/_data/dump.rdb /root/
 ```
+
+!!! Info
+    Wenn $REDISPASS in mailcow.conf gesetzt ist sollten die Befehle wie hier am besipiel gezeigt angepasst werden.
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
 
 ### Bayes-Daten zurücksetzen
 === "docker compose (Plugin)"
