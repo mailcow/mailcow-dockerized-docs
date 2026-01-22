@@ -1,6 +1,6 @@
-# Mailcow Logs Viewer
+# mailcow Logs Viewer
 
-Ein modernes, selbst gehostetes Dashboard zur Anzeige und Analyse von Mailcow-Mailserver-Logs. Entwickelt für Systemadministratoren und Techniker, die schnellen Zugriff auf den Mail-Zustellstatus, Spam-Analysen und Authentifizierungsfehler benötigen.
+Ein modernes, selbst gehostetes Dashboard zur Anzeige und Analyse von mailcow-Mailserver-Logs. Entwickelt für Systemadministratoren und Techniker, die schnellen Zugriff auf den Mail-Zustellstatus, Spam-Analysen und Authentifizierungsfehler benötigen.
 
 ## Funktionen
 
@@ -21,7 +21,7 @@ Sie können den Logs Viewer einfach mit Docker Compose ausführen.
 
 2.  Laden Sie die Dateien [`docker-compose.yml`](https://github.com/ShlomiPorush/mailcow-logs-viewer/blob/main/docker-compose.yml) und [`env.example`](https://github.com/ShlomiPorush/mailcow-logs-viewer/blob/main/env.example) aus dem Repository herunter.
 
-3.  Konfigurieren Sie Ihre `.env`-Datei mit Ihrer Mailcow-URL und dem API-Schlüssel.
+3.  Konfigurieren Sie Ihre `.env`-Datei mit Ihrer mailcow-URL und dem API-Schlüssel.
 
 4.  Starten Sie den Container:
 
