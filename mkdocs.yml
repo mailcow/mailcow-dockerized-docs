@@ -212,7 +212,7 @@ nav:
     - 'Exchange Hybrid Setup': 'third_party/exchange_onprem/third_party-exchange_onprem.md'
     - 'Gitea': 'third_party/gitea/third_party-gitea.md'
     - 'Gogs': 'third_party/gogs/third_party-gogs.md'
-    - 'Mailcow Logs Viewer': 'third_party/mailcow-logs-viewer/third_party-mailcow-logs-viewer.md'
+    - 'mailcow Logs Viewer': 'third_party/mailcow-logs-viewer/third_party-mailcow-logs-viewer.md'
     - 'Mailman 3': 'third_party/mailman3/third_party-mailman3.md'
     - 'Mailpiler Integration': 'third_party/mailpiler/third_party-mailpiler_integration.md'
     - 'Nextcloud': 'third_party/nextcloud/third_party-nextcloud.md'
