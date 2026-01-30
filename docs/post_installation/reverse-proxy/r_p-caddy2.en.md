@@ -66,3 +66,27 @@ This script could be called as a cronjob every hour:
 ```bash
 0 * * * * /bin/bash /path/to/script/deploy-certs.sh  >/dev/null 2>&1
 ```
+
+Alternatively, if you are using Caddy as an external reverse proxy and do not wish for it to manage the certs for Mailcow, you may include a line to pass through the ACME challenges to mailcow-acme to allow it to manage certificates.
+
+``` hl_lines="1 3 13"
+
+MAILCOW_HOSTNAME autodiscover.MAILCOW_HOSTNAME autoconfig.MAILCOW_HOSTNAME {
+        log {
+                output file /var/log/caddy/MAILCOW_HOSTNAME.log {
+                        roll_disabled
+                        roll_size 512M
+                        roll_uncompressed
+                        roll_local_time
+                        roll_keep 3
+                        roll_keep_for 48h
+                }
+        }
+
+        handle /.well-known/acme-challenge* {
+            root * /acme
+        }
+
+        reverse_proxy 127.0.0.1:HTTP_BIND
+}
+```
