@@ -14,7 +14,7 @@ frontend https-in
 
   acl mailcow_acme path -i -m beg /.well-known/
 
-  redirect scheme https unless { ssl_fc || mailcow_acme }
+  redirect scheme https code 301 if !{ ssl_fc } !mailcow_acme
 
   default_backend mailcow
 
