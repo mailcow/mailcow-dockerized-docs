@@ -10,6 +10,11 @@
   Dies gilt nur, wenn der Serveradministrator EAS für Outlook nicht deaktiviert hat. Ist EAS deaktiviert, folgen Sie bitte der Anleitung für Outlook 2007.
 </div>
 
+!!! danger "Warnung"
+    Die ActiveSync-Unterstützung von mailcow funktioniert mit Outlook unter Windows nicht zuverlässig. Wir raten dringend von dieser Einrichtung ab.
+
+    Ab Outlook 2019 (einschließlich Microsoft (Office) 365 und dem neuen Outlook) funktioniert ActiveSync nicht mehr mit mailcow. Microsoft hat die Standardauthentifizierung für ActiveSync in diesen Versionen deaktiviert und erfordert nun OAuth2 – eine Methode, die mit mailcow nicht kompatibel ist.
+
 Um EAS manuell einzurichten, starten Sie den alten Assistenten über `C:\Program Files (x86)\Microsoft Office\root\Office16\OLCFG.EXE`. Wenn die Anwendung startet, fahren Sie mit Schritt 4 der Anleitung für Outlook 2013 fort. Sollte sich die Anwendung nicht öffnen lassen, deaktivieren Sie den [vereinfachten Kontoerstellungs-Assistenten](https://support.microsoft.com/en-us/help/3189194/how-to-disable-simplified-account-creation-in-outlook) und verwenden Sie die Anleitung für Outlook 2013.
 
 1. Starten Sie Outlook.
