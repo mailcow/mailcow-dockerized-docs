@@ -222,12 +222,12 @@ services:
 
 ## Standalone Install
 
-To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose-override.yaml` file:
+To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
 
 ```yaml
 services:
   roundcube-db:
-    image: mariadb:10.11
+    image: mariadb:10.11 # Set to the same version as mysql-mailcow to avoid having two mariadb images
     volumes:
       - roundcube-db:/var/lib/mysql/
     environment:
@@ -252,6 +252,8 @@ services:
       ROUNDCUBEMAIL_DB_USER: roundcube
       ROUNDCUBEMAIL_DB_PASSWORD: ${DBROUNDCUBE}
       ROUNDCUBEMAIL_DB_NAME: roundcubemail
+      ROUNDCUBEMAIL_SMTP_USER: '%u'
+      ROUNDCUBEMAIL_SMTP_PASS: '%p'
       ROUNDCUBEMAIL_DEFAULT_HOST: dovecot
       ROUNDCUBEMAIL_SMTP_SERVER: postfix
       ROUNDCUBEMAIL_SMTP_PORT: 588
@@ -267,8 +269,11 @@ services:
       # Create custom configs beyond Environment Variables here
       - ./data/rc/config:/var/roundcube/config
     depends_on:
-      - roundcube-db
+      - unbound-mailcow
+      - php-fpm-mailcow
       - dovecot-mailcow
+      - postfix-mailcow
+      - roundcube-db
     restart: unless-stopped
     networks:
       mailcow-network:
@@ -282,16 +287,16 @@ volumes:
 ### Webserver configuration
 
 The roundcube directory includes some locations that we do not want to serve to web users. We add a configuration
-extension to nginx to only expose the public directory of roundcube.
+with a extension to nginx to only expose the public directory of roundcube.
 
 ```bash
 cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
 location /rc/ {
     proxy_pass http://roundcube:80/;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host \$host;
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto \$scheme;
     proxy_redirect off;
 }
 EOCONFIG
@@ -315,7 +320,7 @@ Remember to also add them to your `mailcow.conf` file.
 LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 2> /dev/null | head -c 28
 ```
 
-### Allow plaintext authentication for the php-fpm container without using TLS
+### Allow plaintext authentication without using TLS
 
 We need to allow plaintext authentication in dovecot over unencrypted connection (inside the container network), which
 is per default mailcow installation only possible for the SOGo container for the very same purpose. Afterwards restart
@@ -630,6 +635,110 @@ Copy the contents of the following files from this [Snippet](https://gitlab.com/
 
 - `data/web/inc/lib/RoundcubeAutoLogin.php`
 - `data/web/rc-auth.php`
+
+### Let users authenticate with mailcow (oauth)
+
+First, we have to define some placeholders:
+
+- roundcube.example.com
+  (can also be hosted on the `/rc` subpath on you mailcow host)
+- mail.example.com (your mailcow host)
+
+In mailcow UI under `Admin > Oauth2 Apps`, create a new oauth2 App.
+Set the redirect uri to `https://roundcube.example.com/index.php/login/oauth`.
+Take note of the Client ID and SECRET.
+
+Create a Roundcube config file under `./data/rc/config/config.oauth.inc.php`.
+`./data/rc/config/config.oauth.inc.php`
+
+```php
+<?php
+// ----------------------------------
+// OAuth
+// ----------------------------------
+
+// Enable OAuth2 by defining a provider. Use 'generic' here
+$config['oauth_provider'] = 'generic';
+
+// Provider name to be displayed on the login button
+$config['oauth_provider_name'] = 'SSO';
+
+// Mandatory: OAuth client ID for your Roundcube installation
+// Get this from the oauth2 app in the mailcow UI
+$config['oauth_client_id'] = 'your_client_id';
+
+// Mandatory: OAuth client secret
+// Get this from the oauth2 app in the mailcow UI
+$config['oauth_client_secret'] = 'your_client_secret';
+
+// Mandatory: URI for OAuth user authentication (redirect)
+$config['oauth_auth_uri'] = 'https://mail.example.com/oauth/authorize';
+
+// Mandatory: Endpoint for OAuth authentication requests (server-to-server)
+$config['oauth_token_uri'] = 'https://mail.example.com/oauth/token';
+
+// Optional: Endpoint to query user identity if not provided in auth response
+$config['oauth_identity_uri'] = 'https://mail.example.com/oauth/profile';
+
+// Optional: disable SSL certificate check on HTTP requests to OAuth server
+// See http://docs.guzzlephp.org/en/stable/request-options.html#verify for possible values
+$config['oauth_verify_peer'] = false;
+
+// Mandatory: OAuth scopes to request (space-separated string)
+$config['oauth_scope'] = 'profile';
+
+// Optional: additional query parameters to send with login request (hash array)
+$config['oauth_auth_parameters'] = [];
+
+// Optional: array of field names used to resolve the username within the identity information
+$config['oauth_identity_fields'] = ['email'];
+
+// Boolean: automatically redirect to OAuth login when opening Roundcube without a valid session
+$config['oauth_login_redirect'] = false;
+```
+
+Load the newly created config file by adding
+
+```php
+include(__DIR__ . "/config.oauth.inc.php");
+```
+
+At the bottom of `/config.inc.php`.
+
+You will now be able to see a `SSO` button on your Roundcube login page.
+
+To setup Dovecot to accept `XOAUTH` as an Authentication method, create a file under `./data/conf/dovecot/extra.conf`.
+`./data/conf/dovecot/extra.conf`
+
+```
+auth_mechanisms = $auth_mechanisms oauthbearer oauth
+
+passdb {
+  driver = oauth2
+  mechanisms = xoauth2
+  args = /etc/dovecot/dovecot-oauth2.conf.ext
+}
+
+userdb {
+  driver = static
+  args = uid=vmail gid=vmail home=/var/vmail/%d/%n
+}
+```
+
+Now create `./data/conf/dovecot/dovecot-oauth2.conf.ext`.
+`./data/conf/dovecot/dovecot-oauth2.conf.ext`
+
+```
+grant_url = https://mail.example.com/oauth/token
+client_id = your_client_id
+client_secret = your_client_secret
+introspection_url = https://mail.example.com/oauth/profile
+introspection_mode = auth
+use_grant_password = no
+username_attribute = email
+```
+
+Make sure to restart Dovecot to load the new configuration.
 
 ## Finish installation
 
