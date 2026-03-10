@@ -2,6 +2,9 @@
 
 Der "acme-mailcow" Container wird versuchen, ein LE-Zertifikat für `${MAILCOW_HOSTNAME}`, `autodiscover.ADDED_MAIL_DOMAIN` und `autoconfig.ADDED_MAIL_DOMAIN` zu erhalten.
 
+!!! info "Wildcard-Zertifikate oder Firewall-Einschränkungen?"
+    Falls Sie Wildcard-Zertifikate (`*.example.de`) benötigen oder Ihr mailcow-Server nicht auf Port 80 erreichbar ist, verwenden Sie stattdessen die **[DNS-01-Challenge](firststeps-ssl-dns.md)** anstelle der auf dieser Seite beschriebenen HTTP-01-Methode. DNS-01 funktioniert ohne Port 80 und unterstützt echte Wildcard-Zertifikate.
+
 !!! warning "Warnung"
     mailcow **muss** auf Port 80 verfügbar sein, damit der acme-Client funktioniert. Unsere Reverse Proxy Beispielkonfigurationen decken das ab. Sie können auch jeden externen ACME-Client (z.B. certbot) verwenden, um Zertifikate zu erhalten, aber Sie müssen sicherstellen, dass sie an den richtigen Ort kopiert werden und ein Post-Hook die betroffenen Container neu lädt. Weitere Informationen finden Sie in der Reverse Proxy-Dokumentation.
 
@@ -54,6 +57,14 @@ ADDITIONAL_SAN=smtp.*,cert1.example.com,cert2.example.org,whatever.*
 Jeder Name wird anhand seiner IPv6-Adresse oder - wenn IPv6 in Ihrer Domäne nicht konfiguriert ist - anhand seiner IPv4-Adresse überprüft.
 
 Ein Wildcard-Name wie `smtp.*` wird versuchen, ein smtp.DOMAIN_NAME SAN für jede zu mailcow hinzugefügte Domain zu erhalten.
+
+!!! note "Wildcard-Verhalten unterscheidet sich je nach Challenge-Typ"
+    Wildcard-Namen in `ADDITIONAL_SAN` funktionieren unterschiedlich je nach Challenge-Methode:
+
+    - **HTTP-01 (diese Seite):** `smtp.*` erstellt `smtp.DOMAIN` für jede zu mailcow hinzugefügte Domain (z.B. `smtp.example.de`, `smtp.andere.de`)
+    - **DNS-01:** Unterstützt echte Wildcards wie `*.example.de`, die alle Subdomains abdecken
+
+    Für echte Wildcard-Zertifikate siehe [SSL mit DNS-01-Challenge](firststeps-ssl-dns.md).
 
 Führen Sie den folgenden Befehl aus, um betroffene Container automatisch neu zu erstellen:
 

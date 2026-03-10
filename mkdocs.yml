@@ -92,6 +92,7 @@ nav:
       - 'Recover accidentally deleted data': 'backup_restore/b_n_r-accidental_deletion.md'
   - 'Post Installation Tasks':
     - 'Advanced SSL': 'post_installation/firststeps-ssl.md'
+    - 'SSL with DNS Challenge': 'post_installation/firststeps-ssl-dns.md'
     - 'Authorize Watchdog and Bounce Mails': 'post_installation/firststeps-authorize_watchdog_and_bounces.md'
     - 'Disable IPv6': 'post_installation/firststeps-disable_ipv6.md'
     - 'DMARC Reporting': 'post_installation/firststeps-dmarc_reporting.md'
@@ -260,6 +261,7 @@ plugins:
               ### Post Installation Tasks Section
               'Post Installation Tasks': 'Post-Installationsaufgaben'
               'Advanced SSL': 'Erweitertes SSL'
+              'SSL with DNS Challenge': 'SSL mit DNS-Challenge'
               'Authorize Watchdog and Bounce Mails': 'Authorisieren der Watchdog und Bounce Mails'
               'Disable IPv6': 'IPv6 deaktivieren'
               'IP bindings': 'IP-Bindings'
@@ -395,6 +397,7 @@ plugins:
         'firststeps-rp.md': 'post_installation/reverse-proxy/r_p.en.md'
         'firststeps-snat.md': 'post_installation/firststeps-snat.en.md'
         'firststeps-ssl.md': 'post_installation/firststeps-ssl.en.md'
+        'firststeps-ssl-dns.md': 'post_installation/firststeps-ssl-dns.en.md'
         'firststeps-sync_jobs_migration.md': 'post_installation/firststeps-sync_jobs_migration.en.md'
         'deinstall.md': 'maintenance/deinstall.en.md'
         'install.md': 'getstarted/install.en.md'
