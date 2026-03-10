@@ -96,7 +96,7 @@ Wenn Sie an Statistiken interessiert sind, können Sie sich zusätzlich bei eine
 
 Es ist erwähnenswert, dass die folgenden Vorschläge keine umfassende Liste aller verfügbaren Dienste und Tools sind, sondern nur eine kleine Auswahl der vielen Möglichkeiten.
 
-- [Postmaster Tool](https://gmail.com/postmaster)
+- [Postmaster Tool](https://postmaster.google.com/v2/manage_domains)
 - [parsedmarc](https://github.com/domainaware/parsedmarc) (selbst gehostet)
 - [Fraudmarc](https://fraudmarc.com/)
 - [Postmark](https://dmarc.postmarkapp.com)
