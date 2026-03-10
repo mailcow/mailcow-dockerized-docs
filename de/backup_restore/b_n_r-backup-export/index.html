@@ -885,10 +885,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-via-webdav-sftp" class="md-nav__link">
+  <a href="#export-via-webdav-ftpsftp-nas-und-s3-v3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export via WebDAV / sFTP
+        Export via WebDAV, FTP/SFTP, NAS und S3 (V3)
       
     </span>
   </a>
@@ -5271,10 +5271,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#export-via-webdav-sftp" class="md-nav__link">
+  <a href="#export-via-webdav-ftpsftp-nas-und-s3-v3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Export via WebDAV / sFTP
+        Export via WebDAV, FTP/SFTP, NAS und S3 (V3)
       
     </span>
   </a>
@@ -5317,15 +5317,18 @@
 <p>Borgmatic ist eine ausgezeichnete Lösung, um Backups auf Ihrem mailcow-Setup durchzuführen. Es bietet eine sichere Verschlüsselung Ihrer Daten und ist äußerst einfach einzurichten.</p>
 <p>Darüber hinaus ist die Funktion zum Export von Backups bereits integriert.</p>
 <p>Weitere Informationen zum Backup und Export mit Borgmatic finden Sie im Kapitel <a href="../../third_party/borgmatic/third_party-borgmatic/">Borgmatic Backup</a>.</p>
-<h4 id="export-via-webdav-sftp">Export via WebDAV / sFTP<a class="headerlink" href="#export-via-webdav-sftp" title="Permanent link">¶</a></h4>
-<p>Mit dem Backup-Skript <a href="https://github.com/the1andoni/mailcow-backupV2">mailcow-backup.sh</a> können Backups auch per FTP oder WebDAV exportiert werden.</p>
+<h4 id="export-via-webdav-ftpsftp-nas-und-s3-v3">Export via WebDAV, FTP/SFTP, NAS und S3 (V3)<a class="headerlink" href="#export-via-webdav-ftpsftp-nas-und-s3-v3" title="Permanent link">¶</a></h4>
+<p>Die Community-Erweiterung <a href="https://github.com/the1andoni/mailcow-backup">mailcow-backup</a> ermöglicht den automatisierten Export und die Verschlüsselung von Backups auf externe Ziele.</p>
 <div class="admonition warning">
 <p class="admonition-title">Hinweis</p>
-<p>Diese Funktion wird von der Community entwickelt. Der Link verweist auf ein externes (nicht mailcow-eigenes) GitHub-Repository.</p>
+<p>Diese Funktion wird von der Community entwickelt. Der Link verweist auf ein externes GitHub-Repository.</p>
 </div>
-<p>Das Skript sammelt mithilfe der mailcow-eigenen Backup-Funktion alle erforderlichen Daten und verpackt diese in ein komprimiertes Verzeichnis.</p>
-<p>Für die Einrichtung der Backups wird empfohlen, die Dokumentation des entsprechenden Repositories zu konsultieren.</p>
-<p>Das Skript wird aktiv weiterentwickelt und um zusätzliche Funktionen ergänzt. Es wird grundsätzlich empfohlen, bei der Nutzung von FTP die Backups über TLS-Zertifikate zu exportieren.</p>
+<p><strong>Funktionen der Version 3:</strong>
+* <strong>Ziele:</strong> Unterstützung für WebDAV, FTP/SFTP, NAS und S3-Cloud-Speicher.
+* <strong>Sicherheit:</strong> Optionale Backup-Verschlüsselung und Nutzung gesicherter Protokolle.
+* <strong>Automatisierung:</strong> Einfache Integration via Cronjob durch modulare Skripte.</p>
+<p>Die Einrichtung und Konfiguration sind detailliert im <a href="https://github.com/the1andoni/mailcow-backup">Repository</a> beschrieben.</p>
+<p>Das Skript wird aktiv weiterentwickelt und um zusätzliche Funktionen ergänzt. Es wird grundsätzlich empfohlen, bei der Nutzung von FTP die Backups über TLS-Zertifikate zu exportieren (SFTP).</p>
 
 
 
@@ -5346,7 +5349,7 @@
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="30. April 2025 15:26:39 CEST">2025-04-30 15:26:39</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="10. März 2026 09:49:14 CET">2026-03-10 09:49:14</span>
   </span>
 
     
