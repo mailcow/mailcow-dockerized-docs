@@ -14,14 +14,17 @@ Darüber hinaus ist die Funktion zum Export von Backups bereits integriert.
 
 Weitere Informationen zum Backup und Export mit Borgmatic finden Sie im Kapitel [Borgmatic Backup](../third_party/borgmatic/third_party-borgmatic.md).
 
-#### Export via WebDAV / sFTP
-Mit dem Backup-Skript [mailcow-backup.sh](https://github.com/the1andoni/mailcow-backupV2) können Backups auch per FTP oder WebDAV exportiert werden.
+#### Export via WebDAV, FTP/SFTP, NAS und S3 (V3)
+Die Community-Erweiterung [mailcow-backup](https://github.com/the1andoni/mailcow-backup) ermöglicht den automatisierten Export und die Verschlüsselung von Backups auf externe Ziele.
 
 !!! warning "Hinweis"
-    Diese Funktion wird von der Community entwickelt. Der Link verweist auf ein externes (nicht mailcow-eigenes) GitHub-Repository.
+    Diese Funktion wird von der Community entwickelt. Der Link verweist auf ein externes GitHub-Repository.
 
-Das Skript sammelt mithilfe der mailcow-eigenen Backup-Funktion alle erforderlichen Daten und verpackt diese in ein komprimiertes Verzeichnis.
+**Funktionen der Version 3:**
+* **Ziele:** Unterstützung für WebDAV, FTP/SFTP, NAS und S3-Cloud-Speicher.
+* **Sicherheit:** Optionale Backup-Verschlüsselung und Nutzung gesicherter Protokolle.
+* **Automatisierung:** Einfache Integration via Cronjob durch modulare Skripte.
 
-Für die Einrichtung der Backups wird empfohlen, die Dokumentation des entsprechenden Repositories zu konsultieren.
+Die Einrichtung und Konfiguration sind detailliert im [Repository](https://github.com/the1andoni/mailcow-backup) beschrieben.
 
-Das Skript wird aktiv weiterentwickelt und um zusätzliche Funktionen ergänzt. Es wird grundsätzlich empfohlen, bei der Nutzung von FTP die Backups über TLS-Zertifikate zu exportieren.
+Das Skript wird aktiv weiterentwickelt und um zusätzliche Funktionen ergänzt. Es wird grundsätzlich empfohlen, bei der Nutzung von FTP die Backups über TLS-Zertifikate zu exportieren (SFTP).
