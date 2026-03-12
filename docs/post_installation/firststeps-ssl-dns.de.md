@@ -254,6 +254,29 @@ CF_Account_ID="ihre_cloudflare_account_id"
 
 **Szenario:** Deutscher Hosting-Provider, beliebt in Europa
 
+Für Domains die in der neuen "Hetzner Console" verwaltet werden:
+
+**mailcow.conf:**
+
+```bash
+MAILCOW_HOSTNAME=mail.example.de
+ADDITIONAL_SAN=*.example.de
+
+ACME_DNS_CHALLENGE=y
+ACME_DNS_PROVIDER=dns_hetznercloud
+ACME_ACCOUNT_EMAIL=admin@example.de
+```
+
+**data/conf/acme/dns-01.conf:**
+
+```bash
+# Hetzner API Token
+# Erstelle ein Token für Lesen&Schreiben wie hier beschrieben: https://docs.hetzner.com/de/cloud/api/getting-started/generating-api-token/
+HETZNER_TOKEN="your-hetzner-api-token-here"
+```
+
+Für Domains die noch in der alten "DNS Console" verwaltet werden:
+
 **mailcow.conf:**
 
 ```bash
