@@ -96,7 +96,7 @@ If you are interested in statistics, you can additionally register with some of 
 
 It is worth mentioning, that the following suggestions are not a comprehensive list of all services and tools available, but only a small few of the many choices.
 
-- [Postmaster Tool](https://gmail.com/postmaster)
+- [Postmaster Tool](https://postmaster.google.com/v2/manage_domains)
 - [parsedmarc](https://github.com/domainaware/parsedmarc) (self-hosted)
 - [Fraudmarc](https://fraudmarc.com/)
 - [Postmark](https://dmarc.postmarkapp.com)
