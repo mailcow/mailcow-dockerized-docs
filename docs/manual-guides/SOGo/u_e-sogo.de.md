@@ -34,7 +34,7 @@ Nachdem Sie `data/conf/sogo/custom-theme.js` modifiziert und Änderungen an Ihre
 copy([].slice.call(document.styleSheets)
   .map(e => e.ownerNode)
   .filter(e => e.hasAttribute('md-theme-style'))
-  .map(e => e.textInhalt)
+  .map(e => e.textContent)
   .join('\n')
 )
 ```
@@ -49,7 +49,7 @@ copy([].slice.call(document.styleSheets)
 services:
   sogo-mailcow:
     volumes:
-      - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+      - ./data/conf/sogo/custom-theme.css:/usr/local/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
 11\. Führen Sie folgenden Befehl aus:
 === "docker compose (Plugin)"
@@ -102,7 +102,7 @@ und ersetzen Sie es durch:
 ```
 3. Entfernen Sie aus `docker-compose.override.yml` Volume Mount in `sogo-mailcow`:
 ```
-- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+- ./data/conf/sogo/custom-theme.css:/usr/local/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
 4. Führen Sie folgenden Befehl aus:
 === "docker compose (Plugin)"

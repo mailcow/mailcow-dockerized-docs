@@ -49,7 +49,7 @@ copy([].slice.call(document.styleSheets)
 services:
   sogo-mailcow:
     volumes:
-      - ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+      - ./data/conf/sogo/custom-theme.css:/usr/local/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
 
 11\. Run: 
@@ -106,7 +106,7 @@ and replace it with:
 
 3\. remove from `docker-compose.override.yml` volume mount in `sogo-mailcow`:
 ```
-- ./data/conf/sogo/custom-theme.css:/usr/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
+- ./data/conf/sogo/custom-theme.css:/usr/local/lib/GNUstep/SOGo/WebServerResources/css/theme-default.css:z
 ```
 
 4\. Run: 
