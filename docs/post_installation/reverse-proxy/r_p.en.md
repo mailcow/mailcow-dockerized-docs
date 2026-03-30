@@ -53,7 +53,7 @@ Configure your local webserver as reverse proxy using following configuration ex
 - [Apache 2.4](r_p-apache24.md)
 - [Nginx](r_p-nginx.md)
 - [HAProxy](r_p-haproxy.md)
-- [Traefik v2](r_p-traefik2.md)
+- [Traefik v3](r_p-traefik3.md)
 - [Caddy v2](r_p-caddy2.md)
 
 ## Optional: Post-hook script for non-mailcow ACME clients
