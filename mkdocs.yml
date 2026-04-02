@@ -107,6 +107,7 @@ nav:
       - 'HAProxy (community supported)': 'post_installation/reverse-proxy/r_p-haproxy.md'
       - 'Traefik v3 (community supported)': 'post_installation/reverse-proxy/r_p-traefik3.md'
       - 'Caddy v2 (community supported)': 'post_installation/reverse-proxy/r_p-caddy2.md'
+      - 'Pangolin (community supported)': 'post_installation/reverse-proxy/r_p-pangolin.md'
     - 'SNAT': 'post_installation/firststeps-snat.md'
     - 'Sync job migration': 'post_installation/firststeps-sync_jobs_migration.md'
   - 'Models':
@@ -272,6 +273,7 @@ plugins:
               'HAProxy (community supported)': 'HAProxy (von der Community unterstützt)'
               'Traefik v3 (community supported)': 'Traefik v3 (von der Community unterstützt)'
               'Caddy v2 (community supported)': 'Caddy v2 (von der Community unterstützt)'
+              'Pangolin (community supported)': 'Pangolin (von der Community unterstützt)'
               'Sync job migration': 'Migration mit Sync Jobs'
               ### Models Section
               'Models': 'Modelle'

@@ -55,6 +55,7 @@ Konfigurieren Sie Ihren lokalen Webserver als Reverse Proxy anhand folgender Kon
 - [HAProxy](r_p-haproxy.md)
 - [Traefik v2](r_p-traefik2.md)
 - [Caddy v2](r_p-caddy2.md)
+- [Pangolin](r_p-pangolin.md)
 
 ## Optional: Post-Hook-Skript für nicht-mailcow ACME-Clients
 
