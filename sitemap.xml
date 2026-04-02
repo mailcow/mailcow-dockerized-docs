@@ -694,6 +694,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-nginx/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-pangolin/</loc>
+        <lastmod>2026-04-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-pangolin/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-pangolin/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/post_installation/reverse-proxy/r_p-traefik3/</loc>
         <lastmod>2026-04-02</lastmod>
         <changefreq>daily</changefreq>
@@ -1588,6 +1595,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-nginx/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-nginx/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-pangolin/</loc>
+        <lastmod>2026-04-02</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-pangolin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/post_installation/reverse-proxy/r_p-pangolin/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/post_installation/reverse-proxy/r_p-traefik3/</loc>
