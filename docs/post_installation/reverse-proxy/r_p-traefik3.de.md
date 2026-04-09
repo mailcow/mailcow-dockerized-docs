@@ -16,7 +16,7 @@ Dieses Tutorial erklärt, wie man mailcow mit Traefik als Reverse-Proxy einricht
 Traefik übernimmt den gesamten eingehenden Webverkehr und leitet die entsprechenden Anfragen an mailcow weiter. Diese Konfiguration ermöglicht es Traefik:
 
 - SSL-Zertifikate zu verwalten
-- Autodiscover- und Autoconfig-Dienste bereitzustellen
+- Autodiscover-, Autoconfig- und MTA-STS-Dienste bereitzustellen
 - Die Frontend-Benutzeroberfläche zu bedienen
 - ACME-Challenge-Antworten für die Zertifikatsvalidierung des Mail-Servers zu übernehmen
 
@@ -58,6 +58,13 @@ SKIP_LETS_ENCRYPT=y
         mailcow-autodiscover:
           entryPoints: "websecure"
           rule: "(Host(`autodiscover.domain.com`) && Path(`/autodiscover/autodiscover.xml`))"
+          service: mailcow-svc
+          tls:
+            certResolver: cloudflare
+
+        mailcow-mta-sts:
+          entryPoints: "websecure"
+          rule: "(Host(`mta-sts.domain.com`) && Path(`/.well-known/mta-sts.txt`))"
           service: mailcow-svc
           tls:
             certResolver: cloudflare
@@ -107,6 +114,11 @@ SKIP_LETS_ENCRYPT=y
           - traefik.http.routers.mailcow-autoconfig.tls.certresolver=cloudflare
           - traefik.http.routers.mailcow-autoconfig.service=mailcow-svc
 
+          - traefik.http.routers.mailcow-mta-sts.entrypoints=websecure
+          - traefik.http.routers.mailcow-mta-sts.rule=Host(`mta-sts.domain.com`)&& Path(`/.well-known/mta-sts.txt`)
+          - traefik.http.routers.mailcow-mta-sts.tls.certresolver=cloudflare
+          - traefik.http.routers.mailcow-mta-sts.service=mailcow-svc
+
           - traefik.http.routers.mailcow.entrypoints=websecure
           - traefik.http.routers.mailcow.rule=Host(`mail.domain.com`)
           - traefik.http.routers.mailcow.tls=true
@@ -125,7 +137,7 @@ SKIP_LETS_ENCRYPT=y
 
 **Wichtige Hinweise zu dieser Konfiguration:**
 
-- Ersetzen Sie `mail.domain.com`, `autoconfig.domain.com` und `autodiscover.domain.com` durch Ihre tatsächlichen Domainnamen
+- Ersetzen Sie `mail.domain.com`, `autoconfig.domain.com`, `autodiscover.domain.com` und `mta-sts.domain.com` durch Ihre tatsächlichen Domainnamen
 - `entryPoints: "websecure"` - ersetzen Sie dies durch Ihren tatsächlichen Traefik-HTTPS-Entrypoint
 - `certResolver: cloudflare` - ersetzen Sie dies durch Ihren tatsächlichen Zertifikatsresolver
 
