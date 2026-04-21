@@ -1,6 +1,6 @@
 # Ändern des IMAP-IDLE-Intervalls
 ## Was ist das IDLE-Intervall?
-Standardmäßig sendet Dovecot eine "Ich bin noch da"-Benachrichtigung an jeden Client, der eine offene Verbindung mit Dovecot hat, um Mails so schnell wie möglich zu erhalten, ohne sie manuell abzufragen (IMAP PUSH). Diese Benachrichtigung wird durch die Einstellung [`imap_idle_notify_interval`](https://wiki.dovecot.org/Timeouts) gesteuert, die standardmäßig auf 2 Minuten eingestellt ist. 
+Standardmäßig sendet Dovecot eine "Ich bin noch da"-Benachrichtigung an jeden Client, der eine offene Verbindung mit Dovecot hat, um Mails so schnell wie möglich zu erhalten, ohne sie manuell abzufragen (IMAP PUSH). Diese Benachrichtigung wird durch die Einstellung [`imap_idle_notify_interval`](https://doc.dovecot.org/latest/core/admin/timeouts.html) gesteuert, die standardmäßig auf 2 Minuten eingestellt ist.
 
 Ein kurzes Intervall führt dazu, dass der Client viele Nachrichten für diese Verbindung erhält, was für mobile Geräte schlecht ist, da jedes Mal, wenn das Gerät diese Nachricht erhält, die Mailing-App aufwachen muss. Dies kann zu einer unnötigen Entladung der Batterie führen.
 

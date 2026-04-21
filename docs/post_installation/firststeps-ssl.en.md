@@ -215,7 +215,7 @@ Set `ENABLE_SSL_SNI=y` in "mailcow.conf" and recreate "acme-mailcow" with:
     ```
 
 !!! warning
-    Not all clients support SNI, [see Dovecot documentation](https://wiki.dovecot.org/SSL/SNIClientSupport) or [Wikipedia](https://en.wikipedia.org/wiki/Server_Name_Indication#Support).
+    Not all clients support SNI, [see Dovecot documentation](https://doc.dovecot.org/latest/howto/ssl/sni_support.html) or [Wikipedia](https://en.wikipedia.org/wiki/Server_Name_Indication#Support).
     You should make sure these clients use the `MAILCOW_HOSTNAME` for secure connections if you enable this feature.
 
 Here is an example:

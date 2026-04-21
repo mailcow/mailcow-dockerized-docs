@@ -1,4 +1,4 @@
-If you want to delete old mails out of the `.Junk` or `.Trash` folders or maybe delete all read mails that are older than a certain amount of time you may use dovecot's tool doveadm [man doveadm-expunge](https://wiki.dovecot.org/Tools/Doveadm/Expunge).
+If you want to delete old mails out of the `.Junk` or `.Trash` folders or maybe delete all read mails that are older than a certain amount of time you may use dovecot's tool doveadm [man doveadm-expunge](https://doc.dovecot.org/latest/core/man/doveadm-expunge.1.html).
 
 ## The manual way
 
@@ -61,7 +61,7 @@ Delete mails inside a custom folder **inside** a user's inbox that are **not** f
     ```
 
 !!! info
-    For possible [time spans](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_date_specification) or [search keys](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_search_keys) have a look at [man doveadm-search-query](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery)
+    For possible [time spans](https://doc.dovecot.org/latest/core/man/doveadm-search-query.7.html#date-specification) or [search keys](https://doc.dovecot.org/latest/core/man/doveadm-search-query.7.html#search-keys) have a look at [man doveadm-search-query](https://doc.dovecot.org/latest/core/man/doveadm-search-query.7.html)
 
 ## Job scheduler
 

@@ -44,5 +44,5 @@ Zeige **alle Nachrichten** in **beliebigen Ordnern**, die **älter** sind als 30
 doveadm search -u 'mailbox@example.org' mailbox "*" savedbefore 30d
 ```
 
-[^1]:https://wiki.dovecot.org/Tools/Doveadm/Quota
-[^2]:https://wiki.dovecot.org/Tools/Doveadm/Search
+[^1]:https://doc.dovecot.org/latest/core/man/doveadm-quota.1.html
+[^2]:https://doc.dovecot.org/latest/core/man/doveadm-search.1.html
