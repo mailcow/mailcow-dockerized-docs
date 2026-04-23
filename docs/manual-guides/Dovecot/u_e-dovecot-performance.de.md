@@ -1,6 +1,6 @@
 ## maildir_very_dirty_syncs
 
-Dovecot's [`maildir_very_dirty_syncs`](https://wiki.dovecot.org/MailLocation/Maildir#Optimizations) Option ist seit mailcow Release 2023-05 standardmäßig aktiviert. Diese Option kann die Leistung von Postfächern, die sehr große Ordner (über 100.000 E-Mails) enthalten, erheblich verbessern.
+Dovecot's [`maildir_very_dirty_syncs`](https://doc.dovecot.org/latest/core/config/mailbox_formats/maildir.html#maildir_very_dirty_syncs) Option ist seit mailcow Release 2023-05 standardmäßig aktiviert. Diese Option kann die Leistung von Postfächern, die sehr große Ordner (über 100.000 E-Mails) enthalten, erheblich verbessern.
 
 Mit dieser Option wird vermieden, dass beim Laden einer E-Mail das gesamte `cur`-Verzeichnis erneut durchsucht wird. Wenn diese Option deaktiviert ist, geht Dovecot auf Nummer sicher und durchsucht das **gesamte** `cur`-Verzeichnis (vergleichbar mit dem Ausführen eines `ls`), um zu prüfen, ob diese bestimmte E-Mail berührt (umbenannt, etc.) wurde, indem es nach allen Dateien sucht, deren Namen die richtige ID enthalten. Dies ist sehr langsam, wenn das Verzeichnis groß ist, selbst auf Dateisystemen, die für solche Anwendungsfälle optimiert sind (wie ext4 mit aktiviertem `dir_index`) auf schnellen SSD-Laufwerken.
 

@@ -1,4 +1,4 @@
-Wenn Sie alte Mails aus den Ordnern `.Junk` oder `.Trash` löschen wollen oder vielleicht alle gelesenen Mails, die älter als eine bestimmte Zeitspanne sind, können Sie das dovecot-Tool doveadm [man doveadm-expunge](https://wiki.dovecot.org/Tools/Doveadm/Expunge) verwenden.
+Wenn Sie alte Mails aus den Ordnern `.Junk` oder `.Trash` löschen wollen oder vielleicht alle gelesenen Mails, die älter als eine bestimmte Zeitspanne sind, können Sie das dovecot-Tool doveadm [man doveadm-expunge](https://doc.dovecot.org/latest/core/man/doveadm-expunge.1.html) verwenden.
 
 ## Der manuelle Weg
 
@@ -62,7 +62,7 @@ Löschen von Mails in einem benutzerdefinierten Ordner **innerhalb** des Postein
     ```
 
 !!! info
-    Für mögliche [Zeitspannen](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_date_specification) oder [SearchQuery](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery#section_search_keys) schauen Sie bitte in [man doveadm-search-query](https://wiki.dovecot.org/Tools/Doveadm/SearchQuery)
+    Für mögliche [Zeitspannen](https://doc.dovecot.org/latest/core/man/doveadm-search-query.7.html#date-specification) oder [SearchQuery](https://doc.dovecot.org/latest/core/man/doveadm-search-query.7.html#search-keys) schauen Sie bitte in [man doveadm-search-query](https://doc.dovecot.org/latest/core/man/doveadm-search-query.7.html)
 
 ## Job-Scheduler
 

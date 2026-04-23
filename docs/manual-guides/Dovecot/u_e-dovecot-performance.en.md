@@ -1,6 +1,6 @@
 ## maildir_very_dirty_syncs
 
-Dovecot's [`maildir_very_dirty_syncs` option](https://wiki.dovecot.org/MailLocation/Maildir#Optimizations) is enabled by default since mailcow Release 2023-05. This option can significantly improve the performance of mailboxes that contain very large folders (over 100,000 emails).
+Dovecot's [`maildir_very_dirty_syncs` option](https://doc.dovecot.org/latest/core/config/mailbox_formats/maildir.html#maildir_very_dirty_syncs) is enabled by default since mailcow Release 2023-05. This option can significantly improve the performance of mailboxes that contain very large folders (over 100,000 emails).
 
 What this option does is it avoids rescanning the entire `cur` directory whenever loading an email. With this option disabled, Dovecot takes it safe and scans the **entire** `cur` directory (comparable with running an `ls`) to check if that particular email was touched (renamed, etc), by looking for all files whose names contain the correct ID. This is very slow if the directory is large, even on filesystems optimized for such use cases (such as ext4 with `dir_index` enabled) on fast SSD drives.
 

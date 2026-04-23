@@ -1,6 +1,6 @@
 # Changing the IMAP IDLE interval
 ## What is the IDLE interval?
-Per default, Dovecot sends a "I'm still here" notification to every client that has an open connection with Dovecot to get mails as quickly as possible without manually polling it (IMAP PUSH). This notification is controlled by the setting [`imap_idle_notify_interval`](https://wiki.dovecot.org/Timeouts), which defaults to 2 minutes. 
+Per default, Dovecot sends a "I'm still here" notification to every client that has an open connection with Dovecot to get mails as quickly as possible without manually polling it (IMAP PUSH). This notification is controlled by the setting [`imap_idle_notify_interval`](https://doc.dovecot.org/latest/core/admin/timeouts.html), which defaults to 2 minutes.
 
 A short interval results in the client getting a lot of messages for this connection, which is bad for mobile devices, because every time the device receives this message, the mailing app has to wake up. This can result in unnecessary battery drain.
 
