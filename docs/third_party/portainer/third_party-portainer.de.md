@@ -33,7 +33,7 @@ map $http_upgrade $connection_upgrade {
 ```
   location /portainer/ {
     proxy_http_version 1.1;
-    proxy_set_header Host              $http_host;   # required for docker client's sake
+    proxy_set_header Host              $host;   # required for docker client's sake
     proxy_set_header X-Real-IP         $remote_addr; # pass on real client's IP
     proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
