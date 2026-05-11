@@ -33,11 +33,11 @@ Zuerst laden wir `mailcow.conf`, um Zugriff auf die mailcow-Konfigurationseinste
 source mailcow.conf
 ```
 
-Laden Sie Roundcube 1.6.x (überprüfen Sie die neueste Version und passen Sie die URL an) in das Webverzeichnis herunter und extrahieren Sie es (hier `rc/`):
+Laden Sie Roundcube 1.7.x (überprüfen Sie die neueste Version und passen Sie die URL an) in das Webverzeichnis herunter und extrahieren Sie es (hier `rc/`):
 
 ```bash
 mkdir -m 755 data/web/rc
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.14/roundcubemail-1.6.14-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
@@ -129,10 +129,21 @@ Initialisieren Sie die Datenbank und verlassen Sie den Installer. Es ist nicht n
 
 Das Roundcube-Verzeichnis enthält einige Bereiche, die nicht für Webbenutzer zugänglich sein sollen. Wir fügen eine Konfigurationserweiterung für nginx hinzu, um nur das öffentliche Verzeichnis von Roundcube freizugeben.
 
+Ab Roundcube 1.7 ist das Verzeichnis `public_html` zwingend erforderlich, und alle statischen Inhalte (CSS, JS, Bilder, Schriftarten) werden über `public_html/static.php` mittels `PATH_INFO` ausgeliefert. Das untenstehende Snippet verwendet `^~`, um Vorrang vor mailcows globalem `location ~ \.php$`-Block zu erhalten, und enthält einen verschachtelten PHP-Location-Block, der `SCRIPT_FILENAME` aus dem `public_html/`-Verzeichnis aufbaut. Es ist auch mit Roundcube 1.6 kompatibel.
+
 ```bash
 cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
-location /rc/ {
-  alias /web/rc/public_html/;
+location ^~ /rc/ {
+    alias /web/rc/public_html/;
+    index index.php;
+
+    location ~ ^/rc/(?<rcfile>[^/]+\.php)(?<rcpathinfo>/.*)?\$ {
+        alias /web/rc/public_html/\$rcfile;
+        fastcgi_param SCRIPT_FILENAME /web/rc/public_html/\$rcfile;
+        fastcgi_param PATH_INFO       \$rcpathinfo;
+        fastcgi_pass phpfpm:9002;
+        include /etc/nginx/fastcgi_params;
+    }
 }
 EOCONFIG
 ```
@@ -594,6 +605,203 @@ Starten Sie abschließend mailcow neu.
     docker-compose up -d
     ```
 
+## Roundcube aktualisieren
+
+=== "Integriert"
+    Roundcube zu aktualisieren ist recht einfach. Gehen Sie auf die [GitHub-Releases](https://github.com/roundcube/roundcubemail/releases)-Seite von Roundcube und holen Sie sich den Link zur Datei `complete.tar.gz` des gewünschten Releases. Folgen Sie dann den untenstehenden Befehlen und passen Sie ggf. die URL und den Roundcube-Verzeichnisnamen an.
+
+    ```bash
+    # Bash-Sitzung im mailcow-PHP-Container öffnen
+    docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
+
+    # Benötigte Upgrade-Abhängigkeit installieren und Roundcube anschließend auf das gewünschte Release aktualisieren
+    apk add rsync
+    cd /tmp
+    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar xfvz -
+    cd roundcubemail-1.7.0
+    bin/installto.sh /web/rc
+
+    # Geben Sie 'Y' ein und drücken Sie Enter, um Ihre Roundcube-Installation zu aktualisieren
+    # Geben Sie 'N' für "Do you want me to fix your local configuration" ein, falls Sie danach gefragt werden
+
+    # Falls "NOTICE: Update dependencies by running php composer.phar update --no-dev" erscheint, führen Sie composer aus:
+    cd /web/rc
+    composer update --no-dev -o
+    # Wenn die Frage "Do you trust "roundcube/plugin-installer" to execute code and wish to enable it now? (writes "allow-plugins" to composer.json) [y,n,d,?]" erscheint, geben Sie y ein und fahren Sie fort.
+
+    # Übrige Dateien entfernen
+    rm -rf /tmp/roundcube*
+
+    # Wenn Sie von 1.5 auf 1.6 aktualisieren, führen Sie die folgenden Konfigurationsanpassungen aus
+    sed -i "s/\$config\['default_host'\].*$/\$config\['imap_host'\]\ =\ 'dovecot:143'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['default_port'\].*$/d" /web/rc/config/config.inc.php
+    sed -i "s/\$config\['smtp_server'\].*$/\$config\['smtp_host'\]\ =\ 'postfix:588'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
+    sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
+    sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
+
+    # Container-Shell verlassen
+    exit
+    ```
+
+    !!! warning "php-fpm-mailcow nach dem Upgrade neu starten"
+        Der OpCache in php-fpm-mailcow erkennt die neuen Dateien nicht automatisch. Wird dieser Schritt übersprungen, treten typischerweise Fehler wie `Unknown column 'changed' in 'INSERT INTO session'` nach einem Upgrade von 1.6 auf 1.7 auf. Vom Host aus:
+
+        ```bash
+        docker compose restart php-fpm-mailcow
+        ```
+
+    !!! info "Upgrade von 1.6.x auf 1.7.x"
+        Ab Roundcube 1.7 ist `public_html` das verpflichtende Dokumentenverzeichnis. Ersetzen Sie `data/conf/nginx/site.roundcube.custom` durch das Snippet aus [Webserver-Konfiguration](#webserver-konfiguration) weiter oben und laden Sie nginx neu:
+
+        ```bash
+        docker compose exec nginx-mailcow nginx -s reload
+        ```
+
+=== "Standalone"
+    Das Aktualisieren von Roundcube im Standalone-_Modus_ ist sehr einfach – aktualisieren Sie einfach die Docker-Image-Version:
+
+    ```yaml
+    image: roundcube/roundcubemail:1.6.14-apache # 1.6.14 -> 1.6.X (zukünftig: 1.7.X)
+    ```
+
+    Roundcube wendet nach einem Neustart automatisch Migrationen an und aktualisiert Ihren Container.
+
+### Composer-Plugins aktualisieren
+
+Um Roundcube-Plugins, die über Composer installiert wurden, und deren Abhängigkeiten (z. B. das RCMCardDAV-Plugin) zu aktualisieren, können Sie einfach Composer im Container ausführen:
+
+=== "Integriert"
+
+    ```bash
+    docker exec -it -w /web/rc $(docker ps -f name=php-fpm-mailcow -q) composer update --no-dev -o
+    ```
+
+=== "Standalone"
+
+    ```bash
+    docker exec -it $(docker ps -f name=roundcube -q) composer update --no-dev -o
+    ```
+
+### MIME-Typ-Zuordnungen aktualisieren
+
+Um die MIME-Typ-Zuordnungen zu aktualisieren, laden Sie diese mit dem Befehl aus den [Installationsanweisungen](#mime-typ-zuordnungen-installieren) erneut herunter.
+
+## Roundcube deinstallieren
+
+Auch für die Deinstallation wird vorausgesetzt, dass die Befehle im mailcow-Installationsverzeichnis ausgeführt werden und dass `mailcow.conf` in der Shell mit `source` geladen wurde, siehe [Vorbereitung](#vorbereitung) weiter oben.
+
+### Webverzeichnis entfernen
+
+Dies löscht die Roundcube-Installation sowie alle Plugins und Abhängigkeiten, die Sie ggf. installiert haben, einschließlich derer, die über Composer installiert wurden.
+
+Hinweis: Dies löscht auch alle eigenen Konfigurationen, die Sie in Roundcube vorgenommen haben. Wenn Sie diese behalten möchten, verschieben Sie sie an einen anderen Ort, anstatt sie zu löschen.
+
+=== "Integriert"
+
+    ```bash
+    rm -r data/web/rc
+    ```
+
+=== "Standalone"
+
+    Stoppen Sie den Roundcube-Container:
+
+    === "docker compose (Plugin)"
+
+        ``` bash
+        docker compose down
+        ```
+
+    === "docker-compose (Standalone)"
+
+        ``` bash
+        docker-compose down
+        ```
+
+	Anschließend können Sie `data/web/rc` / `data/rc/` gefahrlos löschen.
+
+### Datenbank entfernen
+
+Hinweis: Dies löscht alle für Roundcube gespeicherten Daten. Wenn Sie diese behalten möchten, können Sie vor dem Löschen `mysqldump` verwenden oder die Datenbank einfach behalten.
+
+```bash
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "DROP USER 'roundcube'@'%';"
+docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -e "DROP DATABASE roundcubemail;"
+```
+
+### Eigene Konfigurationsdateien aus mailcow entfernen
+
+Um diese zu ermitteln, gehen Sie bitte die Installationsschritte durch und machen Sie die dort vorgenommenen Änderungen rückgängig.
+
+## Migration von einer älteren mailcow-Roundcube-Installation
+
+Ältere Versionen dieser Anleitung verwendeten die mailcow-Datenbank auch für Roundcube, mit dem konfigurierten Tabellenpräfix `mailcow_rc1` auf allen Roundcube-Tabellen.
+
+Auch für die Migration wird vorausgesetzt, dass die Befehle im mailcow-Installationsverzeichnis ausgeführt werden und dass `mailcow.conf` in der Shell mit `source` geladen wurde, siehe [Vorbereitung](#vorbereitung) weiter oben. Die Befehle der einzelnen Schritte bauen aufeinander auf und müssen in derselben Shell ausgeführt werden. Insbesondere setzen einige Schritte Shell-Variablen (am wichtigsten die Variable `DBROUNDCUBE` mit dem Datenbankpasswort des Roundcube-Datenbankbenutzers), die in späteren Schritten verwendet werden.
+
+### Neuen Roundcube-Datenbankbenutzer und neue Datenbank erstellen
+
+Folgen Sie den [Schritten oben](#roundcube-datenbank-erstellen), um den Roundcube-Datenbankbenutzer und die separate Datenbank zu erstellen.
+
+### Roundcube-Daten aus der mailcow-Datenbank migrieren
+
+Bevor wir mit der Datenbankmigration beginnen, deaktivieren wir Roundcube, um weitere Änderungen an den Roundcube-Datenbanktabellen während der Migration zu vermeiden.
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location ^~ /rc/ {
+  return 503;
+}
+EOCONFIG
+docker compose exec nginx-mailcow nginx -s reload
+```
+
+Nun kopieren wir die Roundcube-Daten in die neue Datenbank. Dabei entfernen wir das Tabellenpräfix. Falls Sie ein anderes Präfix als `mailcow_rc1` verwendet haben, müssen Sie dies entsprechend anpassen. Es ist auch möglich, das Präfix beizubehalten (dann behalten Sie auch die entsprechende `db_prefix`-Roundcube-Einstellung bei). Anschließend werden die Fremdschlüssel angepasst.
+
+```bash
+RCTABLES=$(docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "show tables like 'mailcow_rc1%';" | tr '\n\r' ' ')
+docker exec $(docker ps -f name=mysql-mailcow -q) /bin/bash -c "mysqldump -uroot -p${DBROOT} mailcow $RCTABLES | sed 's/mailcow_rc1//' | mysql -uroot -p${DBROOT} roundcubemail"
+FOREIGNKEYS=$(docker exec -it $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} -sN mailcow -e "SELECT CONCAT('ALTER TABLE \`', TABLE_NAME, '\` ', 'DROP FOREIGN KEY \`', CONSTRAINT_NAME, '\`;', 'ALTER TABLE \`', TABLE_NAME, '\` ', 'ADD FOREIGN KEY \`', CONSTRAINT_NAME, '\` (', COLUMN_NAME, ') ', 'REFERENCES \`', REPLACE(REFERENCED_TABLE_NAME, 'mailcow_rc1', ''), '\` (', REFERENCED_COLUMN_NAME, ');') FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'roundcubemail' AND REFERENCED_TABLE_NAME IS NOT NULL;")
+docker exec $(docker ps -f name=mysql-mailcow -q) mysql -uroot -p${DBROOT} roundcubemail -e "$FOREIGNKEYS"
+```
+
+### Roundcube-Konfiguration aktualisieren
+
+Führen Sie Folgendes aus, um die nicht mehr benötigte Option `db_prefix` zu entfernen. Wir aktivieren außerdem das Logging von Roundcube, indem wir die Einstellungen `log_dir` und `temp_dir` entfernen, die Teil der alten Anleitung waren.
+
+```bash
+sed -i "/\$config\['db_prefix'\].*$/d" data/web/rc/config/config.inc.php
+sed -i "/\$config\['log_dir'\].*$/d" data/web/rc/config/config.inc.php
+sed -i "/\$config\['temp_dir'\].*$/d" data/web/rc/config/config.inc.php
+```
+
+Wir müssen die nginx-Konfiguration für Roundcube anpassen, damit die nicht-öffentlichen Ordner von Roundcube – insbesondere diejenigen mit temporären Dateien und Logdateien – nicht freigegeben werden:
+
+```bash
+cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
+location ^~ /rc/ {
+    alias /web/rc/public_html/;
+    index index.php;
+
+    location ~ ^/rc/(?<rcfile>[^/]+\.php)(?<rcpathinfo>/.*)?\$ {
+        alias /web/rc/public_html/\$rcfile;
+        fastcgi_param SCRIPT_FILENAME /web/rc/public_html/\$rcfile;
+        fastcgi_param PATH_INFO       \$rcpathinfo;
+        fastcgi_pass phpfpm:9002;
+        include /etc/nginx/fastcgi_params;
+    }
+}
+EOCONFIG
+```
+
+Wir können auch `cipher_method` auf eine sicherere Variante aktualisieren – beachten Sie aber, dass zuvor von Roundcube verschlüsselte Daten anschließend nicht mehr entschlüsselt werden können. Dies betrifft insbesondere gespeicherte CardDAV-Passwörter, wenn Sie RCMCardDAV verwenden und Ihre Benutzer eigene Adressbücher hinzugefügt haben (das Preset wird beim nächsten Login des Benutzers automatisch korrigiert). Wenn Sie `cipher_method` ändern möchten, führen Sie aus:
+
+```bash
+cat <<EOCONFIG >>data/web/rc/config/config.inc.php
+\$config['cipher_method'] = 'chacha20-poly1305';
+EOCONFIG
+```
 
 ### Wechsel des RCMCardDAV-Plugins zur Composer-Installationsmethode
 
