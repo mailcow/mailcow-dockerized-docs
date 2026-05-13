@@ -39,11 +39,11 @@ First we load `mailcow.conf` so we have access to the mailcow configuration sett
 source mailcow.conf
 ```
 
-Download Roundcube 1.6.x (check for latest release and adapt URL) to the web directory and extract it (here `rc/`):
+Download Roundcube 1.7.x (check for latest release and adapt URL) to the web directory and extract it (here `rc/`):
 
 ```bash
 mkdir -m 755 data/web/rc
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.14/roundcubemail-1.6.14-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
@@ -148,10 +148,24 @@ the downloaded one, unless you made some settings in the installer you would lik
 The roundcube directory includes some locations that we do not want to serve to web users. We add a configuration
 extension to nginx to only expose the public directory of roundcube.
 
+From Roundcube 1.7 the `public_html` directory is mandatory and all static assets (CSS, JS, images, fonts) are routed
+through `public_html/static.php` via `PATH_INFO`. The snippet below uses `^~` to win prefix-match priority over
+mailcow's global `location ~ \.php$` handler, with a nested PHP location that builds `SCRIPT_FILENAME` from inside
+`public_html/`. It is also compatible with Roundcube 1.6.
+
 ```bash
 cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
-location /rc/ {
-  alias /web/rc/public_html/;
+location ^~ /rc/ {
+    alias /web/rc/public_html/;
+    index index.php;
+
+    location ~ ^/rc/(?<rcfile>[^/]+\.php)(?<rcpathinfo>/.*)?\$ {
+        alias /web/rc/public_html/\$rcfile;
+        fastcgi_param SCRIPT_FILENAME /web/rc/public_html/\$rcfile;
+        fastcgi_param PATH_INFO       \$rcpathinfo;
+        fastcgi_pass phpfpm:9002;
+        include /etc/nginx/fastcgi_params;
+    }
 }
 EOCONFIG
 ```
@@ -663,8 +677,8 @@ Finally, restart mailcow
     # Install required upgrade dependency, then upgrade Roundcube to wanted release
     apk add rsync
     cd /tmp
-    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.6.14/roundcubemail-1.6.14-complete.tar.gz | tar xfvz -
-    cd roundcubemail-1.6.14
+    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar xfvz -
+    cd roundcubemail-1.7.0
     bin/installto.sh /web/rc
 
     # Type 'Y' and press enter to upgrade your install of Roundcube
@@ -685,7 +699,26 @@ Finally, restart mailcow
     sed -i "/\$config\['smtp_port'\].*$/d" /web/rc/config/config.inc.php
     sed -i "s/\$config\['managesieve_host'\].*$/\$config\['managesieve_host'\]\ =\ 'dovecot:4190'\;/" /web/rc/config/config.inc.php
     sed -i "/\$config\['managesieve_port'\].*$/d" /web/rc/config/config.inc.php
+
+    # Leave the container shell
+    exit
     ```
+
+    !!! warning "Restart php-fpm-mailcow after upgrading"
+        OpCache in php-fpm-mailcow won't pick up the new files on its own. Skipping this typically shows up as
+        errors like `Unknown column 'changed' in 'INSERT INTO session'` after a 1.6 → 1.7 upgrade. From the host:
+
+        ```bash
+        docker compose restart php-fpm-mailcow
+        ```
+
+    !!! info "Upgrading from 1.6.x to 1.7.x"
+        1.7 makes `public_html` the mandatory document root. Replace `data/conf/nginx/site.roundcube.custom` with
+        the snippet from [Webserver configuration](#webserver-configuration) above and reload nginx:
+
+        ```bash
+        docker compose exec nginx-mailcow nginx -s reload
+        ```
 
 === "Standalone"
     Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
@@ -824,8 +857,17 @@ those containing temporary files and log files:
 
 ```bash
 cat <<EOCONFIG >data/conf/nginx/site.roundcube.custom
-location /rc/ {
-  alias /web/rc/public_html/;
+location ^~ /rc/ {
+    alias /web/rc/public_html/;
+    index index.php;
+
+    location ~ ^/rc/(?<rcfile>[^/]+\.php)(?<rcpathinfo>/.*)?\$ {
+        alias /web/rc/public_html/\$rcfile;
+        fastcgi_param SCRIPT_FILENAME /web/rc/public_html/\$rcfile;
+        fastcgi_param PATH_INFO       \$rcpathinfo;
+        fastcgi_pass phpfpm:9002;
+        include /etc/nginx/fastcgi_params;
+    }
 }
 EOCONFIG
 ```
