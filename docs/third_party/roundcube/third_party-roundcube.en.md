@@ -257,7 +257,7 @@ services:
           - roundcube-db
 
   roundcube:
-    image: roundcube/roundcubemail:1.6.14-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
+    image: roundcube/roundcubemail:1.7.0-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
     environment:
       IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
       IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
@@ -724,7 +724,7 @@ Finally, restart mailcow
     Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
 
     ```yaml
-    image: roundcube/roundcubemail:1.6.14-apache # 1.6.14 -> 1.6.X (in the futur: 1.7.X)
+    image: roundcube/roundcubemail:1.7.0-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
     ```
 
     Roundcube will then after a restart automatically apply Migrations and update your Container.
