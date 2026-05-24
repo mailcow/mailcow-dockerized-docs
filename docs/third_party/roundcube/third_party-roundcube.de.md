@@ -37,7 +37,7 @@ Laden Sie Roundcube 1.7.x (überprüfen Sie die neueste Version und passen Sie d
 
 ```bash
 mkdir -m 755 data/web/rc
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.1/roundcubemail-1.7.1-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
@@ -612,13 +612,13 @@ Starten Sie abschließend mailcow neu.
 
     ```bash
     # Bash-Sitzung im mailcow-PHP-Container öffnen
-    docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
+    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) bash
 
     # Benötigte Upgrade-Abhängigkeit installieren und Roundcube anschließend auf das gewünschte Release aktualisieren
     apk add rsync
     cd /tmp
-    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar xfvz -
-    cd roundcubemail-1.7.0
+    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.1/roundcubemail-1.7.1-complete.tar.gz | tar xfvz -
+    cd roundcubemail-1.7.1
     bin/installto.sh /web/rc
 
     # Geben Sie 'Y' ein und drücken Sie Enter, um Ihre Roundcube-Installation zu aktualisieren
@@ -648,14 +648,14 @@ Starten Sie abschließend mailcow neu.
         Der OpCache in php-fpm-mailcow erkennt die neuen Dateien nicht automatisch. Wird dieser Schritt übersprungen, treten typischerweise Fehler wie `Unknown column 'changed' in 'INSERT INTO session'` nach einem Upgrade von 1.6 auf 1.7 auf. Vom Host aus:
 
         ```bash
-        docker compose restart php-fpm-mailcow
+        docker restart $(docker ps -f name=php-fpm-mailcow -q)
         ```
 
     !!! info "Upgrade von 1.6.x auf 1.7.x"
         Ab Roundcube 1.7 ist `public_html` das verpflichtende Dokumentenverzeichnis. Ersetzen Sie `data/conf/nginx/site.roundcube.custom` durch das Snippet aus [Webserver-Konfiguration](#webserver-konfiguration) weiter oben und laden Sie nginx neu:
 
         ```bash
-        docker compose exec nginx-mailcow nginx -s reload
+        docker exec $(docker ps -f name=nginx-mailcow -q) nginx -s reload
         ```
 
 === "Standalone"
