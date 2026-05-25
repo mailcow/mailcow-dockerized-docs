@@ -43,7 +43,7 @@ Download Roundcube 1.7.x (check for latest release and adapt URL) to the web dir
 
 ```bash
 mkdir -m 755 data/web/rc
-wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
+wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.1/roundcubemail-1.7.1-complete.tar.gz | tar -xvz --no-same-owner -C data/web/rc --strip-components=1 -f -
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown www-data:www-data /web/rc/logs /web/rc/temp
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web/rc/config
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
@@ -257,7 +257,7 @@ services:
           - roundcube-db
 
   roundcube:
-    image: roundcube/roundcubemail:1.6.14-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
+    image: roundcube/roundcubemail:1.7.0-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
     environment:
       IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
       IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
@@ -672,13 +672,13 @@ Finally, restart mailcow
 
     ```bash
     # Enter a bash session of the mailcow PHP container
-    docker exec -it mailcowdockerized-php-fpm-mailcow-1 bash
+    docker exec -it $(docker ps -f name=php-fpm-mailcow -q) bash
 
     # Install required upgrade dependency, then upgrade Roundcube to wanted release
     apk add rsync
     cd /tmp
-    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.0/roundcubemail-1.7.0-complete.tar.gz | tar xfvz -
-    cd roundcubemail-1.7.0
+    wget -O - https://github.com/roundcube/roundcubemail/releases/download/1.7.1/roundcubemail-1.7.1-complete.tar.gz | tar xfvz -
+    cd roundcubemail-1.7.1
     bin/installto.sh /web/rc
 
     # Type 'Y' and press enter to upgrade your install of Roundcube
@@ -709,7 +709,7 @@ Finally, restart mailcow
         errors like `Unknown column 'changed' in 'INSERT INTO session'` after a 1.6 → 1.7 upgrade. From the host:
 
         ```bash
-        docker compose restart php-fpm-mailcow
+        docker restart $(docker ps -f name=php-fpm-mailcow -q)
         ```
 
     !!! info "Upgrading from 1.6.x to 1.7.x"
@@ -717,14 +717,14 @@ Finally, restart mailcow
         the snippet from [Webserver configuration](#webserver-configuration) above and reload nginx:
 
         ```bash
-        docker compose exec nginx-mailcow nginx -s reload
+        docker exec $(docker ps -f name=nginx-mailcow -q) nginx -s reload
         ```
 
 === "Standalone"
     Upgrading Roundcube in Standalone _Mode_ is really simple just update the Docker Image version:
 
     ```yaml
-    image: roundcube/roundcubemail:1.6.14-apache # 1.6.14 -> 1.6.X (in the futur: 1.7.X)
+    image: roundcube/roundcubemail:1.7.0-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
     ```
 
     Roundcube will then after a restart automatically apply Migrations and update your Container.
