@@ -5,7 +5,7 @@
     This feature is compatible with mailcow versions starting from 2024-11. Older versions are theoretically capable of using it as well, but due to internal changes, the implementation is more complicated, so it won't be stated here as unsupported.
 
 ## Introduction
-Dovecot has supported a feature called *Lazy Expunge* for [quite some time](https://doc.dovecot.org/2.3/configuration_manual/lazy_expunge_plugin/), which allows server administrators to temporarily retain deleted emails from a user account even after they have been deleted.
+Dovecot has supported a feature called *Lazy Expunge* for [quite some time](https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html), which allows server administrators to temporarily retain deleted emails from a user account even after they have been deleted.
 
 mailcow also has a similar feature, but it is not easily accessible to users (see [Recover accidentally deleted data (Mail)](../../backup_restore/b_n_r-accidental_deletion.en.md#mail)) and serves more as a fallback method for administrators.
 
@@ -15,22 +15,32 @@ With the Dovecot option, users can view and restore emails that have been marked
 
 1. Edit the `extra.conf` file in the Dovecot configuration folder (usually located at `MAILCOW_ROOT/data/conf/dovecot`) with the following content:
     ```bash
-    plugin {
-        # Copy all deleted emails to the .EXPUNGED mailbox
-        lazy_expunge = .EXPUNGED
-
-        # Exclude marked-as-deleted emails from the quota
-        quota_rule = .EXPUNGED:ignore
-    }
-
     # Define the .EXPUNGED mailbox
     namespace inbox {
         mailbox .EXPUNGED {
-            # Define how long emails will stay in this folder before they are deleted. Time is defined according to: https://doc.dovecot.org/2.3/settings/types/#time
+            # Define how long emails will stay in this folder before they are deleted. Time is defined according to: https://doc.dovecot.org/2.4.4/core/settings/types#time
             autoexpunge = 7days
             # Define how many emails can be kept in the EXPUNGED folder before it is cleared
             autoexpunge_max_mails = 100000
         }
+    }
+
+    # Activate lazy_expunge plugin
+    protocol imap {
+        mail_plugins = $mail_plugins lazy_expunge
+    }
+
+    plugin {
+        # Copy all deleted emails to the .EXPUNGED mailbox
+        # For custom storage choice see: https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html#storage-locations
+        lazy_expunge = .EXPUNGED
+        lazy_expunge_mailbox = .EXPUNGED
+
+        # Copy only last instance to avoid duplicates
+        lazy_expunge_only_last_instance = yes
+        
+        # Exclude marked-as-deleted emails from the quota
+        quota_rule = .EXPUNGED:ignore
     }
     ```
 

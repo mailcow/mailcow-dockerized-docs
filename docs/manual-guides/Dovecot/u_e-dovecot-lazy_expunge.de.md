@@ -5,7 +5,7 @@
     Diese Funktion ist ab mailcow-Versionen 2024-11 kompatibel. Ältere Versionen sind theoretisch ebenfalls in der Lage, die Funktion zu nutzen. Aufgrund interner Änderungen ist die Implementierung jedoch schwieriger und wird hier nicht weiter beschrieben, da nicht unterstüzt.
 
 ## Vorwort
-Dovecot unterstützt seit [geraumer Zeit](https://doc.dovecot.org/2.3/configuration_manual/lazy_expunge_plugin/) eine Funktion namens *Lazy Expunge*, welche es dem Serveradministrator ermöglicht, gelöschte E-Mails eines Benutzerkontos nach der eigentlichen Löschung zurückzuhalten.
+Dovecot unterstützt seit [geraumer Zeit](https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html) eine Funktion namens *Lazy Expunge*, welche es dem Serveradministrator ermöglicht, gelöschte E-Mails eines Benutzerkontos nach der eigentlichen Löschung zurückzuhalten.
 
 mailcow besitzt eine ähnliche Funktion, die jedoch für Benutzer nicht so leicht zugänglich ist (siehe [Versehentlich gelöschte Daten wiederherstellen (Mail)](../../backup_restore/b_n_r-accidental_deletion.de.md#mail)) und eher als Fallback-Methode für Administratoren dient.
 
@@ -15,23 +15,33 @@ Mit der Dovecot-Option können Benutzer selbst als gelöscht markierte E-Mails e
 
 1. Bearbeiten Sie die `extra.conf` im Dovecot-Konfigurationsordner (in der Regel unter `MAILCOW_ROOT/data/conf/dovecot`) mit folgendem Inhalt:
     ```bash
-    plugin {
-        # Kopiere alle gelöschten Mails in die .EXPUNGED Mailbox
-        lazy_expunge = .EXPUNGED
-
-        # Als gelöscht markierte Mails von der Quota ausschließen
-        quota_rule = .EXPUNGED:ignore
-    }
-
     # Definiert die .EXPUNGED Mailbox
     namespace inbox {
         mailbox .EXPUNGED {
             # Definiert, wie lange Mails in diesem Ordner bleiben sollen, bevor sie gelöscht werden. 
-            # Zeit wird definiert nach: https://doc.dovecot.org/2.3/settings/types/#time
+            # Zeit wird definiert nach: https://doc.dovecot.org/2.4.4/core/settings/types#time
             autoexpunge = 7days
             # Definiert, wie viele Mails maximal in der EXPUNGED Mailbox gehalten werden sollen, bevor diese geleert wird
             autoexpunge_max_mails = 100000
         }
+    }
+
+    # Activate lazy_expunge plugin
+    protocol imap {
+        mail_plugins = $mail_plugins lazy_expunge
+    }
+
+    plugin {
+        # Kopiere alle gelöschten Mails in die .EXPUNGED Mailbox
+        # Siehe: https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html#storage-locations
+        lazy_expunge = .EXPUNGED
+        lazy_expunge_mailbox = .EXPUNGED
+        
+        # Kopiere nur die letzte Instanz, um Duplikate zu vermeiden
+        lazy_expunge_only_last_instance = yes
+
+        # Als gelöscht markierte Mails von der Quota ausschließen
+        quota_rule = .EXPUNGED:ignore
     }
     ```
 
