@@ -15,14 +15,6 @@ Mit der Dovecot-Option können Benutzer selbst als gelöscht markierte E-Mails e
 
 1. Bearbeiten Sie die `extra.conf` im Dovecot-Konfigurationsordner (in der Regel unter `MAILCOW_ROOT/data/conf/dovecot`) mit folgendem Inhalt:
     ```bash
-    plugin {
-        # Kopiere alle gelöschten Mails in die .EXPUNGED Mailbox
-        lazy_expunge = .EXPUNGED
-
-        # Als gelöscht markierte Mails von der Quota ausschließen
-        quota_rule = .EXPUNGED:ignore
-    }
-
     # Definiert die .EXPUNGED Mailbox
     namespace inbox {
         mailbox .EXPUNGED {
@@ -32,6 +24,24 @@ Mit der Dovecot-Option können Benutzer selbst als gelöscht markierte E-Mails e
             # Definiert, wie viele Mails maximal in der EXPUNGED Mailbox gehalten werden sollen, bevor diese geleert wird
             autoexpunge_max_mails = 100000
         }
+    }
+
+    # Activate lazy_expunge plugin
+    protocol imap {
+        mail_plugins = $mail_plugins lazy_expunge
+    }
+
+    plugin {
+        # Kopiere alle gelöschten Mails in die .EXPUNGED Mailbox
+        # Siehe: https://doc.dovecot.org/2.4.2/core/plugins/lazy_expunge.html#storage-locations
+        lazy_expunge = .EXPUNGED
+        lazy_expunge_mailbox = .EXPUNGED
+        
+        # Kopiere nur die letzte Instanz, um Duplikate zu vermeiden
+        lazy_expunge_only_last_instance = yes
+
+        # Als gelöscht markierte Mails von der Quota ausschließen
+        quota_rule = .EXPUNGED:ignore
     }
     ```
 
