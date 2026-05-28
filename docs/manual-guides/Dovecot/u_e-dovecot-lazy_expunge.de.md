@@ -5,7 +5,7 @@
     Diese Funktion ist ab mailcow-Versionen 2024-11 kompatibel. Ältere Versionen sind theoretisch ebenfalls in der Lage, die Funktion zu nutzen. Aufgrund interner Änderungen ist die Implementierung jedoch schwieriger und wird hier nicht weiter beschrieben, da nicht unterstüzt.
 
 ## Vorwort
-Dovecot unterstützt seit [geraumer Zeit](https://doc.dovecot.org/2.3/configuration_manual/lazy_expunge_plugin/) eine Funktion namens *Lazy Expunge*, welche es dem Serveradministrator ermöglicht, gelöschte E-Mails eines Benutzerkontos nach der eigentlichen Löschung zurückzuhalten.
+Dovecot unterstützt seit [geraumer Zeit](https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html) eine Funktion namens *Lazy Expunge*, welche es dem Serveradministrator ermöglicht, gelöschte E-Mails eines Benutzerkontos nach der eigentlichen Löschung zurückzuhalten.
 
 mailcow besitzt eine ähnliche Funktion, die jedoch für Benutzer nicht so leicht zugänglich ist (siehe [Versehentlich gelöschte Daten wiederherstellen (Mail)](../../backup_restore/b_n_r-accidental_deletion.de.md#mail)) und eher als Fallback-Methode für Administratoren dient.
 
