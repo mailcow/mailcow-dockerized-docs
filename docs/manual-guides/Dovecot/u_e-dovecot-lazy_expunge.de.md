@@ -19,7 +19,7 @@ Mit der Dovecot-Option können Benutzer selbst als gelöscht markierte E-Mails e
     namespace inbox {
         mailbox .EXPUNGED {
             # Definiert, wie lange Mails in diesem Ordner bleiben sollen, bevor sie gelöscht werden. 
-            # Zeit wird definiert nach: https://doc.dovecot.org/2.3/settings/types/#time
+            # Zeit wird definiert nach: https://doc.dovecot.org/2.4.4/core/settings/types#time
             autoexpunge = 7days
             # Definiert, wie viele Mails maximal in der EXPUNGED Mailbox gehalten werden sollen, bevor diese geleert wird
             autoexpunge_max_mails = 100000
@@ -33,7 +33,7 @@ Mit der Dovecot-Option können Benutzer selbst als gelöscht markierte E-Mails e
 
     plugin {
         # Kopiere alle gelöschten Mails in die .EXPUNGED Mailbox
-        # Siehe: https://doc.dovecot.org/2.4.2/core/plugins/lazy_expunge.html#storage-locations
+        # Siehe: https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html#storage-locations
         lazy_expunge = .EXPUNGED
         lazy_expunge_mailbox = .EXPUNGED
         

@@ -18,7 +18,7 @@ With the Dovecot option, users can view and restore emails that have been marked
     # Define the .EXPUNGED mailbox
     namespace inbox {
         mailbox .EXPUNGED {
-            # Define how long emails will stay in this folder before they are deleted. Time is defined according to: https://doc.dovecot.org/2.3/settings/types/#time
+            # Define how long emails will stay in this folder before they are deleted. Time is defined according to: https://doc.dovecot.org/2.4.4/core/settings/types#time
             autoexpunge = 7days
             # Define how many emails can be kept in the EXPUNGED folder before it is cleared
             autoexpunge_max_mails = 100000
@@ -32,7 +32,7 @@ With the Dovecot option, users can view and restore emails that have been marked
 
     plugin {
         # Copy all deleted emails to the .EXPUNGED mailbox
-        # See https://doc.dovecot.org/2.4.2/core/plugins/lazy_expunge.html#storage-locations
+        # For custom storage choice see: https://doc.dovecot.org/2.4.4/core/plugins/lazy_expunge.html#storage-locations
         lazy_expunge = .EXPUNGED
         lazy_expunge_mailbox = .EXPUNGED
 
