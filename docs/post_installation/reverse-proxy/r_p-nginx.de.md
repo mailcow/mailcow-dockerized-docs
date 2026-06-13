@@ -1,11 +1,14 @@
 !!! warning "Wichtig"
     Lesen Sie zuerst [die Übersicht](r_p.md).
 
+**Besondere Hinweise für HTTP/3:**
+Beim Einsatz von HTTP/3 mit Nginx als Reverse Proxy für Mailcow sind zusätzliche Konfigurationen zu beachten, um Probleme mit SOGo-Weiterleitungen zu vermeiden.
+
 Let's Encrypt folgt unserem Rewrite, Zertifikatsanfragen funktionieren problemlos.
 
 **Achten Sie auf die hervorgehobenen Zeilen**.
 
-``` hl_lines="4 10 12 13 25 39"
+``` hl_lines="4 19 21 22 34 48"
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -13,8 +16,17 @@ server {
   return 301 https://$host$request_uri;
 }
 server {
-  listen 443 ssl http2;
-  listen [::]:443 ssl http2;
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  # Für HTTP/3 auf UDP 443
+  # Achten Sie darauf, "reuseport" in nur einem server-Block zu verwenden, z.B. nur in dem "default_server"-Block, falls es noch weitere server-Blöcke gibt
+  #listen 443 quic reuseport;
+  #listen [::]:443 quic reuseport;
+  #add_header Alt-Svc 'h3=":443"' always;
+
+  http2 on;
+
   server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.*;
 
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
@@ -31,7 +43,7 @@ server {
 
   location /Microsoft-Server-ActiveSync {
     proxy_pass http://127.0.0.1:8080/Microsoft-Server-ActiveSync;
-    proxy_set_header Host $http_host;
+    proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -45,7 +57,7 @@ server {
 
   location / {
     proxy_pass http://127.0.0.1:8080/;
-    proxy_set_header Host $http_host;
+    proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
