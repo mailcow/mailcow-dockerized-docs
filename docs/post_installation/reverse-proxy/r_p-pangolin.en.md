@@ -8,10 +8,13 @@ Pangolin's declarative configuration is very simple using so-called Blueprints.
 
 In this example, certificate creation is handled by Pangolin. Pangolin's SSO is active and provides additional protection. Autodiscover, Autoconfig, and MTA-STS, as well as the API for status, are publicly accessible.
 
+## Blueprint for Pangolin
+
 It is assumed that mailcow is accessible on port 4443 via TLS.
 The domain `example.com` should be replaced accordingly.
+Relevant lines are marked below.
 
-```yaml
+```yaml hl_lines="5 12 21 28 37 44 53 60 69 76"
 public-resources:
   mailcow:
     auth:
@@ -94,13 +97,21 @@ public-resources:
         value: /.well-known/openpgpkey/*
 ```
 
-Integration into an existing Pangolin instance is quick and easy with newt:
+## Integrate into local Pangolin instance
+
+If Pangolin and mailcow are running on the same server, you can just add the blueprint via the web interface.
+
+> Organization > Blueprints > Add Blueprint
+
+## Integrate into remote Pangolin instance
+
+Integration into an existing remote Pangolin instance is quick and easy with newt:
 
 > Sites > Create Sites > Newt Site > Docker
 
 The environment variable `BLUEPRINT_FILE` is added. As an example, the configuration file above is located at `/opt/blueprint_mailcow.yml`.
 
-```yaml
+```yaml hl_lines="10"
 services:
   newt:
     image: fosrl/newt
@@ -111,4 +122,33 @@ services:
       - NEWT_ID=<YOUR_ID>
       - NEWT_SECRET=<YOUR_SECRET>
       - BLUEPRINT_FILE=/opt/blueprint_mailcow.yml
+```
+
+## Export certificates
+
+As Pangolin will now renew the certificates, you need to update them for mailcow.
+
+Add this to Pangolin's compose configuration, modify the marked lines:
+
+```yaml hl_lines="7 13 20"
+services:
+
+  [...]
+
+  traefik_certdumper:
+    command:
+      - --restart-containers=mailcowdockerized-postfix-mailcow-1,mailcowdockerized-dovecot-mailcow-1,mailcowdockerized-nginx-mailcow-1
+    container_name: traefik_certdumper
+    depends_on:
+      traefik:
+        condition: service_started
+    environment:
+      - DOMAIN=*.example.com
+    image: ghcr.io/kereis/traefik-certs-dumper:latest
+    network_mode: none
+    restart: unless-stopped
+    volumes:
+      - /run/docker.sock:/var/run/docker.sock:ro
+      - ./config/letsencrypt:/traefik:ro
+      - /opt/mailcow-dockerized/data/assets/ssl:/output:rw
 ```
