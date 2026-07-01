@@ -154,6 +154,13 @@ Take one of the lines from output you interested in and request it, f.e.:
     docker-compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
     ```
 
+!!! Info
+    If $REDISPASS is set in mailcow.conf adjust the commands like this:
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
+
 ## Change DMARC reporting frequency
 
 In the example above reports are sent once every 24 hours and send reports for yesterday. This will be okay for most setups.
