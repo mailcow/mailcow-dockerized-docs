@@ -9,13 +9,13 @@ Let's Encrypt will follow our rewrite, certificate requests will work fine.
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.* mta-sts.*;
   return 301 https://$host$request_uri;
 }
 server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
-  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.*;
+  server_name CHANGE_TO_MAILCOW_HOSTNAME autodiscover.* autoconfig.* mta-sts.*;
 
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
