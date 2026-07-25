@@ -42,7 +42,7 @@ tls_config_file = /opt/postfix/conf/openssl.cnf
 tls_config_name = postfix
 ```
 
-So the complete `extra.cf` no may read:
+So the complete `extra.cf` now may read:
 
 ```
 tls_config_file = /opt/postfix/conf/openssl.cnf
