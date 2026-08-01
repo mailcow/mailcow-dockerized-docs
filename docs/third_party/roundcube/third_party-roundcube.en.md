@@ -236,7 +236,7 @@ services:
 
 ## Standalone Install
 
-To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose-override.yaml` file:
+To Install Roundcube in its own Docker Container you have to add the following into your `docker-compose.yaml` file:
 
 ```yaml
 services:
@@ -257,7 +257,7 @@ services:
           - roundcube-db
 
   roundcube:
-    image: roundcube/roundcubemail:1.7.0-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
+    image: roundcube/roundcubemail:1.7.2-apache # See newest version https://hub.docker.com/r/roundcube/roundcubemail/tags?name=apache
     environment:
       IPV4_NETWORK: ${IPV4_NETWORK:-172.22.1}
       IPV6_NETWORK: ${IPV6_NETWORK:-fd4d:6169:6c63:6f77::/64}
