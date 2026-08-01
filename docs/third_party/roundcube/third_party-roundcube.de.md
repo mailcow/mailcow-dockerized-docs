@@ -206,7 +206,7 @@ services:
 ```
 ## Standalone-Installation
 
-Um Roundcube in einem eigenen Docker-Container zu installieren, fügen Sie Folgendes in Ihre `docker-compose.yaml`-Datei ein:
+Um Roundcube in einem eigenen Docker-Container zu installieren, fügen Sie Folgendes in Ihre `docker-compose.override.yaml`-Datei ein:
 
 ```yaml
 services:
