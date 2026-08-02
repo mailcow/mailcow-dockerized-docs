@@ -2,7 +2,7 @@ Standardmäßig betrachtet mailcow's Postfix **alle Netzwerke als nicht vertraue
 
 Standardmäßig verwendet mailcow `mynetworks_style = subnet` um interne Subnetze zu bestimmen und lässt `mynetworks` unkonfiguriert.
 
-Wenn Sie sich entscheiden, `mynetworks` selbständig in der `extra.conf` von Postfix zu setzen, ignoriert Postfix die mynetworks_style Einstellung. Das bedeutet, dass Sie die von mailcow intern benutzen IPv4- und IPv6-Adressen (in der `mailcow.conf` angegeben als IPV4_NETWORK bzw. IPV6_NETWORK), sowie die Loopback-Subnetze manuell hinzufügen müssen!
+Wenn Sie sich entscheiden, `mynetworks` selbständig in der `data/conf/postfix/extra.cf` von Postfix zu setzen, ignoriert Postfix die mynetworks_style Einstellung. Das bedeutet, dass Sie die von mailcow intern benutzen IPv4- und IPv6-Adressen (in der `mailcow.conf` angegeben als IPV4_NETWORK bzw. IPV6_NETWORK), sowie die Loopback-Subnetze manuell hinzufügen müssen!
 
 !!! abstract "Erläuterung"
     Die Einstellung `mynetworks` erlaubt es eingetragenen Hosts bzw. Subnets **OHNE** Authentifizierung E-Mails an den Postfix MTA zu schicken. Insbesondere dann praktisch, wenn bspw. Monitoring E-Mails von Linux Servern im selben Netzwerk ohne extra Authentifizierung verschickt werden sollen.
