@@ -84,7 +84,7 @@ SKIP_LETS_ENCRYPT=y
         volumes:
           - traefik_certs:/traefik:ro # mount your traefik certificate file
           - /var/run/docker.sock:/var/run/docker.sock:ro
-          - ./data/assets/ssl:/output:rw
+          - ./data/assets/ssl/domain.com:/output:rw # mount the directory where your certificate files for mail clients will be dump. Must start at your mailcow root directory.
         environment:
           - DOMAIN=domain.com
           - ACME_FILE_PATH=/traefik/cloudflare-acme.json # your traefik acme file
@@ -93,8 +93,6 @@ SKIP_LETS_ENCRYPT=y
 
       nginx:
         # ...
-        expose:
-          - 8080
         labels:
           - traefik.enable=true
           - traefik.http.routers.mailcow-autodiscover.entrypoints=websecure
@@ -121,6 +119,8 @@ SKIP_LETS_ENCRYPT=y
             aliases:
               - nginx
           proxy:
+            aliases:
+              - nginx-mailcow
     ```
 
 **Important notes about this configuration:**
