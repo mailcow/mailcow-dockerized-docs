@@ -62,6 +62,13 @@ SKIP_LETS_ENCRYPT=y
           tls:
             certResolver: cloudflare
 
+        mailcow-mta-sts:
+          entryPoints: "websecure"
+          rule: "(Host(`mta-sts.domain.com`) && Path(`/.well-known/mta-sts.txt`))"
+          service: mailcow-svc
+          tls:
+            certResolver: cloudflare
+
       services:
         mailcow-svc:
           loadBalancer:
@@ -107,6 +114,11 @@ SKIP_LETS_ENCRYPT=y
           - traefik.http.routers.mailcow-autoconfig.tls.certresolver=cloudflare
           - traefik.http.routers.mailcow-autoconfig.service=mailcow-svc
 
+          - traefik.http.routers.mailcow-mta-sts.entrypoints=websecure
+          - traefik.http.routers.mailcow-mta-sts.rule=Host(`mta-sts.domain.com`)&& Path(`/.well-known/mta-sts.txt`)
+          - traefik.http.routers.mailcow-mta-sts.tls.certresolver=cloudflare
+          - traefik.http.routers.mailcow-mta-sts.service=mailcow-svc
+
           - traefik.http.routers.mailcow.entrypoints=websecure
           - traefik.http.routers.mailcow.rule=Host(`mail.domain.com`)
           - traefik.http.routers.mailcow.tls=true
@@ -125,7 +137,7 @@ SKIP_LETS_ENCRYPT=y
 
 **Important notes about this configuration:**
 
-- Replace `mail.domain.com`, `autoconfig.domain.com`, and `autodiscover.domain.com` with your actual domain names
+- Replace `mail.domain.com`, `autoconfig.domain.com` `autoconfig.domain.com`, and `mta-sts.domain.com` with your actual domain names
 - `entryPoints: "websecure"` - replace it with your actual Traefik https entrypoint
 - `certResolver: cloudflare` - replace it with your actual certificate resolver
 

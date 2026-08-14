@@ -9,13 +9,13 @@ Let's Encrypt folgt unserem Rewrite, Zertifikatsanfragen funktionieren problemlo
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.*;
+  server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.* mta-sts.*;
   return 301 https://$host$request_uri;
 }
 server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
-  server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.*;
+  server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.* mta-sts.*;
 
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
   ssl_certificate_key MAILCOW_PATH/data/assets/ssl/key.pem;
