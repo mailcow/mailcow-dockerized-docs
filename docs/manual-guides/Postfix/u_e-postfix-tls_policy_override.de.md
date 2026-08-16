@@ -75,4 +75,46 @@ Ein **Neustart von mailcow oder Postfix ist nicht erforderlich** – die Änderu
 
 !!! warning "Hinweis"
     Sobald fehlerhafte TLSA-Records oder Zertifikatsprobleme auf Empfängerseite behoben wurden, sollten Sie die temporär gesetzte Richtlinie **wieder entfernen oder auf den Standardwert zurücksetzen**, um die Integrität des TLS-Sicherheitsmodells zu gewährleisten.
+
+---
+
+## TLS-Richtlinienprüfung vollständig deaktivieren
+
+In seltenen Fällen reicht eine Richtlinie pro Domain nicht aus - etwa wenn eine Firewall mit SMTP-Inspection (Cisco ASA `inspect esmtp`, FortiGate SMTP-Proxy und ähnliche) oder ein zwischengeschaltetes Relay Ihres Providers `STARTTLS` aus der EHLO-Antwort des Gegenübers entfernt. Postfix sieht dann einen Server, der überhaupt kein TLS anbietet, während DANE oder MTA-STS es weiterhin verlangen, und jede betroffene E-Mail bleibt in der Warteschlange liegen.
+
+Um die Prüfung für alle Ziele abzuschalten, fügen Sie Folgendes in die Postfix [extra.cf](u_e-postfix-extra_cf.de.md) ein:
+
+```bash
+smtp_tls_security_level = may
+smtp_dns_support_level = enabled
+smtp_tls_policy_maps = proxy:mysql:/opt/postfix/conf/sql/mysql_tls_policy_override_maps.cf
+```
+
+- `smtp_tls_security_level = may` - opportunistisches TLS: verschlüsselt, wenn der Zielserver `STARTTLS` anbietet, andernfalls wird unverschlüsselt zugestellt. Der mailcow-Standard ist `dane`.
+- `smtp_dns_support_level = enabled` - einfache DNS-Abfragen anstelle der DNSSEC-validierten, die nur für DANE benötigt werden. Der mailcow-Standard ist `dnssec`.
+- `smtp_tls_policy_maps` - derselbe Wert wie in der `main.cf`, jedoch ohne den Eintrag `socketmap:inet:postfix-tlspol:8642:QUERY`, sodass Postfix postfix-tlspol nicht mehr nach MTA-STS- und DANE-Richtlinien fragt. Die oben beschriebenen TLS-Richtlinien aus der mailcow-UI funktionieren weiterhin.
+
+Ohne `smtp_dns_support_level = dnssec` weist Postfix die Richtlinien `dane` und `dane-only` zurück, kombinieren Sie diese Einstellung daher nicht mit solchen Einträgen in der TLS-Richtlinientabelle.
+
+Starten Sie Postfix neu, um die Änderung zu übernehmen:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart postfix-mailcow
+    ```
+
+Lassen Sie den Container `postfix-tlspol-mailcow` laufen, `postfix-mailcow` hängt von ihm ab. Er erhält lediglich keine Anfragen mehr.
+
+!!! info "Geltungsbereich"
+    Diese `smtp_*`-Parameter gelten ausschließlich für **ausgehende** Zustellungen von Postfix an andere Mailserver über Port 25. Eingehende E-Mails, die Einlieferung über Port 465/587 sowie die TLS-Erzwingung pro Mailbox bleiben unberührt.
+
+!!! warning "Hinweis"
+    Das Deaktivieren der Prüfung entfernt den Downgrade-Schutz für **alle** Empfänger, ein Angreifer auf dem Übertragungsweg kann `STARTTLS` dann unbemerkt entfernen. Verwenden Sie eine Richtlinie pro Domain, solange das Problem einzelne Empfänger betrifft, und greifen Sie nur dann hierauf zurück, wenn Ihr gesamter ausgehender Verkehr betroffen ist.
  
