@@ -3166,6 +3166,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tls-richtlinienprufung-vollstandig-deaktivieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS-Richtlinienprüfung vollständig deaktivieren
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5280,6 +5291,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tls-richtlinienprufung-vollstandig-deaktivieren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS-Richtlinienprüfung vollständig deaktivieren
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5407,6 +5429,42 @@ Ein <strong>Neustart von mailcow oder Postfix ist nicht erforderlich</strong> �
 <p class="admonition-title">Hinweis</p>
 <p>Sobald fehlerhafte TLSA-Records oder Zertifikatsprobleme auf Empfängerseite behoben wurden, sollten Sie die temporär gesetzte Richtlinie <strong>wieder entfernen oder auf den Standardwert zurücksetzen</strong>, um die Integrität des TLS-Sicherheitsmodells zu gewährleisten.</p>
 </div>
+<hr>
+<h2 id="tls-richtlinienprufung-vollstandig-deaktivieren">TLS-Richtlinienprüfung vollständig deaktivieren<a class="headerlink" href="#tls-richtlinienprufung-vollstandig-deaktivieren" title="Permanent link">¶</a></h2>
+<p>In seltenen Fällen reicht eine Richtlinie pro Domain nicht aus - etwa wenn eine Firewall mit SMTP-Inspection (Cisco ASA <code>inspect esmtp</code>, FortiGate SMTP-Proxy und ähnliche) oder ein zwischengeschaltetes Relay Ihres Providers <code>STARTTLS</code> aus der EHLO-Antwort des Gegenübers entfernt. Postfix sieht dann einen Server, der überhaupt kein TLS anbietet, während DANE oder MTA-STS es weiterhin verlangen, und jede betroffene E-Mail bleibt in der Warteschlange liegen.</p>
+<p>Um die Prüfung für alle Ziele abzuschalten, fügen Sie Folgendes in die Postfix <a href="../u_e-postfix-extra_cf/">extra.cf</a> ein:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">smtp_tls_security_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>may
+<span class="nv">smtp_dns_support_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>enabled
+<span class="nv">smtp_tls_policy_maps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>proxy:mysql:/opt/postfix/conf/sql/mysql_tls_policy_override_maps.cf
+</code></pre></div>
+<ul>
+<li><code>smtp_tls_security_level = may</code> - opportunistisches TLS: verschlüsselt, wenn der Zielserver <code>STARTTLS</code> anbietet, andernfalls wird unverschlüsselt zugestellt. Der mailcow-Standard ist <code>dane</code>.</li>
+<li><code>smtp_dns_support_level = enabled</code> - einfache DNS-Abfragen anstelle der DNSSEC-validierten, die nur für DANE benötigt werden. Der mailcow-Standard ist <code>dnssec</code>.</li>
+<li><code>smtp_tls_policy_maps</code> - derselbe Wert wie in der <code>main.cf</code>, jedoch ohne den Eintrag <code>socketmap:inet:postfix-tlspol:8642:QUERY</code>, sodass Postfix postfix-tlspol nicht mehr nach MTA-STS- und DANE-Richtlinien fragt. Die oben beschriebenen TLS-Richtlinien aus der mailcow-UI funktionieren weiterhin.</li>
+</ul>
+<p>Ohne <code>smtp_dns_support_level = dnssec</code> weist Postfix die Richtlinien <code>dane</code> und <code>dane-only</code> zurück, kombinieren Sie diese Einstellung daher nicht mit solchen Einträgen in der TLS-Richtlinientabelle.</p>
+<p>Starten Sie Postfix neu, um die Änderung zu übernehmen:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Lassen Sie den Container <code>postfix-tlspol-mailcow</code> laufen, <code>postfix-mailcow</code> hängt von ihm ab. Er erhält lediglich keine Anfragen mehr.</p>
+<div class="admonition info">
+<p class="admonition-title">Geltungsbereich</p>
+<p>Diese <code>smtp_*</code>-Parameter gelten ausschließlich für <strong>ausgehende</strong> Zustellungen von Postfix an andere Mailserver über Port 25. Eingehende E-Mails, die Einlieferung über Port 465/587 sowie die TLS-Erzwingung pro Mailbox bleiben unberührt.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Hinweis</p>
+<p>Das Deaktivieren der Prüfung entfernt den Downgrade-Schutz für <strong>alle</strong> Empfänger, ein Angreifer auf dem Übertragungsweg kann <code>STARTTLS</code> dann unbemerkt entfernen. Verwenden Sie eine Richtlinie pro Domain, solange das Problem einzelne Empfänger betrifft, und greifen Sie nur dann hierauf zurück, wenn Ihr gesamter ausgehender Verkehr betroffen ist.</p>
+</div>
 
 
 
@@ -5427,7 +5485,7 @@ Ein <strong>Neustart von mailcow oder Postfix ist nicht erforderlich</strong> �
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="9. Oktober 2025 17:06:53 CEST">2025-10-09 17:06:53</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="16. August 2026 02:00:57 CEST">2026-08-16 02:00:57</span>
   </span>
 
     

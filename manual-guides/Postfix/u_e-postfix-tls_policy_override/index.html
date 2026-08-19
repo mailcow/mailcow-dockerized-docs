@@ -3164,6 +3164,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#disabling-the-tls-policy-checks-completely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling the TLS policy checks completely
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5278,6 +5289,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#disabling-the-tls-policy-checks-completely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling the TLS policy checks completely
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5405,6 +5427,42 @@ A <strong>restart of mailcow or Postfix is not required</strong> — the change 
 <p class="admonition-title">Note</p>
 <p>As soon as faulty TLSA records or certificate issues on the recipient side are resolved, you should <strong>remove the temporarily set policy or reset it to the default value</strong> to preserve the integrity of the TLS security model.</p>
 </div>
+<hr>
+<h2 id="disabling-the-tls-policy-checks-completely">Disabling the TLS policy checks completely<a class="headerlink" href="#disabling-the-tls-policy-checks-completely" title="Permanent link">¶</a></h2>
+<p>In rare cases a per-domain override is not enough - for example if a firewall with SMTP inspection (Cisco ASA <code>inspect esmtp</code>, FortiGate SMTP proxy and similar) or an intercepting relay at your provider removes <code>STARTTLS</code> from the EHLO response of the remote server. Postfix then sees a server that offers no TLS at all, while DANE or MTA-STS still demand it, and every affected mail stays in the queue.</p>
+<p>To switch the checks off for all destinations, add the following to Postfix <a href="../u_e-postfix-extra_cf/">extra.cf</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">smtp_tls_security_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>may
+<span class="nv">smtp_dns_support_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>enabled
+<span class="nv">smtp_tls_policy_maps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>proxy:mysql:/opt/postfix/conf/sql/mysql_tls_policy_override_maps.cf
+</code></pre></div>
+<ul>
+<li><code>smtp_tls_security_level = may</code> - opportunistic TLS: encrypt if the remote server offers <code>STARTTLS</code>, deliver unencrypted if it does not. The mailcow default is <code>dane</code>.</li>
+<li><code>smtp_dns_support_level = enabled</code> - plain DNS lookups instead of the DNSSEC-validated ones, which are only needed for DANE. The mailcow default is <code>dnssec</code>.</li>
+<li><code>smtp_tls_policy_maps</code> - same value as in <code>main.cf</code>, but without the <code>socketmap:inet:postfix-tlspol:8642:QUERY</code> entry, so Postfix no longer asks postfix-tlspol for MTA-STS and DANE policies. The TLS policy entries from the mailcow UI described above keep working.</li>
+</ul>
+<p>Without <code>smtp_dns_support_level = dnssec</code> Postfix refuses the <code>dane</code> and <code>dane-only</code> policies, so do not combine this with such entries in the TLS policy table.</p>
+<p>Restart Postfix to apply the change:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>postfix-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Keep the <code>postfix-tlspol-mailcow</code> container running, <code>postfix-mailcow</code> depends on it. It simply stops receiving queries.</p>
+<div class="admonition info">
+<p class="admonition-title">Scope</p>
+<p>These <code>smtp_*</code> parameters only apply to <strong>outgoing</strong> deliveries from Postfix to other mail servers on port 25. Incoming mail, submission on port 465/587 and the per-mailbox "TLS enforcement in/out" settings are not affected.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Note</p>
+<p>Disabling the checks removes the downgrade protection for <strong>all</strong> recipients, an attacker on the path can then strip <code>STARTTLS</code> unnoticed. Use a per-domain policy whenever the problem is limited to single recipients and only fall back to this if your entire outgoing traffic is affected.</p>
+</div>
 
 
 
@@ -5425,7 +5483,7 @@ A <strong>restart of mailcow or Postfix is not required</strong> — the change 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="October 9, 2025 17:06:53 CEST">2025-10-09 17:06:53</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="August 16, 2026 02:00:57 CEST">2026-08-16 02:00:57</span>
   </span>
 
     
