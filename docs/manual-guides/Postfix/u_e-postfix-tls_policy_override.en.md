@@ -75,4 +75,46 @@ A **restart of mailcow or Postfix is not required** — the change takes effect 
 
 !!! warning "Note"
       As soon as faulty TLSA records or certificate issues on the recipient side are resolved, you should **remove the temporarily set policy or reset it to the default value** to preserve the integrity of the TLS security model.
+
+---
+
+## Disabling the TLS policy checks completely
+
+In rare cases a per-domain override is not enough - for example if a firewall with SMTP inspection (Cisco ASA `inspect esmtp`, FortiGate SMTP proxy and similar) or an intercepting relay at your provider removes `STARTTLS` from the EHLO response of the remote server. Postfix then sees a server that offers no TLS at all, while DANE or MTA-STS still demand it, and every affected mail stays in the queue.
+
+To switch the checks off for all destinations, add the following to Postfix [extra.cf](u_e-postfix-extra_cf.en.md):
+
+```bash
+smtp_tls_security_level = may
+smtp_dns_support_level = enabled
+smtp_tls_policy_maps = proxy:mysql:/opt/postfix/conf/sql/mysql_tls_policy_override_maps.cf
+```
+
+- `smtp_tls_security_level = may` - opportunistic TLS: encrypt if the remote server offers `STARTTLS`, deliver unencrypted if it does not. The mailcow default is `dane`.
+- `smtp_dns_support_level = enabled` - plain DNS lookups instead of the DNSSEC-validated ones, which are only needed for DANE. The mailcow default is `dnssec`.
+- `smtp_tls_policy_maps` - same value as in `main.cf`, but without the `socketmap:inet:postfix-tlspol:8642:QUERY` entry, so Postfix no longer asks postfix-tlspol for MTA-STS and DANE policies. The TLS policy entries from the mailcow UI described above keep working.
+
+Without `smtp_dns_support_level = dnssec` Postfix refuses the `dane` and `dane-only` policies, so do not combine this with such entries in the TLS policy table.
+
+Restart Postfix to apply the change:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart postfix-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart postfix-mailcow
+    ```
+
+Keep the `postfix-tlspol-mailcow` container running, `postfix-mailcow` depends on it. It simply stops receiving queries.
+
+!!! info "Scope"
+      These `smtp_*` parameters only apply to **outgoing** deliveries from Postfix to other mail servers on port 25. Incoming mail, submission on port 465/587 and the per-mailbox "TLS enforcement in/out" settings are not affected.
+
+!!! warning "Note"
+      Disabling the checks removes the downgrade protection for **all** recipients, an attacker on the path can then strip `STARTTLS` unnoticed. Use a per-domain policy whenever the problem is limited to single recipients and only fall back to this if your entire outgoing traffic is affected.
  
