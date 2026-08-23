@@ -62,3 +62,11 @@ When using a proxy on a different subnet you will need to add the following envi
 ```
 TRUSTED_PROXIES=#.#.#.#
 ```
+
+!!! tip
+    If the command `nginx -t` returns a warning similar to:
+    > protocol options redefined for [::]:443
+
+    it means that in your global nginx configuration there's the another virtual host with `listen [::]:HOST_PORT`.
+
+    The warning is mostly harmless but you might want to investigate how to fix it.

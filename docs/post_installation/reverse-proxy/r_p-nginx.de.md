@@ -62,3 +62,11 @@ Beim Einsatz eines Proxys in einem anderen Subnetz müssen Sie die folgende Umge
 ```
 TRUSTED_PROXIES=#.#.#.#
 ```
+
+!!! tip "Tipp"
+    Wenn der Befehl `nginx -t` eine Warnung ähnlich der folgenden ausgibt:
+    > protocol options redefined for [::]:443
+
+    das bedeutet, dass es in Ihrer globalen Nginx-Konfiguration einen weiteren virtuellen Host mit `listen [::]:HOST_PORT` gibt.
+
+    Die Warnung ist meist harmlos, aber vielleicht möchten Sie trotzdem nachsehen, wie man das Problem beheben kann.
