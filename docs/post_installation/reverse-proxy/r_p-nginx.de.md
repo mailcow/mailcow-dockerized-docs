@@ -13,8 +13,9 @@ server {
   return 301 https://$host$request_uri;
 }
 server {
-  listen 443 ssl http2;
-  listen [::]:443 ssl http2;
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  http2 on;
   server_name ZU MAILCOW HOSTNAMEN ÄNDERN autodiscover.* autoconfig.*;
 
   ssl_certificate MAILCOW_PATH/data/assets/ssl/cert.pem;
