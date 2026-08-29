@@ -556,7 +556,7 @@ block:
 $MAILCOW_APPS = [
     [
         'name' => 'SOGo',
-        'link' => '/SOGo/'
+        'link' => '/SOGo/so/'
     ],
     [
         'name' => 'Roundcube',

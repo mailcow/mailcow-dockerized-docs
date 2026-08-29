@@ -499,7 +499,7 @@ Sie können den Roundcube-Link zur mailcow-App-Liste hinzufügen. Öffnen oder e
 $MAILCOW_APPS = [
     [
         'name' => 'SOGo',
-        'link' => '/SOGo/'
+        'link' => '/SOGo/so/'
     ],
     [
         'name' => 'Roundcube',
