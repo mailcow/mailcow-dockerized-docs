@@ -49,6 +49,13 @@ Wenn Sie sich direkt mit einem Dienst / einer Anwendung verbinden wollen, ist es
 	docker-compose exec redis-mailcow redis-cli
     ```
 
+!!! Info
+    Wenn $REDISPASS in mailcow.conf gesetzt ist sollten die Befehle wie hier am besipiel gezeigt angepasst werden.
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
+
 ## Dienstbeschreibungen
 
 Hier ist eine kurze Übersicht, welcher Container / Dienst was macht:
