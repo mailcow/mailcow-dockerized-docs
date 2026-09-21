@@ -156,6 +156,13 @@ Nehmen Sie eine der Zeilen aus der Ausgabe, die Sie interessiert, und fordern Si
     docker-compose exec redis-mailcow redis-cli ZRANGE "dmarc_rpt;microsoft.com;mailto:d@rua.agari.com;20220428" 0 49
     ```
 
+!!! Info
+    Wenn $REDISPASS in mailcow.conf gesetzt ist sollten die Befehle wie hier am besipiel gezeigt angepasst werden.
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
+
 
 ## Ändern Sie die Häufigkeit der DMARC-Berichte
 
