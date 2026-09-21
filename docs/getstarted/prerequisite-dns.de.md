@@ -82,6 +82,7 @@ Hier finden Sie einige Tools, mit denen Sie Ihre DNS-Konfiguration überprüfen 
 - [MX Toolbox](https://mxtoolbox.com/SuperTool.aspx) (DNS, SMTP, RBL)
 - [port25.com](https://www.port25.com/dkim-wizard/) (DKIM, SPF)
 - [Mail-Tester](https://www.mail-tester.com/) (DKIM, DMARC, SPF)
+- [Email Spam Tester](https://email-spam-tester.com/) (DKIM, DMARC, SPF, RBL, Inbox-Platzierung bei Gmail, Yahoo, AOL)
 - [DMARC-Analysator](https://www.dmarcanalyzer.com/spf/checker/) (DMARC, SPF)
 - [MultiRBL.valli.org](http://multirbl.valli.org/) (DNSBL, RBL, FCrDNS)
 
