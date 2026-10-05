@@ -80,10 +80,10 @@ _submissions._tcp   IN SRV     0        1      465      mail.example.org. (your 
 Here are some tools you can use to verify your DNS configuration:
 
 - [MX Toolbox](https://mxtoolbox.com/SuperTool.aspx) (DNS, SMTP, RBL)
-- [port25.com](https://www.port25.com/dkim-wizard/) (DKIM, SPF)
 - [Mail-tester](https://www.mail-tester.com/) (DKIM, DMARC, SPF)
 - [Email Spam Tester](https://email-spam-tester.com/) (DKIM, DMARC, SPF, RBL, inbox placement at Gmail, Yahoo, AOL)
 - [DMARC Analyzer](https://www.dmarcanalyzer.com/spf/checker/) (DMARC, SPF)
+- [DomainCanary](https://domaincanary.com/tools/spf-dkim-dmarc-checker) (DMARC, SPF, DKIM)
 - [MultiRBL.valli.org](http://multirbl.valli.org/) (DNSBL, RBL, FCrDNS)
 
 ## Misc
