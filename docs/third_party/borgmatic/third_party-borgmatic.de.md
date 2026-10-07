@@ -79,6 +79,7 @@ repositories:
     - path: ssh://uXXXXX@uXXXXX.your-storagebox.de:23/./mailcow
       label: rsync
 exclude_patterns:
+    - '/mnt/source/vmail/_garbage/'
     - '/mnt/source/postfix/public/'
     - '/mnt/source/postfix/private/'
     - '/mnt/source/rspamd/rspamd.sock'
