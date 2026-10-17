@@ -211,6 +211,7 @@ nav:
     - 'AbuseIPDB Integration': 'third_party/abuseipdb/third_party-abuseipdb.md'
     - 'Borgmatic Backup': 'third_party/borgmatic/third_party-borgmatic.md'
     - 'CheckMK' : 'third_party/checkmk/u_e-checkmk.md'
+    - 'CrowdSec Integration': 'third_party/crowdsec/third_party-crowdsec.md'
     - 'Exchange Hybrid Setup': 'third_party/exchange_onprem/third_party-exchange_onprem.md'
     - 'Gitea': 'third_party/gitea/third_party-gitea.md'
     - 'Gogs': 'third_party/gogs/third_party-gogs.md'
@@ -356,6 +357,7 @@ plugins:
               ### Third party apps Section
               'Third party apps (community managed)': 'Anwendungen von Drittanbietern (Von der Community verwaltet)'
               'Borgmatic Backup': 'Borgmatic-Sicherung'
+              'CrowdSec Integration': 'CrowdSec-Integration'
           #### End of german translation
   - git-revision-date-localized:
       type: iso_datetime
