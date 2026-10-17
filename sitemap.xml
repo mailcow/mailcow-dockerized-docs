@@ -736,6 +736,13 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/checkmk/u_e-checkmk/"/>
     </url>
     <url>
+        <loc>https://docs.mailcow.email/third_party/crowdsec/third_party-crowdsec/</loc>
+        <lastmod>2026-10-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/crowdsec/third_party-crowdsec/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/crowdsec/third_party-crowdsec/"/>
+    </url>
+    <url>
         <loc>https://docs.mailcow.email/third_party/exchange_onprem/third_party-exchange_onprem/</loc>
         <lastmod>2026-10-17</lastmod>
         <changefreq>daily</changefreq>
@@ -1637,6 +1644,13 @@
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/checkmk/u_e-checkmk/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/checkmk/u_e-checkmk/"/>
+    </url>
+    <url>
+        <loc>https://docs.mailcow.email/de/third_party/crowdsec/third_party-crowdsec/</loc>
+        <lastmod>2026-10-17</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://docs.mailcow.email/de/third_party/crowdsec/third_party-crowdsec/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.mailcow.email/third_party/crowdsec/third_party-crowdsec/"/>
     </url>
     <url>
         <loc>https://docs.mailcow.email/de/third_party/exchange_onprem/third_party-exchange_onprem/</loc>
