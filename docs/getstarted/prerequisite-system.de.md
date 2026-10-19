@@ -77,7 +77,7 @@ netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190'
 !!! danger "Vorsicht"
     Es gibt einige Probleme mit dem Betrieb von mailcow auf einem Firewalld/ufw aktivierten System. <br>
 	Sie sollten es deaktivieren (wenn möglich) und stattdessen Ihren Regelsatz in die DOCKER-USER-Kette verschieben, die nicht durch einen Neustart des Docker-Dienstes gelöscht wird. <br>
-	Siehe [diese (blog.donnex.net)](https://blog.donnex.net/docker-and-iptables-filtering/) oder [diese (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) Anleitung für Informationen darüber, wie man iptables-persistent mit der DOCKER-USER Kette benutzt. <br>
+	Siehe [diese (blog.donnex.net)](https://web.archive.org/web/20240718201710/https://blog.donnex.net/docker-and-iptables-filtering/) oder [diese (unrouted.io)](https://unrouted.io/2017/08/15/docker-firewall/) Anleitung für Informationen darüber, wie man iptables-persistent mit der DOCKER-USER Kette benutzt. <br>
     Da mailcow im Docker-Modus läuft, haben INPUT-Regeln keinen Effekt auf die Beschränkung des Zugriffs auf mailcow. <br>
 	Verwenden Sie stattdessen die FORWARD-Kette.
 
