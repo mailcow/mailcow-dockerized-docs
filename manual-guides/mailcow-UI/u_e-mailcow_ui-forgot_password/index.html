@@ -5433,13 +5433,13 @@
 <h3 id="configuration-options-in-the-mailcow-ui">Configuration Options in the mailcow UI<a class="headerlink" href="#configuration-options-in-the-mailcow-ui" title="Permanent link">¶</a></h3>
 <h4 id="mailbox-settings">Mailbox Settings<a class="headerlink" href="#mailbox-settings" title="Permanent link">¶</a></h4>
 <p>This feature adds a new field to the mailbox options:</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="New mailcow UI field for setting a backup email in the mailbox edit window" src="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_field.png"></a></p>
+<p></p>
 <div class="admonition danger">
 <p class="admonition-title">Attention</p>
 <p>Reminder: This field <strong>MUST</strong> be filled in for the user to reset their password! If it is not set, they will not be able to reset their password!</p>
 </div>
 <p>For administrators, there is a new ACL that can be set either per mailbox afterwards or as a template for mailboxes: <code>Allow management of the password recovery email</code>:
-<a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="New mailcow UI ACL for controlling whether a mailbox user can change the backup email themselves or not" src="../../../assets/images/manual-guides/mailcow-forgot-password_mailbox_acl.png"></a></p>
+</p>
 <div class="admonition info">
 <p class="admonition-title">Note</p>
 <p>If a user has already set a backup email but the admin removes this ACL from them, they can still reset their password since the backup email remains in the system. The ACL <strong>does not automatically forbid</strong> the possibility of <strong>resetting the password if there is an email</strong>!</p>
@@ -5448,7 +5448,7 @@
 <h4 id="server-settings">Server Settings<a class="headerlink" href="#server-settings" title="Permanent link">¶</a></h4>
 <p>The mailcow administrator can also edit the template for the "Forgot Password" emails, similar to the quota and quarantine emails, to customize how the emails are sent. <strong>By default, the template is always in English</strong>.</p>
 <p>This can be accessed under the tab: <code>System -&gt; Configuration -&gt; Options -&gt; Password Settings</code>:</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="New mailcow UI settings section where the administrator can customize the email templates for the Forgot Password feature" src="../../../assets/images/manual-guides/mailcow-forgot-password_server_settings.png"></a></p>
+<p></p>
 <hr>
 <h3 id="hidden-settings-not-in-the-mailcow-ui">Hidden Settings (not in the mailcow UI)<a class="headerlink" href="#hidden-settings-not-in-the-mailcow-ui" title="Permanent link">¶</a></h3>
 <p>By default, each user can request a maximum of 3 password reset tokens, which are valid for 15 minutes.</p>
