@@ -68,7 +68,7 @@ See the topic above, instead of a diff, you run checkout:
 
     ``` bash
     docker compose down
-    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    # Replace the commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab with your ID
     git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
     docker compose pull
     docker compose up -d
@@ -78,7 +78,7 @@ See the topic above, instead of a diff, you run checkout:
 
     ``` bash
     docker-compose down
-    # Ersetzen Sie die Commit-ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab durch Ihre ID
+    # Replace the commit ID 22cd00b5e28893ef9ddef3c2b5436453cc5223ab with your ID
     git checkout 22cd00b5e28893ef9ddef3c2b5436453cc5223ab
     docker-compose pull
     docker-compose up -d
