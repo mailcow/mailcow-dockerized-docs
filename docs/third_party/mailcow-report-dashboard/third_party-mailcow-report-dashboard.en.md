@@ -19,7 +19,7 @@ An add-on that collects the DMARC aggregate (RUA) and SMTP TLS (TLS-RPT) reports
     ```yaml
     services:
       reports-mailcow:
-        image: ghcr.io/thxgiving/mailcow-report-dashboard:latest
+        image: ghcr.io/thxgiving/dmarc-tls-reports-for-mailcow:latest
         restart: always
         environment:
           - SLUG=admin/dmarc
@@ -67,4 +67,4 @@ An add-on that collects the DMARC aggregate (RUA) and SMTP TLS (TLS-RPT) reports
 
 The first reports usually arrive one or two days later.
 
-Updating, uninstalling and all details are described in the [GitHub repository](https://github.com/ThxGiving/mailcow-report-dashboard).
+Updating, uninstalling and all details are described in the [GitHub repository](https://github.com/ThxGiving/dmarc-tls-reports-for-mailcow).

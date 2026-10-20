@@ -19,7 +19,7 @@ Ein Add-on, das die DMARC-Aggregate-Berichte (RUA) und SMTP-TLS-Berichte (TLS-RP
     ```yaml
     services:
       reports-mailcow:
-        image: ghcr.io/thxgiving/mailcow-report-dashboard:latest
+        image: ghcr.io/thxgiving/dmarc-tls-reports-for-mailcow:latest
         restart: always
         environment:
           - SLUG=admin/dmarc
@@ -67,4 +67,4 @@ Ein Add-on, das die DMARC-Aggregate-Berichte (RUA) und SMTP-TLS-Berichte (TLS-RP
 
 Die ersten Berichte kommen in der Regel ein bis zwei Tage später an.
 
-Update, Deinstallation und alle Details sind im [GitHub-Repository](https://github.com/ThxGiving/mailcow-report-dashboard) beschrieben.
+Update, Deinstallation und alle Details sind im [GitHub-Repository](https://github.com/ThxGiving/dmarc-tls-reports-for-mailcow) beschrieben.
