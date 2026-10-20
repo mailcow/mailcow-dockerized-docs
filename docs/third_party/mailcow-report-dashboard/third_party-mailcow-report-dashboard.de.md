@@ -1,30 +1,64 @@
 # mailcow Report Dashboard
 
-Ein Add-on, das die DMARC-Aggregate-Berichte (RUA) und SMTP-TLS-Berichte (TLS-RPT) sammelt, die andere Mailserver über Ihre Domains senden, und sie auf einer Seite in der mailcow-Oberfläche anzeigt, die nur Administratoren sehen. Eine Warnmail wird nur verschickt, wenn tatsächlich etwas nicht stimmt.
+Ein Add-on, das die DMARC-Aggregate-Berichte (RUA) und SMTP-TLS-Berichte (TLS-RPT) sammelt, die andere Mailserver über Ihre Domains senden, und sie auf einer Seite in der mailcow-Oberfläche anzeigt, die nur Administratoren sehen. Es läuft als kleiner Container neben mailcow und verschickt nur dann eine Warnmail, wenn tatsächlich etwas nicht stimmt.
 
 ## Funktionen
 
-- **In mailcow integriert**: Die Seite erscheint im Apps-Menü und nutzt die Admin-Anmeldung von mailcow. Kein zusätzlicher Container, Webserver oder Port.
+- **In mailcow integriert**: Die Seite liegt unter `/admin/dmarc/`, nutzt die Admin-Anmeldung von mailcow und kann ins Apps-Menü aufgenommen werden (nur für Admins sichtbar). Kein zusätzlicher Webserver oder Port.
+- **Minimale Rechte**: Der Container liest das Berichtspostfach per IMAP mit einem App-Passwort, das nur für dieses Postfach gilt. Kein Zugriff auf Docker-Socket, Datenbank oder vmail.
 - **Warnungen nur bei echten Problemen**: TLS-Fehler bei Verbindungen zu Ihrem MX, DMARC-Fehler bei Mails Ihres eigenen Servers, nicht lesbare Berichte.
 - **Übersicht**: Status pro Domain, Verlauf über 52 Wochen, Ergebnisse pro Empfänger (Google, Microsoft, ...), TLS-Fehler und Absender gefälschter Mails mit Reverse DNS.
 - **DNS-Assistent**: Zeigt die TXT-Einträge, die jede Domain benötigt (DMARC `rua`, TLS-RPT, Freigabe externer Empfänger), und prüft sie live.
-- **Sofortige Verarbeitung**: Neue Berichte werden verarbeitet, sobald sie im Berichtspostfach ankommen.
-- **Update-sicher**: Nutzt nur die Erweiterungspunkte von mailcow (`data/conf/nginx/*.custom`, App-Links), alle 31 Sprachen der mailcow-Oberfläche sind enthalten.
+- **Echtzeit**: Neue Berichte werden innerhalb von Sekunden verarbeitet (IMAP IDLE).
+- **Update-sicher**: Nutzt nur die Erweiterungspunkte von mailcow; alle 31 Sprachen der mailcow-Oberfläche sind enthalten.
 
 ## Installation
 
-Das Add-on läuft auf dem mailcow-Host (root, `python3` ab 3.8, systemd).
+1.  Den Dienst in die `docker-compose.override.yml` im mailcow-Ordner eintragen (Datei anlegen, falls sie nicht existiert):
 
-1.  Repository klonen und den Installer ausführen:
-    ```bash
-    git clone https://github.com/ThxGiving/mailcow-report-dashboard.git
-    cd mailcow-report-dashboard
-    sudo ./install.sh --language de-de --alert-to postmaster@example.org
+    ```yaml
+    services:
+      reports-mailcow:
+        image: ghcr.io/thxgiving/mailcow-report-dashboard:latest
+        restart: always
+        environment:
+          - SLUG=admin/dmarc
+          - MAILCOW_HOSTNAME=${MAILCOW_HOSTNAME}
+          - HTTPS_PORT=${HTTPS_PORT:-443}
+          - SNAT_TO_SOURCE=${SNAT_TO_SOURCE:-}
+          - SNAT6_TO_SOURCE=${SNAT6_TO_SOURCE:-}
+          - TZ=${TZ}
+        volumes:
+          - ./data/web/admin/dmarc:/page
+          - ./data/conf/nginx:/nginx-conf
+          - ./data/web/css/build:/mailcow-css
+          - reports-vol-1:/data
+        networks:
+          mailcow-network:
+            aliases:
+              - reports
+
+    volumes:
+      reports-vol-1:
     ```
 
-2.  In der mailcow-Oberfläche **Apps → Zustellberichte** öffnen, zu **Einstellungen** wechseln und das Postfach auswählen oder anlegen, das die Berichte empfangen soll.
+2.  Starten:
 
-3.  Die vom DNS-Assistenten angezeigten DNS-Einträge anlegen, zum Beispiel:
+    === "docker compose (Plugin)"
+    
+        ``` bash
+        docker compose up -d
+        ```
+    
+    === "docker-compose (Standalone)"
+    
+        ``` bash
+        docker-compose up -d
+        ```
+
+3.  Als Admin `https://<mailcow-host>/admin/dmarc/` öffnen und den Einrichtungsassistenten abschließen (Berichtspostfach, Empfänger der Warnungen, Eintrag im Apps-Menü).
+
+4.  Die vom DNS-Assistenten angezeigten DNS-Einträge anlegen, zum Beispiel:
 
     | Eintrag | Wert |
     |---|---|
@@ -33,4 +67,4 @@ Das Add-on läuft auf dem mailcow-Host (root, `python3` ab 3.8, systemd).
 
 Die ersten Berichte kommen in der Regel ein bis zwei Tage später an.
 
-Alle Optionen sowie Update und Deinstallation sind im [GitHub-Repository](https://github.com/ThxGiving/mailcow-report-dashboard) beschrieben.
+Update, Deinstallation und alle Details sind im [GitHub-Repository](https://github.com/ThxGiving/mailcow-report-dashboard) beschrieben.
