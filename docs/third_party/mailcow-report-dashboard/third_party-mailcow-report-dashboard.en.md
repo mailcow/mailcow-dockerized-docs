@@ -1,4 +1,4 @@
-# mailcow DMARC/TLS Reports
+# DMARC/TLS Reports for mailcow
 
 An add-on that collects the DMARC aggregate (RUA) and SMTP TLS (TLS-RPT) reports other mail servers send about your domains and shows them on an admin-only page inside the mailcow UI. It runs as one small container next to mailcow and sends an alert mail only when something is actually wrong.
 
