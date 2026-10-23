@@ -21,6 +21,8 @@ Ein Add-on, das die DMARC-Aggregate-Berichte (RUA) und SMTP-TLS-Berichte (TLS-RP
       reports-mailcow:
         image: ghcr.io/thxgiving/dmarc-tls-reports-for-mailcow:latest
         restart: always
+        depends_on:
+          - nginx-mailcow
         environment:
           - SLUG=admin/dmarc
           - MAILCOW_HOSTNAME=${MAILCOW_HOSTNAME}

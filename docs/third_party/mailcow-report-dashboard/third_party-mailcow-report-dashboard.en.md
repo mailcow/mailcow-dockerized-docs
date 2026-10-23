@@ -21,6 +21,8 @@ An add-on that collects the DMARC aggregate (RUA) and SMTP TLS (TLS-RPT) reports
       reports-mailcow:
         image: ghcr.io/thxgiving/dmarc-tls-reports-for-mailcow:latest
         restart: always
+        depends_on:
+          - nginx-mailcow
         environment:
           - SLUG=admin/dmarc
           - MAILCOW_HOSTNAME=${MAILCOW_HOSTNAME}
