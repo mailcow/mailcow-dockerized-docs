@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -30,10 +30,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5331,7 +5331,7 @@
 <h2 id="change-netfilter-ban-settings">Change Netfilter Ban Settings<a class="headerlink" href="#change-netfilter-ban-settings" title="Permanent link">¶</a></h2>
 <p>To change the Netfilter settings in general please navigate to: <code>Configuration -&gt; Configuration &amp; Details -&gt; Configuration -&gt; Fail2ban parameters</code>.</p>
 <p>You should now see a familar interface:</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png"></a></p>
 <p>Here you can set several options regarding the bans itself. 
 For example the max. Ban time or the max. attempts before a ban is executed.</p>
 <h2 id="change-netfilter-regex">Change Netfilter Regex<a class="headerlink" href="#change-netfilter-regex" title="Permanent link">¶</a></h2>
@@ -5342,7 +5342,7 @@ If you are not sure what you are doing there, we can only advise you not to atte
 </div>
 <p>In addition to the ban settings, you can also define what exactly should be used from the mailcow container logs to ban a possible attacker.</p>
 <p>To do this, you must first expand the regex field, which will look something like this:</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png"></a></p>
 <p>There you can now create various new filter rules.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -5360,7 +5360,7 @@ If this is the case, it is recommended to reset the Netfilter regex rules by cli
 <p>With this functionality, you can forward the IPs marked as blocked by Netfilter to an endpoint, which can then process these IPs. For example, an OPNsense firewall can dynamically load this list.</p>
 </details>
 <p>Let's take a look at these settings:</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Image of the new Netfilter settings, box behind the item Manage Fail2Ban externally. Marking on the URL to the respective banlist. Arrow points to Reload button for the generation of a new URL" src="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png"></a></p>
 <p>To activate the general function, the checkbox <code>Manage Fail2Ban externally</code> must be checked.</p>
 <p>As soon as this is done, the URL (point 2) can be copied and pasted into the respective endpoint.</p>
 <div class="admonition warning">
@@ -5500,10 +5500,10 @@ If this is the case, it is recommended to reset the Netfilter regex rules by cli
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "content.tooltips", "content.code.copy", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "announce.dismiss", "content.tabs.link", "content.tooltips", "content.code.copy", "search.share", "search.highlight"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../../assets/javascripts/client.js"></script>
       
