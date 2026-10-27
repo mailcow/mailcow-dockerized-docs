@@ -41,9 +41,18 @@ Mit der Dovecot-Option können Benutzer selbst als gelöscht markierte E-Mails e
         lazy_expunge_only_last_instance = yes
 
         # Als gelöscht markierte Mails von der Quota ausschließen
-        quota_rule = .EXPUNGED:ignore
+        # (quota_rule2, da mailcow quota_rule bereits für die Mailbox-Quota setzt)
+        quota_rule2 = .EXPUNGED:ignore
     }
     ```
+
+    !!! warning "Achtung"
+        Verwenden Sie unbedingt `quota_rule2` und nicht `quota_rule`. mailcow definiert `quota_rule` bereits für die Quota jeder Mailbox, wodurch ein in der `extra.conf` gesetztes `quota_rule` überschrieben wird und der `.EXPUNGED` Ordner weiterhin zur Quota zählt.
+
+        Falls Sie diese Anleitung bereits mit `quota_rule` umgesetzt haben, können Sie dies wie folgt korrigieren:
+        ```bash
+        sed -i 's/quota_rule = \.EXPUNGED:ignore/quota_rule2 = .EXPUNGED:ignore/' data/conf/dovecot/extra.conf
+        ```
 
 2. Starten Sie den Dovecot-Container neu:
 
