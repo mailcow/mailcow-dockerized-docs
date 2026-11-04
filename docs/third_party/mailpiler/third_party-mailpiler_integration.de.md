@@ -34,10 +34,10 @@ Hinweis: Die Dateipfade können je nach Einrichtung variieren.
 
 - Eine funktionierende mailcow-Instanz
 - Eine funktionierende mailpiler Instanz ([Sie finden eine Installationsanleitung hier](https://patrik.kernstock.net/2020/08/mailpiler-installation-guide/), [überprüfen Sie unterstützte Versionen hier](https://github.com/patschi/mailpiler-mailcow-integration#piler))
-- Ein mailcow API-Schlüssel (Nur-Lesen funktioniert): `Konfiguration & Details - Zugang - Nur-Lesen-Zugang`. Vergessen Sie nicht, den API-Zugang von Ihrer mailpiler IP zu erlauben.
+- Ein mailcow API-Schlüssel (Nur-Lesen funktioniert): `System - Konfiguration - Zugang - Administratoren - API-Keys`, siehe [API](../../manual-guides/mailcow-UI/u_e-mailcow_ui-api.md). Vergessen Sie nicht, den API-Zugang von Ihrer mailpiler IP zu erlauben.
 
 !!! warning "Warnung"
-    Da mailpiler sich gegenüber mailcow, unserem IMAP-Server, authentifiziert, können fehlgeschlagene Logins von Nutzern oder Bots eine Sperre für Ihre mailpiler-Instanz auslösen. Daher sollten Sie in Erwägung ziehen, die IP-Adresse der mailpiler-Instanz innerhalb von mailcow auf eine Whitelist zu setzen: `Konfiguration & Details - Konfiguration - Fail2ban-Parameter - Whitelisted networks/hosts`.
+    Da mailpiler sich gegenüber mailcow, unserem IMAP-Server, authentifiziert, können fehlgeschlagene Logins von Nutzern oder Bots eine Sperre für die mailpiler-Instanz auslösen. Daher empfiehlt es sich, die IP-Adresse der mailpiler-Instanz in mailcow auf die Allowliste zu setzen: `System - Konfiguration - Einstellungen - Fail2ban-Parameter - Allowliste für Netzwerke und Hosts`.
 
 ### Einrichtung
 

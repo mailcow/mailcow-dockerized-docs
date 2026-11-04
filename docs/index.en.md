@@ -50,7 +50,9 @@ other or more tricky tasks that can be done with ease:
 - Prepend e-mail tags to subject or move e-mails to subfolders (per user)
 - Allow mailbox users to toggle TLS enforcement for inbound and outbound messages
 - Users can reset caches on SOGo ActiveSync devices
-- imapsync to periodically migrate or retrieve remote mailboxes
+- imapsync to periodically migrate or retrieve remote mailboxes, incl. OAuth2 for Microsoft 365 and Google
+- Groups with distribution lists, send-as permissions, shared mailboxes and shared calendars
+- Login via Keycloak, LDAP/Active Directory or OIDC, user and group sync for Keycloak and LDAP
 - TFA: Yubikey OTP and WebAuthn USB (Google Chrome and derivatives only), TOTP
 - Add whitelist hosts to forward mail to mailcow
 - Fail2ban-like integration

@@ -42,6 +42,7 @@ map $http_upgrade $connection_upgrade {
     proxy_set_header Connection "";
     proxy_buffers 32 4k;
     proxy_pass http://portainer/;
+    client_max_body_size 0;
   }
 
   location /portainer/api/websocket/ {

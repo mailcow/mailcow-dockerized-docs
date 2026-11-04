@@ -51,7 +51,9 @@ Aber auch andere bzw. knifflige Themen können in ihr problemlos erledigt werden
 - Voranstellen von E-Mail-Tags an den Betreff oder Verschieben von E-Mails im Unterordner (pro Benutzer)
 - Mailbox-Benutzer können die TLS-Durchsetzung für eingehende und ausgehende Nachrichten umschalten
 - Benutzer können die Caches von SOGo ActiveSync-Geräten zurücksetzen
-- imapsync, um entfernte Postfächer regelmäßig zu migrieren oder abzurufen
+- imapsync, um entfernte Postfächer regelmäßig zu migrieren oder abzurufen, inkl. OAuth2 für Microsoft 365 und Google
+- Gruppen mit Verteilern, Senden-als-Rechten, geteilten Postfächern und geteilten Kalendern
+- Login über Keycloak, LDAP/Active Directory oder OIDC, Benutzer- und Gruppen-Sync für Keycloak und LDAP
 - TFA: Yubikey OTP und WebAuthn USB (nur Google Chrome und Derivate), TOTP
 - Hinzufügen von Whitelist-Hosts zur Weiterleitung von Mails an mailcow
 - Fail2ban-ähnliche Integration

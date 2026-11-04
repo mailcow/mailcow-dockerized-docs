@@ -1,5 +1,6 @@
 !!! warning "Warnung"
     **Mailbox-Benutzer, die Zwei-Faktor-Authentifizierung aktiviert haben, müssen für externe Anwendungen wie Mailclients App-Passwörter erstellen.**
+    Das Mailbox-Passwort wird dort abgelehnt. Zum Anlegen von App-Passwörtern braucht die Mailbox die Berechtigung `App-Passwörter verwalten` (standardmäßig an).
 
 Bislang sind drei Methoden für die _Zwei-Faktor-Authentifizierung_ implementiert: WebAuthn (ersetzt seit Februar 2022 U2F), Yubi OTP und TOTP
 
@@ -135,3 +136,27 @@ Sie haben zwei verschiedene Methoden, um TOTP für Ihr Konto zu registrieren:
 2. Verwenden Sie den TOTP-Code (unter dem QR-Code) in Ihrem TOTP-Programm oder Ihrer App (wenn Sie keinen QR-Code scannen können).
 
 Nachdem Sie den QR- oder TOTP-Code in der TOTP-App/dem TOTP-Programm Ihrer Wahl registriert haben, müssen Sie nur noch den nun generierten TOTP-Token (in der App/dem Programm) als Bestätigung in der mailcow UI eingeben, um die TOTP 2FA endgültig zu aktivieren, ansonsten wird sie nicht aktiviert, obwohl der TOTP-Token bereits in Ihrer App/ Ihrem Programm generiert wurde.
+
+## Falsche Codes
+
+Nach 10 falschen Codes wird der zweite Faktor des Kontos gesperrt, für 15 Minuten ab dem ersten falschen Code. Die Anmeldung zeigt dann „Zu viele fehlgeschlagene Zwei-Faktor-Anmeldungen, bitte später erneut versuchen“. Jeder falsche Code zählt außerdem als Fehlversuch für [Netfilter](u_e-mailcow_ui-netfilter.md).
+
+Beide Werte lassen sich in `data/web/inc/vars.local.inc.php` ändern, danach `docker compose restart php-fpm-mailcow` ausführen:
+
+```php
+// Falsche Codes, bevor der zweite Faktor gesperrt wird
+$TFA_MAX_FAILS = 10;
+// Sekunden ab dem ersten falschen Code, bis Zähler und Sperre zurückgesetzt werden
+$TFA_FAIL_WINDOW = 900;
+```
+
+## Erzwungene 2FA-Einrichtung und Passwortänderung
+
+Für Administratoren, Domain-Administratoren und Mailboxen lassen sich `Zwei-Faktor-Authentifizierung beim Login erzwingen` und `Erzwinge Passwortänderung bei nächstem Login` aktivieren. Nach der nächsten Anmeldung an der mailcow UI muss zuerst ein zweiter Faktor eingerichtet oder ein neues Passwort gesetzt werden. Bis dahin:
+
+- erlauben mailcow UI und API nur diesen Schritt,
+- sind SOGo und das Apple-Konfigurationsprofil (`mobileconfig`) nicht erreichbar,
+- lassen sich keine App-Passwörter anlegen.
+
+Ein Konto, das schon einen zweiten Faktor hat, erfüllt `Zwei-Faktor-Authentifizierung beim Login erzwingen`.
+

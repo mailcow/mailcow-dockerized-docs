@@ -29,6 +29,9 @@ Recreate affected containers by running the command:
 
 ## Important information, please read them carefully!
 
+!!! warning
+    If the reverse proxy reaches mailcow from an address outside the private ranges (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`), add it to `TRUSTED_PROXIES` in `mailcow.conf` and run `docker compose up -d`. Otherwise mailcow sees the address of the proxy instead of the client: Netfilter counts failed logins of all clients for the proxy and bans it. See [Netfilter](../../manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter.md#what-counts-as-a-failed-login).
+
 !!! info
     If you plan to use a reverse proxy and want to use another server name that is **not** MAILCOW_HOSTNAME, you need to read [Adding additional server names for mailcow UI](#adding-additional-server-names-for-mailcow-ui) below.
 

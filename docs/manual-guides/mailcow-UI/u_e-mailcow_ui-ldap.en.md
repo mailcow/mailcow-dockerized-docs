@@ -2,33 +2,48 @@
 
 To add or edit your **Identity Provider** configuration, log in to your *mailcow UI* as administrator, go to `System > Configuration > Access > Identity Provider` and select **LDAP** from the Identity Provider dropdown.
 
+**Connection**
+
 * `Host`: The address of your LDAP server. You can provide a single hostname or a comma-separated list of hosts for fallback in case the primary server is unreachable.
 * `Port`: The port used to connect to the LDAP server.
-* `Use SSL`: enable LDAPS connection. If Port is set to `389` it will be overriden to `636`.
-* `Use TLS`: enable TLS connection. SSL Ports cannot be used.
+* `Encryption`: `None`, `StartTLS` (uses the normal port, usually `389`) or `SSL (LDAPS)`. With SSL, port `389` is changed to `636` automatically.
 * `Ignore SSL Errors`: If enabled, SSL certificate validation will be bypassed.
-* `Base DN`: The Distinguished Name (DN) from which searches will be performed.
-* `Username Field`: The LDAP attribute used to identify users during authentication. Defaults to `mail`.
-* `Filter`: An optional LDAP search filter to refine which users can authenticate.
-* `Attribute Field`: Specifies an LDAP attribute that holds a specific value which can be mapped to a mailbox template using the **Attribute Mapping** section.
 * `Bind DN`: The Distinguished Name (DN) of the LDAP user that will be used to authenticate and perform LDAP searches. This account should have sufficient permissions to read the required attributes.
 * `Bind Password`: The password for the **Bind DN** user. It is required for authentication when connecting to the LDAP server.
+
+**Users**
+
+* `Base DN`: The Distinguished Name (DN) from which searches will be performed.
+* `Filter`: An optional LDAP search filter to refine which users can authenticate and are synced, e.g. `(objectClass=person)`.
+* `Username Field`: The LDAP attribute with the email address of the users, it becomes the mailbox name. Defaults to `mail`.
+* `ID attribute`: Attribute with a stable user ID, used to [link mailboxes and LDAP users](u_e-mailcow_ui-idp-sync.md#linking-mailboxes-and-idp-users). If empty, mailcow uses `objectGUID`, `entryUUID`, `nsUniqueId` or `ipaUniqueID`, otherwise the DN.
+* `Disabled filter`: Optional LDAP filter that matches disabled users, used for [offboarding](u_e-mailcow_ui-idp-sync.md#offboarding). Active Directory accounts that are disabled in `userAccountControl` always count as disabled.
+
+**Login**
+
+* `Auto-create users on login`: If enabled, mailboxes are created at the first login of a user, see [Automatic User Provisioning](#automatic-user-provisioning).
+
+**Mailbox templates**
+
+* `Attribute Field`: Specifies an LDAP attribute that holds a specific value which can be mapped to a mailbox template using the **Attribute Mapping** section.
+* `Default Template`: Used to create a mailbox if no attribute mapping matches. It is not applied to existing mailboxes.
 * `Attribute Mapping`:
     * `Attribute`: Defines the LDAP attribute value that should be mapped.
     * `Template`: Specifies which mailbox template should be applied for the defined LDAP attribute value
-* `Periodic Full Sync`: If enabled, a full synchronization of all LDAP users and attributes will be performed periodically.
-* `Import Users`: If enabled, new users will be automatically imported from LDAP into mailcow.
-* `Sync / Import Interval (min)`: Defines the time interval (in minutes) for periodic synchronization and user imports.
+
+**Synchronization** and **Groups**
+
+* Import of users, periodic sync, offboarding and group sync are described in [Identity Provider sync](u_e-mailcow_ui-idp-sync.md).
 
 ---
 
 ### **Automatic User Provisioning**  
-If a user does not exist in **mailcow** and logs in via **mail protocols** (IMAP/SIEVE/POP3/SMTP) or the **mailcow UI**, the user will be **automatically created**, provided that a matching **attribute mapping** is configured.  
+If a user does not exist in **mailcow** and logs in via **mail protocols** (IMAP/SIEVE/POP3/SMTP) or the **mailcow UI**, the user will be **automatically created**, provided that `Auto-create users on login` is enabled and a matching **attribute mapping** or a **Default Template** is configured.  
 
 #### **How It Works**  
 1. On login, **mailcow** performs an **LDAP bind** and, if successful, retrieves the user's LDAP attributes.  
 2. **mailcow** looks for the specified **`Attribute Field`** and retrieves its value.  
-3. If the value matches an attribute defined in the **Attribute Mapping**, the corresponding **mailbox template** is applied.  
+3. If the value matches an attribute defined in the **Attribute Mapping**, the corresponding **mailbox template** is applied. Otherwise the **Default Template** is used.  
 
 #### **Example Configuration**  
 - The user has an LDAP attribute **`otherMailbox`** with the value **`default`**.  
@@ -36,14 +51,10 @@ If a user does not exist in **mailcow** and logs in via **mail protocols** (IMAP
 - Under **Attribute Mapping**, set **`Attribute`** to **`default`** and select an appropriate mailbox template.  
 
 #### **Updates on Login**  
-Each time a user logs in, **mailcow** checks if the assigned template has changed. If so, it updates the mailbox settings accordingly.  
+Each time a user logs in, **mailcow** checks if the assigned template has changed. If so, it updates the mailbox settings accordingly. Templates of [groups](u_e-mailcow_ui-groups.md#mailbox-template) take precedence over the attribute mapping.  
 
 #### **Import and Updates via Crontask**  
-If **Import Users** is enabled, a scheduled cron job will automatically import users from LDAP to mailcow at the specified **Sync / Import Interval (min)**.  
-
-If **Periodic Full Sync** is enabled, the cron job will also update existing users at the specified **Sync / Import Interval (min)**, ensuring that any changes in LDAP are applied to their corresponding mailboxes in mailcow.  
-
-Check the logs for imports and sync updates under `System > Information > Logs > Crontasks`.
+Users can also be imported and updated in the background, without waiting for their login. Disabled or deleted users can lose their login automatically (offboarding), and LDAP groups can be synced to mailcow groups. See [Identity Provider sync](u_e-mailcow_ui-idp-sync.md).
 
 ---
 
@@ -111,4 +122,9 @@ Then, follow these steps to diagnose and resolve the issue:
 4. **LDAP Filter**  
     - Double-check your LDAP filter if one is configured.
 
-If you’re experiencing issues with **`Periodic Full Sync`** or **`Import Users`**, review the logs under `System > Information > Logs > Crontasks`  
+5. **Unique Login Name**  
+    - The login name (`Username Field`) must match exactly one entry within `Base DN` and `Filter`, otherwise the login is refused. Email addresses must be unique, see [Linking mailboxes and IdP users](u_e-mailcow_ui-idp-sync.md#linking-mailboxes-and-idp-users).
+
+If the LDAP server is down, see [Identity provider outages](u_e-mailcow_ui-netfilter.md#identity-provider-outages).
+
+If you’re experiencing issues with the synchronization, check the card **Sync status** in the Identity Provider settings and review the logs under `System > Information > Logs > Crontasks`.  

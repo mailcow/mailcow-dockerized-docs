@@ -40,13 +40,11 @@ location /metrics/ {
 
 ### Nutzung
 
-Der Endpunkt `/metrics` benötigt die URL-Parameter `host` und `apiKey`. `host` ist der Hostname Ihrer Mailcow-Instanz. `apiKey` sollte ein schreibgeschützter API-Schlüssel sein, der im Mailcow-Management-Interface unter 'Access > API' generiert werden kann.
+Der Endpunkt `/metrics` benötigt die URL-Parameter `host` und `apiKey`. `host` ist der Hostname Ihrer Mailcow-Instanz. `apiKey` sollte ein schreibgeschützter API-Schlüssel sein, der im Mailcow-Management-Interface unter 'System > Konfiguration > Zugang > Administratoren > API-Keys' generiert werden kann.
 
+Wie sich der Key anlegen und der Zugriff von der IP-Adresse des Exporters erlauben lässt, beschreibt die Seite [API](../../manual-guides/mailcow-UI/u_e-mailcow_ui-api.md#api-key-anlegen).
 
-
-![Visualisierung, wo man den API-Schlüssel findet](../../assets/images/prometheus_exporter/mailcow-apikey.jpg)
-
-**ImpoWichtigrtant:** Beschränken Sie den Zugriff auf den Exporter und schützen Sie Ihren API-Schlüssel!
+**Wichtig:** Den Zugriff auf den Exporter beschränken und den API-Key schützen!
 
 ---
 ## Prometheus Konfiguration

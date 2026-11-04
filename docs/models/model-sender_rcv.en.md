@@ -33,6 +33,10 @@ Administrators and domain administrators can edit mailboxes to allow specific us
 
 You can choose between mailbox users or completely disable the sender check for domains.
 
+### Groups
+
+Members of a [group](../manual-guides/mailcow-UI/u_e-mailcow_ui-groups.md) may additionally send as the addresses listed under "Send as" in the group, and as the group address if this is enabled for the group. This only applies while the group is active. These addresses can only be changed in the group. SOGo does not list the "Send as" addresses automatically, members add them as identity themselves.
+
 ### SOGo "mail from" addresses
 
 Mailbox users can, obviously, select their own mailbox address, as well as all alias addresses and aliases that exist through alias domains.

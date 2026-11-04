@@ -108,6 +108,8 @@ nano data/conf/nginx/site.my_content.custom
 
 This filename does not need to have a ".conf" extension but follows the pattern `site.*.custom`, where `*` is a custom name.
 
+Locations in these files are limited to request bodies of 64 MB, like the mailcow UI. For larger uploads, set `client_max_body_size` in the location (e.g. `client_max_body_size 0;` for no limit).
+
 If PHP is to be included in a custom site, please use the PHP-FPM listener on phpfpm:9002 or create a new listener in `data/conf/phpfpm/php-fpm.d/pools.conf`.
 
 Restart Nginx (and PHP-FPM, if a new listener was created):

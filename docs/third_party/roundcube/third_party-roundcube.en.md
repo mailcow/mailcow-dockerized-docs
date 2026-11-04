@@ -411,8 +411,8 @@ If you chose to mount in the _Advanced_ way notice folders like `plugins/` are l
 ### Enable change password function in Roundcube
 
 Changing the mailcow password from the roundcube UI is supported via the password plugin. We will configure it to use
-the mailcow API to update the password, which requires to enable the API first and to get the API key (read/write API
-access required). The API can be enabled in the mailcow admin interface, where you can also find the API key.
+the mailcow API to update the password. This needs a mailcow API key with `Read-Write Access` that allows access from
+the IP address Roundcube connects from, see [API](../../manual-guides/mailcow-UI/u_e-mailcow_ui-api.md#create-an-api-key).
 
 Open `rc/config/config.inc.php` and enable the password plugin by adding it to the `$config['plugins']` array, for example: 
 

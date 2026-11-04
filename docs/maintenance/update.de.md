@@ -11,6 +11,17 @@ Wenn es nötig ist, wird es Sie fragen, wie Sie fortfahren möchten.
 Merge-Fehler werden gemeldet.
 Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-dockerized repository code).
 
+### Major-Updates
+
+Bei Major-Updates (z. B. `2026-11`) zeigt `update.sh` einen Link zu den Release Notes und fragt nach, bevor es weitermacht. Die Release Notes vorher lesen, sie nennen Breaking Changes und eventuell nötige Schritte. Mit `--force` entfällt die Rückfrage.
+
+### Datenbank-Update nach einem Update
+
+Beim ersten Start nach einem Update aktualisiert php-fpm die Datenbank. Auf großen Installationen kann das einige Minuten dauern. Dovecot, SOGo und der Watchdog warten darauf, ihre Logs zeigen `Waiting for schema update...`.
+
+- Dovecot und der Watchdog starten nach 5 Minuten trotzdem. Zeigt das Dovecot-Log dann `DB schema is ..., expected ...`, das Log von php-fpm prüfen (`docker compose logs php-fpm-mailcow`).
+- Die Datenbank-Version steht in der `docker-compose.yml` (`DB_VERSION`). Bei einer eigenen `docker-compose.yml` diesen Wert aus der aktuellen Version übernehmen.
+
 ### Optionen
 
 ```
@@ -61,9 +72,9 @@ Führen Sie `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` aus, um zu sehen
 
 ### Kann ich ein Rollback durchführen?
 
-Ja.
+Nur zusammen mit einem Backup der Datenbank. Ein Update kann die Datenbank ändern (neue Tabellen und Spalten). Eine ältere Version kommt mit der neueren Datenbank nicht zurecht: Das Datenbank-Update der älteren Version scheitert oder entfernt, was es nicht kennt, z. B. die Daten neuer Funktionen.
 
-Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:
+Vor einem Major-Update mailcow sichern, mindestens die Datenbank (siehe [Backup](../backup_restore/b_n_r-backup.md)). Für ein Rollback den Commit von vor dem Update auschecken (siehe oben), das Datenbank-Backup zurückspielen und mailcow starten:
 === "docker compose (Plugin)"
 
     ``` bash
@@ -98,7 +109,7 @@ Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens 
 
 **stable**: Diese Updates sind für den Produktivbetrieb geeignet.
 
-**legacy**: Diese Updates sind für den Produktivbetrieb geeignet und basieren auf der 2025-02 mailcow. Support endet Februar 2026.
+**legacy**: Diese Updates basierten auf der 2025-02 mailcow. Der Support endete im Februar 2026.
 
 **nightly**: Diese Updates sind **NICHT** für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.
 
@@ -108,7 +119,7 @@ Sie können sich in den Update-Mechanismus einklinken, indem Sie Skripte namens 
 Seit dem 2025-03 Update gibt es die Möglichkeit updates für die Legacy Version zu beziehen. Diese Version basiert auf der mailcow 2025-02 und wird ausschließlich Sicherheitsupdates erhalten.
 
 !!! danger "Achtung"
-    Der Support für die Legacy Version endet **Februar 2026**
+    Der Support für die Legacy Version endete im **Februar 2026**
 
 ### Wie bekomme ich Legacy Updates?
 Um auf die Legacy Updates zu wechseln muss das update Skript ausgeführt werden:

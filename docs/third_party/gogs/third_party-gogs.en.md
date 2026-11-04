@@ -29,6 +29,7 @@ services:
 ```
 location /gogs/ {
     proxy_pass http://gogs:3000/;
+    client_max_body_size 0;
 }
 ```
 
