@@ -48,6 +48,13 @@ If you want to connect to a service / application directly it is always a good i
 	docker-compose exec redis-mailcow redis-cli
     ```
 
+!!! Info
+    If $REDISPASS is set in mailcow.conf adjust the commands like this:
+    ```
+    source mailcow.conf
+    docker compose exec redis-mailcow env REDISCLI_AUTH="$REDISPASS" sh -c '..'
+    ```
+
 ## Service Descriptions
 
 Here is a brief overview of what container / service does what:
