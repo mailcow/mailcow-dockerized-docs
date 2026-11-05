@@ -33,6 +33,10 @@ Administratoren und Domänenadministratoren können Postfächer bearbeiten, um b
 
 Sie können zwischen Mailbox-Benutzern wählen oder die Absenderprüfung für Domänen komplett deaktivieren.
 
+### Gruppen
+
+Mitglieder einer [Gruppe](../manual-guides/mailcow-UI/u_e-mailcow_ui-groups.md) dürfen zusätzlich als die Adressen senden, die in der Gruppe unter "Senden als" stehen, und als die Gruppenadresse, wenn das für die Gruppe aktiviert ist. Das gilt nur, solange die Gruppe aktiv ist. Diese Adressen lassen sich nur in der Gruppe ändern. SOGo zeigt die Adressen aus "Senden als" nicht automatisch an, Mitglieder legen sie selbst als Identität an.
+
 ### SOGo "Mail von"-Adressen
 
 Mailbox-Benutzer können natürlich ihre eigene Mailbox-Adresse auswählen, sowie alle Alias-Adressen und Aliase, die über Alias-Domänen existieren.

@@ -31,6 +31,9 @@ Diese Methode konfiguriert neben dem E-Mail-Konto zusätzlich CardDAV (Adressbuc
 
 Diese Methode konfiguriert IMAP und SMTP für den Zugriff auf ein E-Mail-Konto. Es wird ein neues App-Passwort erzeugt und in das Profil eingefügt, damit bei der Einrichtung kein Passwort eingegeben werden muss. Geben Sie das Profil nicht weiter, da es einen vollständigen Zugriff auf Ihr Postfach ermöglicht.
 
+!!! info "Hinweis"
+    Das gilt für die Methoden 1.3 und 1.4: Das App-Passwort wird nur erzeugt, wenn die Mailbox die Berechtigung `App-Passwörter verwalten` hat, sonst fragt das Profil nach dem Passwort. Steht eine 2FA-Einrichtung oder Passwortänderung aus, ist das Profil erst erreichbar, wenn dieser Schritt in der mailcow UI erledigt ist.
+
 1. Öffnen Sie <span class="client_variables_unavailable"><i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email&app_password</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email&app_password">mailcow.mobileconfig</a></span> um ein individuelles Konfigurationsprofil herunterzuladen.
 2. Öffnen Sie das Profil auf Ihrem Mac, iPhone oder iPad und folgen Sie der Anleitung von Apple für Ihre Betriebssystemversion, um das Profil zu installieren:
     - [Anleitung für macOS](https://support.apple.com/de-de/guide/mac-help/mh35561/mac)

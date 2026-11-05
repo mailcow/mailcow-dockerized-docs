@@ -34,10 +34,10 @@ Note: File paths might vary depending on your setup.
 
 - A working mailcow instance
 - A working mailpiler instance ([You can find an installation guide here](https://patrik.kernstock.net/2020/08/mailpiler-installation-guide/), [check supported versions here](https://github.com/patschi/mailpiler-mailcow-integration#piler))
-- An mailcow API key (read-only works just fine): `Configuration & Details - Access - Read-Only Access`. Don't forget to allow API access from your mailpiler IP.
+- An mailcow API key (read-only works just fine): `System - Configuration - Access - Administrators - API keys`, see [API](../../manual-guides/mailcow-UI/u_e-mailcow_ui-api.md). Don't forget to allow API access from your mailpiler IP.
 
 !!! warning
-    As mailpiler authenticates against mailcow, our IMAP server, failed logins of users or bots might trigger a block for your mailpiler instance. Therefore you might want to consider whitelisting the IP address of the mailpiler instance within mailcow: `Configuration & Details - Configuration - Fail2ban parameters - Whitelisted networks/hosts`.
+    As mailpiler authenticates against mailcow, our IMAP server, failed logins of users or bots might trigger a block for your mailpiler instance. Therefore you might want to consider allowlisting the IP address of the mailpiler instance within mailcow: `System - Configuration - Options - Fail2ban parameters - Allowlisted networks/hosts`.
 
 ### Setup
 

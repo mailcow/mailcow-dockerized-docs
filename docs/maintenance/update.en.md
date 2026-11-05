@@ -11,6 +11,17 @@ If it needs to, it will ask you how you wish to proceed.
 Merge errors will be reported.
 Some minor conflicts will be auto-corrected (in favour for the mailcow-dockerized repository code).
 
+### Major updates
+
+For major updates (e.g. `2026-11`), `update.sh` shows a link to the release notes and asks before it continues. Read the release notes first, they list breaking changes and steps that may be needed. With `--force`, this question is skipped.
+
+### Database update after an update
+
+On the first start after an update, php-fpm updates the database. On large installations this can take a few minutes. Dovecot, SOGo and the watchdog wait for it, their logs show `Waiting for schema update...`.
+
+- Dovecot and the watchdog start anyway after 5 minutes. If the Dovecot log then shows `DB schema is ..., expected ...`, check the log of php-fpm (`docker compose logs php-fpm-mailcow`).
+- The database version is set in `docker-compose.yml` (`DB_VERSION`). If you maintain your own `docker-compose.yml`, keep this value from the current version.
+
 ### Options
 
 ```
@@ -61,9 +72,9 @@ Run `git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab` to see what changed.
 
 ### Can I roll back?
 
-Yes.
+Only together with a backup of the database. An update can change the database (new tables and columns). An older version cannot use the newer database: its own database update fails or removes what it does not know, e.g. the data of new features.
 
-See the topic above, instead of a diff, you run checkout:
+Back up mailcow before a major update, at least the database (see [Backup](../backup_restore/b_n_r-backup.md)). To roll back, check out the commit from before the update (see above), restore the database backup and start mailcow:
 === "docker compose (Plugin)"
 
     ``` bash
@@ -98,7 +109,7 @@ You can hook into the update mechanism by adding scripts called `pre_commit_hook
 
 **stable (stable updates)**: These updates are suitable for productive usage. They appear in a cycle of at least 1x per month.
 
-**legacy**: These updates are suitable for productive operation and are based on the 2025-02 mailcow. Support ends February 2026.
+**legacy**: These updates were based on the 2025-02 mailcow. Support ended in February 2026.
 
 **nightly (unstable updates)**: These updates are **NOT** suitable for production use and are for testing only. The nightly updates are ahead of the stable updates, since in these updates we test newer and more extensive features before they go live for all users.
 
@@ -107,7 +118,7 @@ You can hook into the update mechanism by adding scripts called `pre_commit_hook
 Since the 2025-03 update, it is possible to obtain updates for the legacy version. This version is based on mailcow 2025-02 and will only receive security updates.
 
 !!! danger "Attention"
-    Support for the legacy version ends **February 2026**
+    Support for the legacy version ended in **February 2026**
 
 ### How do I get legacy updates?
 To switch to the legacy updates, the update script must be executed:

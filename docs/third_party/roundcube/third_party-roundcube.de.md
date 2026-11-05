@@ -373,7 +373,7 @@ Wenn Sie sich für die _fortgeschrittene_ Methode entschieden haben, beachten Si
 
 ### Passwortänderungsfunktion in Roundcube aktivieren
 
-Das Ändern des mailcow-Passworts über die Roundcube-Benutzeroberfläche wird über das Passwort-Plugin unterstützt. Wir konfigurieren es so, dass die mailcow-API verwendet wird, um das Passwort zu aktualisieren. Dazu muss die API zuerst aktiviert und der API-Schlüssel (Lese-/Schreibzugriff erforderlich) abgerufen werden. Die API kann in der mailcow-Admin-Oberfläche aktiviert werden, wo auch der API-Schlüssel zu finden ist.
+Das Ändern des mailcow-Passworts über die Roundcube-Benutzeroberfläche wird über das Passwort-Plugin unterstützt. Wir konfigurieren es so, dass die mailcow-API verwendet wird, um das Passwort zu aktualisieren. Dafür wird ein mailcow API-Key mit `Lese-Schreib-Zugriff` benötigt, der den Zugriff von der IP-Adresse erlaubt, von der aus Roundcube die API aufruft, siehe [API](../../manual-guides/mailcow-UI/u_e-mailcow_ui-api.md#api-key-anlegen).
 
 Öffnen Sie `rc/config/config.inc.php` und aktivieren Sie das Passwort-Plugin, indem Sie es zum `$config['plugins']`-Array hinzufügen, zum Beispiel:
 

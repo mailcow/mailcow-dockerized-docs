@@ -5,7 +5,7 @@ The local configuration file is persistent over updates of mailcow. Try not to c
 mailcow UI configuration parameters can be used to...
 
 - ...change the default language[^1]
-- ...change the default bootstrap theme
+- ...change the default theme (see [Customize design](u_e-mailcow_ui-design.md#default-theme))
 - ...set a password complexity regex
 - ...enable DKIM private key visibility
 - ...set a pagination trigger size
@@ -15,5 +15,21 @@ mailcow UI configuration parameters can be used to...
 - ...set a default "To" field for relayhost tests
 - ...set a timeout for Docker API requests
 - ...toggle IP anonymization
+- ...change the limit for wrong 2FA codes (see [Two-Factor Authentication](u_e-mailcow_ui-tfa.md#failed-codes))
+- ...define which imapsync options are allowed as custom parameters of sync jobs (see [Sync jobs](../../post_installation/firststeps-sync_jobs_migration.md#custom-parameters))
+
+PHP-FPM caches the PHP files (OPcache) and does not re-read changed files. Restart PHP-FPM after changing `data/web/inc/vars.local.inc.php`:
+
+=== "docker compose (Plugin)"
+
+    ``` bash
+    docker compose restart php-fpm-mailcow
+    ```
+
+=== "docker-compose (Standalone)"
+
+    ``` bash
+    docker-compose restart php-fpm-mailcow
+    ```
 
 [^1]: To change SOGos default language, you will need to edit `data/conf/sogo/sogo.conf` and replace "English" by your preferred language.

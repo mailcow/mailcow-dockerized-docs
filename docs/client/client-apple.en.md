@@ -31,6 +31,9 @@ This method configures CardDAV (address book) and CalDAV (calendar) in addition 
 
 This method configures IMAP and SMTP to access an email account. A new app password is generated and added to the profile so that no password needs to be entered when setting up your device. Please do not share the file as it grants full access to your mailbox.
 
+!!! info
+    This applies to methods 1.3 and 1.4: the app password is only created if the mailbox has the permission `Manage app passwords`, otherwise the profile asks for the password. With a pending 2FA setup or password change, the profile is available after this step is done in the mailcow UI.
+
 1. Open <span class="client_variables_unavailable"> <i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email&app_password</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email&app_password">mailcow.mobileconfig</a></span> to download a customized configuration profile.
 2. Open the profile on your Mac, iPhone or iPad and follow Apple's instructions for your operating system version to install the profile:
     - [Steps for macOS](https://support.apple.com/en-us/guide/mac-help/mh35561/mac)

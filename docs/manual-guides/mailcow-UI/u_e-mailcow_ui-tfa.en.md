@@ -1,5 +1,6 @@
 !!! warning "Warning"
     **Mailbox users who have enabled two-factor authentication must create app passwords for external applications such as mail clients.**
+    Their mailbox password is refused there. Creating app passwords needs the permission `Manage app passwords` of the mailbox (on by default).
 
 So far three methods for _Two-Factor Authentication_ are implemented: WebAuthn (replacing U2F since February 2022), Yubi OTP, and TOTP
 
@@ -137,3 +138,27 @@ You have two seperate methods to register TOTP to your account:
 2. Use the TOTP Code (under the QR Code) in your TOTP Program or App (if you can´t scan a QR Code).
 
 After you have registered the QR or TOTP code in the TOTP app/program of your choice you only need to enter the now generated TOTP token (in the app/program) as confirmation in the mailcow UI to finally activate the TOTP 2FA, otherwise it will not be activated even though the TOTP token is already generated in your app/program.
+
+## Failed codes
+
+After 10 wrong codes, the second factor of the account is locked for 15 minutes from the first wrong code. The login then shows "Too many failed two-factor logins, please try again later". Every wrong code also counts as a failed login for [Netfilter](u_e-mailcow_ui-netfilter.md).
+
+Both values can be changed in `data/web/inc/vars.local.inc.php`, followed by `docker compose restart php-fpm-mailcow`:
+
+```php
+// Wrong codes before the second factor is locked
+$TFA_MAX_FAILS = 10;
+// Seconds from the first wrong code until the counter and the lock are reset
+$TFA_FAIL_WINDOW = 900;
+```
+
+## Forced 2FA setup and password change
+
+For administrators, domain administrators and mailboxes, `Force 2FA enrollment at login` and `Force password update at next login` can be enabled. After the next login to the mailcow UI, the user has to set up a second factor or set a new password first. Until then:
+
+- the mailcow UI and the API only allow this step,
+- SOGo and the Apple configuration profile (`mobileconfig`) are not available,
+- no app passwords can be created.
+
+An account that already has a second factor meets `Force 2FA enrollment at login`.
+

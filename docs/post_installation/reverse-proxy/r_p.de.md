@@ -29,6 +29,9 @@ Erzeugen Sie die betroffenen Container neu, indem Sie den folgenden Befehl ausf�
 
 ## Wichtige Informationen, bitte lesen Sie diese sorgfältig durch!
 
+!!! warning "Warnung"
+    Erreicht der Reverse Proxy mailcow von einer Adresse außerhalb der privaten Bereiche (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`), gehört er in `TRUSTED_PROXIES` in der `mailcow.conf`, danach `docker compose up -d` ausführen. Sonst sieht mailcow die Adresse des Proxys statt der des Clients: Netfilter zählt fehlgeschlagene Anmeldungen aller Clients für den Proxy und sperrt ihn. Siehe [Netfilter](../../manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter.md#was-als-fehlversuch-zahlt).
+
 !!! info
     Wenn Sie planen, einen Reverse-Proxy zu verwenden und einen anderen Servernamen als **MAILCOW_HOSTNAME** verwenden wollen, müssen Sie [Zusätzliche Servernamen für mailcow UI](#hinzufugen-weiterer-servernamen-fur-mailcow-ui) hierunter.
 

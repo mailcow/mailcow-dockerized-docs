@@ -29,6 +29,7 @@ services:
 ```
 location /gitea/ {
 		proxy_pass http://gitea:3000/;
+		client_max_body_size 0;
 }
 ```
 
