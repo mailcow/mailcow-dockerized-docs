@@ -620,6 +620,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#major-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Major-Updates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datenbank-update-nach-einem-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datenbank-Update nach einem Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#optionen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1858,7 +1880,7 @@
   <span class="md-ellipsis">
     
   
-    Migration mit Sync Jobs
+    Sync Jobs
   
 
     
@@ -2564,6 +2586,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2620,14 +2670,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS-Überschreibungen
+    Design anpassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenweite Fußzeile
   
 
     
@@ -2656,6 +2734,34 @@
     
   
     Passwort vergessen Funktion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gruppen
   
 
     
@@ -2992,6 +3098,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider Synchronisation
   
 
     
@@ -5453,6 +5587,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#major-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Major-Updates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datenbank-update-nach-einem-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datenbank-Update nach einem Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#optionen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5642,6 +5798,14 @@
 <p>Wenn es nötig ist, wird es Sie fragen, wie Sie fortfahren möchten.
 Merge-Fehler werden gemeldet.
 Einige kleinere Konflikte werden automatisch korrigiert (zugunsten des mailcow-dockerized repository code).</p>
+<h3 id="major-updates">Major-Updates<a class="headerlink" href="#major-updates" title="Permanent link">¶</a></h3>
+<p>Bei Major-Updates (z. B. <code>2026-11</code>) zeigt <code>update.sh</code> einen Link zu den Release Notes und fragt nach, bevor es weitermacht. Die Release Notes vorher lesen, sie nennen Breaking Changes und eventuell nötige Schritte. Mit <code>--force</code> entfällt die Rückfrage.</p>
+<h3 id="datenbank-update-nach-einem-update">Datenbank-Update nach einem Update<a class="headerlink" href="#datenbank-update-nach-einem-update" title="Permanent link">¶</a></h3>
+<p>Beim ersten Start nach einem Update aktualisiert php-fpm die Datenbank. Auf großen Installationen kann das einige Minuten dauern. Dovecot, SOGo und der Watchdog warten darauf, ihre Logs zeigen <code>Waiting for schema update...</code>.</p>
+<ul>
+<li>Dovecot und der Watchdog starten nach 5 Minuten trotzdem. Zeigt das Dovecot-Log dann <code>DB schema is ..., expected ...</code>, das Log von php-fpm prüfen (<code>docker compose logs php-fpm-mailcow</code>).</li>
+<li>Die Datenbank-Version steht in der <code>docker-compose.yml</code> (<code>DB_VERSION</code>). Bei einer eigenen <code>docker-compose.yml</code> diesen Wert aus der aktuellen Version übernehmen.</li>
+</ul>
 <h3 id="optionen">Optionen<a class="headerlink" href="#optionen" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code># Optionen können kombiniert werden
 
@@ -5683,8 +5847,8 @@ dacd4fb9b51e9e1c8a37d84485b92ffaf6c59353 Before update on 2020-08-07_13_31_31
 </code></pre></div>
 <p>Führen Sie <code>git diff 22cd00b5e28893ef9ddef3c2b5436453cc5223ab</code> aus, um zu sehen, was sich geändert hat.</p>
 <h3 id="kann-ich-ein-rollback-durchfuhren">Kann ich ein Rollback durchführen?<a class="headerlink" href="#kann-ich-ein-rollback-durchfuhren" title="Permanent link">¶</a></h3>
-<p>Ja.</p>
-<p>Siehe das obige Thema, anstelle eines Diffs führen Sie checkout aus:</p>
+<p>Nur zusammen mit einem Backup der Datenbank. Ein Update kann die Datenbank ändern (neue Tabellen und Spalten). Eine ältere Version kommt mit der neueren Datenbank nicht zurecht: Das Datenbank-Update der älteren Version scheitert oder entfernt, was es nicht kennt, z. B. die Daten neuer Funktionen.</p>
+<p>Vor einem Major-Update mailcow sichern, mindestens die Datenbank (siehe <a href="../../backup_restore/b_n_r-backup/">Backup</a>). Für ein Rollback den Commit von vor dem Update auschecken (siehe oben), das Datenbank-Backup zurückspielen und mailcow starten:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5715,14 +5879,14 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </ul>
 <h2 id="update-varianten">Update-Varianten<a class="headerlink" href="#update-varianten" title="Permanent link">¶</a></h2>
 <p><strong>stable</strong>: Diese Updates sind für den Produktivbetrieb geeignet.</p>
-<p><strong>legacy</strong>: Diese Updates sind für den Produktivbetrieb geeignet und basieren auf der 2025-02 mailcow. Support endet Februar 2026.</p>
+<p><strong>legacy</strong>: Diese Updates basierten auf der 2025-02 mailcow. Der Support endete im Februar 2026.</p>
 <p><strong>nightly</strong>: Diese Updates sind <strong>NICHT</strong> für den Produktivbetrieb geeignet und dienen lediglich dem Testen. Die nightly Updates sind den stabilen Updates vorraus, da in diesen neue und auch umfangreichere Funktionen getestet werden bevor diese für alle User Live gehen.</p>
 <h2 id="legacy-updates-beziehen">Legacy Updates beziehen<a class="headerlink" href="#legacy-updates-beziehen" title="Permanent link">¶</a></h2>
 <h3 id="infos-zu-den-legacy-updates">Infos zu den Legacy Updates<a class="headerlink" href="#infos-zu-den-legacy-updates" title="Permanent link">¶</a></h3>
 <p>Seit dem 2025-03 Update gibt es die Möglichkeit updates für die Legacy Version zu beziehen. Diese Version basiert auf der mailcow 2025-02 und wird ausschließlich Sicherheitsupdates erhalten.</p>
 <div class="admonition danger">
 <p class="admonition-title">Achtung</p>
-<p>Der Support für die Legacy Version endet <strong>Februar 2026</strong></p>
+<p>Der Support für die Legacy Version endete im <strong>Februar 2026</strong></p>
 </div>
 <h3 id="wie-bekomme-ich-legacy-updates">Wie bekomme ich Legacy Updates?<a class="headerlink" href="#wie-bekomme-ich-legacy-updates" title="Permanent link">¶</a></h3>
 <p>Um auf die Legacy Updates zu wechseln muss das update Skript ausgeführt werden:
@@ -5772,7 +5936,7 @@ docker-compose<span class="w"> </span>up<span class="w"> </span>-d
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="25. März 2025 07:33:24 CET">2025-03-25 07:33:24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="4. November 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

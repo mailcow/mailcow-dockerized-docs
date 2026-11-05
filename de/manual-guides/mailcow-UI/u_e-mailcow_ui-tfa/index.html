@@ -1641,7 +1641,7 @@
   <span class="md-ellipsis">
     
   
-    Migration mit Sync Jobs
+    Sync Jobs
   
 
     
@@ -2351,6 +2351,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2407,14 +2435,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS-Überschreibungen
+    Design anpassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenweite Fußzeile
   
 
     
@@ -2443,6 +2499,34 @@
     
   
     Passwort vergessen Funktion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gruppen
   
 
     
@@ -2814,6 +2898,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#falsche-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falsche Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erzwungene-2fa-einrichtung-und-passwortanderung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erzwungene 2FA-Einrichtung und Passwortänderung
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2922,6 +3028,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider Synchronisation
   
 
     
@@ -5470,6 +5604,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#falsche-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Falsche Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erzwungene-2fa-einrichtung-und-passwortanderung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erzwungene 2FA-Einrichtung und Passwortänderung
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5494,7 +5650,8 @@
 
 <div class="admonition warning">
 <p class="admonition-title">Warnung</p>
-<p><strong>Mailbox-Benutzer, die Zwei-Faktor-Authentifizierung aktiviert haben, müssen für externe Anwendungen wie Mailclients App-Passwörter erstellen.</strong></p>
+<p><strong>Mailbox-Benutzer, die Zwei-Faktor-Authentifizierung aktiviert haben, müssen für externe Anwendungen wie Mailclients App-Passwörter erstellen.</strong>
+Das Mailbox-Passwort wird dort abgelehnt. Zum Anlegen von App-Passwörtern braucht die Mailbox die Berechtigung <code>App-Passwörter verwalten</code> (standardmäßig an).</p>
 </div>
 <p>Bislang sind drei Methoden für die <em>Zwei-Faktor-Authentifizierung</em> implementiert: WebAuthn (ersetzt seit Februar 2022 U2F), Yubi OTP und TOTP</p>
 <ul>
@@ -5599,6 +5756,22 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
 1. Scannen Sie den QR-Code mit Ihrer Authenticator App auf einem Smartphone oder Tablet.
 2. Verwenden Sie den TOTP-Code (unter dem QR-Code) in Ihrem TOTP-Programm oder Ihrer App (wenn Sie keinen QR-Code scannen können).</p>
 <p>Nachdem Sie den QR- oder TOTP-Code in der TOTP-App/dem TOTP-Programm Ihrer Wahl registriert haben, müssen Sie nur noch den nun generierten TOTP-Token (in der App/dem Programm) als Bestätigung in der mailcow UI eingeben, um die TOTP 2FA endgültig zu aktivieren, ansonsten wird sie nicht aktiviert, obwohl der TOTP-Token bereits in Ihrer App/ Ihrem Programm generiert wurde.</p>
+<h2 id="falsche-codes">Falsche Codes<a class="headerlink" href="#falsche-codes" title="Permanent link">¶</a></h2>
+<p>Nach 10 falschen Codes wird der zweite Faktor des Kontos gesperrt, für 15 Minuten ab dem ersten falschen Code. Die Anmeldung zeigt dann „Zu viele fehlgeschlagene Zwei-Faktor-Anmeldungen, bitte später erneut versuchen“. Jeder falsche Code zählt außerdem als Fehlversuch für <a href="../u_e-mailcow_ui-netfilter/">Netfilter</a>.</p>
+<p>Beide Werte lassen sich in <code>data/web/inc/vars.local.inc.php</code> ändern, danach <code>docker compose restart php-fpm-mailcow</code> ausführen:</p>
+<div class="highlight"><pre><span></span><code><span class="x">// Falsche Codes, bevor der zweite Faktor gesperrt wird</span>
+<span class="x">$TFA_MAX_FAILS = 10;</span>
+<span class="x">// Sekunden ab dem ersten falschen Code, bis Zähler und Sperre zurückgesetzt werden</span>
+<span class="x">$TFA_FAIL_WINDOW = 900;</span>
+</code></pre></div>
+<h2 id="erzwungene-2fa-einrichtung-und-passwortanderung">Erzwungene 2FA-Einrichtung und Passwortänderung<a class="headerlink" href="#erzwungene-2fa-einrichtung-und-passwortanderung" title="Permanent link">¶</a></h2>
+<p>Für Administratoren, Domain-Administratoren und Mailboxen lassen sich <code>Zwei-Faktor-Authentifizierung beim Login erzwingen</code> und <code>Erzwinge Passwortänderung bei nächstem Login</code> aktivieren. Nach der nächsten Anmeldung an der mailcow UI muss zuerst ein zweiter Faktor eingerichtet oder ein neues Passwort gesetzt werden. Bis dahin:</p>
+<ul>
+<li>erlauben mailcow UI und API nur diesen Schritt,</li>
+<li>sind SOGo und das Apple-Konfigurationsprofil (<code>mobileconfig</code>) nicht erreichbar,</li>
+<li>lassen sich keine App-Passwörter anlegen.</li>
+</ul>
+<p>Ein Konto, das schon einen zweiten Faktor hat, erfüllt <code>Zwei-Faktor-Authentifizierung beim Login erzwingen</code>.</p>
 
 
 
@@ -5619,7 +5792,7 @@ Diese Herstellerzertifikate werden nur zur Überprüfung der Originalhardware ve
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="7. April 2025 08:38:15 CEST">2025-04-07 08:38:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="4. November 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

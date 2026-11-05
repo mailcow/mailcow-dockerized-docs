@@ -1641,7 +1641,7 @@
   <span class="md-ellipsis">
     
   
-    Migration mit Sync Jobs
+    Sync Jobs
   
 
     
@@ -2351,6 +2351,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2407,14 +2435,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS-Überschreibungen
+    Design anpassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenweite Fußzeile
   
 
     
@@ -2443,6 +2499,34 @@
     
   
     Passwort vergessen Funktion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gruppen
   
 
     
@@ -2927,6 +3011,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider Synchronisation
   
 
     
@@ -5503,37 +5615,51 @@
   <h1>LDAP</h1>
 
 <h3 id="konfigurieren"><strong>Konfigurieren</strong><a class="headerlink" href="#konfigurieren" title="Permanent link">¶</a></h3>
-<p>Um einen <strong>Identity Provider</strong> zu konfigurieren, melden Sie sich als Administrator in der <em>mailcow UI</em> an, navigieren Sie zu<br>
-<code>System &gt; Konfiguration &gt; Zugriff &gt; Identity Provider</code> und wählen Sie <strong>LDAP</strong> aus dem Dropdown-Menü aus.  </p>
+<p>Ein <strong>Identity Provider</strong> wird als Administrator in der <em>mailcow UI</em> unter<br>
+<code>System &gt; Konfiguration &gt; Zugang &gt; Identity Provider</code> konfiguriert. Dort <strong>LDAP</strong> im Dropdown-Menü auswählen.  </p>
+<p><strong>Verbindung</strong></p>
 <ul>
-<li><code>Host</code>: Die Adresse Ihres LDAP-Servers. Sie können entweder eine einzelne Hostadresse oder eine durch Kommas getrennte Liste von Hosts angeben, die als Fallbacks verwendet werden können.  </li>
+<li><code>Host</code>: Die Adresse des LDAP-Servers. Möglich ist eine einzelne Hostadresse oder eine durch Kommas getrennte Liste von Hosts, die als Fallbacks dienen.  </li>
 <li><code>Port</code>: Der Port, über den die Verbindung zum LDAP-Server hergestellt wird.  </li>
-<li><code>Benutze SSL</code>: Aktiviert eine LDAPS-Verbindung. Wenn der Port auf <code>389</code> gesetzt ist, wird er automatisch auf <code>636</code> geändert.  </li>
-<li><code>Benutze TLS</code>: Aktiviert eine TLS-Verbindung. SSL-Ports können nicht verwendet werden.  </li>
+<li><code>Verschlüsselung</code>: <code>Keine</code>, <code>StartTLS</code> (nutzt den normalen Port, meist <code>389</code>) oder <code>SSL (LDAPS)</code>. Bei SSL wird Port <code>389</code> automatisch auf <code>636</code> geändert.  </li>
 <li><code>Ignoriere SSL Fehler</code>: Wenn aktiviert, wird die Überprüfung des SSL-Zertifikats deaktiviert.  </li>
-<li><code>Base DN</code>: Der Distinguished Name (DN), von dem aus Suchanfragen durchgeführt werden.  </li>
-<li><code>Username Feld</code>: Das LDAP-Attribut, das zur Identifizierung von Benutzern bei der Authentifizierung verwendet wird. Standardwert: <code>mail</code>.  </li>
-<li><code>Filter</code>: Ein optionaler LDAP-Suchfilter, um einzuschränken, welche Benutzer sich authentifizieren können.  </li>
-<li><code>Attribut Feld</code>: Gibt ein LDAP-Attribut an, dessen Wert einer Mailbox-Vorlage über die <strong>Attribut Mapping</strong> zugeordnet werden kann.  </li>
 <li><code>Bind DN</code>: Der Distinguished Name (DN) des LDAP-Benutzers, der für die Authentifizierung und LDAP-Suchanfragen verwendet wird. Dieses Konto sollte ausreichende Berechtigungen zum Lesen der erforderlichen Attribute haben.  </li>
-<li><code>Bind-Passwort</code>: Das Passwort für den <strong>Bind DN</strong>-Benutzer. Es wird für die Authentifizierung beim Herstellen einer Verbindung mit dem LDAP-Server benötigt.  </li>
+<li><code>Bind Passwort</code>: Das Passwort für den <strong>Bind DN</strong>-Benutzer. Es wird für die Authentifizierung beim Herstellen einer Verbindung mit dem LDAP-Server benötigt.  </li>
+</ul>
+<p><strong>Benutzer</strong></p>
+<ul>
+<li><code>Base DN</code>: Der Distinguished Name (DN), von dem aus Suchanfragen durchgeführt werden.  </li>
+<li><code>Filter</code>: Ein optionaler LDAP-Suchfilter, um einzuschränken, welche Benutzer sich authentifizieren können und synchronisiert werden, z. B. <code>(objectClass=person)</code>.  </li>
+<li><code>Username Feld</code>: Das LDAP-Attribut mit der E-Mail-Adresse der Benutzer, sie wird zum Mailbox-Namen. Standardwert: <code>mail</code>.  </li>
+<li><code>ID-Attribut</code>: Attribut mit einer unveränderlichen Benutzer-ID, damit werden <a href="../u_e-mailcow_ui-idp-sync/#verknupfung-von-mailboxen-und-idp-benutzern">Mailboxen und LDAP-Benutzer verknüpft</a>. Ist es leer, nutzt mailcow <code>objectGUID</code>, <code>entryUUID</code>, <code>nsUniqueId</code> oder <code>ipaUniqueID</code>, sonst den DN.  </li>
+<li><code>Filter für deaktivierte Benutzer</code>: Optionaler LDAP-Filter für deaktivierte Benutzer, genutzt für das <a href="../u_e-mailcow_ui-idp-sync/#offboarding">Offboarding</a>. Active-Directory-Konten, die in <code>userAccountControl</code> deaktiviert sind, gelten immer als deaktiviert.  </li>
+</ul>
+<p><strong>Anmeldung</strong></p>
+<ul>
+<li><code>Benutzer beim Login erstellen</code>: Wenn aktiviert, werden Mailboxen bei der ersten Anmeldung eines Benutzers angelegt, siehe <a href="#automatische-benutzerbereitstellung">Automatische Benutzerbereitstellung</a>.  </li>
+</ul>
+<p><strong>Postfach-Vorlagen</strong></p>
+<ul>
+<li><code>Attribut Feld</code>: Gibt ein LDAP-Attribut an, dessen Wert einer Mailbox-Vorlage über die <strong>Attribut Mapping</strong> zugeordnet werden kann.  </li>
+<li><code>Standardvorlage</code>: Wird beim Anlegen einer Mailbox verwendet, wenn kein Attribut Mapping passt. Auf bestehende Mailboxen wird sie nicht angewendet.  </li>
 <li><code>Attribut Mapping</code>:<ul>
 <li><code>Attribut</code>: Definiert den LDAP-Attributwert, der zugeordnet werden soll.  </li>
 <li><code>Vorlage</code>: Gibt an, welche Mailbox-Vorlage für den definierten LDAP-Attributwert angewendet werden soll.  </li>
 </ul>
 </li>
-<li><code>Vollsynchronisation</code>: Wenn aktiviert, wird regelmäßig eine vollständige Synchronisation aller LDAP-Benutzer durchgeführt.  </li>
-<li><code>Importiere Benutzer</code>: Wenn aktiviert, werden neue Benutzer automatisch aus LDAP in mailcow importiert.  </li>
-<li><code>Sync / Import interval (min)</code>: Definiert das Zeitintervall (in Minuten) für den "Vollsynchronisation" und den "Importiere Benutzer".  </li>
+</ul>
+<p><strong>Synchronisation</strong> und <strong>Gruppen</strong></p>
+<ul>
+<li>Import von Benutzern, Vollsynchronisation, Offboarding und Gruppen-Sync sind unter <a href="../u_e-mailcow_ui-idp-sync/">Identity Provider Synchronisation</a> beschrieben.  </li>
 </ul>
 <hr>
 <h3 id="automatische-benutzerbereitstellung"><strong>Automatische Benutzerbereitstellung</strong><a class="headerlink" href="#automatische-benutzerbereitstellung" title="Permanent link">¶</a></h3>
-<p>Wenn ein Benutzer in <strong>mailcow</strong> <ins>nicht</ins> existiert und sich über <strong>Mail-Protokolle</strong> (IMAP, SIEVE, POP3, SMTP) oder die <strong>mailcow UI</strong> anmeldet, wird er <strong>automatisch erstellt</strong>, sofern ein passendes <strong>Attribut Mapping</strong> konfiguriert ist.</p>
+<p>Wenn ein Benutzer in <strong>mailcow</strong> <ins>nicht</ins> existiert und sich über <strong>Mail-Protokolle</strong> (IMAP, SIEVE, POP3, SMTP) oder die <strong>mailcow UI</strong> anmeldet, wird er <strong>automatisch erstellt</strong>, sofern <code>Benutzer beim Login erstellen</code> aktiv ist und ein passendes <strong>Attribut Mapping</strong> oder eine <strong>Standardvorlage</strong> konfiguriert ist.</p>
 <h4 id="funktionsweise"><strong>Funktionsweise</strong><a class="headerlink" href="#funktionsweise" title="Permanent link">¶</a></h4>
 <ol>
 <li>Bei der Anmeldung führt <strong>mailcow</strong> einen <strong>LDAP-Bind</strong> durch und ruft bei Erfolg die LDAP-Attribute des Benutzers ab.  </li>
 <li><strong>mailcow</strong> sucht nach dem angegebenen <strong><code>Attribut Feld</code></strong> und ruft dessen Wert ab.  </li>
-<li>Wenn der Wert mit einem Attribut in der <strong>Attribut Mapping</strong> übereinstimmt, wird die entsprechende <strong>Mailbox-Vorlage</strong> angewendet.  </li>
+<li>Wenn der Wert mit einem Attribut in der <strong>Attribut Mapping</strong> übereinstimmt, wird die entsprechende <strong>Mailbox-Vorlage</strong> angewendet. Andernfalls wird die <strong>Standardvorlage</strong> verwendet.  </li>
 </ol>
 <h4 id="beispielkonfiguration"><strong>Beispielkonfiguration</strong><a class="headerlink" href="#beispielkonfiguration" title="Permanent link">¶</a></h4>
 <ul>
@@ -5542,19 +5668,17 @@
 <li>Unter <strong>Attribut Mapping</strong> wird das <strong><code>Attribut</code></strong> auf <strong><code>default</code></strong> gesetzt und eine geeignete Mailbox-Vorlage ausgewählt.</li>
 </ul>
 <h4 id="updates-bei-der-anmeldung"><strong>Updates bei der Anmeldung</strong><a class="headerlink" href="#updates-bei-der-anmeldung" title="Permanent link">¶</a></h4>
-<p>Jedes Mal, wenn sich ein Benutzer anmeldet, überprüft <strong>mailcow</strong>, ob sich die zugewiesene Vorlage geändert hat. Falls ja, werden die Mailbox-Einstellungen entsprechend aktualisiert.  </p>
+<p>Jedes Mal, wenn sich ein Benutzer anmeldet, überprüft <strong>mailcow</strong>, ob sich die zugewiesene Vorlage geändert hat. Falls ja, werden die Mailbox-Einstellungen entsprechend aktualisiert. Vorlagen von <a href="../u_e-mailcow_ui-groups/#mailbox-template">Gruppen</a> haben Vorrang vor dem Attribut Mapping.  </p>
 <h4 id="import-und-updates-uber-crontasks"><strong>Import und Updates über Crontasks</strong><a class="headerlink" href="#import-und-updates-uber-crontasks" title="Permanent link">¶</a></h4>
-<p>Wenn die Option <strong>Benutzer importieren</strong> aktiviert ist, wird ein geplanter Cron-Job ausgeführt, der Benutzer aus dem LDAP in mailcow importiert. Dies erfolgt in dem festgelegten <strong>Sync / Import interval (min)</strong>.  </p>
-<p>Wenn die Option <strong>Vollsynchronisation</strong> aktiviert ist, aktualisiert der Cron-Job auch <strong>bestehende Benutzer</strong> im festgelegten <strong>Sync / Import interval (min)</strong> und übernimmt Änderungen aus LDAP in mailcow.  </p>
-<p>Logs zu Importen und Synchronisationen können unter <code>System &gt; Information &gt; Logs &gt; Crontasks</code> eingesehen werden.  </p>
+<p>Benutzer lassen sich auch im Hintergrund importieren und aktualisieren, ohne auf ihre Anmeldung zu warten. Deaktivierte oder gelöschte Benutzer können automatisch ihren Login verlieren (Offboarding), und LDAP-Gruppen lassen sich in mailcow-Gruppen synchronisieren. Siehe <a href="../u_e-mailcow_ui-idp-sync/">Identity Provider Synchronisation</a>.  </p>
 <hr>
 <h3 id="authentifizierungsquelle-fur-bestehende-benutzer-andern"><strong>Authentifizierungsquelle für bestehende Benutzer ändern</strong><a class="headerlink" href="#authentifizierungsquelle-fur-bestehende-benutzer-andern" title="Permanent link">¶</a></h3>
 <p>Nachdem ein <strong>LDAP Identity Provider</strong> konfiguriert wurde, kann die Authentifizierungsquelle bestehender Benutzer von <strong>mailcow</strong> auf <strong>LDAP</strong> umgestellt werden. </p>
 <ol>
-<li>Navigieren Sie zu <strong><code>E-Mail &gt; Konfiguration &gt; Mailboxen</code></strong>.  </li>
-<li>Bearbeiten Sie den Benutzer.  </li>
-<li>Wählen Sie im <strong>Identity Provider</strong>-Dropdown <strong>LDAP</strong> aus.  </li>
-<li>Speichern Sie die Änderungen.    </li>
+<li><strong><code>E-Mail &gt; Konfiguration &gt; Mailboxen</code></strong> öffnen.  </li>
+<li>Den Benutzer bearbeiten.  </li>
+<li>Im <strong>Identity Provider</strong>-Dropdown <strong>LDAP</strong> auswählen.  </li>
+<li>Die Änderungen speichern.    </li>
 </ol>
 <div class="admonition info">
 <p class="admonition-title">Hinweis</p>
@@ -5588,38 +5712,45 @@ Die <code>docker-compose.override.yml</code> sieht dann wie folgt aus:<br>
 </div>
 <hr>
 <h3 id="fehlersuche"><strong>Fehlersuche</strong><a class="headerlink" href="#fehlersuche" title="Permanent link">¶</a></h3>
-<p>Wenn Benutzer sich nicht anmelden können, überprüfen Sie zuerst die Logs unter: <code>System &gt; Information &gt; Logs &gt; mailcow UI</code>.<br>
-Danach können Sie diesen Schritten zur Fehlerbehebung folgen:  </p>
+<p>Wenn Benutzer sich nicht anmelden können, zuerst die Logs unter <code>System &gt; Information &gt; Protokolle &gt; mailcow UI</code> prüfen.<br>
+Danach helfen diese Schritte:  </p>
 <ol>
 <li>
 <p><strong>Verbindung testen</strong>  </p>
 <ul>
-<li>Gehen Sie zu <strong><code>System &gt; Konfiguration &gt; Zugriff &gt; Identity Provider</code></strong>.  </li>
-<li>Klicken Sie den <strong>Verbindung Testen</strong> Button und stellen Sie sicher, dass er erfolgreich abgeschlossen wird.  </li>
+<li><strong><code>System &gt; Konfiguration &gt; Zugang &gt; Identity Provider</code></strong> öffnen.  </li>
+<li>Auf <strong>Verbindung Testen</strong> klicken, der Test muss erfolgreich sein.  </li>
 </ul>
 </li>
 <li>
 <p><strong>Mail Domain des Benutzers prüfen</strong>  </p>
 <ul>
-<li>Stellen Sie sicher, dass die Domain des Benutzers in mailcow existiert.  </li>
-<li>Überprüfen Sie, ob die Domain durch <strong>"Max. Mailboxanzahl"</strong> oder <strong>"Domain Speicherplatz gesamt (MiB)"</strong> eingeschränkt ist.  </li>
+<li>Die Domain des Benutzers muss in mailcow existieren.  </li>
+<li>Prüfen, ob die Domain durch <strong>"Max. Mailboxanzahl"</strong> oder <strong>"Domain Speicherplatz gesamt (MiB)"</strong> eingeschränkt ist.  </li>
 </ul>
 </li>
 <li>
 <p><strong>Attribut Mapping prüfen</strong>  </p>
 <ul>
-<li>Stellen Sie sicher, dass eine passendes <strong>Attribut Mapping</strong> für die Benutzer konfiguriert ist.  </li>
+<li>Für die Benutzer muss ein passendes <strong>Attribut Mapping</strong> konfiguriert sein.  </li>
 </ul>
 </li>
 <li>
 <p><strong>LDAP-Filter prüfen</strong>  </p>
 <ul>
-<li>Falls ein <strong>LDAP-Filter</strong> konfiguriert wurde, stellen Sie sicher, dass er die richtigen Benutzer einschließt.  </li>
+<li>Ist ein <strong>LDAP-Filter</strong> konfiguriert, muss er die richtigen Benutzer einschließen.  </li>
+</ul>
+</li>
+<li>
+<p><strong>Eindeutigen Anmeldenamen prüfen</strong>  </p>
+<ul>
+<li>Der Anmeldename (<code>Username Feld</code>) muss innerhalb von <code>Base DN</code> und <code>Filter</code> zu genau einem Eintrag passen, sonst wird der Login abgelehnt. E-Mail-Adressen müssen eindeutig sein, siehe <a href="../u_e-mailcow_ui-idp-sync/#verknupfung-von-mailboxen-und-idp-benutzern">Verknüpfung von Mailboxen und IdP-Benutzern</a>.  </li>
 </ul>
 </li>
 </ol>
-<p>Falls Probleme mit den Optionen <strong><code>Vollsynchronisation</code></strong> oder <strong><code>Benutzer importieren</code></strong> auftreten, überprüfen Sie die Logs unter:<br>
-<code>System &gt; Information &gt; Logs &gt; Crontasks</code>.  </p>
+<p>Bei einem Ausfall des LDAP-Servers siehe <a href="../u_e-mailcow_ui-netfilter/#ausfall-des-identity-providers">Ausfall des Identity Providers</a>.</p>
+<p>Bei Problemen mit der Synchronisation helfen die Karte <strong>Sync-Status</strong> in den Identity-Provider-Einstellungen und die Logs unter:<br>
+<code>System &gt; Information &gt; Protokolle &gt; Crontasks</code>.  </p>
 
 
 
@@ -5640,7 +5771,7 @@ Danach können Sie diesen Schritten zur Fehlerbehebung folgen:  </p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="7. April 2025 08:54:50 CEST">2025-04-07 08:54:50</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="4. November 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

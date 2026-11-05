@@ -11,7 +11,7 @@
         <link rel="prev" href="../u_e-mailcow_ui-bl_wl/">
       
       
-        <link rel="next" href="../u_e-mailcow_ui-css/">
+        <link rel="next" href="../u_e-mailcow_ui-design/">
       
       
         
@@ -1634,7 +1634,7 @@
   <span class="md-ellipsis">
     
   
-    Sync job migration
+    Sync jobs
   
 
     
@@ -2344,6 +2344,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2408,14 +2436,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS overrides
+    Customize design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain wide footer
   
 
     
@@ -2444,6 +2500,34 @@
     
   
     Forgot Password Feature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
   
 
     
@@ -2780,6 +2864,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider sync
   
 
     
@@ -5247,7 +5359,7 @@
 <p>mailcow UI configuration parameters can be used to...</p>
 <ul>
 <li>...change the default language<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
-<li>...change the default bootstrap theme</li>
+<li>...change the default theme (see <a href="../u_e-mailcow_ui-design/#default-theme">Customize design</a>)</li>
 <li>...set a password complexity regex</li>
 <li>...enable DKIM private key visibility</li>
 <li>...set a pagination trigger size</li>
@@ -5257,7 +5369,22 @@
 <li>...set a default "To" field for relayhost tests</li>
 <li>...set a timeout for Docker API requests</li>
 <li>...toggle IP anonymization</li>
+<li>...change the limit for wrong 2FA codes (see <a href="../u_e-mailcow_ui-tfa/#failed-codes">Two-Factor Authentication</a>)</li>
+<li>...define which imapsync options are allowed as custom parameters of sync jobs (see <a href="../../../post_installation/firststeps-sync_jobs_migration/#custom-parameters">Sync jobs</a>)</li>
 </ul>
+<p>PHP-FPM caches the PHP files (OPcache) and does not re-read changed files. Restart PHP-FPM after changing <code>data/web/inc/vars.local.inc.php</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>php-fpm-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>php-fpm-mailcow
+</code></pre></div>
+</div>
+</div>
+</div>
 <div class="footnote">
 <hr>
 <ol>
@@ -5286,7 +5413,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="January 31, 2022 11:08:49 CET">2022-01-31 11:08:49</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 4, 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

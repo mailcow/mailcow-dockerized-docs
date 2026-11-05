@@ -95,6 +95,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#request-size-limits-in-nginx" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1634,7 +1639,7 @@
   <span class="md-ellipsis">
     
   
-    Sync job migration
+    Sync jobs
   
 
     
@@ -2342,6 +2347,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2398,14 +2431,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS overrides
+    Customize design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain wide footer
   
 
     
@@ -2434,6 +2495,34 @@
     
   
     Forgot Password Feature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
   
 
     
@@ -2783,6 +2872,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mailcow-UI/u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2994,6 +3111,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Max. message size (attachment size)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3010,6 +3145,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#request-size-limits-in-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request size limits in nginx
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5222,6 +5385,25 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#request-size-limits-in-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request size limits in nginx
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5249,6 +5431,7 @@
 <li>in <code>data/conf/rspamd/local.d/external_services.conf</code> adjust <code>max_size</code> parameter for <code>oletools</code></li>
 <li>in <code>data/conf/rspamd/local.d/antivirus.conf</code> adjust <code>max_size</code> parameter for <code>clamav</code></li>
 <li>in <code>data/conf/clamav/clamd.conf</code> adjust <code>MaxScanSize</code> and <code>MaxFileSize</code></li>
+<li>in <code>mailcow.conf</code> set <code>NGINX_MAX_BODY_SIZE</code> above the new message size (default <code>128m</code>), it limits requests to SOGo webmail, CalDAV/CardDAV and ActiveSync. Apply it with <code>docker compose up -d</code>.</li>
 </ul>
 <p>Restart Postfix, Rspamd and Clamav:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
@@ -5263,6 +5446,12 @@
 </div>
 </div>
 </div>
+<h2 id="request-size-limits-in-nginx">Request size limits in nginx<a class="headerlink" href="#request-size-limits-in-nginx" title="Permanent link">¶</a></h2>
+<p>nginx limits the size of requests:</p>
+<ul>
+<li><strong>SOGo webmail, ActiveSync and CalDAV/CardDAV:</strong> <code>NGINX_MAX_BODY_SIZE</code> in <code>mailcow.conf</code>, default <code>128m</code>. The value uses nginx syntax (e.g. <code>128m</code> or <code>1g</code>), <code>0</code> means unlimited, an invalid value falls back to <code>128m</code>. Keep it above <code>message_size_limit</code>, otherwise large mails cannot be sent through SOGo or ActiveSync (error <code>413</code>).</li>
+<li><strong>mailcow UI, API, Rspamd UI and own locations in <code>site.*.custom</code>:</strong> 64 MB. For larger uploads in own locations, set <code>client_max_body_size</code> there (see <a href="../../Nginx/u_e-nginx_custom/#config-expansion-in-mailcows-nginx">Config expansion in mailcows Nginx</a>).</li>
+</ul>
 
 
 
@@ -5283,7 +5472,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 25, 2023 12:24:36 CEST">2023-05-25 12:24:36</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 4, 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

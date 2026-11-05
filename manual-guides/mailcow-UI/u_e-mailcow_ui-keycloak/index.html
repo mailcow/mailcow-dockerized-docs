@@ -1639,7 +1639,7 @@
   <span class="md-ellipsis">
     
   
-    Sync job migration
+    Sync jobs
   
 
     
@@ -2349,6 +2349,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2405,14 +2433,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS overrides
+    Customize design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain wide footer
   
 
     
@@ -2441,6 +2497,34 @@
     
   
     Forgot Password Feature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
   
 
     
@@ -2964,6 +3048,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider sync
   
 
     
@@ -5580,36 +5692,50 @@
 
 <h3 id="configure"><strong>Configure</strong><a class="headerlink" href="#configure" title="Permanent link">¶</a></h3>
 <p>To add or edit your <strong>Identity Provider</strong> configuration, log in to your <em>mailcow UI</em> as administrator, go to <code>System &gt; Configuration &gt; Access &gt; Identity Provider</code> and select <strong>Keycloak</strong> from the Identity Provider dropdown.</p>
+<p><strong>Connection</strong></p>
 <ul>
 <li><code>Server URL</code>: The base URL of your Keycloak server.</li>
 <li><code>Realm</code>: The Keycloak realm where the mailcow client is configured.</li>
+<li><code>Version</code>: Specifies the Keycloak version.</li>
 <li><code>Client ID</code>: The Client ID assigned to mailcow Client in Keycloak.</li>
 <li><code>Client Secret</code>: The Client Secret assigned to the mailcow client in Keycloak.</li>
-<li><code>Redirect URL</code>: The redirect URL that Keycloak will use after authentication. This should point to your mailcow UI. Example: <code>https://mail.mailcow.tld</code></li>
-<li><code>Version</code>: Specifies the Keycloak version.</li>
-<li><code>Attribute Mapping</code>:<ul>
-<li><code>Attribute</code>: Defines the attribute value that should be mapped.</li>
-<li><code>Template</code>: Specifies which mailbox template should be applied for the defined LDAP attribute value</li>
+<li><code>Ignore SSL Errors</code>: If enabled, SSL certificate validation is bypassed.</li>
 </ul>
-</li>
+<p><strong>Login</strong></p>
+<ul>
+<li><code>Redirect URL</code>: The redirect URL that Keycloak will use after authentication. This should point to your mailcow UI. Example: <code>https://mail.mailcow.tld</code>. With <strong>Add redirect URL</strong> you can add further URLs, e.g. for additional host names.</li>
 <li><code>Mailpassword Flow</code>: If enabled, mailcow will attempt to validate user credentials using the <strong>Keycloak Admin REST API</strong> instead of relying solely on the Authorization Code Flow.<ul>
 <li>This requires that the user has a <strong>mailcow_password</strong> attribute set in Keycloak. <strong>mailcow_password</strong> should contain a hashed password</li>
 <li>The mailcow client in Keycloak must have a Service Account and permission to view-users.</li>
 </ul>
 </li>
-<li><code>Ignore SSL Errors</code>: If enabled, SSL certificate validation is bypassed.</li>
-<li><code>Periodic Full Sync</code>: If enabled, mailcow periodically performs a full sync of all users from Keycloak.</li>
-<li><code>Import Users</code>: If enabled,  new users are automatically imported from Keycloak into mailcow.</li>
-<li><code>Sync / Import Interval (min)</code>: Defines the time interval (in minutes) for periodic synchronization and user imports.</li>
+<li><code>Auto-create users on login</code>: If enabled, mailboxes are created at the first login of a user, see <a href="#automatic-user-provisioning">Automatic User Provisioning</a>.</li>
 </ul>
+<p><strong>Mailbox templates</strong></p>
+<ul>
+<li><code>Default Template</code>: Used to create a mailbox if no attribute mapping matches. It is not applied to existing mailboxes.</li>
+<li><code>Attribute Mapping</code>:<ul>
+<li><code>Attribute</code>: Defines the attribute value that should be mapped.</li>
+<li><code>Template</code>: Specifies which mailbox template should be applied for the defined attribute value.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Synchronization</strong> and <strong>Groups</strong></p>
+<ul>
+<li>Import of users, periodic sync, offboarding and group sync are described in <a href="../u_e-mailcow_ui-idp-sync/">Identity Provider sync</a>.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Keycloak 24 and newer</p>
+<p>Keycloak only stores user attributes that are defined in the user profile. Add <code>mailcow_template</code> (and <code>mailcow_password</code> for the Mailpassword Flow) to the user profile of the realm or enable <strong>Unmanaged attributes</strong> in the realm settings.</p>
+</div>
 <hr>
 <h3 id="automatic-user-provisioning"><strong>Automatic User Provisioning</strong><a class="headerlink" href="#automatic-user-provisioning" title="Permanent link">¶</a></h3>
-<p>If a user does not exist in <strong>mailcow</strong> and logs in via the <strong>mailcow UI</strong>, the user will be <strong>automatically created</strong>, provided that a matching <strong>attribute mapping</strong> is configured.  </p>
+<p>If a user does not exist in <strong>mailcow</strong> and logs in via the <strong>mailcow UI</strong>, the user will be <strong>automatically created</strong>, provided that <code>Auto-create users on login</code> is enabled and a matching <strong>attribute mapping</strong> or a <strong>Default Template</strong> is configured.  </p>
 <h4 id="how-it-works"><strong>How It Works</strong><a class="headerlink" href="#how-it-works" title="Permanent link">¶</a></h4>
 <ol>
 <li>On login, <strong>mailcow</strong> initializes an <strong>Authorization Code Flow</strong> and, if successful, retrieves the user's <strong>OIDC token</strong>.  </li>
 <li><strong>mailcow</strong> then looks for the <strong><code>mailcow_template</code></strong> value in the user info and retrieves it.  </li>
-<li>If the value matches an attribute defined in the <strong>Attribute Mapping</strong>, the corresponding <strong>mailbox template</strong> is applied.  </li>
+<li>If the value matches an attribute defined in the <strong>Attribute Mapping</strong>, the corresponding <strong>mailbox template</strong> is applied. Otherwise the <strong>Default Template</strong> is used.  </li>
 </ol>
 <h4 id="example-configuration"><strong>Example Configuration</strong><a class="headerlink" href="#example-configuration" title="Permanent link">¶</a></h4>
 <ul>
@@ -5617,16 +5743,9 @@
 <li>Under <strong>Attribute Mapping</strong>, set <strong><code>Attribute</code></strong> to <strong><code>default</code></strong> and select an appropriate <strong>mailbox template</strong>.  </li>
 </ul>
 <h4 id="updates-on-login"><strong>Updates on Login</strong><a class="headerlink" href="#updates-on-login" title="Permanent link">¶</a></h4>
-<p>Each time a user logs in via the <strong>mailcow UI</strong>, <strong>mailcow</strong> checks if the assigned <strong>template</strong> has changed. If so, it updates the mailbox settings accordingly.  </p>
+<p>Each time a user logs in via the <strong>mailcow UI</strong> (with the <a href="#mailpassword-flow">Mailpassword Flow</a> also via mail protocols), <strong>mailcow</strong> checks if the assigned <strong>template</strong> has changed. If so, it updates the mailbox settings accordingly. Templates of <a href="../u_e-mailcow_ui-groups/#mailbox-template">groups</a> take precedence over the attribute mapping.  </p>
 <h4 id="import-and-updates-via-crontask"><strong>Import and Updates via Crontask</strong><a class="headerlink" href="#import-and-updates-via-crontask" title="Permanent link">¶</a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Prerequisite</p>
-<p>This requires <strong>mailcow</strong> to have access to the <strong>Keycloak Admin REST API</strong>.<br>
-Make sure the <strong>mailcow Client</strong> has an Service Account and the Service account role <strong>view-users</strong>.</p>
-</div>
-<p>If <strong>Import Users</strong> is enabled, a scheduled cron job will automatically import users from Keycloak to mailcow at the specified <strong>Sync / Import Interval (min)</strong>.  </p>
-<p>If <strong>Periodic Full Sync</strong> is enabled, the cron job will also update existing users at the specified <strong>Sync / Import Interval (min)</strong>, ensuring that any changes in LDAP are applied to their corresponding mailboxes in mailcow.  </p>
-<p>Check the logs for imports and sync updates under <code>System &gt; Information &gt; Logs &gt; Crontasks</code>.</p>
+<p>Users can also be imported and updated in the background, without waiting for their login. Disabled or deleted users can lose their login automatically (offboarding), and Keycloak groups can be synced to mailcow groups. See <a href="../u_e-mailcow_ui-idp-sync/">Identity Provider sync</a>.</p>
 <hr>
 <h3 id="mailpassword-flow"><strong>Mailpassword Flow</strong><a class="headerlink" href="#mailpassword-flow" title="Permanent link">¶</a></h3>
 <div class="admonition warning">
@@ -5668,6 +5787,7 @@ Make sure the <strong>mailcow Client</strong> has an Service Account and the Ser
 </div>
 <p>Before users can use external mail clients, they must first log in to the mailcow UI and navigate to the <strong>Mailbox Settings</strong>.<br>
 In the <strong>App Passwords</strong> tab, they can generate a new app password, which must then be used for authentication in the external mail client.</p>
+<p>The tab requires the mailbox ACL <strong>Manage app passwords</strong>. An app password never allows a protocol that the mailbox itself does not allow.</p>
 <hr>
 <h3 id="troubleshooting"><strong>Troubleshooting</strong><a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h3>
 <p>If users cannot log in, first check the log details under: <code>System &gt; Information &gt; Logs &gt; mailcow UI</code>.<br>
@@ -5693,8 +5813,15 @@ Then, follow these steps to diagnose and resolve the issue:  </p>
 <li>Make sure a matching <strong>Attribute Mapping</strong> is configured for the users.  </li>
 </ul>
 </li>
+<li>
+<p><strong>Check the Email Address</strong>  </p>
+<ul>
+<li>The email address must be unique in Keycloak. The <strong>Mailpassword Flow</strong> needs exactly one user with this email address, see <a href="../u_e-mailcow_ui-idp-sync/#linking-mailboxes-and-idp-users">Linking mailboxes and IdP users</a>.  </li>
+</ul>
+</li>
 </ol>
-<p>If you’re experiencing issues with <strong><code>Periodic Full Sync</code></strong> or <strong><code>Import Users</code></strong>, review the logs under <code>System &gt; Information &gt; Logs &gt; Crontasks</code>  </p>
+<p>If Keycloak is down, see <a href="../u_e-mailcow_ui-netfilter/#identity-provider-outages">Identity provider outages</a>.</p>
+<p>If you’re experiencing issues with the synchronization, check the card <strong>Sync status</strong> in the Identity Provider settings and review the logs under <code>System &gt; Information &gt; Logs &gt; Crontasks</code>.  </p>
 
 
 
@@ -5715,7 +5842,7 @@ Then, follow these steps to diagnose and resolve the issue:  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="March 12, 2025 09:26:32 CET">2025-03-12 09:26:32</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 4, 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

@@ -1639,7 +1639,7 @@
   <span class="md-ellipsis">
     
   
-    Sync job migration
+    Sync jobs
   
 
     
@@ -2349,6 +2349,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2405,14 +2433,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS overrides
+    Customize design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain wide footer
   
 
     
@@ -2441,6 +2497,34 @@
     
   
     Forgot Password Feature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
   
 
     
@@ -2925,6 +3009,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider sync
   
 
     
@@ -5502,35 +5614,49 @@
 
 <h3 id="configure"><strong>Configure</strong><a class="headerlink" href="#configure" title="Permanent link">¶</a></h3>
 <p>To add or edit your <strong>Identity Provider</strong> configuration, log in to your <em>mailcow UI</em> as administrator, go to <code>System &gt; Configuration &gt; Access &gt; Identity Provider</code> and select <strong>LDAP</strong> from the Identity Provider dropdown.</p>
+<p><strong>Connection</strong></p>
 <ul>
 <li><code>Host</code>: The address of your LDAP server. You can provide a single hostname or a comma-separated list of hosts for fallback in case the primary server is unreachable.</li>
 <li><code>Port</code>: The port used to connect to the LDAP server.</li>
-<li><code>Use SSL</code>: enable LDAPS connection. If Port is set to <code>389</code> it will be overriden to <code>636</code>.</li>
-<li><code>Use TLS</code>: enable TLS connection. SSL Ports cannot be used.</li>
+<li><code>Encryption</code>: <code>None</code>, <code>StartTLS</code> (uses the normal port, usually <code>389</code>) or <code>SSL (LDAPS)</code>. With SSL, port <code>389</code> is changed to <code>636</code> automatically.</li>
 <li><code>Ignore SSL Errors</code>: If enabled, SSL certificate validation will be bypassed.</li>
-<li><code>Base DN</code>: The Distinguished Name (DN) from which searches will be performed.</li>
-<li><code>Username Field</code>: The LDAP attribute used to identify users during authentication. Defaults to <code>mail</code>.</li>
-<li><code>Filter</code>: An optional LDAP search filter to refine which users can authenticate.</li>
-<li><code>Attribute Field</code>: Specifies an LDAP attribute that holds a specific value which can be mapped to a mailbox template using the <strong>Attribute Mapping</strong> section.</li>
 <li><code>Bind DN</code>: The Distinguished Name (DN) of the LDAP user that will be used to authenticate and perform LDAP searches. This account should have sufficient permissions to read the required attributes.</li>
 <li><code>Bind Password</code>: The password for the <strong>Bind DN</strong> user. It is required for authentication when connecting to the LDAP server.</li>
+</ul>
+<p><strong>Users</strong></p>
+<ul>
+<li><code>Base DN</code>: The Distinguished Name (DN) from which searches will be performed.</li>
+<li><code>Filter</code>: An optional LDAP search filter to refine which users can authenticate and are synced, e.g. <code>(objectClass=person)</code>.</li>
+<li><code>Username Field</code>: The LDAP attribute with the email address of the users, it becomes the mailbox name. Defaults to <code>mail</code>.</li>
+<li><code>ID attribute</code>: Attribute with a stable user ID, used to <a href="../u_e-mailcow_ui-idp-sync/#linking-mailboxes-and-idp-users">link mailboxes and LDAP users</a>. If empty, mailcow uses <code>objectGUID</code>, <code>entryUUID</code>, <code>nsUniqueId</code> or <code>ipaUniqueID</code>, otherwise the DN.</li>
+<li><code>Disabled filter</code>: Optional LDAP filter that matches disabled users, used for <a href="../u_e-mailcow_ui-idp-sync/#offboarding">offboarding</a>. Active Directory accounts that are disabled in <code>userAccountControl</code> always count as disabled.</li>
+</ul>
+<p><strong>Login</strong></p>
+<ul>
+<li><code>Auto-create users on login</code>: If enabled, mailboxes are created at the first login of a user, see <a href="#automatic-user-provisioning">Automatic User Provisioning</a>.</li>
+</ul>
+<p><strong>Mailbox templates</strong></p>
+<ul>
+<li><code>Attribute Field</code>: Specifies an LDAP attribute that holds a specific value which can be mapped to a mailbox template using the <strong>Attribute Mapping</strong> section.</li>
+<li><code>Default Template</code>: Used to create a mailbox if no attribute mapping matches. It is not applied to existing mailboxes.</li>
 <li><code>Attribute Mapping</code>:<ul>
 <li><code>Attribute</code>: Defines the LDAP attribute value that should be mapped.</li>
 <li><code>Template</code>: Specifies which mailbox template should be applied for the defined LDAP attribute value</li>
 </ul>
 </li>
-<li><code>Periodic Full Sync</code>: If enabled, a full synchronization of all LDAP users and attributes will be performed periodically.</li>
-<li><code>Import Users</code>: If enabled, new users will be automatically imported from LDAP into mailcow.</li>
-<li><code>Sync / Import Interval (min)</code>: Defines the time interval (in minutes) for periodic synchronization and user imports.</li>
+</ul>
+<p><strong>Synchronization</strong> and <strong>Groups</strong></p>
+<ul>
+<li>Import of users, periodic sync, offboarding and group sync are described in <a href="../u_e-mailcow_ui-idp-sync/">Identity Provider sync</a>.</li>
 </ul>
 <hr>
 <h3 id="automatic-user-provisioning"><strong>Automatic User Provisioning</strong><a class="headerlink" href="#automatic-user-provisioning" title="Permanent link">¶</a></h3>
-<p>If a user does not exist in <strong>mailcow</strong> and logs in via <strong>mail protocols</strong> (IMAP/SIEVE/POP3/SMTP) or the <strong>mailcow UI</strong>, the user will be <strong>automatically created</strong>, provided that a matching <strong>attribute mapping</strong> is configured.  </p>
+<p>If a user does not exist in <strong>mailcow</strong> and logs in via <strong>mail protocols</strong> (IMAP/SIEVE/POP3/SMTP) or the <strong>mailcow UI</strong>, the user will be <strong>automatically created</strong>, provided that <code>Auto-create users on login</code> is enabled and a matching <strong>attribute mapping</strong> or a <strong>Default Template</strong> is configured.  </p>
 <h4 id="how-it-works"><strong>How It Works</strong><a class="headerlink" href="#how-it-works" title="Permanent link">¶</a></h4>
 <ol>
 <li>On login, <strong>mailcow</strong> performs an <strong>LDAP bind</strong> and, if successful, retrieves the user's LDAP attributes.  </li>
 <li><strong>mailcow</strong> looks for the specified <strong><code>Attribute Field</code></strong> and retrieves its value.  </li>
-<li>If the value matches an attribute defined in the <strong>Attribute Mapping</strong>, the corresponding <strong>mailbox template</strong> is applied.  </li>
+<li>If the value matches an attribute defined in the <strong>Attribute Mapping</strong>, the corresponding <strong>mailbox template</strong> is applied. Otherwise the <strong>Default Template</strong> is used.  </li>
 </ol>
 <h4 id="example-configuration"><strong>Example Configuration</strong><a class="headerlink" href="#example-configuration" title="Permanent link">¶</a></h4>
 <ul>
@@ -5539,11 +5665,9 @@
 <li>Under <strong>Attribute Mapping</strong>, set <strong><code>Attribute</code></strong> to <strong><code>default</code></strong> and select an appropriate mailbox template.  </li>
 </ul>
 <h4 id="updates-on-login"><strong>Updates on Login</strong><a class="headerlink" href="#updates-on-login" title="Permanent link">¶</a></h4>
-<p>Each time a user logs in, <strong>mailcow</strong> checks if the assigned template has changed. If so, it updates the mailbox settings accordingly.  </p>
+<p>Each time a user logs in, <strong>mailcow</strong> checks if the assigned template has changed. If so, it updates the mailbox settings accordingly. Templates of <a href="../u_e-mailcow_ui-groups/#mailbox-template">groups</a> take precedence over the attribute mapping.  </p>
 <h4 id="import-and-updates-via-crontask"><strong>Import and Updates via Crontask</strong><a class="headerlink" href="#import-and-updates-via-crontask" title="Permanent link">¶</a></h4>
-<p>If <strong>Import Users</strong> is enabled, a scheduled cron job will automatically import users from LDAP to mailcow at the specified <strong>Sync / Import Interval (min)</strong>.  </p>
-<p>If <strong>Periodic Full Sync</strong> is enabled, the cron job will also update existing users at the specified <strong>Sync / Import Interval (min)</strong>, ensuring that any changes in LDAP are applied to their corresponding mailboxes in mailcow.  </p>
-<p>Check the logs for imports and sync updates under <code>System &gt; Information &gt; Logs &gt; Crontasks</code>.</p>
+<p>Users can also be imported and updated in the background, without waiting for their login. Disabled or deleted users can lose their login automatically (offboarding), and LDAP groups can be synced to mailcow groups. See <a href="../u_e-mailcow_ui-idp-sync/">Identity Provider sync</a>.</p>
 <hr>
 <h3 id="change-the-authentication-source-for-existing-users"><strong>Change the Authentication Source for Existing Users</strong><a class="headerlink" href="#change-the-authentication-source-for-existing-users" title="Permanent link">¶</a></h3>
 <p>Once you have configured an <strong>LDAP Identity Provider</strong>, you can change the authentication source for existing users from <strong>mailcow</strong> to <strong>LDAP</strong>.  </p>
@@ -5614,8 +5738,15 @@ Then, follow these steps to diagnose and resolve the issue:  </p>
 <li>Double-check your LDAP filter if one is configured.</li>
 </ul>
 </li>
+<li>
+<p><strong>Unique Login Name</strong>  </p>
+<ul>
+<li>The login name (<code>Username Field</code>) must match exactly one entry within <code>Base DN</code> and <code>Filter</code>, otherwise the login is refused. Email addresses must be unique, see <a href="../u_e-mailcow_ui-idp-sync/#linking-mailboxes-and-idp-users">Linking mailboxes and IdP users</a>.</li>
+</ul>
+</li>
 </ol>
-<p>If you’re experiencing issues with <strong><code>Periodic Full Sync</code></strong> or <strong><code>Import Users</code></strong>, review the logs under <code>System &gt; Information &gt; Logs &gt; Crontasks</code>  </p>
+<p>If the LDAP server is down, see <a href="../u_e-mailcow_ui-netfilter/#identity-provider-outages">Identity provider outages</a>.</p>
+<p>If you’re experiencing issues with the synchronization, check the card <strong>Sync status</strong> in the Identity Provider settings and review the logs under <code>System &gt; Information &gt; Logs &gt; Crontasks</code>.  </p>
 
 
 
@@ -5636,7 +5767,7 @@ Then, follow these steps to diagnose and resolve the issue:  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="April 7, 2025 08:54:50 CEST">2025-04-07 08:54:50</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 4, 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

@@ -98,7 +98,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sogo-mail-von-adressen" class="md-skip">
+        <a href="#gruppen" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -1641,7 +1641,7 @@
   <span class="md-ellipsis">
     
   
-    Migration mit Sync Jobs
+    Sync Jobs
   
 
     
@@ -1828,6 +1828,17 @@
       Inhaltsverzeichnis
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#gruppen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gruppen
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#sogo-mail-von-adressen" class="md-nav__link">
@@ -2403,6 +2414,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2459,14 +2498,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS-Überschreibungen
+    Design anpassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenweite Fußzeile
   
 
     
@@ -2495,6 +2562,34 @@
     
   
     Passwort vergessen Funktion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gruppen
   
 
     
@@ -2831,6 +2926,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider Synchronisation
   
 
     
@@ -5280,6 +5403,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#gruppen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gruppen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sogo-mail-von-adressen" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5340,6 +5474,8 @@ Jede an alias.com gesendete E-Mail wird mit dem Catch-All-Alias für example.org
 </code></pre>
 <p>Administratoren und Domänenadministratoren können Postfächer bearbeiten, um bestimmten Benutzern zu erlauben, als andere Postfachbenutzer zu senden (sie zu "delegieren").</p>
 <p>Sie können zwischen Mailbox-Benutzern wählen oder die Absenderprüfung für Domänen komplett deaktivieren.</p>
+<h3 id="gruppen">Gruppen<a class="headerlink" href="#gruppen" title="Permanent link">¶</a></h3>
+<p>Mitglieder einer <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-groups/">Gruppe</a> dürfen zusätzlich als die Adressen senden, die in der Gruppe unter "Senden als" stehen, und als die Gruppenadresse, wenn das für die Gruppe aktiviert ist. Das gilt nur, solange die Gruppe aktiv ist. Diese Adressen lassen sich nur in der Gruppe ändern. SOGo zeigt die Adressen aus "Senden als" nicht automatisch an, Mitglieder legen sie selbst als Identität an.</p>
 <h3 id="sogo-mail-von-adressen">SOGo "Mail von"-Adressen<a class="headerlink" href="#sogo-mail-von-adressen" title="Permanent link">¶</a></h3>
 <p>Mailbox-Benutzer können natürlich ihre eigene Mailbox-Adresse auswählen, sowie alle Alias-Adressen und Aliase, die über Alias-Domänen existieren.</p>
 <p>Wenn Sie einen anderen <em>existierenden</em> Mailbox-Benutzer als Ihre "Mail von"-Adresse auswählen wollen, muss dieser Benutzer Ihnen den Zugriff über SOGo delegieren (siehe SOGo-Dokumentation). Außerdem muss ein mailcow (Domain) Administrator
@@ -5364,7 +5500,7 @@ Ihnen den Zugang wie oben beschrieben gewähren.</p>
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="30. Januar 2022 14:24:07 CET">2022-01-30 14:24:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="4. November 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

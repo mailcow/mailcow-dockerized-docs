@@ -26,7 +26,7 @@
     
     
       
-        <title>Sync job migration - mailcow: dockerized documentation</title>
+        <title>Sync jobs - mailcow: dockerized documentation</title>
       
     
     
@@ -58,14 +58,14 @@
     
   
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sync job migration - mailcow: dockerized documentation">
+<meta property="og:title" content="Sync jobs - mailcow: dockerized documentation">
 <meta property="og:image" content="https://docs.mailcow.email/assets/images/social/post_installation/firststeps-sync_jobs_migration.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://docs.mailcow.email/post_installation/firststeps-sync_jobs_migration/">
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Sync job migration - mailcow: dockerized documentation">
+<meta property="twitter:title" content="Sync jobs - mailcow: dockerized documentation">
 <meta property="twitter:image" content="https://docs.mailcow.email/assets/images/social/post_installation/firststeps-sync_jobs_migration.png">
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
@@ -96,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-a-sync-job" class="md-skip">
+        <a href="#adding-a-sync-source" class="md-skip">
           Skip to content
         </a>
       
@@ -150,7 +150,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sync job migration
+              Sync jobs
             
           </span>
         </div>
@@ -1648,7 +1648,7 @@
   <span class="md-ellipsis">
     
   
-    Sync job migration
+    Sync jobs
   
 
     
@@ -1666,7 +1666,7 @@
   <span class="md-ellipsis">
     
   
-    Sync job migration
+    Sync jobs
   
 
     
@@ -1690,10 +1690,137 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#adding-a-sync-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Sync Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-a-sync-job" class="md-nav__link">
     <span class="md-ellipsis">
       
         Creating a Sync Job
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-and-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status and results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oauth2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OAuth2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OAuth2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-365" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microsoft 365
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syncing-mailboxes-within-mailcow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syncing mailboxes within mailcow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-for-administrators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings for administrators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom parameters
       
     </span>
   </a>
@@ -2401,6 +2528,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2457,14 +2612,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS overrides
+    Customize design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain wide footer
   
 
     
@@ -2493,6 +2676,34 @@
     
   
     Forgot Password Feature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Groups
   
 
     
@@ -2829,6 +3040,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider sync
   
 
     
@@ -5278,10 +5517,137 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#adding-a-sync-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Sync Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificate-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Certificate verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#creating-a-sync-job" class="md-nav__link">
     <span class="md-ellipsis">
       
         Creating a Sync Job
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-and-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status and results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oauth2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OAuth2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OAuth2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microsoft-365" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microsoft 365
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syncing-mailboxes-within-mailcow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syncing mailboxes within mailcow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-for-administrators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings for administrators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom parameters
       
     </span>
   </a>
@@ -5308,32 +5674,67 @@
   
 
 
-  <h1>Sync job migration</h1>
+  <h1>Sync jobs</h1>
 
-<p>Sync jobs are used to copy or move existing emails either from an external IMAP server or between existing mailboxes within mailcow.</p>
+<p>Sync jobs are used to copy or move existing emails either from an external IMAP server or between existing mailboxes within mailcow (see <a href="#syncing-mailboxes-within-mailcow">Syncing mailboxes within mailcow</a>). mailcow uses <a href="https://imapsync.lamiral.info/">imapsync</a> for this. Besides username and password, the login at the source server can use OAuth2, e.g. for Microsoft 365 and Google.</p>
 <div class="admonition warning">
 <p class="admonition-title">Notice</p>
 <p>Depending on your mailbox’s access control list (ACL), you may not have permission to create a sync job. In this case, please contact your domain administrator.</p>
 </div>
+<p>A sync job always uses a <strong>sync source</strong>: the source IMAP server and how mailcow logs in there. Define each server once as a source and select it in every sync job.</p>
+<h2 id="adding-a-sync-source">Adding a Sync Source<a class="headerlink" href="#adding-a-sync-source" title="Permanent link">¶</a></h2>
+<ol>
+<li>
+<p>Navigate to “E-Mail <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Configuration <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Sync jobs” (if logged in as an admin or domain admin) or “User Settings <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Sync jobs” (as a regular mailbox user) and click “Add source” in the section “Sync sources”.</p>
+</li>
+<li>
+<p>Optionally pick one of the “Presets”. They fill in the server settings of common providers (Gmail, GMX, WEB.DE, T-Online, iCloud, Yahoo, IONOS, STRATO). Admins and domain admins also get presets for Microsoft 365 and Google. Many providers (e.g. Gmail, iCloud, Yahoo) require an app password or IMAP access to be enabled in the mailbox settings.</p>
+</li>
+<li>
+<p>Enter a “Name” and choose the “Visibility”: who may use the source in their sync jobs. Administrators can share a source with all users, domain administrators with their domains or single mailboxes. Sources of mailbox users are only visible to themselves. Administrators see all sources.</p>
+</li>
+<li>
+<p>Fill in “Host”, “Port” and “Encryption method” of the source server. SSL usually uses port 993, STARTTLS port 143. Enter the host name from the server certificate, not an IP address. Unencrypted connections (PLAIN) are possible, but strongly discouraged.</p>
+</li>
+<li>
+<p>Leave “Verify the server certificate” on, unless the server has a self-signed or expired certificate (see <a href="#certificate-verification">Certificate verification</a>).</p>
+</li>
+<li>
+<p>Choose the “Authentication”: <code>PLAIN</code>, <code>LOGIN</code> or <code>CRAM-MD5</code> for username and password, <code>XOAUTH2</code> for OAuth2 (admins and domain admins only, see <a href="#oauth2">OAuth2</a>).</p>
+</li>
+<li>
+<p>Click “Add”.</p>
+</li>
+</ol>
+<h2 id="certificate-verification">Certificate verification<a class="headerlink" href="#certificate-verification" title="Permanent link">¶</a></h2>
+<p>“Verify the server certificate” is on for new sources. It applies to SSL and STARTTLS.</p>
+<ul>
+<li>mailcow checks the certificate against the host name of the source. The host must be the name in the certificate, e.g. <code>imap.example.net</code>, not an IP address.</li>
+<li>For servers with a self-signed or expired certificate, or a certificate that does not match the host, untick the box. Otherwise the sync job fails, e.g. with “Problem with encrypted connection” or “Can't connect to remote server”. “Check log” shows the details.</li>
+<li>The list of sources shows a shield icon next to the server when the certificate is not verified.</li>
+<li>Turning verification off for a source that sync jobs of other mailboxes use requires access to all of these mailboxes. Administrators can always do it.</li>
+</ul>
 <h2 id="creating-a-sync-job">Creating a Sync Job<a class="headerlink" href="#creating-a-sync-job" title="Permanent link">¶</a></h2>
 <ol>
 <li>
-<p>Navigate to “E-Mail <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Configuration <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Synchronizations” (if logged in as an admin or domain admin) or “User Settings <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Sync Jobs” (as a regular mailbox user) to create a new sync job.</p>
+<p>In the same place, click “Create new sync job”.</p>
 </li>
 <li>
-<p>If you are an administrator, select the mailbox username from the “Username” dropdown menu where the emails should be copied to (target mailbox).</p>
+<p>If you are an administrator or domain administrator, select the “Local mailbox (destination)” where the emails should be copied to.</p>
 </li>
 <li>
-<p>Fill in the “Host” and “Port” fields with the correct connection details of the source IMAP server (the server from which the emails will be fetched).</p>
+<p>Choose the source under “Select source”. Inactive sources cannot be selected.</p>
 </li>
 <li>
-<p>Enter the correct login credentials for the source IMAP server in the “Username” and “Password” fields.</p>
+<p>Enter the login of the source mailbox:</p>
+<ul>
+<li>Sources with username and password: “Remote username (source)” and “Remote password (source)”.</li>
+<li>OAuth2 sources with user login: click “Sign in with the provider” and sign in with the source account. The remote username is taken from this account.</li>
+<li>OAuth2 sources with client credentials: the source mailbox as “Remote username (source)”, no password.</li>
+</ul>
 </li>
 <li>
-<p>Select the appropriate encryption method. If the source IMAP server uses port 143, TLS is likely the correct choice, while SSL is typically used with port 993. PLAIN authentication is also possible, but strongly discouraged.</p>
-</li>
-<li>
-<p>All other fields can be left at their default values or adjusted as needed.</p>
+<p>All other fields can be left at their default values or adjusted as needed. “Custom parameters” takes additional imapsync options, one per row (see <a href="#custom-parameters">Custom parameters</a>).</p>
 </li>
 <li>
 <p>Make sure to check the “Active” box and click “Add” to finalize the sync job.</p>
@@ -5342,6 +5743,147 @@
 <div class="admonition notice">
 <p class="admonition-title">Please remember...</p>
 <p>Once you’re done, log in to the target mailbox and verify that all emails were imported correctly. If everything worked as expected, all your emails will appear in the new inbox. Don’t forget to disable or delete the sync job once it’s no longer needed.</p>
+</div>
+<h2 id="status-and-results">Status and results<a class="headerlink" href="#status-and-results" title="Permanent link">¶</a></h2>
+<p>The list of sync jobs shows the status of every job (“Waiting”, “Running”, “Inactive”), the “Last run result” and the log of the last run (“Check log”). Common results:</p>
+<table>
+<thead>
+<tr>
+<th>Last run result</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Success</td>
+<td>The run finished without errors.</td>
+</tr>
+<tr>
+<td>Wrong username or password</td>
+<td>The login at the source failed.</td>
+</tr>
+<tr>
+<td>Can't connect to remote server</td>
+<td>The source server is not reachable, the certificate check failed (SSL) or the source points to mailcow itself.</td>
+</tr>
+<tr>
+<td>Problem with encrypted connection</td>
+<td>STARTTLS failed, e.g. because of the certificate check.</td>
+</tr>
+<tr>
+<td>Target mailbox is over quota</td>
+<td>The mailcow mailbox is full.</td>
+</tr>
+<tr>
+<td>OAuth token not ready</td>
+<td>There is no valid OAuth2 token (see <a href="#troubleshooting">Troubleshooting</a>).</td>
+</tr>
+<tr>
+<td>Check log</td>
+<td>Any other result, the log shows the details.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="managing-sources">Managing sources<a class="headerlink" href="#managing-sources" title="Permanent link">¶</a></h2>
+<p>The list of sources shows “Edit” for sources you may change and “Show” for sources that are only shared with you.</p>
+<ul>
+<li>Administrators can edit all sources. Everyone else can edit the sources they created. Domain administrators can also edit sources created by mailboxes of their domains.</li>
+<li>The connection of a source (host, port, encryption, authentication, and the OAuth2 flow, token endpoint and client ID) can only be changed by someone who has access to all mailboxes whose sync jobs use the source. Otherwise mailcow refuses the change with “The server of sync source … cannot be changed, sync jobs of other mailboxes use it”. Administrators can always change it.</li>
+<li>Changing the connection deletes the OAuth2 tokens of the source. Users of a user-login source have to sign in again.</li>
+<li>An inactive source pauses all of its sync jobs.</li>
+<li>A source can only be deleted while no sync job uses it.</li>
+<li>When the account that created a source is deleted, the source is deleted as well if no sync job uses it. Otherwise it is handed over to the administrators.</li>
+</ul>
+<h2 id="oauth2">OAuth2<a class="headerlink" href="#oauth2" title="Permanent link">¶</a></h2>
+<p>Sources with the authentication <code>XOAUTH2</code> log in with an OAuth2 token instead of a password. Only administrators and domain administrators can create and edit them. There are two flows:</p>
+<ul>
+<li><strong>App (client credentials)</strong>: mailcow logs in with an app that has access to all source mailboxes. Users do not have to sign in. Such sources are only visible to the person who created them and to administrators. Mailbox users cannot select them, so the sync jobs are created by the creator of the source or an administrator.</li>
+<li><strong>User login (authorization code)</strong>: When creating a sync job, every user signs in at the provider once with the source account. Mailbox users can use such sources when they are shared with them.</li>
+</ul>
+<p>The token endpoint and the other OAuth2 endpoints must be <code>https://</code> URLs. Sources that were not created by an administrator need endpoints with a public address.</p>
+<p>For user-login sources, the source shows the “Redirect URI” to register in the app at the provider: <code>https://&lt;MAILCOW_HOSTNAME&gt;/syncjob-oauth</code>. The sign-in at the provider only works when mailcow is opened via this host name.</p>
+<p>mailcow refreshes the tokens automatically, also during long sync runs.</p>
+<ul>
+<li>App sources: The list of sources shows a token badge, its tooltip shows until when the token is valid. “Refresh token now” on the edit page of the source requests a new token right away.</li>
+<li>User-login sources: The token belongs to the sync job, so the list of sync jobs shows the token badge for every job.</li>
+</ul>
+<h3 id="microsoft-365">Microsoft 365<a class="headerlink" href="#microsoft-365" title="Permanent link">¶</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Prerequisite</p>
+<p>IMAP must be enabled for the source mailboxes in Exchange Online (Microsoft 365 admin center: user <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Mail <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Manage email apps).</p>
+</div>
+<p><strong>App (client credentials)</strong></p>
+<ol>
+<li>In the Microsoft Entra admin center, register a new app under “App registrations”.</li>
+<li>Under “API permissions”, add the application permission <code>IMAP.AccessAsApp</code> of “Office 365 Exchange Online” (“APIs my organization uses”) and grant admin consent.</li>
+<li>Under “Certificates &amp; secrets”, create a client secret.</li>
+<li>Register the app in Exchange Online and give it access to the source mailboxes, using the Exchange Online PowerShell. <code>&lt;OBJECT_ID&gt;</code> is the object ID of the app under “Enterprise applications”, not the one under “App registrations”:
+    <div class="highlight"><pre><span></span><code><span class="nb">New-ServicePrincipal</span> <span class="n">-AppId</span> <span class="p">&lt;</span><span class="n">APPLICATION_ID</span><span class="p">&gt;</span> <span class="n">-ObjectId</span> <span class="p">&lt;</span><span class="n">OBJECT_ID</span><span class="p">&gt;</span>
+<span class="nb">Add-MailboxPermission</span> <span class="n">-Identity</span> <span class="s2">"user@contoso.com"</span> <span class="n">-User</span> <span class="p">&lt;</span><span class="n">OBJECT_ID</span><span class="p">&gt;</span> <span class="n">-AccessRights</span> <span class="n">FullAccess</span>
+</code></pre></div>
+    Microsoft describes these steps in detail in <a href="https://learn.microsoft.com/en-us/exchange/client-developer/legacy-protocols/how-to-authenticate-an-imap-pop-smtp-application-by-using-oauth">Authenticate an IMAP, POP or SMTP connection using OAuth</a>.</li>
+<li>In mailcow, add a source with the preset “Microsoft 365 (Client credentials)” and enter the “Microsoft 365 tenant” (tenant ID or a domain of the tenant), the client ID and the client secret.</li>
+</ol>
+<p><strong>User login (authorization code)</strong></p>
+<ol>
+<li>In the Microsoft Entra admin center, register a new app under “App registrations”. Add the platform “Web” with the redirect URI of the source (<code>https://&lt;MAILCOW_HOSTNAME&gt;/syncjob-oauth</code>).</li>
+<li>Under “API permissions”, add the delegated permissions <code>IMAP.AccessAsUser.All</code>, <code>offline_access</code>, <code>openid</code>, <code>email</code> and <code>profile</code> of “Microsoft Graph”. Grant admin consent, otherwise every user has to agree at the sign-in.</li>
+<li>Under “Certificates &amp; secrets”, create a client secret.</li>
+<li>In mailcow, add a source with the preset “Microsoft 365 (User login)” and enter the tenant, the client ID and the client secret.</li>
+</ol>
+<h3 id="google">Google<a class="headerlink" href="#google" title="Permanent link">¶</a></h3>
+<ol>
+<li>In the Google Cloud Console, configure the OAuth consent screen of a project. For Google Workspace, choose the user type “Internal”.</li>
+<li>Under “Credentials”, create an “OAuth client ID” of the type “Web application” and add the redirect URI of the source (<code>https://&lt;MAILCOW_HOSTNAME&gt;/syncjob-oauth</code>) as authorized redirect URI.</li>
+<li>In mailcow, add a source with the preset “Google (User login)” and enter the client ID and the client secret.</li>
+</ol>
+<p>Users of a private Gmail account can use an app password with the preset “Gmail” instead.</p>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>“OAuth token not ready” or “Token failed” on a sync job (user login)</strong>: Open the sync job, click “Sign in with the provider”, sign in again and save. The browser must allow pop-ups for mailcow. When creating a sync job, administrators and domain administrators select the local mailbox before signing in.</li>
+<li><strong>“Token failed” on an app source</strong>: The tooltip of the badge and “Last refresh error” on the edit page of the source show the error. Check tenant, client ID, client secret and the permissions of the app, then click “Refresh token now”.</li>
+<li><strong>The sign-in fails</strong>: The sync job form shows the reason next to “Sign in with the provider”, e.g. “The provider did not issue a token (check client ID, secret and redirect URI)”.</li>
+<li>The sign-in needs a regular login with access to sync jobs. It does not work while a two-factor setup or password change is pending, and not in a session of a read-only API key.</li>
+</ul>
+<h2 id="syncing-mailboxes-within-mailcow">Syncing mailboxes within mailcow<a class="headerlink" href="#syncing-mailboxes-within-mailcow" title="Permanent link">¶</a></h2>
+<p>A source must not point to mailcow itself. Sources with <code>localhost</code>, <code>dovecot</code> or another address of the internal Docker network are refused when the sync job runs. The job ends with “Can't connect to remote server”, the log shows “… is an address of mailcow itself”.</p>
+<p>To copy emails between two mailboxes of the same mailcow, create a source with the public host name of mailcow (<code>MAILCOW_HOSTNAME</code>) as host.</p>
+<h2 id="settings-for-administrators">Settings for administrators<a class="headerlink" href="#settings-for-administrators" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>Parallel runs</strong>: In “System <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Configuration <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Options <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Sync jobs”, “Max. parallel sync processes” (1–32, default 1) defines how many sync jobs run at the same time. “Bandwidth limit per process (KB/s)” limits every sync process (0 = unlimited). It also caps the bandwidth limit of a single job. The total bandwidth is about this value × the number of parallel processes.</li>
+<li><strong>Order</strong>: Due sync jobs run by their “Priority” (edit page of a sync job, only for administrators, higher runs first), then jobs that never ran, then the least recently run ones.</li>
+<li><strong>Schedule next</strong>: In the list of sync jobs, “Actions <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Schedule next” (only for administrators) moves the selected jobs to the front of the queue and makes them due right away. For this, their priority is set above all other jobs and stays so until it is changed on the edit page.</li>
+</ul>
+<h2 id="custom-parameters">Custom parameters<a class="headerlink" href="#custom-parameters" title="Permanent link">¶</a></h2>
+<p>“Custom parameters” takes additional imapsync options, one option per row with its value. A value may contain spaces and is passed to imapsync as one argument. Only allowed options are accepted. The list is defined in <code>$IMAPSYNC_OPTIONS</code> in <code>data/web/inc/vars.inc.php</code> and can be changed in <code>data/web/inc/vars.local.inc.php</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// Allow an option that needs a value</span>
+<span class="nv">$IMAPSYNC_OPTIONS</span><span class="p">[</span><span class="s1">'someoption'</span><span class="p">]</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="c1">// Allow an option without a value</span>
+<span class="nv">$IMAPSYNC_OPTIONS</span><span class="p">[</span><span class="s1">'otheroption'</span><span class="p">]</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="c1">// Allow an option whose value must match a regular expression</span>
+<span class="nv">$IMAPSYNC_OPTIONS</span><span class="p">[</span><span class="s1">'maxsize'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'[0-9]+'</span><span class="p">;</span>
+<span class="c1">// Remove an option from the list</span>
+<span class="nb">unset</span><span class="p">(</span><span class="nv">$IMAPSYNC_OPTIONS</span><span class="p">[</span><span class="s1">'debug'</span><span class="p">]);</span>
+</code></pre></div>
+<ul>
+<li>Option names are written in lowercase and without leading dashes.</li>
+<li><code>true</code>: the option needs a value. <code>false</code>: the option takes no value. A string: a regular expression (without delimiters) that the whole value must match.</li>
+<li>Some options can never be allowed, e.g. options that run commands or use local files (<code>pipemess</code>, <code>regextrans2</code>, <code>logfile</code>, …) and <code>showpasswords</code>. mailcow removes them from the list.</li>
+<li>If the list contains no valid entry, the default list applies.</li>
+<li>Changes only apply after a restart of PHP-FPM:</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">docker compose (Plugin)</label><label for="__tabbed_1_2">docker-compose (Standalone)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>php-fpm-mailcow
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>php-fpm-mailcow
+</code></pre></div>
+</div>
+</div>
 </div>
 
 
@@ -5363,7 +5905,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="May 7, 2025 10:33:59 CEST">2025-05-07 10:33:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 4, 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

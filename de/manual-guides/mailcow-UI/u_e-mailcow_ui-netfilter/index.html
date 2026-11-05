@@ -8,7 +8,7 @@
         <link rel="canonical" href="https://docs.mailcow.email/de/manual-guides/mailcow-UI/u_e-mailcow_ui-netfilter/">
       
       
-        <link rel="prev" href="../u_e-mailcow_ui-forgot_password/">
+        <link rel="prev" href="../u_e-mailcow_ui-groups/">
       
       
         <link rel="next" href="../u_e-mailcow_ui-notification-templates/">
@@ -98,7 +98,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#netfilter-ban-einstellungen-andern" class="md-skip">
+        <a href="#so-arbeitet-netfilter" class="md-skip">
           Zum Inhalt
         </a>
       
@@ -1641,7 +1641,7 @@
   <span class="md-ellipsis">
     
   
-    Migration mit Sync Jobs
+    Sync Jobs
   
 
     
@@ -2351,6 +2351,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2407,14 +2435,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS-Überschreibungen
+    Design anpassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenweite Fußzeile
   
 
     
@@ -2443,6 +2499,34 @@
     
   
     Passwort vergessen Funktion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gruppen
   
 
     
@@ -2519,6 +2603,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#so-arbeitet-netfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        So arbeitet Netfilter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="So arbeitet Netfilter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#was-als-fehlversuch-zahlt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was als Fehlversuch zählt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#netfilter-ban-einstellungen-andern" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2527,6 +2639,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Netfilter Ban-Einstellungen ändern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowlist-und-denylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allowlist und Denylist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2534,6 +2663,28 @@
     <span class="md-ellipsis">
       
         Netfilter Regex ändern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ausfall-des-identity-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ausfall des Identity Providers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-regeln" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewall-Regeln
       
     </span>
   </a>
@@ -2855,6 +3006,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider Synchronisation
   
 
     
@@ -5304,6 +5483,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#so-arbeitet-netfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        So arbeitet Netfilter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="So arbeitet Netfilter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#was-als-fehlversuch-zahlt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Was als Fehlversuch zählt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#netfilter-ban-einstellungen-andern" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5312,6 +5519,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Netfilter Ban-Einstellungen ändern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowlist-und-denylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allowlist und Denylist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5319,6 +5543,28 @@
     <span class="md-ellipsis">
       
         Netfilter Regex ändern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ausfall-des-identity-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ausfall des Identity Providers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-regeln" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewall-Regeln
       
     </span>
   </a>
@@ -5358,44 +5604,139 @@
 
   <h1>Netfilter</h1>
 
+<h2 id="so-arbeitet-netfilter">So arbeitet Netfilter<a class="headerlink" href="#so-arbeitet-netfilter" title="Permanent link">¶</a></h2>
+<p>Der Netfilter-Container liest die Logs der mailcow-Container und zählt fehlgeschlagene Anmeldungen pro Netzwerk. Erreicht ein Netzwerk die maximale Anzahl an Versuchen innerhalb des Zeitfensters, wird es für die Bannzeit gesperrt.</p>
+<ul>
+<li><strong>Netzwerke statt einzelner Adressen:</strong> Die Größe eines gesperrten Netzwerks bestimmen die Netban-Präfixe für IPv4 und IPv6 (Standard <code>/32</code> und <code>/128</code>, also einzelne Adressen).</li>
+<li><strong>Wachsende Bannzeit:</strong> Ist <code>Bannzeit erhöht sich mit jedem Bann</code> aktiv, dauert jede weitere Sperre desselben Netzwerks doppelt so lange, höchstens bis zur maximalen Bannzeit. Nach einem Neustart des Netfilter-Containers beginnt die Verdopplung von vorn, aktive Sperren bleiben.</li>
+<li><strong>Private Adressen</strong> (z. B. <code>192.168.0.0/16</code> oder das mailcow-Netzwerk) und Loopback werden nie gesperrt.</li>
+<li><strong>Aktive Sperren überstehen Neustarts:</strong> Sie liegen mit ihrem Ablaufzeitpunkt in Redis. Nach einem Neustart des Netfilter-Containers (z. B. durch <code>update.sh</code>) werden sie wieder gesetzt, abgelaufene fallen weg.</li>
+<li><strong>Entsperren:</strong> Abgelaufene und in der UI entsperrte Sperren werden innerhalb von etwa 10 Sekunden aufgehoben.</li>
+</ul>
+<h3 id="was-als-fehlversuch-zahlt">Was als Fehlversuch zählt<a class="headerlink" href="#was-als-fehlversuch-zahlt" title="Permanent link">¶</a></h3>
+<p>Gezählt werden:</p>
+<ul>
+<li>Fehlgeschlagene Anmeldungen an IMAP, POP3, SMTP (AUTH) und Sieve. Dovecot lässt das Passwort von der mailcow UI prüfen, die den Fehlversuch meldet.</li>
+<li>Fehlgeschlagene Anmeldungen an ActiveSync und CalDAV/CardDAV, mit der Adresse des Clients.</li>
+<li>Fehlgeschlagene Anmeldungen an der mailcow UI und an SOGo, auch falsche 2FA-Codes.</li>
+<li>Fehlgeschlagene Anmeldungen von Dovecot-Master-Usern.</li>
+</ul>
+<p>Protokolliert, aber <strong>nicht</strong> gezählt werden Anmeldungen mit richtigem Passwort, die das Konto nicht erlaubt. Sie stehen im Log des php-fpm-Containers als <code>Login denied</code>, zum Beispiel:</p>
+<ul>
+<li>das Protokoll ist für die Mailbox abgeschaltet, oder Mailbox oder Domain sind inaktiv,</li>
+<li>eine geteilte Mailbox, die keine eigene Anmeldung hat,</li>
+<li>eine Mailbox mit 2FA, die im Mail-Client ihr Passwort statt eines App-Passworts nutzt,</li>
+<li>ein inaktives App-Passwort oder eines ohne das Protokoll.</li>
+</ul>
+<p>Ein falsch eingerichteter Mail-Client sperrt so nicht ein ganzes Netzwerk, etwa ein Büro hinter NAT. Falsche Passwörter zählen weiterhin.</p>
+<div class="admonition warning">
+<p class="admonition-title">Reverse Proxy</p>
+<p>Läuft mailcow hinter einem Reverse Proxy mit einer Adresse außerhalb der privaten Bereiche, gehört dieser in <code>TRUSTED_PROXIES</code> in der <code>mailcow.conf</code>. Sonst zählen fehlgeschlagene ActiveSync- und CalDAV/CardDAV-Anmeldungen aller Clients für die Adresse des Proxys, und der Proxy wird gesperrt.</p>
+</div>
 <h2 id="netfilter-ban-einstellungen-andern">Netfilter Ban-Einstellungen ändern<a class="headerlink" href="#netfilter-ban-einstellungen-andern" title="Permanent link">¶</a></h2>
-<p>Um die Netfilter Ban-Einstellungen zu ändern navigieren Sie zu dem Menü Punkt: <code>Konfiguration -&gt; Server-Konfiguration -&gt; Konfiguration -&gt; Fail2ban-Parameter</code>.</p>
-<p>Sie sollten dann dieses Fenster sehen:</p>
+<p>Die Netfilter Ban-Einstellungen liegen unter <code>Konfiguration -&gt; Server-Konfiguration -&gt; Konfiguration -&gt; Fail2ban-Parameter</code>.</p>
+<p>Dort erscheint dieses Fenster:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Netfilter ban settings" src="../../../assets/images/manual-guides/mailcow-netfilter_settings.png"></a></p>
-<p>Hier können Sie verschiedene Optionen für die Banns selbst festlegen. 
-Zum Beispiel die max. Ban-Zeit oder die max. Versuche bevor ein Ban ausgeführt wird.</p>
+<p>Hier lassen sich verschiedene Optionen für die Banns festlegen, zum Beispiel die max. Ban-Zeit oder die max. Versuche, bevor ein Ban ausgeführt wird.</p>
+<p>Änderungen greifen nach etwa 10 Sekunden, ohne Neustart.</p>
+<h3 id="allowlist-und-denylist">Allowlist und Denylist<a class="headerlink" href="#allowlist-und-denylist" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Allowlist:</strong> Adressen und Netzwerke, die nie gesperrt werden.</li>
+<li><strong>Denylist:</strong> Adressen und Netzwerke, die dauerhaft gesperrt sind. Ein Eintrag auf der Denylist hat Vorrang vor der Allowlist.</li>
+</ul>
+<p>Beide Listen nehmen auch Hostnamen an, die zu ihren IPv4- und IPv6-Adressen aufgelöst werden. Netfilter übernimmt Änderungen innerhalb einer Minute, ohne Neustart. Lässt sich ein Hostname zeitweise nicht auflösen (DNS-Timeout), bleiben seine zuletzt bekannten Adressen bestehen.</p>
 <h2 id="netfilter-regex-andern">Netfilter Regex ändern<a class="headerlink" href="#netfilter-regex-andern" title="Permanent link">¶</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Achtung</p>
-<p>Folgender Bereich erfordert zumindest grundlegende Regex kenntnisse. <br>
-Sollten Sie sich nicht sicher sein, was Sie dort tun, können wir Ihnen nur von der Umkonfiguration abraten.</p>
+<p>Folgender Bereich erfordert zumindest grundlegende Regex-Kenntnisse. <br>
+Wer sich nicht sicher ist, was dort passiert, sollte die Regeln besser nicht umkonfigurieren.</p>
 </div>
-<p>Sie können neben den Sperreinstellungen ebenfalls definieren, was genau aus den Logs der mailcow Container verwendet werden soll um einen möglichen Angreifer zu sperren.</p>
-<p>Dafür müssen Sie das Regex Feld erst einmal aufklappen, was dann in etwa so aussieht:</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Netfilter Regex" src="../../../assets/images/manual-guides/mailcow-netfilter_regex.png"></a></p>
-<p>Dort können Sie nun verschiedenste neue Filter-Regeln anlegen.</p>
+<p>Neben den Sperreinstellungen lässt sich auch festlegen, was genau aus den Logs der mailcow-Container verwendet wird, um einen möglichen Angreifer zu sperren.</p>
+<p>Dafür das Regex-Feld aufklappen. Dort lassen sich die Regeln ändern oder neue anlegen. Die Standard-Regeln:</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Logzeilen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Fehlgeschlagene Anmeldungen an der mailcow UI, ActiveSync und CalDAV/CardDAV, falsche 2FA-Codes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Fehlgeschlagene Anmeldungen an der Rspamd UI</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Fehlgeschlagene Anmeldungen an IMAP, POP3, SMTP und Sieve</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Nicht-SMTP-Befehle an Postfix</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SMTP-Protokollfehler</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fehlgeschlagene SOGo-Anmeldungen</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SOGo-Anfragen, die mit <code>403</code> beantwortet werden</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Fehlgeschlagene Anmeldungen von Dovecot-Master-Usern</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Die erste Gruppe einer Regel (<code>(...)</code>) muss die Adresse des Clients erfassen.</li>
+<li>Die Regeln werden in der Reihenfolge ihrer ID geprüft. Eine Logzeile zählt als ein Fehlversuch, auch wenn mehrere Regeln passen.</li>
+<li>Eine Regel mit ungültiger Regex wird übersprungen und geloggt, die anderen Regeln arbeiten weiter.</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Hinweis</p>
-<p>Mit weiterschreitenden Updates ist es möglich, dass neue Netfilter Regex Regeln dazu kommen oder entfernt werden. <br>
-Sollte das der Fall sein empfiehlt es sich mit einem Klick auf <code>Zurücksetzen auf Standard</code> die Netfilter Regex Regeln neu laden zu lassen.</p>
+<p>Die Standard-Regeln sind am Anfang der Logzeile verankert (<code>^</code>), damit Text, den Clients bestimmen (z. B. ein Login-Name), nicht passt. Eigene Regeln sollten genauso verankert sein. <br>
+Updates ersetzen frühere Standard-Regeln automatisch, wenn sie nicht geändert wurden. Geänderte oder eigene Regeln bleiben erhalten und sollten nach einem Update geprüft werden. Fehlgeschlagene SMTP-Anmeldungen kommen jetzt aus Regel 3, eine Regel für das Postfix-Log (<code>SASL ... authentication failed</code>) würde sie doppelt zählen. <code>Zurücksetzen auf Standard</code> stellt die Standard-Regeln wieder her.</p>
 </div>
+<h2 id="ausfall-des-identity-providers">Ausfall des Identity Providers<a class="headerlink" href="#ausfall-des-identity-providers" title="Permanent link">¶</a></h2>
+<p>Kann mailcow bei einer Anmeldung den Identity Provider (LDAP, Keycloak) nicht erreichen, schlägt die Anmeldung mit einem temporären Fehler fehl und zählt <strong>nicht</strong> als Fehlversuch:</p>
+<ul>
+<li><strong>mailcow UI:</strong> zeigt „Der Identity Provider ist nicht erreichbar, bitte später erneut versuchen.“</li>
+<li><strong>IMAP/POP3:</strong> Mail-Clients bekommen einen temporären Fehler (<code>[UNAVAILABLE]</code>) und versuchen es später erneut.</li>
+<li><strong>SMTP:</strong> Die Anmeldung schlägt fehl, zählt aber nicht.</li>
+</ul>
+<p>Mail-Clients, die sich vorher erfolgreich angemeldet haben, arbeiten während des Ausfalls weiter, solange Dovecot ihre Anmeldung im Cache hat.</p>
+<h2 id="firewall-regeln">Firewall-Regeln<a class="headerlink" href="#firewall-regeln" title="Permanent link">¶</a></h2>
+<p>Netfilter hält seine Regeln in der Chain <code>MAILCOW</code>, auf die als erste Regel der Chains <code>INPUT</code> und <code>FORWARD</code> gesprungen wird.</p>
+<ul>
+<li><strong>Reihenfolge:</strong> Docker setzt bei einem Neustart seine eigenen Sprünge (<code>DOCKER-USER</code>, <code>DOCKER-FORWARD</code>) an den Anfang. Netfilter prüft die Reihenfolge alle 10 Sekunden und schiebt den Sprung auf <code>MAILCOW</code> wieder nach oben. Fehlt die Chain (z. B. nach einem Firewall-Reload auf dem Host), legt Netfilter sie samt aller aktiven Sperren neu an.</li>
+<li><strong>Isolation:</strong> Die Regel <code>mailcow isolation</code> sperrt den Zugriff von außerhalb des mailcow-Netzwerks auf die Ports von MariaDB, Redis, Solr und doveadm (3306, 6379, 8983, 12345). Es gibt eine Regel pro Port, damit Werkzeuge, die das Regelwerk mit <code>iptables-save</code> sichern und wiederherstellen (z. B. <code>netfilter-persistent</code>), die Ports behalten. Mit <code>DISABLE_NETFILTER_ISOLATION_RULE=y</code> in der <code>mailcow.conf</code> lässt sich die Regel abschalten; nach einem Neustart des Netfilter-Containers werden auch bestehende Regeln entfernt.</li>
+<li><strong>Stoppen:</strong> Beim Stoppen entfernt der Netfilter-Container seine Regeln. Die aktiven Sperren bleiben in Redis und werden beim nächsten Start wieder gesetzt.</li>
+</ul>
 <h2 id="netfilter-entscheidungen-via-url-als-quelle-fur-firewall-blockregeln-bereitstellen">Netfilter Entscheidungen via URL als Quelle für Firewall Blockregeln bereitstellen<a class="headerlink" href="#netfilter-entscheidungen-via-url-als-quelle-fur-firewall-blockregeln-bereitstellen" title="Permanent link">¶</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Hinweis</p>
-<p>Die Option ist jedoch standardmäßig deaktiviert und muss erst von Ihnen aktiviert werden.</p>
+<p>Die Option ist standardmäßig deaktiviert und muss erst aktiviert werden.</p>
 </div>
-<p>Seit dem 2023-12 Update bietet mailcow die Möglichkeit die Netfilter Entscheidungen als externer Endpoint zu exportieren um die Daten daraus in einem externen Firewall System einbinden zu können, Quasi als Blocklisten Quelle.</p>
+<p>Seit dem 2023-12 Update bietet mailcow die Möglichkeit, die Netfilter-Entscheidungen als externen Endpoint zu exportieren, um die Daten daraus in ein externes Firewall-System einzubinden, quasi als Blocklisten-Quelle.</p>
 <details class="question">
-<summary>Was bringt mir diese Funktion?</summary>
-<p>Mit dieser Funktionalität können Sie die von Netfilter als gesperrt Markierten IPs an einen Endpunkt weitergeben, welcher diese IPs dann verarbeiten kann. Bspw. eine OPNsense Firewall kann diese Liste dynamisch reinladen.</p>
+<summary>Was bringt diese Funktion?</summary>
+<p>Damit lassen sich die von Netfilter als gesperrt markierten IPs an einen Endpunkt weitergeben, der diese IPs dann verarbeiten kann. Bspw. kann eine OPNsense-Firewall diese Liste dynamisch laden.</p>
 </details>
-<p>Schauen wir uns doch mal diese Einstellungen dazu an:</p>
+<p>Schauen wir uns die Einstellungen dazu an:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Bild der neuen Netfilter Einstellungen, Kasten hinterlegt den Punkt Fail2Ban extern verwalten. Markierung auf der URL zu der jeweiligen Banliste. Pfeil zeigt auf Neuladen knopf für die Generation einer neuen URL" src="../../../assets/images/manual-guides/mailcow-netfilter_external_endpoint.png"></a></p>
-<p>Um die generelle Funktion zu aktivieren muss der Haken bei <code>Fail2Ban extern verwalten</code> gesetzt werden.</p>
-<p>Sobald dies getan ist kann die URL (Punkt 2) kopiert werden und in den jeweiligen Endpunkt eingesetzt werden.</p>
+<p>Um die generelle Funktion zu aktivieren, muss der Haken bei <code>Fail2Ban extern verwalten</code> gesetzt werden.</p>
+<p>Sobald das erledigt ist, kann die URL (Punkt 2) kopiert und im jeweiligen Endpunkt eingesetzt werden.</p>
 <div class="admonition warning">
 <p class="admonition-title">Wichtig</p>
-<p>Die URL kann bei bedarf regeneriert werden. Dafür auf das Symbol neben Kopieren <code>Neuladen Symbol</code> klicken.</p>
+<p>Die URL kann bei Bedarf neu erzeugt werden. Dafür auf das Symbol neben Kopieren <code>Neuladen Symbol</code> klicken.</p>
 </div>
 
 
@@ -5417,7 +5758,7 @@ Sollte das der Fall sein empfiehlt es sich mit einem Klick auf <code>Zurücksetz
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="19. Dezember 2023 10:50:12 CET">2023-12-19 10:50:12</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="4. November 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     

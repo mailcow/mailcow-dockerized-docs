@@ -1641,7 +1641,7 @@
   <span class="md-ellipsis">
     
   
-    Migration mit Sync Jobs
+    Sync Jobs
   
 
     
@@ -2347,6 +2347,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-bl_wl/" class="md-nav__link">
         
   
@@ -2403,14 +2431,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-css/" class="md-nav__link">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    CSS-Überschreibungen
+    Design anpassen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-domain_footer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domänenweite Fußzeile
   
 
     
@@ -2439,6 +2495,34 @@
     
   
     Passwort vergessen Funktion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gruppen
   
 
     
@@ -2775,6 +2859,34 @@
     
   
     Generic-OIDC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manual-guides/mailcow-UI/u_e-mailcow_ui-idp-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity Provider Synchronisation
   
 
     
@@ -5453,6 +5565,10 @@
 </ol>
 <h2 id="methode-13-imap-und-smtp-mit-app-passwort">Methode 1.3: IMAP und SMTP mit App-Passwort<a class="headerlink" href="#methode-13-imap-und-smtp-mit-app-passwort" title="Permanent link">¶</a></h2>
 <p>Diese Methode konfiguriert IMAP und SMTP für den Zugriff auf ein E-Mail-Konto. Es wird ein neues App-Passwort erzeugt und in das Profil eingefügt, damit bei der Einrichtung kein Passwort eingegeben werden muss. Geben Sie das Profil nicht weiter, da es einen vollständigen Zugriff auf Ihr Postfach ermöglicht.</p>
+<div class="admonition info">
+<p class="admonition-title">Hinweis</p>
+<p>Das gilt für die Methoden 1.3 und 1.4: Das App-Passwort wird nur erzeugt, wenn die Mailbox die Berechtigung <code>App-Passwörter verwalten</code> hat, sonst fragt das Profil nach dem Passwort. Steht eine 2FA-Einrichtung oder Passwortänderung aus, ist das Profil erst erreichbar, wenn dieser Schritt in der mailcow UI erledigt ist.</p>
+</div>
 <ol>
 <li>Öffnen Sie <span class="client_variables_unavailable"><i>https://${MAILCOW_HOSTNAME}/mobileconfig.php?only_email&amp;app_password</i></span><span class="client_variables_available"><a class="client_var_link" href="mobileconfig.php?only_email&amp;app_password">mailcow.mobileconfig</a></span> um ein individuelles Konfigurationsprofil herunterzuladen.</li>
 <li>Öffnen Sie das Profil auf Ihrem Mac, iPhone oder iPad und folgen Sie der Anleitung von Apple für Ihre Betriebssystemversion, um das Profil zu installieren:<ul>
@@ -5502,7 +5618,7 @@
     <span class="md-icon" title="Letztes Update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="14. Mai 2025 15:48:06 CEST">2025-05-14 15:48:06</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="4. November 2026 21:26:02 CET">2026-11-04 21:26:02</span>
   </span>
 
     
