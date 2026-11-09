@@ -34,6 +34,9 @@ Ein **Identity Provider** wird als Administrator in der *mailcow UI* unter
 !!! info "Keycloak 24 und neuer"
     Keycloak speichert nur Benutzerattribute, die im User Profile definiert sind. `mailcow_template` (und für den Mailpassword Flow `mailcow_password`) muss deshalb im User Profile des Realms angelegt sein, alternativ in den Realm-Einstellungen **Unmanaged attributes** aktivieren.
 
+!!! info "Keycloak 26.8.2 und neuer"
+    Die Admin REST API akzeptiert nur Tokens mit dem Client Scope `kc-admin-api`. Diesen dem mailcow Client als **Default** Scope hinzufügen (`Clients > mailcow Client > Client scopes > Add client scope`). Ohne ihn schlagen der Mailpassword Flow und die Synchronisation mit HTTP 401 fehl.
+
 ---
 
 ### **Automatische Benutzerbereitstellung**  

@@ -3,7 +3,7 @@ mailcow hält die Mailboxen mit dem Identity Provider (IdP) synchron: Es legt Ma
 Die Einstellungen stehen unter `System > Konfiguration > Zugang > Identity Provider` in den Abschnitten **Synchronisation** und **Gruppen**. Die Verbindung selbst ist auf den Seiten zu [Keycloak](u_e-mailcow_ui-keycloak.md) und [LDAP](u_e-mailcow_ui-ldap.md) beschrieben.
 
 !!! warning "Keycloak"
-    Der mailcow Client in Keycloak benötigt einen **Service Account** mit der Rolle **view-users**. Der Gruppen-Sync benötigt zusätzlich **query-groups**.
+    Der mailcow Client in Keycloak benötigt einen **Service Account** mit der Rolle **view-users**. Der Gruppen-Sync benötigt zusätzlich **query-groups**. Ab Keycloak 26.8.2 braucht der Client außerdem den Client Scope **kc-admin-api** als Default Scope.
 
 ---
 
