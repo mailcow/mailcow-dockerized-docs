@@ -5728,6 +5728,10 @@
 <p class="admonition-title">Keycloak 24 and newer</p>
 <p>Keycloak only stores user attributes that are defined in the user profile. Add <code>mailcow_template</code> (and <code>mailcow_password</code> for the Mailpassword Flow) to the user profile of the realm or enable <strong>Unmanaged attributes</strong> in the realm settings.</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Keycloak 26.8.2 and newer</p>
+<p>The Admin REST API only accepts tokens with the client scope <code>kc-admin-api</code>. Add it to the mailcow client as <strong>Default</strong> scope (<code>Clients &gt; mailcow client &gt; Client scopes &gt; Add client scope</code>). Without it, the Mailpassword Flow and the sync fail with HTTP 401.</p>
+</div>
 <hr>
 <h3 id="automatic-user-provisioning"><strong>Automatic User Provisioning</strong><a class="headerlink" href="#automatic-user-provisioning" title="Permanent link">¶</a></h3>
 <p>If a user does not exist in <strong>mailcow</strong> and logs in via the <strong>mailcow UI</strong>, the user will be <strong>automatically created</strong>, provided that <code>Auto-create users on login</code> is enabled and a matching <strong>attribute mapping</strong> or a <strong>Default Template</strong> is configured.  </p>
@@ -5842,7 +5846,7 @@ Then, follow these steps to diagnose and resolve the issue:  </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 4, 2026 21:26:02 CET">2026-11-04 21:26:02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="November 9, 2026 19:30:34 CET">2026-11-09 19:30:34</span>
   </span>
 
     
