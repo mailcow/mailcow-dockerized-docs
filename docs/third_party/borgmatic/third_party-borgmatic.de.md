@@ -89,9 +89,9 @@ keep_weekly: 4
 keep_monthly: 6
 
 mariadb_databases:
-    - name: ${DBNAME}
-      username: ${DBUSER}
-      password: ${DBPASS}
+    - name: \${DBNAME}
+      username: \${DBUSER}
+      password: \${DBPASS}
       options: "--default-character-set=utf8mb4 --skip-ssl"
       list_options: "--skip-ssl"
       restore_options: "--skip-ssl"
@@ -216,8 +216,8 @@ keine benutzerdefinierten Daten in ihrem maildir oder ihrer mailcow-Datenbank ha
     SELinux wird (berechtigterweise) jeden anderen Container, wie z.B. den borgmatic Container, daran hindern, auf
     dieses Volume zu schreiben.
 
-Bevor Sie eine Wiederherstellung durchführen, müssen Sie das vmail-Volume in `docker-compose.override.yml` beschreibbar machen, indem Sie
-das `ro`-Flag aus dem Volume entfernen.
+Bevor Sie eine Wiederherstellung durchführen, müssen Sie die Volumes in `docker-compose.override.yml` beschreibbar machen, indem Sie
+das `ro`-Flag der mit `ro` eingebundenen Volumes entfernen.
 Dann können Sie den folgenden Befehl verwenden, um das Maildir aus einem Backup wiederherzustellen:
 
 === "docker compose (Plugin)"

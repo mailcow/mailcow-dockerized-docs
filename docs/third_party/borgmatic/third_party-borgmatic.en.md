@@ -90,9 +90,9 @@ keep_weekly: 4
 keep_monthly: 6
 
 mariadb_databases:
-    - name: ${DBNAME}
-      username: ${DBUSER}
-      password: ${DBPASS}
+    - name: \${DBNAME}
+      username: \${DBUSER}
+      password: \${DBPASS}
       options: "--default-character-set=utf8mb4 --skip-ssl"
       list_options: "--skip-ssl"
       restore_options: "--skip-ssl"
@@ -221,8 +221,8 @@ any custom data in your maildir or your mailcow database.
     exclusively. SELinux will (rightfully) prevent any other container, such as the borgmatic container, from writing to
     this volume.
 
-Before running a restore you must make the vmail volume writeable in `docker-compose.override.yml` by removing
-the `ro` flag from the volume.
+Before running a restore you must make the read-only volumes writeable in `docker-compose.override.yml` by removing
+the `ro` flag from the `ro` mounted volumes.
 Then you can use the following command to restore the maildir from a backup:
 
 === "docker compose (Plugin)"
