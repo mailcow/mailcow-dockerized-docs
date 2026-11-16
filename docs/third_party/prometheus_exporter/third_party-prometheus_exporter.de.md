@@ -20,7 +20,8 @@ Wenn Sie den Exporter über den Mailcow-internen Nginx erreichbar machen möchte
 
 ```
 location /metrics/ {
-		proxy_pass http://prometheus-exporter:9099/metrics;
+	charset off;
+	proxy_pass http://prometheus-exporter:9099/metrics;
 }
 ```
 
