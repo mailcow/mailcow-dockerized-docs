@@ -43,16 +43,6 @@ docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
 ```
 
-### Optional: Rechtschreibprüfung
-
-Falls Sie Rechtschreibprüfungsfunktionen benötigen, erstellen Sie eine Datei `data/hooks/phpfpm/aspell.sh` mit folgendem Inhalt und setzen Sie die Berechtigung mit `chmod +x data/hooks/phpfpm/aspell.sh`. Dies installiert eine lokale Rechtschreibprüfung. Beachten Sie, dass die meisten modernen Webbrowser eine integrierte Rechtschreibprüfung haben, sodass Sie dies möglicherweise nicht benötigen.
-
-```bash
-#!/bin/bash
-apk update
-apk add aspell-en # oder eine andere Sprache
-```
-
 ### MIME-Typ-Zuordnungen installieren
 
 Laden Sie die Datei `mime.types` herunter, da sie nicht im php-fpm-Container enthalten ist.
@@ -84,7 +74,6 @@ Erstellen Sie eine Datei `data/web/rc/config/config.inc.php` mit folgendem Inhal
   - Das `acl`-Plugin ermöglicht die Verwaltung von Zugriffssteuerungslisten für IMAP-Ordner, einschließlich der Möglichkeit, IMAP-Ordner für andere Benutzer freizugeben.
   - Das `markasjunk`-Plugin fügt Schaltflächen hinzu, um ausgewählte Nachrichten als Spam zu markieren (oder Nachrichten im Spam-Ordner als Nicht-Spam zu markieren) und verschiebt sie in den Spam-Ordner oder zurück in den Posteingang. Die in mailcow enthaltenen Sieve-Filter sorgen dafür, dass diese Aktion ein Lernen als Spam/Ham in rspamd auslöst, sodass keine weitere Konfiguration des Plugins erforderlich ist.
   - Das `zipdownload`-Plugin ermöglicht das Herunterladen mehrerer Nachrichtenanhänge oder Nachrichten als ZIP-Datei.
-- Wenn Sie die Rechtschreibprüfung im obigen Schritt nicht installiert haben, entfernen Sie den Parameter `spellcheck_engine`.
 
 ```bash
 cat <<EOCONFIG >data/web/rc/config/config.inc.php
@@ -105,7 +94,6 @@ cat <<EOCONFIG >data/web/rc/config/config.inc.php
   'markasjunk',
   'zipdownload',
 ];
-\$config['spellcheck_engine'] = 'aspell';
 \$config['mime_types'] = '/web/rc/config/mime.types';
 \$config['enable_installer'] = true;
 

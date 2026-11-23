@@ -49,18 +49,6 @@ docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chown root:www-data /web
 docker exec -it $(docker ps -f name=php-fpm-mailcow -q) chmod 750 /web/rc/logs /web/rc/temp /web/rc/config
 ```
 
-### Optional: Spellchecking
-
-If you need spell check features, create a file `data/hooks/phpfpm/aspell.sh` with the following content, then
-`chmod +x data/hooks/phpfpm/aspell.sh`. This installs a local spell check engine. Note, most modern web browsers have
-built in spell check, so you may not want/need this.
-
-```bash
-#!/bin/bash
-apk update
-apk add aspell-en # or any other language
-```
-
 ### Install mime type mappings
 
 Download the `mime.types` file as it is not included in the php-fpm container.
@@ -100,7 +88,6 @@ Create a file `data/web/rc/config/config.inc.php` with the following content.
     and moves them to the junk folder or back to the inbox. The sieve filters included with mailcow will take care
     that action triggers a learn as spam/ham action in rspamd, so no further configuration of the plugin is needed.
   - The zipdownload plugin allows to download multiple message attachments or messages as a zip file.
-- If you didn't install spell check in the above step, remove `spellcheck_engine` parameter.
 
 ```bash
 cat <<EOCONFIG >data/web/rc/config/config.inc.php
@@ -121,7 +108,6 @@ cat <<EOCONFIG >data/web/rc/config/config.inc.php
   'markasjunk',
   'zipdownload',
 ];
-\$config['spellcheck_engine'] = 'aspell';
 \$config['mime_types'] = '/web/rc/config/mime.types';
 \$config['enable_installer'] = true;
 
