@@ -40,9 +40,18 @@ With the Dovecot option, users can view and restore emails that have been marked
         lazy_expunge_only_last_instance = yes
         
         # Exclude marked-as-deleted emails from the quota
-        quota_rule = .EXPUNGED:ignore
+        # (quota_rule2, since mailcow already sets quota_rule for the mailbox quota)
+        quota_rule2 = .EXPUNGED:ignore
     }
     ```
+
+    !!! warning
+        Make sure to use `quota_rule2` and not `quota_rule`. mailcow already defines `quota_rule` for each mailbox's quota, which overrides a `quota_rule` set in `extra.conf`, so the `.EXPUNGED` folder would still count towards the quota.
+
+        If you previously applied this guide with `quota_rule`, you can fix it with:
+        ```bash
+        sed -i 's/quota_rule = \.EXPUNGED:ignore/quota_rule2 = .EXPUNGED:ignore/' data/conf/dovecot/extra.conf
+        ```
 
 2. Restart the Dovecot container:
 
